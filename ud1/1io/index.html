@@ -365,6 +365,19 @@
     Ficheros de caracteres
   </a>
   
+    <nav class="md-nav" aria-label="Ficheros de caracteres">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escritura-de-caracteres" class="md-nav__link">
+    Escritura de caracteres
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -534,6 +547,19 @@
     Ficheros de caracteres
   </a>
   
+    <nav class="md-nav" aria-label="Ficheros de caracteres">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escritura-de-caracteres" class="md-nav__link">
+    Escritura de caracteres
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -650,6 +676,7 @@ Los streams pueden estar orientados a bytes u orientados a caracteres. Cada tipo
 <p>La excepción <code>IOException</code> se lanza si el stream se ha cerrado y el flujo de salida contenido no admite la escritura después del cierre, o se produce otro error de I/O.</p>
 <h3 id="escritura-en-un-fichero-binario-usando-el-bufer">Escritura en un fichero binario usando el búfer</h3>
 <p>Ahora vamos a escribir más enteros en el fichero. Para ello utilizamos <code>BufferedOutputStream</code>. Este búfer almacena los bytes antes de que se escriban en el disco. Recuerda que un búfer es un bloque de memoria que se usa para ensamblar datos antes de que se escriban todos a la vez.</p>
+<p>Cuando se cierra el stream <code>close()</code>, es como si pincháramos en guardar de forma gráfica, es decir, que si no cerramos el stream es como si el fichero estuviera vacío.</p>
 <p><strong>El almacenamiento en búfer hace que las operaciones de E/S sean más eficientes.</strong> Para un programa que realiza E/S masivas, el almacenamiento en búfer es esencial. La E/S es muy lenta en comparación con las operaciones con almacenamiento principal. Sin almacenamiento en búfer, la E/S sería muy, muy lenta.</p>
 <div class="highlight"><pre><span></span><code> <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">writeBuffer</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">try</span> <span class="p">{</span>
@@ -685,6 +712,27 @@ Los streams pueden estar orientados a bytes u orientados a caracteres. Cada tipo
 </code></pre></div>
 <p>Al igual que en la escritura para la lectura también disponemos de la clase <code>BufferedInputStream</code>.</p>
 <h2 id="ficheros-de-caracteres">Ficheros de caracteres</h2>
+<p>Las clases Java <code>FileWriter</code> y <code>FileReader</code> se utilizan para escribir y leer datos de archivos de texto (son clases de flujo de caracteres, <strong>character stream</strong>). Se recomienda no utilizar las clases <code>FileInputStream</code> y <code>FileOutputStream</code> si vamos a leer o escribir información de texto.</p>
+<h3 id="escritura-de-caracteres">Escritura de caracteres</h3>
+<p>Utilizamos la clase <code>FileWriter</code>:</p>
+<ul>
+<li>Esta clase hereda de la clase <code>OutputStream</code>.</li>
+<li>Los constructores de esta clase asumen que la codificación de caracteres predeterminada y el tamaño de búfer de bytes predeterminado son aceptables.</li>
+<li><code>FileWriter</code> está diseñado para escribir secuencias de caracteres. Si queremos escribir flujos de bytes sin procesar, tendríamos que usar la clase <code>FileOutputStream</code>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;Este es un ejemplo de escritura usando FileWriter.&quot;</span><span class="p">;</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="n">FileWriter</span> <span class="n">fw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;output.txt&quot;</span><span class="p">);</span>
+        <span class="n">fw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+        <span class="n">fw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">){</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error E/S: &quot;</span><span class="o">+</span><span class="n">e</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Cuando se cierra el stream <code>close()</code> se escribe en el fichero. Si quisiéramos grabar en el fichero en algún momento antes de cerrar, podemos usar el método <code>flush()</code>.</p>
 <h2 id="clase-file">Clase File</h2>
 <p>Las primeras versiones de Java incluyen el paquete <code>java.io</code>, que contiene casi todas las clases que podríamos necesitar para realizar operaciones de entrada y salida. La clase <code>File</code> es una representación abstracta de nombres de rutas de ficheros, directorios y métodos para manipularlos.</p>
 <p>Un objeto <code>File</code> NO es el fichero real. No contiene los datos que contiene el fichero. Es un objeto que contiene métodos que afectan a un archivo o directorio en particular y las funciones para la manipulación real del archivo.</p>
