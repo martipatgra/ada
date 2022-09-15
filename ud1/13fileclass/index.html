@@ -14,7 +14,7 @@
     
     
       
-        <title>1.1.- Entrada/Salida (I/O) de la información - Acceso a Datos</title>
+        <title>1.4.- Clase File - Acceso a Datos</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#io-inputoutput-entradasalida-de-la-informacion" class="md-skip">
+        <a href="#clase-file" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1.1.- Entrada/Salida (I/O) de la información
+              1.4.- Clase File
             
           </span>
         </div>
@@ -245,91 +245,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          1.1.- Entrada/Salida (I/O) de la información
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../1io/" class="md-nav__link">
         1.1.- Entrada/Salida (I/O) de la información
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tipos-de-datos-caracteres-y-bytes" class="md-nav__link">
-    Tipos de Datos - Caracteres y bytes
-  </a>
-  
-    <nav class="md-nav" aria-label="Tipos de Datos - Caracteres y bytes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#flujos-orientados-a-bytes" class="md-nav__link">
-    Flujos orientados a bytes
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#flujos-orientados-a-caracteres" class="md-nav__link">
-    Flujos orientados a caracteres
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ficheros" class="md-nav__link">
-    Ficheros
-  </a>
-  
-    <nav class="md-nav" aria-label="Ficheros">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tipos-de-acceso-a-ficheros" class="md-nav__link">
-    Tipos de acceso a ficheros
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -361,11 +281,58 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../13fileclass/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          1.4.- Clase File
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         1.4.- Clase File
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#constructor-de-file" class="md-nav__link">
+    Constructor de File
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path-vs-file" class="md-nav__link">
+    Path vs File
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -417,49 +384,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-datos-caracteres-y-bytes" class="md-nav__link">
-    Tipos de Datos - Caracteres y bytes
+  <a href="#constructor-de-file" class="md-nav__link">
+    Constructor de File
   </a>
-  
-    <nav class="md-nav" aria-label="Tipos de Datos - Caracteres y bytes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#flujos-orientados-a-bytes" class="md-nav__link">
-    Flujos orientados a bytes
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#flujos-orientados-a-caracteres" class="md-nav__link">
-    Flujos orientados a caracteres
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ficheros" class="md-nav__link">
-    Ficheros
+  <a href="#path-vs-file" class="md-nav__link">
+    Path vs File
   </a>
-  
-    <nav class="md-nav" aria-label="Ficheros">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tipos-de-acceso-a-ficheros" class="md-nav__link">
-    Tipos de acceso a ficheros
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -476,55 +410,23 @@
               
                 
                 
-                <h1 id="io-inputoutput-entradasalida-de-la-informacion">I/O Input/Output - Entrada/Salida de la información</h1>
-<p>Todo dato tiene un origen de entrada o un destino de salida (convenientemente en inglés: I/O). <strong>Input</strong> o entrada implica leer datos de una fuente y <strong>Output</strong> o salida implica escribirlos en un destino. Un programa trabaja con datos que provienen de una entrada la cual puede ser un teclado, un archivo en disco o un socket a través de la red. Así mismo un programa genera resultados enviándolos a una salida la cual puede ser la pantalla, un archivo en disco o un socket a través de la red. En Java, la conexión entre un programa y un origen o destino de datos se denomina <strong>flujo</strong> (en inglés: <strong>stream</strong>).</p>
-<p><img alt="JavaIO" src="../../img/ud1/stream.png" /></p>
-<p>Un flujo de entrada <em>(input stream)</em> maneja los datos que fluyen hacia un programa. Un flujo de salida <em>(output stream)</em> maneja los datos que salen de un programa.</p>
-<p><img alt="JavaIO" src="../../img/ud1/1javaio.png" /></p>
-<p>En las primeras versiones de Java el sistema de entrada/salida proporcionado en el paquete <code>java.io</code> era básico. En la versión 1.4 de Java se añadió un nuevo sistema de entrada/salida llamado <code>java.NIO</code> (New IO) para suplir algunas de sus deficiencias que posteriormente en Java 7 se mejoró aún más <code>java.NIO</code>. Entre las mejoras se incluyen permitir navegación de directorios sencillo, soporte para reconocer enlaces simbólicos, leer atributos de ficheros como permisos e información como última fecha de modificación, soporte de entrada/salida asíncrona y soporte para operaciones básicas sobre ficheros como copiar y mover ficheros.</p>
-<h2 id="tipos-de-datos-caracteres-y-bytes">Tipos de Datos - Caracteres y bytes</h2>
-<p>Existen dos tipos de flujos (streams) según el tipo de datos, flujos binarios y flujos de caracteres. Los tipos de datos que se pueden leer/escribir suelen ser bytes o caracteres y los métodos que se utilizan son similares, pero se utilizan clases diferentes.</p>
-<p>Internamente, todos los datos consisten en patrones de bits agrupados en bytes. Entonces, lógicamente, todos los flujos podrían llamarse "flujos de bytes" <strong>(byte streams)</strong>. Sin embargo, los flujos destinados a bytes que representan caracteres se denominan "flujos de caracteres" <strong>(character streams)</strong> y todos los demás se denominan "flujos de bytes".</p>
-<p>Al escribir y leer datos de caracteres, éstos están en un formato legible para el ser humano, sin embargo, los datos binarios implican leer y escribir bytes que no son legibles si los abrimos en un editor de texto.</p>
-<ul>
-<li>Flujos binarios (byte streams): almacenan variables, clases del programa, archivos de imagen, sonido, etc. Por ejemplo, el archivo de código de bytes creado por el compilador de Java contiene instrucciones de máquina para la máquina virtual de Java. Estos no están destinados a representar caracteres, y la entrada y salida de ellos debe usar flujos de bytes. Las clases principales para manejar estos flujos son las clases abstractas <strong>InputStream</strong> y <strong>OutputStream</strong>.</li>
-</ul>
-<p><em>Clases principales de InputStream:</em></p>
-<p><img alt="JavaIO" src="../../img/ud1/2javaio.png" /></p>
-<p><em>Clases principales de OutputStream:</em></p>
-<p><img alt="JavaIO" src="../../img/ud1/3javaio.png" /></p>
-<ul>
-<li>Flujos de caracteres (character streams): están optimizados para datos de caracteres. Se utilizan con frecuencia para leer/escribir ficheros de texto, xml y json. Las clases principales para manejar estos flujos son las clases abstractas <strong>Reader</strong> y <strong>Writer</strong>.</li>
-</ul>
-<p><em>Clases principales de Reader</em>:</p>
-<p><img alt="JavaIO" src="../../img/ud1/4javaio.png" /></p>
-<p><em>Clases principales de Writer:</em></p>
-<p><img alt="JavaIO" src="../../img/ud1/5javaio.png" /></p>
-<p>La siguiente figura muestra la jerarquía del paquete <code>java.io</code>.
-Los streams pueden estar orientados a bytes u orientados a caracteres. Cada tipo tiene flujos de entrada y flujos de salida.</p>
-<p><img alt="JavaIO" src="../../img/ud1/2stream.png" /></p>
-<h3 id="flujos-orientados-a-bytes">Flujos orientados a bytes</h3>
-<ul>
-<li>Diseñado para entrada y salida de propósito general.</li>
-<li>Los datos pueden ser tipos de datos primitivos o bytes sin procesar.</li>
-</ul>
-<h3 id="flujos-orientados-a-caracteres">Flujos orientados a caracteres</h3>
-<ul>
-<li>Destinado a datos de caracteres.</li>
-<li>Los datos se transforman de/a caracteres Java de 16 bits utilizados dentro de los programas al formato utilizado externamente.</li>
-</ul>
-<h2 id="ficheros">Ficheros</h2>
-<p>Un fichero es un conjunto lógico de información o de datos que se designa con un nombre y se configura como una unidad autónoma completa para el sistema o el usuario. Un archivo o fichero informático es un conjunto de bits que son almacenados en un dispositivo. Para poder acceder a ellos haremos uso de una ruta (path) ya sea relativa o absoluta.</p>
-<p><img alt="JavaIO" src="../../img/ud1/6path.png" /></p>
-<h3 id="tipos-de-acceso-a-ficheros">Tipos de acceso a ficheros</h3>
-<ol>
-<li>
-<p>Acceso secuencial: Una lectura secuencial implica tener que acceder a un elemento antes de acceder al siguiente, es decir, de una manera lineal (sin saltos).</p>
-</li>
-<li>
-<p>Acceso aleatorio: los ficheros de acceso aleatorio permiten acceder a sus datos de una forma aleatoria, esto es indicando una determinada posición desde la que leer/escribir.</p>
-</li>
-</ol>
+                <h1 id="clase-file">Clase <code>File</code></h1>
+<p>Las primeras versiones de Java incluyen el paquete <code>java.io</code>, que contiene casi todas las clases que podríamos necesitar para realizar operaciones de entrada y salida. La clase <code>File</code> es una representación abstracta de nombres de rutas de ficheros, directorios y métodos para manipularlos.</p>
+<p>Un objeto <code>File</code> NO es el fichero real. No contiene los datos que contiene el fichero. Es un objeto que contiene métodos que afectan a un archivo o directorio en particular y las funciones para la manipulación real del archivo.</p>
+<p>Ejemplo en Windows:</p>
+<div class="highlight"><pre><span></span><code><span class="n">File</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">&quot;C:\\Users\\temp\\data.txt&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>En Linux el carácter separador es <code>/</code>.</p>
+<h2 id="constructor-de-file">Constructor de <code>File</code></h2>
+<div class="highlight"><pre><span></span><code><span class="n">File</span><span class="p">(</span><span class="n">String</span> <span class="n">pathName</span><span class="p">)</span> <span class="c1">//Constructor</span>
+</code></pre></div>
+<p><code>pathName</code> es una secuencia de nombres de directorio seguidos de un nombre de archivo. Los nombres de los directorios están separados por un carácter especial. La sintaxis de los nombres de directorio, separadores y nombres de archivo depende del sistema operativo.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Construir un objeto de la clase File NO crea un fichero</p>
+</div>
+<h2 id="path-vs-file">Path vs File</h2>
+<p>En Java, <code>Path</code> y <code>File</code> son clases responsables de las operaciones de E/S de ficheros. Realizan las mismas funciones pero pertenecen a diferentes paquetes.</p>
                 
               
               
@@ -549,7 +451,7 @@ Los streams pueden estar orientados a bytes u orientados a caracteres. Cada tipo
     <nav class="md-footer__inner md-grid" aria-label="Pie">
       
         
-        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Anterior: Inicio" rel="prev">
+        <a href="../12characterfiles/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 1.3.- Ficheros de caracteres" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -558,20 +460,20 @@ Los streams pueden estar orientados a bytes u orientados a caracteres. Cada tipo
               <span class="md-footer__direction">
                 Anterior
               </span>
-              Inicio
+              1.3.- Ficheros de caracteres
             </div>
           </div>
         </a>
       
       
         
-        <a href="../11binaryfiles/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 1.2.- Ficheros binarios" rel="next">
+        <a href="../../about/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: About" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Siguiente
               </span>
-              1.2.- Ficheros binarios
+              About
             </div>
           </div>
           <div class="md-footer__button md-icon">
