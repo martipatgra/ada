@@ -752,6 +752,20 @@ Los streams pueden estar orientados a bytes u orientados a caracteres. Cada tipo
 <ul>
 <li><code>FileReader</code> está diseñada para leer flujos de caracteres. Para leer flujos de bytes sin procesar, usaremos <code>FileInputStream</code>.</li>
 </ul>
+<div class="highlight"><pre><span></span><code>    <span class="kt">int</span> <span class="n">ch</span><span class="p">;</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="n">FileReader</span> <span class="n">fr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="s">&quot;output.txt&quot;</span><span class="p">);</span>
+        <span class="n">ch</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="na">read</span><span class="p">();</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">ch</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//fin de fichero</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span> <span class="n">ch</span><span class="p">);</span>
+            <span class="n">ch</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="na">read</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="n">fr</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">fe</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error de E/S&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+</code></pre></div>
+<p>Al igual que ocurría con los ficheros binarios, disponemos de las clases <code>BufferedReader</code> y <code>BufferedWriter</code> para leer y escribir usando el búfer y así acceder a los datos más rápidamente.</p>
 <h2 id="clase-file">Clase <code>File</code></h2>
 <p>Las primeras versiones de Java incluyen el paquete <code>java.io</code>, que contiene casi todas las clases que podríamos necesitar para realizar operaciones de entrada y salida. La clase <code>File</code> es una representación abstracta de nombres de rutas de ficheros, directorios y métodos para manipularlos.</p>
 <p>Un objeto <code>File</code> NO es el fichero real. No contiene los datos que contiene el fichero. Es un objeto que contiene métodos que afectan a un archivo o directorio en particular y las funciones para la manipulación real del archivo.</p>
