@@ -344,6 +344,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#constructor-de-la-clase-randomaccessfile" class="md-nav__link">
+    Constructor de la clase RandomAccessFile
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -432,6 +439,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#constructor-de-la-clase-randomaccessfile" class="md-nav__link">
+    Constructor de la clase RandomAccessFile
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -480,6 +494,22 @@
 <p>Cuando se crea un fichero por primera vez, el puntero se establece en 0, lo que indica el comienzo del archivo. Cuando leemos o escribimos datos en el archivo usando métodos de lectura o escritura, el puntero del archivo avanza al siguiente elemento de datos (es decir, el siguiente byte).</p>
 <p>Por ejemplo, si leemos un valor int usando el método readInt() del archivo, JVM lee 4 bytes usando el puntero, y ahora el puntero del archivo está 4 bytes por delante de la posición anterior, como se muestra en la figura a continuación.</p>
 <p><img alt="JavaIO" src="../../img/ud1/7randomfile.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="p">....</span>
+
+<span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">position</span><span class="p">);</span> <span class="c1">//mueve el puntero a una posición</span>
+<span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//mueve el puntero al inicio del fichero</span>
+<span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">());</span> <span class="c1">//mueve el puntero al final del fichero</span>
+</code></pre></div>
+<h3 id="constructor-de-la-clase-randomaccessfile">Constructor de la clase RandomAccessFile</h3>
+<p>Para construir un objeto de la clase tenemos que especificar el modo (<strong>mode</strong>) que determina qué tipo de acceso a ficheros está permitido.</p>
+<ul>
+<li>r: el fichero es de solo lectura.</li>
+<li>rw: se abre en modo lectura-escritura.</li>
+<li>rws: se abre para lectura y escritura y cada cambio en los datos del fichero se escribirá inmediatamente en el dispositivo físico.</li>
+</ul>
+<blockquote>
+<p>RandomAccessFile raf = new RandomAccessFile("myfile.dat", "rw");</p>
+</blockquote>
                 
               
               
