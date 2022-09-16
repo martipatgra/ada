@@ -441,7 +441,7 @@
 <p>Un fichero que se lee o escribe mediante un flujo secuencial se denomina <strong>fichero de acceso secuencial</strong>. Los datos de un fichero de acceso secuencial <strong>NO se pueden actualizar</strong>.</p>
 <p>Por lo tanto, para leer y escribir datos simultáneamente, Java proporciona la clase <code>RandomAccessFile</code>. Con esta clase, podemos leer y escribir datos en cualquier ubicación del fichero. Los archivos de acceso aleatorio son útiles para muchas aplicaciones diferentes.</p>
 <h2 id="puntero-de-la-clase-randomaccessfile">Puntero de la clase <code>RandomAccessFile</code></h2>
-<p>Un fichero de acceso aleatorio consta de una secuencia de bytes.
+<p>Un fichero de acceso aleatorio consta de <strong>una secuencia de bytes</strong>.
 Éstos, admiten un puntero especial conocido como <strong>puntero de fichero</strong> (<strong>file pointer</strong>). El puntero indica la posición actual (ubicación) en el fichero.</p>
 <p>Se coloca en uno de estos bytes en el fichero y se puede mover a cualquier posición arbitraria antes de leer o escribir.</p>
 <p>En otras palabras, se lleva a cabo una operación de lectura o escritura en la ubicación del puntero.</p>
