@@ -329,6 +329,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#acceso-aleatorio-a-ficheros" class="md-nav__link">
+    Acceso aleatorio a ficheros
+  </a>
+  
+    <nav class="md-nav" aria-label="Acceso aleatorio a ficheros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#puntero-de-la-clase-randomaccessfile" class="md-nav__link">
+    Puntero de la clase RandomAccessFile
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -397,6 +417,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#acceso-aleatorio-a-ficheros" class="md-nav__link">
+    Acceso aleatorio a ficheros
+  </a>
+  
+    <nav class="md-nav" aria-label="Acceso aleatorio a ficheros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#puntero-de-la-clase-randomaccessfile" class="md-nav__link">
+    Puntero de la clase RandomAccessFile
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -427,6 +467,19 @@
 </div>
 <h2 id="path-vs-file">Path vs File</h2>
 <p>En Java, <code>Path</code> y <code>File</code> son clases responsables de las operaciones de E/S de ficheros. Realizan las mismas funciones pero pertenecen a diferentes paquetes.</p>
+<h2 id="acceso-aleatorio-a-ficheros">Acceso aleatorio a ficheros</h2>
+<p>Todos los flujos de E/S que hemos usado hasta ahora se conocen como flujos de solo lectura o solo escritura. Estos flujos se denominan flujos <strong>secuenciales</strong> en Java.</p>
+<p>Un fichero que se lee o escribe mediante un flujo secuencial se denomina <strong>fichero de acceso secuencial</strong>. Los datos de un fichero de acceso secuencial <strong>NO se pueden actualizar</strong>.</p>
+<p>Por lo tanto, para leer y escribir datos simultáneamente, Java proporciona la clase <code>RandomAccessFile</code>. Con esta clase, podemos leer y escribir datos en cualquier ubicación del fichero. Los archivos de acceso aleatorio son útiles para muchas aplicaciones diferentes.</p>
+<h3 id="puntero-de-la-clase-randomaccessfile">Puntero de la clase <code>RandomAccessFile</code></h3>
+<p>Un fichero de acceso aleatorio consta de una secuencia de bytes.
+Éstos, admiten un puntero especial conocido como <strong>puntero de fichero</strong> (<strong>file pointer</strong>). El puntero indica la posición actual (ubicación) en el fichero.</p>
+<p>Se coloca en uno de estos bytes en el fichero y se puede mover a cualquier posición arbitraria antes de leer o escribir.</p>
+<p>En otras palabras, se lleva a cabo una operación de lectura o escritura en la ubicación del puntero.</p>
+<p>El puntero se puede mover utilizando el método <code>seek()</code>.</p>
+<p>Cuando se crea un fichero por primera vez, el puntero se establece en 0, lo que indica el comienzo del archivo. Cuando leemos o escribimos datos en el archivo usando métodos de lectura o escritura, el puntero del archivo avanza al siguiente elemento de datos (es decir, el siguiente byte).</p>
+<p>Por ejemplo, si leemos un valor int usando el método readInt() del archivo, JVM lee 4 bytes usando el puntero, y ahora el puntero del archivo está 4 bytes por delante de la posición anterior, como se muestra en la figura a continuación.</p>
+<p><img alt="JavaIO" src="../../img/ud1/7randomfile.png" /></p>
                 
               
               
