@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#clase-file" class="md-skip">
+        <a href="#file-vs-path" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -316,16 +316,56 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#constructor-de-file" class="md-nav__link">
-    Constructor de File
+  <a href="#clase-file" class="md-nav__link">
+    Clase File
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#constructor-de-file" class="md-nav__link">
+    Constructor de File
+  </a>
+  
+    <nav class="md-nav" aria-label="Constructor de File">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-de-la-clase-file" class="md-nav__link">
+    Desventajas de la clase File
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#path-vs-file" class="md-nav__link">
     Path vs File
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#javanio" class="md-nav__link">
+    java.nio
+  </a>
+  
+    <nav class="md-nav" aria-label="java.nio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    Path
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -396,16 +436,56 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#constructor-de-file" class="md-nav__link">
-    Constructor de File
+  <a href="#clase-file" class="md-nav__link">
+    Clase File
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#constructor-de-file" class="md-nav__link">
+    Constructor de File
+  </a>
+  
+    <nav class="md-nav" aria-label="Constructor de File">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-de-la-clase-file" class="md-nav__link">
+    Desventajas de la clase File
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#path-vs-file" class="md-nav__link">
     Path vs File
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#javanio" class="md-nav__link">
+    java.nio
+  </a>
+  
+    <nav class="md-nav" aria-label="java.nio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    Path
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -422,7 +502,9 @@
               
                 
                 
-                <h1 id="clase-file">Clase <code>File</code></h1>
+                <h1 id="file-vs-path">File vs Path</h1>
+<p>En Java, <code>Path</code> y <code>File</code> son clases responsables de las operaciones de E/S de ficheros. Realizan las mismas funciones pero pertenecen a diferentes paquetes.</p>
+<h2 id="clase-file">Clase <code>File</code></h2>
 <p>Las primeras versiones de Java incluyen el paquete <code>java.io</code>, que contiene casi todas las clases que podríamos necesitar para realizar operaciones de entrada y salida. La clase <code>File</code> es una representación abstracta de nombres de rutas de ficheros, directorios y métodos para manipularlos.</p>
 <p>Un objeto <code>File</code> NO es el fichero real. No contiene los datos que contiene el fichero. Es un objeto que contiene métodos que afectan a un archivo o directorio en particular y las funciones para la manipulación real del archivo.</p>
 <p>Ejemplo en Windows:</p>
@@ -437,8 +519,38 @@
 <p class="admonition-title">Warning</p>
 <p>Construir un objeto de la clase File NO CREA UN FICHERO</p>
 </div>
-<h2 id="path-vs-file">Path vs File</h2>
-<p>En Java, <code>Path</code> y <code>File</code> son clases responsables de las operaciones de E/S de ficheros. Realizan las mismas funciones pero pertenecen a diferentes paquetes.</p>
+<h3 id="desventajas-de-la-clase-file">Desventajas de la clase <code>File</code></h3>
+<ul>
+<li>
+<p>Manejo de errores
+El problema más común es el manejo deficiente de errores. Muchos métodos no nos dicen ningún detalle sobre el problema encontrado o incluso lanzan excepciones.</p>
+</li>
+<li>
+<p>Compatibilidad con metadatos
+Los metadatos pueden incluir permisos, propietario del fichero y atributos de seguridad. Debido a esto, la clase <code>File</code> no admite enlaces simbólicos en absoluto, y el método rename() no funciona de manera consistente en diferentes plataformas.</p>
+</li>
+<li>
+<p>Escalabilidad y rendimiento de métodos
+También hay un problema de rendimiento porque los métodos de la clase File no escalan. Conduce a problemas con algunos directorios con una gran cantidad de archivos. Enumerar el contenido de un directorio podría provocar un bloqueo, lo que provocaría problemas de recursos de memoria.
+Debido a algunos de estos inconvenientes, Oracle desarrolló la API NIO2 mejorada.</p>
+</li>
+</ul>
+<h3 id="path-vs-file">Path vs File</h3>
+<p>Cuando construimos un objeto <code>File</code> lo hacemos a través del constructor, mientras que en la clase <code>Path</code> se usa un método estático.</p>
+<div class="highlight"><pre><span></span><code><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">&quot;ada.txt&quot;</span><span class="p">);</span>
+<span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;ada.txt&quot;</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="javanio">java.nio</h2>
+<ul>
+<li><code>java.nio.file.Path</code>: Es una interfaz que localiza un fichero o directorio mediante una ruta dependiente del sistema.</li>
+<li><code>java.nio.file.Files</code>: En combinación con <code>Path</code>, realiza operaciones en ficheros o directorios.</li>
+<li><code>java.nio.file.FileSystem</code>: Proporciona una interfaz para el sistema de ficheros y una fábrica para crear <code>Path</code> y otros objetos que acceden al sistema de ficheros.</li>
+<li>Todos los métodos que acceden al sistema de ficheros lanzan una excepción de tipo <code>IOException</code>.</li>
+</ul>
+<h3 id="path"><code>Path</code></h3>
+<p>Ofrece una API completamente nueva para trabajar con E/S. Además, al igual que la clase <code>File</code>, <code>Path</code> también crea un objeto que se puede usar para ubicar un archivo en un sistema de archivos.</p>
+<p><code>Path</code> puede realizar todas las operaciones que se pueden realizar con la clase <code>File</code>.</p>
+<p>Muchos ficheros utilizan la notación "." para denotar el directorio actual y ".." para denotar el directorio del padre.</p>
                 
               
               
