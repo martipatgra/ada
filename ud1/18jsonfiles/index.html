@@ -1,0 +1,553 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
+    
+    
+      
+        <title>Ficheros JSON - Acceso a Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.802231af.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+  
+
+
+  
+
+  
+
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ficheros-json" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acceso a Datos" class="md-header__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acceso a Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ficheros JSON
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acceso a Datos" class="md-nav__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Acceso a Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        1.- Acceso a ficheros
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="1.- Acceso a ficheros" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.- Acceso a ficheros
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11io/" class="md-nav__link">
+        1.1.- Entrada/Salida (I/O) de la información
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12binaryfiles/" class="md-nav__link">
+        1.2.- Ficheros binarios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13characterfiles/" class="md-nav__link">
+        1.3.- Ficheros de caracteres
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14fileclass/" class="md-nav__link">
+        1.4.- Clase File
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15randomaccessfile/" class="md-nav__link">
+        1.5.- Ficheros de acceso aleatorio
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16configfiles/" class="md-nav__link">
+        1.5.- Ficheros de configuración
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-datos-disponibles" class="md-nav__link">
+    Tipos de datos disponibles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formato-json" class="md-nav__link">
+    Formato JSON
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-de-fichero-json" class="md-nav__link">
+    Ejemplo de fichero JSON
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejemplo de fichero JSON">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url-oficial" class="md-nav__link">
+    URL oficial
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-vs-xml" class="md-nav__link">
+    JSON vs XML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#java-json" class="md-nav__link">
+    Java JSON
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="ficheros-json">Ficheros JSON</h1>
+<p>JSON (<strong>JavaScript Object Notation</strong>) es un formato ligero de intercambio de datos. Es un fichero fácil de leer y escribir para los humanos y también fácil de analizar y generar para las máquinas. Se basa en un subconjunto del lenguaje de programación JavaScript. Debido a su amplia adopción como alternativa a XML.
+JSON es un formato de texto que es completamente independiente del lenguaje pero utiliza convenciones que son ampliamente conocidos por los programadores de la familia de lenguajes C, incluyendo C, C++, C#, Java, JavaScript, Perl, Python, y muchos otros. Estas propiedades hacen que JSON sea un lenguaje ideal para el intercambio de datos.</p>
+<p>JSON se basa en dos estructuras que son universales; virtualmente todos los lenguajes de programación las soportan de una forma u otra:</p>
+<ul>
+<li>Una colección de pares de <strong>name/value</strong>. En varios lenguajes, esto se realiza como un objeto, registro, estructura, diccionario, tabla hash, lista con clave o matriz asociativa.</li>
+<li>Una lista ordenada de valores. En la mayoría de los lenguajes, esto se realiza como una matriz, vector, lista o secuencia.</li>
+</ul>
+<h2 id="tipos-de-datos-disponibles">Tipos de datos disponibles</h2>
+<ol>
+<li>Números: Se permiten números negativos y opcionalmente pueden contener parte fraccional separada por puntos. Ejemplo: 123.456</li>
+<li>Cadenas: Representan secuencias de cero o más caracteres. Se ponen entre doble comilla y se permiten cadenas de escape. Ejemplo: "Hola"</li>
+<li>Booleanos: Representan valores booleanos y pueden tener dos valores: true y false</li>
+<li>null: Representan el valor nulo.</li>
+<li>Array: Representa una lista ordenada de cero o más valores los cuales pueden ser de cualquier tipo. Los valores se separan por comas y el vector se mete entre corchetes.</li>
+<li>Objetos: Son colecciones no ordenadas de pares de la forma <code>nombre:valor</code> separados por comas y puestas entre llaves. El nombre tiene que ser una cadena entre comillas dobles. El valor puede ser de cualquier tipo.</li>
+</ol>
+<h2 id="formato-json">Formato JSON</h2>
+<ul>
+<li>Un objeto es un conjunto desordenado de pares de name/value. Un objeto comienza con {(llave izquierda) y termina con} (llave derecha). Cada nombre va seguido de: (dos puntos) y los pares de name/value están separados por, (coma).</li>
+</ul>
+<p><img alt="JavaIO" src="../../img/ud1/11json1.png" /></p>
+<ul>
+<li>Un array es una colección ordenada de valores. Una matriz comienza con [(corchete izquierdo) y termina con] (corchete derecho). Los valores están separados por (coma).</li>
+</ul>
+<p><img alt="JavaIO" src="../../img/ud1/11json2.png" /></p>
+<ul>
+<li>Un value puede ser una cadena entre comillas dobles, un número, verdadero, falso, nulo, un objeto o una matriz. Estas estructuras se pueden anidar.</li>
+</ul>
+<p><img alt="JavaIO" src="../../img/ud1/11json3.png" /></p>
+<h2 id="ejemplo-de-fichero-json">Ejemplo de fichero JSON</h2>
+<div class="highlight"><pre><span></span><code><span class="err">#</span> <span class="err">Fichero</span> <span class="err">JSON</span> 
+
+<span class="p">{</span><span class="nt">&quot;web-app&quot;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="nt">&quot;servlet&quot;</span><span class="p">:</span> <span class="p">[</span>   
+    <span class="p">{</span>
+      <span class="nt">&quot;servlet-name&quot;</span><span class="p">:</span> <span class="s2">&quot;cofaxCDS&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;servlet-class&quot;</span><span class="p">:</span> <span class="s2">&quot;org.cofax.cds.CDSServlet&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;init-param&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;configGlossary:installationAt&quot;</span><span class="p">:</span> <span class="s2">&quot;Philadelphia, PA&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;configGlossary:adminEmail&quot;</span><span class="p">:</span> <span class="s2">&quot;ksm@pobox.com&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;configGlossary:poweredBy&quot;</span><span class="p">:</span> <span class="s2">&quot;Cofax&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;configGlossary:poweredByIcon&quot;</span><span class="p">:</span> <span class="s2">&quot;/images/cofax.gif&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;configGlossary:staticPath&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/static&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;templateProcessorClass&quot;</span><span class="p">:</span> <span class="s2">&quot;org.cofax.WysiwygTemplate&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;templateLoaderClass&quot;</span><span class="p">:</span> <span class="s2">&quot;org.cofax.FilesTemplateLoader&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;templatePath&quot;</span><span class="p">:</span> <span class="s2">&quot;templates&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;templateOverridePath&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;defaultListTemplate&quot;</span><span class="p">:</span> <span class="s2">&quot;listTemplate.htm&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;defaultFileTemplate&quot;</span><span class="p">:</span> <span class="s2">&quot;articleTemplate.htm&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;useJSP&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nt">&quot;dataStoreMaxConns&quot;</span><span class="p">:</span> <span class="mi">100</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="kc">null</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;servlet-name&quot;</span><span class="p">:</span> <span class="s2">&quot;cofaxEmail&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;servlet-class&quot;</span><span class="p">:</span> <span class="s2">&quot;org.cofax.cds.EmailServlet&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;init-param&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;mailHost&quot;</span><span class="p">:</span> <span class="s2">&quot;mail1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;mailHostOverride&quot;</span><span class="p">:</span> <span class="s2">&quot;mail2&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}],</span>
+  <span class="nt">&quot;servlet-mapping&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;cofaxCDS&quot;</span><span class="p">:</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cofaxEmail&quot;</span><span class="p">:</span> <span class="s2">&quot;/cofaxutil/aemail/*&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cofaxAdmin&quot;</span><span class="p">:</span> <span class="s2">&quot;/admin/*&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;fileServlet&quot;</span><span class="p">:</span> <span class="s2">&quot;/static/*&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;cofaxTools&quot;</span><span class="p">:</span> <span class="s2">&quot;/tools/*&quot;</span>
+    <span class="p">},</span>
+  <span class="nt">&quot;taglib&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;taglib-uri&quot;</span><span class="p">:</span> <span class="s2">&quot;cofax.tld&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;taglib-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/WEB-INF/tlds/cofax.tld&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>El fichero anterior se puede traducir como un array de objetos, por ejemplo de la clase <code>Servlet</code>, donde la clase <code>Servlet</code> estará compuesta por atributos como: servlet-name, servlet-class, etc.</p>
+<p>Existen varias librerías en Java para parsear ficheros JSON. Entre las más comunes están: Gson, Jackson, JSON.simple, org.json, JsonPATH, etc.</p>
+<h3 id="url-oficial">URL oficial</h3>
+<p><a href="http://www.json.org/json-es.html">The JSON Specification</a></p>
+<h2 id="json-vs-xml">JSON vs XML</h2>
+<p><img alt="JavaIO" src="../../img/ud1/12jsonvsxml.png" /></p>
+<h2 id="java-json">Java JSON</h2>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Volver al principio
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navitagion.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.756773cc.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,605 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
+    
+    
+      
+        <title>Ficheros XML - Acceso a Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.802231af.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+  
+
+
+  
+
+  
+
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ficheros-xml" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acceso a Datos" class="md-header__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acceso a Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ficheros XML
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acceso a Datos" class="md-nav__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Acceso a Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        1.- Acceso a ficheros
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="1.- Acceso a ficheros" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.- Acceso a ficheros
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11io/" class="md-nav__link">
+        1.1.- Entrada/Salida (I/O) de la información
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12binaryfiles/" class="md-nav__link">
+        1.2.- Ficheros binarios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13characterfiles/" class="md-nav__link">
+        1.3.- Ficheros de caracteres
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14fileclass/" class="md-nav__link">
+        1.4.- Clase File
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15randomaccessfile/" class="md-nav__link">
+        1.5.- Ficheros de acceso aleatorio
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16configfiles/" class="md-nav__link">
+        1.5.- Ficheros de configuración
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#estructura-de-un-documento-xml" class="md-nav__link">
+    Estructura de un documento XML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documento-xml-valido" class="md-nav__link">
+    Documento XML válido
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partes-de-un-documento-xml" class="md-nav__link">
+    Partes de un documento XML
+  </a>
+  
+    <nav class="md-nav" aria-label="Partes de un documento XML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prologo" class="md-nav__link">
+    Prólogo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuerpo" class="md-nav__link">
+    Cuerpo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elementos" class="md-nav__link">
+    Elementos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atributos" class="md-nav__link">
+    Atributos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comentarios" class="md-nav__link">
+    Comentarios
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-de-un-documento-xml" class="md-nav__link">
+    Ejemplo de un documento XML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#url-xml" class="md-nav__link">
+    Url XML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#java-xml" class="md-nav__link">
+    Java XML
+  </a>
+  
+    <nav class="md-nav" aria-label="Java XML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dom" class="md-nav__link">
+    DOM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sax" class="md-nav__link">
+    SAX
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stax" class="md-nav__link">
+    StAX
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="ficheros-xml">Ficheros XML</h1>
+<p>XML es la abreviatura de Extensible Markup Language y es un formato de intercambio de datos establecido. XML fue definido en 1998 por el World Wide Web Consortium (W3C). A diferencia de otros lenguajes, XML da soporte a bases de datos, siendo útil cuando varias aplicaciones deben comunicarse entre sí o integrar información.</p>
+<h2 id="estructura-de-un-documento-xml">Estructura de un documento XML</h2>
+<p>Un documento XML consta de elementos, cada elemento tiene una etiqueta de inicio, contenido y una etiqueta de finalización.
+Una etiqueta consiste en una marca hecha en el documento, que señala una porción de este como un elemento. Un pedazo de información con un sentido claro y definido. Las etiquetas tienen la forma <code>&lt;nombre&gt;</code>, donde <em>nombre</em> es el nombre del elemento que se está señalando.</p>
+<h2 id="documento-xml-valido">Documento XML válido</h2>
+<p>Los documentos denominados como «bien formados» (del inglés well formed) son aquellos que cumplen con todas las definiciones básicas de formato y pueden, por lo tanto, analizarse correctamente por cualquier analizador sintáctico (parser) que cumpla con la norma. Esto significa que debe aplicarse a las siguientes condiciones:</p>
+<ol>
+<li>Cada etiqueta de apertura tiene una etiqueta de cierre.</li>
+<li>Todas las etiquetas están completamente anidadas.</li>
+<li>Los documentos XML solamente permiten un elemento raíz del que todos los demás sean parte, es decir, solo pueden tener un elemento inicial.</li>
+<li>El XML es sensible a mayúsculas y minúsculas.</li>
+</ol>
+<h2 id="partes-de-un-documento-xml">Partes de un documento XML</h2>
+<h3 id="prologo">Prólogo</h3>
+<p>Aunque no es obligatorio, los documentos XML pueden empezar con unas líneas que describen la versión XML, el tipo de documento y otras cosas.</p>
+<p>El prólogo de un documento XML contiene:</p>
+<ul>
+<li>Una declaración XML. Es la sentencia que declara al documento como un documento XML.</li>
+<li>Una declaración de tipo de documento. Enlaza el documento con su DTD (definición de tipo de documento), o el DTD puede estar incluido en la propia declaración o ambas cosas al mismo tiempo.</li>
+<li>Uno o más comentarios e instrucciones de procesamiento.
+Ejemplo:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</code></pre></div>
+<h3 id="cuerpo">Cuerpo</h3>
+<p>A diferencia del prólogo, el cuerpo no es opcional en un documento XML, el cuerpo debe contener solo un elemento raíz, característica indispensable también para que el documento esté bien formado. Sin embargo es necesaria la adquisición de datos para su buen funcionamiento.</p>
+<h3 id="elementos">Elementos</h3>
+<p>Los elementos XML pueden tener contenido (más elementos, caracteres o ambos), o bien ser elementos vacíos.</p>
+<h3 id="atributos">Atributos</h3>
+<p>Los elementos pueden tener atributos, que son una manera de incorporar características o propiedades a los elementos de un documento. Deben ir entre comillas.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;person</span> <span class="na">sex=</span><span class="s">&quot;female&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;firstname&gt;</span>Anna<span class="nt">&lt;/firstname&gt;</span>
+  <span class="nt">&lt;lastname&gt;</span>Smith<span class="nt">&lt;/lastname&gt;</span>
+<span class="nt">&lt;/person&gt;</span>
+</code></pre></div>
+<p>En el ejemplo, el elemento <code>person</code> tiene un atributo <code>sex</code>.</p>
+<h3 id="comentarios">Comentarios</h3>
+<p>Comentarios a modo informativo para el programador que han de ser ignorados por el procesador. Los comentarios en XML tienen el siguiente formato:</p>
+<div class="highlight"><pre><span></span><code>  <span class="c">&lt;!-- Comment --&gt;</span>
+</code></pre></div>
+<h2 id="ejemplo-de-un-documento-xml">Ejemplo de un documento XML</h2>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;</span>?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;&gt;
+
+<span class="c">&lt;!-- This is a comment --&gt;</span>
+
+<span class="nt">&lt;products&gt;</span> 
+    <span class="nt">&lt;product&gt;</span> 
+        <span class="nt">&lt;name&gt;</span>Cereales<span class="nt">&lt;/name&gt;</span> 
+        <span class="nt">&lt;price&gt;</span>3.45<span class="nt">&lt;/price&gt;</span> 
+    <span class="nt">&lt;/product&gt;</span> 
+    <span class="nt">&lt;product&gt;</span> 
+        <span class="nt">&lt;name&gt;</span>Colacao<span class="nt">&lt;/name&gt;</span> 
+        <span class="nt">&lt;price&gt;</span>1.45<span class="nt">&lt;/price&gt;</span> 
+    <span class="nt">&lt;/product&gt;</span> 
+    <span class="nt">&lt;product&gt;</span> 
+        <span class="nt">&lt;name&gt;</span>Agua mineral<span class="nt">&lt;/name&gt;</span> 
+        <span class="nt">&lt;price&gt;</span>1.00<span class="nt">&lt;/price&gt;</span> 
+    <span class="nt">&lt;/product&gt;</span> 
+<span class="nt">&lt;/products&gt;</span>
+</code></pre></div>
+<h2 id="url-xml">Url XML</h2>
+<p><a href="https://www.w3.org/TR/REC-xml/">El estándar XML</a></p>
+<h2 id="java-xml">Java XML</h2>
+<p>Java permite usar analizadores XML como DOM, SAX, StAX y JDOM para leer y escribir documentos XML; Además, JAXB para convertir XML a/desde objetos.</p>
+<p>En general, existen dos modelos de programación para trabajar con documentos XML: DOM y SAX (Streaming).</p>
+<h3 id="dom">DOM</h3>
+<p>El modelo de objeto de documento (DOM) utiliza nodos para representar los documentos XML completos como una estructura de árbol y almacenarlos en la memoria.</p>
+<p>DOM es bueno para manipular el archivo XML pequeño, como leer, escribir y modificar la estructura XML; DOM NO es para analizar o manipular archivos XML grandes porque construir la estructura XML completa en la memoria consume mucha memoria.</p>
+<h3 id="sax">SAX</h3>
+<p>La API simple para XML (SAX) permite leer el archivo XML de principio a fin, es decir, de manera secuencial.</p>
+<p>El SAX es rápido y eficiente, requiere mucha menos memoria que DOM porque SAX no crea una representación interna (estructura de árbol) de los datos XML, como lo hace un DOM.</p>
+<h3 id="stax">StAX</h3>
+<p>Streaming API for XML (StAX) está basado en eventos, permite leer y escribir documentos XML. StAX ofrece un modelo de programación más simple que SAX y una gestión de memoria más eficiente que DOM.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Volver al principio
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navitagion.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copiar al portapapeles", "clipboard.copied": "Copiado al portapapeles", "search.config.lang": "es", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "B\u00fasqueda", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.term.missing": "Falta", "select.version.title": "Seleccionar versi\u00f3n"}, "search": "../../assets/javascripts/workers/search.409db549.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.756773cc.min.js"></script>
+      
+    
+  </body>
+</html>
