@@ -461,6 +461,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ejemplo-lectura-xml-desde-una-api" class="md-nav__link">
+    Ejemplo lectura XML desde una API
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -637,6 +644,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ejemplo-lectura-xml-desde-una-api" class="md-nav__link">
+    Ejemplo lectura XML desde una API
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -724,6 +738,17 @@ Ejemplo:</li>
 <p>El SAX es rápido y eficiente, requiere mucha menos memoria que DOM porque SAX no crea una representación interna (estructura de árbol) de los datos XML, como lo hace un DOM.</p>
 <h3 id="stax">StAX</h3>
 <p>Streaming API for XML (StAX) está basado en eventos, permite leer y escribir documentos XML. StAX ofrece un modelo de programación más simple que SAX y una gestión de memoria más eficiente que DOM.</p>
+<h2 id="ejemplo-lectura-xml-desde-una-api">Ejemplo lectura XML desde una API</h2>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">static</span> <span class="n">Document</span> <span class="nf">loadXMLDocument</span><span class="p">(</span><span class="n">String</span> <span class="n">url</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="k">try</span> <span class="p">(</span><span class="n">InputStream</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="na">openStream</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">DocumentBuilderFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">DocumentBuilderFactory</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span>
+        <span class="n">DocumentBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="na">newDocumentBuilder</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">builder</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
                 
               
               
