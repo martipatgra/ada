@@ -468,6 +468,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#escritura-de-un-documento-xml" class="md-nav__link">
+    Escritura de un documento XML
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -651,6 +658,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#escritura-de-un-documento-xml" class="md-nav__link">
+    Escritura de un documento XML
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -747,6 +761,20 @@ Ejemplo:</li>
     <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
     <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="escritura-de-un-documento-xml">Escritura de un documento XML</h2>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">writeXml</span><span class="p">(</span><span class="n">Document</span> <span class="n">doc</span><span class="p">,</span>
+                                 <span class="n">OutputStream</span> <span class="n">output</span><span class="p">)</span>
+        <span class="kd">throws</span> <span class="n">TransformerException</span> <span class="p">{</span>
+
+    <span class="n">TransformerFactory</span> <span class="n">transformerFactory</span> <span class="o">=</span> <span class="n">TransformerFactory</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span>
+    <span class="n">Transformer</span> <span class="n">transformer</span> <span class="o">=</span> <span class="n">transformerFactory</span><span class="p">.</span><span class="na">newTransformer</span><span class="p">();</span>
+    <span class="n">transformer</span><span class="p">.</span><span class="na">setOutputProperty</span><span class="p">(</span><span class="n">OutputKeys</span><span class="p">.</span><span class="na">INDENT</span><span class="p">,</span> <span class="s">&quot;yes&quot;</span><span class="p">);</span>
+    <span class="n">DOMSource</span> <span class="n">source</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DOMSource</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+    <span class="n">StreamResult</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StreamResult</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+    <span class="n">transformer</span><span class="p">.</span><span class="na">transform</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+
 <span class="p">}</span>
 </code></pre></div>
                 
