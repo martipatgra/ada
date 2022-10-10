@@ -14,7 +14,7 @@
     
     
       
-        <title>1.9.- Crear un .jar - Acceso a Datos</title>
+        <title>Acceso aleatorio a ficheros - Acceso a Datos</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#como-crear-un-jar-en-intellij" class="md-skip">
+        <a href="#acceso-aleatorio-a-ficheros" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1.9.- Crear un .jar
+              Acceso aleatorio a ficheros
             
           </span>
         </div>
@@ -222,14 +222,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       <label class="md-nav__link" for="__nav_2">
         1.- Acceso a ficheros
@@ -295,8 +293,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../15randomaccessfile/" class="md-nav__link">
-        1.5.- Ficheros de acceso aleatorio
+      <a href="../14fileclass/" class="md-nav__link">
+        1.5.- java.nio
       </a>
     </li>
   
@@ -307,8 +305,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../16configfiles/" class="md-nav__link">
-        1.6.- Ficheros de configuración
+      <a href="../15randomaccessfile.md" class="md-nav__link">
+        1.6.- Ficheros de acceso aleatorio
       </a>
     </li>
   
@@ -319,8 +317,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../17xmlfiles/" class="md-nav__link">
-        1.7.- XML
+      <a href="../16configfiles.md" class="md-nav__link">
+        1.7.- Ficheros de configuración
       </a>
     </li>
   
@@ -331,8 +329,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../18jsonfiles/" class="md-nav__link">
-        1.8.- JSON
+      <a href="../17xmlfiles.md" class="md-nav__link">
+        1.8.- XML
       </a>
     </li>
   
@@ -341,21 +339,23 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        1.9.- Crear un .jar
+    <li class="md-nav__item">
+      <a href="../18jsonfiles.md" class="md-nav__link">
+        1.9.- JSON
       </a>
-      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19createjar.md" class="md-nav__link">
+        1.10.- Crear un .jar
+      </a>
     </li>
   
 
@@ -400,6 +400,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#puntero-de-la-clase-randomaccessfile" class="md-nav__link">
+    Puntero de la clase RandomAccessFile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constructor-de-la-clase-randomaccessfile" class="md-nav__link">
+    Constructor de la clase RandomAccessFile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-de-un-programa-que-anade-texto-al-final-de-un-fichero" class="md-nav__link">
+    Ejemplo de un programa que añade texto al final de un fichero
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -411,27 +440,48 @@
               
                 
                 
-                <h1 id="como-crear-un-jar-en-intellij">Cómo crear un jar en IntelliJ</h1>
-<ol>
-<li>Vamos a File --&gt; Project Structure</li>
-</ol>
-<p><img alt="artifact" src="../../img/ud1/13artifact.png" /></p>
-<ol>
-<li>En la sección Artifacts, seleccionamos el símbolo "+" y seleccionamos el formato .jar --&gt; "From modules with dependencies"</li>
-</ol>
-<p><img alt="artifact" src="../../img/ud1/14artifact.png" /></p>
-<ol>
-<li>Le decimos cuál es la clase main y aceptamos.</li>
-</ol>
-<p><img alt="artifact" src="../../img/ud1/15artifact.png" /></p>
-<ol>
-<li>Todavía no hemos construido el .jar. Para crearlo vamos al menú "Build" --&gt; "Build Artifact".</li>
-</ol>
-<p><img alt="artifact" src="../../img/ud1/16artifact.png" /></p>
-<ol>
-<li>Seleccionamos "Build".</li>
-</ol>
-<p><img alt="artifact" src="../../img/ud1/17artifact.png" /></p>
+                <h1 id="acceso-aleatorio-a-ficheros">Acceso aleatorio a ficheros</h1>
+<p>Todos los flujos de E/S que hemos usado hasta ahora se conocen como flujos de solo lectura o solo escritura. Estos flujos se denominan flujos <strong>secuenciales</strong> en Java.</p>
+<p>Un fichero que se lee o escribe mediante un flujo secuencial se denomina <strong>fichero de acceso secuencial</strong>. Los datos de un fichero de acceso secuencial <strong>NO se pueden actualizar</strong>.</p>
+<p>Por lo tanto, para leer y escribir datos simultáneamente, Java proporciona la clase <code>RandomAccessFile</code>. Con esta clase, podemos leer y escribir datos en cualquier ubicación del fichero. Los archivos de acceso aleatorio son útiles para muchas aplicaciones diferentes.</p>
+<h2 id="puntero-de-la-clase-randomaccessfile">Puntero de la clase <code>RandomAccessFile</code></h2>
+<p>Un fichero de acceso aleatorio consta de <strong>una secuencia de bytes</strong>.
+Éstos, admiten un puntero especial conocido como <strong>puntero de fichero</strong> (<strong>file pointer</strong>). El puntero indica la posición actual (ubicación) en el fichero.</p>
+<p>Se coloca en uno de estos bytes en el fichero y se puede mover a cualquier posición arbitraria antes de leer o escribir.</p>
+<p>En otras palabras, se lleva a cabo una operación de lectura o escritura en la ubicación del puntero.</p>
+<p>El puntero se puede mover utilizando el método <code>seek()</code>.</p>
+<p>Cuando se crea un fichero por primera vez, el puntero se establece en 0, lo que indica el comienzo del archivo. Cuando leemos o escribimos datos en el archivo usando métodos de lectura o escritura, el puntero del archivo avanza al siguiente elemento de datos (es decir, el siguiente byte).</p>
+<p>Por ejemplo, si leemos un valor int usando el método readInt() del archivo, JVM lee 4 bytes usando el puntero, y ahora el puntero del archivo está 4 bytes por delante de la posición anterior, como se muestra en la figura a continuación.</p>
+<p><img alt="JavaIO" src="../../img/ud1/7randomfile.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="p">....</span>
+
+<span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">position</span><span class="p">);</span> <span class="c1">//mueve el puntero a una posición</span>
+<span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//mueve el puntero al inicio del fichero</span>
+<span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">());</span> <span class="c1">//mueve el puntero al final del fichero</span>
+</code></pre></div>
+<h2 id="constructor-de-la-clase-randomaccessfile">Constructor de la clase RandomAccessFile</h2>
+<p>Para construir un objeto de la clase tenemos que especificar el modo (<strong>mode</strong>) que determina qué tipo de acceso a ficheros está permitido.</p>
+<ul>
+<li>r: el fichero es de solo lectura.</li>
+<li>rw: se abre en modo lectura-escritura.</li>
+<li>rws: se abre para lectura y escritura y cada cambio en los datos del fichero se escribirá inmediatamente en el dispositivo físico.</li>
+</ul>
+<blockquote>
+<p>RandomAccessFile raf = new RandomAccessFile("myfile.dat", "rw");</p>
+</blockquote>
+<h2 id="ejemplo-de-un-programa-que-anade-texto-al-final-de-un-fichero">Ejemplo de un programa que añade texto al final de un fichero</h2>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">RandomAccessFile</span> <span class="n">file</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">,</span> <span class="s">&quot;rw&quot;</span><span class="p">);</span>
+        <span class="n">file</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">length</span><span class="p">());</span> <span class="c1">// Moving file pointer to the end.</span>
+        <span class="n">file</span><span class="p">.</span><span class="na">writeBytes</span><span class="p">(</span><span class="s">&quot;\nJava&quot;</span><span class="p">);</span> <span class="c1">// Append text.</span>
+        <span class="n">file</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
                 
               
               
@@ -452,41 +502,6 @@
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Pie">
-      
-        
-        <a href="../18jsonfiles/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 1.8.- JSON" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Anterior
-              </span>
-              1.8.- JSON
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../../about/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: About" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Siguiente
-              </span>
-              About
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
