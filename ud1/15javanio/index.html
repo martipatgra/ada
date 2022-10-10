@@ -535,11 +535,22 @@
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="lectura-de-un-fichero">Lectura de un fichero</h2>
+<p>Con buffer:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Path</span> <span class="n">p</span> <span class="o">=</span> <span class="n">FileSystems</span><span class="p">.</span><span class="na">getDefault</span><span class="p">().</span><span class="na">getPath</span><span class="p">(</span><span class="s">&quot;ficPrueba.txt&quot;</span><span class="p">);</span>
 <span class="k">try</span> <span class="p">(</span><span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="n">Files</span><span class="p">.</span><span class="na">newBufferedReader</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="p">{</span>
     <span class="n">String</span> <span class="n">input</span><span class="p">;</span>
     <span class="k">while</span> <span class="p">((</span><span class="n">input</span> <span class="o">=</span> <span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">Path</span> <span class="n">p</span> <span class="o">=</span> <span class="n">FileSystems</span><span class="p">.</span><span class="na">getDefault</span><span class="p">().</span><span class="na">getPath</span><span class="p">(</span><span class="s">&quot;ficPrueba.txt&quot;</span><span class="p">);</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">Files</span><span class="p">.</span><span class="na">readAllLines</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">line</span><span class="p">:</span> <span class="n">lines</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
