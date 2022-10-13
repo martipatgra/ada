@@ -674,10 +674,10 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">Statement</span> <span class="n">stmt</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
-      <span class="n">String</span> <span class="n">q1</span> <span class="o">=</span> <span class="s">&quot;insert into userid values</span>
-<span class="s">      (&#39;&quot;</span> <span class="o">+</span><span class="n">id</span><span class="o">+</span> <span class="s">&quot;&#39;, &#39;&quot;</span> <span class="o">+</span><span class="n">pwd</span><span class="o">+</span> <span class="s">&quot;&#39;, &#39;&quot;</span> <span class="o">+</span><span class="n">fullname</span><span class="o">+</span> <span class="s">&quot;&#39;, &#39;&quot;</span> <span class="o">+</span><span class="n">email</span><span class="o">+</span> <span class="s">&quot;&#39;)&quot;</span><span class="p">;</span>
-      <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">stmt</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">q1</span><span class="p">);</span>
-</code></pre></div>
+<span class="n">String</span> <span class="n">q1</span> <span class="o">=</span> <span class="s">&quot;insert into userid values</span>
+<span class="s">(&#39;&quot;</span> <span class="o">+</span><span class="n">id</span><span class="o">+</span> <span class="s">&quot;&#39;, &#39;&quot;</span> <span class="o">+</span><span class="n">pwd</span><span class="o">+</span> <span class="s">&quot;&#39;, &#39;&quot;</span> <span class="o">+</span><span class="n">fullname</span><span class="o">+</span> <span class="s">&quot;&#39;, &#39;&quot;</span> <span class="o">+</span><span class="n">email</span><span class="o">+</span> <span class="s">&quot;&#39;)&quot;</span><span class="p">;</span>
+<span class="hll"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">stmt</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">q1</span><span class="p">);</span>
+</span></code></pre></div>
 <ul>
 <li><code>ResultSet executeQuery(String sql)</code>: ejecuta una sentencia SELECT y devuelve un objeto <code>ResultSet</code> que contiene los resultados devueltos por la consulta.</li>
 </ul>
