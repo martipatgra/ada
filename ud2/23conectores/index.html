@@ -667,17 +667,9 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 </ul>
 <h2 id="interfaces-y-clases-principales-de-jdbc">Interfaces y clases principales de JDBC</h2>
 <ul>
-<li><code>Statement</code> y <code>PreparedStatement</code>: estas interfaces se utilizan para ejecutar consultas SQL estáticas y consultas SQL parametrizadas, respectivamente. <code>Statement</code> es la superinterfaz de la interfaz <code>PreparedStatement</code>, que se utiliza para consultas parametrizadas. Sus métodos comúnmente utilizados son:</li>
+<li><code>Statement</code> y <code>PreparedStatement</code>: estas interfaces se utilizan para ejecutar consultas SQL estáticas y consultas SQL parametrizadas, respectivamente. <code>Statement</code> es la superinterfaz de la interfaz <code>PreparedStatement</code>, que se utiliza para consultas parametrizadas. Sus métodos comúnmente utilizados son:<ul>
 <li><strong><code>boolean execute(String sql)</code></strong>: ejecuta una sentencia SQL general. Devuelve verdadero si la consulta devuelve un <code>ResultSet</code>, falso si la consulta devuelve un recuento de actualizaciones o no devuelve nada. Este método solo se puede utilizar con una sentencia.</li>
 <li><strong><code>int executeUpdate(String sql)</code></strong>: ejecuta una sentencia INSERT, UPDATE o DELETE y devuelve un conteo actualizado que indica el número de filas afectadas (por ejemplo, 1 fila insertada, 2 filas actualizadas o 0 filas afectadas).</li>
-</ul>
-<hr />
-<ul>
-<li>This is a test of the lists.<ul>
-<li>This is a second items</li>
-<li>fjdkla</li>
-<li>fjkdlsa;</li>
-<li>fdjkls;a </li>
 </ul>
 </li>
 </ul>
