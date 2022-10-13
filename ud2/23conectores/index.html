@@ -668,9 +668,18 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 <h2 id="interfaces-y-clases-principales-de-jdbc">Interfaces y clases principales de JDBC</h2>
 <ul>
 <li><code>Statement</code> y <code>PreparedStatement</code>: estas interfaces se utilizan para ejecutar consultas SQL estáticas y consultas SQL parametrizadas, respectivamente. <code>Statement</code> es la superinterfaz de la interfaz <code>PreparedStatement</code>, que se utiliza para consultas parametrizadas. Sus métodos comúnmente utilizados son:</li>
-<li><code>boolean execute(String sql)</code>: ejecuta una sentencia SQL general. Devuelve verdadero si la consulta devuelve un <code>ResultSet</code>, falso si la consulta devuelve un recuento de actualizaciones o no devuelve nada. Este método solo se puede utilizar con una sentencia.</li>
-<li><code>int executeUpdate(String sql)</code>: ejecuta una sentencia INSERT, UPDATE o DELETE y devuelve un conteo actualizado que indica el número de filas afectadas (por ejemplo, 1 fila insertada, 2 filas actualizadas o 0 filas afectadas).</li>
 </ul>
+<blockquote>
+<p>:memo: <strong><code>boolean execute(String sql)</code></strong></p>
+<ul>
+<li>ejecuta una sentencia SQL general. Devuelve verdadero si la consulta devuelve un <code>ResultSet</code>, falso si la consulta devuelve un recuento de actualizaciones o no devuelve nada. Este método solo se puede utilizar con una sentencia.</li>
+</ul>
+<p>:memo: <strong><code>int executeUpdate(String sql)</code></strong></p>
+<ul>
+<li>ejecuta una sentencia INSERT, UPDATE o DELETE y devuelve un conteo actualizado que indica el número de filas afectadas (por ejemplo, 1 fila insertada, 2 filas actualizadas o 0 filas afectadas).</li>
+</ul>
+</blockquote>
+<hr />
 <div class="highlight"><pre><span></span><code><span class="n">Statement</span> <span class="n">stmt</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
       <span class="n">String</span> <span class="n">q1</span> <span class="o">=</span> <span class="s">&quot;insert into userid values</span>
 <span class="s">      (&#39;&quot;</span> <span class="o">+</span><span class="n">id</span><span class="o">+</span> <span class="s">&quot;&#39;, &#39;&quot;</span> <span class="o">+</span><span class="n">pwd</span><span class="o">+</span> <span class="s">&quot;&#39;, &#39;&quot;</span> <span class="o">+</span><span class="n">fullname</span><span class="o">+</span> <span class="s">&quot;&#39;, &#39;&quot;</span> <span class="o">+</span><span class="n">email</span><span class="o">+</span> <span class="s">&quot;&#39;)&quot;</span><span class="p">;</span>
