@@ -688,12 +688,14 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 </code></pre></div>
 <ul>
 <li><code>ResultSet</code>: contiene los datos de la tabla devueltos por una consulta SELECT. Este objeto se usa para iterar sobre las filas en el conjunto de resultados usando el método <code>next()</code>.</li>
-<li><code>SQLException</code>: es la excepción que se lanza cuando hay algún problema entre la base de datos y el programa Java JDBC. Contiene los siguientes métodos:</li>
+<li><code>SQLException</code>: es la excepción que se lanza cuando hay algún problema entre la base de datos y el programa Java JDBC. Contiene los siguientes métodos:<ul>
 <li><code>.getMessage()</code>, nos indica la descripción del mensaje de error.</li>
 <li><code>.getSQLState()</code>, devuelve un código SQL estándar definido por ISO/ANSI y el Open Group que identifica de forma unívoca el error que se ha producido.</li>
 <li><code>.getErrorCode(</code>), es un código de error que lanza la base de datos. En este caso el código de error es diferente dependiendo del proveedor de base de datos que estemos utilizando.</li>
 <li><code>.getCause()</code>, nos devuelve una lista de objetos que han provocado el error.</li>
 <li><code>.getNextException()</code>, devuelve la cadena de excepciones que se ha producido. De tal manera que podemos navegar sobre ella para ver en detalle de esas excepciones.</li>
+</ul>
+</li>
 </ul>
                 
               
