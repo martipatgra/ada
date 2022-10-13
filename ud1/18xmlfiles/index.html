@@ -791,7 +791,7 @@ Una etiqueta consiste en una marca hecha en el documento, que señala una porci�
 <li>Uno o más comentarios e instrucciones de procesamiento.
 Ejemplo:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 </code></pre></div>
 <h3 id="cuerpo">Cuerpo</h3>
 <p>A diferencia del prólogo, el cuerpo no es opcional en un documento XML, el cuerpo debe contener solo un elemento raíz, característica indispensable también para que el documento esté bien formado. Sin embargo es necesaria la adquisición de datos para su buen funcionamiento.</p>
@@ -799,35 +799,35 @@ Ejemplo:</li>
 <p>Los elementos XML pueden tener contenido (más elementos, caracteres o ambos), o bien ser elementos vacíos.</p>
 <h3 id="atributos">Atributos</h3>
 <p>Los elementos pueden tener atributos, que son una manera de incorporar características o propiedades a los elementos de un documento. Deben ir entre comillas.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;person</span> <span class="na">sex=</span><span class="s">&quot;female&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;firstname&gt;</span>Anna<span class="nt">&lt;/firstname&gt;</span>
-  <span class="nt">&lt;lastname&gt;</span>Smith<span class="nt">&lt;/lastname&gt;</span>
-<span class="nt">&lt;/person&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nt">&lt;person</span> <span class="na">sex=</span><span class="s">&quot;female&quot;</span><span class="nt">&gt;</span>
+<span class="linenos" data-linenos="2 "></span>  <span class="nt">&lt;firstname&gt;</span>Anna<span class="nt">&lt;/firstname&gt;</span>
+<span class="linenos" data-linenos="3 "></span>  <span class="nt">&lt;lastname&gt;</span>Smith<span class="nt">&lt;/lastname&gt;</span>
+<span class="linenos" data-linenos="4 "></span><span class="nt">&lt;/person&gt;</span>
 </code></pre></div>
 <p>En el ejemplo, el elemento <code>person</code> tiene un atributo <code>sex</code>.</p>
 <h3 id="comentarios">Comentarios</h3>
 <p>Comentarios a modo informativo para el programador que han de ser ignorados por el procesador. Los comentarios en XML tienen el siguiente formato:</p>
-<div class="highlight"><pre><span></span><code>  <span class="c">&lt;!-- Comment --&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>  <span class="c">&lt;!-- Comment --&gt;</span>
 </code></pre></div>
 <h2 id="ejemplo-de-un-documento-xml">Ejemplo de un documento XML</h2>
-<div class="highlight"><pre><span></span><code><span class="err">&lt;</span>?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;&gt;
-
-<span class="c">&lt;!-- This is a comment --&gt;</span>
-
-<span class="nt">&lt;products&gt;</span> 
-    <span class="nt">&lt;product&gt;</span> 
-        <span class="nt">&lt;name&gt;</span>Cereales<span class="nt">&lt;/name&gt;</span> 
-        <span class="nt">&lt;price&gt;</span>3.45<span class="nt">&lt;/price&gt;</span> 
-    <span class="nt">&lt;/product&gt;</span> 
-    <span class="nt">&lt;product&gt;</span> 
-        <span class="nt">&lt;name&gt;</span>Colacao<span class="nt">&lt;/name&gt;</span> 
-        <span class="nt">&lt;price&gt;</span>1.45<span class="nt">&lt;/price&gt;</span> 
-    <span class="nt">&lt;/product&gt;</span> 
-    <span class="nt">&lt;product&gt;</span> 
-        <span class="nt">&lt;name&gt;</span>Agua mineral<span class="nt">&lt;/name&gt;</span> 
-        <span class="nt">&lt;price&gt;</span>1.00<span class="nt">&lt;/price&gt;</span> 
-    <span class="nt">&lt;/product&gt;</span> 
-<span class="nt">&lt;/products&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">&lt;</span>?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;&gt;
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="c">&lt;!-- This is a comment --&gt;</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="nt">&lt;products&gt;</span> 
+<span class="linenos" data-linenos=" 6 "></span>    <span class="nt">&lt;product&gt;</span> 
+<span class="linenos" data-linenos=" 7 "></span>        <span class="nt">&lt;name&gt;</span>Cereales<span class="nt">&lt;/name&gt;</span> 
+<span class="linenos" data-linenos=" 8 "></span>        <span class="nt">&lt;price&gt;</span>3.45<span class="nt">&lt;/price&gt;</span> 
+<span class="linenos" data-linenos=" 9 "></span>    <span class="nt">&lt;/product&gt;</span> 
+<span class="linenos" data-linenos="10 "></span>    <span class="nt">&lt;product&gt;</span> 
+<span class="linenos" data-linenos="11 "></span>        <span class="nt">&lt;name&gt;</span>Colacao<span class="nt">&lt;/name&gt;</span> 
+<span class="linenos" data-linenos="12 "></span>        <span class="nt">&lt;price&gt;</span>1.45<span class="nt">&lt;/price&gt;</span> 
+<span class="linenos" data-linenos="13 "></span>    <span class="nt">&lt;/product&gt;</span> 
+<span class="linenos" data-linenos="14 "></span>    <span class="nt">&lt;product&gt;</span> 
+<span class="linenos" data-linenos="15 "></span>        <span class="nt">&lt;name&gt;</span>Agua mineral<span class="nt">&lt;/name&gt;</span> 
+<span class="linenos" data-linenos="16 "></span>        <span class="nt">&lt;price&gt;</span>1.00<span class="nt">&lt;/price&gt;</span> 
+<span class="linenos" data-linenos="17 "></span>    <span class="nt">&lt;/product&gt;</span> 
+<span class="linenos" data-linenos="18 "></span><span class="nt">&lt;/products&gt;</span>
 </code></pre></div>
 <h2 id="url-xml">Url XML</h2>
 <p><a href="https://www.w3.org/TR/REC-xml/">El estándar XML</a></p>
@@ -843,29 +843,29 @@ Ejemplo:</li>
 <h3 id="stax">StAX</h3>
 <p>Streaming API for XML (StAX) está basado en eventos, permite leer y escribir documentos XML. StAX ofrece un modelo de programación más simple que SAX y una gestión de memoria más eficiente que DOM.</p>
 <h2 id="ejemplo-lectura-xml-desde-una-api">Ejemplo lectura XML desde una API</h2>
-<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">static</span> <span class="n">Document</span> <span class="nf">loadXMLDocument</span><span class="p">(</span><span class="n">String</span> <span class="n">url</span><span class="p">)</span>  <span class="p">{</span>
-    <span class="k">try</span> <span class="p">(</span><span class="n">InputStream</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="na">openStream</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">DocumentBuilderFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">DocumentBuilderFactory</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span>
-        <span class="n">DocumentBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="na">newDocumentBuilder</span><span class="p">();</span>
-        <span class="k">return</span> <span class="n">builder</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">private</span> <span class="kd">static</span> <span class="n">Document</span> <span class="nf">loadXMLDocument</span><span class="p">(</span><span class="n">String</span> <span class="n">url</span><span class="p">)</span>  <span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span>    <span class="k">try</span> <span class="p">(</span><span class="n">InputStream</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="na">openStream</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>        <span class="n">DocumentBuilderFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">DocumentBuilderFactory</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span>
+<span class="linenos" data-linenos="4 "></span>        <span class="n">DocumentBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="na">newDocumentBuilder</span><span class="p">();</span>
+<span class="linenos" data-linenos="5 "></span>        <span class="k">return</span> <span class="n">builder</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos" data-linenos="7 "></span>        <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="8 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="9 "></span><span class="p">}</span>
 </code></pre></div>
 <h2 id="escritura-de-un-documento-xml">Escritura de un documento XML</h2>
-<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">writeXml</span><span class="p">(</span><span class="n">Document</span> <span class="n">doc</span><span class="p">,</span>
-                                 <span class="n">OutputStream</span> <span class="n">output</span><span class="p">)</span>
-        <span class="kd">throws</span> <span class="n">TransformerException</span> <span class="p">{</span>
-
-    <span class="n">TransformerFactory</span> <span class="n">transformerFactory</span> <span class="o">=</span> <span class="n">TransformerFactory</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span>
-    <span class="n">Transformer</span> <span class="n">transformer</span> <span class="o">=</span> <span class="n">transformerFactory</span><span class="p">.</span><span class="na">newTransformer</span><span class="p">();</span>
-    <span class="n">transformer</span><span class="p">.</span><span class="na">setOutputProperty</span><span class="p">(</span><span class="n">OutputKeys</span><span class="p">.</span><span class="na">INDENT</span><span class="p">,</span> <span class="s">&quot;yes&quot;</span><span class="p">);</span>
-    <span class="n">DOMSource</span> <span class="n">source</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DOMSource</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
-    <span class="n">StreamResult</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StreamResult</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
-    <span class="n">transformer</span><span class="p">.</span><span class="na">transform</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
-
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">writeXml</span><span class="p">(</span><span class="n">Document</span> <span class="n">doc</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 2 "></span>                                 <span class="n">OutputStream</span> <span class="n">output</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 3 "></span>        <span class="kd">throws</span> <span class="n">TransformerException</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="n">TransformerFactory</span> <span class="n">transformerFactory</span> <span class="o">=</span> <span class="n">TransformerFactory</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="n">Transformer</span> <span class="n">transformer</span> <span class="o">=</span> <span class="n">transformerFactory</span><span class="p">.</span><span class="na">newTransformer</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="n">transformer</span><span class="p">.</span><span class="na">setOutputProperty</span><span class="p">(</span><span class="n">OutputKeys</span><span class="p">.</span><span class="na">INDENT</span><span class="p">,</span> <span class="s">&quot;yes&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="n">DOMSource</span> <span class="n">source</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DOMSource</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="n">StreamResult</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StreamResult</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="n">transformer</span><span class="p">.</span><span class="na">transform</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
 </code></pre></div>
                 
               

@@ -558,17 +558,17 @@
 <li>Los constructores de esta clase asumen que la codificación de caracteres predeterminada y el tamaño de búfer de bytes predeterminado son aceptables.</li>
 <li><code>FileWriter</code> está diseñado para escribir secuencias de caracteres. Si queremos escribir flujos de bytes sin procesar, tendríamos que usar la clase <code>FileOutputStream</code>.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;Este es un ejemplo de escritura usando FileWriter.&quot;</span><span class="p">;</span>
-
-    <span class="k">try</span> <span class="p">{</span>
-        <span class="n">FileWriter</span> <span class="n">fw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;output.txt&quot;</span><span class="p">);</span>
-        <span class="n">fw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
-        <span class="n">fw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-    <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error E/S: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>    <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;Este es un ejemplo de escritura usando FileWriter.&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="k">try</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="n">FileWriter</span> <span class="n">fw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;output.txt&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="n">fw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span>        <span class="n">fw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error E/S: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
 </code></pre></div>
 <p>Cuando se cierra el stream <code>close()</code> se escribe en el fichero. Si quisiéramos grabar en el fichero en algún momento antes de cerrar, podemos usar el método <code>flush()</code>.</p>
 <h2 id="lectura-de-datos">Lectura de datos</h2>
@@ -576,18 +576,18 @@
 <ul>
 <li><code>FileReader</code> está diseñada para leer flujos de caracteres. Para leer flujos de bytes sin procesar, usaremos <code>FileInputStream</code>.</li>
 </ul>
-<div class="highlight"><pre><span></span><code>    <span class="kt">int</span> <span class="n">ch</span><span class="p">;</span>
-    <span class="k">try</span> <span class="p">{</span>
-        <span class="n">FileReader</span> <span class="n">fr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="s">&quot;output.txt&quot;</span><span class="p">);</span>
-        <span class="n">ch</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="na">read</span><span class="p">();</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">ch</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//fin de fichero</span>
-            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span> <span class="n">ch</span><span class="p">);</span>
-            <span class="n">ch</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="na">read</span><span class="p">();</span>
-        <span class="p">}</span>
-        <span class="n">fr</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">fe</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error de E/S&quot;</span><span class="p">);</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>    <span class="kt">int</span> <span class="n">ch</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span>    <span class="k">try</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>        <span class="n">FileReader</span> <span class="n">fr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="s">&quot;output.txt&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="n">ch</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="na">read</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="k">while</span> <span class="p">(</span><span class="n">ch</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//fin de fichero</span>
+<span class="linenos" data-linenos=" 6 "></span>            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span> <span class="n">ch</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span>            <span class="n">ch</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="na">read</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="n">fr</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">fe</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error de E/S&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span>    <span class="p">}</span>
 </code></pre></div>
 <p>Al igual que ocurría con los ficheros binarios, disponemos de las clases <code>BufferedReader</code> y <code>BufferedWriter</code> para leer y escribir usando el búfer y así acceder a los datos más rápidamente.</p>
                 

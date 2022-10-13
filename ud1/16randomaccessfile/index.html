@@ -575,11 +575,11 @@
 <p>Cuando se crea un fichero por primera vez, el puntero se establece en 0, lo que indica el comienzo del archivo. Cuando leemos o escribimos datos en el archivo usando métodos de lectura o escritura, el puntero del archivo avanza al siguiente elemento de datos (es decir, el siguiente byte).</p>
 <p>Por ejemplo, si leemos un valor int usando el método readInt() del archivo, JVM lee 4 bytes usando el puntero, y ahora el puntero del archivo está 4 bytes por delante de la posición anterior, como se muestra en la figura a continuación.</p>
 <p><img alt="JavaIO" src="../../img/ud1/7randomfile.png" /></p>
-<div class="highlight"><pre><span></span><code><span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="p">....</span>
-
-<span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">position</span><span class="p">);</span> <span class="c1">//mueve el puntero a una posición</span>
-<span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//mueve el puntero al inicio del fichero</span>
-<span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">());</span> <span class="c1">//mueve el puntero al final del fichero</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">RandomAccessFile</span> <span class="n">raf</span> <span class="o">=</span> <span class="p">....</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">position</span><span class="p">);</span> <span class="c1">//mueve el puntero a una posición</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//mueve el puntero al inicio del fichero</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">());</span> <span class="c1">//mueve el puntero al final del fichero</span>
 </code></pre></div>
 <h2 id="constructor-de-la-clase-randomaccessfile">Constructor de la clase RandomAccessFile</h2>
 <p>Para construir un objeto de la clase tenemos que especificar el modo (<strong>mode</strong>) que determina qué tipo de acceso a ficheros está permitido.</p>
@@ -592,17 +592,17 @@
 <p>RandomAccessFile raf = new RandomAccessFile("myfile.dat", "rw");</p>
 </blockquote>
 <h2 id="ejemplo-de-un-programa-que-anade-texto-al-final-de-un-fichero">Ejemplo de un programa que añade texto al final de un fichero</h2>
-<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">RandomAccessFile</span> <span class="n">file</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="k">try</span> <span class="p">{</span>
-        <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">,</span> <span class="s">&quot;rw&quot;</span><span class="p">);</span>
-        <span class="n">file</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">length</span><span class="p">());</span> <span class="c1">// Moving file pointer to the end.</span>
-        <span class="n">file</span><span class="p">.</span><span class="na">writeBytes</span><span class="p">(</span><span class="s">&quot;\nJava&quot;</span><span class="p">);</span> <span class="c1">// Append text.</span>
-        <span class="n">file</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>    <span class="n">RandomAccessFile</span> <span class="n">file</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="k">try</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">,</span> <span class="s">&quot;rw&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="n">file</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">length</span><span class="p">());</span> <span class="c1">// Moving file pointer to the end.</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="n">file</span><span class="p">.</span><span class="na">writeBytes</span><span class="p">(</span><span class="s">&quot;\nJava&quot;</span><span class="p">);</span> <span class="c1">// Append text.</span>
+<span class="linenos" data-linenos=" 7 "></span>        <span class="n">file</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
 </code></pre></div>
                 
               

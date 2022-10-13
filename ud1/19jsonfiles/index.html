@@ -674,51 +674,51 @@ JSON es un formato de texto que es completamente independiente del lenguaje pero
 </ul>
 <p><img alt="JavaIO" src="../../img/ud1/11json3.png" /></p>
 <h2 id="ejemplo-de-fichero-json">Ejemplo de fichero JSON</h2>
-<div class="highlight"><pre><span></span><code><span class="err">#</span> <span class="err">Fichero</span> <span class="err">JSON</span> 
-
-<span class="p">{</span><span class="nt">&quot;web-app&quot;</span><span class="p">:</span> <span class="p">{</span>
-  <span class="nt">&quot;servlet&quot;</span><span class="p">:</span> <span class="p">[</span>   
-    <span class="p">{</span>
-      <span class="nt">&quot;servlet-name&quot;</span><span class="p">:</span> <span class="s2">&quot;cofaxCDS&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;servlet-class&quot;</span><span class="p">:</span> <span class="s2">&quot;org.cofax.cds.CDSServlet&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;init-param&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;configGlossary:installationAt&quot;</span><span class="p">:</span> <span class="s2">&quot;Philadelphia, PA&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;configGlossary:adminEmail&quot;</span><span class="p">:</span> <span class="s2">&quot;ksm@pobox.com&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;configGlossary:poweredBy&quot;</span><span class="p">:</span> <span class="s2">&quot;Cofax&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;configGlossary:poweredByIcon&quot;</span><span class="p">:</span> <span class="s2">&quot;/images/cofax.gif&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;configGlossary:staticPath&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/static&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;templateProcessorClass&quot;</span><span class="p">:</span> <span class="s2">&quot;org.cofax.WysiwygTemplate&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;templateLoaderClass&quot;</span><span class="p">:</span> <span class="s2">&quot;org.cofax.FilesTemplateLoader&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;templatePath&quot;</span><span class="p">:</span> <span class="s2">&quot;templates&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;templateOverridePath&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;defaultListTemplate&quot;</span><span class="p">:</span> <span class="s2">&quot;listTemplate.htm&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;defaultFileTemplate&quot;</span><span class="p">:</span> <span class="s2">&quot;articleTemplate.htm&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;useJSP&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-        <span class="nt">&quot;dataStoreMaxConns&quot;</span><span class="p">:</span> <span class="mi">100</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="kc">null</span><span class="p">,</span>
-    <span class="p">{</span>
-      <span class="nt">&quot;servlet-name&quot;</span><span class="p">:</span> <span class="s2">&quot;cofaxEmail&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;servlet-class&quot;</span><span class="p">:</span> <span class="s2">&quot;org.cofax.cds.EmailServlet&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;init-param&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;mailHost&quot;</span><span class="p">:</span> <span class="s2">&quot;mail1&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;mailHostOverride&quot;</span><span class="p">:</span> <span class="s2">&quot;mail2&quot;</span>
-      <span class="p">}</span>
-    <span class="p">}],</span>
-  <span class="nt">&quot;servlet-mapping&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;cofaxCDS&quot;</span><span class="p">:</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;cofaxEmail&quot;</span><span class="p">:</span> <span class="s2">&quot;/cofaxutil/aemail/*&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;cofaxAdmin&quot;</span><span class="p">:</span> <span class="s2">&quot;/admin/*&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;fileServlet&quot;</span><span class="p">:</span> <span class="s2">&quot;/static/*&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;cofaxTools&quot;</span><span class="p">:</span> <span class="s2">&quot;/tools/*&quot;</span>
-    <span class="p">},</span>
-  <span class="nt">&quot;taglib&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;taglib-uri&quot;</span><span class="p">:</span> <span class="s2">&quot;cofax.tld&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;taglib-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/WEB-INF/tlds/cofax.tld&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">#</span> <span class="err">Fichero</span> <span class="err">JSON</span> 
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="p">{</span><span class="nt">&quot;web-app&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>  <span class="nt">&quot;servlet&quot;</span><span class="p">:</span> <span class="p">[</span>   
+<span class="linenos" data-linenos=" 5 "></span>    <span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>      <span class="nt">&quot;servlet-name&quot;</span><span class="p">:</span> <span class="s2">&quot;cofaxCDS&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 7 "></span>      <span class="nt">&quot;servlet-class&quot;</span><span class="p">:</span> <span class="s2">&quot;org.cofax.cds.CDSServlet&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span>      <span class="nt">&quot;init-param&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="nt">&quot;configGlossary:installationAt&quot;</span><span class="p">:</span> <span class="s2">&quot;Philadelphia, PA&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="nt">&quot;configGlossary:adminEmail&quot;</span><span class="p">:</span> <span class="s2">&quot;ksm@pobox.com&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="nt">&quot;configGlossary:poweredBy&quot;</span><span class="p">:</span> <span class="s2">&quot;Cofax&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="12 "></span>        <span class="nt">&quot;configGlossary:poweredByIcon&quot;</span><span class="p">:</span> <span class="s2">&quot;/images/cofax.gif&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="nt">&quot;configGlossary:staticPath&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/static&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="14 "></span>        <span class="nt">&quot;templateProcessorClass&quot;</span><span class="p">:</span> <span class="s2">&quot;org.cofax.WysiwygTemplate&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="15 "></span>        <span class="nt">&quot;templateLoaderClass&quot;</span><span class="p">:</span> <span class="s2">&quot;org.cofax.FilesTemplateLoader&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="16 "></span>        <span class="nt">&quot;templatePath&quot;</span><span class="p">:</span> <span class="s2">&quot;templates&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="17 "></span>        <span class="nt">&quot;templateOverridePath&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="18 "></span>        <span class="nt">&quot;defaultListTemplate&quot;</span><span class="p">:</span> <span class="s2">&quot;listTemplate.htm&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="19 "></span>        <span class="nt">&quot;defaultFileTemplate&quot;</span><span class="p">:</span> <span class="s2">&quot;articleTemplate.htm&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="20 "></span>        <span class="nt">&quot;useJSP&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="linenos" data-linenos="21 "></span>        <span class="nt">&quot;dataStoreMaxConns&quot;</span><span class="p">:</span> <span class="mi">100</span>
+<span class="linenos" data-linenos="22 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="23 "></span>    <span class="p">},</span>
+<span class="linenos" data-linenos="24 "></span>    <span class="kc">null</span><span class="p">,</span>
+<span class="linenos" data-linenos="25 "></span>    <span class="p">{</span>
+<span class="linenos" data-linenos="26 "></span>      <span class="nt">&quot;servlet-name&quot;</span><span class="p">:</span> <span class="s2">&quot;cofaxEmail&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="27 "></span>      <span class="nt">&quot;servlet-class&quot;</span><span class="p">:</span> <span class="s2">&quot;org.cofax.cds.EmailServlet&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="28 "></span>      <span class="nt">&quot;init-param&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="29 "></span>        <span class="nt">&quot;mailHost&quot;</span><span class="p">:</span> <span class="s2">&quot;mail1&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="30 "></span>        <span class="nt">&quot;mailHostOverride&quot;</span><span class="p">:</span> <span class="s2">&quot;mail2&quot;</span>
+<span class="linenos" data-linenos="31 "></span>      <span class="p">}</span>
+<span class="linenos" data-linenos="32 "></span>    <span class="p">}],</span>
+<span class="linenos" data-linenos="33 "></span>  <span class="nt">&quot;servlet-mapping&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="34 "></span>    <span class="nt">&quot;cofaxCDS&quot;</span><span class="p">:</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="35 "></span>    <span class="nt">&quot;cofaxEmail&quot;</span><span class="p">:</span> <span class="s2">&quot;/cofaxutil/aemail/*&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="36 "></span>    <span class="nt">&quot;cofaxAdmin&quot;</span><span class="p">:</span> <span class="s2">&quot;/admin/*&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="37 "></span>    <span class="nt">&quot;fileServlet&quot;</span><span class="p">:</span> <span class="s2">&quot;/static/*&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="38 "></span>    <span class="nt">&quot;cofaxTools&quot;</span><span class="p">:</span> <span class="s2">&quot;/tools/*&quot;</span>
+<span class="linenos" data-linenos="39 "></span>    <span class="p">},</span>
+<span class="linenos" data-linenos="40 "></span>  <span class="nt">&quot;taglib&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos" data-linenos="41 "></span>    <span class="nt">&quot;taglib-uri&quot;</span><span class="p">:</span> <span class="s2">&quot;cofax.tld&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="42 "></span>    <span class="nt">&quot;taglib-location&quot;</span><span class="p">:</span> <span class="s2">&quot;/WEB-INF/tlds/cofax.tld&quot;</span>
+<span class="linenos" data-linenos="43 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="44 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="45 "></span><span class="p">}</span>
 </code></pre></div>
 <p>El fichero anterior se puede traducir como un array de objetos, por ejemplo de la clase <code>Servlet</code>, donde la clase <code>Servlet</code> estará compuesta por atributos como: servlet-name, servlet-class, etc.</p>
 <p>Existen varias librerías en Java para parsear ficheros JSON. Entre las más comunes están: Gson, Jackson, JSON.simple, org.json, JsonPATH, etc.</p>
@@ -733,32 +733,32 @@ JSON es un formato de texto que es completamente independiente del lenguaje pero
 <p>Vamos a ver cómo parsear un JSON utilizando el paquete <a href="https://mvnrepository.com/artifact/org.json/json/20220924">org.json</a>.
 Los archivos en este paquete implementan codificadores/decodificadores JSON en Java.</p>
 <h3 id="leer-un-json-a-partir-de-una-api">Leer un JSON a partir de una API</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">//Este método accede a una URL y se descarga el contenido en forma de String</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">stream</span><span class="p">(</span><span class="n">String</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="p">(</span><span class="n">InputStream</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="na">openStream</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">InputStreamReader</span> <span class="n">isr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InputStreamReader</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
-        <span class="n">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="p">(</span><span class="n">isr</span><span class="p">);</span>
-        <span class="n">StringBuilder</span> <span class="n">json</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
-        <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
-        <span class="k">while</span> <span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">reader</span><span class="p">.</span><span class="na">read</span><span class="p">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">json</span><span class="p">.</span><span class="na">append</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span> <span class="n">c</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">json</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">String</span> <span class="n">caturl</span> <span class="o">=</span> <span class="s">&quot;https://catfact.ninja/facts&quot;</span><span class="p">;</span>
-
-        <span class="c1">//parseamos un string a un JSONObject</span>
-        <span class="n">JSONObject</span> <span class="n">jsonObject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="p">(</span><span class="n">stream</span><span class="p">(</span><span class="n">caturl</span><span class="p">));</span>
-        <span class="n">JSONArray</span> <span class="n">a</span> <span class="o">=</span> <span class="n">jsonObject</span><span class="p">.</span><span class="na">getJSONArray</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">);</span>
-        <span class="n">JSONObject</span> <span class="n">o</span> <span class="o">=</span> <span class="p">(</span><span class="n">JSONObject</span><span class="p">)</span> <span class="n">a</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;fact&quot;</span><span class="p">));</span>
-
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//Este método accede a una URL y se descarga el contenido en forma de String</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">stream</span><span class="p">(</span><span class="n">String</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="k">try</span> <span class="p">(</span><span class="n">InputStream</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="na">openStream</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="n">InputStreamReader</span> <span class="n">isr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InputStreamReader</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="n">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="p">(</span><span class="n">isr</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="n">StringBuilder</span> <span class="n">json</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 7 "></span>        <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="k">while</span> <span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">reader</span><span class="p">.</span><span class="na">read</span><span class="p">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span>            <span class="n">json</span><span class="p">.</span><span class="na">append</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span> <span class="n">c</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="k">return</span> <span class="n">json</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="linenos" data-linenos="12 "></span>    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span>        <span class="n">String</span> <span class="n">caturl</span> <span class="o">=</span> <span class="s">&quot;https://catfact.ninja/facts&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span>        <span class="c1">//parseamos un string a un JSONObject</span>
+<span class="linenos" data-linenos="21 "></span>        <span class="n">JSONObject</span> <span class="n">jsonObject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="p">(</span><span class="n">stream</span><span class="p">(</span><span class="n">caturl</span><span class="p">));</span>
+<span class="linenos" data-linenos="22 "></span>        <span class="n">JSONArray</span> <span class="n">a</span> <span class="o">=</span> <span class="n">jsonObject</span><span class="p">.</span><span class="na">getJSONArray</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="23 "></span>        <span class="n">JSONObject</span> <span class="n">o</span> <span class="o">=</span> <span class="p">(</span><span class="n">JSONObject</span><span class="p">)</span> <span class="n">a</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos" data-linenos="24 "></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;fact&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="p">}</span>
 </code></pre></div>
 <p>Un <code>JSONObject</code> es una colección desordenada de pares clave y valor, que se asemeja a las implementaciones Map nativas de Java.</p>
                 

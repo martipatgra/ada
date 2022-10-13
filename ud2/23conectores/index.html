@@ -639,25 +639,25 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 </ul>
 <p>El objeto <code>Connection</code> está totalmente vinculado a una fuente de datos, por eso en pedir la conexión hay que especificar de qué fuente se trata siguiendo el protocolo JDBC e indicando la url de los datos, y en su caso el usuario y password.</p>
 <p>La url seguirá el protocolo JDBC, comenzará siempre por la palabra <strong>jdbc</strong> seguida de dos puntos. El resto dependerá del tipo de controlador utilizado, del host donde se aloje el SGBD, del puerto que este use para escuchar las peticiones y del nombre de la base de datos o esquema con el que queremos trabajar.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.sql.Connection</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">java.sql.DriverManager</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">java.sql.SQLException</span><span class="p">;</span>
-
-<span class="p">...</span>
-
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">String</span> <span class="n">user</span> <span class="o">=</span> <span class="s">&quot;root&quot;</span><span class="p">;</span>
-    <span class="n">String</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&quot;root&quot;</span><span class="p">;</span>
-    <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;jdbc:mysql://localhost/severo_ad&quot;</span><span class="p">;</span>
-
-    <span class="k">try</span> <span class="p">(</span><span class="kd">final</span> <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">connection</span><span class="p">.</span><span class="na">getCatalog</span><span class="p">());</span>
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">SQLException</span> <span class="n">ex</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;SQLException: &quot;</span> <span class="o">+</span> <span class="n">ex</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;SQLState: &quot;</span> <span class="o">+</span> <span class="n">ex</span><span class="p">.</span><span class="na">getSQLState</span><span class="p">());</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;VendorError: &quot;</span> <span class="o">+</span> <span class="n">ex</span><span class="p">.</span><span class="na">getErrorCode</span><span class="p">());</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span> <span class="nn">java.sql.Connection</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span> <span class="nn">java.sql.DriverManager</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="kn">import</span> <span class="nn">java.sql.SQLException</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="p">...</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="n">String</span> <span class="n">user</span> <span class="o">=</span> <span class="s">&quot;root&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="n">String</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&quot;root&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;jdbc:mysql://localhost/severo_ad&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span>    <span class="k">try</span> <span class="p">(</span><span class="kd">final</span> <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">connection</span><span class="p">.</span><span class="na">getCatalog</span><span class="p">());</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">SQLException</span> <span class="n">ex</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;SQLException: &quot;</span> <span class="o">+</span> <span class="n">ex</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="linenos" data-linenos="16 "></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;SQLState: &quot;</span> <span class="o">+</span> <span class="n">ex</span><span class="p">.</span><span class="na">getSQLState</span><span class="p">());</span>
+<span class="linenos" data-linenos="17 "></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;VendorError: &quot;</span> <span class="o">+</span> <span class="n">ex</span><span class="p">.</span><span class="na">getErrorCode</span><span class="p">());</span>
+<span class="linenos" data-linenos="18 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span><span class="p">}</span>
 </code></pre></div>
 <h2 id="operaciones-basicas">Operaciones básicas</h2>
 <p>El API JDBC distingue dos tipos de consultas:</p>
@@ -667,31 +667,33 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 </ul>
 <h2 id="interfaces-y-clases-principales-de-jdbc">Interfaces y clases principales de JDBC</h2>
 <ul>
-<li><code>Statement</code> y <code>PreparedStatement</code>: estas interfaces se utilizan para ejecutar consultas SQL estáticas y consultas SQL parametrizadas, respectivamente. <code>Statement</code> es la superinterfaz de la interfaz <code>PreparedStatement</code>, que se utiliza para consultas parametrizadas. Sus métodos comúnmente utilizados son:<ul>
+<li>
+<p><code>Statement</code> y <code>PreparedStatement</code>: estas interfaces se utilizan para ejecutar consultas SQL estáticas y consultas SQL parametrizadas, respectivamente. <code>Statement</code> es la superinterfaz de la interfaz <code>PreparedStatement</code>, que se utiliza para consultas parametrizadas. Sus métodos comúnmente utilizados son:</p>
+<ul>
 <li><strong><code>boolean execute(String sql)</code></strong>: ejecuta una sentencia SQL general. Devuelve verdadero si la consulta devuelve un <code>ResultSet</code>, falso si la consulta devuelve un recuento de actualizaciones o no devuelve nada. Este método solo se puede utilizar con una sentencia.</li>
-<li><strong><code>int executeUpdate(String sql)</code></strong>: ejecuta una sentencia INSERT, UPDATE o DELETE y devuelve un conteo actualizado que indica el número de filas afectadas (por ejemplo, 1 fila insertada, 2 filas actualizadas o 0 filas afectadas).</li>
-</ul>
+<li>
+<p><strong><code>int executeUpdate(String sql)</code></strong>: ejecuta una sentencia INSERT, UPDATE o DELETE y devuelve un conteo actualizado que indica el número de filas afectadas (por ejemplo, 1 fila insertada, 2 filas actualizadas o 0 filas afectadas).</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Statement</span> <span class="n">stmt</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">String</span> <span class="n">q1</span> <span class="o">=</span> <span class="s">&quot;insert into userid values (1,root,Patricia Marti)&quot;</span><span class="p">;</span>
+<span class="hll"><span class="linenos" data-linenos="3 "></span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">stmt</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">q1</span><span class="p">);</span>
+</span></code></pre></div>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">Statement</span> <span class="n">stmt</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
-<span class="n">String</span> <span class="n">q1</span> <span class="o">=</span> <span class="s">&quot;insert into userid values</span>
-<span class="s">(&#39;&quot;</span> <span class="o">+</span><span class="n">id</span><span class="o">+</span> <span class="s">&quot;&#39;, &#39;&quot;</span> <span class="o">+</span><span class="n">pwd</span><span class="o">+</span> <span class="s">&quot;&#39;, &#39;&quot;</span> <span class="o">+</span><span class="n">fullname</span><span class="o">+</span> <span class="s">&quot;&#39;, &#39;&quot;</span> <span class="o">+</span><span class="n">email</span><span class="o">+</span> <span class="s">&quot;&#39;)&quot;</span><span class="p">;</span>
-<span class="hll"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">stmt</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">q1</span><span class="p">);</span>
+</li>
+<li>
+<p><code>ResultSet executeQuery(String sql)</code>: ejecuta una sentencia SELECT y devuelve un objeto <code>ResultSet</code> que contiene los resultados devueltos por la consulta.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Statement</span> <span class="n">stmt</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">String</span> <span class="n">q1</span> <span class="o">=</span> <span class="s">&quot;select * from userid where id = &#39;&quot;</span> 
+<span class="linenos" data-linenos="3 "></span>            <span class="o">+</span> <span class="n">id</span> <span class="o">+</span> <span class="s">&quot;&#39; AND pwd = &#39;&quot;</span> <span class="o">+</span> <span class="n">pwd</span> <span class="o">+</span> <span class="s">&quot;&#39;&quot;</span><span class="p">;</span>
+<span class="hll"><span class="linenos" data-linenos="4 "></span><span class="n">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">stmt</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="n">q1</span><span class="p">);</span>
 </span></code></pre></div>
-<ul>
-<li><code>ResultSet executeQuery(String sql)</code>: ejecuta una sentencia SELECT y devuelve un objeto <code>ResultSet</code> que contiene los resultados devueltos por la consulta.</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">Statement</span> <span class="n">stmt</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
-      <span class="n">String</span> <span class="n">q1</span> <span class="o">=</span> <span class="s">&quot;select * from userid WHERE id = &#39;&quot;</span> <span class="o">+</span> <span class="n">id</span> <span class="o">+</span> <span class="s">&quot;&#39; </span>
-<span class="s">      AND pwd = &#39;&quot;</span> <span class="o">+</span> <span class="n">pwd</span> <span class="o">+</span> <span class="s">&quot;&#39;&quot;</span><span class="p">;</span>
-      <span class="n">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">stmt</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="n">q1</span><span class="p">);</span>
-</code></pre></div>
-<ul>
+</li>
 <li>
 <p><code>ResultSet</code>: contiene los datos de la tabla devueltos por una consulta SELECT. Este objeto se usa para iterar sobre las filas en el conjunto de resultados usando el método <code>next()</code>.</p>
 </li>
-<li>
-<p><code>SQLException</code>: es la excepción que se lanza cuando hay algún problema entre la base de datos y el programa Java JDBC. Contiene los siguientes métodos:</p>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">SQLException: Es la excepción que se lanza cuando hay algún problema entre la base de datos y el programa Java JDBC. Contiene los siguientes métodos:</p>
 <ul>
 <li><code>.getMessage()</code>, nos indica la descripción del mensaje de error.</li>
 <li><code>.getSQLState()</code>, devuelve un código SQL estándar definido por ISO/ANSI y el Open Group que identifica de forma unívoca el error que se ha producido.</li>
@@ -699,8 +701,7 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 <li><code>.getCause()</code>, nos devuelve una lista de objetos que han provocado el error.</li>
 <li><code>.getNextException()</code>, devuelve la cadena de excepciones que se ha producido. De tal manera que podemos navegar sobre ella para ver en detalle de esas excepciones.</li>
 </ul>
-</li>
-</ul>
+</div>
                 
               
               

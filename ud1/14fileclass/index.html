@@ -594,11 +594,11 @@
 <p>Las primeras versiones de Java incluyen el paquete <code>java.io</code>, que contiene casi todas las clases que podríamos necesitar para realizar operaciones de entrada y salida. La clase <code>File</code> es una representación abstracta de nombres de rutas de ficheros, directorios y métodos para manipularlos.</p>
 <p>Un objeto <code>File</code> NO es el fichero real. No contiene los datos que contiene el fichero. Es un objeto que contiene métodos que afectan a un archivo o directorio en particular y las funciones para la manipulación real del archivo.</p>
 <p>Ejemplo en Windows:</p>
-<div class="highlight"><pre><span></span><code><span class="n">File</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">&quot;C:\\Users\\temp\\data.txt&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">File</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">&quot;C:\\Users\\temp\\data.txt&quot;</span><span class="p">);</span>
 </code></pre></div>
 <p>En Linux el carácter separador es <code>/</code>.</p>
 <h2 id="constructor-de-file">Constructor de <code>File</code></h2>
-<div class="highlight"><pre><span></span><code><span class="n">File</span><span class="p">(</span><span class="n">String</span> <span class="n">pathName</span><span class="p">)</span> <span class="c1">//Constructor</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">File</span><span class="p">(</span><span class="n">String</span> <span class="n">pathName</span><span class="p">)</span> <span class="c1">//Constructor</span>
 </code></pre></div>
 <p><code>pathName</code> es una secuencia de nombres de directorio seguidos de un nombre de archivo. Los nombres de los directorios están separados por un carácter especial. La sintaxis de los nombres de directorio, separadores y nombres de archivo depende del sistema operativo.</p>
 <div class="admonition warning">
@@ -623,8 +623,8 @@ Debido a algunos de estos inconvenientes, Oracle desarrolló la API NIO2 mejorad
 </ul>
 <h3 id="path-vs-file">Path vs File</h3>
 <p>Cuando construimos un objeto <code>File</code> lo hacemos a través del constructor, mientras que en la clase <code>Path</code> se usa un método estático.</p>
-<div class="highlight"><pre><span></span><code><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">&quot;ada.txt&quot;</span><span class="p">);</span>
-<span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;ada.txt&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">&quot;ada.txt&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;ada.txt&quot;</span><span class="p">);</span>
 </code></pre></div>
                 
               
