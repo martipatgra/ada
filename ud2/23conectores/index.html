@@ -494,6 +494,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#liberacion-de-recursos" class="md-nav__link">
+    Liberación de recursos
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -589,6 +596,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#liberacion-de-recursos" class="md-nav__link">
+    Liberación de recursos
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -603,7 +617,7 @@
                 
                 
                 <h1 id="conectores-o-drivers">Conectores o drivers</h1>
-<p>Un conector o driver es un mecanismo que permite a un lenguaje de programación conectarse, y trabajar, contra una base de datos. Se encarga de mantener el diálogo con la base de datos, para poder llevar a cabo el acceso y manipulación de los datos.</p>
+<p>Un <strong>conector</strong> o <strong>driver</strong> es un mecanismo que permite a un lenguaje de programación conectarse, y trabajar, contra una base de datos. Se encarga de mantener el diálogo con la base de datos, para poder llevar a cabo el acceso y manipulación de los datos.</p>
 <p>Algunos de los más conocidos son:</p>
 <ul>
 <li>
@@ -702,6 +716,36 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 <li><code>.getNextException()</code>, devuelve la cadena de excepciones que se ha producido. De tal manera que podemos navegar sobre ella para ver en detalle de esas excepciones.</li>
 </ul>
 </div>
+<h2 id="liberacion-de-recursos">Liberación de recursos</h2>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Se debe cerrar explícitamente <code>Statement</code>, <code>ResultSet</code> y <code>Connection</code> cuando ya no se necesiten, a menos que se declaren con un try-catch-with-resources.</p>
+</div>
+<p>Las instancias de <code>Connection</code> y las de <code>Statement</code> almacenan, en memoria, mucha información relacionada con las ejecuciones realizadas. Además, mientras permanecen activas mantienen en el SGBD un conjunto importante de recursos abiertos, destinados a servir de forma eficiente las peticiones de los clientes. El cierre de estos objetos permite liberar recursos tanto del cliente como del servidor.</p>
+<p>Aunque se haya cerrado la conexión, los objetos <code>Statements</code> que no se habían cerrado expresamente permanecen más tiempo en memoria que los objetos cerrados previamente, ya que el garbage collector de Java deberá hacer más comprobaciones para asegurar que ya no dispone de dependencias ni internas ni externas y se puede eliminar.
+Es por ello que se recomienda proceder siempre a cerrarlo manualmente utilizando el método <code>close()</code>. El cierre de los objetos <code>Statement</code> asegura la liberación inmediata de los recursos y la anulación de las dependencias.</p>
+<p>Si en un mismo método queremos cerrar un objeto <code>Statement</code> y <code>Connection</code>, lo haremos siguiendo estos pasos:</p>
+<ol>
+<li>
+<p>Cerramos el <code>Statement</code> y</p>
+</li>
+<li>
+<p>la instancia <code>Connection</code>.</p>
+</li>
+</ol>
+<div class="admonition failure">
+<p class="admonition-title">Failure</p>
+<p>Si lo hiciéramos al revés, cuando intentáramos cerrar el <code>Statement</code> nos saltaría una excepción de tipo <code>SQLException</code>, ya que el cierre de la conexión lo habría dejado inaccesible.</p>
+</div>
+<p>Cuando se cierra un objeto <code>Statement</code>, su objeto <code>ResultSet</code> actual, si existe, también se cierra. Pero eso no ocurre cuando se cierra la conexión.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span> <span class="p">(</span><span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">dataSource</span><span class="p">.</span><span class="na">getConnection</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span>    <span class="n">Statement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">connection</span><span class="p">.</span><span class="na">createStatement</span><span class="p">())</span> <span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span>    <span class="k">try</span> <span class="p">(</span><span class="n">ResultSet</span> <span class="n">resultSet</span> <span class="o">=</span> <span class="n">statement</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM ....&quot;</span><span class="p">))</span> <span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>        <span class="c1">// Do actions.</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+</code></pre></div>
                 
               
               
