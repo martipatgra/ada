@@ -509,6 +509,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transactions.md" class="md-nav__link">
+        2.4.- Transacciones
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -648,10 +660,17 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 <p><code>DriverManager</code>: esta clase se utiliza para registrar el controlador para un tipo de base de datos específico (por ejemplo, MySQL en este tutorial) y para establecer una conexión de base de datos con el servidor a través de su método <code>getConnection()</code>.</p>
 </li>
 <li>
-<p>Para conectar con la base de datos habrá que instanciar la interfaz <code>Connection</code>, que representa una conexión a la base de datos establecida (sesión) desde la cual podemos crear declaraciones para ejecutar consultas y recuperar resultados, obtener metadatos sobre la base de datos, cerrar conexión, etc.Los objetos <code>Connection</code> mantendrán la capacidad de comunicarse con el sistema gestor mientras permanezcan abiertos. Esto es, desde que se crean hasta que se cierran utilizando el método close.</p>
+<p><code>Connection</code>, es una interfaz que representa una conexión a la base de datos establecida (sesión) desde la cual podemos crear declaraciones para ejecutar consultas y recuperar resultados, obtener metadatos sobre la base de datos, cerrar conexión, etc.Los objetos <code>Connection</code> mantendrán la capacidad de comunicarse con el sistema gestor mientras permanezcan abiertos. Esto es, desde que se crean hasta que se cierran utilizando el método close.</p>
 </li>
 </ul>
 <p>El objeto <code>Connection</code> está totalmente vinculado a una fuente de datos, por eso en pedir la conexión hay que especificar de qué fuente se trata siguiendo el protocolo JDBC e indicando la url de los datos, y en su caso el usuario y password.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<ul>
+<li><strong>jdbc</strong>:<em>bbdd</em>://<em>server</em>:<em>port</em>/<em>schema</em></li>
+<li><strong>jdbc</strong>:postgresql://localhost:5432/severo</li>
+</ul>
+</div>
 <p>La url seguirá el protocolo JDBC, comenzará siempre por la palabra <strong>jdbc</strong> seguida de dos puntos. El resto dependerá del tipo de controlador utilizado, del host donde se aloje el SGBD, del puerto que este use para escuchar las peticiones y del nombre de la base de datos o esquema con el que queremos trabajar.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span> <span class="nn">java.sql.Connection</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span> <span class="nn">java.sql.DriverManager</span><span class="p">;</span>
