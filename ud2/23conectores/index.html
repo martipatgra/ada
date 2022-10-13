@@ -468,36 +468,36 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#establecimiento-y-cierre-de-conexion" class="md-nav__link">
     Establecimiento y cierre de conexión
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#operaciones-basicas" class="md-nav__link">
     Operaciones básicas
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#interfaces-y-clases-principales-de-jdbc" class="md-nav__link">
     Interfaces y clases principales de JDBC
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#liberacion-de-recursos" class="md-nav__link">
     Liberación de recursos
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -582,36 +582,36 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#establecimiento-y-cierre-de-conexion" class="md-nav__link">
     Establecimiento y cierre de conexión
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#operaciones-basicas" class="md-nav__link">
     Operaciones básicas
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#interfaces-y-clases-principales-de-jdbc" class="md-nav__link">
     Interfaces y clases principales de JDBC
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#liberacion-de-recursos" class="md-nav__link">
     Liberación de recursos
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -653,7 +653,7 @@ Una vez verificado el sistema gestor de base de datos, será necesario obtener e
 Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como mínimo una biblioteca en formato .jar con todas las clases de la API JDBC. Habrá que añadir el archivo .jar como biblioteca de nuestra aplicación.</p>
 <p>Para descargar el driver JDBC para MySQL podemos hacerlo desde el repositorio de Maven:</p>
 <p><a href="https://mvnrepository.com/artifact/mysql/mysql-connector-java">MySQL JDBC</a></p>
-<h2 id="establecimiento-y-cierre-de-conexion">Establecimiento y cierre de conexión</h2>
+<h3 id="establecimiento-y-cierre-de-conexion">Establecimiento y cierre de conexión</h3>
 <p>Las clases que afectan a la gestión de la conexión con la BBDD son:</p>
 <ul>
 <li>
@@ -692,13 +692,13 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 <span class="linenos" data-linenos="18 "></span>    <span class="p">}</span>
 <span class="linenos" data-linenos="19 "></span><span class="p">}</span>
 </code></pre></div>
-<h2 id="operaciones-basicas">Operaciones básicas</h2>
+<h3 id="operaciones-basicas">Operaciones básicas</h3>
 <p>El API JDBC distingue dos tipos de consultas:</p>
 <ul>
 <li><strong>Consultas</strong>: SELECT</li>
 <li><strong>Actualizaciones</strong>: INSERT, UPDATE, DELETE, sentencias DDL.</li>
 </ul>
-<h2 id="interfaces-y-clases-principales-de-jdbc">Interfaces y clases principales de JDBC</h2>
+<h3 id="interfaces-y-clases-principales-de-jdbc">Interfaces y clases principales de JDBC</h3>
 <ul>
 <li>
 <p><code>Statement</code> y <code>PreparedStatement</code>: estas interfaces se utilizan para ejecutar consultas SQL estáticas y consultas SQL parametrizadas, respectivamente. <code>Statement</code> es la superinterfaz de la interfaz <code>PreparedStatement</code>, que se utiliza para consultas parametrizadas. Sus métodos comúnmente utilizados son:</p>
@@ -735,7 +735,7 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 <li><code>.getNextException()</code>, devuelve la cadena de excepciones que se ha producido. De tal manera que podemos navegar sobre ella para ver en detalle de esas excepciones.</li>
 </ul>
 </div>
-<h2 id="liberacion-de-recursos">Liberación de recursos</h2>
+<h3 id="liberacion-de-recursos">Liberación de recursos</h3>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
 <p>Se debe cerrar explícitamente <code>Statement</code>, <code>ResultSet</code> y <code>Connection</code> cuando ya no se necesiten, a menos que se declaren con un try-catch-with-resources.</p>
