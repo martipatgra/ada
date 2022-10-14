@@ -521,6 +521,30 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../25procedures/" class="md-nav__link">
+        2.5.- Procedimientos y funciones almacenadas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../26rendimiento/" class="md-nav__link">
+        2.6.- Mejora del rendimiento
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -628,7 +652,7 @@
               
                 
                 
-                <h1 id="conectores-o-drivers">Conectores o drivers</h1>
+                <h1 id="conectores-o-drivers">⚙️ Conectores o drivers</h1>
 <p>Un <strong>conector</strong> o <strong>driver</strong> es un mecanismo que permite a un lenguaje de programación conectarse, y trabajar, contra una base de datos. Se encarga de mantener el diálogo con la base de datos, para poder llevar a cabo el acceso y manipulación de los datos.</p>
 <p>Algunos de los más conocidos son:</p>
 <ul>
@@ -646,7 +670,6 @@
 <p><img alt="jdbc" src="../../img/ud2/4jdbc.png" /></p>
 <p>Es importante destacar también que JDBC no exige ninguna instalación, ni ningún cambio sustancial en el código a la hora de utilizar uno u otro controlador. Esta característica se sustenta, en primer lugar, en la utilidad de Java que permite cargar programáticamente cualquier clase a partir de su nombre; en segundo lugar, en la funcionalidad de la clase DriverManager (de la API JDBC), que sin necesidad de indicarle el driver específico que hay que utilizar es capaz de encontrarlo y seleccionarlo de entre todos los que el sistema tenga cargados en memoria.</p>
 <p>A pesar de eso tampoco es mucho problema ya que actualmente podemos encontrar un driver JDBC para prácticamente cualquier SGBDR existente. El conector lo proporciona el fabricante de la base de datos o bien un tercero.</p>
-<p><img alt="jdbc" src="../../img/ud2/5jdbc.png" /></p>
 <h3 id="conexion-con-la-bbdd-desde-jdbc">Conexión con la BBDD desde JDBC</h3>
 <p>Antes de empezar a desarrollar aplicaciones JDBC es necesario aseguramos que tenemos instalado el SGBD, y además que tenemos acceso desde el lugar donde estemos desarrollando la aplicación.
 Una vez verificado el sistema gestor de base de datos, será necesario obtener el controlador JDBC del sistema gestor. Generalmente, cada fabricante pondrá a disposición de sus usuarios los diferentes tipos de controladores que tenga para sus productos.
@@ -665,9 +688,9 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 </ul>
 <p>El objeto <code>Connection</code> está totalmente vinculado a una fuente de datos, por eso en pedir la conexión hay que especificar de qué fuente se trata siguiendo el protocolo JDBC e indicando la url de los datos, y en su caso el usuario y password.</p>
 <div class="admonition example">
-<p class="admonition-title">Example</p>
+<p class="admonition-title">Example 🤓</p>
 <ul>
-<li><strong>jdbc</strong>:<em>bbdd</em>://<em>server</em>:<em>port</em>/<em>schema</em></li>
+<li><strong>jdbc</strong>:_bbdd_://<em>server</em>:<em>port</em>/<em>schema</em></li>
 <li><strong>jdbc</strong>:postgresql://localhost:5432/severo</li>
 </ul>
 </div>
@@ -726,7 +749,7 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 </li>
 </ul>
 <div class="admonition example">
-<p class="admonition-title">SQLException: Es la excepción que se lanza cuando hay algún problema entre la base de datos y el programa Java JDBC. Contiene los siguientes métodos:</p>
+<p class="admonition-title">🤓 SQLException: Es la excepción que se lanza cuando hay algún problema entre la base de datos y el programa Java JDBC. Contiene los siguientes métodos:</p>
 <ul>
 <li><code>.getMessage()</code>, nos indica la descripción del mensaje de error.</li>
 <li><code>.getSQLState()</code>, devuelve un código SQL estándar definido por ISO/ANSI y el Open Group que identifica de forma unívoca el error que se ha producido.</li>
@@ -737,7 +760,7 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 </div>
 <h3 id="liberacion-de-recursos">Liberación de recursos</h3>
 <div class="admonition danger">
-<p class="admonition-title">Danger</p>
+<p class="admonition-title">Danger 😬</p>
 <p>Se debe cerrar explícitamente <code>Statement</code>, <code>ResultSet</code> y <code>Connection</code> cuando ya no se necesiten, a menos que se declaren con un try-catch-with-resources.</p>
 </div>
 <p>Las instancias de <code>Connection</code> y las de <code>Statement</code> almacenan, en memoria, mucha información relacionada con las ejecuciones realizadas. Además, mientras permanecen activas mantienen en el SGBD un conjunto importante de recursos abiertos, destinados a servir de forma eficiente las peticiones de los clientes. El cierre de estos objetos permite liberar recursos tanto del cliente como del servidor.</p>
@@ -753,7 +776,7 @@ Es por ello que se recomienda proceder siempre a cerrarlo manualmente utilizando
 </li>
 </ol>
 <div class="admonition failure">
-<p class="admonition-title">Failure</p>
+<p class="admonition-title">Failure 😵‍💫</p>
 <p>Si lo hiciéramos al revés, cuando intentáramos cerrar el <code>Statement</code> nos saltaría una excepción de tipo <code>SQLException</code>, ya que el cierre de la conexión lo habría dejado inaccesible.</p>
 </div>
 <p>Cuando se cierra un objeto <code>Statement</code>, su objeto <code>ResultSet</code> actual, si existe, también se cierra. Pero eso no ocurre cuando se cierra la conexión.</p>
