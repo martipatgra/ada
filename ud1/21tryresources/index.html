@@ -604,7 +604,7 @@
                   
 
 
-<h1 id="try-with-resources">try-with-resources</h1>
+<h1 id="try-with-resources">🥳 try-with-resources</h1>
 <p>La sentencia <strong><em>try-with-resources</em></strong> es una sentencia try que declara uno o más recursos (resources). Un recurso es un objeto que debe cerrarse después de que el programa termine con él. La instrucción try-with-resources garantiza que cada recurso se cierre al final de la instrucción. Cualquier objeto que implemente java.lang.AutoCloseable, que incluye todos los objetos que implementen java.io.Closeable, se puede utilizar como recurso, por lo que no sería necesario realizar la sentencia <code>recurso.close()</code>.</p>
 <p>Antes de Java SE 7, se podía usar un bloque <code>finally</code> para asegurarse de que un recurso se cerraba, independientemente de si el try generaba excepción o no.</p>
 <p>El siguiente ejemplo, creamos el objeto <code>FileWriter</code> en la línea 2, en vez de hacerlo en la 4 porque el <code>finally</code> de la línea 8 se encuentra en otro scope y la variable <code>fw</code> no existe.</p>
@@ -643,7 +643,7 @@
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <div class="admonition note">
-<p class="admonition-title">Nota</p>
+<p class="admonition-title">Nota 🤓</p>
 <p>Podemos declarar varios recursos dentro de un mismo try como se ve en el ejemplo.</p>
 </div>
 
