@@ -740,7 +740,12 @@
 <p>Es decir, en la práctica significa que lo que vamos a utilizar es una biblioteca de persistencia que implemente JPA, no JPA directamente.</p>
 <h2 id="implementaciones-de-jpa">Implementaciones de JPA</h2>
 <p>La principal ventaja de que JPA nos proporcione interfaces es que, si las bibliotecas de persistencia que utilices siguen la especificación JPA, podrás cambiar de una a otra, con más rendimiento o características mejores, sin tener que tocar tu código, simplemente cambiando las referencias.</p>
-<p>Existen diversas implementaciones disponibles, como DataNucleus, ObjectDB, o Apache OpenJPA, pero las dos más utilizadas son EclipseLink y sobre todo Hibernate.</p>
+<p>Existen diversas implementaciones disponibles, como <strong><em>DataNucleus</em></strong>, <strong><em>ObjectDB</em></strong>, o <strong><em>Apache OpenJPA</em></strong>, pero las dos más utilizadas son <strong><em>EclipseLink</em></strong> y sobre todo <mark class="critic"><strong>Hibernate</strong></mark>.</p>
+<p>Hibernate, en la actualidad es casi el "estándar" de facto, puesto que es la más utilizada, sobre todo en las empresas. Es tan popular que existen hasta versiones para otras plataformas, como NHibernate para la plataforma .NET. Es un proyecto muy maduro (de hecho, la especificación JPA original partió de él), muy bien documentado y que tiene un gran rendimiento.</p>
+<div class="admonition important">
+<p class="admonition-title">Importante 🤔</p>
+<p>Hibernate y HQL se crearon antes de la especificación JPA. Hasta la versión Hibernate 3, JPQL es un subconjunto de HQL.</p>
+</div>
 
 
   

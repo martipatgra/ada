@@ -745,10 +745,10 @@
 <p>Aunque JDBC nos permitía abstraer la conexión del driver con la base de datos correcta, <strong>todavía presenta limitaciones</strong>:</p>
 <ul>
 <li>Número importante de líneas de código</li>
-<li>Invertir tiempo en los dos modelos relacional orientado a objetos</li>
+<li>Invertir tiempo en los dos modelos relacional y orientado a objetos</li>
 <li>Cuánto mayor crece la base de datos más complicado se hace el mantenimiento</li>
 <li>Manejo de conexión, cierre de conexión, etc</li>
-<li>Seguimos teniendo desfase en el mapeo objeto modelo relacional</li>
+<li>Seguimos teniendo desfase en el mapeo objeto modelo relacional, JDBC no solventa del todo este desfase puesto que todavía tenemos que descomponer el objeto para construir la sentencia <strong>INSERT, DELETE o UPDATE</strong> que queremos utilizar.</li>
 </ul>
 <p><img alt="orm" src="../../img/ud2/11problemsjdbc.png" /></p>
 <h2 id="por-que-necesitamos-un-orm">¿Por qué necesitamos un ORM?</h2>
