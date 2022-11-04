@@ -635,6 +635,54 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#arquitectura" class="md-nav__link">
+    Arquitectura
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquitectura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entidades-entity" class="md-nav__link">
+    🔅 Entidades - Entity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entitymanagerfactory-y-entitymanager" class="md-nav__link">
+    🔅 EntityManagerFactory y EntityManager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jpa-y-persiscentecontext" class="md-nav__link">
+    JPA y PersiscenteContext
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fichero-de-persistencia" class="md-nav__link">
+    🔅 Fichero de persistencia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transacciones-y-excepciones" class="md-nav__link">
+    🔅 Transacciones y excepciones
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#implementaciones-de-jpa" class="md-nav__link">
     Implementaciones de JPA
   </a>
@@ -645,6 +693,34 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../33hibernate/" class="md-nav__link">
+        3.3.- Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../34dao/" class="md-nav__link">
+        3.4.- Patrón DAO
+      </a>
     </li>
   
 
@@ -705,6 +781,54 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#arquitectura" class="md-nav__link">
+    Arquitectura
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquitectura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entidades-entity" class="md-nav__link">
+    🔅 Entidades - Entity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entitymanagerfactory-y-entitymanager" class="md-nav__link">
+    🔅 EntityManagerFactory y EntityManager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jpa-y-persiscentecontext" class="md-nav__link">
+    JPA y PersiscenteContext
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fichero-de-persistencia" class="md-nav__link">
+    🔅 Fichero de persistencia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transacciones-y-excepciones" class="md-nav__link">
+    🔅 Transacciones y excepciones
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#implementaciones-de-jpa" class="md-nav__link">
     Implementaciones de JPA
   </a>
@@ -738,6 +862,121 @@
 <h2 id="como-funciona-jpa">¿Cómo funciona JPA?</h2>
 <p>Dado que es una especificación, JPA no proporciona clase alguna para poder trabajar con la información. <mark class="critic">Lo que hace es proveernos de una serie de interfaces que podemos utilizar para implementar la capa de persistencia de nuestra aplicación</mark>, apoyándonos en alguna implementación concreta de JPA.</p>
 <p>Es decir, en la práctica significa que lo que vamos a utilizar es una biblioteca de persistencia que implemente JPA, no JPA directamente.</p>
+<h2 id="arquitectura">Arquitectura</h2>
+<p><img alt="orm" src="../../img/ud3/1arquitecturajpa.png" /></p>
+<h3 id="entidades-entity">🔅 Entidades - Entity</h3>
+<p>El concepto de entidad está muy relacionado con los SGBD y los modelos relacionales, sobre todo en sus fases de diseño inicial con el que se denomina modelo Entidad-Relación. Para JPA, <strong>las entidades son aquellos objetos de los que se desea almacenar su estado y que acabarán transformándose en tablas y relaciones</strong>.</p>
+<p><strong>En JPA todas las entidades son persistentes</strong>, pero no todos los objetos lo son. Para hacer que un objeto sea persistente hay que calificarlo de entidad o bien debe formar parte del estado de una entidad (en forma de atributo, por ejemplo).</p>
+<p>Todas las entidades se deben poder identificar de forma única a partir de su estado. Normalmente, será suficiente con una pequeña parte de sus atributos para lograr la identificación. La selección de atributos que cumplan este objetivo se denominan identificadores, y en el SGBD actuarán como clave primaria.</p>
+<h3 id="entitymanagerfactory-y-entitymanager">🔅 EntityManagerFactory y EntityManager</h3>
+<p>JPA implementa una interfaz llamada <code>EntityManager</code> que actuará de gestor de las entidades de la aplicación. Sobre esta clase recae toda la funcionalidad referida a los procesos de persistencia y sincronización de las entidades. Se trata, seguramente, <strong>de la clase más importante de la biblioteca JPA</strong>.</p>
+<p><img alt="orm" src="../../img/ud3/2entitymanagerfactory.png" /></p>
+<p>Un <code>EntityManager</code> asume toda la funcionalidad que una aplicación pueda necesitar, pero únicamente a nivel local. <strong>JPA no permite instanciar los EntityManager directamente</strong>, sino que obliga a instanciarlos desde un <strong><code>EntityManagerFactory</code></strong>, el cual a su vez sólo podrá ser instanciado por la clase <code>Persistence</code>. Por consiguiente , el <code>EntityManager</code> será el encargado de realizar todas las operaciones de tipo CRUD ( insertar , borrar ,seleccionar y actualizar etc) sobre las entidades.</p>
+<p>La responsabilidad del <strong><code>EntityManagerFactory</code></strong> está restringida a la creación de gestores de entidades capaces de <strong>compartir un contexto de persistencia</strong> de forma coordinada.</p>
+<p>En una aplicación, también en las distribuidas, <strong>sólo puede haber una única instancia de EntityManagerFactory por cada SGBD</strong> que haya que controlar. <em>Cualquier intento de duplicar la EntityManagerFactory podría dar resultados inconsistentes y totalmente inesperados</em>. Es por ello que JPA obliga a instanciar los <code>EntityManagerFactory</code> usando el método estático de la clase Persistence llamado <code>createEntityManagerFactory</code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>La primera vez que se instancie un EntityManager se conectará al SGBD y comprobará si existen todas las tablas necesarias para mantener la persistencia de las entidades que este EntityManager controle. En caso de que falte alguna, se generarán las sentencias de creación adecuadas de acuerdo con los metadatos leídas del mapeo.</p>
+</div>
+<h3 id="jpa-y-persiscentecontext">JPA y PersiscenteContext</h3>
+<p>¿Qué es un PersistenceContext? . En primer lugar hay que tener en cuenta que un <strong>EntityManager persistirá un “conjunto de objetos”</strong> ¿Pero qué objetos? Aquellos que hayan sufrido modificaciones a nivel de sus propiedades o atributos y no estén sincronizados. Esto es a lo que comunmente se le denomina <strong>PersistenceContext</strong>.</p>
+<p><img alt="orm" src="../../img/ud3/3persistencecontext.png" /></p>
+<p>Para conseguir que alguno de nuestros objetos pase a ubicarse dentro del PersistenceContext bastará con invocar los métodos persist, merge, sobre él.</p>
+<p><img alt="orm" src="../../img/ud3/4persistencecontext.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Persona</span><span class="w"> </span><span class="n">yo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Patricia&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="n">emf</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">Persistence</span><span class="p">.</span><span class="na">createEntityManagerFactory</span><span class="p">(</span><span class="s">&quot;UnidadPersonas&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="n">EntityManager</span><span class="w"> </span><span class="n">em</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emf</span><span class="p">.</span><span class="na">createEntityManager</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">begin</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">em</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="n">yo</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">em</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="15 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="fichero-de-persistencia">🔅 Fichero de persistencia</h3>
+<p>La configuración de cada <code>EntityManagerFactory</code> se consigue a través de un archivo XML llamado <strong>persistence.xml</strong> (ver figura). Se encuentra situado en un directorio de la aplicación llamado META-INF de un proyecto Java. Este fichero se encarga de conectarnos a la base de datos y define el conjunto de entidades que vamos a gestionar, Por tanto, dentro de este archivo escribiremos todas las configuraciones de conexión necesarias para cada SGBD. Cada configuración constituirá lo que llamamos <strong>una unidad de persistencia</strong>. </p>
+<p>Las unidades de persistencia se identifican por medio de un nombre, el cual pasaremos como parámetro al método <code>createEntityMangerFactory</code> de la clase Persistence, de modo que el <strong><code>EntityManagerFactory</code> creado estará configurado para conectarse a un SGBD específico</strong>. </p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Muchas aplicaciones Java conectan a varias bases de datos, por tanto tendrán diferentes EntityManagerFactorys. Cada uno estará ligado un PersistenceUnit diferente.</p>
+</div>
+<p>El formato XML del archivo sigue el esquema que puede verse en la figura. Del elemento raíz llamado Persistence se pueden describir tantos Persistence-Unit como sea necesario. </p>
+<p>Dentro de un <strong>Persistence-Unit</strong> encontramos el elemento <strong>Provider</strong>, que contendrá la clase principal de la herramienta que implementará JPA. También podemos incluir el conjunto de clases de nuestra aplicación a considerar entidades y que serán los objetos de la persistencia. Finalmente, el esquema presenta una manera de parametrizar la configuración en función de los diferentes providers o herramientas de implementación de JPA. Nos referimos al elemento Properties.</p>
+<p>Ejemplo:</p>
+<div class="highlight"><span class="filename">persistence.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span> 
+<span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;persistence</span> <span class="na">version=</span><span class="s">&quot;2.1&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://xmlns.jcp.org/xml/ns/persistence&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd&quot;</span><span class="nt">&gt;</span>      
+<span class="linenos" data-linenos=" 3 "></span>    <span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">&quot;jpaAccesoDatosEL&quot;</span> <span class="na">transaction-type=</span><span class="s">&quot;RESOURCE_LOCAL&quot;</span><span class="nt">&gt;</span> 
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&lt;provider&gt;</span>org.eclipse.persistence.jpa.PersistenceProvider<span class="nt">&lt;/provider&gt;</span> 
+<span class="linenos" data-linenos=" 5 "></span>        <span class="nt">&lt;class&gt;</span>com.severo.ad.ejemplo.Persona<span class="nt">&lt;/class&gt;</span> 
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&lt;properties&gt;</span> 
+<span class="linenos" data-linenos=" 7 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.url&quot;</span> <span class="na">value=</span><span class="s">&quot;jdbc:mysql://localhost:3306/severo_ad?zeroDateTimeBehavior=convertToNull&amp;amp;serverTimezone=UTC&quot;</span><span class="nt">/&gt;</span> 
+<span class="linenos" data-linenos=" 8 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.user&quot;</span> <span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span> 
+<span class="linenos" data-linenos=" 9 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.driver&quot;</span> <span class="na">value=</span><span class="s">&quot;com.mysql.cj.jdbc.Driver&quot;</span><span class="nt">/&gt;</span> 
+<span class="linenos" data-linenos="10 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.password&quot;</span> <span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span> <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.schema-generation.database.action&quot;</span> <span class="na">value=</span><span class="s">&quot;create&quot;</span><span class="nt">/&gt;</span> 
+<span class="linenos" data-linenos="11 "></span>        <span class="nt">&lt;/properties&gt;</span> 
+<span class="linenos" data-linenos="12 "></span>    <span class="nt">&lt;/persistence-unit&gt;</span> 
+<span class="linenos" data-linenos="13 "></span>    <span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">&quot; jpaAccesoDatosHibernate&quot;</span> <span class="na">transaction-type=</span><span class="s">&quot;RESOURCE_LOCAL&quot;</span><span class="nt">&gt;</span> 
+<span class="linenos" data-linenos="14 "></span>        <span class="nt">&lt;provider&gt;</span>org.hibernate.ejb.HibernatePersistence<span class="nt">&lt;/provider&gt;</span> 
+<span class="linenos" data-linenos="15 "></span>        <span class="nt">&lt;class&gt;</span>com.severo.ad.ejemplo.Persona<span class="nt">&lt;/class&gt;</span> 
+<span class="linenos" data-linenos="16 "></span>        <span class="nt">&lt;properties&gt;</span> 
+<span class="linenos" data-linenos="17 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.url&quot;</span> <span class="na">value=</span><span class="s">&quot;jdbc:mysql://localhost:3306/severo_ad?zeroDateTimeBehavior=convertToNull&amp;amp;serverTimezone=UTC&quot;</span><span class="nt">/&gt;</span> 
+<span class="linenos" data-linenos="18 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.user&quot;</span> <span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span> 
+<span class="linenos" data-linenos="19 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.driver&quot;</span> <span class="na">value=</span><span class="s">&quot;com.mysql.cj.jdbc.Driver&quot;</span><span class="nt">/&gt;</span> 
+<span class="linenos" data-linenos="20 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.password&quot;</span> <span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span> 
+<span class="linenos" data-linenos="21 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.schema-generation.database.action&quot;</span> <span class="na">value=</span><span class="s">&quot;create&quot;</span><span class="nt">/&gt;</span> 
+<span class="linenos" data-linenos="22 "></span>        <span class="nt">&lt;/properties&gt;</span> 
+<span class="linenos" data-linenos="23 "></span>    <span class="nt">&lt;/persistence-unit&gt;</span> 
+<span class="linenos" data-linenos="24 "></span><span class="nt">&lt;/persistence&gt;</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Tag name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🌀 <strong><code>&lt;persistence-unit&gt;</code></strong></td>
+<td>Se define una con un nombre que debe ser único por cada proveedor que usemos. A esta persistence-unit se le puede poner un atributo transaction-type, cuyos valores pueden ser RESOURCE_LOCAL o JTA. En el primer caso, nosotros en nuestro código nos debemos encargar de crear el EntityManager (la clase java que se encarga de guardar/recuperar clases persistentes de la base de datos). Si ponemos JTA, nosotros no debemos encargarnos de crear ese EntityManager, alguien nos lo tiene que pasar. Esta última opción sólo tiene sentido si nuestra aplicación corre en un contenedor de aplicaciones, estilo TomEE, Glassfish o JBoss (Apache Tomcat no vale). Ese servidor de aplicaciones será el que cree la clase EntityManager y nos la pase. En nuestro ejemplo, como hablamos de Java SE y no vamos a usar contenedor de aplicaciones, pondremos RESOURCE_LOCAL.</td>
+</tr>
+<tr>
+<td>🌀 <strong><code>&lt;provider&gt;</code></strong></td>
+<td>debemos poner es el proveedor de persistencia. JPA sólo define la API o interfaces que se deben cumplir si se quiere usa JPA, pero no implementa esas clases. Necesitamos una librería externa que implemente esta API. Una de las más conocidas es Hibernate. Para este ejemplo, usaremos dos, Hibernate y EclipseLink. Por supuesto, para tener estos proveedores, necesitamos añadir el jar correspondiente a nuestro proyecto. Si usamos maven, las dependencias sería una de estas dos, según queramos eclipseLink o hibernate.</td>
+</tr>
+<tr>
+<td>🌀 <strong><code>&lt;class&gt;</code></strong></td>
+<td>lo utilizamos para poner las clases que van a ser persistentes.</td>
+</tr>
+<tr>
+<td>🌀 <strong><code>&lt;properties&gt;</code></strong></td>
+<td>contiene los parámetros de conexión a la base de datos. Para ello, podemos usar bien propiedades generales definidas por JPA, o bien propiedades específicas del proveedor de persistencia que usemos, es decir, propiedades específicas de hibernate, de eclipseLync, etc. Yo he indicado las propiedades generales de JPA.</td>
+</tr>
+</tbody>
+</table>
+<p>El fichero es parte del standard y existirá en cualquier implementación de JPA que se utilice.</p>
+<p>En resumen, para crear un <strong>EntityManager</strong> necesario tener un archivo llamado <strong>persistence.xml</strong> con el formato que se acaba de describir. Además, hay que crear un <strong>EntityManagerFactory</strong> configurándolo a partir de una unidad de persistencia incluida en el fichero persistence.xml, el cual nos permitirá obtener el <strong>EntityManager</strong>.</p>
+<p><div class="highlight"><span class="filename">Codigo.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="n">emf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Persistence</span><span class="p">.</span><span class="na">createEntityManagerFactory</span><span class="p">(</span><span class="err">“</span><span class="n">jpaAccesoDatosHibernate</span><span class="err">”</span><span class="p">);</span><span class="w"> </span>
+<span class="linenos" data-linenos="2 "></span><span class="c1">//Es el nombre que hemos puesto en &lt;persistence-unit&gt; en el fichero persistence.xml</span><span class="w"></span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="n">EntityManager</span><span class="w"> </span><span class="n">em</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emf</span><span class="p">.</span><span class="na">createEntityManager</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
+Ejemplo de código para crear un EntityManager a partir del fichero anterior persistence.xml.</p>
+<h3 id="transacciones-y-excepciones">🔅 Transacciones y excepciones</h3>
+<p>En aplicaciones locales <strong>EntityManager</strong> dispone del método <code>getTransaction</code> para obtener la transacción en curso, si la hay, o para crear una de lo contrario. Una vez creada, la transacción se activa invocando el método begin y finaliza cuando se invoca commit.</p>
+<p><ins class="critic">No es necesario invocar rollback en caso de error. JPA invoca automáticamente la revocación de las acciones, cuando se lance cualquier excepción, a partir de la última invocación begin.</ins></p>
+<p>Todas las excepciones generadas por JPA son de tipo <strong><code>RuntimeException</code></strong>. Este tipo de excepción presenta la particularidad de que no se declarará en la firma del método y, por tanto, el uso de try-catch no es obligatorio.</p>
+<p>Este tipo de transacciones presentan la ventaja de poder escribir un código más limpio (sin sentencias try-catch intermedias), pero por el contrario el desarrollador tiene que ir mucho más cuidado de no olvidarse de hacer el tratamiento de las excepciones. </p>
+<div class="admonition help">
+<p class="admonition-title">Ayuda</p>
+<p>Para facilitar este tratamiento, todas las excepciones JPA heredan de un antecesor común llamado <strong><code>PersistenceException</code></strong>.</p>
+</div>
 <h2 id="implementaciones-de-jpa">Implementaciones de JPA</h2>
 <p>La principal ventaja que JPA nos proporciona es que, si las bibliotecas de persistencia que utilices siguen la especificación JPA, podrás cambiar de una a otra, con más rendimiento o características mejores, sin tener que tocar tu código, simplemente cambiando las referencias.</p>
 <p>Existen diversas implementaciones disponibles, como <strong><em>DataNucleus</em></strong>, <strong><em>ObjectDB</em></strong>, o <strong><em>Apache OpenJPA</em></strong>, pero las dos más utilizadas son <strong><em>EclipseLink</em></strong> y sobre todo <mark class="critic"><strong>Hibernate</strong></mark>.</p>
@@ -789,13 +1028,13 @@
       
       
         
-        <a href="../../about/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: About" rel="next">
+        <a href="../33hibernate/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 3.3.- Hibernate" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Siguiente
               </span>
-              About
+              3.3.- Hibernate
             </div>
           </div>
           <div class="md-footer__button md-icon">
