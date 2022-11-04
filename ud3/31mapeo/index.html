@@ -632,6 +632,26 @@
     ORM
   </a>
   
+    <nav class="md-nav" aria-label="ORM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventajas-de-orm" class="md-nav__link">
+    Ventajas de ORM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-de-orm" class="md-nav__link">
+    Desventajas de ORM
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -723,6 +743,26 @@
     ORM
   </a>
   
+    <nav class="md-nav" aria-label="ORM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventajas-de-orm" class="md-nav__link">
+    Ventajas de ORM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-de-orm" class="md-nav__link">
+    Desventajas de ORM
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -759,6 +799,20 @@
 <p>Un ORM intenta hacer todas estas tareas pesadas por nosotros. Deberemos definir la forma en la que estableceremos la correspondencia entre las clases y las tablas una sóla vez (indicando qué propiedad se corresponde con qué columna, qué clase con qué tabla, etc).</p>
 <p>Después, podremos hacer cosas como utilizar <strong>POJO</strong>'s(Plain Old Java Objects) de nuestra aplicación y decirle a nuestro ORM que los haga persistentes, con una instrucción similar a esta <code>save(myObject)</code>. Es decir, <strong><em>una herramienta ORM puede leer o escribir en la base de datos utilizando objetos directamente</em></strong>.</p>
 <p><img alt="orm" src="../../img/ud2/12orm.png" /></p>
+<p><mark class="critic"> Una herramienta ORM permite tomar un objeto Java y hacerlo persistente, cargar el objeto de la base de datos en memoria y hacer consultas a las tablas de la base de datos. </mark></p>
+<h3 id="ventajas-de-orm">Ventajas de ORM</h3>
+<p>❇️ Ayudan a reducir el tiempo de desarrollo de software. La mayoría de las herramientas ORM disponibles, permiten la creación del modelo a través del esquema de la base de datos, es decir, el usuario crea la base de datos y la herramienta automáticamente lee el esquema de tablas y relaciones y crea un modelo ajustado.</p>
+<p>❇️ Abstracción de la base de datos.</p>
+<p>❇️ Reutilización.</p>
+<p>❇️ Permiten persistir objetos a través de un método save o persist y generar el SQL correspondiente.</p>
+<p>❇️ Permiten recuperar los objetos persistidos a través de un método load o get.</p>
+<p>❇️ Lenguaje propio para realizar las consultas.</p>
+<p>❇️ Independencia de la base de datos.</p>
+<p>❇️ Incentivan la portabilidad y escalabilidad de los programas de software.</p>
+<h3 id="desventajas-de-orm">Desventajas de ORM</h3>
+<p>✴️ <strong>Tiempo utilizado en el aprendizaje</strong>. Este tipo de herramientas suelen ser complejas por lo que su correcta utilización lleva un tiempo que hay que emplear en ver el funcionamiento correcto y ver todo el partido que se le puede sacar.</p>
+<p>✴️ <strong>Menor rendimiento (aplicaciones algo más lentas)</strong>. Esto es debido a que todas las consultas que se hagan sobre la base de datos, el sistema primero deberá de transformarlas al lenguaje propio de la herramienta, luego leer los registros y por último crear los objetos.</p>
+<p>✴️ <strong>Sistemas complejos</strong>. Normalmente la utilidad de ORM desciende con la mayor complejidad del sistema relacional.</p>
 
 
   

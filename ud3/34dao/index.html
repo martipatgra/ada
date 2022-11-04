@@ -13,7 +13,7 @@
     
     
       
-        <title>3.2.- JPA - Acceso a Datos</title>
+        <title>Patrón DAO - Data access object - Acceso a Datos</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#jpa-java-persistence-api" class="md-skip">
+        <a href="#patron-dao-data-access-object" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3.2.- JPA
+              Patrón DAO - Data access object
             
           </span>
         </div>
@@ -550,14 +550,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       
       
@@ -592,59 +590,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          3.2.- JPA
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../32jpa/" class="md-nav__link">
         3.2.- JPA
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#como-funciona-jpa" class="md-nav__link">
-    ¿Cómo funciona JPA?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#implementaciones-de-jpa" class="md-nav__link">
-    Implementaciones de JPA
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -691,28 +641,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#como-funciona-jpa" class="md-nav__link">
-    ¿Cómo funciona JPA?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#implementaciones-de-jpa" class="md-nav__link">
-    Implementaciones de JPA
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -726,26 +654,7 @@
                   
 
 
-<h1 id="jpa-java-persistence-api">JPA (Java Persistence API)</h1>
-<p>JPA es una <strong>especificación</strong> que ofrece Java para implementar un Framework Object Relational Mapping (ORM), ésta especificación indica cómo se debe realizar la persistencia de los objetos en programas Java. </p>
-<p>Fíjate que se ha destacado la palabra <ins class="critic">"especificación"</ins> porque <strong>JPA no tiene una implementación concreta</strong>, sino que, existen diversas tecnologías que implementan JPA para darle concreción.</p>
-<p>Persistencia en este contexto cubre tres áreas:</p>
-<ul>
-<li>La API en sí misma, definida en el paquete <code>javax.persistence</code></li>
-<li>El lenguaje de consulta Java Persistence Query Language (<strong>JPQL</strong>).</li>
-<li>Metadatos objeto/relacional.</li>
-</ul>
-<h2 id="como-funciona-jpa">¿Cómo funciona JPA?</h2>
-<p>Dado que es una especificación, JPA no proporciona clase alguna para poder trabajar con la información. <mark class="critic">Lo que hace es proveernos de una serie de interfaces que podemos utilizar para implementar la capa de persistencia de nuestra aplicación</mark>, apoyándonos en alguna implementación concreta de JPA.</p>
-<p>Es decir, en la práctica significa que lo que vamos a utilizar es una biblioteca de persistencia que implemente JPA, no JPA directamente.</p>
-<h2 id="implementaciones-de-jpa">Implementaciones de JPA</h2>
-<p>La principal ventaja que JPA nos proporciona es que, si las bibliotecas de persistencia que utilices siguen la especificación JPA, podrás cambiar de una a otra, con más rendimiento o características mejores, sin tener que tocar tu código, simplemente cambiando las referencias.</p>
-<p>Existen diversas implementaciones disponibles, como <strong><em>DataNucleus</em></strong>, <strong><em>ObjectDB</em></strong>, o <strong><em>Apache OpenJPA</em></strong>, pero las dos más utilizadas son <strong><em>EclipseLink</em></strong> y sobre todo <mark class="critic"><strong>Hibernate</strong></mark>.</p>
-<p>Hibernate, en la actualidad es casi el "estándar" de facto, puesto que es la más utilizada, sobre todo en las empresas. Es tan popular que existen hasta versiones para otras plataformas, como NHibernate para la plataforma .NET. Es un proyecto muy maduro (de hecho, la especificación JPA original partió de él), muy bien documentado y que tiene un gran rendimiento.</p>
-<div class="admonition important">
-<p class="admonition-title">Importante 🤔</p>
-<p>Hibernate y HQL se crearon antes de la especificación JPA. Hasta la versión Hibernate 3, JPQL es un subconjunto de HQL.</p>
-</div>
+<h1 id="patron-dao-data-access-object">Patrón DAO - Data access object</h1>
 
 
   
@@ -768,42 +677,6 @@
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Pie" >
-      
-        
-        <a href="../31mapeo/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 3.1.- Herramientas ORM" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Anterior
-              </span>
-              3.1.- Herramientas ORM
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../../about/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: About" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Siguiente
-              </span>
-              About
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
