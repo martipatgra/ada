@@ -655,6 +655,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#configuracion-hibernate" class="md-nav__link">
+    Configuración Hibernate
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -739,6 +746,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#configuracion-hibernate" class="md-nav__link">
+    Configuración Hibernate
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -758,7 +772,8 @@
 <p>Hibernate, como una solución ORM, efectivamente "se ubica entre" la capa de acceso a datos de la aplicación Java y la base de datos relacional, como se puede ver en el diagrama siguiente.</p>
 <p><a href="https://hibernate.org/orm/documentation/6.1/">🌐 Documentación oficial</a></p>
 <h2 id="arquitectura">Arquitectura</h2>
-<p>La arquitectura "completa" abstrae la aplicación de las APIs de JDBC/JTA y permite que Hibernate se encargue de los detalles.</p>
+<p>La arquitectura "completa" abstrae la aplicación de las APIs de JDBC/JTA y permite que Hibernate se encargue de los detalles.
+Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 <table>
 <thead>
 <tr>
@@ -803,6 +818,25 @@
 </li>
 </ul>
 <p><img alt="hibernate" src="../../img/ud3/10hibernate.png" /></p>
+<h2 id="configuracion-hibernate">Configuración Hibernate</h2>
+<p>Hibernate requiere saber de antemano dónde encontrar la información de configuración de la BBDD y de mapeo d que define cómo se relacionan las clases de Java con las tablas de la base de datos. Toda esta información generalmente se proporciona como un archivo de propiedades de Java estándar llamado <strong>hibernate.properties</strong>, o como un archivo XML llamado <strong>hibernate.cfg.xml</strong>.</p>
+<p>La mayoría de las propiedades cogen los valores predeterminados y no es necesario especificarlos en el archivo de propiedades a menos que sea realmente necesario. <mark class="critic">Este archivo se guarda en el directorio raíz del classpath de su aplicación.</mark></p>
+<p>Para el ejemplo usaremos un fichero XML de configuración:</p>
+<div class="highlight"><span class="filename">hibernate.cfg.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;hibernate-configuration</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.hibernate.org/xsd/orm/cfg&quot;</span><span class="nt">&gt;</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="nt">&lt;session-factory&gt;</span>
+<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;connection.driver_class&quot;</span><span class="nt">&gt;</span>com.mysql.cj.jdbc.Driver<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos=" 5 "></span>        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;connection.url&quot;</span><span class="nt">&gt;</span>jdbc:mysql://localhost:3306/testdb2<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;connection.username&quot;</span><span class="nt">&gt;</span>root<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos=" 7 "></span>        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;connection.password&quot;</span><span class="nt">&gt;</span>root<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos=" 8 "></span>        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;dialect&quot;</span><span class="nt">&gt;</span>org.hibernate.dialect.MySQLDialect<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span>        <span class="cm">&lt;!--Mapeo mediante anotaciones --&gt;</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="nt">&lt;mapping</span> <span class="na">class=</span><span class="s">&quot;es.severo.persistence.entity.Tramite&quot;</span><span class="nt">&gt;&lt;/mapping&gt;</span>
+<span class="linenos" data-linenos="12 "></span>    <span class="nt">&lt;/session-factory&gt;</span>
+<span class="linenos" data-linenos="13 "></span><span class="nt">&lt;/hibernate-configuration&gt;</span>
+</code></pre></div>
+<p><a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#configurations-database-connection">Website Oficial con todas las propiedades del fichero de configuración</a></p>
 
 
   
