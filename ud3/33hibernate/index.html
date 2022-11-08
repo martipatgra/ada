@@ -655,13 +655,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#link-documentacion-oficial" class="md-nav__link">
-    Link Documentación oficial
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -746,13 +739,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#link-documentacion-oficial" class="md-nav__link">
-    Link Documentación oficial
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -769,7 +755,8 @@
 
 
 <h1 id="_1"><img alt="hibernate" src="../../img/ud3/9hibernate.png" /></h1>
-<p>Hibernate, como una solución ORM, efectivamente "se ubica entre" la capa de acceso a datos de la aplicación Java y la base de datos relacional, como se puede ver en el diagrama siguiente. </p>
+<p>Hibernate, como una solución ORM, efectivamente "se ubica entre" la capa de acceso a datos de la aplicación Java y la base de datos relacional, como se puede ver en el diagrama siguiente.</p>
+<p><a href="https://hibernate.org/orm/documentation/6.1/">🌐 Documentación oficial</a></p>
 <h2 id="arquitectura">Arquitectura</h2>
 <p>La arquitectura "completa" abstrae la aplicación de las APIs de JDBC/JTA y permite que Hibernate se encargue de los detalles.</p>
 <table>
@@ -790,33 +777,32 @@
 <p><img alt="hibernate" src="../../img/ud3/7hibernate.png" /></p>
 <ul>
 <li>
-<p><strong>SessionFactory</strong>: es una fábrica para instanciar objetos <code>Session</code>. <code>EntityManagerFactory</code> es el equivalente de Persistencia de Jakarta de <code>SessionFactory</code>. Una <code>SessionFactory</code> es muy costosa de crear, por lo que, para cualquier base de datos dada, la aplicación debe tener solo una SessionFactory asociada. SessionFactory mantiene los servicios que Hibernate usa en todas las sesiones, como cachés de segundo nivel, grupos de conexiones, integraciones de sistemas de transacciones, etc.</p>
+<p>🤖 <strong>SessionFactory</strong>: inmutable, es una fábrica para instanciar objetos <code>Session</code>. <code>EntityManagerFactory</code> es el equivalente de Persistencia de Jakarta de <code>SessionFactory</code>. Una <code>SessionFactory</code> es muy costosa de crear, por lo que, para cualquier base de datos dada, la aplicación debe tener solo una SessionFactory asociada. SessionFactory mantiene los servicios que Hibernate usa en todas las sesiones, como cachés de segundo nivel, grupos de conexiones, integraciones de sistemas de transacciones, etc.</p>
 </li>
 <li>
-<p><strong>Session</strong>: En la nomenclatura de persistencia de Jakarta, la sesión está representada por un <code>EntityManager</code>. Session envuelve un JDBC java.sql.Connection y actúa como una fábrica para las instancias de <strong>org.hibernate.Transaction</strong>.</p>
+<p>🤖 <strong>Session</strong>: En la nomenclatura de persistencia de Jakarta, la sesión está representada por un <code>EntityManager</code>. Session envuelve un JDBC java.sql.Connection y actúa como una fábrica para las instancias de <strong>org.hibernate.Transaction</strong>.</p>
 </li>
 <li>
-<p><strong>Transaction</strong>: <code>EntityTransaction</code> es el equivalente de Jakarta Persistence y ambos actúan como una API de abstracción para aislar la aplicación del sistema de transacciones subyacente en uso (JDBC o JTA).</p>
+<p>🤖 <strong>Transaction</strong>: <code>EntityTransaction</code> es el equivalente de Jakarta Persistence y ambos actúan como una API de abstracción para aislar la aplicación del sistema de transacciones subyacente en uso (JDBC o JTA).</p>
 </li>
 </ul>
 <h2 id="persistence-context">Persistence Context</h2>
 <p>Tanto la API <code>org.hibernate.Session</code> como la API <code>jakarta.persistence.EntityManager</code> representan un contexto para tratar con datos persistentes. Este concepto se denomina <strong>contexto de persistencia</strong>. Los datos persistentes tienen un estado en relación con un contexto de persistencia y la base de datos subyacente.</p>
 <ul>
 <li>
-<p><strong>Transient</strong> (transitorio): la entidad acaba de ser instanciada y no está asociada con un contexto de persistencia. No tiene una representación persistente en la base de datos y, por lo general, no se ha asignado ningún valor de identificador (a menos que se haya utilizado el generador asignado). No está asociado a ninguna sesión.</p>
+<p>🧣 <strong>Transient</strong> (transitorio): la entidad acaba de ser instanciada y no está asociada con un contexto de persistencia. No tiene una representación persistente en la base de datos y, por lo general, no se ha asignado ningún valor de identificador (a menos que se haya utilizado el generador asignado). No está asociado a ninguna sesión.</p>
 </li>
 <li>
-<p><strong>Persistent</strong>: la entidad tiene un identificador asociado y está asociada con un contexto de persistencia. Puede o no existir físicamente en la base de datos todavía.</p>
+<p>🧣 <strong>Persistent</strong>: la entidad tiene un identificador asociado y está asociada con un contexto de persistencia. Puede o no existir físicamente en la base de datos todavía.</p>
 </li>
 <li>
-<p><strong>Detached</strong> (separado): la entidad tiene un identificador asociado pero ya no está asociada con un contexto de persistencia (generalmente porque el contexto de persistencia se cerró (sesión) o la instancia se desalojó del contexto).</p>
+<p>🧣 <strong>Detached</strong> (separado): la entidad tiene un identificador asociado pero ya no está asociada con un contexto de persistencia (generalmente porque el contexto de persistencia se cerró (sesión) o la instancia se desalojó del contexto).</p>
 </li>
 <li>
-<p><strong>Removed</strong>: la entidad tiene un identificador asociado y está asociada con un contexto de persistencia; sin embargo, está programada para su eliminación de la base de datos.</p>
+<p>🧣 <strong>Removed</strong>: la entidad tiene un identificador asociado y está asociada con un contexto de persistencia; sin embargo, está programada para su eliminación de la base de datos.</p>
 </li>
 </ul>
 <p><img alt="hibernate" src="../../img/ud3/10hibernate.png" /></p>
-<h2 id="link-documentacion-oficial"><a href="https://hibernate.org/orm/documentation/6.1/">Link Documentación oficial</a></h2>
 
 
   
