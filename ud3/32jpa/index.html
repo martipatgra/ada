@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#jpa-java-persistence-api" class="md-skip">
+        <a href="#jakarta-jpa-java-persistence-api" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -850,15 +850,19 @@
                   
 
 
-<h1 id="jpa-java-persistence-api">JPA (Java Persistence API)</h1>
+<h1 id="jakarta-jpa-java-persistence-api">Jakarta - JPA (Java Persistence API)</h1>
 <p>JPA es una <strong>especificación</strong> que ofrece Java para implementar un Framework Object Relational Mapping (ORM), ésta especificación indica cómo se debe realizar la persistencia de los objetos en programas Java. </p>
 <p>Fíjate que se ha destacado la palabra <ins class="critic">"especificación"</ins> porque <strong>JPA no tiene una implementación concreta</strong>, sino que, existen diversas tecnologías que implementan JPA para darle concreción.</p>
 <p>Persistencia en este contexto cubre tres áreas:</p>
 <ul>
-<li>La API en sí misma, definida en el paquete <code>javax.persistence</code></li>
+<li>La API en sí misma, definida en el paquete <code>jakarta.persistence</code></li>
 <li>El lenguaje de consulta Java Persistence Query Language (<strong>JPQL</strong>).</li>
 <li>Metadatos objeto/relacional.</li>
 </ul>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p><strong>The JPA was renamed as Jakarta Persistence</strong> in 2019 and version 3.0 was released in 2020. This included the renaming of packages and properties from javax.persistence to jakarta.persistence.</p>
+</div>
 <h2 id="como-funciona-jpa">¿Cómo funciona JPA?</h2>
 <p>Dado que es una especificación, JPA no proporciona clase alguna para poder trabajar con la información. <mark class="critic">Lo que hace es proveernos de una serie de interfaces que podemos utilizar para implementar la capa de persistencia de nuestra aplicación</mark>, apoyándonos en alguna implementación concreta de JPA.</p>
 <p>Es decir, en la práctica significa que lo que vamos a utilizar es una biblioteca de persistencia que implemente JPA, no JPA directamente.</p>
@@ -909,30 +913,23 @@
 <p>El formato XML del archivo sigue el esquema que puede verse en la figura. Del elemento raíz llamado Persistence se pueden describir tantos Persistence-Unit como sea necesario. </p>
 <p>Dentro de un <strong>Persistence-Unit</strong> encontramos el elemento <strong>Provider</strong>, que contendrá la clase principal de la herramienta que implementará JPA. También podemos incluir el conjunto de clases de nuestra aplicación a considerar entidades y que serán los objetos de la persistencia. Finalmente, el esquema presenta una manera de parametrizar la configuración en función de los diferentes providers o herramientas de implementación de JPA. Nos referimos al elemento Properties.</p>
 <p>Ejemplo:</p>
-<div class="highlight"><span class="filename">persistence.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span> 
-<span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;persistence</span> <span class="na">version=</span><span class="s">&quot;2.1&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://xmlns.jcp.org/xml/ns/persistence&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd&quot;</span><span class="nt">&gt;</span>      
-<span class="linenos" data-linenos=" 3 "></span>    <span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">&quot;jpaAccesoDatosEL&quot;</span> <span class="na">transaction-type=</span><span class="s">&quot;RESOURCE_LOCAL&quot;</span><span class="nt">&gt;</span> 
-<span class="linenos" data-linenos=" 4 "></span>        <span class="nt">&lt;provider&gt;</span>org.eclipse.persistence.jpa.PersistenceProvider<span class="nt">&lt;/provider&gt;</span> 
-<span class="linenos" data-linenos=" 5 "></span>        <span class="nt">&lt;class&gt;</span>com.severo.ad.ejemplo.Persona<span class="nt">&lt;/class&gt;</span> 
-<span class="linenos" data-linenos=" 6 "></span>        <span class="nt">&lt;properties&gt;</span> 
-<span class="linenos" data-linenos=" 7 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.url&quot;</span> <span class="na">value=</span><span class="s">&quot;jdbc:mysql://localhost:3306/severo_ad?zeroDateTimeBehavior=convertToNull&amp;amp;serverTimezone=UTC&quot;</span><span class="nt">/&gt;</span> 
-<span class="linenos" data-linenos=" 8 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.user&quot;</span> <span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span> 
-<span class="linenos" data-linenos=" 9 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.driver&quot;</span> <span class="na">value=</span><span class="s">&quot;com.mysql.cj.jdbc.Driver&quot;</span><span class="nt">/&gt;</span> 
-<span class="linenos" data-linenos="10 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.password&quot;</span> <span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span> <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.schema-generation.database.action&quot;</span> <span class="na">value=</span><span class="s">&quot;create&quot;</span><span class="nt">/&gt;</span> 
-<span class="linenos" data-linenos="11 "></span>        <span class="nt">&lt;/properties&gt;</span> 
-<span class="linenos" data-linenos="12 "></span>    <span class="nt">&lt;/persistence-unit&gt;</span> 
-<span class="linenos" data-linenos="13 "></span>    <span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">&quot; jpaAccesoDatosHibernate&quot;</span> <span class="na">transaction-type=</span><span class="s">&quot;RESOURCE_LOCAL&quot;</span><span class="nt">&gt;</span> 
-<span class="linenos" data-linenos="14 "></span>        <span class="nt">&lt;provider&gt;</span>org.hibernate.ejb.HibernatePersistence<span class="nt">&lt;/provider&gt;</span> 
-<span class="linenos" data-linenos="15 "></span>        <span class="nt">&lt;class&gt;</span>com.severo.ad.ejemplo.Persona<span class="nt">&lt;/class&gt;</span> 
-<span class="linenos" data-linenos="16 "></span>        <span class="nt">&lt;properties&gt;</span> 
-<span class="linenos" data-linenos="17 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.url&quot;</span> <span class="na">value=</span><span class="s">&quot;jdbc:mysql://localhost:3306/severo_ad?zeroDateTimeBehavior=convertToNull&amp;amp;serverTimezone=UTC&quot;</span><span class="nt">/&gt;</span> 
-<span class="linenos" data-linenos="18 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.user&quot;</span> <span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span> 
-<span class="linenos" data-linenos="19 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.driver&quot;</span> <span class="na">value=</span><span class="s">&quot;com.mysql.cj.jdbc.Driver&quot;</span><span class="nt">/&gt;</span> 
-<span class="linenos" data-linenos="20 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.jdbc.password&quot;</span> <span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span> 
-<span class="linenos" data-linenos="21 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;javax.persistence.schema-generation.database.action&quot;</span> <span class="na">value=</span><span class="s">&quot;create&quot;</span><span class="nt">/&gt;</span> 
-<span class="linenos" data-linenos="22 "></span>        <span class="nt">&lt;/properties&gt;</span> 
-<span class="linenos" data-linenos="23 "></span>    <span class="nt">&lt;/persistence-unit&gt;</span> 
-<span class="linenos" data-linenos="24 "></span><span class="nt">&lt;/persistence&gt;</span>
+<div class="highlight"><span class="filename">persistence.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;persistence</span> <span class="na">xmlns=</span><span class="s">&quot;https://jakarta.ee/xml/ns/persistence&quot;</span>
+<span class="linenos" data-linenos=" 3 "></span>             <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="linenos" data-linenos=" 4 "></span>             <span class="na">xsi:schemaLocation=</span><span class="s">&quot;https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd&quot;</span>
+<span class="linenos" data-linenos=" 5 "></span>             <span class="na">version=</span><span class="s">&quot;3.0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">&quot;default&quot;</span><span class="nt">&gt;</span>
+<span class="linenos" data-linenos=" 7 "></span>        <span class="nt">&lt;class&gt;</span>es.severo.entity.Tramite<span class="nt">&lt;/class&gt;</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span>        <span class="nt">&lt;properties&gt;</span>
+<span class="linenos" data-linenos="10 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.connection.url&quot;</span> <span class="na">value=</span><span class="s">&quot;jdbc:mysql://localhost:3306/testdb2&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos="11 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.connection.driver_class&quot;</span> <span class="na">value=</span><span class="s">&quot;com.mysql.cj.jdbc.Driver&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos="12 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.connection.username&quot;</span> <span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
+<span class="linenos" data-linenos="13 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.connection.password&quot;</span> <span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
+<span class="linenos" data-linenos="14 "></span>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.show_sql&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos="15 "></span>        <span class="nt">&lt;/properties&gt;</span>
+<span class="linenos" data-linenos="16 "></span>    <span class="nt">&lt;/persistence-unit&gt;</span>
+<span class="linenos" data-linenos="17 "></span><span class="nt">&lt;/persistence&gt;</span>
 </code></pre></div>
 <table>
 <thead>
@@ -944,19 +941,19 @@
 <tbody>
 <tr>
 <td>🌀 <strong><code>&lt;persistence-unit&gt;</code></strong></td>
-<td>Se define una con un nombre que debe ser único por cada proveedor que usemos. A esta persistence-unit se le puede poner un atributo transaction-type, cuyos valores pueden ser RESOURCE_LOCAL o JTA. En el primer caso, nosotros en nuestro código nos debemos encargar de crear el EntityManager (la clase java que se encarga de guardar/recuperar clases persistentes de la base de datos). Si ponemos JTA, nosotros no debemos encargarnos de crear ese EntityManager, alguien nos lo tiene que pasar. Esta última opción sólo tiene sentido si nuestra aplicación corre en un contenedor de aplicaciones, estilo TomEE, Glassfish o JBoss (Apache Tomcat no vale). Ese servidor de aplicaciones será el que cree la clase EntityManager y nos la pase. En nuestro ejemplo, como hablamos de Java SE y no vamos a usar contenedor de aplicaciones, pondremos RESOURCE_LOCAL.</td>
+<td>Se define una con un nombre que debe ser único por cada proveedor que usemos. A esta persistence-unit se le puede poner un atributo transaction-type, cuyos valores pueden ser RESOURCE_LOCAL o JTA.</td>
 </tr>
 <tr>
 <td>🌀 <strong><code>&lt;provider&gt;</code></strong></td>
-<td>debemos poner es el proveedor de persistencia. JPA sólo define la API o interfaces que se deben cumplir si se quiere usa JPA, pero no implementa esas clases. Necesitamos una librería externa que implemente esta API. Una de las más conocidas es Hibernate. Para este ejemplo, usaremos dos, Hibernate y EclipseLink. Por supuesto, para tener estos proveedores, necesitamos añadir el jar correspondiente a nuestro proyecto. Si usamos maven, las dependencias sería una de estas dos, según queramos eclipseLink o hibernate.</td>
+<td>Proveedor de persistencia. JPA sólo define la API o interfaces que se deben cumplir si se quiere usa JPA, pero no implementa esas clases. Necesitamos una librería externa que implemente esta API. Una de las más conocidas es Hibernate. Para este ejemplo, usaremos dos, Hibernate y EclipseLink. Por supuesto, para tener estos proveedores, necesitamos añadir el jar correspondiente a nuestro proyecto. Si usamos maven, las dependencias sería una de estas dos, según queramos eclipseLink o hibernate.</td>
 </tr>
 <tr>
 <td>🌀 <strong><code>&lt;class&gt;</code></strong></td>
-<td>lo utilizamos para poner las clases que van a ser persistentes.</td>
+<td>Lo utilizamos para poner las clases que van a ser persistentes.</td>
 </tr>
 <tr>
 <td>🌀 <strong><code>&lt;properties&gt;</code></strong></td>
-<td>contiene los parámetros de conexión a la base de datos. Para ello, podemos usar bien propiedades generales definidas por JPA, o bien propiedades específicas del proveedor de persistencia que usemos, es decir, propiedades específicas de hibernate, de eclipseLync, etc. Yo he indicado las propiedades generales de JPA.</td>
+<td>Contiene los parámetros de conexión a la base de datos. Para ello, podemos usar bien propiedades generales definidas por JPA, o bien propiedades específicas del proveedor de persistencia que usemos, es decir, propiedades específicas de hibernate, de eclipseLync, etc. Yo he indicado las propiedades generales de JPA.</td>
 </tr>
 </tbody>
 </table>
