@@ -967,7 +967,7 @@
 Ejemplo de código para crear un EntityManager a partir del fichero anterior persistence.xml.</p>
 <h3 id="transacciones-y-excepciones">🔅 Transacciones y excepciones</h3>
 <p>En aplicaciones locales <strong>EntityManager</strong> dispone del método <code>getTransaction</code> para obtener la transacción en curso, si la hay, o para crear una de lo contrario. Una vez creada, la transacción se activa invocando el método begin y finaliza cuando se invoca commit.</p>
-<p><ins class="critic">No es necesario invocar rollback en caso de error. JPA invoca automáticamente la revocación de las acciones, cuando se lance cualquier excepción, a partir de la última invocación begin.</ins></p>
+<p><ins class="critic">No es necesario invocar rollback en caso de error. JPA invoca automáticamente la revocación de las acciones cuando se lanzan excepciones de tipo <strong>RuntimeException</strong>, a partir de la última invocación begin.</ins></p>
 <p>Todas las excepciones generadas por JPA son de tipo <strong><code>RuntimeException</code></strong>. Este tipo de excepción presenta la particularidad de que <strong>no se declarará en la firma del método</strong> y, por tanto, <strong>el uso de try-catch no es obligatorio</strong>.</p>
 <p><img alt="orm" src="../../img/ud3/5exceptionpersistence.png" /></p>
 <p>Este tipo de transacciones presentan la ventaja de poder escribir un código más limpio (sin sentencias try-catch intermedias), pero por el contrario el desarrollador tiene que ir mucho más cuidado de no olvidarse de hacer el tratamiento de las excepciones. </p>
