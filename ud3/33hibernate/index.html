@@ -855,7 +855,7 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 <p>Las clases que sean entidades deben cumplir las siguientes <strong>convenciones recomendadas</strong>:</p>
 <ul>
 <li>🚀 Incluir atributos de clase con visibilidad privada, <strong>private</strong>.</li>
-<li>🚀 Añadir <strong>el constructor por defecto</strong>, sin argumentos. Esto es un requisito de Jakarta e Hibernate para todas las clases persistentes. Hibernate necesita crear objetos para usted, utilizando Java Reflection.</li>
+<li>🚀 Añadir <strong>el constructor por defecto</strong>, sin argumentos. Esto es un requisito de Jakarta e Hibernate para todas las clases persistentes. Hibernate necesita crear objetos para nosotros, utilizando Java Reflection.</li>
 <li>🚀 Incluir getters y setters.</li>
 <li>🚀 <strong>Declarar atributos de identificador</strong> (<code>@Id</code>) con nombres consistentes, y que se use un wrapper y no un tipo de dato primitivo. Ej Long o Integer. El atributo identificador no necesariamente necesita ser mapeado a la(s) columna(s) que definen físicamente la clave primaria. Sin embargo, debe asignarse a la(s) columna(s) que pueden identificar de forma única cada fila.</li>
 <li>🚀 Mapear la entidad con las anotaciones necesarias. <code>@Entity</code> para denotar que es una entidad. Y las anotaciones que se requieran en los atributos.</li>
