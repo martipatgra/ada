@@ -669,6 +669,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hibernate-query-language-hql-official-website" class="md-nav__link">
+    Hibernate Query Language - HQL Official Website
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criteria" class="md-nav__link">
+    Criteria
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pom-proyecto" class="md-nav__link">
+    POM proyecto
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -767,6 +788,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#hibernate-query-language-hql-official-website" class="md-nav__link">
+    Hibernate Query Language - HQL Official Website
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criteria" class="md-nav__link">
+    Criteria
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pom-proyecto" class="md-nav__link">
+    POM proyecto
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -860,6 +902,77 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 <li>🚀 <strong>Declarar atributos de identificador</strong> (<code>@Id</code>) con nombres consistentes, y que se use un wrapper y no un tipo de dato primitivo. Ej Long o Integer. El atributo identificador no necesariamente necesita ser mapeado a la(s) columna(s) que definen físicamente la clave primaria. Sin embargo, debe asignarse a la(s) columna(s) que pueden identificar de forma única cada fila.</li>
 <li>🚀 Mapear la entidad con las <strong>anotaciones</strong> necesarias. <code>@Entity</code> para denotar que es una entidad. Y las anotaciones que se requieran en los atributos.</li>
 </ul>
+<p>--batches y flush and clear</p>
+<h2 id="hibernate-query-language-hql-official-website">Hibernate Query Language - <a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#hql">HQL Official Website</a></h2>
+<h2 id="criteria"><a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#criteria">Criteria</a></h2>
+<h2 id="pom-proyecto">POM proyecto</h2>
+<div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span>
+<span class="linenos" data-linenos=" 3 "></span>         <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="linenos" data-linenos=" 4 "></span>         <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="nt">&gt;</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="nt">&lt;groupId&gt;</span>es.severo<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="nt">&lt;artifactId&gt;</span>adahibernate<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="nt">&lt;dependencies&gt;</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span>        <span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos="13 "></span>            <span class="nt">&lt;groupId&gt;</span>org.hibernate.orm<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="14 "></span>            <span class="nt">&lt;artifactId&gt;</span>hibernate-core<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="15 "></span>            <span class="nt">&lt;version&gt;</span>6.1.5.Final<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="16 "></span>        <span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span>        <span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos="19 "></span>            <span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="20 "></span>            <span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="21 "></span>            <span class="nt">&lt;version&gt;</span>8.0.31<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="22 "></span>        <span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span>        <span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos="25 "></span>            <span class="nt">&lt;groupId&gt;</span>org.hibernate.orm<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="26 "></span>            <span class="nt">&lt;artifactId&gt;</span>hibernate-jpamodelgen<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="27 "></span>            <span class="nt">&lt;version&gt;</span>6.1.5.Final<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="28 "></span>        <span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos="29 "></span>
+<span class="linenos" data-linenos="30 "></span>        <span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos="31 "></span>            <span class="nt">&lt;groupId&gt;</span>jakarta.xml.bind<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="32 "></span>            <span class="nt">&lt;artifactId&gt;</span>jakarta.xml.bind-api<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="33 "></span>            <span class="nt">&lt;version&gt;</span>4.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="34 "></span>        <span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos="35 "></span>    <span class="nt">&lt;/dependencies&gt;</span>
+<span class="linenos" data-linenos="36 "></span>
+<span class="linenos" data-linenos="37 "></span>    <span class="nt">&lt;properties&gt;</span>
+<span class="linenos" data-linenos="38 "></span>        <span class="nt">&lt;maven.compiler.source&gt;</span>11<span class="nt">&lt;/maven.compiler.source&gt;</span>
+<span class="linenos" data-linenos="39 "></span>        <span class="nt">&lt;maven.compiler.target&gt;</span>11<span class="nt">&lt;/maven.compiler.target&gt;</span>
+<span class="linenos" data-linenos="40 "></span>    <span class="nt">&lt;/properties&gt;</span>
+<span class="linenos" data-linenos="41 "></span>
+<span class="linenos" data-linenos="42 "></span>    <span class="nt">&lt;build&gt;</span>
+<span class="linenos" data-linenos="43 "></span>        <span class="nt">&lt;plugins&gt;</span>
+<span class="linenos" data-linenos="44 "></span>            <span class="nt">&lt;plugin&gt;</span>
+<span class="linenos" data-linenos="45 "></span>                <span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="46 "></span>                <span class="nt">&lt;artifactId&gt;</span>build-helper-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="47 "></span>                <span class="nt">&lt;version&gt;</span>3.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="48 "></span>                <span class="nt">&lt;executions&gt;</span>
+<span class="linenos" data-linenos="49 "></span>                    <span class="nt">&lt;execution&gt;</span>
+<span class="linenos" data-linenos="50 "></span>                        <span class="nt">&lt;id&gt;</span>add-source<span class="nt">&lt;/id&gt;</span>
+<span class="linenos" data-linenos="51 "></span>                        <span class="nt">&lt;phase&gt;</span>generate-sources<span class="nt">&lt;/phase&gt;</span>
+<span class="linenos" data-linenos="52 "></span>                        <span class="nt">&lt;goals&gt;</span>
+<span class="linenos" data-linenos="53 "></span>                            <span class="nt">&lt;goal&gt;</span>add-source<span class="nt">&lt;/goal&gt;</span>
+<span class="linenos" data-linenos="54 "></span>                        <span class="nt">&lt;/goals&gt;</span>
+<span class="linenos" data-linenos="55 "></span>                        <span class="nt">&lt;configuration&gt;</span>
+<span class="linenos" data-linenos="56 "></span>                            <span class="nt">&lt;sources&gt;</span>
+<span class="linenos" data-linenos="57 "></span>                                <span class="nt">&lt;source&gt;</span>target/generated-sources/annotations<span class="nt">&lt;/source&gt;</span>
+<span class="linenos" data-linenos="58 "></span>                            <span class="nt">&lt;/sources&gt;</span>
+<span class="linenos" data-linenos="59 "></span>                        <span class="nt">&lt;/configuration&gt;</span>
+<span class="linenos" data-linenos="60 "></span>                    <span class="nt">&lt;/execution&gt;</span>
+<span class="linenos" data-linenos="61 "></span>                <span class="nt">&lt;/executions&gt;</span>
+<span class="linenos" data-linenos="62 "></span>            <span class="nt">&lt;/plugin&gt;</span>
+<span class="linenos" data-linenos="63 "></span>        <span class="nt">&lt;/plugins&gt;</span>
+<span class="linenos" data-linenos="64 "></span>    <span class="nt">&lt;/build&gt;</span>
+<span class="linenos" data-linenos="65 "></span>
+<span class="linenos" data-linenos="66 "></span><span class="nt">&lt;/project&gt;</span>
+</code></pre></div>
 
 
   
