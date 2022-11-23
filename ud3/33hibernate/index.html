@@ -674,6 +674,67 @@
     Hibernate Query Language - HQL Official Website
   </a>
   
+    <nav class="md-nav" aria-label="Hibernate Query Language - HQL Official Website">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hibernate-dml-language" class="md-nav__link">
+    💈 Hibernate DML language
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtener-una-entidad-con-sus-datos-inicializados" class="md-nav__link">
+    💈 Obtener una entidad con sus datos inicializados
+  </a>
+  
+    <nav class="md-nav" aria-label="💈 Obtener una entidad con sus datos inicializados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-con-jakarta-persistence" class="md-nav__link">
+    Obtención de una referencia de entidad con sus datos inicializados con Jakarta Persistence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-con-la-api-de-hibernate" class="md-nav__link">
+    Obtención de una referencia de entidad con sus datos inicializados con la API de Hibernate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-usando-la-api-de-hibernate-byid" class="md-nav__link">
+    Obtención de una referencia de entidad con sus datos inicializados usando la API de Hibernate byId()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtencion-de-una-referencia-de-entidad-opcional-con-sus-datos-inicializados-usando-la-api-de-hibernate-byid" class="md-nav__link">
+    Obtención de una referencia de entidad Opcional con sus datos inicializados usando la API de Hibernate byId()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hibernate-query" class="md-nav__link">
+    💈 Hibernate Query
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -793,6 +854,67 @@
     Hibernate Query Language - HQL Official Website
   </a>
   
+    <nav class="md-nav" aria-label="Hibernate Query Language - HQL Official Website">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hibernate-dml-language" class="md-nav__link">
+    💈 Hibernate DML language
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtener-una-entidad-con-sus-datos-inicializados" class="md-nav__link">
+    💈 Obtener una entidad con sus datos inicializados
+  </a>
+  
+    <nav class="md-nav" aria-label="💈 Obtener una entidad con sus datos inicializados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-con-jakarta-persistence" class="md-nav__link">
+    Obtención de una referencia de entidad con sus datos inicializados con Jakarta Persistence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-con-la-api-de-hibernate" class="md-nav__link">
+    Obtención de una referencia de entidad con sus datos inicializados con la API de Hibernate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-usando-la-api-de-hibernate-byid" class="md-nav__link">
+    Obtención de una referencia de entidad con sus datos inicializados usando la API de Hibernate byId()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtencion-de-una-referencia-de-entidad-opcional-con-sus-datos-inicializados-usando-la-api-de-hibernate-byid" class="md-nav__link">
+    Obtención de una referencia de entidad Opcional con sus datos inicializados usando la API de Hibernate byId()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hibernate-query" class="md-nav__link">
+    💈 Hibernate Query
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -904,6 +1026,82 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 </ul>
 <p>--batches y flush and clear</p>
 <h2 id="hibernate-query-language-hql-official-website">Hibernate Query Language - <a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#hql">HQL Official Website</a></h2>
+<p>Hibernate usa un poderoso lenguaje de consulta (HQL) que es similar en apariencia a SQL. Sin embargo, en comparación con SQL, HQL está completamente orientado a objetos y comprende nociones como herencia, polimorfismo y asociación.</p>
+<p>El lenguaje de consulta de Hibernate (HQL) y el lenguaje de consulta de persistencia de Java (JPQL) son lenguajes de consulta orientados a objetos basados ​​en SQL y muy similares a SQL.</p>
+<p><strong><em>HQL no es la única forma de escribir consultas en Hibernate:</em></strong></p>
+<ul>
+<li>🧨Criteria ofrece una API basada en Java con mayor seguridad de tipos en tiempo de compilación, y</li>
+<li>🧨también son posibles las consultas SQL nativas.</li>
+</ul>
+<p>Sin embargo, HQL es la opción más conveniente para la mayoría de las personas la mayor parte del tiempo.</p>
+<h3 id="hibernate-dml-language">💈 Hibernate DML language</h3>
+<p>Hibernate provee métodos para ejecutar sentencias DML.</p>
+<ul>
+<li><strong>Insert</strong>: para agregar objetos usamos el método <code>persist()</code>. En versiones anteriores se usaba <code>save()</code>, pero este método está deprecado y no se recomienda su uso.</li>
+<li><strong>Update</strong>: cuando modificamos un objeto usaremos <code>merge()</code> para guardar su estado en la base de datos. En versiones anteriores se usaba <code>saveOrUpdate()</code>, pero este método está deprecado y no se recomienda su uso.</li>
+<li><strong>Delete</strong>:  cuando queremos borrar un objeto en la base de datos usamos <code>remove()</code>. En versiones anteriores se usaba <code>delete()</code>, pero este método está deprecado y no se recomienda su uso.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibenateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">().</span><span class="na">openSession</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">LocalDateTime</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalDateTime</span><span class="p">.</span><span class="na">now</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">Tramite</span><span class="w"> </span><span class="n">tramite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Tramite</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">tramite</span><span class="p">.</span><span class="na">setFecha</span><span class="p">(</span><span class="n">now</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">tramite</span><span class="p">.</span><span class="na">setTipo</span><span class="p">(</span><span class="s">&quot;Crédito&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="cm">/* INSERT */</span><span class="w"></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="c1">//session.save(tramite);//deprecated</span><span class="w"></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="n">session</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="n">tramite</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="cm">/* UPDATE */</span><span class="w"></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="n">tramite</span><span class="p">.</span><span class="na">setTipo</span><span class="p">(</span><span class="s">&quot;Aval&quot;</span><span class="p">):</span><span class="w"></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="c1">//session.saveOrUpdate(tramite);//deprecated</span><span class="w"></span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="n">session</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">tramite</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="cm">/* DELETE */</span><span class="w"></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="c1">//session.delete(tramite);//deprecated</span><span class="w"></span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="n">session</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">tramite</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="24 "></span>
+<span class="linenos" data-linenos="25 "></span><span class="w">        </span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="26 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="28 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">rollback</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="29 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"></span>
+<span class="linenos" data-linenos="30 "></span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="31 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="32 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">session</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="33 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="34 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="35 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="obtener-una-entidad-con-sus-datos-inicializados">💈 Obtener una entidad con sus datos inicializados</h3>
+<p>También es bastante común querer obtener una entidad junto con sus datos, es decir, cargar un objeto.</p>
+<h4 id="obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-con-jakarta-persistence">Obtención de una referencia de entidad con sus datos inicializados con Jakarta Persistence</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entityManager</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">personId</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<h4 id="obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-con-la-api-de-hibernate">Obtención de una referencia de entidad con sus datos inicializados con la API de Hibernate</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<h4 id="obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-usando-la-api-de-hibernate-byid">Obtención de una referencia de entidad con sus datos inicializados usando la API de Hibernate byId()</h4>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">byId</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">).</span><span class="na">load</span><span class="p">(</span><span class="n">personId</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+En ambos casos, se devuelve <code>null</code> si no se encuentra ninguna fila de base de datos coincidente.</p>
+<h4 id="obtencion-de-una-referencia-de-entidad-opcional-con-sus-datos-inicializados-usando-la-api-de-hibernate-byid">Obtención de una referencia de entidad Opcional con sus datos inicializados usando la API de Hibernate byId()</h4>
+<p>También es posible devolver un Java 8 Opcional:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="n">optionalPerson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">byId</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">).</span><span class="na">loadOptional</span><span class="p">(</span><span class="n">personId</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<h3 id="hibernate-query">💈 Hibernate Query</h3>
+<p>La interfaz de sesión de Hibernate refina los tipos de devolución de las operaciones de <code>EntityManager</code> que crean objetos de consulta.</p>
+<p><code>Session#createQuery()</code>, <code>Session#createNamedQuery()</code> y otras operaciones similares devuelven una instancia de la extensión <code>org.hibernate.query.Query</code>.</p>
+<p>Algunas formas sobrecargadas de estas operaciones devuelven un tipo sin formato, pero en <strong>Hibernate 6 todas han quedado obsoletas y el uso del tipo Query sin formato ahora se desaconseja enfáticamente</strong>. </p>
+<div class="admonition important importante">
+<p class="admonition-title">Important</p>
+<p>Los programas deben migrar al uso de sobrecargas con seguridad de tipos que aceptan un objeto <code>Class&lt;T&gt;</code> y devuelven una <code>Query&lt;T&gt;</code> con tipo.</p>
+</div>
+<p>La interfaz de consulta de Hibernate ofrece operaciones adicionales que no están disponibles a través de TypedQuery, como veremos a continuación.</p>
 <h2 id="criteria"><a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#criteria">Criteria</a></h2>
 <h2 id="pom-proyecto">POM proyecto</h2>
 <div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
