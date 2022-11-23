@@ -1117,8 +1117,8 @@ En ambos casos, se devuelve <code>null</code> si no se encuentra ninguna fila de
 <span class="linenos" data-linenos="3 "></span><span class="w">                            </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"></span>
 <span class="linenos" data-linenos="4 "></span><span class="w">                    </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Cuidado</p>
+<div class="admonition warning warning">
+<p class="admonition-title">Warning</p>
 <p>No es una buena idea mezclar <em>named parameters</em> y <em>ordinales</em> en una sola consulta.</p>
 </div>
 <h4 id="ejecutando-la-consulta">🎐 <em>EJECUTANDO la consulta</em></h4>
@@ -1175,6 +1175,26 @@ En ambos casos, se devuelve <code>null</code> si no se encuentra ninguna fila de
 <span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="linenos" data-linenos="11 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
+<p>De manera similar, <code>getResultStream()</code> es una operación especializada para leer resultados de consultas de manera incremental, mientras mantiene un ResultSet JDBC abierto asignado a un cursor del lado del servidor.</p>
+<div class="admonition warning warning">
+<p class="admonition-title">Warning</p>
+<p>El método <code>getResultStream()</code> no es solo una forma conveniente de obtener un flujo de Java. Para eso, use <code>getResultList().stream()</code>.</p>
+</div>
+<p>Ya hemos visto anteriormente un ejemplo de getResultStream, veamos ahora usando un stream a partir de <code>getResultList()</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="p">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tramiteStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">                </span><span class="s">&quot;from Tramite where tipo = :tipoTram&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">                </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;tipoTram&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="p">.</span><span class="na">getResultList</span><span class="p">()</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="p">.</span><span class="na">stream</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tramiteStream</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="p">.</span><span class="na">skip</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="p">.</span><span class="na">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Hibernate cerrará automáticamente los recursos cuando finalice la transacción. Sin embargo, es mucho mejor cerrar el <code>ResultSet</code> lo antes posible. El programa siempre debe cerrar un Stream ya sea explícitamente, llamando a close() o usando un bloque try-with-resources.</p>
 <h2 id="criteria"><a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#criteria">Criteria</a></h2>
 <h2 id="pom-proyecto">POM proyecto</h2>
 <div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
