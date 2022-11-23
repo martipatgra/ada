@@ -689,40 +689,6 @@
     💈 Obtener una entidad con sus datos inicializados
   </a>
   
-    <nav class="md-nav" aria-label="💈 Obtener una entidad con sus datos inicializados">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-con-jakarta-persistence" class="md-nav__link">
-    Obtención de una referencia de entidad con sus datos inicializados con Jakarta Persistence
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-con-la-api-de-hibernate" class="md-nav__link">
-    Obtención de una referencia de entidad con sus datos inicializados con la API de Hibernate
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-usando-la-api-de-hibernate-byid" class="md-nav__link">
-    Obtención de una referencia de entidad con sus datos inicializados usando la API de Hibernate byId()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#obtencion-de-una-referencia-de-entidad-opcional-con-sus-datos-inicializados-usando-la-api-de-hibernate-byid" class="md-nav__link">
-    Obtención de una referencia de entidad Opcional con sus datos inicializados usando la API de Hibernate byId()
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -868,40 +834,6 @@
   <a href="#obtener-una-entidad-con-sus-datos-inicializados" class="md-nav__link">
     💈 Obtener una entidad con sus datos inicializados
   </a>
-  
-    <nav class="md-nav" aria-label="💈 Obtener una entidad con sus datos inicializados">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-con-jakarta-persistence" class="md-nav__link">
-    Obtención de una referencia de entidad con sus datos inicializados con Jakarta Persistence
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-con-la-api-de-hibernate" class="md-nav__link">
-    Obtención de una referencia de entidad con sus datos inicializados con la API de Hibernate
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-usando-la-api-de-hibernate-byid" class="md-nav__link">
-    Obtención de una referencia de entidad con sus datos inicializados usando la API de Hibernate byId()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#obtencion-de-una-referencia-de-entidad-opcional-con-sus-datos-inicializados-usando-la-api-de-hibernate-byid" class="md-nav__link">
-    Obtención de una referencia de entidad Opcional con sus datos inicializados usando la API de Hibernate byId()
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1079,17 +1011,25 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 </code></pre></div>
 <h3 id="obtener-una-entidad-con-sus-datos-inicializados">💈 Obtener una entidad con sus datos inicializados</h3>
 <p>También es bastante común querer obtener una entidad junto con sus datos, es decir, cargar un objeto.</p>
-<h4 id="obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-con-jakarta-persistence">Obtención de una referencia de entidad con sus datos inicializados con Jakarta Persistence</h4>
+<ul>
+<li>Obtención de una referencia de entidad con sus datos inicializados con Jakarta Persistence</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entityManager</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">personId</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
-<h4 id="obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-con-la-api-de-hibernate">Obtención de una referencia de entidad con sus datos inicializados con la API de Hibernate</h4>
+<ul>
+<li>Obtención de una referencia de entidad con sus datos inicializados con la API de Hibernate</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
-<h4 id="obtencion-de-una-referencia-de-entidad-con-sus-datos-inicializados-usando-la-api-de-hibernate-byid">Obtención de una referencia de entidad con sus datos inicializados usando la API de Hibernate byId()</h4>
+<ul>
+<li>Obtención de una referencia de entidad con sus datos inicializados usando la API de Hibernate byId()</li>
+</ul>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">byId</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">).</span><span class="na">load</span><span class="p">(</span><span class="n">personId</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 En ambos casos, se devuelve <code>null</code> si no se encuentra ninguna fila de base de datos coincidente.</p>
-<h4 id="obtencion-de-una-referencia-de-entidad-opcional-con-sus-datos-inicializados-usando-la-api-de-hibernate-byid">Obtención de una referencia de entidad Opcional con sus datos inicializados usando la API de Hibernate byId()</h4>
+<ul>
+<li>Obtención de una referencia de entidad Opcional con sus datos inicializados usando la API de Hibernate byId()</li>
+</ul>
 <p>También es posible devolver un Java 8 Opcional:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="n">optionalPerson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">byId</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">).</span><span class="na">loadOptional</span><span class="p">(</span><span class="n">personId</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
