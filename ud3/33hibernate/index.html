@@ -1178,7 +1178,7 @@ En ambos casos, se devuelve <code>null</code> si no se encuentra ninguna fila de
 <p>De manera similar, <code>getResultStream()</code> es una operación especializada para leer resultados de consultas de manera incremental, mientras mantiene un ResultSet JDBC abierto asignado a un cursor del lado del servidor.</p>
 <div class="admonition warning warning">
 <p class="admonition-title">Warning</p>
-<p>El método <code>getResultStream()</code> no es solo una forma conveniente de obtener un flujo de Java. Para eso, use <code>getResultList().stream()</code>.</p>
+<p>El método <code>getResultStream()</code> no es una forma conveniente de obtener un flujo de Java. Por ello, usaremos <strong><code>getResultList().stream()</code></strong> cuando queramos utilizar streams.</p>
 </div>
 <p>Ya hemos visto anteriormente un ejemplo de getResultStream, veamos ahora usando un stream a partir de <code>getResultList()</code></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="p">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tramiteStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="w"></span>
