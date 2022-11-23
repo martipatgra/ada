@@ -696,6 +696,33 @@
     💈 Hibernate Query
   </a>
   
+    <nav class="md-nav" aria-label="💈 Hibernate Query">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binding-arguments-en-los-parametros-de-la-query" class="md-nav__link">
+    🎐 BINDING arguments en los parámetros de la query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejecutando-la-consulta" class="md-nav__link">
+    🎐 EJECUTANDO la consulta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scrolling-y-streaming-resultados" class="md-nav__link">
+    🎐 SCROLLING y STREAMING resultados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -841,6 +868,33 @@
   <a href="#hibernate-query" class="md-nav__link">
     💈 Hibernate Query
   </a>
+  
+    <nav class="md-nav" aria-label="💈 Hibernate Query">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binding-arguments-en-los-parametros-de-la-query" class="md-nav__link">
+    🎐 BINDING arguments en los parámetros de la query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejecutando-la-consulta" class="md-nav__link">
+    🎐 EJECUTANDO la consulta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scrolling-y-streaming-resultados" class="md-nav__link">
+    🎐 SCROLLING y STREAMING resultados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1042,6 +1096,85 @@ En ambos casos, se devuelve <code>null</code> si no se encuentra ninguna fila de
 <p>Los programas deben migrar al uso de sobrecargas con seguridad de tipos que aceptan un objeto <code>Class&lt;T&gt;</code> y devuelven una <code>Query&lt;T&gt;</code> con tipo.</p>
 </div>
 <p>La interfaz de consulta de Hibernate ofrece operaciones adicionales que no están disponibles a través de TypedQuery, como veremos a continuación.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Query</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="w"></span>
+<span class="linenos" data-linenos="2 "></span><span class="w">                    </span><span class="s">&quot;from Tramite where tipo = :tipoTram&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="linenos" data-linenos="3 "></span><span class="w">                            </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<h4 id="binding-arguments-en-los-parametros-de-la-query">🎐 <em>BINDING arguments en los parámetros de la query</em></h4>
+<p>Una consulta puede tener parámetros con nombre o parámetros ordinales:</p>
+<ul>
+<li><strong>Named parameters</strong>: se especifican usando la sintaxis: :name</li>
+<li><strong>Ordinal parameters</strong>: se especifican usando la sintaxis ?1, ?2, etc.</li>
+</ul>
+<div class="highlight"><span class="filename">named parameters</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">Query</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="w"></span>
+<span class="linenos" data-linenos="2 "></span><span class="w">                    </span><span class="s">&quot;from Tramite where tipo = :tipoTram&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="linenos" data-linenos="3 "></span><span class="w">                            </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">                    </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;tipoTram&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<p>Los parámetros ordinales de estilo JPQL se numeran desde 1. Al igual que con los parámetros con nombre, un parámetro ordinal puede aparecer varias veces en una consulta.</p>
+<div class="highlight"><span class="filename">ordinal parameters</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">Query</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="w"></span>
+<span class="linenos" data-linenos="2 "></span><span class="w">                            </span><span class="s">&quot;from Tramite where tipo = ?1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="linenos" data-linenos="3 "></span><span class="w">                            </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">                    </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Cuidado</p>
+<p>No es una buena idea mezclar <em>named parameters</em> y <em>ordinales</em> en una sola consulta.</p>
+</div>
+<h4 id="ejecutando-la-consulta">🎐 <em>EJECUTANDO la consulta</em></h4>
+<p>La interfaz Query se utiliza para controlar la ejecución de la consulta. Ofrece tres tipos de resultados:</p>
+<ul>
+<li><code>getResultList()</code>: es útil cuando la consulta puede devolver <strong>cero o más de un resultado</strong>.</li>
+<li><code>getSingleResult()</code>: es solo para casos en los que la consulta siempre <strong>devuelve exactamente un resultado</strong>. Lanza una excepción cuando la base de datos devuelve cero o muchos resultados.</li>
+<li><code>getResultStream()</code>: permite que los resultados se recuperen <strong>de forma incremental</strong>, utilizando un cursor de base de datos.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w">    </span><span class="n">Query</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">            </span><span class="s">&quot;from Tramite where tipo = :tipoTram&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">                    </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">            </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;tipoTram&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tramites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query</span><span class="p">.</span><span class="na">getResultList</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">tramites</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="n">Query</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="w"></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">                    </span><span class="s">&quot;from Tramite where tipo = ?1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">                    </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="p">.</span><span class="na">setMaxResults</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="c1">//limitación de un resultado</span><span class="w"></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="n">Tramite</span><span class="w"> </span><span class="n">tramites2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query2</span><span class="p">.</span><span class="na">getSingleResult</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">tramites2</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="k">try</span><span class="p">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tramiteStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="w"></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="s">&quot;from Tramite where tipo = ?1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="p">.</span><span class="na">getResultStream</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tramiteStream</span><span class="w"></span>
+<span class="linenos" data-linenos="23 "></span><span class="w">                </span><span class="p">.</span><span class="na">skip</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="c1">//salta los dos primeros, los quita</span><span class="w"></span>
+<span class="linenos" data-linenos="24 "></span><span class="w">                </span><span class="p">.</span><span class="na">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="c1">//saca como máximo 5 ítems</span><span class="w"></span>
+<span class="linenos" data-linenos="25 "></span><span class="w">                </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span><span class="w"></span>
+<span class="linenos" data-linenos="26 "></span><span class="w">        </span><span class="n">t</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="27 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition warning warning">
+<p class="admonition-title">Warning</p>
+<p>El método <code>getResultStream()</code> <strong>no suele ser útil</strong>. Casi siempre es una mala idea mantener abierto el cursor de una base de datos.</p>
+</div>
+<h4 id="scrolling-y-streaming-resultados">🎐 <em>SCROLLING y STREAMING resultados</em></h4>
+<p>La interfaz <code>org.hibernate.query</code> ofrece dos operaciones especializadas para leer los resultados de la consulta de manera incremental, <strong>mientras mantiene un ResultSet JDBC abierto asignado a un cursor del lado del servidor</strong>.</p>
+<p>Si la aplicación no cierra un <code>ScrollableResults</code>, Hibernate cerrará automáticamente los recursos subyacentes cuando finalice la transacción. Sin embargo, es mucho mejor cerrar el <code>ResultSet</code> lo antes posible.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="p">(</span><span class="n">ScrollableResults</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">scrollableResults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">                </span><span class="s">&quot;from Tramite where tipo = ?1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">                </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="p">.</span><span class="na">scroll</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">scrollableResults</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">Tramite</span><span class="w"> </span><span class="n">ta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scrollableResults</span><span class="p">.</span><span class="na">get</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ta</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <h2 id="criteria"><a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#criteria">Criteria</a></h2>
 <h2 id="pom-proyecto">POM proyecto</h2>
 <div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
