@@ -1012,6 +1012,9 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 </ul>
 <p>--batches y flush and clear</p>
 <h2 id="hibernate-query-language-hql-official-website">Hibernate Query Language - <a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#hql">HQL Official Website</a></h2>
+<p>JPQL (Java Persistence Query Language) se inspiró en las primeras versiones de HQL y es un subconjunto del HQL moderno.</p>
+<p>Si se desea el cumplimiento estricto de la persistencia de Jakarta, tendríamos que utilizar en la configuración la siguiente propiedad <code>hibernate.jpa.compliance.query=true</code>. Con esta configuración, cualquier intento de utilizar funciones HQL más allá del subconjunto JPQL dará como resultado una excepción. </p>
+<p>HQL (y JPQL) se basan libremente en SQL y son fáciles de aprender para cualquiera que esté familiarizado con SQL.</p>
 <p>Hibernate usa un poderoso lenguaje de consulta (HQL) que es similar en apariencia a SQL. Sin embargo, en comparación con SQL, HQL está completamente orientado a objetos y comprende nociones como herencia, polimorfismo y asociación.</p>
 <p>El lenguaje de consulta de Hibernate (HQL) y el lenguaje de consulta de persistencia de Java (JPQL) son lenguajes de consulta orientados a objetos basados ​​en SQL y muy similares a SQL.</p>
 <p><strong><em>HQL no es la única forma de escribir consultas en Hibernate:</em></strong></p>
