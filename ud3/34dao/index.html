@@ -783,7 +783,7 @@
 
 
 <h1 id="patron-dao-data-access-object">Patrón DAO - Data access object</h1>
-<p>Si bien es posible inyectar el acceso a la fuente de datos donde los necesitemos, no es una buena idea -de hecho resulta horrible- ir repartiendo su uso por el código de nuestro proyecto sin seguir criterio alguno. Crearemos un caos que violará los principios de encapsulación y desacoplamiento de la programación orientado a objetos.</p>
+<p>Si bien es posible inyectar el acceso a la fuente de datos donde los necesitemos, no es una buena idea <em>-de hecho resulta horrible-</em> ir repartiendo su uso por el código de nuestro proyecto sin seguir criterio alguno. Crearemos un caos que violará los principios de encapsulación y desacoplamiento de la programación orientado a objetos.</p>
 <p>Incluso habrá ocasiones en las que necesitaremos tener más de una fuente de datos o la fuente de datos que tenemos variará, lo que nos obligaría a refactorizar gran parte del código.</p>
 <p>La solución estándar consiste en recurrir al <strong>patrón de diseño Data Access Object (objeto de acceso a datos), más conocido por las siglas DAO</strong>. Las clases DAO son las responsables de implementar todas las operaciones con una fuente y\o almacenamiento de datos. Fuera de ellas, el código no tiene conocimiento sobre cómo se realiza la persistencia; puede ser una base de datos relacional o «no SQL», ficheros de texto, etcétera. </p>
 <p><img alt="dao" src="../../img/ud3/11dao.png" /></p>
