@@ -631,9 +631,61 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          3.4.- Patrón DAO
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         3.4.- Patrón DAO
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-creacion-de-las-interfaces-dao" class="md-nav__link">
+    1. Creación de las interfaces DAO
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-implementacion-de-las-interfaces-dao" class="md-nav__link">
+    2. Implementación de las interfaces DAO
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-creacion-de-un-dao-generico" class="md-nav__link">
+    3. Creación de un DAO genérico
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-implementacion-del-dao-generico" class="md-nav__link">
+    4. Implementación del DAO genérico
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -681,6 +733,42 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-creacion-de-las-interfaces-dao" class="md-nav__link">
+    1. Creación de las interfaces DAO
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-implementacion-de-las-interfaces-dao" class="md-nav__link">
+    2. Implementación de las interfaces DAO
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-creacion-de-un-dao-generico" class="md-nav__link">
+    3. Creación de un DAO genérico
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-implementacion-del-dao-generico" class="md-nav__link">
+    4. Implementación del DAO genérico
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -695,6 +783,181 @@
 
 
 <h1 id="patron-dao-data-access-object">Patrón DAO - Data access object</h1>
+<p>Si bien es posible inyectar el acceso a la fuente de datos donde los necesitemos, no es una buena idea -de hecho resulta horrible- ir repartiendo su uso por el código de nuestro proyecto sin seguir criterio alguno. Crearemos un caos que violará los principios de encapsulación y desacoplamiento de la programación orientado a objetos.</p>
+<p>Incluso habrá ocasiones en las que necesitaremos tener más de una fuente de datos o la fuente de datos que tenemos variará, lo que nos obligaría a refactorizar gran parte del código.</p>
+<p>La solución estándar consiste en recurrir al <strong>patrón de diseño Data Access Object (objeto de acceso a datos), más conocido por las siglas DAO</strong>. Las clases DAO son las responsables de implementar todas las operaciones con una fuente y\o almacenamiento de datos. Fuera de ellas, el código no tiene conocimiento sobre cómo se realiza la persistencia; puede ser una base de datos relacional o «no SQL», ficheros de texto, etcétera. </p>
+<p><img alt="dao" src="../../img/ud3/11dao.png" /></p>
+<p>Exponemos una API y todo lo demás <strong>queda encapsulado y abstraído en los DAOs</strong>, los cuales, generalmente, obtendremos con una factoría. Por lo común, cuando la fuente de datos es una base de datos relacional, una clase DAO contiene todas las operaciones centradas en una tabla, es decir, crearemos un DAO para cada cada entidad que lo requiera.</p>
+<h2 id="1-creacion-de-las-interfaces-dao">1. Creación de las interfaces DAO</h2>
+<p>Lo primero que haremos será crear las interfaces de las entidades que requieran acceso a la base de datos. Creamos interfaces para exponerlas en forma de API sus operaciones. Ya que la implementación de éstas estará en otras clases para encapsular las operaciones.</p>
+<p>Usaremos los ejemplos de clase <code>Person</code> y <code>Address</code> que tenían una relación muchos a muchos.</p>
+<div class="highlight"><span class="filename">PersonDAO</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">PersonDAO</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>En el DAO suelen ir las operaciones comunes usadas para la entidad. La nomenclatura suele ser nombre de la entidad seguido de la palabra <code>DAO</code>.</p>
+<h2 id="2-implementacion-de-las-interfaces-dao">2. Implementación de las interfaces DAO</h2>
+<p>Cada interfaz DAO tendrá su implementación. Las clases que implementan las interfaces serán nombradas como entidad + DAO + Impl: <code>PersonDAOImpl</code>.</p>
+<div class="highlight"><span class="filename">PersonDAOImpl</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PersonDAOImpl</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">PersonDAO</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibenateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">().</span><span class="na">openSession</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Optional</span><span class="p">.</span><span class="na">ofNullable</span><span class="p">(</span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">));</span><span class="w"></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibenateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">().</span><span class="na">openSession</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">                </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">                </span><span class="n">session</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="n">person</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">                </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">RuntimeException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="19 "></span><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="20 "></span><span class="w">                    </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="21 "></span><span class="w">                </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="linenos" data-linenos="27 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibenateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">().</span><span class="na">openSession</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="29 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="30 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">person</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="31 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="32 "></span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="33 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="34 "></span>
+<span class="linenos" data-linenos="35 "></span><span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="linenos" data-linenos="36 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="37 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibenateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">().</span><span class="na">openSession</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="38 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="39 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">));</span><span class="w"></span>
+<span class="linenos" data-linenos="40 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="41 "></span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="42 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="43 "></span>
+<span class="linenos" data-linenos="44 "></span><span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="linenos" data-linenos="45 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="46 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibenateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">().</span><span class="na">openSession</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="47 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="48 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">person</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="49 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="50 "></span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="51 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="52 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Si hiciéramos lo mismo para la entidad <code>Address</code>, es decir, creáramos la interfaz <code>AddressDAO</code> y su implementación <code>AddressDAOImpl</code> nos daríamos cuenta de que las clases serían muy parecidas a <code>PersonDAO</code> y <code>PersonDAOImpl</code>, ya que contendría los mismos métodos con la única diferencia de que cambia la entidad.</p>
+<h2 id="3-creacion-de-un-dao-generico">3. Creación de un DAO genérico</h2>
+<p>Para mejorar la reusabilidad y legilibidad del código sería conveniente hacer uso de los genéricos que nos ofrece Java. Por tanto, deberíamos crear un DAO general que incluya las funcionalidades más genéricas de los DAO, <code>GenericDAO</code>.</p>
+<div class="highlight"><span class="filename">GenericDAO</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">GenericDAO</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">entity</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">entity</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">entity</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Todos los DAOs heredarán de <code>GenericDAO</code>, lo que quiere decir que todos los DAO contendrán esos métodos, cumplirán con esas funciones.</p>
+<h2 id="4-implementacion-del-dao-generico">4. Implementación del DAO genérico</h2>
+<div class="highlight"><span class="filename">GenericDAOImpl</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GenericDAOImpl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">GenericDAO</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">entityClass</span><span class="p">;</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">GenericDAOImpl</span><span class="p">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">entityClass</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">entityClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entityClass</span><span class="p">;</span><span class="w"></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibenateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">().</span><span class="na">openSession</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Optional</span><span class="p">.</span><span class="na">ofNullable</span><span class="p">(</span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">entityClass</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">));</span><span class="w"></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">entity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibenateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">().</span><span class="na">openSession</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="21 "></span><span class="w">                </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">                </span><span class="n">session</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="n">entity</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="23 "></span><span class="w">                </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="24 "></span><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">RuntimeException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="25 "></span><span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">tx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="26 "></span><span class="w">                    </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="27 "></span><span class="w">                </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="28 "></span><span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="29 "></span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="30 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="31 "></span>
+<span class="linenos" data-linenos="32 "></span><span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="linenos" data-linenos="33 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">entity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="34 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibenateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">().</span><span class="na">openSession</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="35 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="36 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">entity</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="37 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="38 "></span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="39 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="40 "></span>
+<span class="linenos" data-linenos="41 "></span><span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="linenos" data-linenos="42 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="43 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibenateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">().</span><span class="na">openSession</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="44 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="45 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">entityClass</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">));</span><span class="w"></span>
+<span class="linenos" data-linenos="46 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="47 "></span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="48 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="49 "></span>
+<span class="linenos" data-linenos="50 "></span><span class="w">    </span><span class="nd">@Override</span><span class="w"></span>
+<span class="linenos" data-linenos="51 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">entity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="52 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibenateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">().</span><span class="na">openSession</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="53 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="54 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">entity</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="55 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="56 "></span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="57 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="58 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>La creación de esta clase genérica conlleva los siguientes cambios en las clases DAO:</p>
+<div class="highlight"><span class="filename">AddressDAO</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">AddressDAO</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">GenericDAO</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<div class="highlight"><span class="filename">AddressDAOImpl</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AddressDAOImpl</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">GenericDAOImpl</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">AddressDAO</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">AddressDAOImpl</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 
   
