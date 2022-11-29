@@ -657,28 +657,28 @@
       
         <li class="md-nav__item">
   <a href="#1-creacion-de-las-interfaces-dao" class="md-nav__link">
-    1. Creación de las interfaces DAO
+    🪀 1. Creación de las interfaces DAO
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#2-implementacion-de-las-interfaces-dao" class="md-nav__link">
-    2. Implementación de las interfaces DAO
+    🪀 2. Implementación de las interfaces DAO
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#3-creacion-de-un-dao-generico" class="md-nav__link">
-    3. Creación de un DAO genérico
+    🪀 3. Creación de un DAO genérico
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#4-implementacion-del-dao-generico" class="md-nav__link">
-    4. Implementación del DAO genérico
+    🪀 4. Implementación del DAO genérico
   </a>
   
 </li>
@@ -741,28 +741,28 @@
       
         <li class="md-nav__item">
   <a href="#1-creacion-de-las-interfaces-dao" class="md-nav__link">
-    1. Creación de las interfaces DAO
+    🪀 1. Creación de las interfaces DAO
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#2-implementacion-de-las-interfaces-dao" class="md-nav__link">
-    2. Implementación de las interfaces DAO
+    🪀 2. Implementación de las interfaces DAO
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#3-creacion-de-un-dao-generico" class="md-nav__link">
-    3. Creación de un DAO genérico
+    🪀 3. Creación de un DAO genérico
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#4-implementacion-del-dao-generico" class="md-nav__link">
-    4. Implementación del DAO genérico
+    🪀 4. Implementación del DAO genérico
   </a>
   
 </li>
@@ -788,8 +788,8 @@
 <p>La solución estándar consiste en recurrir al <strong>patrón de diseño Data Access Object (objeto de acceso a datos), más conocido por las siglas DAO</strong>. Las clases DAO son las responsables de implementar todas las operaciones con una fuente y\o almacenamiento de datos. Fuera de ellas, el código no tiene conocimiento sobre cómo se realiza la persistencia; puede ser una base de datos relacional o «no SQL», ficheros de texto, etcétera. </p>
 <p><img alt="dao" src="../../img/ud3/11dao.png" /></p>
 <p>Exponemos una API y todo lo demás <strong>queda encapsulado y abstraído en los DAOs</strong>, los cuales, generalmente, obtendremos con una factoría. Por lo común, cuando la fuente de datos es una base de datos relacional, una clase DAO contiene todas las operaciones centradas en una tabla, es decir, crearemos un DAO para cada cada entidad que lo requiera.</p>
-<h2 id="1-creacion-de-las-interfaces-dao">1. Creación de las interfaces DAO</h2>
-<p>Lo primero que haremos será crear las interfaces de las entidades que requieran acceso a la base de datos. Creamos interfaces para exponerlas en forma de API sus operaciones. Ya que la implementación de éstas estará en otras clases para encapsular las operaciones.</p>
+<h2 id="1-creacion-de-las-interfaces-dao">🪀 1. Creación de las interfaces DAO</h2>
+<p>Lo primero que haremos será <strong>crear las interfaces de las entidades que requieran acceso a la base de datos</strong>. Creamos interfaces para exponerlas en forma de API sus operaciones. Ya que la implementación de éstas estará en otras clases para encapsular las operaciones.</p>
 <p>Usaremos los ejemplos de clase <code>Person</code> y <code>Address</code> que tenían una relación muchos a muchos.</p>
 <div class="highlight"><span class="filename">PersonDAO</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">PersonDAO</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="linenos" data-linenos=" 2 "></span>
@@ -804,8 +804,11 @@
 <span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="p">);</span><span class="w"></span>
 <span class="linenos" data-linenos="12 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
 <p>En el DAO suelen ir las operaciones comunes usadas para la entidad. La nomenclatura suele ser nombre de la entidad seguido de la palabra <code>DAO</code>.</p>
-<h2 id="2-implementacion-de-las-interfaces-dao">2. Implementación de las interfaces DAO</h2>
+</div>
+<h2 id="2-implementacion-de-las-interfaces-dao">🪀 2. Implementación de las interfaces DAO</h2>
 <p>Cada interfaz DAO tendrá su implementación. Las clases que implementan las interfaces serán nombradas como entidad + DAO + Impl: <code>PersonDAOImpl</code>.</p>
 <div class="highlight"><span class="filename">PersonDAOImpl</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PersonDAOImpl</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">PersonDAO</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="linenos" data-linenos=" 2 "></span>
@@ -860,9 +863,9 @@
 <span class="linenos" data-linenos="51 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="linenos" data-linenos="52 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>Si hiciéramos lo mismo para la entidad <code>Address</code>, es decir, creáramos la interfaz <code>AddressDAO</code> y su implementación <code>AddressDAOImpl</code> nos daríamos cuenta de que las clases serían muy parecidas a <code>PersonDAO</code> y <code>PersonDAOImpl</code>, ya que contendría los mismos métodos con la única diferencia de que cambia la entidad.</p>
-<h2 id="3-creacion-de-un-dao-generico">3. Creación de un DAO genérico</h2>
-<p>Para mejorar la reusabilidad y legilibidad del código sería conveniente hacer uso de los genéricos que nos ofrece Java. Por tanto, deberíamos crear un DAO general que incluya las funcionalidades más genéricas de los DAO, <code>GenericDAO</code>.</p>
+<p>Si hiciéramos lo mismo para la entidad <code>Address</code>, es decir, creáramos la interfaz <code>AddressDAO</code> y su implementación <code>AddressDAOImpl</code> nos daríamos cuenta de que las clases serían muy parecidas a <code>PersonDAO</code> y <code>PersonDAOImpl</code>, ya que contendría los mismos métodos con la única diferencia de que cambia la entidad. Entonces estaríamos creando mucha cantidad de código redundante.</p>
+<h2 id="3-creacion-de-un-dao-generico">🪀 3. Creación de un DAO genérico</h2>
+<p><strong>Para mejorar la reusabilidad y legilibidad del código</strong> deberíamos hacer uso de los genéricos que nos ofrece Java. Por tanto, se ha de crear un DAO general que incluya las funcionalidades más genéricas de los DAO, <code>GenericDAO</code>.</p>
 <div class="highlight"><span class="filename">GenericDAO</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">GenericDAO</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="linenos" data-linenos=" 2 "></span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w"></span>
@@ -877,7 +880,7 @@
 <span class="linenos" data-linenos="12 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Todos los DAOs heredarán de <code>GenericDAO</code>, lo que quiere decir que todos los DAO contendrán esos métodos, cumplirán con esas funciones.</p>
-<h2 id="4-implementacion-del-dao-generico">4. Implementación del DAO genérico</h2>
+<h2 id="4-implementacion-del-dao-generico">🪀 4. Implementación del DAO genérico</h2>
 <div class="highlight"><span class="filename">GenericDAOImpl</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GenericDAOImpl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">GenericDAO</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="linenos" data-linenos=" 2 "></span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">entityClass</span><span class="p">;</span><span class="w"></span>
