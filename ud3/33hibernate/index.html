@@ -735,6 +735,53 @@
     Criteria - Sitio Web Oficial
   </a>
   
+    <nav class="md-nav" aria-label="Criteria - Sitio Web Oficial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grafo-criteria" class="md-nav__link">
+    🧮 Grafo Criteria
+  </a>
+  
+    <nav class="md-nav" aria-label="🧮 Grafo Criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-el-primer-paso-para-realizar-una-consulta-criteria-es-construir-el-grafo" class="md-nav__link">
+    1️⃣ El primer paso para realizar una consulta Criteria es construir el grafo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-el-siguiente-paso-es-obtener-un-jakartapersistencecriteriacriteriaquery" class="md-nav__link">
+    2️⃣ El siguiente paso es obtener un jakarta.persistence.criteria.CriteriaQuery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-seleccionar-una-entidad" class="md-nav__link">
+    3️⃣ Seleccionar una entidad.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-seleccion-de-una-expresion" class="md-nav__link">
+    4️⃣ Selección de una expresión
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -921,6 +968,53 @@
   <a href="#criteria-sitio-web-oficial" class="md-nav__link">
     Criteria - Sitio Web Oficial
   </a>
+  
+    <nav class="md-nav" aria-label="Criteria - Sitio Web Oficial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grafo-criteria" class="md-nav__link">
+    🧮 Grafo Criteria
+  </a>
+  
+    <nav class="md-nav" aria-label="🧮 Grafo Criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-el-primer-paso-para-realizar-una-consulta-criteria-es-construir-el-grafo" class="md-nav__link">
+    1️⃣ El primer paso para realizar una consulta Criteria es construir el grafo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-el-siguiente-paso-es-obtener-un-jakartapersistencecriteriacriteriaquery" class="md-nav__link">
+    2️⃣ El siguiente paso es obtener un jakarta.persistence.criteria.CriteriaQuery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-seleccionar-una-entidad" class="md-nav__link">
+    3️⃣ Seleccionar una entidad.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-seleccion-de-una-expresion" class="md-nav__link">
+    4️⃣ Selección de una expresión
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1217,7 +1311,32 @@ En ambos casos, se devuelve <code>null</code> si no se encuentra ninguna fila de
 </code></pre></div>
 <p>Hibernate cerrará automáticamente los recursos cuando finalice la transacción. Sin embargo, es mucho mejor cerrar el <code>ResultSet</code> lo antes posible. El programa siempre debe cerrar un Stream ya sea explícitamente, llamando a close() o usando un bloque try-with-resources.</p>
 <h2 id="criteria-sitio-web-oficial">Criteria - <a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#criteria">Sitio Web Oficial</a></h2>
-<p>Las consultas de Criteria ofrecen una alternativa de tipo seguro a las consultas HQL, JPQL y SQL nativas.</p>
+<p>Las consultas Criteria ofrecen una alternativa de tipo seguro a las consultas HQL, JPQL y SQL nativas. <strong>Son una forma programática y segura de escribir para expresar una consultas.</strong></p>
+<p>Las consultas Criteria son esencialmente un grafo de objetos, donde cada parte del grafo representa una parte cada vez más atómica (a medida que navegamos por este grafo) de la consulta. </p>
+<h3 id="grafo-criteria">🧮 Grafo Criteria</h3>
+<h4 id="1-el-primer-paso-para-realizar-una-consulta-criteria-es-construir-el-grafo">1️⃣ El primer paso para realizar una consulta Criteria es construir el grafo</h4>
+<p>La interfaz <code>jakarta.persistence.criteria.CriteriaBuilder</code> es una fábrica para todas las piezas individuales de criteria. Se obtiene una instancia de jakarta.persistence.criteria.CriteriaBuilder llamando al método <code>getCriteriaBuilder()</code> de <code>jakarta.persistence.EntityManagerFactory</code> o <code>jakarta.persistence.EntityManager</code>.</p>
+<h4 id="2-el-siguiente-paso-es-obtener-un-jakartapersistencecriteriacriteriaquery">2️⃣ El siguiente paso es obtener un <code>jakarta.persistence.criteria.CriteriaQuery</code></h4>
+<p>Esto se logra usando uno de los tres métodos en <code>CriteriaBuilder</code>:</p>
+<p>⌛ <T> CriteriaQuery<T> createQuery( Class<T> resultClass ) --&gt; Querys tipadas</p>
+<p>⌛ CriteriaQuery<Tuple> createTupleQuery()</p>
+<p>⌛ CriteriaQuery<Object> createQuery()</p>
+<p>Cada uno tiene un propósito diferente según el tipo esperado en los resultados de la consulta.</p>
+<p>El querys tipadas de Criteria (también conocida como CriteriaQuery<T>) indica los tipos esperados en el resultado de la consulta. Puede ser una entidad, un Integer o cualquier otro objeto.</p>
+<h4 id="3-seleccionar-una-entidad">3️⃣ Seleccionar una entidad.</h4>
+<p>Es la forma más común de consulta.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getCriteriaBuilder</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="4 "></span><span class="n">Root</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">criteria</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="5 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">select</span><span class="p">(</span><span class="n">root</span><span class="p">);</span><span class="c1">//esto no sería necesario ponerlo</span><span class="w"></span>
+<span class="linenos" data-linenos="6 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">equal</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">number</span><span class="p">),</span><span class="w"> </span><span class="n">number</span><span class="p">));</span><span class="w"></span>
+<span class="linenos" data-linenos="7 "></span>
+<span class="linenos" data-linenos="8 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">criteria</span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
+<p>La llamada al método CriteriaQuery#select en este ejemplo <strong>no es necesaria porque la raíz (root) será la selección implícita</strong> ya que solo tenemos una única raíz de consulta. Se ha añadido solo para completar el ejemplo.</p>
+<h4 id="4-seleccion-de-una-expresion">4️⃣ Selección de una expresión</h4>
+<p>La forma más simple de seleccionar una expresión es seleccionar un atributo particular de una entidad. Pero esta expresión también podría representar una agregación, una operación matemática, etc.</p>
 <h2 id="pom-proyecto">POM proyecto</h2>
 <div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span>
