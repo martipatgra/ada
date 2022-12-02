@@ -774,6 +774,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#5-seleccion-de-multiples-atributos" class="md-nav__link">
+    5️⃣ Selección de múltiples atributos
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1004,6 +1011,13 @@
           <li class="md-nav__item">
   <a href="#4-seleccion-de-una-expresion" class="md-nav__link">
     4️⃣ Selección de una expresión
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-seleccion-de-multiples-atributos" class="md-nav__link">
+    5️⃣ Selección de múltiples atributos
   </a>
   
 </li>
@@ -1348,6 +1362,53 @@ En ambos casos, se devuelve <code>null</code> si no se encuentra ninguna fila de
 </code></pre></div>
 <p>En el ejemplo, la consulta se escribe como <code>java.lang.String</code> porque ese es el tipo de los resultados (el tipo del atributo Address#street es java.lang.String). </p>
 <p>Debido a que una consulta puede contener varias referencias a la entidad Address, las referencias de atributos siempre deben calificarse. Esto se logra mediante la llamada al método Root#get.</p>
+<h4 id="5-seleccion-de-multiples-atributos">5️⃣ Selección de múltiples atributos</h4>
+<p>Hay formas diferentes de realizar una select de varios atributos usando Criteria. Los valores devueltos se pueden recoger como un Objet[], Tuple, o usando un wrapper.</p>
+<p><strong>EJEMPLO CON OBJECT[]</strong></p>
+<div class="highlight"><span class="filename">EjemploArrayObject</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getCriteriaBuilder</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">[]&gt;</span><span class="w"> </span><span class="n">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">Object</span><span class="o">[]</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">Root</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">criteria</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">Path</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">id</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">Path</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nickNamePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">street</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">multiselect</span><span class="p">(</span><span class="n">idPath</span><span class="p">,</span><span class="w"> </span><span class="n">nickNamePath</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">equal</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">number</span><span class="p">),</span><span class="w"> </span><span class="n">number</span><span class="p">));</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">[]&gt;</span><span class="w"> </span><span class="n">objects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">criteria</span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
+<p>Un mejor enfoque para seleccionar múltiples valores en la select <strong>es usar un <em>wrapper</em> o usar el <code>jakarta.persistence.Tuple</code></strong>.</p>
+<p><strong>EJEMPLO CON Tuple</strong></p>
+<div class="highlight"><span class="filename">EjemploTuple</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getCriteriaBuilder</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">Tuple</span><span class="o">&gt;</span><span class="w"> </span><span class="n">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">Tuple</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">Root</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">criteria</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">Path</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">id</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">Path</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nickNamePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">street</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">multiselect</span><span class="p">(</span><span class="n">idPath</span><span class="p">,</span><span class="w"> </span><span class="n">nickNamePath</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">equal</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">number</span><span class="p">),</span><span class="w"> </span><span class="n">number</span><span class="p">));</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Tuple</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tuples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">criteria</span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
+<p><strong>EJEMPLO CON Wrapper</strong></p>
+<p>Otra alternativa a la selección de valores múltiples es seleccionar un objeto que "envuelva" los valores múltiples. Volviendo a la consulta de ejemplo, en lugar de devolver un array de [id, street], declaramos una clase que contenga estos valores y la usamos como un contenedor o objeto de retorno.</p>
+<div class="highlight"><span class="filename">EjemploWrapper</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getCriteriaBuilder</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">AddressWrapper</span><span class="o">&gt;</span><span class="w"> </span><span class="n">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">AddressWrapper</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">Root</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">criteria</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">Path</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">id</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">Path</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nickNamePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">street</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">multiselect</span><span class="p">(</span><span class="n">idPath</span><span class="p">,</span><span class="w"> </span><span class="n">nickNamePath</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">equal</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">number</span><span class="p">),</span><span class="w"> </span><span class="n">number</span><span class="p">));</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">AddressWrapper</span><span class="o">&gt;</span><span class="w"> </span><span class="n">wrappers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">criteria</span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
+<p>Para cada fila del resultado, decimos que nos gustaría que el constructor correspondiente creara una instancia de <code>AddressWrapper</code> con los argumentos necesarios. Esta expresión contenedora se pasa en el select.</p>
 <h2 id="pom-proyecto">POM proyecto</h2>
 <div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span>
