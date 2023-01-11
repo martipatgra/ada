@@ -848,6 +848,54 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          4.- Acceso a datos en apps webs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="4.- Acceso a datos en apps webs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          4.- Acceso a datos en apps webs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/41introduccionspring/" class="md-nav__link">
+        4.1.- Introducción a Spring Framework
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../about/" class="md-nav__link">
         About
@@ -1338,7 +1386,7 @@ En ambos casos, se devuelve <code>null</code> si no se encuentra ninguna fila de
 <p>Cada uno tiene un propósito diferente según el tipo esperado en los resultados de la consulta.</p>
 <p>El querys tipadas de Criteria (también conocida como CriteriaQuery<T>) indica los tipos esperados en el resultado de la consulta. Puede ser una entidad, un Integer o cualquier otro objeto.</p>
 <h4 id="3-seleccionar-una-entidad">3️⃣ Seleccionar una entidad.</h4>
-<p>Es la forma más común de consulta.</p>
+<p>La forma más común de consulta es utilizando Roots - Los objetos Root definen la base a partir de la cual todas las join, paths y atributos están disponibles en la consulta. <strong>Root es siempre un tipo de entidad</strong>.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getCriteriaBuilder</span><span class="p">();</span><span class="w"></span>
 <span class="linenos" data-linenos="2 "></span>
 <span class="linenos" data-linenos="3 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"></span>
