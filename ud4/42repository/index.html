@@ -13,7 +13,7 @@
     
     
       
-        <title>4.2.- Repository - Acceso a Datos</title>
+        <title>4.2.- Spring data JPA - Acceso a Datos</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#trabajando-con-repositorios-de-spring-data-jpa" class="md-skip">
+        <a href="#trabajando-con-spring-data-jpa" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              4.2.- Repository
+              4.2.- Spring data JPA
             
           </span>
         </div>
@@ -708,12 +708,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          4.2.- Repository
+          4.2.- Spring data JPA
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        4.2.- Repository
+        4.2.- Spring data JPA
       </a>
       
         
@@ -733,7 +733,7 @@
       
         <li class="md-nav__item">
   <a href="#definir-interfaces-de-repositorio" class="md-nav__link">
-    🪔 Definir interfaces de repositorio
+    ♨️ Definir interfaces de repositorio
   </a>
   
 </li>
@@ -796,7 +796,7 @@
       
         <li class="md-nav__item">
   <a href="#definir-interfaces-de-repositorio" class="md-nav__link">
-    🪔 Definir interfaces de repositorio
+    ♨️ Definir interfaces de repositorio
   </a>
   
 </li>
@@ -816,22 +816,22 @@
                   
 
 
-<h1 id="trabajando-con-repositorios-de-spring-data-jpa">🪔 Trabajando con repositorios de Spring Data JPA</h1>
+<h1 id="trabajando-con-spring-data-jpa">♨️ Trabajando con Spring Data JPA</h1>
 <p>Gracias a <strong><a href="https://spring.io/projects/spring-data-jpa#overview">Spring Data JPA</a></strong>, que facilita el uso de tecnologías de acceso a datos, bases de datos relacionales y no relacionales, servicios de datos basados en la nube, etc., podemos trabajar con <strong>Spring Data JPA repositories</strong>. El objetivo del repositorio de Spring Data es reducir significativamente la cantidad de código repetitivo necesario para implementar capas de acceso a datos de persistencia.</p>
 <p><strong>La interfaz central en la abstracción del repositorio de Spring Data es <code>Repository</code></strong>. Esta interfaz actúa principalmente como una interfaz de marcador para capturar los tipos con los que trabajar y para ayudarlo a descubrir interfaces que amplían esta. </p>
 <p>Las interfaces <code>CrudRepository</code> y <code>ListCrudRepository</code> brindan una funcionalidad <strong>CRUD</strong> sofisticada para la clase de entidad que se administra.</p>
 <p><img alt="spring" src="../../img/ud4/2spring.png" /></p>
 <p>Además de <code>CrudRepository</code>, hay una abstracción <code>PagingAndSortingRepository</code> que agrega métodos adicionales para facilitar el acceso paginado a las entidades:</p>
 <p><img alt="spring" src="../../img/ud4/3spring.png" /></p>
-<h3 id="definir-interfaces-de-repositorio">🪔 Definir interfaces de repositorio</h3>
+<h3 id="definir-interfaces-de-repositorio">♨️ Definir interfaces de repositorio</h3>
 <p>Para definir una interfaz de repositorio, primero se debe crear una clase de <em>dominio o entidad</em>. La interfaz debe extender el <code>Repository</code> y el tipo debe ser la clase de dominio y el tipo de ID.</p>
 <p>Si desea exponer métodos CRUD para ese tipo de dominio, se puede extender de <code>CrudRepository</code> o una de sus variantes en lugar de <code>Repository</code>.</p>
 <div class="highlight"><span class="filename">TodoRepository.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">TodoRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Todo</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="linenos" data-linenos="2 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<h1 id="anadir-entidades">🪔 Añadir entidades</h1>
+<h1 id="anadir-entidades">♨️ Añadir entidades</h1>
 <p>Creamos un nuevo paquete llamado <code>entities</code>. Gracias al plugin que hemos instalado basta con hacer botón derecho sobre el paquete, <em><strong>New --&gt; JPA Entity</strong></em>, y nos creará una entidad.</p>
-<h2 id="metodos-de-consulta">🪔 Métodos de consulta</h2>
+<h2 id="metodos-de-consulta">♨️ Métodos de consulta</h2>
 <p>Los repositorios con funcionalidad CRUD estándar suelen tener consultas en el almacén de datos subyacente. Con Spring Data, declarar esas consultas se convierte en un proceso de cuatro pasos:</p>
 <ol>
 <li>
