@@ -13,7 +13,7 @@
     
     
       
-        <title>3.5.- Service Layer - Acceso a Datos</title>
+        <title>4.3.- Spring Rest Service - Acceso a Datos</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#capa-de-servicios" class="md-skip">
+        <a href="#api-rest" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3.5.- Service Layer
+              4.3.- Spring Rest Service
             
           </span>
         </div>
@@ -550,14 +550,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       
       
@@ -580,7 +578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../31mapeo/" class="md-nav__link">
+      <a href="../../ud3/31mapeo/" class="md-nav__link">
         3.1.- Herramientas ORM
       </a>
     </li>
@@ -594,7 +592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../32jpa/" class="md-nav__link">
+      <a href="../../ud3/32jpa/" class="md-nav__link">
         3.2.- Jakarta - JPA
       </a>
     </li>
@@ -608,7 +606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../33hibernate/" class="md-nav__link">
+      <a href="../../ud3/33hibernate/" class="md-nav__link">
         3.3.- Hibernate
       </a>
     </li>
@@ -622,7 +620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../34dao/" class="md-nav__link">
+      <a href="../../ud3/34dao/" class="md-nav__link">
         3.4.- Patrón DAO
       </a>
     </li>
@@ -634,52 +632,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          3.5.- Service Layer
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ud3/35service/" class="md-nav__link">
         3.5.- Service Layer
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#testeo-de-la-aplicacion" class="md-nav__link">
-    🔮 Testeo de la aplicación
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -697,12 +654,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
       
       
       
@@ -725,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud4/41introduccionspring/" class="md-nav__link">
+      <a href="../41introduccionspring/" class="md-nav__link">
         4.1.- Introducción a Spring Framework
       </a>
     </li>
@@ -739,7 +698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud4/42repository/" class="md-nav__link">
+      <a href="../42repository/" class="md-nav__link">
         4.2.- Spring Data JPA
       </a>
     </li>
@@ -751,11 +710,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../ud4/43rest/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         4.3.- Spring Rest Service
       </a>
+      
     </li>
   
 
@@ -802,21 +771,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#testeo-de-la-aplicacion" class="md-nav__link">
-    🔮 Testeo de la aplicación
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -830,43 +784,7 @@
                   
 
 
-<h1 id="capa-de-servicios">🔮 Capa de servicios</h1>
-<p>Es conveniente separar la lógica del código de la aplicación con las operaciones que acceden a la base de datos. Para ello, se puede crear una capa intermedia llamada <strong>service</strong>.</p>
-<p>En nuestro proyecto deberemos crear un paquete llamado <code>service</code> que contendrá las clases necesarias para interactuar con los objetos DAO.</p>
-<p>Dentro del paquete service, creamos la clase <code>PersonalDataService</code> con atributos de tipo DAO y métodos para realizar diferentes operaciones necesarias en la apliación que además añadirán lógica de negocio.</p>
-<div class="highlight"><span class="filename">PersonalDataService.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PersonalDataService</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">PersonDAO</span><span class="w"> </span><span class="n">personDAO</span><span class="p">;</span><span class="w"></span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">GenericDAO</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="n">personGenericDAO</span><span class="p">;</span><span class="w"></span>
-<span class="linenos" data-linenos=" 5 "></span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">PersonalDataService</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">personDAO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PersonDAOImpl</span><span class="p">();</span><span class="w"></span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">personGenericDAO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PersonDAOImpl</span><span class="p">();</span><span class="w"></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getPersonById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">personGenericDAO</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w"></span>
-<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos" data-linenos="14 "></span>
-<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">createPerson</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">addresses</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">addresses</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">:</span><span class="w"> </span><span class="n">addresses</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos="18 "></span><span class="w">                </span><span class="n">person</span><span class="p">.</span><span class="na">getAddresses</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">address</span><span class="p">);</span><span class="w"></span>
-<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="n">personDAO</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">person</span><span class="p">);</span><span class="c1">//se podría usar el atributo personGenericDAO</span><span class="w"></span>
-<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos" data-linenos="23 "></span><span class="p">}</span><span class="w"></span>
-</code></pre></div>
-<h2 id="testeo-de-la-aplicacion">🔮 Testeo de la aplicación</h2>
-<p>Para probar el código simplemente tendremos que crear un objeto de la clase service y ejecutar los métodos convenientes:</p>
-<div class="highlight"><span class="filename">Test.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">PersonalDataService</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PersonalDataService</span><span class="p">();</span><span class="w"></span>
-<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="na">createPerson</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&quot;Patricia&quot;</span><span class="p">),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
-<span class="linenos" data-linenos="4 "></span><span class="w">              </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Address</span><span class="p">(</span><span class="s">&quot;Elche&quot;</span><span class="p">,</span><span class="s">&quot;19AB&quot;</span><span class="p">))));</span><span class="w"></span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">getPersonById</span><span class="p">(</span><span class="mi">9L</span><span class="p">));</span><span class="w"></span>
-<span class="linenos" data-linenos="6 "></span><span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<h1 id="api-rest">♨️ API Rest</h1>
 
 
   
@@ -894,7 +812,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Pie" >
       
         
-        <a href="../34dao/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 3.4.- Patrón DAO" rel="prev">
+        <a href="../42repository/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 4.2.- Spring Data JPA" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -903,20 +821,20 @@
               <span class="md-footer__direction">
                 Anterior
               </span>
-              3.4.- Patrón DAO
+              4.2.- Spring Data JPA
             </div>
           </div>
         </a>
       
       
         
-        <a href="../../ud4/41introduccionspring/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 4.1.- Introducción a Spring Framework" rel="next">
+        <a href="../../about/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: About" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Siguiente
               </span>
-              4.1.- Introducción a Spring Framework
+              About
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -13,7 +13,7 @@
     
     
       
-        <title>4.2.- Spring data JPA - Acceso a Datos</title>
+        <title>4.2.- Spring Data JPA - Acceso a Datos</title>
       
     
     
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              4.2.- Spring data JPA
+              4.2.- Spring Data JPA
             
           </span>
         </div>
@@ -708,12 +708,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          4.2.- Spring data JPA
+          4.2.- Spring Data JPA
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        4.2.- Spring data JPA
+        4.2.- Spring Data JPA
       </a>
       
         
@@ -733,7 +733,21 @@
       
         <li class="md-nav__item">
   <a href="#definir-interfaces-de-repositorio" class="md-nav__link">
-    ♨️ Definir interfaces de repositorio
+    💮 Definir interfaces de repositorio
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anadir-entidades-en-intellij" class="md-nav__link">
+    💮 Añadir entidades en IntelliJ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metodos-de-consulta" class="md-nav__link">
+    💮 Métodos de consulta
   </a>
   
 </li>
@@ -742,6 +756,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../43rest/" class="md-nav__link">
+        4.3.- Spring Rest Service
+      </a>
     </li>
   
 
@@ -796,7 +824,21 @@
       
         <li class="md-nav__item">
   <a href="#definir-interfaces-de-repositorio" class="md-nav__link">
-    ♨️ Definir interfaces de repositorio
+    💮 Definir interfaces de repositorio
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anadir-entidades-en-intellij" class="md-nav__link">
+    💮 Añadir entidades en IntelliJ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metodos-de-consulta" class="md-nav__link">
+    💮 Métodos de consulta
   </a>
   
 </li>
@@ -823,15 +865,42 @@
 <p><img alt="spring" src="../../img/ud4/2spring.png" /></p>
 <p>Además de <code>CrudRepository</code>, hay una abstracción <code>PagingAndSortingRepository</code> que agrega métodos adicionales para facilitar el acceso paginado a las entidades:</p>
 <p><img alt="spring" src="../../img/ud4/3spring.png" /></p>
-<h3 id="definir-interfaces-de-repositorio">♨️ Definir interfaces de repositorio</h3>
+<h2 id="definir-interfaces-de-repositorio">💮 Definir interfaces de repositorio</h2>
 <p>Para definir una interfaz de repositorio, primero se debe crear una clase de <em>dominio o entidad</em>. La interfaz debe extender el <code>Repository</code> y el tipo debe ser la clase de dominio y el tipo de ID.</p>
-<p>Si desea exponer métodos CRUD para ese tipo de dominio, se puede extender de <code>CrudRepository</code> o una de sus variantes en lugar de <code>Repository</code>.</p>
+<p>Si desea exponer métodos CRUD para ese tipo de dominio, se puede extender de <code>CrudRepository</code> o una de sus variantes en lugar de <code>Repository</code>. <code>JpaRepository</code> es una especialización de <code>ListCrudRepository</code>.</p>
 <div class="highlight"><span class="filename">TodoRepository.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">TodoRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Todo</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos="2 "></span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="c1">//con esto heredamos todos los métodos definidos en JpaRepository y las clases que se extienden en ella</span><span class="w"></span>
+<span class="linenos" data-linenos="3 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<h1 id="anadir-entidades">♨️ Añadir entidades</h1>
-<p>Creamos un nuevo paquete llamado <code>entities</code>. Gracias al plugin que hemos instalado basta con hacer botón derecho sobre el paquete, <em><strong>New --&gt; JPA Entity</strong></em>, y nos creará una entidad.</p>
-<h2 id="metodos-de-consulta">♨️ Métodos de consulta</h2>
+<h2 id="anadir-entidades-en-intellij">💮 Añadir entidades en IntelliJ</h2>
+<p>Dentro del paquete <code>entities</code> de proyecto, gracias al plugin que hemos instalado basta con hacer botón derecho sobre el paquete, <em><strong>New --&gt; JPA Entity</strong></em>, y nos creará una entidad.</p>
+<p>Para crear los campos de la entidad basta con hacer uso de la paleta de JPA. Para crear el atributo <code>id</code> de clave primaria hacemos doble click y rellenamos los campos.</p>
+<p><img alt="spring" src="../../img/ud4/7spring.png" /></p>
+<p>Al utilizar <strong>Lombok</strong> nos podemos evitar escribir mucho código boilerplate, ya que el plugin lo hace por nosotros. Para ellos, hacemos click en la palabra <code>Todo</code> de la clase java, se mostrarán una serie de parámetros en la paleta JPA Inspector, hacemos check en las casillas de <em>Getter</em>, <em>Setter</em> y <em>NoArgsConstructor</em>.</p>
+<p><img alt="spring" src="../../img/ud4/8spring.png" /></p>
+<p>Esto añade en la clase de la entidad las siguientes anotaciones: <strong>@Getter, @Setter y @NoArgsConstructor</strong>. </p>
+<p>Lo que implica que genera por nosotros los getters y setters de todos los campos como públicos y el constructor por defecto.</p>
+<div class="highlight"><span class="filename">Todo.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@NoArgsConstructor</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nd">@Getter</span><span class="w"></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nd">@Setter</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="nd">@Entity</span><span class="w"></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;todo&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Todo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="nd">@Id</span><span class="w"></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;title&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">title</span><span class="p">;</span><span class="w"></span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;completed&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Boolean</span><span class="w"> </span><span class="n">completed</span><span class="p">;</span><span class="w"></span>
+<span class="linenos" data-linenos="18 "></span>
+<span class="linenos" data-linenos="19 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="metodos-de-consulta">💮 Métodos de consulta</h2>
 <p>Los repositorios con funcionalidad CRUD estándar suelen tener consultas en el almacén de datos subyacente. Con Spring Data, declarar esas consultas se convierte en un proceso de cuatro pasos:</p>
 <ol>
 <li>
@@ -891,13 +960,13 @@
       
       
         
-        <a href="../../about/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: About" rel="next">
+        <a href="../43rest/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 4.3.- Spring Rest Service" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Siguiente
               </span>
-              About
+              4.3.- Spring Rest Service
             </div>
           </div>
           <div class="md-footer__button md-icon">
