@@ -721,9 +721,47 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          4.3.- Spring Rest Service
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         4.3.- Spring Rest Service
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rest-controller" class="md-nav__link">
+    Rest Controller
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-crear-un-controlador-rest-en-spring" class="md-nav__link">
+    Cómo crear un controlador rest en Spring
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -771,6 +809,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rest-controller" class="md-nav__link">
+    Rest Controller
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-crear-un-controlador-rest-en-spring" class="md-nav__link">
+    Cómo crear un controlador rest en Spring
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -785,8 +845,22 @@
 
 
 <h1 id="api-rest">🔆 API Rest</h1>
+<p>Los desarrolladores de API pueden diseñar API por medio de varias arquitecturas diferentes. Las API que siguen el estilo arquitectónico de REST se llaman API REST. Los servicios web que implementan una arquitectura de REST son llamados servicios web RESTful. El término API RESTful suele referirse a las API web RESTful.</p>
+<p><strong>La API RESTful es una interfaz que dos sistemas de computación utilizan para intercambiar información de manera segura a través de Internet.</strong></p>
+<h2 id="rest-controller">Rest Controller</h2>
 <p>Un <em>controller</em> es un componente de Spring capaz de recibir peticiones http y responderlas.</p>
 <p>Las clases que definimos como un controller es responsable de procesar las llamadas entrantes (request) que ingresan a nuestra aplicacion, validarlas y dar una respuesta (response).</p>
+<p>Un <strong>rest controller</strong> es un tipo de controller que reciben peticiones con un formato de específico que cumple con formatos de solicitud RESTful habitualmente y mayormente en <strong>JSON</strong>, aunque a veces se usan otros como HTML, XML, o simplemente texto.</p>
+<h2 id="como-crear-un-controlador-rest-en-spring">Cómo crear un controlador rest en Spring</h2>
+<p>El primer paso para crear un ‘controlador rest’ es anotar la clase que con <code>@RestController</code>.</p>
+<p>Con esto Spring ya sabe que esa clase será un componente encargado de recibir llamadas.</p>
+<p>En la clase también podemos definir la ruta raíz por la cuál partirán las llamadas externas con la anotación @RequestMapping.</p>
+<div class="highlight"><span class="filename">TodoController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@RestController</span><span class="w"></span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/todos&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="3 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TodoController</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 
   
