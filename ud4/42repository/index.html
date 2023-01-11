@@ -13,7 +13,7 @@
     
     
       
-        <title>4.1.- Introducción a Spring Framework - Acceso a Datos</title>
+        <title>4.2.- Repository - Acceso a Datos</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#introduccion-a-spring-framework-web-oficial" class="md-skip">
+        <a href="#trabajando-con-repositorios-de-spring-data-jpa" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              4.1.- Introducción a Spring Framework
+              4.2.- Repository
             
           </span>
         </div>
@@ -682,6 +682,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../41introduccionspring/" class="md-nav__link">
+        4.1.- Introducción a Spring Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -694,12 +708,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          4.1.- Introducción a Spring Framework
+          4.2.- Repository
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        4.1.- Introducción a Spring Framework
+        4.2.- Repository
       </a>
       
         
@@ -718,124 +732,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requisitos-para-crear-un-proyecto-con-spring" class="md-nav__link">
-    🪔 Requisitos para crear un proyecto con Spring
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#beans" class="md-nav__link">
-    🪔 Beans
-  </a>
-  
-    <nav class="md-nav" aria-label="🪔 Beans">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dependency-injection-di" class="md-nav__link">
-    🪃 Dependency Injection (DI)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ejemplo-de-di" class="md-nav__link">
-    Ejemplo de DI
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#inversion-of-control-ioc" class="md-nav__link">
-    🪃 Inversion of Control (IoC)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#definir-un-bean" class="md-nav__link">
-    🪃 Definir un Bean
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#que-es-un-componente-component-en-spring" class="md-nav__link">
-    🪔 ¿Qué es un componente @Component en Spring?
-  </a>
-  
-    <nav class="md-nav" aria-label="🪔 ¿Qué es un componente @Component en Spring?">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#spring-stereotypes" class="md-nav__link">
-    🪃 Spring Stereotypes
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#como-crear-un-proyecto-con-spring-en-intellij" class="md-nav__link">
-    🪔 Cómo crear un proyecto con Spring en IntelliJ
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#autoconfiguracion-del-proyecto" class="md-nav__link">
-    🪔 Autoconfiguración del proyecto
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#estructura-del-proyecto" class="md-nav__link">
-    🪔 Estructura del proyecto
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anadir-entidades" class="md-nav__link">
-    🪔 Añadir entidades
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trabajando-con-repositorios-de-spring-data" class="md-nav__link">
-    🪔 Trabajando con repositorios de Spring Data
-  </a>
-  
-    <nav class="md-nav" aria-label="🪔 Trabajando con repositorios de Spring Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#definir-interfaces-de-repositorio" class="md-nav__link">
     🪔 Definir interfaces de repositorio
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metodos-de-consulta" class="md-nav__link">
-    🪔 Métodos de consulta
   </a>
   
 </li>
@@ -844,20 +742,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../42repository/" class="md-nav__link">
-        4.2.- Repository
-      </a>
     </li>
   
 
@@ -911,124 +795,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requisitos-para-crear-un-proyecto-con-spring" class="md-nav__link">
-    🪔 Requisitos para crear un proyecto con Spring
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#beans" class="md-nav__link">
-    🪔 Beans
-  </a>
-  
-    <nav class="md-nav" aria-label="🪔 Beans">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dependency-injection-di" class="md-nav__link">
-    🪃 Dependency Injection (DI)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ejemplo-de-di" class="md-nav__link">
-    Ejemplo de DI
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#inversion-of-control-ioc" class="md-nav__link">
-    🪃 Inversion of Control (IoC)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#definir-un-bean" class="md-nav__link">
-    🪃 Definir un Bean
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#que-es-un-componente-component-en-spring" class="md-nav__link">
-    🪔 ¿Qué es un componente @Component en Spring?
-  </a>
-  
-    <nav class="md-nav" aria-label="🪔 ¿Qué es un componente @Component en Spring?">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#spring-stereotypes" class="md-nav__link">
-    🪃 Spring Stereotypes
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#como-crear-un-proyecto-con-spring-en-intellij" class="md-nav__link">
-    🪔 Cómo crear un proyecto con Spring en IntelliJ
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#autoconfiguracion-del-proyecto" class="md-nav__link">
-    🪔 Autoconfiguración del proyecto
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#estructura-del-proyecto" class="md-nav__link">
-    🪔 Estructura del proyecto
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anadir-entidades" class="md-nav__link">
-    🪔 Añadir entidades
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trabajando-con-repositorios-de-spring-data" class="md-nav__link">
-    🪔 Trabajando con repositorios de Spring Data
-  </a>
-  
-    <nav class="md-nav" aria-label="🪔 Trabajando con repositorios de Spring Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#definir-interfaces-de-repositorio" class="md-nav__link">
     🪔 Definir interfaces de repositorio
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metodos-de-consulta" class="md-nav__link">
-    🪔 Métodos de consulta
   </a>
   
 </li>
@@ -1048,98 +816,7 @@
                   
 
 
-<h1 id="introduccion-a-spring-framework-web-oficial">🖲️ Introducción a Spring Framework - <a href="https://spring.io/">Web oficial</a></h1>
-<p><em>Debido al aumento de la complejidad que presentan la mayoría de los sistemas web</em>, tanto en temas de seguridad, funcionalidad y gráficas, la comunidad de desarrolladores se vio en la necesidad de diseñar ciertas ayudas, a fin de no tener que repetir código, reduciendo de este modo el tiempo y el espacio para el desarrollo de aplicaciones.</p>
-<p>Lanzado por primera vez, como una plataforma de código abierto Java, en el mes de Junio del año 2003 bajo la licencia Apache 2.0, se convirtió desde entonces en <ins class="critic">el framework más popular para Java empresarial</ins>, para crear código de alto rendimiento, liviano y reutilizable. </p>
-<p><strong>Su finalidad es estandarizar, agilizar, manejar y resolver los problemas que puedan ir surgiendo en el trayecto de la programación.</strong></p>
-<p>Spring se puede considerar como el padre del los frameworks Java, ya que da soporte a varios frameworks como: <strong>Hibernate, Struts, Tapestry, EJB, JSF</strong> entre otros.</p>
-<p>La versión actual de Spring Framework es la 6.x.x y puedes obtener la documentación desde su <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/">web oficial</a>.</p>
-<h2 id="requisitos-para-crear-un-proyecto-con-spring">🪔 Requisitos para crear un proyecto con Spring</h2>
-<p>Para crear un proyecto con Spring debemos realizar una serie de pasos:</p>
-<ol>
-<li>Elegir el tipo de proyecto, es decir, elegir <strong>la herramienta de construcción del proyecto</strong>: Maven o Gradle y la versión de Java.</li>
-<li>Seleccionar las <strong>dependencias</strong> que necesitamos y su versión.</li>
-<li>Construir la <strong>estructura de directorios</strong> de nuestro proyecto, donde estará el código fuente, los ficheros properties, plantillas, etc.</li>
-<li>Uso y configuración de <strong>beans</strong>.</li>
-</ol>
-<h2 id="beans">🪔 Beans</h2>
-<p>Para entender el concepto de bean en Spring necesitamos entender antes una serie algunos conceptos y cómo administra Spring los objetos beans.</p>
-<h3 id="dependency-injection-di">🪃 Dependency Injection (DI)</h3>
-<p>La <strong>inyección de dependencias</strong> es un patrón de diseño que tiene como objetivo tomar la responsabilidad de crear las instancias de las clases que otro objeto necesita y suministrárselo para que esta clase los pueda utilizar.</p>
-<p><ins class="critic">Habitualmente nuestras clases dependen de otras para funcionar.</ins></p>
-<h3 id="ejemplo-de-di">Ejemplo de DI</h3>
-<p><em>Por ejemplo, <strong>una clase que necesita buscar un registro en la base de datos necesitará de otra que se encargue de buscarlo</strong>.</em></p>
-<p>Pensemos en estas dos clases. Llamemos a la primera <code>PersonalDataService</code> que es la encargada de tomar decisiones sobre el negocio y a la segunda <code>PersonaDAO</code>, la cual se encargará de acceder a la base de datos. </p>
-<p>La clase <code>PersonalDataService</code> depende de la clase <code>PersonaDAO</code> para lograr el acceso a los datos en la base de datos, es decir, en la clase <code>PersonalDataService</code> sería la responsable de crear una instancia de la clase <code>PersonaDAO</code>.</p>
-<blockquote>
-<p>En la inyección de dependencias ‘alguien’ externo se encarga de las dependencias que las clases necesitan.</p>
-</blockquote>
-<h3 id="inversion-of-control-ioc">🪃 Inversion of Control (IoC)</h3>
-<p>Spring también maneja el concepto de inversión de control ocupándose de mantener en su ‘contexto’ (application context) todas las instancias de nuestra aplicación y de inyectarle esa instancia a quien la necesite.</p>
-<p><strong>Spring llama a estas instancias beans.</strong></p>
-<p><img alt="spring" src="../../img/ud4/4spring.png" /></p>
-<p>Los beans son las instancias de las clases que están disponibles para ser reutilizados y son gestionados dentro del contenedor de Spring (<strong>Spring container</strong>). Spring sabe qué dependencias existen entre las instancias y se encarga de satisfacerlas.</p>
-<div class="admonition note nota">
-<p class="admonition-title">Note</p>
-<p>IoC es el trabajo que realiza Spring buscando estas dependencias entre los objetos y realizando el ‘set’ de estos beans en quien los requiera. Busca en su contenedor de beans la instancia adecuada y se la agrega al objeto <strong>cumpliendo así con la inyección de dependencias</strong>.</p>
-</div>
-<h3 id="definir-un-bean">🪃 Definir un Bean</h3>
-<p>Para definir un nuevo bean en Spring tenemos dos opciones:</p>
-<ul>
-<li>Podemos definir explícitamente un nuevo bean mediante la anotación <code>@Bean</code>.</li>
-<li>Podemos marcar una clase Java como un bean, y permitir a Spring que lo descubra, esto se hace mediante el <strong>escaneo de componentes</strong>.</li>
-</ul>
-<p>Estas son dos técnicas diferentes para añadir beans a nuestro contexto.</p>
-<h2 id="que-es-un-componente-component-en-spring">🪔 ¿Qué es un componente <code>@Component</code> en Spring?</h2>
-<p>Spring define un conjunto de anotaciones core que categorizan cada uno de los componentes asociandoles una responsabilidad concreta, es lo que llamamos Spring stereotypes.</p>
-<p>Una clase con la anotación <code>@Component</code> es un candidato a ser escaneado mediante el proceso de negociación, e instanciado como un bean y añadido al contexto.</p>
-<p>Cuando indicamos que una clase es un <code>@Component</code>, lo que hacemos es decirle a Spring que queremos que cree una instancia y la gestione.</p>
-<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@Component</span><span class="w"></span>
-<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doSomething</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="c1">//.. </span><span class="w"></span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos" data-linenos="6 "></span><span class="p">}</span><span class="w"></span>
-</code></pre></div>
-Al momento de inicializar la aplicación, Spring hará lo siguiente:</p>
-<ul>
-<li>Buscará dentro de la aplicación las clases anotadas con<code>@Component</code></li>
-<li>Creará una instancia de los componentes</li>
-<li>Dejará el componente en su contexto</li>
-<li>Buscará quién necesita esos componentes y los <strong>inyectará</strong> en quién los necesite.</li>
-</ul>
-<h3 id="spring-stereotypes">🪃 Spring Stereotypes</h3>
-<p>Los estereotipos (Stereotypes) son componentes que extienden de <code>@Component</code>.</p>
-<p>En estos momentos existen únicamente 4:</p>
-<ol>
-<li>
-<p><strong>@Component</strong>: estereotipo general.</p>
-</li>
-<li>
-<p><strong>@Repository</strong>: será parte de la ‘capa’ de persistencia cuya función será el acceso a los datos.</p>
-</li>
-<li>
-<p><strong>@Service</strong>: será parte de la ‘capa’ de servicios encargado de gestionar las operaciones de negocio más importantes a nivel de la aplicación y aglutina llamadas a varios repositorios de forma simultánea.</p>
-</li>
-<li>
-<p><strong>@Controller</strong>: realiza las tareas de controlador y gestión de la comunicación entre el usuario y el aplicativo. Existe <code>@RestController</code> que es una especialización de controller.</p>
-</li>
-</ol>
-<p><img alt="spring" src="../../img/ud4/5spring.png" /></p>
-<h2 id="como-crear-un-proyecto-con-spring-en-intellij">🪔 Cómo crear un proyecto con Spring en IntelliJ</h2>
-<p>Podemos ayudarnos de la herramienta <a href="https://start.spring.io/">spring initializr</a> para crear el proyecto.
-Seleccionamos la siguiente configuración:</p>
-<p><img alt="spring" src="../../img/ud4/1springinit.png" /></p>
-<p>La exportamos y extraemos para abrir como un proyecto nuevo en IntelliJ.</p>
-<p>Instalamos el plugin en IntelliJ llamado <strong>JPA Buddy</strong> que será una ayuda para desarrollar algunas funcionalidades.</p>
-<h2 id="autoconfiguracion-del-proyecto">🪔 Autoconfiguración del proyecto</h2>
-<p>La anotación <code>@SpringBootApplication</code> habilita el mecanismo de configuración automática de la aplicación en función de las dependencias jar que encuentre en el classpath y se encarga del escaneo de componentes.</p>
-<h2 id="estructura-del-proyecto">🪔 Estructura del proyecto</h2>
-<p>La estructura de un proyecto en Spring debe contener los siguientes paquetes entre otros:</p>
-<p><img alt="spring" src="../../img/ud4/6spring.png" /></p>
-<h2 id="anadir-entidades">🪔 Añadir entidades</h2>
-<p>Creamos un nuevo paquete llamado <code>entities</code>. Gracias al plugin que hemos instalado basta con hacer botón derecho sobre el paquete, <em><strong>New --&gt; JPA Entity</strong></em>, y nos creará una entidad.</p>
-<h2 id="trabajando-con-repositorios-de-spring-data">🪔 Trabajando con repositorios de Spring Data</h2>
+<h1 id="trabajando-con-repositorios-de-spring-data-jpa">🪔 Trabajando con repositorios de Spring Data JPA</h1>
 <p>Gracias a <strong><a href="https://spring.io/projects/spring-data-jpa#overview">Spring Data JPA</a></strong>, que facilita el uso de tecnologías de acceso a datos, bases de datos relacionales y no relacionales, servicios de datos basados en la nube, etc., podemos trabajar con <strong>Spring Data JPA repositories</strong>. El objetivo del repositorio de Spring Data es reducir significativamente la cantidad de código repetitivo necesario para implementar capas de acceso a datos de persistencia.</p>
 <p><strong>La interfaz central en la abstracción del repositorio de Spring Data es <code>Repository</code></strong>. Esta interfaz actúa principalmente como una interfaz de marcador para capturar los tipos con los que trabajar y para ayudarlo a descubrir interfaces que amplían esta. </p>
 <p>Las interfaces <code>CrudRepository</code> y <code>ListCrudRepository</code> brindan una funcionalidad <strong>CRUD</strong> sofisticada para la clase de entidad que se administra.</p>
@@ -1152,6 +829,8 @@ Seleccionamos la siguiente configuración:</p>
 <div class="highlight"><span class="filename">TodoRepository.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">TodoRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Todo</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="linenos" data-linenos="2 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
+<h1 id="anadir-entidades">🪔 Añadir entidades</h1>
+<p>Creamos un nuevo paquete llamado <code>entities</code>. Gracias al plugin que hemos instalado basta con hacer botón derecho sobre el paquete, <em><strong>New --&gt; JPA Entity</strong></em>, y nos creará una entidad.</p>
 <h2 id="metodos-de-consulta">🪔 Métodos de consulta</h2>
 <p>Los repositorios con funcionalidad CRUD estándar suelen tener consultas en el almacén de datos subyacente. Con Spring Data, declarar esas consultas se convierte en un proceso de cuatro pasos:</p>
 <ol>
@@ -1196,7 +875,7 @@ Seleccionamos la siguiente configuración:</p>
     <nav class="md-footer__inner md-grid" aria-label="Pie" >
       
         
-        <a href="../../ud3/35service/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 3.5.- Service Layer" rel="prev">
+        <a href="../41introduccionspring/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: 4.1.- Introducción a Spring Framework" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1205,20 +884,20 @@ Seleccionamos la siguiente configuración:</p>
               <span class="md-footer__direction">
                 Anterior
               </span>
-              3.5.- Service Layer
+              4.1.- Introducción a Spring Framework
             </div>
           </div>
         </a>
       
       
         
-        <a href="../42repository/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: 4.2.- Repository" rel="next">
+        <a href="../../about/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: About" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Siguiente
               </span>
-              4.2.- Repository
+              About
             </div>
           </div>
           <div class="md-footer__button md-icon">
