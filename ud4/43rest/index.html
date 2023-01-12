@@ -764,6 +764,26 @@
     ⚕️Tipos de mapeo (mapping) en un controlador rest
   </a>
   
+    <nav class="md-nav" aria-label="⚕️Tipos de mapeo (mapping) en un controlador rest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cual-es-la-diferencia-entre-post-put-patch" class="md-nav__link">
+    ¿Cuál es la diferencia entre Post , Put, Patch?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplos-de-mapeo" class="md-nav__link">
+    ⚕️Ejemplos de mapeo
+  </a>
+  
 </li>
       
     </ul>
@@ -841,6 +861,26 @@
     ⚕️Tipos de mapeo (mapping) en un controlador rest
   </a>
   
+    <nav class="md-nav" aria-label="⚕️Tipos de mapeo (mapping) en un controlador rest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cual-es-la-diferencia-entre-post-put-patch" class="md-nav__link">
+    ¿Cuál es la diferencia entre Post , Put, Patch?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplos-de-mapeo" class="md-nav__link">
+    ⚕️Ejemplos de mapeo
+  </a>
+  
 </li>
       
     </ul>
@@ -879,6 +919,58 @@
 <h2 id="tipos-de-mapeo-mapping-en-un-controlador-rest">⚕️Tipos de mapeo (mapping) en un controlador rest</h2>
 <p>Existen los siguientes tipos de mapeo que podemos usar en Spring:</p>
 <p><img alt="spring" src="../../img/ud4/9spring.png" /></p>
+<ul>
+<li><strong><em>Get</em></strong>: para solicitar información de un recurso.</li>
+<li><strong><em>Post</em></strong>: para enviar información a fin de crear o de actualizar un recurso.</li>
+<li><strong><em>Put</em></strong>: para enviar información a fin de modificar un recurso.</li>
+<li><strong><em>Patch</em></strong>: actualiza una parte del recurso.</li>
+<li><strong><em>Delete</em></strong>: elimina un recurso específico.</li>
+</ul>
+<h3 id="cual-es-la-diferencia-entre-post-put-patch">¿Cuál es la diferencia entre Post , Put, Patch?</h3>
+<p>Habitualmente la diferencia entre Post y Put radica en que Post lo usamos para añadir un recurso y Put lo utilizamos para modificar un recurso en particular.</p>
+<p>Patch también lo utilizamos para actualizar un recurso pero solo una parcialidad del mismo.</p>
+<h2 id="ejemplos-de-mapeo">⚕️Ejemplos de mapeo</h2>
+<div class="highlight"><span class="filename">PersonController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@RestController</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/api&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PersonController</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">PersonService</span><span class="w"> </span><span class="n">personService</span><span class="p">;</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">PersonController</span><span class="p">(</span><span class="n">PersonService</span><span class="w"> </span><span class="n">personService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">personService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">personService</span><span class="p">;</span><span class="w"></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="nd">@GetMapping</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getPersons</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">personService</span><span class="p">.</span><span class="na">findAll</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/person/{id}&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="nf">byId</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">personService</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/person/&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="nf">newPerson</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">personService</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">person</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="w">    </span><span class="nd">@PutMapping</span><span class="p">(</span><span class="s">&quot;/person/&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="27 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">personService</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">person</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="29 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="30 "></span>
+<span class="linenos" data-linenos="31 "></span><span class="w">    </span><span class="nd">@PatchMapping</span><span class="p">(</span><span class="s">&quot;/person/&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="32 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="nf">change</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="33 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">personService</span><span class="p">.</span><span class="na">change</span><span class="p">(</span><span class="n">person</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="34 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="35 "></span>
+<span class="linenos" data-linenos="36 "></span><span class="w">    </span><span class="nd">@DeleteMapping</span><span class="p">(</span><span class="s">&quot;/person/{id}&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="linenos" data-linenos="37 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="38 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">personService</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="39 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="40 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
 
 
   
