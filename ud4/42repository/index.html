@@ -746,8 +746,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metodos-de-consulta" class="md-nav__link">
-    💮 Métodos de consulta
+  <a href="#query-methods" class="md-nav__link">
+    💮 Query Methods
   </a>
   
 </li>
@@ -837,8 +837,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metodos-de-consulta" class="md-nav__link">
-    💮 Métodos de consulta
+  <a href="#query-methods" class="md-nav__link">
+    💮 Query Methods
   </a>
   
 </li>
@@ -900,19 +900,32 @@
 <span class="linenos" data-linenos="18 "></span>
 <span class="linenos" data-linenos="19 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<h2 id="metodos-de-consulta">💮 Métodos de consulta</h2>
-<p>Los repositorios con funcionalidad CRUD estándar suelen tener consultas en el almacén de datos subyacente. Con Spring Data, declarar esas consultas se convierte en un proceso de cuatro pasos:</p>
-<ol>
-<li>
-<p>Se declara una interfaz que extienda de <code>Repository</code> o una de sus subinterfaces. Haz que sea de tipo entidad y su ID.</p>
-</li>
-<li>
-<p>Se declaran métodos de consulta en la interfaz.</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">interface</span> <span class="nc">PersonRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Repository</span><span class="o">&lt;</span><span class="n">Person</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span><span class="w"></span>
-<span class="linenos" data-linenos="3 "></span><span class="p">}</span><span class="w"></span>
+<h2 id="query-methods">💮 Query Methods</h2>
+<p>El mecanismo de creación de consultas integrado en la infraestructura del repositorio Spring Data es útil para crear consultas restrictivas sobre las entidades del repositorio.</p>
+<p>El análisis de nombres de queries de consulta <strong>se divide en sujeto y predicado</strong>. </p>
+<ul>
+<li>La primera parte (<code>find…By</code>, <code>exists…By</code>) define el sujeto de la consulta, </li>
+<li>La segunda parte forma el predicado. La cláusula introductoria (sujeto) puede contener más expresiones. </li>
+</ul>
+<p>Cualquier texto entre <code>find</code> (u otras palabras clave introductorias) y <code>By</code> se considera descriptivo a menos que se use una de las palabras clave que limitan los resultados, como <code>Distinct</code> o <code>Top/First</code>.</p>
+<p>Ejemplos de Query Methods</p>
+<div class="highlight"><span class="filename">PersonRespository.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">interface</span> <span class="nc">PersonRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Repository</span><span class="o">&lt;</span><span class="n">Person</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByEmailAddressAndLastname</span><span class="p">(</span><span class="n">EmailAddress</span><span class="w"> </span><span class="n">emailAddress</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">  </span><span class="c1">// Enables the distinct flag for the query</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findDistinctPeopleByLastnameOrFirstname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findPeopleDistinctByLastnameOrFirstname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">  </span><span class="c1">// Enabling ignoring case for an individual property</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="c1">// Enabling ignoring case for all suitable properties</span><span class="w"></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameAndFirstnameAllIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">  </span><span class="c1">// Enabling static ORDER BY for a query</span><span class="w"></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameOrderByFirstnameAsc</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameOrderByFirstnameDesc</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="17 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
 
