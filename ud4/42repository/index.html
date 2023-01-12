@@ -868,7 +868,7 @@
 <h2 id="definir-interfaces-de-repositorio">💮 Definir interfaces de repositorio</h2>
 <p>Para definir una interfaz de repositorio, primero se debe crear una clase de <em>dominio o entidad</em>. La interfaz debe extender el <code>Repository</code> y el tipo debe ser la clase de dominio y el tipo de ID.</p>
 <p>Si desea exponer métodos CRUD para ese tipo de dominio, se puede extender de <code>CrudRepository</code> o una de sus variantes en lugar de <code>Repository</code>. <code>JpaRepository</code> es una especialización de <code>ListCrudRepository</code>.</p>
-<div class="highlight"><span class="filename">TodoRepository.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">TodoRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Todo</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight"><span class="filename">PersonRepository.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">PersonRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Todo</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="c1">//con esto heredamos todos los métodos definidos en JpaRepository y las clases que se extienden en ella</span><span class="w"></span>
 <span class="linenos" data-linenos="3 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
@@ -880,7 +880,7 @@
 <p><img alt="spring" src="../../img/ud4/8spring.png" /></p>
 <p>Esto añade en la clase de la entidad las siguientes anotaciones: <strong>@Getter, @Setter y @NoArgsConstructor</strong>. </p>
 <p>Lo que implica que genera por nosotros los getters y setters de todos los campos como públicos y el constructor por defecto.</p>
-<div class="highlight"><span class="filename">Todo.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@NoArgsConstructor</span><span class="w"></span>
+<div class="highlight"><span class="filename">Person.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@NoArgsConstructor</span><span class="w"></span>
 <span class="linenos" data-linenos=" 2 "></span><span class="nd">@Getter</span><span class="w"></span>
 <span class="linenos" data-linenos=" 3 "></span><span class="nd">@Setter</span><span class="w"></span>
 <span class="linenos" data-linenos=" 4 "></span><span class="nd">@Entity</span><span class="w"></span>
