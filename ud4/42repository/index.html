@@ -750,6 +750,26 @@
     💮 Query Methods
   </a>
   
+    <nav class="md-nav" aria-label="💮 Query Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitacion-de-resultados" class="md-nav__link">
+    Limitación de resultados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streaming-los-resultados-de-las-consultas" class="md-nav__link">
+    Streaming los resultados de las consultas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -841,6 +861,26 @@
     💮 Query Methods
   </a>
   
+    <nav class="md-nav" aria-label="💮 Query Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitacion-de-resultados" class="md-nav__link">
+    Limitación de resultados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streaming-los-resultados-de-las-consultas" class="md-nav__link">
+    Streaming los resultados de las consultas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -927,6 +967,30 @@
 <span class="linenos" data-linenos="16 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameOrderByFirstnameDesc</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span><span class="w"></span>
 <span class="linenos" data-linenos="17 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
+<p><em>En la documentación oficial de Spring Data JPA encontramos la siguientes tablas con las palabras clave admitidas:</em></p>
+<ul>
+<li><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#appendix.query.method.subject">Query subject keywords</a></li>
+<li><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#appendix.query.method.predicate">Query predicate keywords</a></li>
+</ul>
+<h3 id="limitacion-de-resultados">Limitación de resultados</h3>
+<p>Se puede limitar los resultados de los métodos de consulta utilizando las palabras clave <code>first</code> o <code>top</code> indistintamente.
+Podemos agregar un valor numérico opcional a <code>top</code> o <code>first</code> para especificar el tamaño máximo de resultado que devolverá la consulta. </p>
+<p><strong>Si se omite el número, se asume un tamaño de resultado de 1. </strong></p>
+<p>Ejemplos <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.limit-query-result">web oficial de Spring</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">User</span><span class="w"> </span><span class="nf">findFirstByOrderByLastnameAsc</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">User</span><span class="w"> </span><span class="nf">findTopByOrderByAgeDesc</span><span class="p">();</span><span class="w"></span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">Page</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">queryFirst10ByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Pageable</span><span class="w"> </span><span class="n">pageable</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">Slice</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findTop3ByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Pageable</span><span class="w"> </span><span class="n">pageable</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findFirst10ByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Sort</span><span class="w"> </span><span class="n">sort</span><span class="p">);</span><span class="w"></span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findTop10ByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Pageable</span><span class="w"> </span><span class="n">pageable</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<h3 id="streaming-los-resultados-de-las-consultas">Streaming los resultados de las consultas</h3>
+<p>Podemos procesar los resultados de los métodos de consulta utilizando Java 8 Stream<T> como tipo de retorno. </p>
 
 
   
