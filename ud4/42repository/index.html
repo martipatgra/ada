@@ -977,8 +977,8 @@
 <span class="linenos" data-linenos="18 "></span><span class="w">  </span><span class="c1">// Like - where x.firstname like ?1 (parameter bound wrapped in %)</span>
 <span class="linenos" data-linenos="19 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByFirstnameContaining</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
 <span class="linenos" data-linenos="20 "></span>
-<span class="linenos" data-linenos="21 "></span><span class="w">  </span><span class="c1">//Between -  where x.startDate between ?1 and ?2</span>
-<span class="linenos" data-linenos="22 "></span><span class="w">  </span><span class="n">findByStartDateBetween</span><span class="p">(</span><span class="n">LocalDate</span><span class="w"> </span><span class="n">dateBegin</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">dateEnd</span><span class="p">);</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">  </span><span class="c1">//Between -  where x.startDate between ?1 and ?2 - Busca las personas nacidas entre esas fechas</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByBirthDateBetween</span><span class="p">(</span><span class="n">LocalDate</span><span class="w"> </span><span class="n">dateBegin</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">dateEnd</span><span class="p">);</span>
 <span class="linenos" data-linenos="23 "></span><span class="p">}</span>
 </code></pre></div>
 <p><em>En la documentación oficial de Spring Data JPA encontramos la siguientes tablas con las palabras clave admitidas:</em></p>
