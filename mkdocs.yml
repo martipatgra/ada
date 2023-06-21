@@ -1,8 +1,36 @@
-site_name: ada
+site_name: Acceso a Datos
 nav:
     - Inicio: index.md
-    - 1.- Entrada/Salida (I/O) de la información: 
-      - 1.2.- java.IO: ud1/1io.md
+    - 1.- Acceso a ficheros: 
+      - 1.1.- Entrada/Salida (I/O) de la información: ud1/11io.md
+      - 1.2.- Ficheros binarios: ud1/12binaryfiles.md
+      - 1.3.- Ficheros de caracteres: ud1/13characterfiles.md
+      - 1.4.- Clase File: ud1/14fileclass.md
+      - 1.5.- java.nio: ud1/15javanio.md
+      - 1.6.- Ficheros de acceso aleatorio: ud1/16randomaccessfile.md
+      - 1.7.- Ficheros de configuración: ud1/17configfiles.md
+      - 1.8.- XML: ud1/18xmlfiles.md
+      - 1.9.- JSON: ud1/19jsonfiles.md
+      - 1.10.- Crear un .jar: ud1/20createjar.md
+      - 1.11.- try-with-resources: ud1/21tryresources.md
+    - 2.- Acceso a bases de datos relacionales: 
+      - 2.1.- Persistencia de la información: ud2/21persistencia.md
+      - 2.2.- Desfase objeto-relacional: ud2/22mapeo.md
+      - 2.3.- Manejo de conectores - JDBC: ud2/23conectores.md
+      - 2.4.- Transacciones: ud2/24transactions.md
+      - 2.5.- Procedimientos y funciones almacenadas: ud2/25procedures.md
+      - 2.6.- Mejora del rendimiento: ud2/26rendimiento.md
+      - 2.7.- Estructura de los proyectos: ud2/27projectstructure.md
+    - 3.- Mapeo objeto-relacional (ORM):
+      - 3.1.- Herramientas ORM: ud3/31mapeo.md
+      - 3.2.- Jakarta - JPA: ud3/32jpa.md
+      - 3.3.- Hibernate: ud3/33hibernate.md
+      - 3.4.- Patrón DAO: ud3/34dao.md
+      - 3.5.- Service Layer: ud3/35service.md
+    - 4.- Spring Boot:
+      - 4.1.- Introducción a Spring Framework: ud4/41introduccionspring.md
+      - 4.2.- Spring Data JPA: ud4/42repository.md
+      - 4.3.- Spring Rest Service: ud4/43rest.md
     - About : about.md
 theme:
   name: material
@@ -36,12 +64,28 @@ theme:
     - navigation.top
 
 markdown_extensions:
-  - admonition
+  - admonition                  # Info boxes (in different colors)
+  - codehilite
+  - pymdownx.details            # "
+  - pymdownx.superfences        # Info boxes, tabs
+  - pymdownx.caret              # Allow superscript and insertion marks (^ and ^^)
+  - pymdownx.tilde              # Allow subscript and deletion marks (~ and ~~)
+  - pymdownx.keys               # Allow Keyboard marks (++)
+  - pymdownx.mark               # Allow selection marks (==)
+  - pymdownx.inlinehilite       # Syntax-highlight inline code
   - pymdownx.critic
-  - pymdownx.details
-  - pymdownx.highlight
-  - pymdownx.superfences
-  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.highlight:
+      linenums: true
+      linenums_style: pymdownx-inline
+  - attr_list                   # { Annotations }
+  - md_in_html                  # Markdown inside HTML
+  - def_list                    # Definition lists (Glossary)
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 extra:  
   analytics:

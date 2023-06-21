@@ -1,0 +1,1615 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../32jpa/">
+      
+      
+        <link rel="next" href="../34dao/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>3.3.- Hibernate - Acceso a Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acceso a Datos" class="md-header__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acceso a Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3.3.- Hibernate
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acceso a Datos" class="md-nav__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Acceso a Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          1.- Acceso a ficheros
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.- Acceso a ficheros
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/11io/" class="md-nav__link">
+        1.1.- Entrada/Salida (I/O) de la información
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/12binaryfiles/" class="md-nav__link">
+        1.2.- Ficheros binarios
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/13characterfiles/" class="md-nav__link">
+        1.3.- Ficheros de caracteres
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/14fileclass/" class="md-nav__link">
+        1.4.- Clase File
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/15javanio/" class="md-nav__link">
+        1.5.- java.nio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/16randomaccessfile/" class="md-nav__link">
+        1.6.- Ficheros de acceso aleatorio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/17configfiles/" class="md-nav__link">
+        1.7.- Ficheros de configuración
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/18xmlfiles/" class="md-nav__link">
+        1.8.- XML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/19jsonfiles/" class="md-nav__link">
+        1.9.- JSON
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/20createjar/" class="md-nav__link">
+        1.10.- Crear un .jar
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/21tryresources/" class="md-nav__link">
+        1.11.- try-with-resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          2.- Acceso a bases de datos relacionales
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          2.- Acceso a bases de datos relacionales
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/21persistencia/" class="md-nav__link">
+        2.1.- Persistencia de la información
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22mapeo/" class="md-nav__link">
+        2.2.- Desfase objeto-relacional
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/23conectores/" class="md-nav__link">
+        2.3.- Manejo de conectores - JDBC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/24transactions/" class="md-nav__link">
+        2.4.- Transacciones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/25procedures/" class="md-nav__link">
+        2.5.- Procedimientos y funciones almacenadas
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/26rendimiento/" class="md-nav__link">
+        2.6.- Mejora del rendimiento
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/27projectstructure/" class="md-nav__link">
+        2.7.- Estructura de los proyectos
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          3.- Mapeo objeto-relacional (ORM)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          3.- Mapeo objeto-relacional (ORM)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../31mapeo/" class="md-nav__link">
+        3.1.- Herramientas ORM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../32jpa/" class="md-nav__link">
+        3.2.- Jakarta - JPA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          3.3.- Hibernate
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        3.3.- Hibernate
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arquitectura" class="md-nav__link">
+    Arquitectura
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence-context" class="md-nav__link">
+    Persistence Context
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-hibernate" class="md-nav__link">
+    Configuración Hibernate
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entity-properties" class="md-nav__link">
+    Entity properties
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hibernate-query-language-hql-official-website" class="md-nav__link">
+    Hibernate Query Language - HQL Official Website
+  </a>
+  
+    <nav class="md-nav" aria-label="Hibernate Query Language - HQL Official Website">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hibernate-dml-language" class="md-nav__link">
+    💈 Hibernate DML language
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtener-una-entidad-con-sus-datos-inicializados" class="md-nav__link">
+    💈 Obtener una entidad con sus datos inicializados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hibernate-query" class="md-nav__link">
+    💈 Hibernate Query
+  </a>
+  
+    <nav class="md-nav" aria-label="💈 Hibernate Query">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binding-arguments-en-los-parametros-de-la-query" class="md-nav__link">
+    🎐 BINDING arguments en los parámetros de la query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejecutando-la-consulta" class="md-nav__link">
+    🎐 EJECUTANDO la consulta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scrolling-y-streaming-resultados" class="md-nav__link">
+    🎐 SCROLLING y STREAMING resultados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criteria-sitio-web-oficial" class="md-nav__link">
+    Criteria - Sitio Web Oficial
+  </a>
+  
+    <nav class="md-nav" aria-label="Criteria - Sitio Web Oficial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grafo-criteria" class="md-nav__link">
+    🧮 Grafo Criteria
+  </a>
+  
+    <nav class="md-nav" aria-label="🧮 Grafo Criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-el-primer-paso-para-realizar-una-consulta-criteria-es-construir-el-grafo" class="md-nav__link">
+    1️⃣ El primer paso para realizar una consulta Criteria es construir el grafo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-el-siguiente-paso-es-obtener-un-jakartapersistencecriteriacriteriaquery" class="md-nav__link">
+    2️⃣ El siguiente paso es obtener un jakarta.persistence.criteria.CriteriaQuery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-seleccionar-una-entidad" class="md-nav__link">
+    3️⃣ Seleccionar una entidad.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-seleccion-de-una-expresion" class="md-nav__link">
+    4️⃣ Selección de una expresión
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-seleccion-de-multiples-atributos" class="md-nav__link">
+    5️⃣ Selección de múltiples atributos
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pom-proyecto" class="md-nav__link">
+    POM proyecto
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../34dao/" class="md-nav__link">
+        3.4.- Patrón DAO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../35service/" class="md-nav__link">
+        3.5.- Service Layer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          4.- Spring Boot
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          4.- Spring Boot
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/41introduccionspring/" class="md-nav__link">
+        4.1.- Introducción a Spring Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/42repository/" class="md-nav__link">
+        4.2.- Spring Data JPA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/43rest/" class="md-nav__link">
+        4.3.- Spring Rest Service
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arquitectura" class="md-nav__link">
+    Arquitectura
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence-context" class="md-nav__link">
+    Persistence Context
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-hibernate" class="md-nav__link">
+    Configuración Hibernate
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entity-properties" class="md-nav__link">
+    Entity properties
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hibernate-query-language-hql-official-website" class="md-nav__link">
+    Hibernate Query Language - HQL Official Website
+  </a>
+  
+    <nav class="md-nav" aria-label="Hibernate Query Language - HQL Official Website">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hibernate-dml-language" class="md-nav__link">
+    💈 Hibernate DML language
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtener-una-entidad-con-sus-datos-inicializados" class="md-nav__link">
+    💈 Obtener una entidad con sus datos inicializados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hibernate-query" class="md-nav__link">
+    💈 Hibernate Query
+  </a>
+  
+    <nav class="md-nav" aria-label="💈 Hibernate Query">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binding-arguments-en-los-parametros-de-la-query" class="md-nav__link">
+    🎐 BINDING arguments en los parámetros de la query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejecutando-la-consulta" class="md-nav__link">
+    🎐 EJECUTANDO la consulta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scrolling-y-streaming-resultados" class="md-nav__link">
+    🎐 SCROLLING y STREAMING resultados
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criteria-sitio-web-oficial" class="md-nav__link">
+    Criteria - Sitio Web Oficial
+  </a>
+  
+    <nav class="md-nav" aria-label="Criteria - Sitio Web Oficial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grafo-criteria" class="md-nav__link">
+    🧮 Grafo Criteria
+  </a>
+  
+    <nav class="md-nav" aria-label="🧮 Grafo Criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-el-primer-paso-para-realizar-una-consulta-criteria-es-construir-el-grafo" class="md-nav__link">
+    1️⃣ El primer paso para realizar una consulta Criteria es construir el grafo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-el-siguiente-paso-es-obtener-un-jakartapersistencecriteriacriteriaquery" class="md-nav__link">
+    2️⃣ El siguiente paso es obtener un jakarta.persistence.criteria.CriteriaQuery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-seleccionar-una-entidad" class="md-nav__link">
+    3️⃣ Seleccionar una entidad.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-seleccion-de-una-expresion" class="md-nav__link">
+    4️⃣ Selección de una expresión
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-seleccion-de-multiples-atributos" class="md-nav__link">
+    5️⃣ Selección de múltiples atributos
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pom-proyecto" class="md-nav__link">
+    POM proyecto
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1"><img alt="hibernate" src="../../img/ud3/9hibernate.png" /></h1>
+<p>🐻‍❄️ Hibernate, como una solución ORM, efectivamente "se ubica entre" la capa de acceso a datos de la aplicación Java y la base de datos relacional, como se puede ver en el diagrama siguiente.</p>
+<p><a href="https://hibernate.org/orm/documentation/6.1/">🌐 Documentación oficial</a></p>
+<h2 id="arquitectura">Arquitectura</h2>
+<p>La arquitectura "completa" abstrae la aplicación de las APIs de JDBC/JTA y permite que Hibernate se encargue de los detalles.
+Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
+<table>
+<thead>
+<tr>
+<th><img alt="hibernate" src="../../img/ud3/6hibernate.png" /></th>
+<th><img alt="hibernate" src="../../img/ud3/8hibernate.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Como proveedor de persistencia de Jakarta, Hibernate implementa las especificaciones de la API de persistencia de Java (JPA) y la asociación entre las interfaces de persistencia de Jakarta y las implementaciones específicas de Hibernate, que se pueden ver en el siguiente diagrama:</p>
+<p><img alt="hibernate" src="../../img/ud3/7hibernate.png" /></p>
+<ul>
+<li>
+<p>🤖 <strong>SessionFactory</strong>: inmutable, es una fábrica para instanciar objetos <code>Session</code>. <code>EntityManagerFactory</code> es el equivalente de Persistencia de Jakarta de <code>SessionFactory</code>. Una <code>SessionFactory</code> es muy costosa de crear, por lo que, para cualquier base de datos dada, la aplicación debe tener solo una SessionFactory asociada. SessionFactory mantiene los servicios que Hibernate usa en todas las sesiones, como cachés de segundo nivel, grupos de conexiones, integraciones de sistemas de transacciones, etc.</p>
+</li>
+<li>
+<p>🤖 <strong>Session</strong>: En la nomenclatura de persistencia de Jakarta, la sesión está representada por un <code>EntityManager</code>. Session envuelve un JDBC java.sql.Connection y actúa como una fábrica para las instancias de <strong>org.hibernate.Transaction</strong>.</p>
+</li>
+<li>
+<p>🤖 <strong>Transaction</strong>: <code>EntityTransaction</code> es el equivalente de Jakarta Persistence y ambos actúan como una API de abstracción para aislar la aplicación del sistema de transacciones subyacente en uso (JDBC o JTA).</p>
+</li>
+</ul>
+<h2 id="persistence-context">Persistence Context</h2>
+<p>Tanto la API <code>org.hibernate.Session</code> como la API <code>jakarta.persistence.EntityManager</code> representan un contexto para tratar con datos persistentes. Este concepto se denomina <strong>contexto de persistencia</strong>. Los datos persistentes tienen un estado en relación con un contexto de persistencia y la base de datos subyacente.</p>
+<ul>
+<li>
+<p>🧣 <strong>Transient</strong> (transitorio): la entidad acaba de ser instanciada y no está asociada con un contexto de persistencia. No tiene una representación persistente en la base de datos y, por lo general, no se ha asignado ningún valor de identificador (a menos que se haya utilizado el generador asignado). No está asociado a ninguna sesión.</p>
+</li>
+<li>
+<p>🧣 <strong>Persistent</strong>: la entidad tiene un identificador asociado y está asociada con un contexto de persistencia. Puede o no existir físicamente en la base de datos todavía.</p>
+</li>
+<li>
+<p>🧣 <strong>Detached</strong> (separado): la entidad tiene un identificador asociado pero ya no está asociada con un contexto de persistencia (generalmente porque el contexto de persistencia se cerró (sesión) o la instancia se desalojó del contexto).</p>
+</li>
+<li>
+<p>🧣 <strong>Removed</strong>: la entidad tiene un identificador asociado y está asociada con un contexto de persistencia; sin embargo, está programada para su eliminación de la base de datos.</p>
+</li>
+</ul>
+<p><img alt="hibernate" src="../../img/ud3/10hibernate.png" /></p>
+<h2 id="configuracion-hibernate">Configuración Hibernate</h2>
+<p>Hibernate requiere saber de antemano dónde encontrar la información de configuración de la BBDD y de mapeo d que define cómo se relacionan las clases de Java con las tablas de la base de datos. Toda esta información generalmente se proporciona como un archivo de propiedades de Java estándar llamado <strong>hibernate.properties</strong>, o como un archivo XML llamado <strong>hibernate.cfg.xml</strong>.</p>
+<p>La mayoría de las propiedades cogen los valores predeterminados y no es necesario especificarlos en el archivo de propiedades a menos que sea realmente necesario. <mark class="critic">Este archivo se guarda en el directorio raíz del classpath de su aplicación.</mark></p>
+<p>Para el ejemplo usaremos un fichero XML de configuración:</p>
+<div class="highlight"><span class="filename">hibernate.cfg.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;hibernate-configuration</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://www.hibernate.org/xsd/orm/cfg&quot;</span><span class="nt">&gt;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="nt">&lt;session-factory&gt;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;connection.driver_class&quot;</span><span class="nt">&gt;</span>com.mysql.cj.jdbc.Driver<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;connection.url&quot;</span><span class="nt">&gt;</span>jdbc:mysql://localhost:3306/testdb2<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;connection.username&quot;</span><span class="nt">&gt;</span>root<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;connection.password&quot;</span><span class="nt">&gt;</span>root<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dialect&quot;</span><span class="nt">&gt;</span>org.hibernate.dialect.MySQLDialect<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="cm">&lt;!--Mapeo mediante anotaciones --&gt;</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;es.severo.persistence.entity.Tramite&quot;</span><span class="nt">&gt;&lt;/mapping&gt;</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="nt">&lt;/session-factory&gt;</span>
+<span class="linenos" data-linenos="13 "></span><span class="nt">&lt;/hibernate-configuration&gt;</span>
+</code></pre></div>
+<p><a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#configurations-database-connection">Website Oficial con todas las propiedades del fichero de configuración</a></p>
+<h2 id="entity-properties">Entity properties</h2>
+<p>Las clases que sean entidades deben cumplir las siguientes <strong>convenciones recomendadas</strong>:</p>
+<ul>
+<li>🚀 Incluir atributos de clase con visibilidad privada, <strong>private</strong>.</li>
+<li>🚀 Añadir <strong>el constructor por defecto</strong>, sin argumentos. Esto es un requisito de Jakarta e Hibernate para todas las clases persistentes. Hibernate necesita crear objetos para nosotros, utilizando Java Reflection.</li>
+<li>🚀 Incluir <strong>getters y setters</strong>.</li>
+<li>🚀 <strong>Declarar atributos de identificador</strong> (<code>@Id</code>) con nombres consistentes, y que se use un wrapper y no un tipo de dato primitivo. Ej Long o Integer. El atributo identificador no necesariamente necesita ser mapeado a la(s) columna(s) que definen físicamente la clave primaria. Sin embargo, debe asignarse a la(s) columna(s) que pueden identificar de forma única cada fila.</li>
+<li>🚀 Mapear la entidad con las <strong>anotaciones</strong> necesarias. <code>@Entity</code> para denotar que es una entidad. Y las anotaciones que se requieran en los atributos.</li>
+</ul>
+<p>--batches y flush and clear</p>
+<h2 id="hibernate-query-language-hql-official-website">Hibernate Query Language - <a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#hql">HQL Official Website</a></h2>
+<p>JPQL (Java Persistence Query Language) se inspiró en las primeras versiones de HQL y es un subconjunto del HQL moderno.</p>
+<p>Si se desea el cumplimiento estricto de la persistencia de Jakarta, tendríamos que utilizar en la configuración la siguiente propiedad <code>hibernate.jpa.compliance.query=true</code>. Con esta configuración, cualquier intento de utilizar funciones HQL más allá del subconjunto JPQL dará como resultado una excepción. </p>
+<p>HQL (y JPQL) se basan libremente en SQL y son fáciles de aprender para cualquiera que esté familiarizado con SQL.</p>
+<p>Hibernate usa un poderoso lenguaje de consulta (HQL) que es similar en apariencia a SQL. Sin embargo, en comparación con SQL, HQL está completamente orientado a objetos y comprende nociones como herencia, polimorfismo y asociación.</p>
+<p>El lenguaje de consulta de Hibernate (HQL) y el lenguaje de consulta de persistencia de Java (JPQL) son lenguajes de consulta orientados a objetos basados ​​en SQL y muy similares a SQL.</p>
+<p><strong><em>HQL no es la única forma de escribir consultas en Hibernate:</em></strong></p>
+<ul>
+<li>🧨Criteria ofrece una API basada en Java con mayor seguridad de tipos en tiempo de compilación, y</li>
+<li>🧨también son posibles las consultas SQL nativas.</li>
+</ul>
+<p>Sin embargo, HQL es la opción más conveniente para la mayoría de las personas la mayor parte del tiempo.</p>
+<h3 id="hibernate-dml-language">💈 Hibernate DML language</h3>
+<p>Hibernate provee métodos para ejecutar sentencias DML.</p>
+<ul>
+<li><strong>Insert</strong>: para agregar objetos usamos el método <code>persist()</code>. En versiones anteriores se usaba <code>save()</code>, pero este método está deprecado y no se recomienda su uso.</li>
+<li><strong>Update</strong>: cuando modificamos un objeto usaremos <code>merge()</code> para guardar su estado en la base de datos. En versiones anteriores se usaba <code>saveOrUpdate()</code>, pero este método está deprecado y no se recomienda su uso.</li>
+<li><strong>Delete</strong>:  cuando queremos borrar un objeto en la base de datos usamos <code>remove()</code>. En versiones anteriores se usaba <code>delete()</code>, pero este método está deprecado y no se recomienda su uso.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibenateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">().</span><span class="na">openSession</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">LocalDateTime</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalDateTime</span><span class="p">.</span><span class="na">now</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">Tramite</span><span class="w"> </span><span class="n">tramite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Tramite</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">tramite</span><span class="p">.</span><span class="na">setFecha</span><span class="p">(</span><span class="n">now</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">tramite</span><span class="p">.</span><span class="na">setTipo</span><span class="p">(</span><span class="s">&quot;Crédito&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="cm">/* INSERT */</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="c1">//session.save(tramite);//deprecated</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="n">session</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="n">tramite</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="cm">/* UPDATE */</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="n">tramite</span><span class="p">.</span><span class="na">setTipo</span><span class="p">(</span><span class="s">&quot;Aval&quot;</span><span class="p">):</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="c1">//session.saveOrUpdate(tramite);//deprecated</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="n">session</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">tramite</span><span class="p">);</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="cm">/* DELETE */</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="c1">//session.delete(tramite);//deprecated</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="n">session</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">tramite</span><span class="p">);</span>
+<span class="linenos" data-linenos="24 "></span>
+<span class="linenos" data-linenos="25 "></span><span class="w">        </span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">rollback</span><span class="p">();</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">session</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">            </span><span class="n">session</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="35 "></span><span class="p">}</span>
+</code></pre></div>
+<h3 id="obtener-una-entidad-con-sus-datos-inicializados">💈 Obtener una entidad con sus datos inicializados</h3>
+<p>También es bastante común querer obtener una entidad junto con sus datos, es decir, cargar un objeto.</p>
+<ul>
+<li>Obtención de una referencia de entidad con sus datos inicializados con Jakarta Persistence</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entityManager</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">personId</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>Obtención de una referencia de entidad con sus datos inicializados con la API de Hibernate</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>Obtención de una referencia de entidad con sus datos inicializados usando la API de Hibernate byId()</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Person</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">byId</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">).</span><span class="na">load</span><span class="p">(</span><span class="n">personId</span><span class="p">);</span>
+</code></pre></div>
+En ambos casos, se devuelve <code>null</code> si no se encuentra ninguna fila de base de datos coincidente.</p>
+<ul>
+<li>Obtención de una referencia de entidad Opcional con sus datos inicializados usando la API de Hibernate byId()</li>
+</ul>
+<p>También es posible devolver un Java 8 Opcional:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="n">optionalPerson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">byId</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">).</span><span class="na">loadOptional</span><span class="p">(</span><span class="n">personId</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="hibernate-query">💈 Hibernate Query</h3>
+<p>La interfaz de sesión de Hibernate refina los tipos de devolución de las operaciones de <code>EntityManager</code> que crean objetos de consulta.</p>
+<p><code>Session#createQuery()</code>, <code>Session#createNamedQuery()</code> y otras operaciones similares devuelven una instancia de la extensión <code>org.hibernate.query.Query</code>.</p>
+<p>Algunas formas sobrecargadas de estas operaciones devuelven un tipo sin formato, pero en <strong>Hibernate 6 todas han quedado obsoletas y el uso del tipo Query sin formato ahora se desaconseja enfáticamente</strong>. </p>
+<div class="admonition important importante">
+<p class="admonition-title">Important</p>
+<p>Los programas deben migrar al uso de sobrecargas con seguridad de tipos que aceptan un objeto <code>Class&lt;T&gt;</code> y devuelven una <code>Query&lt;T&gt;</code> con tipo.</p>
+</div>
+<p>La interfaz de consulta de Hibernate ofrece operaciones adicionales que no están disponibles a través de TypedQuery, como veremos a continuación.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Query</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">                    </span><span class="s">&quot;from Tramite where tipo = :tipoTram&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">                            </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="binding-arguments-en-los-parametros-de-la-query">🎐 <em>BINDING arguments en los parámetros de la query</em></h4>
+<p>Una consulta puede tener parámetros con nombre o parámetros ordinales:</p>
+<ul>
+<li><strong>Named parameters</strong>: se especifican usando la sintaxis: :name</li>
+<li><strong>Ordinal parameters</strong>: se especifican usando la sintaxis ?1, ?2, etc.</li>
+</ul>
+<div class="highlight"><span class="filename">named parameters</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">Query</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">                    </span><span class="s">&quot;from Tramite where tipo = :tipoTram&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">                            </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">                    </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;tipoTram&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Los parámetros ordinales de estilo JPQL se numeran desde 1. Al igual que con los parámetros con nombre, un parámetro ordinal puede aparecer varias veces en una consulta.</p>
+<div class="highlight"><span class="filename">ordinal parameters</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">Query</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">                            </span><span class="s">&quot;from Tramite where tipo = ?1&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">                            </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">                    </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition warning warning">
+<p class="admonition-title">Warning</p>
+<p>No es una buena idea mezclar <em>named parameters</em> y <em>ordinales</em> en una sola consulta.</p>
+</div>
+<h4 id="ejecutando-la-consulta">🎐 <em>EJECUTANDO la consulta</em></h4>
+<p>La interfaz Query se utiliza para controlar la ejecución de la consulta. Ofrece tres tipos de resultados:</p>
+<ul>
+<li><code>getResultList()</code>: es útil cuando la consulta puede devolver <strong>cero o más de un resultado</strong>.</li>
+<li><code>getSingleResult()</code>: es solo para casos en los que la consulta siempre <strong>devuelve exactamente un resultado</strong>. Lanza una excepción cuando la base de datos devuelve cero o muchos resultados.</li>
+<li><code>getResultStream()</code>: permite que los resultados se recuperen <strong>de forma incremental</strong>, utilizando un cursor de base de datos.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="n">persons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entityManager</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">                </span><span class="s">&quot;select p &quot;</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">                </span><span class="s">&quot;from Person p &quot;</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">                </span><span class="s">&quot;where p.name like &#39;John%&#39; &quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">            </span><span class="n">Person</span><span class="p">.</span><span class="na">class</span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">Query</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="s">&quot;from Tramite where tipo = :tipoTram&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">                    </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;tipoTram&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tramites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query</span><span class="p">.</span><span class="na">getResultList</span><span class="p">();</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="n">tramites</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="n">Query</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">                    </span><span class="s">&quot;from Tramite where tipo = ?1&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">                    </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="p">.</span><span class="na">setMaxResults</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="c1">//limitación de un resultado</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="n">Tramite</span><span class="w"> </span><span class="n">tramites2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">query2</span><span class="p">.</span><span class="na">getSingleResult</span><span class="p">();</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">tramites2</span><span class="p">);</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="k">try</span><span class="p">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tramiteStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">            </span><span class="s">&quot;from Tramite where tipo = ?1&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">            </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">            </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">            </span><span class="p">.</span><span class="na">getResultStream</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="27 "></span>
+<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tramiteStream</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">                </span><span class="p">.</span><span class="na">skip</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="c1">//salta los dos primeros, los quita</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">                </span><span class="p">.</span><span class="na">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="c1">//saca como máximo 5 ítems</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">                </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">        </span><span class="n">t</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning warning">
+<p class="admonition-title">Warning</p>
+<p>El método <code>getResultStream()</code> <strong>no suele ser útil</strong>. Casi siempre es una mala idea mantener abierto el cursor de una base de datos.</p>
+</div>
+<h4 id="scrolling-y-streaming-resultados">🎐 <em>SCROLLING y STREAMING resultados</em></h4>
+<p>La interfaz <code>org.hibernate.query</code> ofrece dos operaciones especializadas para leer los resultados de la consulta de manera incremental, <strong>mientras mantiene un ResultSet JDBC abierto asignado a un cursor del lado del servidor</strong>.</p>
+<p>Si la aplicación no cierra un <code>ScrollableResults</code>, Hibernate cerrará automáticamente los recursos subyacentes cuando finalice la transacción. Sin embargo, es mucho mejor cerrar el <code>ResultSet</code> lo antes posible.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="p">(</span><span class="n">ScrollableResults</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">scrollableResults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">                </span><span class="s">&quot;from Tramite where tipo = ?1&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">                </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="p">.</span><span class="na">scroll</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">scrollableResults</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">Tramite</span><span class="w"> </span><span class="n">ta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scrollableResults</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ta</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+</code></pre></div>
+<p>De manera similar, <code>getResultStream()</code> es una operación especializada para leer resultados de consultas de manera incremental, mientras mantiene un ResultSet JDBC abierto asignado a un cursor del lado del servidor.</p>
+<div class="admonition warning warning">
+<p class="admonition-title">Warning</p>
+<p>El método <code>getResultStream()</code> no es una forma conveniente de obtener un flujo de Java. Por ello, usaremos <strong><code>getResultList().stream()</code></strong> cuando queramos utilizar streams.</p>
+</div>
+<p>Ya hemos visto anteriormente un ejemplo de getResultStream, veamos ahora usando un stream a partir de <code>getResultList().stream()</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="p">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tramiteStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">                </span><span class="s">&quot;from Tramite where tipo = :tipoTram&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">                </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;tipoTram&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="p">.</span><span class="na">getResultList</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="p">.</span><span class="na">stream</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tramiteStream</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Hibernate cerrará automáticamente los recursos cuando finalice la transacción. Sin embargo, es mucho mejor cerrar el <code>ResultSet</code> lo antes posible. El programa siempre debe cerrar un Stream ya sea explícitamente, llamando a close() o usando un bloque try-with-resources.</p>
+<h2 id="criteria-sitio-web-oficial">Criteria - <a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#criteria">Sitio Web Oficial</a></h2>
+<p>Las consultas Criteria ofrecen una alternativa de tipo seguro a las consultas HQL, JPQL y SQL nativas. <strong>Son una forma programática y segura de escribir para expresar una consultas.</strong></p>
+<p>Las consultas Criteria son esencialmente un grafo de objetos, donde cada parte del grafo representa una parte cada vez más atómica (a medida que navegamos por este grafo) de la consulta. </p>
+<h3 id="grafo-criteria">🧮 Grafo Criteria</h3>
+<h4 id="1-el-primer-paso-para-realizar-una-consulta-criteria-es-construir-el-grafo">1️⃣ El primer paso para realizar una consulta Criteria es construir el grafo</h4>
+<p>La interfaz <code>jakarta.persistence.criteria.CriteriaBuilder</code> es una fábrica para todas las piezas individuales de criteria. Se obtiene una instancia de jakarta.persistence.criteria.CriteriaBuilder llamando al método <code>getCriteriaBuilder()</code> de <code>jakarta.persistence.EntityManagerFactory</code> o <code>jakarta.persistence.EntityManager</code>.</p>
+<h4 id="2-el-siguiente-paso-es-obtener-un-jakartapersistencecriteriacriteriaquery">2️⃣ El siguiente paso es obtener un <code>jakarta.persistence.criteria.CriteriaQuery</code></h4>
+<p>Esto se logra usando uno de los tres métodos en <code>CriteriaBuilder</code>:</p>
+<p>⌛ <T> CriteriaQuery<T> createQuery( Class<T> resultClass ) --&gt; Querys tipadas</p>
+<p>⌛ CriteriaQuery<Tuple> createTupleQuery()</p>
+<p>⌛ CriteriaQuery<Object> createQuery()</p>
+<p>Cada uno tiene un propósito diferente según el tipo esperado en los resultados de la consulta.</p>
+<p>El querys tipadas de Criteria (también conocida como CriteriaQuery<T>) indica los tipos esperados en el resultado de la consulta. Puede ser una entidad, un Integer o cualquier otro objeto.</p>
+<h4 id="3-seleccionar-una-entidad">3️⃣ Seleccionar una entidad.</h4>
+<p>La forma más común de consulta es utilizando Roots - Los objetos Root definen la base a partir de la cual todas las join, paths y atributos están disponibles en la consulta. <strong>Root es siempre un tipo de entidad</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getCriteriaBuilder</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">Root</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">criteria</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">select</span><span class="p">(</span><span class="n">root</span><span class="p">);</span><span class="c1">//esto no sería necesario ponerlo</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">equal</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">number</span><span class="p">),</span><span class="w"> </span><span class="n">number</span><span class="p">));</span>
+<span class="linenos" data-linenos="7 "></span>
+<span class="linenos" data-linenos="8 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">criteria</span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span>
+</code></pre></div>
+<p>La llamada al método CriteriaQuery#select en este ejemplo <strong>no es necesaria porque la raíz (root) será la selección implícita</strong> ya que solo tenemos una única raíz de consulta. Se ha añadido solo para completar el ejemplo.</p>
+<h4 id="4-seleccion-de-una-expresion">4️⃣ Selección de una expresión</h4>
+<p>La forma más simple de seleccionar una expresión es seleccionar un atributo particular de una entidad. Pero esta expresión también podría representar una agregación, una operación matemática, etc.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getCriteriaBuilder</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">Root</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">criteria</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">select</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">street</span><span class="p">));</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">equal</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">number</span><span class="p">),</span><span class="w"> </span><span class="n">number</span><span class="p">));</span>
+<span class="linenos" data-linenos="7 "></span>
+<span class="linenos" data-linenos="8 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">addresses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">criteria</span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span>
+</code></pre></div>
+<p>En el ejemplo, la consulta se escribe como <code>java.lang.String</code> porque ese es el tipo de los resultados (el tipo del atributo Address#street es java.lang.String). </p>
+<p>Debido a que una consulta puede contener varias referencias a la entidad Address, las referencias de atributos siempre deben calificarse. Esto se logra mediante la llamada al método Root#get.</p>
+<h4 id="5-seleccion-de-multiples-atributos">5️⃣ Selección de múltiples atributos</h4>
+<p>Hay formas diferentes de realizar una select de varios atributos usando Criteria. Los valores devueltos se pueden recoger como un Objet[], Tuple, o usando un wrapper.</p>
+<p><strong>EJEMPLO CON OBJECT[]</strong></p>
+<div class="highlight"><span class="filename">EjemploArrayObject</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getCriteriaBuilder</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">[]&gt;</span><span class="w"> </span><span class="n">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">Object</span><span class="o">[]</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">Root</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">criteria</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">Path</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">id</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">Path</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nickNamePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">street</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">multiselect</span><span class="p">(</span><span class="n">idPath</span><span class="p">,</span><span class="w"> </span><span class="n">nickNamePath</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">equal</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">number</span><span class="p">),</span><span class="w"> </span><span class="n">number</span><span class="p">));</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">[]&gt;</span><span class="w"> </span><span class="n">objects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">criteria</span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span>
+</code></pre></div>
+<p>Un mejor enfoque para seleccionar múltiples valores en la select <strong>es usar un <em>wrapper</em> o usar el <code>jakarta.persistence.Tuple</code></strong>.</p>
+<p><strong>EJEMPLO CON Tuple</strong></p>
+<div class="highlight"><span class="filename">EjemploTuple</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getCriteriaBuilder</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">Tuple</span><span class="o">&gt;</span><span class="w"> </span><span class="n">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">Tuple</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">Root</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">criteria</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">Path</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">id</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">Path</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nickNamePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">street</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">multiselect</span><span class="p">(</span><span class="n">idPath</span><span class="p">,</span><span class="w"> </span><span class="n">nickNamePath</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">equal</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">number</span><span class="p">),</span><span class="w"> </span><span class="n">number</span><span class="p">));</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Tuple</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tuples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">criteria</span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span>
+</code></pre></div>
+<p><strong>EJEMPLO CON Wrapper</strong></p>
+<p>Otra alternativa a la selección de valores múltiples es seleccionar un objeto que "envuelva" los valores múltiples. Volviendo a la consulta de ejemplo, en lugar de devolver un array de [id, street], declaramos una clase que contenga estos valores y la usamos como un contenedor o objeto de retorno.</p>
+<div class="highlight"><span class="filename">EjemploWrapper</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getCriteriaBuilder</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">AddressWrapper</span><span class="o">&gt;</span><span class="w"> </span><span class="n">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">AddressWrapper</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">Root</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">criteria</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Address</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">Path</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">id</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">Path</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nickNamePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">street</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">multiselect</span><span class="p">(</span><span class="n">idPath</span><span class="p">,</span><span class="w"> </span><span class="n">nickNamePath</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">criteria</span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="na">equal</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Address_</span><span class="p">.</span><span class="na">number</span><span class="p">),</span><span class="w"> </span><span class="n">number</span><span class="p">));</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">AddressWrapper</span><span class="o">&gt;</span><span class="w"> </span><span class="n">wrappers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">criteria</span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span>
+</code></pre></div>
+<p>Para cada fila del resultado, decimos que nos gustaría que el constructor correspondiente creara una instancia de <code>AddressWrapper</code> con los argumentos necesarios. Esta expresión contenedora se pasa en el select.</p>
+<h2 id="pom-proyecto">POM proyecto</h2>
+<div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;project</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">         </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">         </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="nt">&gt;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>es.severo<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>adahibernate<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="nt">&lt;dependencies&gt;</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.hibernate.orm<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>hibernate-core<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="nt">&lt;version&gt;</span>6.1.5.Final<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">            </span><span class="nt">&lt;version&gt;</span>8.0.31<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.hibernate.orm<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>hibernate-jpamodelgen<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">            </span><span class="nt">&lt;version&gt;</span>6.1.5.Final<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos="29 "></span>
+<span class="linenos" data-linenos="30 "></span><span class="w">        </span><span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">            </span><span class="nt">&lt;groupId&gt;</span>jakarta.xml.bind<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>jakarta.xml.bind-api<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">            </span><span class="nt">&lt;version&gt;</span>4.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">        </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">    </span><span class="nt">&lt;/dependencies&gt;</span>
+<span class="linenos" data-linenos="36 "></span>
+<span class="linenos" data-linenos="37 "></span><span class="w">    </span><span class="nt">&lt;properties&gt;</span>
+<span class="linenos" data-linenos="38 "></span><span class="w">        </span><span class="nt">&lt;maven.compiler.source&gt;</span>11<span class="nt">&lt;/maven.compiler.source&gt;</span>
+<span class="linenos" data-linenos="39 "></span><span class="w">        </span><span class="nt">&lt;maven.compiler.target&gt;</span>11<span class="nt">&lt;/maven.compiler.target&gt;</span>
+<span class="linenos" data-linenos="40 "></span><span class="w">    </span><span class="nt">&lt;/properties&gt;</span>
+<span class="linenos" data-linenos="41 "></span>
+<span class="linenos" data-linenos="42 "></span><span class="w">    </span><span class="nt">&lt;build&gt;</span>
+<span class="linenos" data-linenos="43 "></span><span class="w">        </span><span class="nt">&lt;plugins&gt;</span>
+<span class="linenos" data-linenos="44 "></span><span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<span class="linenos" data-linenos="45 "></span><span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="46 "></span><span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>build-helper-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="47 "></span><span class="w">                </span><span class="nt">&lt;version&gt;</span>3.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="48 "></span><span class="w">                </span><span class="nt">&lt;executions&gt;</span>
+<span class="linenos" data-linenos="49 "></span><span class="w">                    </span><span class="nt">&lt;execution&gt;</span>
+<span class="linenos" data-linenos="50 "></span><span class="w">                        </span><span class="nt">&lt;id&gt;</span>add-source<span class="nt">&lt;/id&gt;</span>
+<span class="linenos" data-linenos="51 "></span><span class="w">                        </span><span class="nt">&lt;phase&gt;</span>generate-sources<span class="nt">&lt;/phase&gt;</span>
+<span class="linenos" data-linenos="52 "></span><span class="w">                        </span><span class="nt">&lt;goals&gt;</span>
+<span class="linenos" data-linenos="53 "></span><span class="w">                            </span><span class="nt">&lt;goal&gt;</span>add-source<span class="nt">&lt;/goal&gt;</span>
+<span class="linenos" data-linenos="54 "></span><span class="w">                        </span><span class="nt">&lt;/goals&gt;</span>
+<span class="linenos" data-linenos="55 "></span><span class="w">                        </span><span class="nt">&lt;configuration&gt;</span>
+<span class="linenos" data-linenos="56 "></span><span class="w">                            </span><span class="nt">&lt;sources&gt;</span>
+<span class="linenos" data-linenos="57 "></span><span class="w">                                </span><span class="nt">&lt;source&gt;</span>target/generated-sources/annotations<span class="nt">&lt;/source&gt;</span>
+<span class="linenos" data-linenos="58 "></span><span class="w">                            </span><span class="nt">&lt;/sources&gt;</span>
+<span class="linenos" data-linenos="59 "></span><span class="w">                        </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="linenos" data-linenos="60 "></span><span class="w">                    </span><span class="nt">&lt;/execution&gt;</span>
+<span class="linenos" data-linenos="61 "></span><span class="w">                </span><span class="nt">&lt;/executions&gt;</span>
+<span class="linenos" data-linenos="62 "></span><span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="linenos" data-linenos="63 "></span><span class="w">        </span><span class="nt">&lt;/plugins&gt;</span>
+<span class="linenos" data-linenos="64 "></span><span class="w">    </span><span class="nt">&lt;/build&gt;</span>
+<span class="linenos" data-linenos="65 "></span>
+<span class="linenos" data-linenos="66 "></span><span class="nt">&lt;/project&gt;</span>
+</code></pre></div>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Volver al principio
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navitagion.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+    
+  </body>
+</html>

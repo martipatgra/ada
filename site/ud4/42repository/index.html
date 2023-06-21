@@ -1,0 +1,1059 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../41introduccionspring/">
+      
+      
+        <link rel="next" href="../43rest/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>4.2.- Spring Data JPA - Acceso a Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trabajando-con-spring-data-jpa" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acceso a Datos" class="md-header__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acceso a Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4.2.- Spring Data JPA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acceso a Datos" class="md-nav__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Acceso a Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          1.- Acceso a ficheros
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.- Acceso a ficheros
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/11io/" class="md-nav__link">
+        1.1.- Entrada/Salida (I/O) de la información
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/12binaryfiles/" class="md-nav__link">
+        1.2.- Ficheros binarios
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/13characterfiles/" class="md-nav__link">
+        1.3.- Ficheros de caracteres
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/14fileclass/" class="md-nav__link">
+        1.4.- Clase File
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/15javanio/" class="md-nav__link">
+        1.5.- java.nio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/16randomaccessfile/" class="md-nav__link">
+        1.6.- Ficheros de acceso aleatorio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/17configfiles/" class="md-nav__link">
+        1.7.- Ficheros de configuración
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/18xmlfiles/" class="md-nav__link">
+        1.8.- XML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/19jsonfiles/" class="md-nav__link">
+        1.9.- JSON
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/20createjar/" class="md-nav__link">
+        1.10.- Crear un .jar
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/21tryresources/" class="md-nav__link">
+        1.11.- try-with-resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          2.- Acceso a bases de datos relacionales
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          2.- Acceso a bases de datos relacionales
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/21persistencia/" class="md-nav__link">
+        2.1.- Persistencia de la información
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22mapeo/" class="md-nav__link">
+        2.2.- Desfase objeto-relacional
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/23conectores/" class="md-nav__link">
+        2.3.- Manejo de conectores - JDBC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/24transactions/" class="md-nav__link">
+        2.4.- Transacciones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/25procedures/" class="md-nav__link">
+        2.5.- Procedimientos y funciones almacenadas
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/26rendimiento/" class="md-nav__link">
+        2.6.- Mejora del rendimiento
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/27projectstructure/" class="md-nav__link">
+        2.7.- Estructura de los proyectos
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          3.- Mapeo objeto-relacional (ORM)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          3.- Mapeo objeto-relacional (ORM)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/31mapeo/" class="md-nav__link">
+        3.1.- Herramientas ORM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/32jpa/" class="md-nav__link">
+        3.2.- Jakarta - JPA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/33hibernate/" class="md-nav__link">
+        3.3.- Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/34dao/" class="md-nav__link">
+        3.4.- Patrón DAO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/35service/" class="md-nav__link">
+        3.5.- Service Layer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          4.- Spring Boot
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          4.- Spring Boot
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../41introduccionspring/" class="md-nav__link">
+        4.1.- Introducción a Spring Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          4.2.- Spring Data JPA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        4.2.- Spring Data JPA
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definir-interfaces-de-repositorio" class="md-nav__link">
+    💮 Definir interfaces de repositorio
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anadir-entidades-en-intellij" class="md-nav__link">
+    💮 Añadir entidades en IntelliJ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-methods" class="md-nav__link">
+    💮 Query Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="💮 Query Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitacion-de-resultados" class="md-nav__link">
+    Limitación de resultados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streaming-los-resultados-de-las-consultas" class="md-nav__link">
+    Streaming los resultados de las consultas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../43rest/" class="md-nav__link">
+        4.3.- Spring Rest Service
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#definir-interfaces-de-repositorio" class="md-nav__link">
+    💮 Definir interfaces de repositorio
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anadir-entidades-en-intellij" class="md-nav__link">
+    💮 Añadir entidades en IntelliJ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-methods" class="md-nav__link">
+    💮 Query Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="💮 Query Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitacion-de-resultados" class="md-nav__link">
+    Limitación de resultados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streaming-los-resultados-de-las-consultas" class="md-nav__link">
+    Streaming los resultados de las consultas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="trabajando-con-spring-data-jpa">♨️ Trabajando con Spring Data JPA</h1>
+<p>Gracias a <strong><a href="https://spring.io/projects/spring-data-jpa#overview">Spring Data JPA</a></strong>, que facilita el uso de tecnologías de acceso a datos, bases de datos relacionales y no relacionales, servicios de datos basados en la nube, etc., podemos trabajar con <strong>Spring Data JPA repositories</strong>. El objetivo del repositorio de Spring Data es reducir significativamente la cantidad de código repetitivo necesario para implementar capas de acceso a datos de persistencia.</p>
+<p><strong>La interfaz central en la abstracción del repositorio de Spring Data es <code>Repository</code></strong>. Esta interfaz actúa principalmente como una interfaz de marcador para capturar los tipos con los que trabajar y para ayudarlo a descubrir interfaces que amplían esta. </p>
+<p>Las interfaces <code>CrudRepository</code> y <code>ListCrudRepository</code> brindan una funcionalidad <strong>CRUD</strong> sofisticada para la clase de entidad que se administra.</p>
+<p><img alt="spring" src="../../img/ud4/2spring.png" /></p>
+<p>Además de <code>CrudRepository</code>, hay una abstracción <code>PagingAndSortingRepository</code> que agrega métodos adicionales para facilitar el acceso paginado a las entidades:</p>
+<p><img alt="spring" src="../../img/ud4/3spring.png" /></p>
+<h2 id="definir-interfaces-de-repositorio">💮 Definir interfaces de repositorio</h2>
+<p>Para definir una interfaz de repositorio, primero se debe crear una clase de <em>dominio o entidad</em>. La interfaz debe extender el <code>Repository</code> y el tipo debe ser la clase de dominio y el tipo de ID.</p>
+<p>Si desea exponer métodos CRUD para ese tipo de dominio, se puede extender de <code>CrudRepository</code> o una de sus variantes en lugar de <code>Repository</code>. <code>JpaRepository</code> es una especialización de <code>ListCrudRepository</code>.</p>
+<div class="highlight"><span class="filename">PersonRepository.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">PersonRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Todo</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="c1">//con esto heredamos todos los métodos definidos en JpaRepository y las clases que se extienden en ella</span>
+<span class="linenos" data-linenos="3 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="anadir-entidades-en-intellij">💮 Añadir entidades en IntelliJ</h2>
+<p>Dentro del paquete <code>entities</code> de proyecto, gracias al plugin que hemos instalado basta con hacer botón derecho sobre el paquete, <em><strong>New --&gt; JPA Entity</strong></em>, y nos creará una entidad.</p>
+<p>Para crear los campos de la entidad basta con hacer uso de la paleta de JPA. Para crear el atributo <code>id</code> de clave primaria hacemos doble click y rellenamos los campos.</p>
+<p><img alt="spring" src="../../img/ud4/7spring.png" /></p>
+<p>Al utilizar <strong>Lombok</strong> nos podemos evitar escribir mucho código boilerplate, ya que el plugin lo hace por nosotros. Para ellos, hacemos click en la palabra <code>Todo</code> de la clase java, se mostrarán una serie de parámetros en la paleta JPA Inspector, hacemos check en las casillas de <em>Getter</em>, <em>Setter</em> y <em>NoArgsConstructor</em>.</p>
+<p><img alt="spring" src="../../img/ud4/8spring.png" /></p>
+<p>Esto añade en la clase de la entidad las siguientes anotaciones: <strong>@Getter, @Setter y @NoArgsConstructor</strong>. </p>
+<p>Lo que implica que genera por nosotros los getters y setters de todos los campos como públicos y el constructor por defecto.</p>
+<div class="highlight"><span class="filename">Person.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@NoArgsConstructor</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nd">@Getter</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nd">@Setter</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="nd">@Entity</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;person&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Person</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="nd">@Id</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;active&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Boolean</span><span class="w"> </span><span class="n">active</span><span class="p">;</span>
+<span class="linenos" data-linenos="18 "></span>
+<span class="linenos" data-linenos="19 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="query-methods">💮 Query Methods</h2>
+<p>El mecanismo de creación de consultas integrado en la infraestructura del repositorio Spring Data es útil para crear consultas restrictivas sobre las entidades del repositorio.</p>
+<p>El análisis de nombres de queries de consulta <strong>se divide en sujeto y predicado</strong>. </p>
+<ul>
+<li>La primera parte (<code>find…By</code>, <code>exists…By</code>) define el sujeto de la consulta, </li>
+<li>La segunda parte forma el predicado. La cláusula introductoria (sujeto) puede contener más expresiones. </li>
+</ul>
+<p>Cualquier texto entre <code>find</code> (u otras palabras clave introductorias) y <code>By</code> se considera descriptivo a menos que se use una de las palabras clave que limitan los resultados, como <code>Distinct</code> o <code>Top/First</code>.</p>
+<p>Ejemplos de Query Methods</p>
+<div class="highlight"><span class="filename">PersonRespository.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">interface</span> <span class="nc">PersonRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Repository</span><span class="o">&lt;</span><span class="n">Person</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByEmailAddressAndLastname</span><span class="p">(</span><span class="n">EmailAddress</span><span class="w"> </span><span class="n">emailAddress</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">  </span><span class="c1">// Enables the distinct flag for the query</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findDistinctPeopleByLastnameOrFirstname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findPeopleDistinctByLastnameOrFirstname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">  </span><span class="c1">// Enabling ignoring case for an individual property</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="c1">// Enabling ignoring case for all suitable properties</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameAndFirstnameAllIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">  </span><span class="c1">// Enabling static ORDER BY for a query</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameOrderByFirstnameAsc</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameOrderByFirstnameDesc</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">  </span><span class="c1">// Like - where x.firstname like ?1 (parameter bound wrapped in %)</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByFirstnameContaining</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="w">  </span><span class="c1">//Between -  where x.startDate between ?1 and ?2 - Busca las personas nacidas entre esas fechas</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByBirthDateBetween</span><span class="p">(</span><span class="n">LocalDate</span><span class="w"> </span><span class="n">dateBegin</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">dateEnd</span><span class="p">);</span>
+<span class="linenos" data-linenos="23 "></span><span class="p">}</span>
+</code></pre></div>
+<p><em>En la documentación oficial de Spring Data JPA encontramos la siguientes tablas con las palabras clave admitidas:</em></p>
+<ul>
+<li><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#appendix.query.method.subject">Query subject keywords</a></li>
+<li><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#appendix.query.method.predicate">Query predicate keywords</a></li>
+</ul>
+<h3 id="limitacion-de-resultados">Limitación de resultados</h3>
+<p>Se puede limitar los resultados de los métodos de consulta utilizando las palabras clave <code>first</code> o <code>top</code> indistintamente.
+Podemos agregar un valor numérico opcional a <code>top</code> o <code>first</code> para especificar el tamaño máximo de resultado que devolverá la consulta. </p>
+<p><strong>Si se omite el número, se asume un tamaño de resultado de 1. </strong></p>
+<p>Ejemplos <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.limit-query-result">web oficial de Spring</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">User</span><span class="w"> </span><span class="nf">findFirstByOrderByLastnameAsc</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">User</span><span class="w"> </span><span class="nf">findTopByOrderByAgeDesc</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">Page</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">queryFirst10ByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Pageable</span><span class="w"> </span><span class="n">pageable</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">Slice</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findTop3ByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Pageable</span><span class="w"> </span><span class="n">pageable</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findFirst10ByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Sort</span><span class="w"> </span><span class="n">sort</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findTop10ByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Pageable</span><span class="w"> </span><span class="n">pageable</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="streaming-los-resultados-de-las-consultas">Streaming los resultados de las consultas</h3>
+<p>Podemos procesar los resultados de los métodos de consulta utilizando Java 8 Stream<T> como tipo de retorno. </p>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Volver al principio
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navitagion.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+    
+  </body>
+</html>
