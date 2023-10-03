@@ -877,9 +877,9 @@ Todos estos flujos de E/S que hemos usado se conocen como flujos <strong>secuenc
 Hay un puntero especial, o índice en el array implícito, llamado <strong>file pointer</strong> (<strong>puntero de fichero</strong>). El puntero indica la posición actual en el fichero.</p>
 <p>Se coloca en uno de estos bytes en el fichero y se puede mover a cualquier posición arbitraria antes de leer o escribir.
 <strong>En otras palabras, se lleva a cabo una operación de lectura o escritura en la ubicación del puntero.</strong></p>
-<p>El puntero se puede mover utilizando el método <code>seek()</code>.</p>
-<p>Cuando se abre un <code>RandomAcessFile</code>, el puntero se establece en 0, lo que indica el inicio del fichero. Para mover el file pointer, se ejecuta el método seek, pasándole un valor long, que es la posición en el fichero a la que deseamos movernos.
-Cuando leemos o escribimos datos en el archivo usando métodos de lectura o escritura, el puntero del archivo avanza al siguiente elemento de datos (es decir, el siguiente byte).</p>
+<p>Cuando se abre un <code>RandomAcessFile</code>, el puntero se establece en 0, lo que indica el inicio del fichero. Para mover el file pointer, se ejecuta el método <code>seek</code>, pasándole un valor long, que es la posición en el fichero a la que deseamos movernos.</p>
+<p><strong>Para obtener la posición del file pointer</strong> se ejecuta el método <code>getFilePointer()</code>.</p>
+<p>Cuando leemos o escribimos datos en el archivo usando métodos de lectura o escritura, el puntero del archivo avanza al siguiente elemento de datos (es decir, el siguiente byte). Pero, dependiendo del tipo de método de lectura o escritura que estemos usando, el puntero se moverá un determinado número de bytes cuando finalicen esas operaciones.</p>
 <p>Por ejemplo, si leemos un valor int usando el método readInt() del archivo, JVM lee 4 bytes usando el puntero, y ahora el puntero del archivo está 4 bytes por delante de la posición anterior, como se muestra en la figura a continuación.</p>
 <p><img alt="JavaIO" src="../../img/ud1/7randomfile.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">raf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">....</span>
