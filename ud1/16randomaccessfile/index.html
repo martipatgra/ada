@@ -871,13 +871,15 @@
 Todos estos flujos de E/S que hemos usado se conocen como flujos <strong>secuenciales</strong> en Java.</p>
 <p>Un fichero que se lee o escribe mediante un flujo secuencial se denomina <strong>fichero de acceso secuencial</strong>. Los datos de un fichero de acceso secuencial <strong>NO se pueden actualizar</strong>.</p>
 <p>Hay otra forma de acceder a los datos de un fichero, y es con la clase <code>RandomAccessFile</code> (ficheros de acceso aleatorio). Esta clase ofrece la posibilidad de acceder directamente a los datos y modificarlos en cualquier posición específica del fichero. Permite leer y escribir datos simultáneamente. Los archivos de acceso aleatorio son útiles para muchas aplicaciones diferentes.</p>
+<p>La clase <code>RandomAccessFile</code> se usa tanto para leer como para escribir. Escribe y lee datos binarios utilizando métodos especiales, que llevan la cuenta de cuántos bytes serán leídos o escritos.</p>
 <h2 id="puntero-de-la-clase-randomaccessfile">Puntero de la clase <code>RandomAccessFile</code></h2>
 <p>Un fichero de acceso aleatorio se comporta como <strong>un gran array de bytes</strong> almacenados en el sistema de archivos.
-Hay un puntero especial, o índice en el array implícito, llamado <strong>file pointer</strong> (<strong>puntero de fichero</strong>). El puntero indica la posición actual (ubicación) en el fichero.</p>
-<p>Se coloca en uno de estos bytes en el fichero y se puede mover a cualquier posición arbitraria antes de leer o escribir.</p>
-<p>En otras palabras, se lleva a cabo una operación de lectura o escritura en la ubicación del puntero.</p>
+Hay un puntero especial, o índice en el array implícito, llamado <strong>file pointer</strong> (<strong>puntero de fichero</strong>). El puntero indica la posición actual en el fichero.</p>
+<p>Se coloca en uno de estos bytes en el fichero y se puede mover a cualquier posición arbitraria antes de leer o escribir.
+<strong>En otras palabras, se lleva a cabo una operación de lectura o escritura en la ubicación del puntero.</strong></p>
 <p>El puntero se puede mover utilizando el método <code>seek()</code>.</p>
-<p>Cuando se crea un fichero por primera vez, el puntero se establece en 0, lo que indica el comienzo del archivo. Cuando leemos o escribimos datos en el archivo usando métodos de lectura o escritura, el puntero del archivo avanza al siguiente elemento de datos (es decir, el siguiente byte).</p>
+<p>Cuando se abre un <code>RandomAcessFile</code>, el puntero se establece en 0, lo que indica el inicio del fichero. Para mover el file pointer, se ejecuta el método seek, pasándole un valor long, que es la posición en el fichero a la que deseamos movernos.
+Cuando leemos o escribimos datos en el archivo usando métodos de lectura o escritura, el puntero del archivo avanza al siguiente elemento de datos (es decir, el siguiente byte).</p>
 <p>Por ejemplo, si leemos un valor int usando el método readInt() del archivo, JVM lee 4 bytes usando el puntero, y ahora el puntero del archivo está 4 bytes por delante de la posición anterior, como se muestra en la figura a continuación.</p>
 <p><img alt="JavaIO" src="../../img/ud1/7randomfile.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">raf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">....</span>
