@@ -375,6 +375,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#cuando-usamos-lecturaescritura-con-ficheros-de-acceso-aleatorio" class="md-nav__link">
+    ¿Cuándo usamos lectura/escritura con ficheros de acceso aleatorio?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#constructor-de-la-clase-randomaccessfile" class="md-nav__link">
     Constructor de la clase RandomAccessFile
   </a>
@@ -837,6 +844,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#cuando-usamos-lecturaescritura-con-ficheros-de-acceso-aleatorio" class="md-nav__link">
+    ¿Cuándo usamos lectura/escritura con ficheros de acceso aleatorio?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#constructor-de-la-clase-randomaccessfile" class="md-nav__link">
     Constructor de la clase RandomAccessFile
   </a>
@@ -888,6 +902,10 @@ Hay un puntero especial, o índice en el array implícito, llamado <strong>file 
 <span class="linenos" data-linenos="4 "></span><span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">//mueve el puntero al inicio del fichero</span>
 <span class="linenos" data-linenos="5 "></span><span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">());</span><span class="w"> </span><span class="c1">//mueve el puntero al final del fichero</span>
 </code></pre></div>
+<h2 id="cuando-usamos-lecturaescritura-con-ficheros-de-acceso-aleatorio">¿Cuándo usamos lectura/escritura con ficheros de acceso aleatorio?</h2>
+<p>Imagina que tenemos un fichero con mucho millones de registros, y en un momento dado, necesitas acceder a unos 50 registros solamente. En vez de cargar un millón de registros en memoria, se puede cargar simplemente un array o mapa, con información sobre cómo localizar los registros deseados en el fichero.
+No queremos usar acceso secuencial, y leer desde el principio del fichero, que pueden ser 10 millones de registros, comprobando cada uno para ver si coincide.</p>
+<p>RandomAccessFile nos permite avanzar o retroceder rápidamente a una posición específica del fichero. Es decir, nos permite leer solo los datos importantes que necesita mi aplicación.</p>
 <h2 id="constructor-de-la-clase-randomaccessfile">Constructor de la clase RandomAccessFile</h2>
 <p>Para construir un objeto de la clase tenemos que especificar el modo (<strong>mode</strong>) que determina qué tipo de acceso a ficheros está permitido.</p>
 <ul>
