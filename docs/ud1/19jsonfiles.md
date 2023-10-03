@@ -112,7 +112,7 @@ Los archivos en este paquete implementan codificadores/decodificadores JSON en J
 ```java
 //Este método accede a una URL y se descarga el contenido en forma de String
 public static String stream(String url) {
-    try (InputStream input = new URL(url).openStream()) {
+    try (InputStream input = URI.create(url).toURL().openStream()) {
         InputStreamReader isr = new InputStreamReader(input);
         BufferedReader reader = new BufferedReader(isr);
         StringBuilder json = new StringBuilder();

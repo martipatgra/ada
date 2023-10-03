@@ -375,6 +375,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#cuando-usamos-lecturaescritura-con-ficheros-de-acceso-aleatorio" class="md-nav__link">
+    ¿Cuándo usamos lectura/escritura con ficheros de acceso aleatorio?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#constructor-de-la-clase-randomaccessfile" class="md-nav__link">
     Constructor de la clase RandomAccessFile
   </a>
@@ -837,6 +844,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#cuando-usamos-lecturaescritura-con-ficheros-de-acceso-aleatorio" class="md-nav__link">
+    ¿Cuándo usamos lectura/escritura con ficheros de acceso aleatorio?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#constructor-de-la-clase-randomaccessfile" class="md-nav__link">
     Constructor de la clase RandomAccessFile
   </a>
@@ -867,16 +881,19 @@
 
 
 <h1 id="acceso-aleatorio-a-ficheros">Acceso aleatorio a ficheros</h1>
-<p>Todos los flujos de E/S que hemos usado hasta ahora se conocen como flujos de solo lectura o solo escritura. Estos flujos se denominan flujos <strong>secuenciales</strong> en Java.</p>
+<p>Hasta ahora, hemos escrito en un fichero, bien al principio del fichero, o bien al final del mismo. Controlando este comportamiento utilizando valores en el enum <code>StandardOpenOptions</code>.
+Todos estos flujos de E/S que hemos usado se conocen como flujos <strong>secuenciales</strong> en Java.</p>
 <p>Un fichero que se lee o escribe mediante un flujo secuencial se denomina <strong>fichero de acceso secuencial</strong>. Los datos de un fichero de acceso secuencial <strong>NO se pueden actualizar</strong>.</p>
-<p>Por lo tanto, para leer y escribir datos simultáneamente, Java proporciona la clase <code>RandomAccessFile</code>. Con esta clase, podemos leer y escribir datos en cualquier ubicación del fichero. Los archivos de acceso aleatorio son útiles para muchas aplicaciones diferentes.</p>
+<p>Hay otra forma de acceder a los datos de un fichero, y es con la clase <code>RandomAccessFile</code> (ficheros de acceso aleatorio). Esta clase ofrece la posibilidad de acceder directamente a los datos y modificarlos en cualquier posición específica del fichero. Permite leer y escribir datos simultáneamente. Los archivos de acceso aleatorio son útiles para muchas aplicaciones diferentes.</p>
+<p>La clase <code>RandomAccessFile</code> se usa tanto para leer como para escribir. Escribe y lee datos binarios utilizando métodos especiales, que llevan la cuenta de cuántos bytes serán leídos o escritos.</p>
 <h2 id="puntero-de-la-clase-randomaccessfile">Puntero de la clase <code>RandomAccessFile</code></h2>
-<p>Un fichero de acceso aleatorio consta de <strong>una secuencia de bytes</strong>.
-Éstos, admiten un puntero especial conocido como <strong>puntero de fichero</strong> (<strong>file pointer</strong>). El puntero indica la posición actual (ubicación) en el fichero.</p>
-<p>Se coloca en uno de estos bytes en el fichero y se puede mover a cualquier posición arbitraria antes de leer o escribir.</p>
-<p>En otras palabras, se lleva a cabo una operación de lectura o escritura en la ubicación del puntero.</p>
-<p>El puntero se puede mover utilizando el método <code>seek()</code>.</p>
-<p>Cuando se crea un fichero por primera vez, el puntero se establece en 0, lo que indica el comienzo del archivo. Cuando leemos o escribimos datos en el archivo usando métodos de lectura o escritura, el puntero del archivo avanza al siguiente elemento de datos (es decir, el siguiente byte).</p>
+<p>Un fichero de acceso aleatorio se comporta como <strong>un gran array de bytes</strong> almacenados en el sistema de archivos.
+Hay un puntero especial, o índice en el array implícito, llamado <strong>file pointer</strong> (<strong>puntero de fichero</strong>). El puntero indica la posición actual en el fichero.</p>
+<p>Se coloca en uno de estos bytes en el fichero y se puede mover a cualquier posición arbitraria antes de leer o escribir.
+<strong>En otras palabras, se lleva a cabo una operación de lectura o escritura en la ubicación del puntero.</strong></p>
+<p>Cuando se abre un <code>RandomAcessFile</code>, el puntero se establece en 0, lo que indica el inicio del fichero. Para mover el file pointer, se ejecuta el método <code>seek</code>, pasándole un valor long, que es la posición en el fichero a la que deseamos movernos.</p>
+<p><strong>Para obtener la posición del file pointer</strong> se ejecuta el método <code>getFilePointer()</code>.</p>
+<p>Cuando leemos o escribimos datos en el archivo usando métodos de lectura o escritura, el puntero del archivo avanza al siguiente elemento de datos (es decir, el siguiente byte). Pero, dependiendo del tipo de método de lectura o escritura que estemos usando, el puntero se moverá un determinado número de bytes cuando finalicen esas operaciones.</p>
 <p>Por ejemplo, si leemos un valor int usando el método readInt() del archivo, JVM lee 4 bytes usando el puntero, y ahora el puntero del archivo está 4 bytes por delante de la posición anterior, como se muestra en la figura a continuación.</p>
 <p><img alt="JavaIO" src="../../img/ud1/7randomfile.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">raf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">....</span>
@@ -885,6 +902,10 @@
 <span class="linenos" data-linenos="4 "></span><span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">//mueve el puntero al inicio del fichero</span>
 <span class="linenos" data-linenos="5 "></span><span class="n">raf</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">raf</span><span class="p">.</span><span class="na">length</span><span class="p">());</span><span class="w"> </span><span class="c1">//mueve el puntero al final del fichero</span>
 </code></pre></div>
+<h2 id="cuando-usamos-lecturaescritura-con-ficheros-de-acceso-aleatorio">¿Cuándo usamos lectura/escritura con ficheros de acceso aleatorio?</h2>
+<p>Imagina que tenemos un fichero con mucho millones de registros, y en un momento dado, necesitas acceder a unos 50 registros solamente. En vez de cargar un millón de registros en memoria, se puede cargar simplemente un array o mapa, con información sobre cómo localizar los registros deseados en el fichero.
+No queremos usar acceso secuencial, y leer desde el principio del fichero, que pueden ser 10 millones de registros, comprobando cada uno para ver si coincide.</p>
+<p>RandomAccessFile nos permite avanzar o retroceder rápidamente a una posición específica del fichero. Es decir, nos permite leer solo los datos importantes que necesita mi aplicación.</p>
 <h2 id="constructor-de-la-clase-randomaccessfile">Constructor de la clase RandomAccessFile</h2>
 <p>Para construir un objeto de la clase tenemos que especificar el modo (<strong>mode</strong>) que determina qué tipo de acceso a ficheros está permitido.</p>
 <ul>
@@ -897,16 +918,17 @@
 </blockquote>
 <h2 id="ejemplo-de-un-programa-que-anade-texto-al-final-de-un-fichero">Ejemplo de un programa que añade texto al final de un fichero</h2>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rw&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">length</span><span class="p">());</span><span class="w"> </span><span class="c1">// Moving file pointer to the end.</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">writeBytes</span><span class="p">(</span><span class="s">&quot;\nJava&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Append text.</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">file</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="c1">//Se abre con el puntero al inicio del fichero</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">RandomAccessFile</span><span class="w"> </span><span class="n">ra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RandomAccessFile</span><span class="p">(</span><span class="s">&quot;files/file.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rw&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">ra</span><span class="p">.</span><span class="na">writeUTF</span><span class="p">(</span><span class="s">&quot;Java&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">ra</span><span class="p">.</span><span class="na">writeChar</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="n">ra</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">//muevo el puntero al inicio del fichero</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">ra</span><span class="p">.</span><span class="na">seek</span><span class="p">(</span><span class="n">ra</span><span class="p">.</span><span class="na">length</span><span class="p">());</span><span class="c1">//muevo el punto al final del fichero</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">ra</span><span class="p">.</span><span class="na">writeUTF</span><span class="p">(</span><span class="s">&quot;Acceso aleatorio&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
 </code></pre></div>
 
 
