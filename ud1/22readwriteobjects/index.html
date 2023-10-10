@@ -463,18 +463,26 @@
     🎆 Deserialization
   </a>
   
-    <nav class="md-nav" aria-label="🎆 Deserialization">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#que-es-el-campo-serialversionuid" class="md-nav__link">
     🎆 ¿Qué es el campo serialVersionUID?
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#que-puede-ser-un-cambio-incompatible-que-no-me-va-a-dejar-deserializar" class="md-nav__link">
+    ¿Qué puede ser un cambio incompatible? ¿Qué no me va a dejar deserializar?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-cambios-son-compatibles-con-serialization-deserilization" class="md-nav__link">
+    ¿Qué cambios son compatibles con serialization-deserilization?
+  </a>
   
 </li>
       
@@ -861,18 +869,26 @@
     🎆 Deserialization
   </a>
   
-    <nav class="md-nav" aria-label="🎆 Deserialization">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#que-es-el-campo-serialversionuid" class="md-nav__link">
     🎆 ¿Qué es el campo serialVersionUID?
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#que-puede-ser-un-cambio-incompatible-que-no-me-va-a-dejar-deserializar" class="md-nav__link">
+    ¿Qué puede ser un cambio incompatible? ¿Qué no me va a dejar deserializar?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-cambios-son-compatibles-con-serialization-deserilization" class="md-nav__link">
+    ¿Qué cambios son compatibles con serialization-deserilization?
+  </a>
   
 </li>
       
@@ -948,27 +964,38 @@
 <p><img alt="JavaObjects" src="../../img/ud1/serialization.png" /></p>
 <p><em>¿Qué pasaría si cambiamos el campo age de la clase Employee de int a long después de haberlo serializado y, ahora volvemos a leerlo?</em>
 Que se generaría una excepción de tipo <code>InvalidClassException</code> con el mensaje clase incompatible, con serialVersionUID diferentes.</p>
-<h3 id="que-es-el-campo-serialversionuid">🎆 ¿Qué es el campo serialVersionUID?</h3>
+<h2 id="que-es-el-campo-serialversionuid">🎆 ¿Qué es el campo serialVersionUID?</h2>
 <p>El campo <code>serialVersionUID</code> <strong>es un campo que crea el compilador implícitamente en tiempo de ejecución si no se declara explícitamente</strong>, para las clases serializables. *Se basa en detalles de la clase como el número de campos, sus tipos y declaraciones, ... *</p>
 <p>Por tanto, cambiar un campo como hemos hecho antes, generará un UID diferente. Cuando leemos un objeto de un stream, el runtime comprueba el serialVersionUID almacenado. Que se almacena con el objeto escrito en el fichero .dat y lo compara con el compilado de la clase. Si no coinciden, entonces hay un problema de compatibilidad y el runtime lanza esa excepción de clase inválida.</p>
-<p>También pasa mucho que diferentes compiladores pueden generar diferentes versiones de UID. Incluso en nuevas versiones de Java también pasa. Y puede ser que no seamos capaces de deserializar nuestros datos.</p>
-<p>Para asegurarnos que esto no pase, es encarecidamente recomendable incluir el campo de  serialVersionUID como un campo estático de la clase como se muestra a continuación:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">serialVersionUID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1L</span><span class="p">;</span>
+<p>También ocurre que, diferentes compiladores pueden generar diferentes versiones de UID. Incluso en nuevas versiones de Java también se generan diferentes versiones de UID para un mismo código, y puede ser que no seamos capaces de deserializar nuestros datos.</p>
+<p>Para asegurarnos que esto no pase, <strong>es encarecidamente recomendable incluir el campo de serialVersionUID como un campo estático de la clase</strong> como se muestra a continuación:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">serialVersionUID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1L</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">address</span><span class="p">;</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="p">...</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
-<p>Tiene que ser long, se puede ver como una especie de número de versión de la clase.</p>
-<p>Ahora si volvemos a probar podemos pensar que funciona, pero da otro error de tipos incompatibles. Aunque hayamos pasado de int a long, que en teoría cabe en conversiones. Pero tiene repercusiones. Por eso es importante entender las reglas de la serialización.</p>
-<p>¿Qué puede ser un cambio incompatible? ¿Qué no me va a dejar deserializar?
-1. Cambiar el tipo declarado de un campo primitivo. (Es porque los tipos de datos primitivos
+<p>Ha de ser de tipo long y se puede ver como una especie de número de versión de la clase.</p>
+<p>Ahora si volvemos a probar podemos pensar que funciona, pero da otro error de tipos incompatibles. Aunque hayamos pasado de int a long sigue habiendo repercusiones. Por eso es importante entender las reglas de la serialización.</p>
+<h2 id="que-puede-ser-un-cambio-incompatible-que-no-me-va-a-dejar-deserializar">¿Qué puede ser un cambio incompatible? ¿Qué no me va a dejar deserializar?</h2>
+<ol>
+<li>Cambiar el tipo declarado de un campo primitivo. (Es porque los tipos de datos primitivos
 toman cierta cantidad de espacio y si eso cambia cuando vayamos a leer tendremos que cambiar
-cuántos bytes leemos)
-2. Eliminar campos.
-3. Cambiar un campo de no estático a estático.
-4. Cambiar la clase de jerarquía.
-5. Hay más que podemos encontrar en la documentación de java en incompatible-changes.</p>
-<p>¿Qué cambios son compatibles con serialization-deserilization?
-1. Añadir campos.
-2. Cambiar el acceso a un campo. Private, public, etc.
-3. Cambiar un campo de estático a no-estático. Es como añadir un campo a la clase.</p>
+cuántos bytes leemos)</li>
+<li>Eliminar campos.</li>
+<li>Cambiar un campo de no estático a estático.</li>
+<li>Cambiar la clase de jerarquía.</li>
+<li>Hay más que podemos encontrar en la documentación de java en incompatible-changes.</li>
+</ol>
+<h2 id="que-cambios-son-compatibles-con-serialization-deserilization">¿Qué cambios son compatibles con serialization-deserilization?</h2>
+<ol>
+<li>Añadir campos.</li>
+<li>Cambiar el acceso a un campo. Private, public, etc.</li>
+<li>Cambiar un campo de estático a no-estático. Es como añadir un campo a la clase.</li>
+</ol>
 
 
   
