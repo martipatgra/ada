@@ -967,7 +967,10 @@ Que se generaría una excepción de tipo <code>InvalidClassException</code> con 
 <h2 id="que-es-el-campo-serialversionuid">🎆 ¿Qué es el campo serialVersionUID?</h2>
 <p>El campo <code>serialVersionUID</code> <strong>es un campo que crea el compilador implícitamente en tiempo de ejecución si no se declara explícitamente</strong>, para las clases serializables. <em>Se basa en detalles de la clase como el número de campos, sus tipos y declaraciones, ...</em></p>
 <p>Por tanto, cambiar un campo como hemos hecho antes, generará un UID diferente. Cuando leemos un objeto de un stream, el runtime comprueba el serialVersionUID almacenado. Que se almacena con el objeto escrito en el fichero .dat y lo compara con el compilado de la clase. Si no coinciden, entonces hay un problema de compatibilidad y el runtime lanza esa excepción de clase inválida.</p>
+<div class="admonition note nota">
+<p class="admonition-title">Note</p>
 <p>También ocurre que, diferentes compiladores pueden generar diferentes versiones de UID. Incluso en nuevas versiones de Java también se generan diferentes versiones de UID para un mismo código, y puede ser que no seamos capaces de deserializar nuestros datos.</p>
+</div>
 <p>Para asegurarnos que esto no pase, <strong>es encarecidamente recomendable incluir el campo de serialVersionUID como un campo estático de la clase</strong> como se muestra a continuación:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">serialVersionUID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1L</span><span class="p">;</span>
@@ -978,7 +981,7 @@ Que se generaría una excepción de tipo <code>InvalidClassException</code> con 
 <span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="p">...</span>
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
-<p>Ha de ser de tipo long y se puede ver como una especie de número de versión de la clase.</p>
+<p><ins class="critic">Ha de ser de tipo long y se puede ver como una especie de número de versión de la clase.</ins></p>
 <p>Ahora si volvemos a probar podemos pensar que funciona, pero da otro error de tipos incompatibles. Aunque hayamos pasado de int a long sigue habiendo repercusiones. Por eso es importante entender las reglas de la serialización.</p>
 <h2 id="que-puede-ser-un-cambio-incompatible-que-no-me-va-a-dejar-deserializar">🐱‍🚀 ¿Qué puede ser un cambio incompatible? ¿Qué no me va a dejar deserializar?</h2>
 <ol>
