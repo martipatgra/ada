@@ -453,22 +453,22 @@
       
         <li class="md-nav__item">
   <a href="#serialization" class="md-nav__link">
-    Serialization
+    ✨ Serialization
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#deserialization" class="md-nav__link">
-    Deserialization
+    🎆 Deserialization
   </a>
   
-    <nav class="md-nav" aria-label="Deserialization">
+    <nav class="md-nav" aria-label="🎆 Deserialization">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#que-es-el-campo-serialversionuid" class="md-nav__link">
-    ¿Qué es el campo serialVersionUID?
+    🎆 ¿Qué es el campo serialVersionUID?
   </a>
   
 </li>
@@ -851,22 +851,22 @@
       
         <li class="md-nav__item">
   <a href="#serialization" class="md-nav__link">
-    Serialization
+    ✨ Serialization
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#deserialization" class="md-nav__link">
-    Deserialization
+    🎆 Deserialization
   </a>
   
-    <nav class="md-nav" aria-label="Deserialization">
+    <nav class="md-nav" aria-label="🎆 Deserialization">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#que-es-el-campo-serialversionuid" class="md-nav__link">
-    ¿Qué es el campo serialVersionUID?
+    🎆 ¿Qué es el campo serialVersionUID?
   </a>
   
 </li>
@@ -892,21 +892,21 @@
 
 
 
-<h1 id="escritura-y-lectura-de-objetos-en-java">Escritura y lectura de objetos en Java</h1>
+<h1 id="escritura-y-lectura-de-objetos-en-java">☄️ Escritura y lectura de objetos en Java</h1>
 <p>Para escribir un objeto y leer esos datos directamente de vuelta a un objeto Java nos proporciona dos clases:</p>
 <ul>
 <li><code>ObjectInputStream</code></li>
 <li><code>ObjectOutputStream</code></li>
 </ul>
 <p>Para entender esto correctamente es necesario saber el significado de <strong>serialización</strong>.</p>
-<h2 id="serialization">Serialization</h2>
+<h2 id="serialization">✨ Serialization</h2>
 <p><strong>El proceso de traducir una estructura de datos u objecto, a un formato que pueda ser almacenado en un fichero</strong>, se llama serialización. Solo las instancias de clases Serializables pueden ser serializadas, lo que significa que la clase debe implementar la interfaz <code>Serializable</code>.</p>
 <p>Esta interfaz no tiene ningún método, sólo se utiliza para marcar que la clase como serializable. <em>Todos los subtipos de una clase serializable son a su vez seriazables.</em></p>
-<h2 id="deserialization">Deserialization</h2>
+<h2 id="deserialization">🎆 Deserialization</h2>
 <p>La serialización por defecto escribe la clase del objeto, la firma de la clase, y los valores de los campos no estáticos. Estos elementos se utilizan para restaurar el objeto y su estado durante la operación de lectura. A este proceso se le conoce como reconstitución de los datos o deserialización.</p>
 <p><em>¿Qué pasa si cambiamos un campo de int a long y volvemos a leer?</em>
 Da error de serialUID.</p>
-<h3 id="que-es-el-campo-serialversionuid">¿Qué es el campo serialVersionUID?</h3>
+<h3 id="que-es-el-campo-serialversionuid">🎆 ¿Qué es el campo serialVersionUID?</h3>
 <p>El campo <code>serialVersionUID</code> es un campo que crea el compilador implícitamente en tiempo de ejecución si no se declara explícitamente, para las clases serializables. Se basa en detalles de la clase como el número de campos, sus tipos y declaraciones, ... </p>
 <p>Por tanto, cambiar un campo como hemos hecho antes, generará un UID diferente. Cuando leemos un objeto de un stream, el runtime comprueba el serialVersionUID almacenado.
 Que se almacena con el objeto escrito en el fichero .dat y lo compara con el compilado de la clase. Si no coinciden, entonces hay un problema de compatibilidad y el runtime lanza esa excepción de clase inválida.</p>
