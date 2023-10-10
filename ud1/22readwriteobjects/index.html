@@ -947,12 +947,10 @@
 </code></pre></div>
 <p><img alt="JavaObjects" src="../../img/ud1/serialization.png" /></p>
 <p><em>¿Qué pasaría si cambiamos el campo age de la clase Employee de int a long después de haberlo serializado y, ahora volvemos a leerlo?</em>
-Que se generaría una excepción de tipo <code>InvalidClassException</code> con el mensaje clase incompatible, con serialVersionUID diferentes.
-Es decir, cuando lo escribió con tipo int generó un serialVersionUID, y ahora al intentar leerlo el serialVersionUID generado no coincide con el anterior que lo escribió o serializó. </p>
+Que se generaría una excepción de tipo <code>InvalidClassException</code> con el mensaje clase incompatible, con serialVersionUID diferentes.</p>
 <h3 id="que-es-el-campo-serialversionuid">🎆 ¿Qué es el campo serialVersionUID?</h3>
-<p>El campo <code>serialVersionUID</code> es un campo que crea el compilador implícitamente en tiempo de ejecución si no se declara explícitamente, para las clases serializables. Se basa en detalles de la clase como el número de campos, sus tipos y declaraciones, ... </p>
-<p>Por tanto, cambiar un campo como hemos hecho antes, generará un UID diferente. Cuando leemos un objeto de un stream, el runtime comprueba el serialVersionUID almacenado.
-Que se almacena con el objeto escrito en el fichero .dat y lo compara con el compilado de la clase. Si no coinciden, entonces hay un problema de compatibilidad y el runtime lanza esa excepción de clase inválida.</p>
+<p>El campo <code>serialVersionUID</code> <strong>es un campo que crea el compilador implícitamente en tiempo de ejecución si no se declara explícitamente</strong>, para las clases serializables. *Se basa en detalles de la clase como el número de campos, sus tipos y declaraciones, ... *</p>
+<p>Por tanto, cambiar un campo como hemos hecho antes, generará un UID diferente. Cuando leemos un objeto de un stream, el runtime comprueba el serialVersionUID almacenado. Que se almacena con el objeto escrito en el fichero .dat y lo compara con el compilado de la clase. Si no coinciden, entonces hay un problema de compatibilidad y el runtime lanza esa excepción de clase inválida.</p>
 <p>También pasa mucho que diferentes compiladores pueden generar diferentes versiones de UID. Incluso en nuevas versiones de Java también pasa. Y puede ser que no seamos capaces de deserializar nuestros datos.</p>
 <p>Para asegurarnos que esto no pase, es encarecidamente recomendable incluir el campo de  serialVersionUID como un campo estático de la clase como se muestra a continuación:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">serialVersionUID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1L</span><span class="p">;</span>
