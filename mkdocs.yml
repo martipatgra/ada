@@ -13,6 +13,7 @@ nav:
       - 1.9.- JSON: ud1/19jsonfiles.md
       - 1.10.- Crear un .jar: ud1/20createjar.md
       - 1.11.- try-with-resources: ud1/21tryresources.md
+      - 1.12.- Lectura y escritura de objectos en Java: ud1/22readwriteobjects.md
     - 2.- Acceso a bases de datos relacionales: 
       - 2.1.- Persistencia de la información: ud2/21persistencia.md
       - 2.2.- Desfase objeto-relacional: ud2/22mapeo.md
