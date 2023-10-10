@@ -486,6 +486,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#el-modificador-transient" class="md-nav__link">
+    El modificador transient
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -892,6 +899,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#el-modificador-transient" class="md-nav__link">
+    El modificador transient
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -997,6 +1011,19 @@ cuántos bytes leemos)</li>
 <li>Cambiar el acceso a un campo. Private, public, etc.</li>
 <li>Cambiar un campo de estático a no-estático. Es como añadir un campo a la clase.</li>
 </ol>
+<h2 id="el-modificador-transient">El modificador transient</h2>
+<p><strong>Se utiliza para indicar que un campo no debe serializarse.</strong> Esto puede ser últil para variables o atributos que contienen información sensible. O simplemente variables que no queremos que persistan de ninguna manera, ya sea en ficheros o bases de datos.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">serialVersionUID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1L</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">transient</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">accountId</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">address</span><span class="p">;</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="p">...</span>
+<span class="linenos" data-linenos="9 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Si probamos a escribir un objeto Employee con su accountId, veremos que al deserializarlo el accountId será 0, no se escribirá nada porque lo hemos declarado como <strong>transitorio o transient</strong>.</p>
 
 
   
