@@ -902,6 +902,7 @@
 <h2 id="serialization">✨ Serialization</h2>
 <p><strong>El proceso de traducir una estructura de datos u objecto, a un formato que pueda ser almacenado en un fichero</strong>, se llama serialización. Solo las instancias de clases Serializables pueden ser serializadas, lo que significa que la clase debe implementar la interfaz <code>Serializable</code>.</p>
 <p>Esta interfaz no tiene ningún método, sólo se utiliza para marcar que la clase como serializable. <em>Todos los subtipos de una clase serializable son a su vez seriazables.</em></p>
+<p><img alt="JavaObjects" src="../../img/ud1/serialization.png" /></p>
 <h2 id="deserialization">🎆 Deserialization</h2>
 <p>La serialización por defecto escribe la clase del objeto, la firma de la clase, y los valores de los campos no estáticos. Estos elementos se utilizan para restaurar el objeto y su estado durante la operación de lectura. A este proceso se le conoce como reconstitución de los datos o deserialización.</p>
 <p><em>¿Qué pasa si cambiamos un campo de int a long y volvemos a leer?</em>
