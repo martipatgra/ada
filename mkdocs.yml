@@ -1,7 +1,7 @@
 site_name: Acceso a Datos
 nav:
     - Inicio: index.md
-    - 1.- Acceso a ficheros: 
+    - 1.- Acceso a ficheros [Actualizado 10/10/23]: 
       - 1.1.- Entrada/Salida (I/O) de la información: ud1/11io.md
       - 1.2.- Ficheros binarios: ud1/12binaryfiles.md
       - 1.3.- Ficheros de caracteres: ud1/13characterfiles.md

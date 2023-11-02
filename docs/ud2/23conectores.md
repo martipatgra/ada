@@ -14,13 +14,19 @@ En este curso, nos vamos a centrar en JDBC, puesto que, desde el punto de vista 
 
 Casi de forma simultánea a ODBC, la empresa Sun Microsystems, en 1997 sacó a la luz JDBC, un API conector de bases de datos, implementado específicamente para usar con el lenguaje Java. Se trata de un API bastante similar a ODBC en cuanto a funcionalidad, pero adaptado a las especificidades de Java. Es decir, la funcionalidad se encuentra capsulada en clases (ya que Java es un lenguaje totalmente orientado a objetos) y, además, no depende de ninguna plataforma específica, de acuerdo con la característica multiplataforma defendida por Java.
 
-Es una API que permite la ejecución de operaciones contra una base de datos desde Java independientemente del sistema operativo donde se ejecute o de la base de datos a la cual se acceda.
+Es una API que permite la ejecución de operaciones contra una base de datos desde Java independientemente del sistema operativo donde se ejecute o de la base de datos a la cual se acceda. Podemos pensar en JDBC como un intermediario que se encuentra entre una aplicación Java y una fuente de datos.
+
+Para usar una fuente de datos particular en una aplicación, necesitamos el controlador JDBC para la fuente de datos. Por ejemplo, para acceder a una BD SQLite desde una aplicación, necesitamos un controlador JDBC de SQLite.
 
 ![jdbc](../img/ud2/4jdbc.png)
+
+El driver o controlador es simplemente una biblioteca Java que contiene clases que implementan la API de JDBC. Como todos los drivers JDBC tienen que implementar la misma interfaz, es muy sencillo cambiar de una fuente de datos a otra.
 
 Es importante destacar también que JDBC no exige ninguna instalación, ni ningún cambio sustancial en el código a la hora de utilizar uno u otro controlador. Esta característica se sustenta, en primer lugar, en la utilidad de Java que permite cargar programáticamente cualquier clase a partir de su nombre; en segundo lugar, en la funcionalidad de la clase DriverManager (de la API JDBC), que sin necesidad de indicarle el driver específico que hay que utilizar es capaz de encontrarlo y seleccionarlo de entre todos los que el sistema tenga cargados en memoria.
 
 A pesar de eso tampoco es mucho problema ya que actualmente podemos encontrar un driver JDBC para prácticamente cualquier SGBDR existente. El conector lo proporciona el fabricante de la base de datos o bien un tercero.
+
+*JDBC consta de dos paquetes, java.sql and javax.sql (opcional). Las API del paquete javax.sql son necesarias cuando se trabaja con servidores de bases de datos.*
 
 ### Conexión con la BBDD desde JDBC
 

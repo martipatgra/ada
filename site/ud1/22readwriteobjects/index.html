@@ -247,14 +247,14 @@
       
       
         <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-          1.- Acceso a ficheros
+          1.- Acceso a ficheros [Actualizado 10/10/23]
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          1.- Acceso a ficheros
+          1.- Acceso a ficheros [Actualizado 10/10/23]
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -427,9 +427,75 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          1.12.- Lectura y escritura de objectos en Java
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         1.12.- Lectura y escritura de objectos en Java
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#serialization" class="md-nav__link">
+    ✨ Serialization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deserialization" class="md-nav__link">
+    🎆 Deserialization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-el-campo-serialversionuid" class="md-nav__link">
+    🎆 ¿Qué es el campo serialVersionUID?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-puede-ser-un-cambio-incompatible-que-no-me-va-a-dejar-deserializar" class="md-nav__link">
+    🐱‍🚀 ¿Qué puede ser un cambio incompatible? ¿Qué no me va a dejar deserializar?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-cambios-son-compatibles-con-serialization-deserilization" class="md-nav__link">
+    🐱‍🚀 ¿Qué cambios son compatibles con serialization-deserilization?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-modificador-transient" class="md-nav__link">
+    🪅 El modificador transient
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -792,6 +858,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#serialization" class="md-nav__link">
+    ✨ Serialization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deserialization" class="md-nav__link">
+    🎆 Deserialization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-el-campo-serialversionuid" class="md-nav__link">
+    🎆 ¿Qué es el campo serialVersionUID?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-puede-ser-un-cambio-incompatible-que-no-me-va-a-dejar-deserializar" class="md-nav__link">
+    🐱‍🚀 ¿Qué puede ser un cambio incompatible? ¿Qué no me va a dejar deserializar?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-cambios-son-compatibles-con-serialization-deserilization" class="md-nav__link">
+    🐱‍🚀 ¿Qué cambios son compatibles con serialization-deserilization?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-modificador-transient" class="md-nav__link">
+    🪅 El modificador transient
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -806,7 +922,108 @@
 
 
 
-<h1 id="escritura-y-lectura-de-objetos-en-java">Escritura y lectura de objetos en Java</h1>
+<h1 id="escritura-y-lectura-de-objetos-en-java">☄️ Escritura y lectura de objetos en Java</h1>
+<p>Para escribir un objeto y leer esos datos directamente de vuelta a un objeto Java nos proporciona dos clases:</p>
+<ul>
+<li><code>ObjectInputStream</code></li>
+<li><code>ObjectOutputStream</code></li>
+</ul>
+<p>Para entender esto correctamente es necesario saber el significado de <strong>serialización</strong>.</p>
+<h2 id="serialization">✨ Serialization</h2>
+<p><strong>El proceso de traducir una estructura de datos u objecto, a un formato que pueda ser almacenado en un fichero, o base de datos</strong>, se llama serialización. Solo las instancias de clases Serializables pueden ser serializadas, lo que significa que la clase debe implementar la interfaz <code>Serializable</code>.</p>
+<p>Esta interfaz no tiene ningún método, sólo se utiliza para marcar la clase como serializable. <em>Todos los subtipos de una clase serializable son a su vez seriazables.</em></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">address</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Employee</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">address</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">;</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="nd">@Override</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringJoiner</span><span class="p">(</span><span class="s">&quot;, &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Employee</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getSimpleName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;[&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;]&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">                </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;name=&#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&#39;&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">                </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;age=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="p">)</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">                </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;address=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">address</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">                </span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">WriteObject.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//Método para escribir objectos en un fichero</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">writeObject</span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="n">employee</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">try</span><span class="p">(</span><span class="n">ObjectOutputStream</span><span class="w"> </span><span class="n">os</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectOutputStream</span><span class="p">(</span><span class="n">Files</span><span class="p">.</span><span class="na">newOutputStream</span><span class="p">(</span><span class="n">path</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">os</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">employee</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="deserialization">🎆 Deserialization</h2>
+<p>La serialización por defecto escribe la clase del objeto, la firma de la clase, y los valores de los campos no estáticos. Estos elementos se utilizan para <strong>restaurar el objeto y su estado durante la operación de lectura</strong>. A este proceso se le conoce como reconstitución de los datos o <strong>deserialización</strong>.</p>
+<div class="highlight"><span class="filename">ReadObject.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//Método para leer objectos que han sido serializados</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">readObject</span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">try</span><span class="p">(</span><span class="n">ObjectInputStream</span><span class="w"> </span><span class="n">os</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectInputStream</span><span class="p">(</span><span class="n">Files</span><span class="p">.</span><span class="na">newInputStream</span><span class="p">(</span><span class="n">path</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">((</span><span class="n">Employee</span><span class="p">)</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="na">readObject</span><span class="p">());</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ClassNotFoundException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+<p><img alt="JavaObjects" src="../../img/ud1/serialization.png" /></p>
+<p><em>¿Qué pasaría si cambiamos el campo age de la clase Employee de int a long después de haberlo serializado y, ahora volvemos a leerlo?</em></p>
+<p>Que se generaría una excepción de tipo <code>InvalidClassException</code> con el mensaje clase incompatible, con serialVersionUID diferentes.</p>
+<h2 id="que-es-el-campo-serialversionuid">🎆 ¿Qué es el campo serialVersionUID?</h2>
+<p>El campo <code>serialVersionUID</code> <strong>es un campo que crea el compilador implícitamente en tiempo de ejecución si no se declara explícitamente</strong>, para las clases serializables. <em>Se basa en detalles de la clase como el número de campos, sus tipos y declaraciones, ...</em></p>
+<p>Por tanto, cambiar un campo como hemos hecho antes, generará un UID diferente. Cuando leemos un objeto de un stream, el runtime comprueba el serialVersionUID almacenado. Que se almacena con el objeto escrito en el fichero .dat y lo compara con el compilado de la clase. Si no coinciden, entonces hay un problema de compatibilidad y el runtime lanza esa excepción de clase inválida.</p>
+<div class="admonition note nota">
+<p class="admonition-title">Note</p>
+<p>También ocurre que, diferentes compiladores pueden generar diferentes versiones de UID. Incluso en nuevas versiones de Java también se generan diferentes versiones de UID para un mismo código, y puede ser que no seamos capaces de deserializar nuestros datos.</p>
+</div>
+<p>Para asegurarnos que esto no pase, <strong>es encarecidamente recomendable incluir el campo de serialVersionUID como un campo estático de la clase</strong> como se muestra a continuación:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">serialVersionUID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1L</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">address</span><span class="p">;</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="p">...</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+<p><ins class="critic">Ha de ser de tipo long y se puede ver como una especie de número de versión de la clase.</ins></p>
+<p>Ahora si volvemos a probar podemos pensar que funciona, pero da otro error de tipos incompatibles. Aunque hayamos pasado de int a long sigue habiendo repercusiones. Por eso es importante entender las reglas de la serialización.</p>
+<h2 id="que-puede-ser-un-cambio-incompatible-que-no-me-va-a-dejar-deserializar">🐱‍🚀 ¿Qué puede ser un cambio incompatible? ¿Qué no me va a dejar deserializar?</h2>
+<ol>
+<li>Cambiar el tipo declarado de un campo primitivo. (Es porque los tipos de datos primitivos
+toman cierta cantidad de espacio y si eso cambia cuando vayamos a leer tendremos que cambiar
+cuántos bytes leemos)</li>
+<li>Eliminar campos.</li>
+<li>Cambiar un campo de no estático a estático.</li>
+<li>Cambiar la clase de jerarquía.</li>
+<li>Hay más que podemos encontrar en la documentación de java en incompatible-changes.</li>
+</ol>
+<h2 id="que-cambios-son-compatibles-con-serialization-deserilization">🐱‍🚀 ¿Qué cambios son compatibles con serialization-deserilization?</h2>
+<ol>
+<li>Añadir campos.</li>
+<li>Cambiar el acceso a un campo. Private, public, etc.</li>
+<li>Cambiar un campo de estático a no-estático. Es como añadir un campo a la clase.</li>
+</ol>
+<h2 id="el-modificador-transient">🪅 El modificador transient</h2>
+<p><strong>Se utiliza para indicar que un campo no debe serializarse.</strong> Esto puede ser últil para variables o atributos que contienen información sensible. O simplemente variables que no queremos que persistan de ninguna manera, ya sea en ficheros o bases de datos.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">serialVersionUID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1L</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">transient</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">accountId</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">address</span><span class="p">;</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="p">...</span>
+<span class="linenos" data-linenos="9 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Si probamos a escribir un objeto Employee con su accountId, veremos que al deserializarlo el accountId será 0, no se escribirá nada porque lo hemos declarado como <strong>transitorio o transient</strong>.</p>
 
 
   
