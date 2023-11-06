@@ -678,14 +678,21 @@
         
           <li class="md-nav__item">
   <a href="#jpa-y-persiscentecontext" class="md-nav__link">
-    JPA y PersiscenteContext
+    🔅 JPA y PersiscenteContext
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#estados-de-las-entidades-en-jpa" class="md-nav__link">
-    Estados de las entidades en JPA
+    🔅 Estados de las entidades en JPA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relacion-de-metodos-jpa-con-estados-de-las-entidades" class="md-nav__link">
+    🔅 Relación de métodos JPA con estados de las entidades
   </a>
   
 </li>
@@ -922,14 +929,21 @@
         
           <li class="md-nav__item">
   <a href="#jpa-y-persiscentecontext" class="md-nav__link">
-    JPA y PersiscenteContext
+    🔅 JPA y PersiscenteContext
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#estados-de-las-entidades-en-jpa" class="md-nav__link">
-    Estados de las entidades en JPA
+    🔅 Estados de las entidades en JPA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relacion-de-metodos-jpa-con-estados-de-las-entidades" class="md-nav__link">
+    🔅 Relación de métodos JPA con estados de las entidades
   </a>
   
 </li>
@@ -1008,7 +1022,7 @@
 <p class="admonition-title">Importante</p>
 <p>La primera vez que se instancie un EntityManager se conectará al SGBD y comprobará si existen todas las tablas necesarias para mantener la persistencia de las entidades que este EntityManager controle. En caso de que falte alguna, se generarán las sentencias de creación adecuadas de acuerdo con los metadatos leídas del mapeo.</p>
 </div>
-<h3 id="jpa-y-persiscentecontext">JPA y PersiscenteContext</h3>
+<h3 id="jpa-y-persiscentecontext">🔅 JPA y PersiscenteContext</h3>
 <p>¿Qué es un PersistenceContext? . En primer lugar hay que tener en cuenta que un <strong>EntityManager persistirá un “conjunto de objetos”</strong> ¿Pero qué objetos? Aquellos que hayan sufrido modificaciones a nivel de sus propiedades o atributos y no estén sincronizados. Esto es a lo que comunmente se le denomina <strong>PersistenceContext</strong>.</p>
 <p><img alt="orm" src="../../img/ud3/3persistencecontext.png" /></p>
 <p>Para conseguir que alguno de nuestros objetos pase a ubicarse dentro del PersistenceContext bastará con invocar los métodos persist, merge, sobre él.</p>
@@ -1029,12 +1043,29 @@
 <span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="15 "></span><span class="p">}</span>
 </code></pre></div>
-<h3 id="estados-de-las-entidades-en-jpa">Estados de las entidades en JPA</h3>
+<h3 id="estados-de-las-entidades-en-jpa">🔅 Estados de las entidades en JPA</h3>
 <p>Una de las cosas mas importantes a entender en JPA son los distintos estados de las entidades que manejamos. JPA soporta 4 estados:</p>
+<ul>
+<li>
 <p><strong>New o Transient (Transitorio)</strong>: Una entidad es transitoria cuando se acaba de crear mediante el operador new, pero aún no ha sido gestionada por el EntityManager. En este estado, la entidad no tiene una representación persistente en la base de datos. No está asociado a ningún PersistenceContext.</p>
+</li>
+<li>
 <p><strong>Managed (Gestionado)</strong>: Una entidad está gestionada cuando ha sido recuperada de la base de datos o persistida en la base de datos y se encuentra bajo el control de un EntityManager. En este estado, cualquier cambio realizado en la entidad se reflejará en la base de datos cuando se confirme la transacción.</p>
+</li>
+<li>
 <p><strong>Detached (Desconectado)</strong>: Una entidad se encuentra en estado desconectado cuando ha sido gestionada por un EntityManager, pero ese EntityManager ya no la gestiona. Esto suele ocurrir cuando la transacción en la que se recuperó la entidad ha finalizado o si se ha cerrado el EntityManager.</p>
+</li>
+<li>
 <p><strong>Removed (eliminado)</strong> : Es el estado en el cual se encuentra una entidad que esta todavia controlada por el PersistenceContext pero va a ser eliminada de la base de datos.</p>
+</li>
+</ul>
+<h3 id="relacion-de-metodos-jpa-con-estados-de-las-entidades">🔅 Relación de métodos JPA con estados de las entidades</h3>
+<ul>
+<li><code>persist()</code>: cambia el estado de un objeto que está en estado <strong>new</strong> al estado <strong>managed</strong> y lo asocia a un contexto de persistencia.</li>
+<li><code>remove()</code>: pasa el estado de un objeto de <strong>managed</strong> a <strong>removed</strong>.</li>
+<li><code>detach()</code>: un objeto que estaba en estado <strong>managed</strong> lo pasa a estado <strong>detached</strong>. Mantiene su identidad de persistencia pero ya no está asociado a ningún contexto de persistencia.</li>
+<li><code>merge()</code>: se encarga de convertir un objeto nuevo o <strong>detached</strong> en uno nuevo <strong>managed</strong>. La diferencia fundamental con persist es que, persist no asume que el objeto existe en la base de datos previamente. Algo que si se puede dar con el método merge.</li>
+</ul>
 <h3 id="fichero-de-persistencia">🔅 Fichero de persistencia</h3>
 <p>La configuración de cada <code>EntityManagerFactory</code> se consigue a través de un archivo XML llamado <strong>persistence.xml</strong> (ver figura). Se encuentra situado en un directorio de la aplicación llamado META-INF de un proyecto Java. Este fichero se encarga de conectarnos a la base de datos y define el conjunto de entidades que vamos a gestionar, Por tanto, dentro de este archivo escribiremos todas las configuraciones de conexión necesarias para cada SGBD. Cada configuración constituirá lo que llamamos <strong>una unidad de persistencia</strong>. </p>
 <p>Las unidades de persistencia se identifican por medio de un nombre, el cual pasaremos como parámetro al método <code>createEntityMangerFactory</code> de la clase Persistence, de modo que el <strong><code>EntityManagerFactory</code> creado estará configurado para conectarse a un SGBD específico</strong>. </p>
