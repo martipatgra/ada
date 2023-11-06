@@ -684,6 +684,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#estados-de-las-entidades-en-jpa" class="md-nav__link">
+    Estados de las entidades en JPA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fichero-de-persistencia" class="md-nav__link">
     🔅 Fichero de persistencia
   </a>
@@ -921,6 +928,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#estados-de-las-entidades-en-jpa" class="md-nav__link">
+    Estados de las entidades en JPA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fichero-de-persistencia" class="md-nav__link">
     🔅 Fichero de persistencia
   </a>
@@ -1015,6 +1029,12 @@
 <span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="15 "></span><span class="p">}</span>
 </code></pre></div>
+<h3 id="estados-de-las-entidades-en-jpa">Estados de las entidades en JPA</h3>
+<p>Una de las cosas mas importantes a entender en JPA son los distintos estados de las entidades que manejamos. JPA soporta 4 estados:</p>
+<p><strong>New o Transient (Transitorio)</strong>: Una entidad es transitoria cuando se acaba de crear mediante el operador new, pero aún no ha sido gestionada por el EntityManager. En este estado, la entidad no tiene una representación persistente en la base de datos. No está asociado a ningún PersistenceContext.</p>
+<p><strong>Managed (Gestionado)</strong>: Una entidad está gestionada cuando ha sido recuperada de la base de datos o persistida en la base de datos y se encuentra bajo el control de un EntityManager. En este estado, cualquier cambio realizado en la entidad se reflejará en la base de datos cuando se confirme la transacción.</p>
+<p><strong>Detached (Desconectado)</strong>: Una entidad se encuentra en estado desconectado cuando ha sido gestionada por un EntityManager, pero ese EntityManager ya no la gestiona. Esto suele ocurrir cuando la transacción en la que se recuperó la entidad ha finalizado o si se ha cerrado el EntityManager.</p>
+<p><strong>Removed (eliminado)</strong> : Es el estado en el cual se encuentra una entidad que esta todavia controlada por el PersistenceContext pero va a ser eliminada de la base de datos.</p>
 <h3 id="fichero-de-persistencia">🔅 Fichero de persistencia</h3>
 <p>La configuración de cada <code>EntityManagerFactory</code> se consigue a través de un archivo XML llamado <strong>persistence.xml</strong> (ver figura). Se encuentra situado en un directorio de la aplicación llamado META-INF de un proyecto Java. Este fichero se encarga de conectarnos a la base de datos y define el conjunto de entidades que vamos a gestionar, Por tanto, dentro de este archivo escribiremos todas las configuraciones de conexión necesarias para cada SGBD. Cada configuración constituirá lo que llamamos <strong>una unidad de persistencia</strong>. </p>
 <p>Las unidades de persistencia se identifican por medio de un nombre, el cual pasaremos como parámetro al método <code>createEntityMangerFactory</code> de la clase Persistence, de modo que el <strong><code>EntityManagerFactory</code> creado estará configurado para conectarse a un SGBD específico</strong>. </p>
