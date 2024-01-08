@@ -688,14 +688,14 @@
       
       
         <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-          4.- Spring Boot
+          4.- Spring Framework
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
-          4.- Spring Boot
+          4.- Spring Framework
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -737,6 +737,33 @@
       Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modulos-de-spring" class="md-nav__link">
+    🪔 Módulos de Spring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-spring-boot" class="md-nav__link">
+    🪔 ¿Qué es Spring Boot?
+  </a>
+  
+    <nav class="md-nav" aria-label="🪔 ¿Qué es Spring Boot?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-arranca-spring-boot" class="md-nav__link">
+    ¿Cómo arranca Spring Boot?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#requisitos-para-crear-un-proyecto-con-spring" class="md-nav__link">
@@ -912,6 +939,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#modulos-de-spring" class="md-nav__link">
+    🪔 Módulos de Spring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-spring-boot" class="md-nav__link">
+    🪔 ¿Qué es Spring Boot?
+  </a>
+  
+    <nav class="md-nav" aria-label="🪔 ¿Qué es Spring Boot?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-arranca-spring-boot" class="md-nav__link">
+    ¿Cómo arranca Spring Boot?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#requisitos-para-crear-un-proyecto-con-spring" class="md-nav__link">
     🪔 Requisitos para crear un proyecto con Spring
   </a>
@@ -1021,7 +1075,25 @@
 <p>Lanzado por primera vez, como una plataforma de código abierto Java, en el mes de Junio del año 2003 bajo la licencia Apache 2.0, se convirtió desde entonces en <ins class="critic">el framework más popular para Java empresarial</ins>, para crear código de alto rendimiento, liviano y reutilizable. </p>
 <p><strong>Su finalidad es estandarizar, agilizar, manejar y resolver los problemas que puedan ir surgiendo en el trayecto de la programación.</strong></p>
 <p>Spring se puede considerar como el padre del los frameworks Java, ya que da soporte a varios frameworks como: <strong>Hibernate, Struts, Tapestry, EJB, JSF</strong> entre otros.</p>
-<p>La versión actual de Spring Framework es la 6.x.x y puedes obtener la documentación desde su <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/">web oficial</a>.</p>
+<p>La versión actual de Spring Framework es la 6.x.x, esta versión requiere Java 17+ y puedes obtener la documentación desde su <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/">web oficial</a>.</p>
+<h2 id="modulos-de-spring">🪔 Módulos de Spring</h2>
+<p>Spring está compuesto por muchas librerías y cada una de ellas está destinada a una finalidad: Bases de datos, Seguridad, Servicios Web, etc. Así, estas librerías se engloban en distintos módulos listos para usar. Éstos son algunos de ellos:</p>
+<ul>
+<li><strong>Spring Core Container</strong>: IoC Container (Inversión de Control): Administra la creación, configuración y destrucción de objetos (beans) en una aplicación. DI (Inyección de Dependencias): Permite la inyección de dependencias en los objetos, facilitando la configuración y el mantenimiento.</li>
+<li><strong>Spring AOP</strong> (Aspect-Oriented Programming): Facilita la programación orientada a aspectos, permitiendo separar preocupaciones transversales como la seguridad y el registro del código principal.</li>
+<li><strong>Spring Data</strong>: Proporciona librerías necesarias para trabajar con bases de datos relacionales y no relacionales.</li>
+<li><strong>Spring Cloud</strong>: Facilita el despliegue de aplicaciones Spring en plataformas ubicadas en la nube.  </li>
+<li><strong>Spring Security</strong>: Ofrece librerías que facilitan la seguridad en aplicaciones Spring, en relación a controles de acceso y autenticación.</li>
+<li><strong>Spring Batch</strong>: Se utiliza para automatizar tareas batch. Estas tareas normalmente s ejecutan en horaríos nocturnos y donde se manejan grandes cantidades de datos. </li>
+<li><strong>Spring Model-View-Controller</strong> (MVC): Ofrece una implementación del patrón MVC para el desarrollo de aplicaciones web.</li>
+<li><strong>Spring Test</strong>: Ofrece soporte para la escritura y ejecución de pruebas unitarias y de integración para componentes de Spring.</li>
+</ul>
+<p>Estos módulos pueden reducir drásticamente el tiempo de desarrollo de una aplicación.</p>
+<h2 id="que-es-spring-boot">🪔 ¿Qué es Spring Boot?</h2>
+<p>Spring Boot es básicamente una extensión del marco Spring, que elimina las configuraciones repetitivas necesarias para configurar una aplicación Spring.</p>
+<h3 id="como-arranca-spring-boot">¿Cómo arranca Spring Boot?</h3>
+<p>El punto de entrada de una aplicación Spring Boot es la clase anotada con @SpringBootApplication. De forma predeterminada, Spring Boot utiliza un contenedor integrado para ejecutar la aplicación. En este caso, Spring Boot utiliza el punto de entrada principal público estático y vacío para iniciar un servidor web integrado.</p>
+<p>Otra característica de Spring Boot es que escanea automáticamente todas las clases en el mismo paquete o subpaquetes de la clase principal en busca de componentes.</p>
 <h2 id="requisitos-para-crear-un-proyecto-con-spring">🪔 Requisitos para crear un proyecto con Spring</h2>
 <p>Para crear un proyecto con Spring debemos realizar una serie de pasos:</p>
 <ol>
@@ -1099,7 +1171,7 @@ Al momento de inicializar la aplicación, Spring hará lo siguiente:</p>
 Seleccionamos la siguiente configuración:</p>
 <p><img alt="spring" src="../../img/ud4/1springinit.png" /></p>
 <p>La exportamos y extraemos para abrir como un proyecto nuevo en IntelliJ.</p>
-<p>Instalamos el plugin en IntelliJ llamado <strong>JPA Buddy</strong> que será una ayuda para desarrollar algunas funcionalidades.</p>
+<p>Instalamos los plugins en IntelliJ llamados <strong>JPA Buddy</strong> y <strong>Lombok</strong> que serán de gran ayuda para desarrollar algunas funcionalidades y ahorrarnos boilerplate.</p>
 <h2 id="autoconfiguracion-del-proyecto">🪔 Autoconfiguración del proyecto</h2>
 <p>La anotación <code>@SpringBootApplication</code> habilita el mecanismo de configuración automática de la aplicación en función de las dependencias jar que encuentre en el classpath y se encarga del escaneo de componentes.</p>
 <h2 id="estructura-del-proyecto">🪔 Estructura del proyecto</h2>

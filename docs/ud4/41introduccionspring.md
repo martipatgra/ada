@@ -8,7 +8,31 @@ Lanzado por primera vez, como una plataforma de código abierto Java, en el mes 
 
 Spring se puede considerar como el padre del los frameworks Java, ya que da soporte a varios frameworks como: **Hibernate, Struts, Tapestry, EJB, JSF** entre otros.
 
-La versión actual de Spring Framework es la 6.x.x y puedes obtener la documentación desde su [web oficial](https://docs.spring.io/spring-framework/docs/current/reference/html/).
+La versión actual de Spring Framework es la 6.x.x, esta versión requiere Java 17+ y puedes obtener la documentación desde su [web oficial](https://docs.spring.io/spring-framework/docs/current/reference/html/).
+
+## 🪔 Módulos de Spring
+
+Spring está compuesto por muchas librerías y cada una de ellas está destinada a una finalidad: Bases de datos, Seguridad, Servicios Web, etc. Así, estas librerías se engloban en distintos módulos listos para usar. Éstos son algunos de ellos:
+
+- **Spring Core Container**: IoC Container (Inversión de Control): Administra la creación, configuración y destrucción de objetos (beans) en una aplicación. DI (Inyección de Dependencias): Permite la inyección de dependencias en los objetos, facilitando la configuración y el mantenimiento.
+- **Spring AOP** (Aspect-Oriented Programming): Facilita la programación orientada a aspectos, permitiendo separar preocupaciones transversales como la seguridad y el registro del código principal.
+- **Spring Data**: Proporciona librerías necesarias para trabajar con bases de datos relacionales y no relacionales.
+- **Spring Cloud**: Facilita el despliegue de aplicaciones Spring en plataformas ubicadas en la nube.  
+- **Spring Security**: Ofrece librerías que facilitan la seguridad en aplicaciones Spring, en relación a controles de acceso y autenticación.
+- **Spring Batch**: Se utiliza para automatizar tareas batch. Estas tareas normalmente s ejecutan en horaríos nocturnos y donde se manejan grandes cantidades de datos. 
+- **Spring Model-View-Controller** (MVC): Ofrece una implementación del patrón MVC para el desarrollo de aplicaciones web.
+- **Spring Test**: Ofrece soporte para la escritura y ejecución de pruebas unitarias y de integración para componentes de Spring.
+
+Estos módulos pueden reducir drásticamente el tiempo de desarrollo de una aplicación.
+
+## 🪔 ¿Qué es Spring Boot?
+
+Spring Boot es básicamente una extensión del marco Spring, que elimina las configuraciones repetitivas necesarias para configurar una aplicación Spring.
+
+### ¿Cómo arranca Spring Boot?
+El punto de entrada de una aplicación Spring Boot es la clase anotada con @SpringBootApplication. De forma predeterminada, Spring Boot utiliza un contenedor integrado para ejecutar la aplicación. En este caso, Spring Boot utiliza el punto de entrada principal público estático y vacío para iniciar un servidor web integrado.
+
+Otra característica de Spring Boot es que escanea automáticamente todas las clases en el mismo paquete o subpaquetes de la clase principal en busca de componentes.
 
 ## 🪔 Requisitos para crear un proyecto con Spring
 
@@ -109,7 +133,7 @@ Seleccionamos la siguiente configuración:
 
 La exportamos y extraemos para abrir como un proyecto nuevo en IntelliJ.
 
-Instalamos el plugin en IntelliJ llamado **JPA Buddy** que será una ayuda para desarrollar algunas funcionalidades.
+Instalamos los plugins en IntelliJ llamados **JPA Buddy** y **Lombok** que serán de gran ayuda para desarrollar algunas funcionalidades y ahorrarnos boilerplate.
 
 ## 🪔 Autoconfiguración del proyecto
 

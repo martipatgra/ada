@@ -28,7 +28,7 @@ nav:
       - 3.3.- Hibernate: ud3/33hibernate.md
       - 3.4.- Patrón DAO: ud3/34dao.md
       - 3.5.- Service Layer: ud3/35service.md
-    - 4.- Spring Boot:
+    - 4.- Spring Framework:
       - 4.1.- Introducción a Spring Framework: ud4/41introduccionspring.md
       - 4.2.- Spring Data JPA: ud4/42repository.md
       - 4.3.- Spring Rest Service: ud4/43rest.md

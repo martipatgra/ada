@@ -46,7 +46,7 @@ En una aplicación, también en las distribuidas, **sólo puede haber una única
 !!! Important "Importante" 
     La primera vez que se instancie un EntityManager se conectará al SGBD y comprobará si existen todas las tablas necesarias para mantener la persistencia de las entidades que este EntityManager controle. En caso de que falte alguna, se generarán las sentencias de creación adecuadas de acuerdo con los metadatos leídas del mapeo.
 
-### JPA y PersiscenteContext
+### 🔅 JPA y PersiscenteContext
 
 ¿Qué es un PersistenceContext? . En primer lugar hay que tener en cuenta que un **EntityManager persistirá un “conjunto de objetos”** ¿Pero qué objetos? Aquellos que hayan sufrido modificaciones a nivel de sus propiedades o atributos y no estén sincronizados. Esto es a lo que comunmente se le denomina **PersistenceContext**.
 
@@ -73,6 +73,25 @@ public static void main(String[] args) {
     }
 }
 ```
+
+### 🔅 Estados de las entidades en JPA
+
+Una de las cosas mas importantes a entender en JPA son los distintos estados de las entidades que manejamos. JPA soporta 4 estados:
+
+- **New o Transient (Transitorio)**: Una entidad es transitoria cuando se acaba de crear mediante el operador new, pero aún no ha sido gestionada por el EntityManager. En este estado, la entidad no tiene una representación persistente en la base de datos. No está asociado a ningún PersistenceContext.
+
+- **Managed (Gestionado)**: Una entidad está gestionada cuando ha sido recuperada de la base de datos o persistida en la base de datos y se encuentra bajo el control de un EntityManager. En este estado, cualquier cambio realizado en la entidad se reflejará en la base de datos cuando se confirme la transacción.
+
+- **Detached (Desconectado)**: Una entidad se encuentra en estado desconectado cuando ha sido gestionada por un EntityManager, pero ese EntityManager ya no la gestiona. Esto suele ocurrir cuando la transacción en la que se recuperó la entidad ha finalizado o si se ha cerrado el EntityManager.
+
+- **Removed (eliminado)** : Es el estado en el cual se encuentra una entidad que esta todavia controlada por el PersistenceContext pero va a ser eliminada de la base de datos.
+
+### 🔅 Relación de métodos JPA con estados de las entidades
+
+- `persist()`: cambia el estado de un objeto que está en estado **new** al estado **managed** y lo asocia a un contexto de persistencia.
+- `remove()`: pasa el estado de un objeto de **managed** a **removed**.
+- `detach()`: un objeto que estaba en estado **managed** lo pasa a estado **detached**. Mantiene su identidad de persistencia pero ya no está asociado a ningún contexto de persistencia.
+- `merge()`: se encarga de convertir un objeto nuevo o **detached** en uno nuevo **managed**. La diferencia fundamental con persist es que, persist no asume que el objeto existe en la base de datos previamente. Algo que si se puede dar con el método merge.
 
 ### 🔅 Fichero de persistencia
 
@@ -132,8 +151,6 @@ Ejemplo de código para crear un EntityManager a partir del fichero anterior per
 ### 🔅 Transacciones y excepciones
 
 En aplicaciones locales **EntityManager** dispone del método `getTransaction` para obtener la transacción en curso, si la hay, o para crear una de lo contrario. Una vez creada, la transacción se activa invocando el método begin y finaliza cuando se invoca commit.
-
-{++No es necesario invocar rollback en caso de error. JPA invoca automáticamente la revocación de las acciones cuando se lanzan excepciones de tipo **RuntimeException**, a partir de la última invocación begin.++}
 
 Todas las excepciones generadas por JPA son de tipo **`RuntimeException`**. Este tipo de excepción presenta la particularidad de que **no se declarará en la firma del método** y, por tanto, **el uso de try-catch no es obligatorio**.
 
