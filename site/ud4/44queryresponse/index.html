@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../25procedures/">
+        <link rel="prev" href="../43rest/">
       
       
-        <link rel="next" href="../27projectstructure/">
+        <link rel="next" href="../../about/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>2.6.- Mejora del rendimiento - Acceso a Datos</title>
+        <title>4.4.- @Query y Response - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mejora-del-rendimiento" class="md-skip">
+        <a href="#anotacion-query" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.6.- Mejora del rendimiento
+              4.4.- @Query y Response
             
           </span>
         </div>
@@ -436,16 +436,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
       
       
       
@@ -454,7 +452,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           2.- Acceso a bases de datos relacionales
@@ -467,7 +465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../21persistencia/" class="md-nav__link">
+      <a href="../../ud2/21persistencia/" class="md-nav__link">
         2.1.- Persistencia de la información
       </a>
     </li>
@@ -481,7 +479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../22mapeo/" class="md-nav__link">
+      <a href="../../ud2/22mapeo/" class="md-nav__link">
         2.2.- Desfase objeto-relacional
       </a>
     </li>
@@ -495,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../23conectores/" class="md-nav__link">
+      <a href="../../ud2/23conectores/" class="md-nav__link">
         2.3.- Manejo de conectores - JDBC
       </a>
     </li>
@@ -509,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../24transactions/" class="md-nav__link">
+      <a href="../../ud2/24transactions/" class="md-nav__link">
         2.4.- Transacciones
       </a>
     </li>
@@ -523,7 +521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../25procedures/" class="md-nav__link">
+      <a href="../../ud2/25procedures/" class="md-nav__link">
         2.5.- Procedimientos y funciones almacenadas
       </a>
     </li>
@@ -535,72 +533,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          2.6.- Mejora del rendimiento
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ud2/26rendimiento/" class="md-nav__link">
         2.6.- Mejora del rendimiento
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#ciclo-de-vida-de-una-conexion" class="md-nav__link">
-    🪐 Ciclo de vida de una conexión
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sentencias-predefinidas" class="md-nav__link">
-    ⚡ Sentencias predefinidas
-  </a>
-  
-    <nav class="md-nav" aria-label="⚡ Sentencias predefinidas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ejemplos-de-problemas-con-statement" class="md-nav__link">
-    📝 Ejemplos de problemas con Statement
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -612,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../27projectstructure/" class="md-nav__link">
+      <a href="../../ud2/27projectstructure/" class="md-nav__link">
         2.7.- Estructura de los proyectos
       </a>
     </li>
@@ -737,14 +674,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
       
       
       
@@ -753,7 +692,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           4.- Spring Framework
@@ -766,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud4/41introduccionspring/" class="md-nav__link">
+      <a href="../41introduccionspring/" class="md-nav__link">
         4.1.- Introducción a Spring Framework
       </a>
     </li>
@@ -780,7 +719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud4/42repository/" class="md-nav__link">
+      <a href="../42repository/" class="md-nav__link">
         4.2.- Spring Data JPA
       </a>
     </li>
@@ -794,7 +733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud4/43rest/" class="md-nav__link">
+      <a href="../43rest/" class="md-nav__link">
         4.3.- Spring Rest Service
       </a>
     </li>
@@ -806,11 +745,52 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../ud4/44queryresponse/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          4.4.- @Query y Response
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         4.4.- @Query y Response
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#response-de-una-api-rest" class="md-nav__link">
+    Response de una API rest
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -864,29 +844,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ciclo-de-vida-de-una-conexion" class="md-nav__link">
-    🪐 Ciclo de vida de una conexión
+  <a href="#response-de-una-api-rest" class="md-nav__link">
+    Response de una API rest
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sentencias-predefinidas" class="md-nav__link">
-    ⚡ Sentencias predefinidas
-  </a>
-  
-    <nav class="md-nav" aria-label="⚡ Sentencias predefinidas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ejemplos-de-problemas-con-statement" class="md-nav__link">
-    📝 Ejemplos de problemas con Statement
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -906,106 +866,53 @@
 
 
 
-<h1 id="mejora-del-rendimiento">🧠 Mejora del rendimiento</h1>
-<p>Otro aspecto importante que mide la calidad de las aplicaciones es la <strong>eficiencia</strong> con la que se consigue comunicar con el SGBD. Para <strong>optimizar</strong> la conexión es importante reconocer qué procesos pueden actuar de cuello de botella y bajo qué circunstancias o qué otras agilizan las respuestas de los SGBD.</p>
+<h1 id="anotacion-query">🔆 Anotación @Query</h1>
+<p>La anotación '@Query' tiene 4 usos:</p>
 <ol>
-<li>
-<p>En primer lugar, <ins class="critic">analizaremos la petición de conexión</ins> a un SGBD porque se trata de un proceso costoso pero inevitable que hay que considerar.</p>
-</li>
-<li>
-<p>En segundo lugar, <ins class="critic">estudiaremos las sentencias predefinidas (<code>PreparedStatement</code>)</ins>, porqué su uso facilita la creación de datos clave e índices temporales de modo que sea posible anticiparse a la demanda o disponer de los datos de forma mucho más rápida.</p>
-</li>
+<li><strong>Consultas personalizadas</strong>: Puedes definir consultas personalizadas que van más allá de los métodos CRUD básicos proporcionados por Spring Data JPA. Esto es útil cuando necesitas realizar operaciones más complejas o específicas que no se cubren automáticamente.</li>
 </ol>
-<h2 id="ciclo-de-vida-de-una-conexion">🪐 Ciclo de vida de una conexión</h2>
-<p>El establecimiento de una conexión es un procedimiento bastante lento, tanto en la parte cliente como la parte servidor. En la parte cliente, <code>DriverManager</code> debe descubrir el controlador correcto de entre todos los que tenga que gestionar. La mayoría de veces las aplicaciones trabajarán sólo con un único controlador, pero hay que tener en cuenta que <code>DriverManager</code> no conoce a priori qué URL de conexión corresponde a cada controlador, y para averiguarlo envía una petición de conexión a cada controlador que tenga registrado, el controlador que no le devuelve error será el correcto.</p>
-<p>En el lado servidor, se creará un contexto específico y se habilitarán un conjunto de recursos para cada cliente conectado. Es decir, que durante la petición de conexión del SGBD debe gastar un tiempo considerable antes de no dejar operativa la comunicación cliente-servidor.</p>
-<p>Este elevado gasto de tiempo concentrado en el momento de la petición de conexión nos hace plantear si podemos considerar ineficiente abrir y cerrar la conexión cada vez que tengamos que ejecutar una sentencia SQL, como hemos hecho hasta ahora. Desafortunadamente no hay una única respuesta, sino que depende de la frecuencia de uso de la conexión y el número de conexiones contra un mismo SGBD coexistiendo al mismo tiempo.</p>
-<p><img alt="jdbc" src="../../img/ud2/5jdbc.png" /></p>
-<p>Como en todo, se trata de encontrar <mark class="critic">el punto de equilibrio entre la cantidad de recursos empleados por conexión y la rentabilidad que se saca en mantenerlas abiertas</mark>. </p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT t FROM Todo t WHERE t.completed = true&quot;</span><span class="p">)</span><span class="c1">//lenguaje objeto</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Todo</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">encontrarTodosCompletados</span><span class="p">();</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;select t from Todo t where t.title = ?1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">Todo</span><span class="w"> </span><span class="nf">findByTitleQuery</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">title</span><span class="p">);</span>
+</code></pre></div>
+<ol>
+<li><strong>Consultas nativas</strong>: Puedes ejecutar consultas SQL nativas utilizando la anotación @Query. Esto es útil cuando necesitas aprovechar funcionalidades específicas del motor de base de datos que no están cubiertas por JPQL.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT * FROM todo WHERE title LIKE %:texto%&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nativeQuery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Todo</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">encontrarPorTextoEnTitulo</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">texto</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;select * from todo t where t.title = ?1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nativeQuery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">Todo</span><span class="w"> </span><span class="nf">findByTitle</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">title</span><span class="p">);</span>
+</code></pre></div>
+<ol>
+<li><strong>Actualizaciones y eliminaciones personalizadas</strong>: Puedes usar @Query para definir consultas de actualización o eliminación personalizadas.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Modifying</span><span class="w"> </span><span class="c1">//Indica que la consulta modificará el estado de la base de datos.</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="nd">@Transactional</span><span class="w"> </span><span class="c1">//Indica que la transacción debe estar activa para ejecutar esta consulta.</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;UPDATE Todo t SET t.title = :nuevoTitulo WHERE t.id = :todoId&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">updateTitleById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">todoId</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nuevoTitulo</span><span class="p">);</span>
+</code></pre></div>
+<ol>
+<li><strong>Mapeo de resultados personalizados</strong>: Puedes especificar cómo se deben mapear los resultados de la consulta a objetos Java específicos como DTOs.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT new es.severo.ud4.dto.TodoDTO(t.id, t.title) FROM Todo t WHERE t.completed = false&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">TodoDTO</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">encontrarTodosNoCompletados</span><span class="p">();</span>
+</code></pre></div>
+<h2 id="response-de-una-api-rest">Response de una API rest</h2>
+<p>Para responder a una petición de una api de un endpoint tenemos varias formas: ResponseEntity, @ResponeStatus y @ResponseBody.</p>
 <ul>
 <li>
-<p>Si el número de clientes, y por tanto de conexiones, es bajo y la frecuencia de uso es alta, será preferible mantener las conexiones abiertas mucho tiempo. </p>
+<p><strong>ResponseEntity</strong>: es una clase que de forma flexible nos permite manejar la respuesta HTTP. Te permite controlar tanto el cuerpo de la respuesta como los encabezados y el estado HTTP. Útil con códigos personalizados</p>
 </li>
 <li>
-<p>Por el contrario, si el número de conexiones es muy alto y el uso infrecuente, lo que será preferible será abrir y cerrar la conexión cada vez que se necesite. </p>
+<p><strong>@ResponeStatus</strong>: es una anotación que se puede utilizar en métodos de controlador para especificar un código de estado predeterminado para todas las respuestas generadas por ese método. Es útil cuando deseas establecer un código de estado específico para todas las respuestas sin necesidad de usar ResponseEntity.</p>
+</li>
+<li>
+<p><strong>@ResponseBody</strong>: es una anotación que se puede usar para indicar que el valor de retorno  de un método de controlador debe ser serializado directamente en el cuerpo de la respuesta HTTP. Es útil cuando simplemente deseas devolver el cuerpo de la respuesta sin personalización adicional.</p>
 </li>
 </ul>
-<p>Mientras tanto, habrá una multitud de casos en que la solución consistirá en mantener las conexiones abiertas, pero no permanentemente. Se puede dar <strong>un tiempo de vida a cada conexión</strong>, o bien cerrarlas después de restar inactiva una cantidad determinada de tiempo, o se puede usar el criterio de <strong>mantener un número máximo de conexiones abiertas</strong>, cerrando las más antiguas o las más inactivas cuando se sobrepase el límite.</p>
-<div class="admonition note">
-<p class="admonition-title">😶‍🌫️ Nota</p>
-<p>Por otra parte, hay que tener en cuenta también que una misma aplicación puede trabajar con varias conexiones simultáneamente para incrementar la eficiencia. Cada conexión abre un hilo de ejecución independiente, por lo que es posible el envío simultáneo de peticiones.</p>
-</div>
-<h2 id="sentencias-predefinidas">⚡ Sentencias predefinidas</h2>
-<p><strong><code>PreparedStatement</code></strong> presenta ventajas sobre su antecesor <strong><code>Statement</code></strong> cuando tengamos que trabajar con sentencias que haya que ejecutar varias veces. </p>
-<table>
-<thead>
-<tr>
-<th>⭐Statement⭐</th>
-<th>⭐PreparedStatement⭐</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Statement is usually parsed and executed each time.</td>
-<td>PreparedStatement is parsed once and executed with different parameters repeatedly.</td>
-</tr>
-<tr>
-<td>A statement is a static Sql statement.It does not support parameters.</td>
-<td>A PreparedStatement is a dynamic Sql statement.It does supports parameters.</td>
-</tr>
-<tr>
-<td>It is slower because every time the statements get parsed and executed.</td>
-<td>This is faster because this is precompiled once and gets executed with different parameters.</td>
-</tr>
-<tr>
-<td>Statement verifies metadata against database everytime.</td>
-<td>PreparedStatement verifies metadata against database only once.</td>
-</tr>
-<tr>
-<td>If we want to execute sql statement once it is recommended to use statement.</td>
-<td>If we want to execute sql statements repeatedly it is recommended to use PreparedStatement.</td>
-</tr>
-</tbody>
-</table>
-<p>La razón es que cualquier sentencia SQL, cuando se envía el SGBD será compilada antes de ser ejecutada.
-Usando un objeto <code>Statement</code>, cada vez que hacemos una ejecución de una sentencia, ya sea vía executeUpdate o bien vía executeQuery, el SGBD la compilará, ya que le llegará en forma de cadena de caracteres.</p>
-<p>En cambio, al <code>PreparedStament</code> la sentencia nunca varía y por lo tanto se puede compilar y almacenar dentro del mismo objeto, por lo que las siguientes veces que se ejecute no habrá que compilarla. Esto reducirá sensiblemente el tiempo de ejecución. La parametrización, además, ayuda a crear sentencias muy genéricas que se puedan reutilizar fácilmente.</p>
-<p>En algunos sistemas gestores, además, usar <code>PreparedStatement</code> puede llegar a suponer más ventajas, ya que utilizan la secuencia de bytes de la sentencia para detectar si se trata de una sentencia nueva o ya se ha servido con anterioridad. De esta manera se propicia que el sistema almacene las respuestas en la caché, de manera que se puedan entregar de forma más rápida.</p>
-<div class="admonition important">
-<p class="admonition-title">Important 🤔</p>
-<p>The use of a <code>Statement</code> in JDBC should be 100% localized to being used for DDL (ALTER, CREATE, GRANT, etc) as these are the only statement types that cannot accept BIND VARIABLES. <code>PreparedStatements</code> or <code>CallableStatements</code> should be used for EVERY OTHER type of statement (DML, Queries). As these are the statement types that accept bind variables.</p>
-<p>This is a fact, a rule, a law -- <strong>use prepared statements EVERYWHERE. Use STATEMENTS almost no where</strong>.</p>
-</div>
-<h3 id="ejemplos-de-problemas-con-statement">📝 Ejemplos de problemas con Statement</h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 1. <code>Statement</code> acepta cadenas como consultas SQL. Por lo tanto, el código se vuelve menos legible cuando concatenamos cadenas SQL:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">PersonEntity</span><span class="w"> </span><span class="n">personEntity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;INSERT INTO persons(id, name, age, email) VALUES(&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personEntity</span><span class="p">.</span><span class="na">getId</span><span class="p">()</span><span class="w"> </span>
-<span class="linenos" data-linenos="3 "></span><span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personEntity</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personEntity</span><span class="p">.</span><span class="na">getAge</span><span class="p">()</span><span class="w"> </span>
-<span class="linenos" data-linenos="4 "></span><span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personEntity</span><span class="p">.</span><span class="na">getEmail</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&#39;)&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="5 "></span>
-<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="n">Statement</span><span class="w"> </span><span class="n">statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
-<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="n">statement</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
-<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
-</code></pre></div>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 2. Es vulnerable a la <strong>inyección de SQL</strong>. </li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">check</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT * FROM users WHERE name = &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&#39;;&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="3 "></span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">Statement</span><span class="w"> </span><span class="n">statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">statement</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
-<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
-</code></pre></div>
-<p>Si un usuario malintencionado escribe como nombre de usuario a consultar: </p>
-<blockquote>
-<p><strong><code>Alicia'; DROP TABLE usuarios; SELECT * FROM datos WHERE nombre LIKE '%</code></strong></p>
-</blockquote>
-<p>Se generaría la siguiente consulta SQL, (el color verde es lo que pretende el programador, el azul es el dato, y el rojo, el código SQL inyectado):</p>
-<p><img alt="jdbc" src="../../img/ud2/7inyection.png" /></p>
-<p>En la base de datos se ejecutaría la consulta en el orden dado, se seleccionarían todos los registros con el nombre 'Alicia', se borraría la tabla 'usuarios' y finalmente se seleccionaría toda la tabla "datos", que no debería estar disponible para los usuarios web comunes.'</p>
 
 
   

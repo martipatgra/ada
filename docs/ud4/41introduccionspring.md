@@ -112,7 +112,7 @@ Al momento de inicializar la aplicación, Spring hará lo siguiente:
 
 Los estereotipos (Stereotypes) son componentes que extienden de `@Component`.
 
-En estos momentos existen únicamente 4:
+Existen cuatro:
 
 1. **@Component**: estereotipo general.
 

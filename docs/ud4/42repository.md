@@ -103,8 +103,8 @@ interface PersonRepository extends Repository<Person, Long> {
 
 _En la documentación oficial de Spring Data JPA encontramos la siguientes tablas con las palabras clave admitidas:_
 
-- [Query subject keywords](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#appendix.query.method.subject)
-- [Query predicate keywords](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#appendix.query.method.predicate)
+- [Query subject keywords](https://docs.spring.io/spring-data/jpa/reference/repositories/query-keywords-reference.html)
+- [Query predicate keywords](https://docs.spring.io/spring-data/jpa/reference/repositories/query-keywords-reference.html#appendix.query.method.predicate)
 
 ### Limitación de resultados
 

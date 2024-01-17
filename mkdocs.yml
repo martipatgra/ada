@@ -32,6 +32,7 @@ nav:
       - 4.1.- Introducción a Spring Framework: ud4/41introduccionspring.md
       - 4.2.- Spring Data JPA: ud4/42repository.md
       - 4.3.- Spring Rest Service: ud4/43rest.md
+      - 4.4.- @Query y Response: ud4/44queryresponse.md
     - About : about.md
 theme:
   name: material
