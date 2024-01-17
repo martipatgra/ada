@@ -868,7 +868,7 @@
 
 <h1 id="anotacion-query">🔆 Anotación @Query</h1>
 <p>La anotación '@Query' tiene 4 usos:</p>
-<p><strong>1 </strong>Consultas personalizadas**: Puedes definir consultas personalizadas que van más allá de los métodos CRUD básicos proporcionados por Spring Data JPA. Esto es útil cuando necesitas realizar operaciones más complejas o específicas que no se cubren automáticamente.</p>
+<p><strong>1 Consultas personalizadas</strong>: Puedes definir consultas personalizadas que van más allá de los métodos CRUD básicos proporcionados por Spring Data JPA. Esto es útil cuando necesitas realizar operaciones más complejas o específicas que no se cubren automáticamente.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT t FROM Todo t WHERE t.completed = true&quot;</span><span class="p">)</span><span class="c1">//lenguaje objeto</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Todo</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">encontrarTodosCompletados</span><span class="p">();</span>
 <span class="linenos" data-linenos="3 "></span>
@@ -882,7 +882,7 @@
 <span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;select * from todo t where t.title = ?1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nativeQuery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
 <span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">Todo</span><span class="w"> </span><span class="nf">findByTitle</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">title</span><span class="p">);</span>
 </code></pre></div>
-<p><strong>3 </strong>Actualizaciones y eliminaciones personalizadas**: Puedes usar @Query para definir consultas de actualización o eliminación personalizadas.</p>
+<p><strong>3 Actualizaciones y eliminaciones personalizadas</strong>: Puedes usar @Query para definir consultas de actualización o eliminación personalizadas.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Modifying</span><span class="w"> </span><span class="c1">//Indica que la consulta modificará el estado de la base de datos.</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="nd">@Transactional</span><span class="w"> </span><span class="c1">//Indica que la transacción debe estar activa para ejecutar esta consulta.</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;UPDATE Todo t SET t.title = :nuevoTitulo WHERE t.id = :todoId&quot;</span><span class="p">)</span>
