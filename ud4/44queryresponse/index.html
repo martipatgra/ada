@@ -782,7 +782,7 @@
       
         <li class="md-nav__item">
   <a href="#response-de-una-api-rest" class="md-nav__link">
-    Response de una API rest
+    🆗 Response de una API rest
   </a>
   
 </li>
@@ -845,7 +845,7 @@
       
         <li class="md-nav__item">
   <a href="#response-de-una-api-rest" class="md-nav__link">
-    Response de una API rest
+    🆗 Response de una API rest
   </a>
   
 </li>
@@ -866,7 +866,7 @@
 
 
 
-<h1 id="anotacion-query">🔆 Anotación @Query</h1>
+<h1 id="anotacion-query">❓ Anotación @Query</h1>
 <p>La anotación '@Query' tiene 4 usos:</p>
 <p><strong>1 Consultas personalizadas</strong>: Puedes definir consultas personalizadas que van más allá de los métodos CRUD básicos proporcionados por Spring Data JPA. Esto es útil cuando necesitas realizar operaciones más complejas o específicas que no se cubren automáticamente.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT t FROM Todo t WHERE t.completed = true&quot;</span><span class="p">)</span><span class="c1">//lenguaje objeto</span>
@@ -892,7 +892,7 @@
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT new es.severo.ud4.dto.TodoDTO(t.id, t.title) FROM Todo t WHERE t.completed = false&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">TodoDTO</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">encontrarTodosNoCompletados</span><span class="p">();</span>
 </code></pre></div>
-<h2 id="response-de-una-api-rest">Response de una API rest</h2>
+<h2 id="response-de-una-api-rest">🆗 Response de una API rest</h2>
 <p>Para responder a una petición de una api de un endpoint tenemos varias formas: ResponseEntity, @ResponeStatus y @ResponseBody.</p>
 <ul>
 <li>
