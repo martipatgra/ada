@@ -1020,11 +1020,11 @@ Por ejemplo, todos los nombres de los módulos de JavaFX tienen el prefijo javaf
 <li>[open]: es opcional, es el modificador que declara un módulo abierto, un módulo que exporta sus paquetes para los utilice el acceso reflexivo.</li>
 <li><moduleName>: Es un campo obligatorio. No podemos tener dos módulos dentro del mismo código base con el mismo nombre. Es una buena práctica nombrar a los módulos con el mismo nombre que los paquetes. El nombre del módulo consta de uno o más identificadores de Java separados por el ".", similar a cómo se declaran los paquetes. Ejemplo: <em>es.education.common</em></li>
 <li>Dentro de las llaves se puede añadir opcionalmente 0 o más metadatos sobre el módulo o <strong><em>module statements</em></strong>. Y estos statements o declaraciones pueden ser:<ul>
-<li>export statement</li>
-<li>opens statement</li>
-<li>requires statement</li>
-<li>uses statement</li>
-<li>provides statement</li>
+<li>export statement: se usa para especificar los paquetes que exporta el módulo actual.</li>
+<li>opens statement: NO se puede usar en módulos abiertos (open modules) porque todos los paquetes están abiertos en un módulo abierto.</li>
+<li>requires statement: se usa para especificar el módulo que requiere el módulo actual. Si nuestro módulo depende de otros módulos, debemos especificarlo aquí. Podemos usarlos tantas veces como módulos requiera el nuestro.</li>
+<li>uses statement: se usa para especificar el servicio que consume el módulo actual.</li>
+<li>provides statement: se usa para especificar las implementaciones de servicio que brindan los módulos actuales.</li>
 </ul>
 </li>
 </ul>
