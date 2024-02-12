@@ -844,13 +844,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-modulos" class="md-nav__link">
-    Tipos de módulos
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#ventajas-de-usar-modulos" class="md-nav__link">
     Ventajas de usar módulos
   </a>
@@ -861,6 +854,33 @@
   <a href="#declaracion-de-un-modulo" class="md-nav__link">
     Declaración de un módulo
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-modulos" class="md-nav__link">
+    Tipos de módulos
+  </a>
+  
+    <nav class="md-nav" aria-label="Tipos de módulos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#named-modules-modulos-con-nombre" class="md-nav__link">
+    Named modules (módulos con nombre)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unnamed-modules-modulos-sin-nombre" class="md-nav__link">
+    Unnamed modules (módulos sin nombre)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -935,13 +955,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-modulos" class="md-nav__link">
-    Tipos de módulos
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#ventajas-de-usar-modulos" class="md-nav__link">
     Ventajas de usar módulos
   </a>
@@ -952,6 +965,33 @@
   <a href="#declaracion-de-un-modulo" class="md-nav__link">
     Declaración de un módulo
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-modulos" class="md-nav__link">
+    Tipos de módulos
+  </a>
+  
+    <nav class="md-nav" aria-label="Tipos de módulos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#named-modules-modulos-con-nombre" class="md-nav__link">
+    Named modules (módulos con nombre)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unnamed-modules-modulos-sin-nombre" class="md-nav__link">
+    Unnamed modules (módulos sin nombre)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -987,20 +1027,6 @@ Un módulo es un contenedor de paquetes.</p>
 Por ejemplo, todos los nombres de los módulos de JavaFX tienen el prefijo javafx.</p>
 <h2 id="fichero-module-infojava">Fichero module-info.java</h2>
 <p>Cada módulo viene con un archivo descriptor de módulo que describe el módulo y contiene metadatos sobre el módulo. Este fichero descriptor siempre se encuentra directamente en la carpeta raíz del módulo y siempre tiene el nombre de <strong>module-info.java</strong>.</p>
-<h2 id="tipos-de-modulos">Tipos de módulos</h2>
-<p>El tipo de un módulo determina el acceso a los tipos del módulo y los miembros de esos tipos para el código fuera del módulo.</p>
-<ul>
-<li>
-<p>Normal module (sin modificador open): otorga acceso en tiempo de compilación y ejecución solo en aquellos paquetes que se exportan explícitamente.</p>
-</li>
-<li>
-<p>Open modules (con modificador open):  otorga acceso en tiempo de ejecución en todos sus paquetes como si todos los paquetes se hubieran exportado.</p>
-</li>
-</ul>
-<p>En el siguiente diagrama se muestra una estructura de proyecto antes y después de utilizar modules:
-<img alt="modules" src="../../img/ud5/projectstructure.png" /></p>
-<p>Se trata de no crear aplicaciones como un gran proyecto java, sino de crear unidades modulares que funcionan juntas para formar una aplicación.</p>
-<p><ins class="critic"> Idealmente, los módulos son componentes reutilizables que resuelven requisitos específicos para esa aplicación. </ins></p>
 <h2 id="ventajas-de-usar-modulos">Ventajas de usar módulos</h2>
 <ul>
 <li>Escalabilidad.</li>
@@ -1029,6 +1055,28 @@ Por ejemplo, todos los nombres de los módulos de JavaFX tienen el prefijo javaf
 </li>
 </ul>
 <p><strong>El nombre del módulo definido se puede usar en otras declaraciones de módulo para expresar relaciones entre módulos.</strong></p>
+<p>En el siguiente diagrama se muestra una estructura de proyecto antes y después de utilizar modules:
+<img alt="modules" src="../../img/ud5/projectstructure.png" /></p>
+<p>Se trata de no crear aplicaciones como un gran proyecto java, sino de crear unidades modulares que funcionan juntas para formar una aplicación.</p>
+<p><ins class="critic"> Idealmente, los módulos son componentes reutilizables que resuelven requisitos específicos para esa aplicación. </ins></p>
+<h2 id="tipos-de-modulos">Tipos de módulos</h2>
+<p>Jigsaw definió dos tipos de módulos:</p>
+<h3 id="named-modules-modulos-con-nombre">Named modules (módulos con nombre)</h3>
+<p>Cada módulo tiene un nombre. Pueden ser <strong>normales o automáticos</strong>. 
+Éstos módulos deben ser declarados en el fichero module-info.java.</p>
+<ul>
+<li>
+<p>Normal modules: (sin modificador open). No existen oficialmente como tal en JDK 9, hace referencia a los named modules que no son automáticos. Y hemos dicho que tienen un fichero descriptor, el module-info.java. Se declara usando la palabra reservada <strong>module</strong>. No exporta ninguno de sus paquetes por defecto. Y se divide entre <strong>módulos básicos y abiertos (basic and open modules)</strong>.</p>
+<ul>
+<li>Basic modules: tampoco existe oficialmente, simplemente se usa el término para un módulo que no es abierto. Es decir, módulos que <em>no son automatic modules ni tampoco open modules</em>.</li>
+<li>Open modules:  muchas librerías de terceros como Hibernate o Spring usan la reflexión para acceder a las partes internas de JDK en tiempo de ejecución. Estas librerías solo funcionan con módulos que son open. Se definen usando la palabra resevada <strong><em>open</em></strong>. Un módulo abierto hace que todos los paquetes dentro del módulo sean accesibles para una reflexión profunda. La palabra reservada open, se puede usar para un módulo o para declarar paquetes específicos como open.</li>
+</ul>
+</li>
+<li>
+<p>Automatic modules: no tienen fichero descriptor. Se crean después de agregar un fichero jar a la ruta del módulo. No se declara explícitamente por el desarrollador dentro del fichero descriptor del módulo. Más bien, se crea automáticamente cuando se coloca un fichero jar en la ruta del módulo. Requiere que por defecto todos los módulos de la plataforma, todos nuestros propios módulos y los demás módulos automáticos. Por defecto exporta todos sus paquetes. Son útiles para código de terceros.</p>
+</li>
+</ul>
+<h3 id="unnamed-modules-modulos-sin-nombre">Unnamed modules (módulos sin nombre)</h3>
 
 
   
