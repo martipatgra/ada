@@ -1009,14 +1009,24 @@ Por ejemplo, todos los nombres de los módulos de JavaFX tienen el prefijo javaf
 <li>Facilidad a la hora de desarrollar.</li>
 </ul>
 <h2 id="declaracion-de-un-modulo">Declaración de un módulo</h2>
-<p>Para declarar un módulo se utiliza la palabra reservada module seguido del nombre del módulo y llaves:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">module</span><span class="w"> </span><span class="n">es</span><span class="p">.</span><span class="na">education</span><span class="p">.</span><span class="na">common</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="2 "></span>
-<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="p">}</span>
+<p>Para declarar un módulo se utiliza la palabra reservada <strong><em>module</em></strong> seguido del nombre del módulo y llaves. La sintaxis es la siguiente:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="o">[</span><span class="n">open</span><span class="o">]</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">&lt;</span><span class="n">moduleName</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="o">&lt;</span><span class="n">module</span><span class="o">-</span><span class="n">statement</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="o">&lt;</span><span class="n">module</span><span class="o">-</span><span class="n">statement</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="p">...</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
 <ul>
-<li>El nombre del módulo consta de uno o más identificadores de Java separados por el ".", similar a cómo se declaran los paquetes.</li>
-<li>Dentro de las llaves se puede añadir opcionalmente metadatos sobre el módulo.</li>
+<li>[open]: es opcional, es el modificador que declara un módulo abierto, un módulo que exporta sus paquetes para los utilice el acceso reflexivo.</li>
+<li><moduleName>: Es un campo obligatorio. No podemos tener dos módulos dentro del mismo código base con el mismo nombre. Es una buena práctica nombrar a los módulos con el mismo nombre que los paquetes. El nombre del módulo consta de uno o más identificadores de Java separados por el ".", similar a cómo se declaran los paquetes. Ejemplo: <em>es.education.common</em></li>
+<li>Dentro de las llaves se puede añadir opcionalmente 0 o más metadatos sobre el módulo o <strong><em>module statements</em></strong>. Y estos statements o declaraciones pueden ser:<ul>
+<li>export statement</li>
+<li>opens statement</li>
+<li>requires statement</li>
+<li>uses statement</li>
+<li>provides statement</li>
+</ul>
+</li>
 </ul>
 <p><strong>El nombre del módulo definido se puede usar en otras declaraciones de módulo para expresar relaciones entre módulos.</strong></p>
 
