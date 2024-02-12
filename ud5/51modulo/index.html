@@ -873,14 +873,35 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#unnamed-modules-modulos-sin-nombre" class="md-nav__link">
-    Unnamed modules (módulos sin nombre)
+  <a href="#unnamed-modul-modul-sin-nombre" class="md-nav__link">
+    Unnamed modul (módul sin nombre)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregator-modules" class="md-nav__link">
+    Aggregator modules
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-path-y-class-path" class="md-nav__link">
+    Module Path y Class Path
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-un-modulo-en-intellij" class="md-nav__link">
+    Crear un módulo en IntelliJ
+  </a>
   
 </li>
       
@@ -984,14 +1005,35 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#unnamed-modules-modulos-sin-nombre" class="md-nav__link">
-    Unnamed modules (módulos sin nombre)
+  <a href="#unnamed-modul-modul-sin-nombre" class="md-nav__link">
+    Unnamed modul (módul sin nombre)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregator-modules" class="md-nav__link">
+    Aggregator modules
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-path-y-class-path" class="md-nav__link">
+    Module Path y Class Path
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-un-modulo-en-intellij" class="md-nav__link">
+    Crear un módulo en IntelliJ
+  </a>
   
 </li>
       
@@ -1076,7 +1118,23 @@ Por ejemplo, todos los nombres de los módulos de JavaFX tienen el prefijo javaf
 <p>Automatic modules: no tienen fichero descriptor. Se crean después de agregar un fichero jar a la ruta del módulo. No se declara explícitamente por el desarrollador dentro del fichero descriptor del módulo. Más bien, se crea automáticamente cuando se coloca un fichero jar en la ruta del módulo. Requiere que por defecto todos los módulos de la plataforma, todos nuestros propios módulos y los demás módulos automáticos. Por defecto exporta todos sus paquetes. Son útiles para código de terceros.</p>
 </li>
 </ul>
-<h3 id="unnamed-modules-modulos-sin-nombre">Unnamed modules (módulos sin nombre)</h3>
+<h3 id="unnamed-modul-modul-sin-nombre">Unnamed modul (módul sin nombre)</h3>
+<p>No tiene nombre y tampoco lo declaramos. Exporta todos sus paquetes y lee todos los módulos en el JDK y en la ruta del módulo. Es un módulo formado por ficheros jar de la ruta de clase, y todos estos archivos jar forman el módulo sin nombre.
+Un módulo con nombre NO PUEDE REQUERIR un módulo sin nombre.</p>
+<h3 id="aggregator-modules">Aggregator modules</h3>
+<p>Por último tenemos los módulos agregados. Éstos existen por necesidad. Por ejemplo imaginad que nuestro módulo depende de 3 módulos. Podemos crear un <strong>aggregator module</strong> para esos tres módulos y de esta forma nuestro módulo solo dependería de este único módulo agregado que contiene los otros tres.</p>
+<h2 id="module-path-y-class-path">Module Path y Class Path</h2>
+<p>JDK 9 introdujo el concepto de module path o ruta de módulo.
+Module Path puede representar:</p>
+<ul>
+<li>Una ruta a una secuencia de carpetas que contienen módulos.</li>
+<li>Una ruta a un fichero jar modular.</li>
+<li>Una ruta a un fichero jmod (versión extendida de JAR).</li>
+</ul>
+<p>El compilador utiliza una ruta de módulo para encontrar y resolver módulos. Cada módulo de un module path debe tener una declaración (module-info.java).</p>
+<p>Class path representa una secuencia de ficheros java.</p>
+<h2 id="crear-un-modulo-en-intellij">Crear un módulo en IntelliJ</h2>
+<p>Con nuestra aplicación abierta, seleccionamos File --&gt; New --&gt; Module.</p>
 
 
   
