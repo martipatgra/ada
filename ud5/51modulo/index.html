@@ -844,15 +844,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#declaracion-de-un-modulo" class="md-nav__link">
-    Declaración de un módulo
+  <a href="#tipos-de-modulos" class="md-nav__link">
+    Tipos de módulos
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-modulos" class="md-nav__link">
-    Tipos de módulos
+  <a href="#ventajas-de-usar-modulos" class="md-nav__link">
+    Ventajas de usar módulos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declaracion-de-un-modulo" class="md-nav__link">
+    Declaración de un módulo
   </a>
   
 </li>
@@ -928,15 +935,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#declaracion-de-un-modulo" class="md-nav__link">
-    Declaración de un módulo
+  <a href="#tipos-de-modulos" class="md-nav__link">
+    Tipos de módulos
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-modulos" class="md-nav__link">
-    Tipos de módulos
+  <a href="#ventajas-de-usar-modulos" class="md-nav__link">
+    Ventajas de usar módulos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declaracion-de-un-modulo" class="md-nav__link">
+    Declaración de un módulo
   </a>
   
 </li>
@@ -973,6 +987,27 @@ Un módulo es un contenedor de paquetes.</p>
 Por ejemplo, todos los nombres de los módulos de JavaFX tienen el prefijo javafx.</p>
 <h2 id="fichero-module-infojava">Fichero module-info.java</h2>
 <p>Cada módulo viene con un archivo descriptor de módulo que describe el módulo y contiene metadatos sobre el módulo. Este fichero descriptor siempre se encuentra directamente en la carpeta raíz del módulo y siempre tiene el nombre de <strong>module-info.java</strong>.</p>
+<h2 id="tipos-de-modulos">Tipos de módulos</h2>
+<p>El tipo de un módulo determina el acceso a los tipos del módulo y los miembros de esos tipos para el código fuera del módulo.</p>
+<ul>
+<li>
+<p>Normal module (sin modificador open): otorga acceso en tiempo de compilación y ejecución solo en aquellos paquetes que se exportan explícitamente.</p>
+</li>
+<li>
+<p>Open modules (con modificador open):  otorga acceso en tiempo de ejecución en todos sus paquetes como si todos los paquetes se hubieran exportado.</p>
+</li>
+</ul>
+<p>En el siguiente diagrama se muestra una estructura de proyecto antes y después de utilizar modules:
+<img alt="modules" src="../../img/ud5/projectstructure.png" /></p>
+<p>Se trata de no crear aplicaciones como un gran proyecto java, sino de crear unidades modulares que funcionan juntas para formar una aplicación.</p>
+<p><ins class="critic"> Idealmente, los módulos son componentes reutilizables que resuelven requisitos específicos para esa aplicación. </ins></p>
+<h2 id="ventajas-de-usar-modulos">Ventajas de usar módulos</h2>
+<ul>
+<li>Escalabilidad.</li>
+<li>Seguridad y mantenibilidad. </li>
+<li>Mejora el rendimiento de la aplicación.</li>
+<li>Facilidad a la hora de desarrollar.</li>
+</ul>
 <h2 id="declaracion-de-un-modulo">Declaración de un módulo</h2>
 <p>Para declarar un módulo se utiliza la palabra reservada module seguido del nombre del módulo y llaves:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">module</span><span class="w"> </span><span class="n">es</span><span class="p">.</span><span class="na">education</span><span class="p">.</span><span class="na">common</span><span class="w"> </span><span class="p">{</span>
@@ -984,18 +1019,6 @@ Por ejemplo, todos los nombres de los módulos de JavaFX tienen el prefijo javaf
 <li>Dentro de las llaves se puede añadir opcionalmente metadatos sobre el módulo.</li>
 </ul>
 <p><strong>El nombre del módulo definido se puede usar en otras declaraciones de módulo para expresar relaciones entre módulos.</strong></p>
-<h2 id="tipos-de-modulos">Tipos de módulos</h2>
-<p>El tipo de un módulo determina el acceso a los tipos del módulo y los miembros de esos tipos para el código fuera del módulo.</p>
-<ul>
-<li>
-<p>Normal module (sin modificador open): otorga acceso en tiempo de compilación y ejecución solo en aquellos paquetes que se exportan explícitamente.</p>
-</li>
-<li>
-<p>Open modules (con modificador open):  otorga acceso en tiempo de ejecución en todos sus paquetes como si todos los paquetes se hubieran exportado.</p>
-</li>
-</ul>
-<p>En el siguiente diagrama se muestra una estructura de proyecto antes y después de utilizar modules.</p>
-<p><img alt="modules" src="../img/ud4/projectstructure.png" /></p>
 
 
   
