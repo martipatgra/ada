@@ -677,8 +677,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#jpa-y-persiscentecontext" class="md-nav__link">
-    🔅 JPA y PersiscenteContext
+  <a href="#jpa-y-persistencecontext" class="md-nav__link">
+    🔅 JPA y PersistenceContext
   </a>
   
 </li>
@@ -991,8 +991,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#jpa-y-persiscentecontext" class="md-nav__link">
-    🔅 JPA y PersiscenteContext
+  <a href="#jpa-y-persistencecontext" class="md-nav__link">
+    🔅 JPA y PersistenceContext
   </a>
   
 </li>
@@ -1085,7 +1085,7 @@
 <p class="admonition-title">Importante</p>
 <p>La primera vez que se instancie un EntityManager se conectará al SGBD y comprobará si existen todas las tablas necesarias para mantener la persistencia de las entidades que este EntityManager controle. En caso de que falte alguna, se generarán las sentencias de creación adecuadas de acuerdo con los metadatos leídas del mapeo.</p>
 </div>
-<h3 id="jpa-y-persiscentecontext">🔅 JPA y PersiscenteContext</h3>
+<h3 id="jpa-y-persistencecontext">🔅 JPA y PersistenceContext</h3>
 <p>¿Qué es un PersistenceContext? . En primer lugar hay que tener en cuenta que un <strong>EntityManager persistirá un “conjunto de objetos”</strong> ¿Pero qué objetos? Aquellos que hayan sufrido modificaciones a nivel de sus propiedades o atributos y no estén sincronizados. Esto es a lo que comunmente se le denomina <strong>PersistenceContext</strong>.</p>
 <p><img alt="orm" src="../../img/ud3/3persistencecontext.png" /></p>
 <p>Para conseguir que alguno de nuestros objetos pase a ubicarse dentro del PersistenceContext bastará con invocar los métodos persist, merge, sobre él.</p>
@@ -1093,7 +1093,7 @@
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">Persona</span><span class="w"> </span><span class="n">yo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Patricia&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">);</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="n">emf</span><span class="w"> </span><span class="o">=</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">Persistence</span><span class="p">.</span><span class="na">createEntityManagerFactory</span><span class="p">(</span><span class="s">&quot;UnidadPersonas&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">Persistence</span><span class="p">.</span><span class="na">createEntityManagerFactory</span><span class="p">(</span><span class="s">&quot;default&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="n">EntityManager</span><span class="w"> </span><span class="n">em</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emf</span><span class="p">.</span><span class="na">createEntityManager</span><span class="p">();</span>
 <span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">begin</span><span class="p">();</span>
@@ -1130,7 +1130,7 @@
 <li><code>merge()</code>: se encarga de convertir un objeto nuevo o <strong>detached</strong> en uno nuevo <strong>managed</strong>. La diferencia fundamental con persist es que, persist no asume que el objeto existe en la base de datos previamente. Algo que si se puede dar con el método merge.</li>
 </ul>
 <h3 id="fichero-de-persistencia">🔅 Fichero de persistencia</h3>
-<p>La configuración de cada <code>EntityManagerFactory</code> se consigue a través de un archivo XML llamado <strong>persistence.xml</strong> (ver figura). Se encuentra situado en un directorio de la aplicación llamado META-INF de un proyecto Java. Este fichero se encarga de conectarnos a la base de datos y define el conjunto de entidades que vamos a gestionar, Por tanto, dentro de este archivo escribiremos todas las configuraciones de conexión necesarias para cada SGBD. Cada configuración constituirá lo que llamamos <strong>una unidad de persistencia</strong>. </p>
+<p>La configuración de cada <code>EntityManagerFactory</code> se consigue a través de un archivo XML llamado <strong>persistence.xml</strong>. Se encuentra situado en un directorio de la aplicación llamado META-INF de un proyecto Java. Este fichero se encarga de conectarnos a la base de datos y define el conjunto de entidades que vamos a gestionar, por tanto, dentro de este archivo escribiremos todas las configuraciones de conexión necesarias para cada SGBD. Cada configuración constituirá lo que llamamos <strong>una unidad de persistencia</strong>. </p>
 <p>Las unidades de persistencia se identifican por medio de un nombre, el cual pasaremos como parámetro al método <code>createEntityMangerFactory</code> de la clase Persistence, de modo que el <strong><code>EntityManagerFactory</code> creado estará configurado para conectarse a un SGBD específico</strong>. </p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
@@ -1171,7 +1171,7 @@
 </tr>
 <tr>
 <td>🌀 <strong><code>&lt;provider&gt;</code></strong></td>
-<td>Proveedor de persistencia. JPA sólo define la API o interfaces que se deben cumplir si se quiere usa JPA, pero no implementa esas clases. Necesitamos una librería externa que implemente esta API. Una de las más conocidas es Hibernate. Para este ejemplo, usaremos dos, Hibernate y EclipseLink. Por supuesto, para tener estos proveedores, necesitamos añadir el jar correspondiente a nuestro proyecto. Si usamos maven, las dependencias sería una de estas dos, según queramos eclipseLink o hibernate.</td>
+<td>Proveedor de persistencia. JPA sólo define la API o interfaces que se deben cumplir si se quiere usa JPA, pero no implementa esas clases. Necesitamos una librería externa que implemente esta API. Una de las más conocidas es Hibernate. Para este ejemplo, usaremos dos, Hibernate y EclipseLink. Por supuesto, para tener estos proveedores, necesitamos añadir el jar correspondiente a nuestro proyecto. Si usamos maven, las dependencias sería una de estas dos, según queramos EclipseLink o hibernate.</td>
 </tr>
 <tr>
 <td>🌀 <strong><code>&lt;class&gt;</code></strong></td>
@@ -1179,13 +1179,13 @@
 </tr>
 <tr>
 <td>🌀 <strong><code>&lt;properties&gt;</code></strong></td>
-<td>Contiene los parámetros de conexión a la base de datos. Para ello, podemos usar bien propiedades generales definidas por JPA, o bien propiedades específicas del proveedor de persistencia que usemos, es decir, propiedades específicas de hibernate, de eclipseLync, etc. Yo he indicado las propiedades generales de JPA.</td>
+<td>Contiene los parámetros de conexión a la base de datos. Para ello, podemos usar bien propiedades generales definidas por JPA, o bien propiedades específicas del proveedor de persistencia que usemos, es decir, propiedades específicas de hibernate, de EclipseLink, etc. Yo he indicado las propiedades generales de JPA.</td>
 </tr>
 </tbody>
 </table>
 <p>El fichero es parte del standard y existirá en cualquier implementación de JPA que se utilice.</p>
 <p>En resumen, para crear un <strong>EntityManager</strong> necesario tener un archivo llamado <strong>persistence.xml</strong> con el formato que se acaba de describir. Además, hay que crear un <strong>EntityManagerFactory</strong> configurándolo a partir de una unidad de persistencia incluida en el fichero persistence.xml, el cual nos permitirá obtener el <strong>EntityManager</strong>.</p>
-<p><div class="highlight"><span class="filename">Codigo.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="n">emf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Persistence</span><span class="p">.</span><span class="na">createEntityManagerFactory</span><span class="p">(</span><span class="err">“</span><span class="n">jpaAccesoDatosHibernate</span><span class="err">”</span><span class="p">);</span><span class="w"> </span>
+<p><div class="highlight"><span class="filename">Codigo.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="n">emf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Persistence</span><span class="p">.</span><span class="na">createEntityManagerFactory</span><span class="p">(</span><span class="err">“</span><span class="k">default</span><span class="err">”</span><span class="p">);</span><span class="w"> </span>
 <span class="linenos" data-linenos="2 "></span><span class="c1">//Es el nombre que hemos puesto en &lt;persistence-unit&gt; en el fichero persistence.xml</span>
 <span class="linenos" data-linenos="3 "></span>
 <span class="linenos" data-linenos="4 "></span><span class="n">EntityManager</span><span class="w"> </span><span class="n">em</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emf</span><span class="p">.</span><span class="na">createEntityManager</span><span class="p">();</span>

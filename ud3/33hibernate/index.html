@@ -1266,7 +1266,7 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 </ul>
 <p><img alt="hibernate" src="../../img/ud3/10hibernate.png" /></p>
 <h2 id="configuracion-hibernate">Configuración Hibernate</h2>
-<p>Hibernate requiere saber de antemano dónde encontrar la información de configuración de la BBDD y de mapeo d que define cómo se relacionan las clases de Java con las tablas de la base de datos. Toda esta información generalmente se proporciona como un archivo de propiedades de Java estándar llamado <strong>hibernate.properties</strong>, o como un archivo XML llamado <strong>hibernate.cfg.xml</strong>.</p>
+<p>Hibernate requiere saber de antemano dónde encontrar la información de configuración de la BBDD y de mapeo que define cómo se relacionan las clases de Java con las tablas de la base de datos. Toda esta información generalmente se proporciona como un archivo de propiedades de Java estándar llamado <strong>hibernate.properties</strong>, o como un archivo XML llamado <strong>hibernate.cfg.xml</strong>.</p>
 <p>La mayoría de las propiedades cogen los valores predeterminados y no es necesario especificarlos en el archivo de propiedades a menos que sea realmente necesario. <mark class="critic">Este archivo se guarda en el directorio raíz del classpath de su aplicación.</mark></p>
 <p>Para el ejemplo usaremos un fichero XML de configuración:</p>
 <div class="highlight"><span class="filename">hibernate.cfg.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
@@ -1293,7 +1293,6 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 <li>🚀 <strong>Declarar atributos de identificador</strong> (<code>@Id</code>) con nombres consistentes, y que se use un wrapper y no un tipo de dato primitivo. Ej Long o Integer. El atributo identificador no necesariamente necesita ser mapeado a la(s) columna(s) que definen físicamente la clave primaria. Sin embargo, debe asignarse a la(s) columna(s) que pueden identificar de forma única cada fila.</li>
 <li>🚀 Mapear la entidad con las <strong>anotaciones</strong> necesarias. <code>@Entity</code> para denotar que es una entidad. Y las anotaciones que se requieran en los atributos.</li>
 </ul>
-<p>--batches y flush and clear</p>
 <h2 id="hibernate-query-language-hql-official-website">Hibernate Query Language - <a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#hql">HQL Official Website</a></h2>
 <p>JPQL (Java Persistence Query Language) se inspiró en las primeras versiones de HQL y es un subconjunto del HQL moderno.</p>
 <p>Si se desea el cumplimiento estricto de la persistencia de Jakarta, tendríamos que utilizar en la configuración la siguiente propiedad <code>hibernate.jpa.compliance.query=true</code>. Con esta configuración, cualquier intento de utilizar funciones HQL más allá del subconjunto JPQL dará como resultado una excepción. </p>
