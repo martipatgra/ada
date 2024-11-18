@@ -918,7 +918,7 @@
 <h1 id="capa-de-servicios">🔮 Capa de servicios</h1>
 <p>Es conveniente separar la lógica del código de la aplicación con las operaciones que acceden a la base de datos. Para ello, se puede crear una capa intermedia llamada <strong>service</strong>.</p>
 <p>En nuestro proyecto deberemos crear un paquete llamado <code>service</code> que contendrá las clases necesarias para interactuar con los objetos DAO.</p>
-<p>Dentro del paquete service, creamos la clase <code>PersonalDataService</code> con atributos de tipo DAO y métodos para realizar diferentes operaciones necesarias en la apliación que además añadirán lógica de negocio.</p>
+<p>Dentro del paquete service, creamos la clase <code>PersonalDataService</code> con atributos de tipo DAO y métodos para realizar diferentes operaciones necesarias en la aplicación que además añadirán lógica de negocio.</p>
 <div class="highlight"><span class="filename">PersonalDataService.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PersonalDataService</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">PersonDAO</span><span class="w"> </span><span class="n">personDAO</span><span class="p">;</span>
