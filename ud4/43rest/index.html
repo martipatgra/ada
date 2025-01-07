@@ -1156,6 +1156,7 @@
 </ul>
 </li>
 <li><strong>Serialización y Deserialización</strong>: Spring utiliza Jackson de forma predeterminada para convertir objetos Java a JSON y viceversa. Es decir, un objeto <code>Usuario</code> puede enviarse como respuesta en formato JSON automáticamente.</li>
+<li><strong>Inyección de Dependencias y Servicios</strong>: los controladores suelen delegar la lógica de negocio a las clases servicio, marcadas con <code>@Service</code>, para mantener el código modular y limpio.</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1165,8 +1166,8 @@
 <p>El primer paso para crear un ‘controlador rest’ es anotar la clase que con <code>@RestController</code>.</p>
 <p>Con esto Spring ya sabe que esa clase será un componente encargado de recibir llamadas.</p>
 <p>En la clase también podemos definir la ruta raíz por la cuál partirán las llamadas externas con la anotación <code>@RequestMapping</code>.</p>
-<div class="highlight"><span class="filename">TodoController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@RestController</span>
-<span class="linenos" data-linenos="2 "></span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/person&quot;</span><span class="p">)</span>
+<div class="highlight"><span class="filename">PersonController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@RestController</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/api&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="3 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PersonController</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="4 "></span>
 <span class="linenos" data-linenos="5 "></span><span class="p">}</span>
@@ -1190,7 +1191,7 @@
 <span class="linenos" data-linenos=" 2 "></span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/api&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PersonController</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">PersonService</span><span class="w"> </span><span class="n">personService</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">PersonService</span><span class="w"> </span><span class="n">personService</span><span class="p">;</span><span class="c1">//Inyección de dependencias</span>
 <span class="linenos" data-linenos=" 6 "></span>
 <span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">PersonController</span><span class="p">(</span><span class="n">PersonService</span><span class="w"> </span><span class="n">personService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">personService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">personService</span><span class="p">;</span>
