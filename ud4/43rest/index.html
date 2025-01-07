@@ -19,7 +19,7 @@
     
     
       
-        <title>4.3.- Spring Rest Service - Acceso a Datos</title>
+        <title>4.3.- Spring Web - Acceso a Datos</title>
       
     
     
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              4.3.- Spring Rest Service
+              4.3.- Spring Web
             
           </span>
         </div>
@@ -743,12 +743,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          4.3.- Spring Rest Service
+          4.3.- Spring Web
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        4.3.- Spring Rest Service
+        4.3.- Spring Web
       </a>
       
         
@@ -814,9 +814,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rest-controller-en-spring" class="md-nav__link">
-    ⚕️Rest Controller en Spring
+  <a href="#spring-web" class="md-nav__link">
+    ⚕️Spring Web
   </a>
+  
+    <nav class="md-nav" aria-label="⚕️Spring Web">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-de-spring-para-crear-una-api-rest" class="md-nav__link">
+    ⚕️Componentes de Spring para crear una API REST
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1021,9 +1034,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rest-controller-en-spring" class="md-nav__link">
-    ⚕️Rest Controller en Spring
+  <a href="#spring-web" class="md-nav__link">
+    ⚕️Spring Web
   </a>
+  
+    <nav class="md-nav" aria-label="⚕️Spring Web">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-de-spring-para-crear-una-api-rest" class="md-nav__link">
+    ⚕️Componentes de Spring para crear una API REST
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1111,10 +1137,25 @@
 <li><strong>Recursos identificados por URLs</strong>: los recursos (datos) en una API REST se identifican mediante direcciones únicas o <strong>endpoints</strong>, por ejemplo, este endpoint podría devolver los datos del usuario con ID 123: GET https://api.miservicio.com/usuarios/123</li>
 <li><strong>Representación de recursos</strong>: la información se intercambia en un formato específico, generalmente JSON o XML. JSON es el más popular debido a su legibilidad.</li>
 </ol>
-<h2 id="rest-controller-en-spring">⚕️Rest Controller en Spring</h2>
-<p>Un <em>controller</em> es un componente de Spring capaz de recibir peticiones http y responderlas.</p>
-<p>Las clases que definimos como un controller es responsable de procesar las llamadas entrantes (request) que ingresan a nuestra aplicacion, validarlas y dar una respuesta (response).</p>
-<p>Un <strong>rest controller</strong> es un tipo de controller que recibe peticiones con un formato de específico que cumple con formatos de solicitud RESTful habitualmente y mayormente en <strong>JSON</strong>, aunque a veces se usan otros como HTML, XML, o simplemente texto.</p>
+<h2 id="spring-web">⚕️Spring Web</h2>
+<p>El framework Spring ofrece el módulo <strong>Spring Web</strong>, que se utiliza para la creación de APIs REST. Este módulo proporciona las herramientas y anotaciones necesarias para construir y exponer endpoints RESTful.</p>
+<h3 id="componentes-de-spring-para-crear-una-api-rest">⚕️Componentes de Spring para crear una API REST</h3>
+<ol>
+<li>Controladores REST: los controladores son los responsables de manejar las solicitudes HTTP y devolver las respuestas adecuadas.</li>
+<li>Anotaciones clave:<ul>
+<li>@RestController: marca una clase como controlador REST. Combina @Controller y @ResponseBody, indicando que los métodos devolverán datos directamente (en formato JSON o XML) en lugar de vistas HTML.</li>
+<li>@RequestMapping: define la ruta de acceso base para los endpoints de un controlador.</li>
+<li>Métodos específicos:<ul>
+<li>@GetMapping: solicitudes HTTP GET</li>
+<li>@PostMapping: solicitudes HTTP POST</li>
+<li>@PutMapping: solicitudes HTTP PUT</li>
+<li>@DeleteMapping: solicitudes HTTP DELETE</li>
+<li>@PatchMapping: solicitudes HTTP PATCH</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 <h2 id="como-crear-un-controlador-rest-en-spring">⚕️Cómo crear un controlador rest en Spring</h2>
 <p>El primer paso para crear un ‘controlador rest’ es anotar la clase que con <code>@RestController</code>.</p>
 <p>Con esto Spring ya sabe que esa clase será un componente encargado de recibir llamadas.</p>
