@@ -798,11 +798,24 @@
     API Rest
   </a>
   
+    <nav class="md-nav" aria-label="API Rest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principios-de-una-api-rest" class="md-nav__link">
+    Principios de una API REST
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#rest-controller" class="md-nav__link">
-    ⚕️Rest Controller
+  <a href="#rest-controller-en-spring" class="md-nav__link">
+    ⚕️Rest Controller en Spring
   </a>
   
 </li>
@@ -992,11 +1005,24 @@
     API Rest
   </a>
   
+    <nav class="md-nav" aria-label="API Rest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principios-de-una-api-rest" class="md-nav__link">
+    Principios de una API REST
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#rest-controller" class="md-nav__link">
-    ⚕️Rest Controller
+  <a href="#rest-controller-en-spring" class="md-nav__link">
+    ⚕️Rest Controller en Spring
   </a>
   
 </li>
@@ -1071,7 +1097,21 @@
 <h2 id="api-rest_1">API Rest</h2>
 <p>Es un tipo de API que sigue los principios de la arquitectura REST, diseñados para facilitar la comunicación entre sistemas a través de la web utilizando el protocolo HTTP. REST es un estilo de arquitectura que define cómo se deben estructurar y consumir las APIs para que sean eficientes, simples y escalables. Son ampliamente utilizadas en el desarrollo de software moderno.</p>
 <p>A menudo se puede ver el nombre de API RESTful, RESTful es un adjetivo que describe a las APIs que siguen los principios y restricciones de la arquitectura REST.</p>
-<h2 id="rest-controller">⚕️Rest Controller</h2>
+<h3 id="principios-de-una-api-rest">Principios de una API REST</h3>
+<ol>
+<li><strong>Cliente-Servidor</strong>: el cliente (navegador web normalmente) solicita información o realiza acciones y el servidor procesa estas solicitudes y devuelve una respuesta. Ambos son independientes.</li>
+<li><strong>Stateless (Sin estado)</strong>: cada solicitud del cliente al servidor es independiente. El servidor no almacena información sobre el estado de las solicitudes anteriores.</li>
+<li><strong>Interfaz uniforme</strong>: la comunicación entre cliente-servidor se realiza de manera consistente. Los recursos se identifican mediante URLs, y se usan métodos HTTP estándar para interactuar con ellos:<ul>
+<li>GET: obtener datos</li>
+<li>POST: enviar o crear datos</li>
+<li>PUT o PATCH: actualizar datos existentes</li>
+<li>DELETE: eliminar datos</li>
+</ul>
+</li>
+<li><strong>Recursos identificados por URLs</strong>: los recursos (datos) en una API REST se identifican mediante direcciones únicas o <strong>endpoints</strong>, por ejemplo, este endpoint podría devolver los datos del usuario con ID 123: GET https://api.miservicio.com/usuarios/123</li>
+<li><strong>Representación de recursos</strong>: la información se intercambia en un formato específico, generalmente JSON o XML. JSON es el más popular debido a su legibilidad.</li>
+</ol>
+<h2 id="rest-controller-en-spring">⚕️Rest Controller en Spring</h2>
 <p>Un <em>controller</em> es un componente de Spring capaz de recibir peticiones http y responderlas.</p>
 <p>Las clases que definimos como un controller es responsable de procesar las llamadas entrantes (request) que ingresan a nuestra aplicacion, validarlas y dar una respuesta (response).</p>
 <p>Un <strong>rest controller</strong> es un tipo de controller que recibe peticiones con un formato de específico que cumple con formatos de solicitud RESTful habitualmente y mayormente en <strong>JSON</strong>, aunque a veces se usan otros como HTML, XML, o simplemente texto.</p>
