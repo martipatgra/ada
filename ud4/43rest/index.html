@@ -1141,21 +1141,26 @@
 <p>El framework Spring ofrece el módulo <strong>Spring Web</strong>, que se utiliza para la creación de APIs REST. Este módulo proporciona las herramientas y anotaciones necesarias para construir y exponer endpoints RESTful.</p>
 <h3 id="componentes-de-spring-para-crear-una-api-rest">⚕️Componentes de Spring para crear una API REST</h3>
 <ol>
-<li>Controladores REST: los controladores son los responsables de manejar las solicitudes HTTP y devolver las respuestas adecuadas.</li>
-<li>Anotaciones clave:<ul>
-<li>@RestController: marca una clase como controlador REST. Combina @Controller y @ResponseBody, indicando que los métodos devolverán datos directamente (en formato JSON o XML) en lugar de vistas HTML.</li>
-<li>@RequestMapping: define la ruta de acceso base para los endpoints de un controlador.</li>
+<li><strong>Controladores REST</strong>: los controladores son los responsables de manejar las solicitudes HTTP y devolver las respuestas adecuadas.</li>
+<li><strong>Anotaciones clave</strong>:<ul>
+<li><code>@RestController</code>: marca una clase como controlador REST. Combina @Controller y @ResponseBody, indicando que los métodos devolverán datos directamente (en formato JSON o XML) en lugar de vistas HTML.</li>
+<li><code>@RequestMapping</code>: define la ruta de acceso base para los endpoints de un controlador.</li>
 <li>Métodos específicos:<ul>
-<li>@GetMapping: solicitudes HTTP GET</li>
-<li>@PostMapping: solicitudes HTTP POST</li>
-<li>@PutMapping: solicitudes HTTP PUT</li>
-<li>@DeleteMapping: solicitudes HTTP DELETE</li>
-<li>@PatchMapping: solicitudes HTTP PATCH</li>
+<li><code>@GetMapping</code>: solicitudes HTTP GET</li>
+<li><code>@PostMapping</code>: solicitudes HTTP POST</li>
+<li><code>@PutMapping</code>: solicitudes HTTP PUT</li>
+<li><code>@DeleteMapping</code>: solicitudes HTTP DELETE</li>
+<li><code>@PatchMapping</code>: solicitudes HTTP PATCH</li>
 </ul>
 </li>
 </ul>
 </li>
+<li><strong>Serialización y Deserialización</strong>: Spring utiliza Jackson de forma predeterminada para convertir objetos Java a JSON y viceversa. Es decir, un objeto <code>Usuario</code> puede enviarse como respuesta en formato JSON automáticamente.</li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Jackson es una biblioteca Java para trabajar con datos en formato JSON. Se utiliza para la serialización (convertir objetos Java a JSON) y la deserialización (convertir JSON a objetos Java). Viene configurada por defecto en Spring para el intercambio de datos en APIs REST.</p>
+</div>
 <h2 id="como-crear-un-controlador-rest-en-spring">⚕️Cómo crear un controlador rest en Spring</h2>
 <p>El primer paso para crear un ‘controlador rest’ es anotar la clase que con <code>@RestController</code>.</p>
 <p>Con esto Spring ya sabe que esa clase será un componente encargado de recibir llamadas.</p>
