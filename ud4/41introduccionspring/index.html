@@ -1173,7 +1173,7 @@
 <h3 id="ejemplo-de-di">Ejemplo de DI</h3>
 <p><em>Por ejemplo, <strong>una clase que necesita buscar un registro en la base de datos necesitará de otra que se encargue de buscarlo</strong>.</em></p>
 <p>Pensemos en estas dos clases. Llamemos a la primera <code>PersonalDataService</code> que es la encargada de tomar decisiones sobre el negocio y a la segunda <code>PersonaDAO</code>, la cual se encargará de acceder a la base de datos. </p>
-<p>La clase <code>PersonalDataService</code> depende de la clase <code>PersonaDAO</code> para lograr el acceso a los datos en la base de datos, es decir, en la clase <code>PersonalDataService</code> sería la responsable de crear una instancia de la clase <code>PersonaDAO</code>.</p>
+<p>La clase <code>PersonalDataService</code> depende de la clase <code>PersonaDAO</code> para lograr el acceso a los datos en la base de datos, es decir, la clase <code>PersonalDataService</code> sería la responsable de crear una instancia de la clase <code>PersonaDAO</code>.</p>
 <blockquote>
 <p>En la inyección de dependencias ‘alguien’ externo se encarga de las dependencias que las clases necesitan.</p>
 </blockquote>
