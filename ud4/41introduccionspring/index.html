@@ -1169,7 +1169,7 @@
 <p>Para entender el concepto de bean en Spring necesitamos entender antes una serie algunos conceptos y cómo administra Spring los objetos beans.</p>
 <h3 id="dependency-injection-di">🪃 Dependency Injection (DI)</h3>
 <p>La <strong>inyección de dependencias</strong> es un patrón de diseño que tiene como objetivo tomar la responsabilidad de crear las instancias de las clases que otro objeto necesita y suministrárselo para que esta clase los pueda utilizar.</p>
-<p><ins class="critic">Habitualmente nuestras clases dependen de otras para funcionar.</ins></p>
+<p><ins class="critic">Habitualmente nuestras clases dependen de otras para funcionar. Este patrón permite que una clase no sea responsable de crear o administrar sus dependencias, sino que estas le sean inyectadas desde el exterior.</ins></p>
 <h3 id="ejemplo-de-di">Ejemplo de DI</h3>
 <p><em>Por ejemplo, <strong>una clase que necesita buscar un registro en la base de datos necesitará de otra que se encargue de buscarlo</strong>.</em></p>
 <p>Pensemos en estas dos clases. Llamemos a la primera <code>PersonalDataService</code> que es la encargada de tomar decisiones sobre el negocio y a la segunda <code>PersonaDAO</code>, la cual se encargará de acceder a la base de datos. </p>
