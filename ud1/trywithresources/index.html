@@ -1284,7 +1284,7 @@
 <span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="13 "></span><span class="p">}</span>
 </code></pre></div>
-→ Se propagará <strong>solo la excepción del </strong>``: "Error en close".</p>
+→ Se propagará <strong>solo la excepción del </strong><code>close()</code>: "Error en close".</p>
 <p>La excepción más importante (la que causó el fallo original) <strong>se pierde</strong>.</p>
 <h3 id="en-try-with-resources">En <code>try-with-resources</code>:</h3>
 <p>Java mantiene la excepción original (la del bloque <code>try</code>) y <strong>añade la del bloque close como excepción suprimida</strong>.</p>
