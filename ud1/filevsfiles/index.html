@@ -1480,13 +1480,15 @@ usuarios/admin/
 usuarios/admin/documentos/</p>
 </div>
 <ul>
-<li><strong>Listar el contenido de un directorio:</strong></li>
+<li><strong>Listar el contenido de un directorio. Abre un flujo (DirectoryStream<Path>) con todos los elementos (ficheros y subdirectorios) que contiene la ruta especificada. No es recursivo (no entra dentro de subdirectorios):</strong></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">DirectoryStream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">newDirectoryStream</span><span class="p">(</span><span class="n">carpeta</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">archivo</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">stream</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">archivo</span><span class="p">.</span><span class="na">getFileName</span><span class="p">());</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">DirectoryStream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">newDirectoryStream</span><span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;/home&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">archivo</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">stream</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">archivo</span><span class="p">.</span><span class="na">getFileName</span><span class="p">());</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="p">}</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
 </code></pre></div>
 <ul>
 <li><strong>Comprobar si una ruta es un directorio:</strong></li>
