@@ -1297,7 +1297,6 @@
 <p>→ Se propagará <strong>la excepción original</strong> generada en el try (<code>Error al crear o escribir el fichero</code>), y la del <code>close()</code> quedará registrada como <strong>"<em>suppressed exception</em>".</strong></p>
 <p>✅ Esto permite que <strong>la excepción más relevante no se pierda</strong> y que el programador pueda acceder a toda la información posible de las causas de error.</p>
 <p>!!! important "Conclusión clave" - <code>try</code> con <code>finally</code>: se pierde la excepción original si <code>close()</code> lanza otra. - <code>try-with-resources</code>: se mantiene la excepción del <code>try</code> y se añaden las suprimidas.</p>
-<p><img alt="JavaIO" src="../../img/ud1/tryfinallyvstrywithresources.png" /></p>
 <hr />
 <h2 id="por-que-debemos-cerrar-los-recursos-en-java">🧨 ¿Por qué debemos cerrar los recursos en Java?</h2>
 <p>Cerrar los recursos en Java (como archivos, streams, sockets o conexiones a bases de datos) es <strong>fundamental</strong> por varias razones:</p>
