@@ -38,7 +38,7 @@ Tanto la API `org.hibernate.Session` como la API `jakarta.persistence.EntityMana
 
 ## Configuración Hibernate
 
-Hibernate requiere saber de antemano dónde encontrar la información de configuración de la BBDD y de mapeo d que define cómo se relacionan las clases de Java con las tablas de la base de datos. Toda esta información generalmente se proporciona como un archivo de propiedades de Java estándar llamado **hibernate.properties**, o como un archivo XML llamado **hibernate.cfg.xml**.
+Hibernate requiere saber de antemano dónde encontrar la información de configuración de la BBDD y de mapeo que define cómo se relacionan las clases de Java con las tablas de la base de datos. Toda esta información generalmente se proporciona como un archivo de propiedades de Java estándar llamado **hibernate.properties**, o como un archivo XML llamado **hibernate.cfg.xml**.
 
 La mayoría de las propiedades cogen los valores predeterminados y no es necesario especificarlos en el archivo de propiedades a menos que sea realmente necesario. {==Este archivo se guarda en el directorio raíz del classpath de su aplicación.==}
 
@@ -71,8 +71,6 @@ Las clases que sean entidades deben cumplir las siguientes **convenciones recome
 - 🚀 Incluir **getters y setters**.
 - 🚀 **Declarar atributos de identificador** (`@Id`) con nombres consistentes, y que se use un wrapper y no un tipo de dato primitivo. Ej Long o Integer. El atributo identificador no necesariamente necesita ser mapeado a la(s) columna(s) que definen físicamente la clave primaria. Sin embargo, debe asignarse a la(s) columna(s) que pueden identificar de forma única cada fila.
 - 🚀 Mapear la entidad con las **anotaciones** necesarias. `@Entity` para denotar que es una entidad. Y las anotaciones que se requieran en los atributos.
-
---batches y flush and clear
 
 ## Hibernate Query Language - [HQL Official Website](https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#hql)
 
@@ -306,7 +304,7 @@ Hibernate cerrará automáticamente los recursos cuando finalice la transacción
 
 ## Criteria - [Sitio Web Oficial](https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#criteria)
 
-Las consultas Criteria ofrecen una alternativa de tipo seguro a las consultas HQL, JPQL y SQL nativas. **Son una forma programática y segura de escribir para expresar una consultas.**
+Las consultas Criteria ofrecen una alternativa de tipo seguro a las consultas HQL, JPQL y SQL nativas. **Son una forma programática y segura de escribir para expresar una consulta.**
 
 Las consultas Criteria son esencialmente un grafo de objetos, donde cada parte del grafo representa una parte cada vez más atómica (a medida que navegamos por este grafo) de la consulta. 
 

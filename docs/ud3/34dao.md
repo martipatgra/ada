@@ -8,7 +8,7 @@ La solución estándar consiste en recurrir al **patrón de diseño Data Access 
 
 ![dao](../img/ud3/11dao.png)
 
-Exponemos una API y todo lo demás **queda encapsulado y abstraído en los DAOs**, los cuales, generalmente, obtendremos con una factoría. Por lo común, cuando la fuente de datos es una base de datos relacional, una clase DAO contiene todas las operaciones centradas en una tabla, es decir, crearemos un DAO para cada cada entidad que lo requiera.
+Exponemos una API y todo lo demás **queda encapsulado y abstraído en los DAOs**, los cuales, generalmente, obtendremos con una factoría. Por lo común, cuando la fuente de datos es una base de datos relacional, una clase DAO contiene todas las operaciones centradas en una tabla, es decir, crearemos un DAO para cada entidad que lo requiera.
 
 ## 🪀 1. Creación de las interfaces DAO
 
@@ -16,8 +16,8 @@ Lo primero que haremos será **crear las interfaces de las entidades que requier
 
 Usaremos los ejemplos de clase `Person` y `Address` que tenían una relación muchos a muchos.
 
-```java title="PersonDAO.java"
-public interface PersonDAO {
+```java title="PersonDao.java"
+public interface PersonDao {
 
     Optional<Person> findById(Long id);
 
@@ -32,14 +32,14 @@ public interface PersonDAO {
 ```
 
 !!! note "Nota"
-    En el DAO suelen ir las operaciones comunes usadas para la entidad. La nomenclatura suele ser nombre de la entidad seguido de la palabra `DAO`.
+    En el DAO suelen ir las operaciones comunes usadas para la entidad. La nomenclatura suele ser nombre de la entidad seguido de la palabra `Dao`.
 
 ## 🪀 2. Implementación de las interfaces DAO
 
-Cada interfaz DAO tendrá su implementación. Las clases que implementan las interfaces serán nombradas como entidad + DAO + Impl: `PersonDAOImpl`.
+Cada interfaz DAO tendrá su implementación. Las clases que implementan las interfaces serán nombradas como entidad + DAO + Impl: `PersonDaoImpl`.
 
-```java title="PersonDAOImpl.java"
-public class PersonDAOImpl implements PersonDAO {
+```java title="PersonDaoImpl.java"
+public class PersonDaoImpl implements PersonDao {
 
     @Override
     public Optional<Person> findById(Long id) {
@@ -93,14 +93,14 @@ public class PersonDAOImpl implements PersonDAO {
 }
 ```
 
-Si hiciéramos lo mismo para la entidad `Address`, es decir, creáramos la interfaz `AddressDAO` y su implementación `AddressDAOImpl` nos daríamos cuenta de que las clases serían muy parecidas a `PersonDAO` y `PersonDAOImpl`, ya que contendría los mismos métodos con la única diferencia de que cambia la entidad. Entonces estaríamos creando mucha cantidad de código redundante.
+Si hiciéramos lo mismo para la entidad `Address`, es decir, creáramos la interfaz `AddressDao` y su implementación `AddressDaoImpl` nos daríamos cuenta de que las clases serían muy parecidas a `PersonDao` y `PersonDaoImpl`, ya que contendría los mismos métodos con la única diferencia de que cambia la entidad. Entonces estaríamos creando mucha cantidad de código redundante.
 
 ## 🪀 3. Creación de un DAO genérico
 
-**Para mejorar la reusabilidad y legilibidad del código** deberíamos hacer uso de los genéricos que nos ofrece Java. Por tanto, se ha de crear un DAO general que incluya las funcionalidades más genéricas de los DAO, `GenericDAO`.
+**Para mejorar la reusabilidad y legilibidad del código** deberíamos hacer uso de los genéricos que nos ofrece Java. Por tanto, se ha de crear un DAO general que incluya las funcionalidades más genéricas de los DAO, `GenericDao`.
 
-```java title="GenericDAO.java"
-public interface GenericDAO<T> {
+```java title="GenericDao.java"
+public interface GenericDao<T> {
 
     Optional<T> findById(Long id);
 
@@ -114,16 +114,16 @@ public interface GenericDAO<T> {
 }
 ```
 
-Todos los DAOs heredarán de `GenericDAO`, lo que quiere decir que todos los DAO contendrán esos métodos, cumplirán con esas funciones.
+Todos los DAOs heredarán de `GenericDao`, lo que quiere decir que todos los DAO contendrán esos métodos, cumplirán con esas funciones.
 
 ## 🪀 4. Implementación del DAO genérico
 
-```java title="GenericDAOImpl.java"
-public class GenericDAOImpl<T> implements GenericDAO<T> {
+```java title="GenericDaoImpl.java"
+public class GenericDaoImpl<T> implements GenericDao<T> {
 
     private final Class<T> entityClass;
 
-    public GenericDAOImpl(Class<T> entityClass) {
+    public GenericDaoImpl(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
@@ -181,19 +181,19 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 
 La creación de esta clase genérica conlleva los siguientes cambios en las clases DAO:
 
-```java title="AddressDAO.java"
-public interface AddressDAO extends GenericDAO<Address> {
+```java title="AddressDao.java"
+public interface AddressDao extends GenericDao<Address> {
 
 }
 ```
 
-```java title="AddressDAOImpl.java"
-public class AddressDAOImpl extends GenericDAOImpl<Address> implements AddressDAO {
+```java title="AddressDaoImpl.java"
+public class AddressDaoImpl extends GenericDaoImpl<Address> implements AddressDao {
 
-    public AddressDAOImpl() {
+    public AddressDaoImpl() {
         super(Address.class);
     }
 }
 ```
 
-Ahora mismo la clase `AddressDAO` no definiría ningún método nuevo, solo los que ya hereda de GenericDAO. Por tanto, ¿para qué nos sirve tener esta clase? Ahora mismo, podríamos eliminarla, ya que no tiene ninguna funcionalidad extra, pero en un futuro si queremos realizar una operación muy específica, o una query relacionada con esa tabla, deberemos definir ese método dentro de `AddressDAOImpl`.
+Ahora mismo la clase `AddressDao` no definiría ningún método nuevo, solo los que ya hereda de GenericDAO. Por tanto, ¿para qué nos sirve tener esta clase? Ahora mismo, podríamos eliminarla, ya que no tiene ninguna funcionalidad extra, pero en un futuro si queremos realizar una operación muy específica, o una query relacionada con esa tabla, deberemos definir ese método dentro de `AddressDaoImpl`.

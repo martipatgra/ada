@@ -4,7 +4,7 @@ Es conveniente separar la lógica del código de la aplicación con las operacio
 
 En nuestro proyecto deberemos crear un paquete llamado `service` que contendrá las clases necesarias para interactuar con los objetos DAO.
 
-Dentro del paquete service, creamos la clase `PersonalDataService` con atributos de tipo DAO y métodos para realizar diferentes operaciones necesarias en la apliación que además añadirán lógica de negocio.
+Dentro del paquete service, creamos la clase `PersonalDataService` con atributos de tipo DAO y métodos para realizar diferentes operaciones necesarias en la aplicación que además añadirán lógica de negocio.
 
 ```java title="PersonalDataService.java"
 public class PersonalDataService {

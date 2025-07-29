@@ -1,16 +1,57 @@
 # 🔆 API Rest
 
-Los desarrolladores de API pueden diseñar API por medio de varias arquitecturas diferentes. Las API que siguen el estilo arquitectónico de REST se llaman API REST. Los servicios web que implementan una arquitectura de REST son llamados servicios web RESTful. El término API RESTful suele referirse a las API web RESTful.
+## ⚕️¿Qué es una API?
+_Una API (Application Programming Interface) es un conjunto de definiciones y protocolos que permite que diferentes aplicaciones o sistemas se comuniquen entre sí_. Es decir, una API actúa como intermediario que permite que dos programas interactúen y compartan información o funcionalidades.
 
-**La API RESTful es una interfaz que dos sistemas de computación utilizan para intercambiar información de manera segura a través de Internet.**
+Las APIs son esenciales en el desarrollo moderno, ya que permiten integrar servicios como pagos, mapas, redes sociales, etc.
 
-## ⚕️Rest Controller
+### ⚕️Elementos clave de una API
+- **Interfaz**: define cómo los desarrolladores pueden interactuar con el software o sistema. Esto incluye las solicitudes que se pueden realizar y los formatos de datos aceptados.
+- **Protocolo**: especifica las reglas para intercambiar los datos, como HTTP/HTTPS para APIs webs.
+- **Datos**: las APIs permiten enviar y recibir datos en formatos comunes como JSON o XML.
+- **Funcionalidades**: pueden ofrecer acceso a herramientas, servicios o información de un sistema externo, sin necesidad de que los usuarios conozcan su funcionamiento interno.
 
-Un _controller_ es un componente de Spring capaz de recibir peticiones http y responderlas.
+### ⚕️Tipos de APIs más comunes
+- **REST** (Representational State Transfer): utilizan HTTP y son muy populares por su simplicidad.
+- **SOAP** (Simple Object Access Protocol): más complejo, usa XML para intercambiar datos.
+- **GraphQL**: permite a los clientes especificar exactamente qué datos necesitan.
 
-Las clases que definimos como un controller es responsable de procesar las llamadas entrantes (request) que ingresan a nuestra aplicacion, validarlas y dar una respuesta (response).
+## ⚕️API Rest
+Es un tipo de API que sigue los principios de la arquitectura REST, diseñados para facilitar la comunicación entre sistemas a través de la web utilizando el protocolo HTTP. REST es un estilo de arquitectura que define cómo se deben estructurar y consumir las APIs para que sean eficientes, simples y escalables. Son ampliamente utilizadas en el desarrollo de software moderno.
 
-Un **rest controller** es un tipo de controller que recibe peticiones con un formato de específico que cumple con formatos de solicitud RESTful habitualmente y mayormente en **JSON**, aunque a veces se usan otros como HTML, XML, o simplemente texto.
+A menudo se puede ver el nombre de API RESTful, RESTful es un adjetivo que describe a las APIs que siguen los principios y restricciones de la arquitectura REST.
+
+### ⚕️Principios de una API REST
+
+1. **Cliente-Servidor**: el cliente (navegador web normalmente) solicita información o realiza acciones y el servidor procesa estas solicitudes y devuelve una respuesta. Ambos son independientes.
+2. **Stateless (Sin estado)**: cada solicitud del cliente al servidor es independiente. El servidor no almacena información sobre el estado de las solicitudes anteriores.
+3. **Interfaz uniforme**: la comunicación entre cliente-servidor se realiza de manera consistente. Los recursos se identifican mediante URLs, y se usan métodos HTTP estándar para interactuar con ellos:
+    - GET: obtener datos
+    - POST: enviar o crear datos
+    - PUT o PATCH: actualizar datos existentes
+    - DELETE: eliminar datos
+4. **Recursos identificados por URLs**: los recursos (datos) en una API REST se identifican mediante direcciones únicas o **endpoints**, por ejemplo, este endpoint podría devolver los datos del usuario con ID 123: GET https://api.miservicio.com/usuarios/123
+5. **Representación de recursos**: la información se intercambia en un formato específico, generalmente JSON o XML. JSON es el más popular debido a su legibilidad.
+
+## ⚕️Spring Web
+El framework Spring ofrece el módulo **Spring Web**, que se utiliza para la creación de APIs REST. Este módulo proporciona las herramientas y anotaciones necesarias para construir y exponer endpoints RESTful.
+
+### ⚕️Componentes de Spring para crear una API REST
+1. **Controladores REST**: los controladores son los responsables de manejar las solicitudes HTTP y devolver las respuestas adecuadas.
+2. **Anotaciones clave**:
+    - `@RestController`: marca una clase como controlador REST. Combina @Controller y @ResponseBody, indicando que los métodos devolverán datos directamente (en formato JSON o XML) en lugar de vistas HTML.
+    - `@RequestMapping`: define la ruta de acceso base para los endpoints de un controlador.
+    - Métodos específicos:
+        - `@GetMapping`: solicitudes HTTP GET
+        - `@PostMapping`: solicitudes HTTP POST
+        - `@PutMapping`: solicitudes HTTP PUT
+        - `@DeleteMapping`: solicitudes HTTP DELETE
+        - `@PatchMapping`: solicitudes HTTP PATCH
+3. **Serialización y Deserialización**: Spring utiliza Jackson de forma predeterminada para convertir objetos Java a JSON y viceversa. Es decir, un objeto `Usuario` puede enviarse como respuesta en formato JSON automáticamente.
+4. **Inyección de Dependencias y Servicios**: los controladores suelen delegar la lógica de negocio a las clases servicio, marcadas con `@Service`, para mantener el código modular y limpio.
+
+!!! Note
+    Jackson es una biblioteca Java para trabajar con datos en formato JSON. Se utiliza para la serialización (convertir objetos Java a JSON) y la deserialización (convertir JSON a objetos Java). Viene configurada por defecto en Spring para el intercambio de datos en APIs REST.
 
 ## ⚕️Cómo crear un controlador rest en Spring
 
@@ -20,9 +61,9 @@ Con esto Spring ya sabe que esa clase será un componente encargado de recibir l
 
 En la clase también podemos definir la ruta raíz por la cuál partirán las llamadas externas con la anotación `@RequestMapping`.
 
-```java title="TodoController.java"
+```java title="PersonController.java"
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api")
 public class PersonController {
 
 }
@@ -55,7 +96,7 @@ Patch también lo utilizamos para actualizar un recurso pero solo una parcialida
 @RequestMapping("/api")
 public class PersonController {
 
-    private final PersonService personService;
+    private final PersonService personService;//Inyección de dependencias
 
     public PersonController(PersonService personService) {
         this.personService = personService;

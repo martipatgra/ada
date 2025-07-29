@@ -1,6 +1,6 @@
 # ☄️ Escritura y lectura de objetos en Java
 
-Para escribir un objeto y leer esos datos directamente de vuelta a un objeto Java nos proporciona dos clases:
+Para escribir un objeto y leer esos datos directamente de vuelta a un objeto Java, nos proporciona dos clases:
 
 - `ObjectInputStream`
 - `ObjectOutputStream`
@@ -9,7 +9,9 @@ Para entender esto correctamente es necesario saber el significado de **serializ
 
 ## ✨ Serialization
 
-**El proceso de traducir una estructura de datos u objecto, a un formato que pueda ser almacenado en un fichero, o base de datos**, se llama serialización. Solo las instancias de clases Serializables pueden ser serializadas, lo que significa que la clase debe implementar la interfaz `Serializable`.
+**Serializar una clase en programación se refiere al proceso de convertir un objeto de esa clase en una secuencia de bytes que representa el estado del objeto, incluidos sus datos y la estructura.** Esta secuencia de bytes puede ser almacenada, transmitida y posteriormente reconstruida para crear una copia exacta del objeto original, facilitando así operaciones como el almacenamiento persistente (en un fichero o BD) o la comunicación entre procesos. Esto es especialmente útil en contextos donde se necesita transferir datos entre diferentes componentes de un sistema, o entre distintos sistemas.
+
+**Solo las instancias de clases Serializables pueden ser serializadas, lo que significa que la clase debe implementar la interfaz `Serializable`.**
 
 Esta interfaz no tiene ningún método, sólo se utiliza para marcar la clase como serializable. *Todos los subtipos de una clase serializable son a su vez seriazables.*
 

@@ -1,8 +1,8 @@
-# 🔆 Anotación @Query
+# ❓ Anotación @Query y 🆗 Response
 
-La anotación '@Query' tiene 4 usos:
+## ❓ La anotación '@Query' tiene 4 usos
 
-1. **Consultas personalizadas**: Puedes definir consultas personalizadas que van más allá de los métodos CRUD básicos proporcionados por Spring Data JPA. Esto es útil cuando necesitas realizar operaciones más complejas o específicas que no se cubren automáticamente.
+**1 Consultas personalizadas**: Puedes definir consultas personalizadas que van más allá de los métodos CRUD básicos proporcionados por Spring Data JPA. Esto es útil cuando necesitas realizar operaciones más complejas o específicas que no se cubren automáticamente.
 
 ```java
     @Query("SELECT t FROM Todo t WHERE t.completed = true")//lenguaje objeto
@@ -12,7 +12,7 @@ La anotación '@Query' tiene 4 usos:
     Todo findByTitleQuery(String title);
 ```
 
-2. **Consultas nativas**: Puedes ejecutar consultas SQL nativas utilizando la anotación @Query. Esto es útil cuando necesitas aprovechar funcionalidades específicas del motor de base de datos que no están cubiertas por JPQL.
+**2 Consultas nativas**: Puedes ejecutar consultas SQL nativas utilizando la anotación @Query. Esto es útil cuando necesitas aprovechar funcionalidades específicas del motor de base de datos que no están cubiertas por JPQL.
 
 ```java
     @Query(value = "SELECT * FROM todo WHERE title LIKE %:texto%", nativeQuery = true)
@@ -22,7 +22,7 @@ La anotación '@Query' tiene 4 usos:
     Todo findByTitle(String title);
 ```
 
-3. **Actualizaciones y eliminaciones personalizadas**: Puedes usar @Query para definir consultas de actualización o eliminación personalizadas.
+**3 Actualizaciones y eliminaciones personalizadas**: Puedes usar @Query para definir consultas de actualización o eliminación personalizadas.
 
 ```java
     @Modifying //Indica que la consulta modificará el estado de la base de datos.
@@ -31,14 +31,14 @@ La anotación '@Query' tiene 4 usos:
     int updateTitleById(Long todoId, String nuevoTitulo);
 ```
 
-4. **Mapeo de resultados personalizados**: Puedes especificar cómo se deben mapear los resultados de la consulta a objetos Java específicos como DTOs.
+**4 Mapeo de resultados personalizados**: Puedes especificar cómo se deben mapear los resultados de la consulta a objetos Java específicos como DTOs.
 
 ```java
     @Query("SELECT new es.severo.ud4.dto.TodoDTO(t.id, t.title) FROM Todo t WHERE t.completed = false")
     List<TodoDTO> encontrarTodosNoCompletados();
 ```
 
-## Response de una API rest
+## 🆗 Response de una API rest
 
 Para responder a una petición de una api de un endpoint tenemos varias formas: ResponseEntity, @ResponeStatus y @ResponseBody.
 
