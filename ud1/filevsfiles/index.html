@@ -428,8 +428,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operaciones-basicas-con-archivos" class="md-nav__link">
-    🛠️ Operaciones básicas con archivos
+  <a href="#operaciones-basicas-con-ficheros" class="md-nav__link">
+    🛠️ Operaciones básicas con ficheros
   </a>
   
 </li>
@@ -1244,8 +1244,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operaciones-basicas-con-archivos" class="md-nav__link">
-    🛠️ Operaciones básicas con archivos
+  <a href="#operaciones-basicas-con-ficheros" class="md-nav__link">
+    🛠️ Operaciones básicas con ficheros
   </a>
   
 </li>
@@ -1445,18 +1445,18 @@
 </li>
 </ul>
 <hr />
-<h2 id="operaciones-basicas-con-archivos">🛠️ Operaciones básicas con archivos</h2>
+<h2 id="operaciones-basicas-con-ficheros">🛠️ Operaciones básicas con ficheros</h2>
 <ul>
-<li><strong>Crear un objeto Path que representa la ruta relativa al archivo nota.txt, dentro del directorio documentos. Si nota.txt no existe no falla, Paths.get(...) solo crea un objeto Path, es decir, una representación en memoria de una ruta. No comprueba si existe ni intenta acceder al archivo.</strong>
+<li><strong>Crear un objeto Path que representa la ruta relativa al fichero nota.txt, dentro del directorio documentos. Si nota.txt no existe no falla, Paths.get(...) solo crea un objeto Path, es decir, una representación en memoria de una ruta. No comprueba si existe ni intenta acceder al fichero.</strong>
     <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">archivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos/nota.txt&quot;</span><span class="p">);</span>
 </code></pre></div></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>❗Importante: Esto NO crea el archivo físicamente. Solo estás creando una referencia lógica en Java que apunta a esa ruta.</p>
+<p>❗Importante: Esto NO crea el fichero físicamente. Solo estás creando una referencia lógica en Java que apunta a esa ruta.</p>
 </div>
 <ul>
-<li><strong>Comprobar si existe un archivo:</strong></li>
+<li><strong>Comprobar si existe un fichero:</strong></li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">exists</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">exists</span><span class="p">(</span><span class="n">archivo</span><span class="p">);</span>
 </code></pre></div>
@@ -1466,17 +1466,17 @@
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">newFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">createFile</span><span class="p">(</span><span class="n">archivo</span><span class="p">);</span>
 </code></pre></div>
 <ul>
-<li><strong>Borrar un archivo:</strong></li>
+<li><strong>Borrar un fichero:</strong></li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Files</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">archivo</span><span class="p">);</span>
 </code></pre></div>
 <ul>
-<li><strong>Copiar un archivo. Devuelve la ruta del fichero copiado:</strong></li>
+<li><strong>Copiar un fichero. Devuelve la ruta del fichero copiado:</strong></li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">copiedFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">archivo</span><span class="p">,</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;copia.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">StandardCopyOption</span><span class="p">.</span><span class="na">REPLACE_EXISTING</span><span class="p">);</span>
 </code></pre></div>
 <ul>
-<li><strong>Mover (o renombrar) un archivo. Devuelve la ruta del fichero movido:</strong></li>
+<li><strong>Mover (o renombrar) un fichero. Devuelve la ruta del fichero movido:</strong></li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">movedFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">move</span><span class="p">(</span><span class="n">archivo</span><span class="p">,</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;nuevos/nota.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">StandardCopyOption</span><span class="p">.</span><span class="na">REPLACE_EXISTING</span><span class="p">);</span>
 </code></pre></div>
