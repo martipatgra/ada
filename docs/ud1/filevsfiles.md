@@ -1,5 +1,11 @@
 # 📁 Gestión de ficheros con Java
 
+## Ficheros
+
+Un fichero es un conjunto lógico de información o de datos que se designa con un nombre y se configura como una unidad autónoma completa para el sistema o el usuario. Un archivo o fichero informático es un conjunto de bits que son almacenados en un dispositivo. Para poder acceder a ellos haremos uso de una ruta (path) ya sea relativa o absoluta.
+
+![JavaIO](../img/ud1/6path.png)
+
 ## 🕰️ `java.io` vs `java.nio`
 
 Java ofrece varias formas de trabajar con archivos y directorios. A lo largo del tiempo, el lenguaje ha ido evolucionando:
@@ -47,10 +53,6 @@ Aunque `java.io.File` aún funciona, tiene muchas limitaciones. Por eso **recome
 
 ---
 
-La siguiente imagen muestra la jerarquía de clases dentro del paquete java.io:
-
-![JavaIO](../img/ud1/1javaio.png)
-
 ## 📂 ¿Qué hay dentro de `java.io`?
 El paquete `java.io` es uno de los más antiguos de Java, e incluye **clases para:**
 
@@ -94,11 +96,10 @@ El paquete `java.nio.file` fue introducido en Java 7 y es parte de la API modern
 ### 🔧 Clases principales
 
 - **`Path`**
-  Representa una ruta (ya sea de un archivo o un directorio) de forma independiente del sistema operativo.\
-  Ejemplo:
+  Representa una ruta (ya sea de un archivo o un directorio) de forma independiente del sistema operativo. Ejemplo:
 
   ```java
-  Path ruta = Paths.get("archivos/ejemplo.txt");
+  Path ruta = Path.of("archivos/ejemplo.txt");
   ```
 
 - **`Paths`**
@@ -114,7 +115,7 @@ El paquete `java.nio.file` fue introducido en Java 7 y es parte de la API modern
 
 ## 🛠️ Operaciones básicas con archivos
 
-- **Crea un objeto Path que representa la ruta relativa al archivo nota.txt, dentro del directorio documentos. Si nota.txt no existe no falla, Paths.get(...) solo crea un objeto Path, es decir, una representación en memoria de una ruta. No comprueba si existe ni intenta acceder al archivo.**
+- **Crear un objeto Path que representa la ruta relativa al archivo nota.txt, dentro del directorio documentos. Si nota.txt no existe no falla, Paths.get(...) solo crea un objeto Path, es decir, una representación en memoria de una ruta. No comprueba si existe ni intenta acceder al archivo.**
     ```java
     Path archivo = Paths.get("documentos/nota.txt");
     ```
@@ -174,18 +175,20 @@ El paquete `java.nio.file` fue introducido en Java 7 y es parte de la API modern
   Path lastNewDir = Files.createDirectories(Paths.get("usuarios/admin/documentos"));
   ```
 !!! Warning
-    Crea todos los directorios necesarios en la ruta dada, si no existen. Si ya existen, NO lanza excepción. Si no especificas una ruta absoluta, se crean en el directorio actual. El ejemplo creará una ruta compuesta por 3 directorios en el directori:
+    Crea todos los directorios necesarios en la ruta dada, si no existen. Si ya existen, NO lanza excepción. Si no especificas una ruta absoluta, se crean en el directorio actual. El ejemplo creará una ruta compuesta por 3 directorios:
     usuarios/
     usuarios/admin/
     usuarios/admin/documentos/
 
-- **Listar el contenido de un directorio:**
+- **Listar el contenido de un directorio. Abre un flujo (DirectoryStream<Path>) con todos los elementos (ficheros y subdirectorios) que contiene la ruta especificada. No es recursivo (no entra dentro de subdirectorios):**
 
   ```java
-  try (DirectoryStream<Path> stream = Files.newDirectoryStream(carpeta)) {
-      for (Path archivo : stream) {
-          System.out.println(archivo.getFileName());
-      }
+  try (DirectoryStream<Path> stream = Files.newDirectoryStream(Path.of("/home"))) {
+    for (Path archivo : stream) {
+        System.out.println(archivo.getFileName());
+    }
+  } catch (IOException e) {
+    e.printStackTrace();
   }
   ```
 
@@ -196,6 +199,12 @@ El paquete `java.nio.file` fue introducido en Java 7 y es parte de la API modern
   ```
 
 ---
+
+## 🖼️ Vista general de `java.io`
+
+La siguiente imagen muestra la jerarquía de clases dentro del paquete `java.io`:
+
+![JavaIO](../img/ud1/1javaio.png)
 
 ## 🖼️ Vista general de `java.nio.file`
 

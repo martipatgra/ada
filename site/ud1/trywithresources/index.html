@@ -19,7 +19,7 @@
     
     
       
-        <title>1.11.- try-with-resources - Acceso a Datos</title>
+        <title>1.12.- try-with-resources - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#try-with-resources" class="md-skip">
+        <a href="#try-with-resources-en-java" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1.11.- try-with-resources
+              1.12.- try-with-resources
             
           </span>
         </div>
@@ -264,8 +264,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../filevsfiles/" class="md-nav__link">
+        1.1.- Gestión de ficheros con Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../11io/" class="md-nav__link">
-        1.1.- Entrada/Salida (I/O) de la información
+        1.2.- Entrada/Salida (I/O) de la información
       </a>
     </li>
   
@@ -279,7 +293,7 @@
   
     <li class="md-nav__item">
       <a href="../12binaryfiles/" class="md-nav__link">
-        1.2.- Ficheros binarios
+        1.3.- Ficheros binarios
       </a>
     </li>
   
@@ -293,7 +307,7 @@
   
     <li class="md-nav__item">
       <a href="../13characterfiles/" class="md-nav__link">
-        1.3.- Ficheros de caracteres
+        1.4.- Ficheros de caracteres
       </a>
     </li>
   
@@ -307,7 +321,7 @@
   
     <li class="md-nav__item">
       <a href="../14fileclass/" class="md-nav__link">
-        1.4.- Clase File
+        1.5.- Clase File
       </a>
     </li>
   
@@ -321,7 +335,7 @@
   
     <li class="md-nav__item">
       <a href="../15javanio/" class="md-nav__link">
-        1.5.- java.nio
+        1.6.- java.nio
       </a>
     </li>
   
@@ -335,7 +349,7 @@
   
     <li class="md-nav__item">
       <a href="../16randomaccessfile/" class="md-nav__link">
-        1.6.- Ficheros de acceso aleatorio
+        1.7.- Ficheros de acceso aleatorio
       </a>
     </li>
   
@@ -349,7 +363,7 @@
   
     <li class="md-nav__item">
       <a href="../17configfiles/" class="md-nav__link">
-        1.7.- Ficheros de configuración
+        1.8.- Ficheros de configuración
       </a>
     </li>
   
@@ -363,7 +377,7 @@
   
     <li class="md-nav__item">
       <a href="../18xmlfiles/" class="md-nav__link">
-        1.8.- XML
+        1.9.- XML
       </a>
     </li>
   
@@ -377,7 +391,7 @@
   
     <li class="md-nav__item">
       <a href="../19jsonfiles/" class="md-nav__link">
-        1.9.- JSON
+        1.10.- JSON
       </a>
     </li>
   
@@ -391,7 +405,7 @@
   
     <li class="md-nav__item">
       <a href="../20createjar/" class="md-nav__link">
-        1.10.- Crear un .jar
+        1.11.- Crear un .jar
       </a>
     </li>
   
@@ -413,9 +427,149 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          1.12.- try-with-resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
-        1.11.- try-with-resources
+        1.12.- try-with-resources
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cuando-si-usar-try-with-resources" class="md-nav__link">
+    ✅ ¿Cuándo SÍ usar try-with-resources?
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ ¿Cuándo SÍ usar try-with-resources?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-clases-que-implementan-autocloseable" class="md-nav__link">
+    Ejemplo de clases que implementan AutoCloseable:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#antes-de-java-7-cerrar-recursos-a-mano" class="md-nav__link">
+    😓 Antes de Java 7: cerrar recursos a mano
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desde-java-7-try-with-resources" class="md-nav__link">
+    🚀 Desde Java 7: try-with-resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#y-si-quiero-usar-mas-de-un-recurso" class="md-nav__link">
+    🧪 ¿Y si quiero usar más de un recurso?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importante-diferencia-clave-entre-try-con-finally-y-try-with-resources" class="md-nav__link">
+    ⚠️ IMPORTANTE - Diferencia clave entre try con finally y try-with-resources 🤔
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ IMPORTANTE - Diferencia clave entre try con finally y try-with-resources 🤔">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#en-un-try-con-finally" class="md-nav__link">
+    En un try con finally:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#en-try-with-resources" class="md-nav__link">
+    En try-with-resources:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-debemos-cerrar-los-recursos-en-java" class="md-nav__link">
+    🧨 ¿Por qué debemos cerrar los recursos en Java?
+  </a>
+  
+    <nav class="md-nav" aria-label="🧨 ¿Por qué debemos cerrar los recursos en Java?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-fugas-de-memoria-o-recursos" class="md-nav__link">
+    1. Fugas de memoria o recursos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-bloqueos-de-archivos" class="md-nav__link">
+    2. Bloqueos de archivos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-datos-no-guardados-buffers-sin-volcar" class="md-nav__link">
+    3. Datos no guardados (buffers sin volcar)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-conexiones-a-bases-de-datos-colapsadas" class="md-nav__link">
+    4. Conexiones a bases de datos colapsadas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#en-resumen" class="md-nav__link">
+    🧠 En resumen
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -429,7 +583,7 @@
   
     <li class="md-nav__item">
       <a href="../22readwriteobjects/" class="md-nav__link">
-        1.12.- Lectura y escritura de objectos en Java
+        1.13.- Lectura y escritura de objectos en Java
       </a>
     </li>
   
@@ -904,6 +1058,130 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cuando-si-usar-try-with-resources" class="md-nav__link">
+    ✅ ¿Cuándo SÍ usar try-with-resources?
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ ¿Cuándo SÍ usar try-with-resources?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-clases-que-implementan-autocloseable" class="md-nav__link">
+    Ejemplo de clases que implementan AutoCloseable:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#antes-de-java-7-cerrar-recursos-a-mano" class="md-nav__link">
+    😓 Antes de Java 7: cerrar recursos a mano
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desde-java-7-try-with-resources" class="md-nav__link">
+    🚀 Desde Java 7: try-with-resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#y-si-quiero-usar-mas-de-un-recurso" class="md-nav__link">
+    🧪 ¿Y si quiero usar más de un recurso?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importante-diferencia-clave-entre-try-con-finally-y-try-with-resources" class="md-nav__link">
+    ⚠️ IMPORTANTE - Diferencia clave entre try con finally y try-with-resources 🤔
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ IMPORTANTE - Diferencia clave entre try con finally y try-with-resources 🤔">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#en-un-try-con-finally" class="md-nav__link">
+    En un try con finally:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#en-try-with-resources" class="md-nav__link">
+    En try-with-resources:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-debemos-cerrar-los-recursos-en-java" class="md-nav__link">
+    🧨 ¿Por qué debemos cerrar los recursos en Java?
+  </a>
+  
+    <nav class="md-nav" aria-label="🧨 ¿Por qué debemos cerrar los recursos en Java?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-fugas-de-memoria-o-recursos" class="md-nav__link">
+    1. Fugas de memoria o recursos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-bloqueos-de-archivos" class="md-nav__link">
+    2. Bloqueos de archivos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-datos-no-guardados-buffers-sin-volcar" class="md-nav__link">
+    3. Datos no guardados (buffers sin volcar)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-conexiones-a-bases-de-datos-colapsadas" class="md-nav__link">
+    4. Conexiones a bases de datos colapsadas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#en-resumen" class="md-nav__link">
+    🧠 En resumen
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -918,15 +1196,33 @@
 
 
 
-<h1 id="try-with-resources">🥳 try-with-resources</h1>
-<p>La sentencia <strong><em>try-with-resources</em></strong> es una sentencia try que declara uno o más recursos (resources). Un recurso es un objeto que debe cerrarse después de que el programa termine con él. La instrucción try-with-resources garantiza que cada recurso se cierre al final de la instrucción. Cualquier objeto que implemente java.lang.AutoCloseable, que incluye todos los objetos que implementen java.io.Closeable, se puede utilizar como recurso, por lo que no sería necesario realizar la sentencia <code>recurso.close()</code>.</p>
-<p>Antes de Java SE 7, se podía usar un bloque <code>finally</code> para asegurarse de que un recurso se cerraba, independientemente de si el try generaba excepción o no.</p>
-<p>El siguiente ejemplo, creamos el objeto <code>FileWriter</code> en la línea 2, en vez de hacerlo en la 4 porque el <code>finally</code> de la línea 8 se encuentra en otro scope y la variable <code>fw</code> no existe.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="w">        </span><span class="n">FileWriter</span><span class="w"> </span><span class="n">fw</span><span class="w"> </span><span class="o">=</span><span class="kc">null</span><span class="p">;</span>
+<h1 id="try-with-resources-en-java">🥳 try-with-resources en Java</h1>
+<p>La sentencia <strong><code>try-with-resources</code></strong> es una versión especial de <code>try</code> que se usa cuando trabajamos con <strong>recursos que deben cerrarse</strong>, como archivos, streams, sockets o conexiones de BD.</p>
+<blockquote>
+<p>🧠 Un recurso es cualquier objeto que necesita ser cerrado cuando ya no se usa, como un <code>FileWriter</code>, <code>Scanner</code> o <code>BufferedReader</code>, etc. La instrucción try-with-resources garantiza que cada recurso se cierre al final de la instrucción.</p>
+</blockquote>
+<h2 id="cuando-si-usar-try-with-resources">✅ ¿Cuándo SÍ usar try-with-resources?</h2>
+<p>Cuando trabajas con objetos que implementan <code>java.lang.AutoCloseable</code>. Esto incluye todos los objetos que implementan o extienden de la interfaz <code>java.io.Closeable</code>.</p>
+<p>Al usar try-with-resources no sería necesario realizar la sentencia <code>recurso.close()</code>. 🔒 Java se encarga de llamar automáticamente a <code>.close()</code> por ti cuando termina el bloque <code>try</code>, <strong>incluso si ocurre una excepción</strong>.</p>
+<p>Antes de Java SE 7 (antes de try-with-resources), se podía usar un bloque <code>finally</code> para asegurarse de que un recurso se cerraba, independientemente de si el try generaba excepción o no.</p>
+<h3 id="ejemplo-de-clases-que-implementan-autocloseable">Ejemplo de clases que implementan AutoCloseable:</h3>
+<ul>
+<li><code>BufferedReader</code></li>
+<li><code>BufferedWriter</code></li>
+<li><code>FileReader</code> / <code>FileWriter</code></li>
+<li><code>InputStream</code> / <code>OutputStream</code></li>
+<li><code>Scanner</code></li>
+<li><code>DirectoryStream</code></li>
+<li>Conexiones JDBC (<code>Connection</code>, <code>Statement</code>, <code>ResultSet</code>)</li>
+</ul>
+<hr />
+<h2 id="antes-de-java-7-cerrar-recursos-a-mano">😓 Antes de Java 7: cerrar recursos a mano</h2>
+<p>El siguiente ejemplo muestra cómo se cerraban los recursos antes de que apareciera try-with-resources. Creamos el objeto <code>FileWriter</code> en la línea 2, en vez de hacerlo en la 4 porque el <code>finally</code> de la línea 8 se encuentra en otro scope y la variable <code>fw</code> no existe.</p>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="w">        </span><span class="n">FileWriter</span><span class="w"> </span><span class="n">fw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
 </span><span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="hll"><span class="linenos" data-linenos=" 4 "></span><span class="w">            </span><span class="n">fw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;prueba.txt&quot;</span><span class="p">);</span>
-</span><span class="linenos" data-linenos=" 5 "></span><span class="w">            </span><span class="n">fw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;texto de prueba&quot;</span><span class="p">);</span>
+</span><span class="linenos" data-linenos=" 5 "></span><span class="w">            </span><span class="n">fw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;Hola mundo&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 7 "></span><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
 <span class="hll"><span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
@@ -941,25 +1237,126 @@
 <span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="p">}</span>
 <span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-<p>Al hacer el <code>close()</code> manualmente, vemos que el código queda bastante engorroso, ya que la sentencia close lanza una excepción que hay que capturar. Con try-with-resources el código queda más limpio.</p>
-<div class="admonition important">
-<p class="admonition-title">Importante diferencia entre try-with-resources y try con finally 🤔</p>
-<p>Existe una ligera mejora al usar try-with-resources. Si en el código anterior se lanzara una excepción al escribir el fichero, ésta se capturaría y se ejecutaría el finally a continuación. Si éste a su vez, lanzara también una excepción al llamar al método <code>close</code>, se reenviaría esta, NO la primera que se generó. Esto cambia ligeramente en el try-with-resources, puesto que enviaría la primera excepción que se generó. Lo cual tiene sentido, puesto que fue la causante del error.</p>
-</div>
-<p>Así quedaría el código usando try-with-resources:</p>
+🙄 Este enfoque es largo, propenso a errores, y puede ocultar excepciones importantes.</p>
+<p>Al hacer el <code>close()</code> manualmente, vemos que el código queda bastante engorroso, ya que la sentencia close lanza una excepción que hay que capturar.</p>
+<h2 id="desde-java-7-try-with-resources">🚀 Desde Java 7: try-with-resources</h2>
+<p>El mismo ejemplo usando try-with-resources. Vemos que el código queda mucho más limpio y seguro ✅:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">FileWriter</span><span class="w"> </span><span class="n">fw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;prueba.txt&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">fw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;Hola mundo&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="y-si-quiero-usar-mas-de-un-recurso">🧪 ¿Y si quiero usar más de un recurso?</h2>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">try</span><span class="p">(</span><span class="n">FileWriter</span><span class="w"> </span><span class="n">fw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;prueba.txt&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">FileWriter</span><span class="w"> </span><span class="n">fw2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;prueba2.txt&quot;</span><span class="p">);)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="c1">//si quisiera poner un segundo writer quedaría así</span>
-<span class="linenos" data-linenos="5 "></span>
-<span class="linenos" data-linenos="6 "></span><span class="w">        </span><span class="n">fw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;texto de prueba&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">FileWriter</span><span class="w"> </span><span class="n">fw2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;prueba2.txt&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">fw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;texto de prueba&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">        </span><span class="n">fw2</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;texto de prueba&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="9 "></span><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Nota 🤓</p>
 <p>Podemos declarar varios recursos dentro de un mismo try como se ve en el ejemplo.</p>
 </div>
+<hr />
+<h2 id="importante-diferencia-clave-entre-try-con-finally-y-try-with-resources">⚠️ IMPORTANTE - Diferencia clave entre try con finally y try-with-resources 🤔</h2>
+<p>Supongamos que se lanza una excepción dentro del bloque try y otra en el método close(). ¿Cuál de las dos excepciones se propaga?</p>
+<h3 id="en-un-try-con-finally">En un try con finally:</h3>
+<p>La excepción lanzada en el <strong>finally</strong> (al hacer close()) sobrescribe la excepción original que se lanzó primero dentro del bloque try.</p>
+<p>Es decir:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="p">...</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">fw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;prueba.txt&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="n">fw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;texto de prueba&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error al escribir o crear el fichero&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fw</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error al cerrar el fichero&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span><span class="p">}</span>
+</code></pre></div>
+→ Se propagará <strong>solo la excepción del </strong><code>close()</code>: "Error en close".</p>
+<p>La excepción más importante (la que causó el fallo original) <strong>se pierde</strong>.</p>
+<h3 id="en-try-with-resources">En <code>try-with-resources</code>:</h3>
+<p>Java mantiene la excepción original (la del bloque <code>try</code>) y <strong>añade la del bloque close como excepción suprimida</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">FileWriter</span><span class="w"> </span><span class="n">fw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;prueba.txt&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">fw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;Hola mundo&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error al crear o escribir el fichero&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span><span class="w"> </span><span class="c1">// Al cerrar, también lanza IOException(&quot;Error en close&quot;)  </span>
+</code></pre></div>
+<p>→ Se propagará <strong>la excepción original</strong> generada en el try (<code>Error al crear o escribir el fichero</code>), y la del <code>close()</code> quedará registrada como <strong>"<em>suppressed exception</em>".</strong></p>
+<p>✅ Esto permite que <strong>la excepción más relevante no se pierda</strong> y que el programador pueda acceder a toda la información posible de las causas de error.</p>
+<p>!!! important "Conclusión clave" - <code>try</code> con <code>finally</code>: se pierde la excepción original si <code>close()</code> lanza otra. - <code>try-with-resources</code>: se mantiene la excepción del <code>try</code> y se añaden las suprimidas.</p>
+<hr />
+<h2 id="por-que-debemos-cerrar-los-recursos-en-java">🧨 ¿Por qué debemos cerrar los recursos en Java?</h2>
+<p>Cerrar los recursos en Java (como archivos, streams, sockets o conexiones a bases de datos) es <strong>fundamental</strong> por varias razones:</p>
+<h3 id="1-fugas-de-memoria-o-recursos">1. Fugas de memoria o recursos</h3>
+<p>Cuando abres un recurso y no lo cierras, <strong>ese recurso permanece activo en el sistema</strong> (por ejemplo, un archivo abierto o una conexión sin liberar).</p>
+<ul>
+<li>Puede agotar el número de <strong>descriptores de archivo</strong> del sistema operativo.</li>
+<li>En programas grandes o de larga duración, esto provoca que <strong>se queden sin recursos disponibles</strong> y empiecen a fallar.</li>
+</ul>
+<blockquote>
+<p>Ejemplo real: abrir muchos archivos sin cerrar → <code>java.io.IOException: Too many open files</code></p>
+</blockquote>
+<h3 id="2-bloqueos-de-archivos">2. Bloqueos de archivos</h3>
+<p>Si un archivo está abierto por un proceso y no se cierra, <strong>otro proceso o hilo no podrá acceder a él</strong> correctamente.</p>
+<ul>
+<li>En algunos sistemas operativos (como Windows), <strong>no puedes volver a abrir el archivo si sigue abierto.</strong></li>
+<li>Esto bloquea escritura, renombrado o borrado.</li>
+</ul>
+<h3 id="3-datos-no-guardados-buffers-sin-volcar">3. Datos no guardados (buffers sin volcar)</h3>
+<p>Muchos recursos (como <code>BufferedWriter</code> o <code>FileOutputStream</code>) usan <strong>buffers de memoria</strong>.</p>
+<ul>
+<li>Si no cierras el recurso, el buffer podría no volcarse al disco.</li>
+<li>Resultado: <strong>el archivo se queda incompleto o vacío</strong>.</li>
+</ul>
+<h3 id="4-conexiones-a-bases-de-datos-colapsadas">4. Conexiones a bases de datos colapsadas</h3>
+<p>Si no cierras una conexión JDBC (<code>Connection</code>), esta sigue ocupando espacio en el <strong>pool de conexiones</strong>.</p>
+<ul>
+<li>Al poco tiempo, <strong>ya no se pueden abrir más conexiones</strong>.</li>
+<li>El sistema queda bloqueado hasta reiniciar o liberar manualmente.</li>
+</ul>
+<hr />
+<h3 id="en-resumen">🧠 En resumen</h3>
+<table>
+<thead>
+<tr>
+<th>Problema si no cierras</th>
+<th>Consecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fugas de recursos</td>
+<td>Memoria llena, errores</td>
+</tr>
+<tr>
+<td>Archivos bloqueados</td>
+<td>No se pueden usar</td>
+</tr>
+<tr>
+<td>Datos sin guardar</td>
+<td>Archivos corruptos</td>
+</tr>
+<tr>
+<td>Conexiones abiertas</td>
+<td>Fallos de conexión</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Por eso, <strong>try-with-resources es la forma recomendada</strong> para evitar estos problemas automáticamente.</p>
 
 
   

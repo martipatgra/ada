@@ -108,7 +108,7 @@ try {
     }
 }
 ```
-→ Se propagará **solo la excepción del **``: "Error en close".
+→ Se propagará **solo la excepción del **`close()`: "Error en close".
 
 La excepción más importante (la que causó el fallo original) **se pierde**.
 

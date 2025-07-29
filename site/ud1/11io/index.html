@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../filevsfiles/">
       
       
         <link rel="next" href="../12binaryfiles/">
@@ -19,7 +19,7 @@
     
     
       
-        <title>1.1.- Entrada/Salida (I/O) de la información - Acceso a Datos</title>
+        <title>1.2.- Entrada/Salida (I/O) de la información - Acceso a Datos</title>
       
     
     
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1.1.- Entrada/Salida (I/O) de la información
+              1.2.- Entrada/Salida (I/O) de la información
             
           </span>
         </div>
@@ -262,6 +262,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../filevsfiles/" class="md-nav__link">
+        1.1.- Gestión de ficheros con Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -274,12 +288,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          1.1.- Entrada/Salida (I/O) de la información
+          1.2.- Entrada/Salida (I/O) de la información
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        1.1.- Entrada/Salida (I/O) de la información
+        1.2.- Entrada/Salida (I/O) de la información
       </a>
       
         
@@ -319,19 +333,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ficheros" class="md-nav__link">
-    Ficheros
-  </a>
-  
-    <nav class="md-nav" aria-label="Ficheros">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#tipos-de-acceso-a-ficheros" class="md-nav__link">
     Tipos de acceso a ficheros
@@ -360,7 +361,7 @@
   
     <li class="md-nav__item">
       <a href="../12binaryfiles/" class="md-nav__link">
-        1.2.- Ficheros binarios
+        1.3.- Ficheros binarios
       </a>
     </li>
   
@@ -374,7 +375,7 @@
   
     <li class="md-nav__item">
       <a href="../13characterfiles/" class="md-nav__link">
-        1.3.- Ficheros de caracteres
+        1.4.- Ficheros de caracteres
       </a>
     </li>
   
@@ -388,7 +389,7 @@
   
     <li class="md-nav__item">
       <a href="../14fileclass/" class="md-nav__link">
-        1.4.- Clase File
+        1.5.- Clase File
       </a>
     </li>
   
@@ -402,7 +403,7 @@
   
     <li class="md-nav__item">
       <a href="../15javanio/" class="md-nav__link">
-        1.5.- java.nio
+        1.6.- java.nio
       </a>
     </li>
   
@@ -416,7 +417,7 @@
   
     <li class="md-nav__item">
       <a href="../16randomaccessfile/" class="md-nav__link">
-        1.6.- Ficheros de acceso aleatorio
+        1.7.- Ficheros de acceso aleatorio
       </a>
     </li>
   
@@ -430,7 +431,7 @@
   
     <li class="md-nav__item">
       <a href="../17configfiles/" class="md-nav__link">
-        1.7.- Ficheros de configuración
+        1.8.- Ficheros de configuración
       </a>
     </li>
   
@@ -444,7 +445,7 @@
   
     <li class="md-nav__item">
       <a href="../18xmlfiles/" class="md-nav__link">
-        1.8.- XML
+        1.9.- XML
       </a>
     </li>
   
@@ -458,7 +459,7 @@
   
     <li class="md-nav__item">
       <a href="../19jsonfiles/" class="md-nav__link">
-        1.9.- JSON
+        1.10.- JSON
       </a>
     </li>
   
@@ -472,7 +473,7 @@
   
     <li class="md-nav__item">
       <a href="../20createjar/" class="md-nav__link">
-        1.10.- Crear un .jar
+        1.11.- Crear un .jar
       </a>
     </li>
   
@@ -485,8 +486,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../21tryresources/" class="md-nav__link">
-        1.11.- try-with-resources
+      <a href="../trywithresources/" class="md-nav__link">
+        1.12.- try-with-resources
       </a>
     </li>
   
@@ -500,7 +501,7 @@
   
     <li class="md-nav__item">
       <a href="../22readwriteobjects/" class="md-nav__link">
-        1.12.- Lectura y escritura de objectos en Java
+        1.13.- Lectura y escritura de objectos en Java
       </a>
     </li>
   
@@ -1003,19 +1004,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ficheros" class="md-nav__link">
-    Ficheros
-  </a>
-  
-    <nav class="md-nav" aria-label="Ficheros">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#tipos-de-acceso-a-ficheros" class="md-nav__link">
     Tipos de acceso a ficheros
@@ -1048,8 +1036,6 @@
 <p>Todo dato tiene un origen de entrada o un destino de salida (convenientemente en inglés: I/O). <strong>Input</strong> o entrada implica leer datos de una fuente y <strong>Output</strong> o salida implica escribirlos en un destino. Un programa trabaja con datos que provienen de una entrada la cual puede ser un teclado, un archivo en disco o un socket a través de la red. Así mismo un programa genera resultados enviándolos a una salida la cual puede ser la pantalla, un archivo en disco o un socket a través de la red. En Java, la conexión entre un programa y un origen o destino de datos se denomina <strong>flujo</strong> (en inglés: <strong>stream</strong>).</p>
 <p><img alt="JavaIO" src="../../img/ud1/stream.png" /></p>
 <p>Un flujo de entrada <em>(input stream)</em> maneja los datos que fluyen hacia un programa. Un flujo de salida <em>(output stream)</em> maneja los datos que salen de un programa.</p>
-<p><img alt="JavaIO" src="../../img/ud1/1javaio.png" /></p>
-<p>En las primeras versiones de Java el sistema de entrada/salida proporcionado en el paquete <code>java.io</code> era básico. En la versión 1.4 de Java se añadió un nuevo sistema de entrada/salida llamado <code>java.NIO</code> (New IO) para suplir algunas de sus deficiencias que posteriormente en Java 7 se mejoró aún más <code>java.NIO</code>. Entre las mejoras se incluyen permitir navegación de directorios sencillo, soporte para reconocer enlaces simbólicos, leer atributos de ficheros como permisos e información como última fecha de modificación, soporte de entrada/salida asíncrona y soporte para operaciones básicas sobre ficheros como copiar y mover ficheros.</p>
 <h2 id="tipos-de-datos-caracteres-y-bytes">Tipos de Datos - Caracteres y bytes</h2>
 <p>Existen dos tipos de flujos (streams) según el tipo de datos, flujos binarios y flujos de caracteres. Los tipos de datos que se pueden leer/escribir suelen ser bytes o caracteres y los métodos que se utilizan son similares, pero se utilizan clases diferentes.</p>
 <p>Internamente, todos los datos consisten en patrones de bits agrupados en bytes. Entonces, lógicamente, todos los flujos podrían llamarse "flujos de bytes" <strong>(byte streams)</strong>. Sin embargo, los flujos destinados a bytes que representan caracteres se denominan "flujos de caracteres" <strong>(character streams)</strong> y todos los demás se denominan "flujos de bytes".</p>
@@ -1081,9 +1067,6 @@ Los streams pueden estar orientados a bytes u orientados a caracteres. Cada tipo
 <li>Destinado a datos de caracteres.</li>
 <li>Los datos se transforman de/a caracteres Java de 16 bits utilizados dentro de los programas al formato utilizado externamente.</li>
 </ul>
-<h2 id="ficheros">Ficheros</h2>
-<p>Un fichero es un conjunto lógico de información o de datos que se designa con un nombre y se configura como una unidad autónoma completa para el sistema o el usuario. Un archivo o fichero informático es un conjunto de bits que son almacenados en un dispositivo. Para poder acceder a ellos haremos uso de una ruta (path) ya sea relativa o absoluta.</p>
-<p><img alt="JavaIO" src="../../img/ud1/6path.png" /></p>
 <h3 id="tipos-de-acceso-a-ficheros">Tipos de acceso a ficheros</h3>
 <ol>
 <li>
@@ -1093,6 +1076,7 @@ Los streams pueden estar orientados a bytes u orientados a caracteres. Cada tipo
 <p>Acceso aleatorio: los ficheros de acceso aleatorio permiten acceder a sus datos de una forma aleatoria, esto es indicando una determinada posición desde la que leer/escribir.</p>
 </li>
 </ol>
+<hr />
 
 
   

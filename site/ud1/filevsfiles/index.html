@@ -1,0 +1,1596 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../11io/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>1.1.- Gestión de ficheros con Java - Acceso a Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gestion-de-ficheros-con-java" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acceso a Datos" class="md-header__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acceso a Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1.1.- Gestión de ficheros con Java
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acceso a Datos" class="md-nav__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Acceso a Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          1.- Acceso a datos mediante ficheros [Actualizado Julio 25]
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.- Acceso a datos mediante ficheros [Actualizado Julio 25]
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          1.1.- Gestión de ficheros con Java
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        1.1.- Gestión de ficheros con Java
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ficheros" class="md-nav__link">
+    Ficheros
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#javaio-vs-javanio" class="md-nav__link">
+    🕰️ java.io vs java.nio
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion-al-sistema-de-archivos-en-java" class="md-nav__link">
+    🧭 Introducción al sistema de archivos en Java
+  </a>
+  
+    <nav class="md-nav" aria-label="🧭 Introducción al sistema de archivos en Java">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cual-usar" class="md-nav__link">
+    ⚠️ ¿Cuál usar?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-usar-javaniofile-hoy" class="md-nav__link">
+    ✅ ¿Por qué usar java.nio.file hoy?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparativa-entre-javaiofile-y-javaniofile" class="md-nav__link">
+    🆚 Comparativa entre java.io.File y java.nio.file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-hay-dentro-de-javaio" class="md-nav__link">
+    📂 ¿Qué hay dentro de java.io?
+  </a>
+  
+    <nav class="md-nav" aria-label="📂 ¿Qué hay dentro de java.io?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-entradasalida-en-archivos" class="md-nav__link">
+    1. Entrada/salida en archivos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-lecturaescritura-con-buffers" class="md-nav__link">
+    2. Lectura/escritura con buffers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-serializacion" class="md-nav__link">
+    3. Serialización
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-comunicacion-entre-procesos" class="md-nav__link">
+    4. Comunicación entre procesos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-flujos-abstractos" class="md-nav__link">
+    5. Flujos abstractos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-otros" class="md-nav__link">
+    6. Otros
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curiosidad-didactica" class="md-nav__link">
+    🧠 Curiosidad didáctica
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-hay-dentro-de-javaniofile" class="md-nav__link">
+    📂 ¿Qué hay dentro de java.nio.file?
+  </a>
+  
+    <nav class="md-nav" aria-label="📂 ¿Qué hay dentro de java.nio.file?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clases-principales" class="md-nav__link">
+    🔧 Clases principales
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operaciones-basicas-con-archivos" class="md-nav__link">
+    🛠️ Operaciones básicas con archivos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operaciones-basicas-con-directorios" class="md-nav__link">
+    📁 Operaciones básicas con directorios
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vista-general-de-javaio" class="md-nav__link">
+    🖼️ Vista general de java.io
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vista-general-de-javaniofile" class="md-nav__link">
+    🖼️ Vista general de java.nio.file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buenas-practicas-con-javaniofile" class="md-nav__link">
+    ✅ Buenas prácticas con java.nio.file
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11io/" class="md-nav__link">
+        1.2.- Entrada/Salida (I/O) de la información
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12binaryfiles/" class="md-nav__link">
+        1.3.- Ficheros binarios
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13characterfiles/" class="md-nav__link">
+        1.4.- Ficheros de caracteres
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14fileclass/" class="md-nav__link">
+        1.5.- Clase File
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15javanio/" class="md-nav__link">
+        1.6.- java.nio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16randomaccessfile/" class="md-nav__link">
+        1.7.- Ficheros de acceso aleatorio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17configfiles/" class="md-nav__link">
+        1.8.- Ficheros de configuración
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18xmlfiles/" class="md-nav__link">
+        1.9.- XML
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19jsonfiles/" class="md-nav__link">
+        1.10.- JSON
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20createjar/" class="md-nav__link">
+        1.11.- Crear un .jar
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trywithresources/" class="md-nav__link">
+        1.12.- try-with-resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22readwriteobjects/" class="md-nav__link">
+        1.13.- Lectura y escritura de objectos en Java
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          2.- Acceso a bases de datos relacionales con JDBC
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          2.- Acceso a bases de datos relacionales con JDBC
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/21persistencia/" class="md-nav__link">
+        2.1.- Persistencia de la información
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/22mapeo/" class="md-nav__link">
+        2.2.- Desfase objeto-relacional
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/23conectores/" class="md-nav__link">
+        2.3.- Manejo de conectores - JDBC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/24transactions/" class="md-nav__link">
+        2.4.- Transacciones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/25procedures/" class="md-nav__link">
+        2.5.- Procedimientos y funciones almacenadas
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/26rendimiento/" class="md-nav__link">
+        2.6.- Mejora del rendimiento
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/27projectstructure/" class="md-nav__link">
+        2.7.- Estructura de los proyectos
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          3.- ORM con Hibernate y JPA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          3.- ORM con Hibernate y JPA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/31mapeo/" class="md-nav__link">
+        3.1.- Herramientas ORM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/32jpa/" class="md-nav__link">
+        3.2.- Jakarta - JPA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/33hibernate/" class="md-nav__link">
+        3.3.- Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/34dao/" class="md-nav__link">
+        3.4.- Patrón DAO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/35service/" class="md-nav__link">
+        3.5.- Service Layer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          4.- Bases de datos documentales con MongoDB
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          4.- Bases de datos documentales con MongoDB
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../udmongodb/mongodb1/" class="md-nav__link">
+        4.1.- Introducción
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          5.- Spring Framework
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          5.- Spring Framework
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/41introduccionspring/" class="md-nav__link">
+        5.1.- Introducción a Spring Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/42repository/" class="md-nav__link">
+        5.2.- Spring Data JPA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/43rest/" class="md-nav__link">
+        5.3.- API REST - Spring Web
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/44queryresponse/" class="md-nav__link">
+        5.4.- @Query y Response
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          6.- Java Modules
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          6.- Java Modules
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/51modulo/" class="md-nav__link">
+        6.1.- Módulos en Java
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ficheros" class="md-nav__link">
+    Ficheros
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#javaio-vs-javanio" class="md-nav__link">
+    🕰️ java.io vs java.nio
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion-al-sistema-de-archivos-en-java" class="md-nav__link">
+    🧭 Introducción al sistema de archivos en Java
+  </a>
+  
+    <nav class="md-nav" aria-label="🧭 Introducción al sistema de archivos en Java">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cual-usar" class="md-nav__link">
+    ⚠️ ¿Cuál usar?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-usar-javaniofile-hoy" class="md-nav__link">
+    ✅ ¿Por qué usar java.nio.file hoy?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparativa-entre-javaiofile-y-javaniofile" class="md-nav__link">
+    🆚 Comparativa entre java.io.File y java.nio.file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-hay-dentro-de-javaio" class="md-nav__link">
+    📂 ¿Qué hay dentro de java.io?
+  </a>
+  
+    <nav class="md-nav" aria-label="📂 ¿Qué hay dentro de java.io?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-entradasalida-en-archivos" class="md-nav__link">
+    1. Entrada/salida en archivos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-lecturaescritura-con-buffers" class="md-nav__link">
+    2. Lectura/escritura con buffers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-serializacion" class="md-nav__link">
+    3. Serialización
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-comunicacion-entre-procesos" class="md-nav__link">
+    4. Comunicación entre procesos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-flujos-abstractos" class="md-nav__link">
+    5. Flujos abstractos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-otros" class="md-nav__link">
+    6. Otros
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curiosidad-didactica" class="md-nav__link">
+    🧠 Curiosidad didáctica
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-hay-dentro-de-javaniofile" class="md-nav__link">
+    📂 ¿Qué hay dentro de java.nio.file?
+  </a>
+  
+    <nav class="md-nav" aria-label="📂 ¿Qué hay dentro de java.nio.file?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clases-principales" class="md-nav__link">
+    🔧 Clases principales
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operaciones-basicas-con-archivos" class="md-nav__link">
+    🛠️ Operaciones básicas con archivos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operaciones-basicas-con-directorios" class="md-nav__link">
+    📁 Operaciones básicas con directorios
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vista-general-de-javaio" class="md-nav__link">
+    🖼️ Vista general de java.io
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vista-general-de-javaniofile" class="md-nav__link">
+    🖼️ Vista general de java.nio.file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buenas-practicas-con-javaniofile" class="md-nav__link">
+    ✅ Buenas prácticas con java.nio.file
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="gestion-de-ficheros-con-java">📁 Gestión de ficheros con Java</h1>
+<h2 id="ficheros">Ficheros</h2>
+<p>Un fichero es un conjunto lógico de información o de datos que se designa con un nombre y se configura como una unidad autónoma completa para el sistema o el usuario. Un archivo o fichero informático es un conjunto de bits que son almacenados en un dispositivo. Para poder acceder a ellos haremos uso de una ruta (path) ya sea relativa o absoluta.</p>
+<p><img alt="JavaIO" src="../../img/ud1/6path.png" /></p>
+<h2 id="javaio-vs-javanio">🕰️ <code>java.io</code> vs <code>java.nio</code></h2>
+<p>Java ofrece varias formas de trabajar con archivos y directorios. A lo largo del tiempo, el lenguaje ha ido evolucionando:</p>
+<ul>
+<li>
+<p><strong><code>java.io</code></strong> fue la primera API de entrada/salida. Apareció con <strong>Java 1.0</strong> (en 1996) y ofrecía clases como <code>File</code>, <code>InputStream</code>, <code>OutputStream</code>, <code>Reader</code>, <code>Writer</code>, etc. Permitía hacer operaciones básicas, pero de forma limitada y poco robusta.</p>
+</li>
+<li>
+<p><strong><code>java.nio</code></strong> (New Input/Output) se introdujo en <strong>Java 1.4</strong> (2002), y se amplió con el paquete <strong><code>java.nio.file</code> en Java 7</strong> (2011). Esta nueva API ofrece clases modernas como <code>Path</code>, <code>Files</code> o <code>DirectoryStream</code>, y un enfoque más seguro y potente para trabajar con el sistema de archivos.</p>
+</li>
+</ul>
+<hr />
+<h2 id="introduccion-al-sistema-de-archivos-en-java">🧭 Introducción al sistema de archivos en Java</h2>
+<p>En Java existen <strong>dos formas principales de trabajar con archivos y carpetas</strong>:</p>
+<ul>
+<li><code>java.io.File</code>: fue la primera API que ofrecía funciones básicas para trabajar con el sistema de archivos.</li>
+<li><code>java.nio.file</code>: introducida en Java 7, es <strong>más moderna, potente y segura</strong>.</li>
+</ul>
+<h3 id="cual-usar">⚠️ ¿Cuál usar?</h3>
+<p>Aunque <code>java.io.File</code> aún funciona, tiene muchas limitaciones. Por eso <strong>recomendamos usar <code>java.nio.file</code> siempre que sea posible</strong>.</p>
+<hr />
+<h3 id="por-que-usar-javaniofile-hoy">✅ ¿Por qué usar <code>java.nio.file</code> hoy?</h3>
+<ul>
+<li>Mejor gestión de errores (lanzando excepciones con mensajes útiles)</li>
+<li>Soporte para rutas absolutas, relativas y enlaces simbólicos</li>
+<li>Métodos directos para copiar, mover, borrar o leer archivos</li>
+<li>Más control y modularidad</li>
+</ul>
+<blockquote>
+<p>En esta unidad aprenderás directamente a usar <code>java.nio.file</code>, pero también conocerás brevemente las limitaciones de <code>java.io.File</code> para que puedas comparar y entender por qué hoy se considera una API anticuada.</p>
+</blockquote>
+<h2 id="comparativa-entre-javaiofile-y-javaniofile">🆚 Comparativa entre <code>java.io.File</code> y <code>java.nio.file</code></h2>
+<table>
+<thead>
+<tr>
+<th>Funcionalidad</th>
+<th><code>java.io.File</code> (limitada)</th>
+<th><code>java.nio.file</code> (moderna)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Crear archivo</strong></td>
+<td><code>file.createNewFile()</code><br>❌ Devuelve <code>false</code>, sin detalles</td>
+<td><code>Files.createFile(path)</code><br>✅ Lanza excepción útil</td>
+</tr>
+<tr>
+<td><strong>Comprobar si existe</strong></td>
+<td><code>file.exists()</code></td>
+<td><code>Files.exists(path)</code></td>
+</tr>
+<tr>
+<td><strong>Crear directorio</strong></td>
+<td><code>file.mkdir()</code></td>
+<td><code>Files.createDirectory(path)</code></td>
+</tr>
+<tr>
+<td><strong>Listar archivos</strong></td>
+<td><code>file.listFiles()</code><br>❌ Devuelve <code>null</code> si falla</td>
+<td><code>DirectoryStream&lt;Path&gt;</code><br>✅ Más controlado</td>
+</tr>
+<tr>
+<td><strong>Eliminar archivo</strong></td>
+<td><code>file.delete()</code><br>❌ Devuelve <code>false</code></td>
+<td><code>Files.delete(path)</code><br>✅ Con control de errores</td>
+</tr>
+<tr>
+<td><strong>Copiar/Mover archivos</strong></td>
+<td>❌ No se puede directamente</td>
+<td>✅ <code>Files.copy()</code>, <code>Files.move()</code></td>
+</tr>
+<tr>
+<td><strong>Leer archivo completo</strong></td>
+<td>❌ Necesita bucles y buffers</td>
+<td>✅ <code>Files.readAllLines(path)</code></td>
+</tr>
+<tr>
+<td><strong>Manejo de errores</strong></td>
+<td>❌ Poca información</td>
+<td>✅ Lanza excepciones claras</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="que-hay-dentro-de-javaio">📂 ¿Qué hay dentro de <code>java.io</code>?</h2>
+<p>El paquete <code>java.io</code> es uno de los más antiguos de Java, e incluye <strong>clases para:</strong></p>
+<h3 id="1-entradasalida-en-archivos">1. Entrada/salida en archivos</h3>
+<ul>
+<li><code>File</code> → representa rutas de archivos/directorios</li>
+<li><code>FileInputStream</code>, <code>FileOutputStream</code> → lectura/escritura en binario</li>
+<li><code>FileReader</code>, <code>FileWriter</code> → lectura/escritura en texto</li>
+</ul>
+<h3 id="2-lecturaescritura-con-buffers">2. Lectura/escritura con buffers</h3>
+<ul>
+<li><code>BufferedReader</code>, <code>BufferedWriter</code></li>
+<li><code>BufferedInputStream</code>, <code>BufferedOutputStream</code></li>
+</ul>
+<h3 id="3-serializacion">3. Serialización</h3>
+<ul>
+<li><code>ObjectInputStream</code>, <code>ObjectOutputStream</code></li>
+<li><code>Serializable</code> (interfaz)</li>
+</ul>
+<h3 id="4-comunicacion-entre-procesos">4. Comunicación entre procesos</h3>
+<ul>
+<li><code>PipedInputStream</code>, <code>PipedOutputStream</code></li>
+<li><code>PipedReader</code>, <code>PipedWriter</code></li>
+</ul>
+<h3 id="5-flujos-abstractos">5. Flujos abstractos</h3>
+<ul>
+<li><code>InputStream</code>, <code>OutputStream</code> (abstractas)</li>
+<li><code>Reader</code>, <code>Writer</code> (abstractas)</li>
+</ul>
+<h3 id="6-otros">6. Otros</h3>
+<ul>
+<li><code>PrintWriter</code>, <code>PrintStream</code></li>
+<li><code>IOException</code>, <code>EOFException</code>, <code>FileNotFoundException</code>, etc.</li>
+</ul>
+<hr />
+<h2 id="curiosidad-didactica">🧠 Curiosidad didáctica</h2>
+<ul>
+<li><code>java.io</code> es una <strong>gran colección de clases que forman parte del núcleo de Java</strong> desde sus inicios.</li>
+<li>Muchas de ellas son <strong>abstractas o extensibles</strong>, pensadas para que puedas combinarlas (por ejemplo: envolver un <code>FileReader</code> con un <code>BufferedReader</code>).</li>
+<li>Aunque hoy en día muchas tareas se pueden hacer mejor con <code>java.nio</code>, algunas de estas clases aún <strong>tienen utilidad complementaria</strong>, sobre todo en flujos de texto o para serialización básica.</li>
+</ul>
+<h2 id="que-hay-dentro-de-javaniofile">📂 ¿Qué hay dentro de <code>java.nio.file</code>?</h2>
+<p>El paquete <code>java.nio.file</code> fue introducido en Java 7 y es parte de la API moderna para trabajar con rutas, archivos y directorios de forma segura y eficiente.</p>
+<h3 id="clases-principales">🔧 Clases principales</h3>
+<ul>
+<li><strong><code>Path</code></strong>
+  Representa una ruta (ya sea de un archivo o un directorio) de forma independiente del sistema operativo. Ejemplo:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">ruta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;archivos/ejemplo.txt&quot;</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>
+<p><strong><code>Paths</code></strong>
+  Clase auxiliar que se usa para construir objetos <code>Path</code> a partir de una cadena de texto.</p>
+</li>
+<li>
+<p><strong><code>Files</code></strong>
+  Clase con métodos estáticos para operar directamente sobre archivos y carpetas: crear, borrar, copiar, mover, leer y escribir.</p>
+</li>
+<li>
+<p><strong><code>DirectoryStream</code></strong>
+  Permite recorrer el contenido de un directorio como si fuera una colección. Es seguro y compatible con <code>try-with-resources</code>.</p>
+</li>
+</ul>
+<hr />
+<h2 id="operaciones-basicas-con-archivos">🛠️ Operaciones básicas con archivos</h2>
+<ul>
+<li><strong>Crear un objeto Path que representa la ruta relativa al archivo nota.txt, dentro del directorio documentos. Si nota.txt no existe no falla, Paths.get(...) solo crea un objeto Path, es decir, una representación en memoria de una ruta. No comprueba si existe ni intenta acceder al archivo.</strong>
+    <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">archivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos/nota.txt&quot;</span><span class="p">);</span>
+</code></pre></div></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>❗Importante: Esto NO crea el archivo físicamente. Solo estás creando una referencia lógica en Java que apunta a esa ruta.</p>
+</div>
+<ul>
+<li><strong>Comprobar si existe un archivo:</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">exists</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">exists</span><span class="p">(</span><span class="n">archivo</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>Crear un archivo. Devuelve la ruta del fichero creado:</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">newFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">createFile</span><span class="p">(</span><span class="n">archivo</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>Borrar un archivo:</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Files</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">archivo</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>Copiar un archivo. Devuelve la ruta del fichero copiado:</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">copiedFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">archivo</span><span class="p">,</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;copia.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">StandardCopyOption</span><span class="p">.</span><span class="na">REPLACE_EXISTING</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>Mover (o renombrar) un archivo. Devuelve la ruta del fichero movido:</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">movedFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">move</span><span class="p">(</span><span class="n">archivo</span><span class="p">,</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;nuevos/nota.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">StandardCopyOption</span><span class="p">.</span><span class="na">REPLACE_EXISTING</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="operaciones-basicas-con-directorios">📁 Operaciones básicas con directorios</h2>
+<ul>
+<li><strong>Paths.get es un método estático que crea un objeto de tipo Path. En este caso, crea una ruta relativa al directorio actual con el nombre "nuevaCarpeta".:</strong>
+    <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">carpeta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;nuevaCarpeta&quot;</span><span class="p">);</span>
+</code></pre></div></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>¿La carpeta existe? No necesariamente. Esta línea solo crea la representación de la ruta como objeto Path, pero no crea la carpeta en el sistema de archivos.</p>
+</div>
+<ul>
+<li><strong>Crear un directorio. Devuelve la ruta del nuevo directorio creado:</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">newDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">createDirectory</span><span class="p">(</span><span class="n">carpeta</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>Crear varios directorios anidados. Devuelve la ruta del último directorio creado:</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">lastNewDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">createDirectories</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;usuarios/admin/documentos&quot;</span><span class="p">));</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Crea todos los directorios necesarios en la ruta dada, si no existen. Si ya existen, NO lanza excepción. Si no especificas una ruta absoluta, se crean en el directorio actual. El ejemplo creará una ruta compuesta por 3 directorios:
+usuarios/
+usuarios/admin/
+usuarios/admin/documentos/</p>
+</div>
+<ul>
+<li><strong>Listar el contenido de un directorio. Abre un flujo (DirectoryStream<Path>) con todos los elementos (ficheros y subdirectorios) que contiene la ruta especificada. No es recursivo (no entra dentro de subdirectorios):</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">DirectoryStream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">newDirectoryStream</span><span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;/home&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">archivo</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">stream</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">archivo</span><span class="p">.</span><span class="na">getFileName</span><span class="p">());</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="p">}</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>Comprobar si una ruta es un directorio:</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">isDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">isDirectory</span><span class="p">(</span><span class="n">carpeta</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="vista-general-de-javaio">🖼️ Vista general de <code>java.io</code></h2>
+<p>La siguiente imagen muestra la jerarquía de clases dentro del paquete <code>java.io</code>:</p>
+<p><img alt="JavaIO" src="../../img/ud1/1javaio.png" /></p>
+<h2 id="vista-general-de-javaniofile">🖼️ Vista general de <code>java.nio.file</code></h2>
+<p>La siguiente imagen muestra las clases más importantes dentro de <code>java.nio.file</code>:</p>
+<p><img alt="JavaIO" src="../../img/ud1/java.nio.png" /></p>
+<hr />
+<h2 id="buenas-practicas-con-javaniofile">✅ Buenas prácticas con <code>java.nio.file</code></h2>
+<ul>
+<li>Usa <code>try-catch</code> para manejar excepciones como <code>IOException</code>.</li>
+<li>Si abres un recurso que debe cerrarse (como un <code>DirectoryStream</code>), usa <code>try-with-resources</code>. Recursos se refiere a objetos como streams, buffers, o lectores que ocupan memoria activa del sistema operativo.</li>
+<li>Divide tu código en métodos pequeños y reutilizables para mantenerlo limpio.</li>
+<li>Comenta el código si haces operaciones delicadas (como borrar o mover archivos).</li>
+<li>Siempre verifica si los archivos o directorios existen antes de operar sobre ellos.</li>
+<li>Usa REPLACE_EXISTING en copias o movimientos si quieres sobreescribir.</li>
+</ul>
+<hr />
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Volver al principio
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navitagion.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+    
+  </body>
+</html>
