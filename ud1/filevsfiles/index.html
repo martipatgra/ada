@@ -1397,10 +1397,9 @@
 <h3 id="clases-principales">🔧 Clases principales</h3>
 <ul>
 <li><strong><code>Path</code></strong>
-  Representa una ruta (ya sea de un archivo o un directorio) de forma independiente del sistema operativo.\
-  Ejemplo:</li>
+  Representa una ruta (ya sea de un archivo o un directorio) de forma independiente del sistema operativo. Ejemplo:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">ruta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;archivos/ejemplo.txt&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">ruta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;archivos/ejemplo.txt&quot;</span><span class="p">);</span>
 </code></pre></div>
 <ul>
 <li>
@@ -1419,7 +1418,7 @@
 <hr />
 <h2 id="operaciones-basicas-con-archivos">🛠️ Operaciones básicas con archivos</h2>
 <ul>
-<li><strong>Crea un objeto Path que representa la ruta relativa al archivo nota.txt, dentro del directorio documentos. Si nota.txt no existe no falla, Paths.get(...) solo crea un objeto Path, es decir, una representación en memoria de una ruta. No comprueba si existe ni intenta acceder al archivo.</strong>
+<li><strong>Crear un objeto Path que representa la ruta relativa al archivo nota.txt, dentro del directorio documentos. Si nota.txt no existe no falla, Paths.get(...) solo crea un objeto Path, es decir, una representación en memoria de una ruta. No comprueba si existe ni intenta acceder al archivo.</strong>
     <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">archivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos/nota.txt&quot;</span><span class="p">);</span>
 </code></pre></div></li>
 </ul>
