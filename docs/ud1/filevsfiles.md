@@ -113,16 +113,16 @@ El paquete `java.nio.file` fue introducido en Java 7 y es parte de la API modern
 
 ---
 
-## 🛠️ Operaciones básicas con archivos
+## 🛠️ Operaciones básicas con ficheros
 
-- **Crear un objeto Path que representa la ruta relativa al archivo nota.txt, dentro del directorio documentos. Si nota.txt no existe no falla, Paths.get(...) solo crea un objeto Path, es decir, una representación en memoria de una ruta. No comprueba si existe ni intenta acceder al archivo.**
+- **Crear un objeto Path que representa la ruta relativa al fichero nota.txt, dentro del directorio documentos. Si nota.txt no existe no falla, Paths.get(...) solo crea un objeto Path, es decir, una representación en memoria de una ruta. No comprueba si existe ni intenta acceder al fichero.**
     ```java
     Path archivo = Paths.get("documentos/nota.txt");
     ```
 !!! Warning
-    ❗Importante: Esto NO crea el archivo físicamente. Solo estás creando una referencia lógica en Java que apunta a esa ruta.
+    ❗Importante: Esto NO crea el fichero físicamente. Solo estás creando una referencia lógica en Java que apunta a esa ruta.
 
-- **Comprobar si existe un archivo:**
+- **Comprobar si existe un fichero:**
 
   ```java
   boolean exists = Files.exists(archivo);
@@ -134,24 +134,32 @@ El paquete `java.nio.file` fue introducido en Java 7 y es parte de la API modern
   Path newFile = Files.createFile(archivo);
   ```
 
-- **Borrar un archivo:**
+- **Borrar un fichero:**
 
   ```java
   Files.delete(archivo);
   ```
 
-- **Copiar un archivo. Devuelve la ruta del fichero copiado:**
+- **Copiar un fichero. Devuelve la ruta del fichero copiado:**
 
   ```java
   Path copiedFile = Files.copy(archivo, Paths.get("copia.txt"), StandardCopyOption.REPLACE_EXISTING);
   ```
 
-- **Mover (o renombrar) un archivo. Devuelve la ruta del fichero movido:**
+- **Mover (o renombrar) un fichero. Devuelve la ruta del fichero movido:**
 
   ```java
   Path movedFile = Files.move(archivo, Paths.get("nuevos/nota.txt"), StandardCopyOption.REPLACE_EXISTING);
   ```
 
+- **Devolver el tamaño en bytes del fichero representado por Path:**
+
+  ```java
+  Path path = Path.of("fichero.txt");
+  long tamaño = Files.size(path);
+  ```
+Si el path apunta a un fichero, devuelve el tamaño del contenido del fichero.
+Si el path apunta a un directorio, lanza una excepción (IOException o AccessDeniedException), ya que NO SE PUEDE MEDIR EL TAMAÑO DE UN DIRECTORIO.
 ---
 
 ## 📁 Operaciones básicas con directorios
