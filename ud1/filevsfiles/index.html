@@ -1480,6 +1480,14 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">movedFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">move</span><span class="p">(</span><span class="n">archivo</span><span class="p">,</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;nuevos/nota.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">StandardCopyOption</span><span class="p">.</span><span class="na">REPLACE_EXISTING</span><span class="p">);</span>
 </code></pre></div>
+<ul>
+<li><strong>Devolver el tamaño en bytes del fichero representado por Path:</strong></li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;fichero.txt&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">long</span><span class="w"> </span><span class="n">tamaño</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">size</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+</code></pre></div>
+Si el path apunta a un fichero, devuelve el tamaño del contenido del fichero.
+Si el path apunta a un directorio, lanza una excepción (IOException o AccessDeniedException), ya que NO SE PUEDE MEDIR EL TAMAÑO DE UN DIRECTORIO.</p>
 <hr />
 <h2 id="operaciones-basicas-con-directorios">📁 Operaciones básicas con directorios</h2>
 <ul>
