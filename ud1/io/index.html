@@ -312,30 +312,71 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-datos-caracteres-y-bytes" class="md-nav__link">
-    Tipos de Datos - Caracteres y bytes
+  <a href="#formas-de-acceso-a-un-fichero-en-java" class="md-nav__link">
+    🛣️ Formas de acceso a un fichero en Java
   </a>
   
-    <nav class="md-nav" aria-label="Tipos de Datos - Caracteres y bytes">
+    <nav class="md-nav" aria-label="🛣️ Formas de acceso a un fichero en Java">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#flujos-orientados-a-bytes" class="md-nav__link">
-    Flujos orientados a bytes
+  <a href="#que-significa-acceso-secuencial" class="md-nav__link">
+    📝 ¿Qué significa acceso secuencial?
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#flujos-orientados-a-caracteres" class="md-nav__link">
-    Flujos orientados a caracteres
+  <a href="#y-acceso-aleatorio" class="md-nav__link">
+    🧭 ¿Y acceso aleatorio?
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#tipos-de-acceso-a-ficheros" class="md-nav__link">
-    Tipos de acceso a ficheros
+  <a href="#y-leerlo-todo-de-golpe" class="md-nav__link">
+    ⚡ ¿Y leerlo todo de golpe?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-flujos-en-java-binarios-vs-caracteres" class="md-nav__link">
+    🔄 Tipos de flujos en Java: Binarios vs Caracteres
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Tipos de flujos en Java: Binarios vs Caracteres">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flujos-binarios-byte-streams" class="md-nav__link">
+    📦 Flujos binarios (byte streams)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flujos-de-caracteres" class="md-nav__link">
+    🔤 Flujos de caracteres
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-flujos-en-java" class="md-nav__link">
+    📋 Resumen de flujos en Java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formas-de-acceso-a-un-fichero-en-java_1" class="md-nav__link">
+    🚪 Formas de acceso a un fichero en Java
   </a>
   
 </li>
@@ -983,30 +1024,71 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-datos-caracteres-y-bytes" class="md-nav__link">
-    Tipos de Datos - Caracteres y bytes
+  <a href="#formas-de-acceso-a-un-fichero-en-java" class="md-nav__link">
+    🛣️ Formas de acceso a un fichero en Java
   </a>
   
-    <nav class="md-nav" aria-label="Tipos de Datos - Caracteres y bytes">
+    <nav class="md-nav" aria-label="🛣️ Formas de acceso a un fichero en Java">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#flujos-orientados-a-bytes" class="md-nav__link">
-    Flujos orientados a bytes
+  <a href="#que-significa-acceso-secuencial" class="md-nav__link">
+    📝 ¿Qué significa acceso secuencial?
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#flujos-orientados-a-caracteres" class="md-nav__link">
-    Flujos orientados a caracteres
+  <a href="#y-acceso-aleatorio" class="md-nav__link">
+    🧭 ¿Y acceso aleatorio?
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#tipos-de-acceso-a-ficheros" class="md-nav__link">
-    Tipos de acceso a ficheros
+  <a href="#y-leerlo-todo-de-golpe" class="md-nav__link">
+    ⚡ ¿Y leerlo todo de golpe?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-flujos-en-java-binarios-vs-caracteres" class="md-nav__link">
+    🔄 Tipos de flujos en Java: Binarios vs Caracteres
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Tipos de flujos en Java: Binarios vs Caracteres">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flujos-binarios-byte-streams" class="md-nav__link">
+    📦 Flujos binarios (byte streams)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flujos-de-caracteres" class="md-nav__link">
+    🔤 Flujos de caracteres
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-flujos-en-java" class="md-nav__link">
+    📋 Resumen de flujos en Java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formas-de-acceso-a-un-fichero-en-java_1" class="md-nav__link">
+    🚪 Formas de acceso a un fichero en Java
   </a>
   
 </li>
@@ -1036,46 +1118,120 @@
 <p>Todo dato tiene un origen de entrada o un destino de salida (convenientemente en inglés: I/O). <strong>Input</strong> o entrada implica leer datos de una fuente y <strong>Output</strong> o salida implica escribirlos en un destino. Un programa trabaja con datos que provienen de una entrada la cual puede ser un teclado, un archivo en disco o un socket a través de la red. Así mismo un programa genera resultados enviándolos a una salida la cual puede ser la pantalla, un archivo en disco o un socket a través de la red. En Java, la conexión entre un programa y un origen o destino de datos se denomina <strong>flujo</strong> (en inglés: <strong>stream</strong>).</p>
 <p><img alt="JavaIO" src="../../img/ud1/stream.png" /></p>
 <p>Un flujo de entrada <em>(input stream)</em> maneja los datos que fluyen hacia un programa. Un flujo de salida <em>(output stream)</em> maneja los datos que salen de un programa.</p>
-<h2 id="tipos-de-datos-caracteres-y-bytes">Tipos de Datos - Caracteres y bytes</h2>
-<p>Existen dos tipos de flujos (streams) según el tipo de datos, flujos binarios y flujos de caracteres. Los tipos de datos que se pueden leer/escribir suelen ser bytes o caracteres y los métodos que se utilizan son similares, pero se utilizan clases diferentes.</p>
+<hr />
+<h2 id="formas-de-acceso-a-un-fichero-en-java">🛣️ Formas de acceso a un fichero en Java</h2>
+<p>Java permite trabajar con ficheros de distintas formas, dependiendo de lo que queramos hacer con ellos. Las principales son:</p>
+<table>
+<thead>
+<tr>
+<th>Forma de acceso</th>
+<th>Descripción</th>
+<th>Ventajas principales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Acceso secuencial</strong></td>
+<td>Se accede al fichero de principio a fin, en orden.</td>
+<td>Simple, eficiente para leer o escribir de forma lineal. Ideal para archivos de texto.</td>
+</tr>
+<tr>
+<td><strong>Acceso aleatorio</strong></td>
+<td>Permite posicionarse en cualquier parte del archivo.</td>
+<td>Útil cuando se necesita modificar o consultar partes concretas. Más complejo.</td>
+</tr>
+<tr>
+<td><strong>Lectura completa en memoria</strong></td>
+<td>Se lee todo el contenido del archivo y se guarda en una estructura (por ejemplo, una lista de líneas).</td>
+<td>Muy cómodo para trabajar, pero no recomendado si el archivo es muy grande.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="que-significa-acceso-secuencial">📝 ¿Qué significa acceso secuencial?</h3>
+<p>Significa que el archivo se <strong>lee o escribe de principio a fin</strong>. No se puede saltar directamente a una posición concreta, sino que hay que recorrerlo.</p>
+<p>Ejemplo: <code>BufferedReader</code>, <code>BufferedWriter</code>, <code>Files.newBufferedReader()</code>, <code>Files.write()</code>...</p>
+<h3 id="y-acceso-aleatorio">🧭 ¿Y acceso aleatorio?</h3>
+<p>Significa que puedes <strong>moverte a cualquier parte</strong> del archivo (por ejemplo, al byte 250) y empezar a leer o escribir desde ahí.</p>
+<p>Ejemplo: <code>RandomAccessFile</code> (lo veremos más adelante).</p>
+<h3 id="y-leerlo-todo-de-golpe">⚡ ¿Y leerlo todo de golpe?</h3>
+<p>A veces quieres leer un archivo pequeño entero, por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lineas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">readAllLines</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;archivo.txt&quot;</span><span class="p">));</span>
+</code></pre></div>
+<hr />
+<h2 id="tipos-de-flujos-en-java-binarios-vs-caracteres">🔄 Tipos de flujos en Java: Binarios vs Caracteres</h2>
+<p>Cuando trabajamos con ficheros en Java, es importante entender <strong>qué tipo de datos</strong> estamos leyendo o escribiendo. Esto influye en el tipo de <strong>flujo (stream)</strong> que debemos usar. Existen dos tipos de flujos (streams) según el tipo de datos, flujos binarios y flujos de caracteres. </p>
 <p>Internamente, todos los datos consisten en patrones de bits agrupados en bytes. Entonces, lógicamente, todos los flujos podrían llamarse "flujos de bytes" <strong>(byte streams)</strong>. Sin embargo, los flujos destinados a bytes que representan caracteres se denominan "flujos de caracteres" <strong>(character streams)</strong> y todos los demás se denominan "flujos de bytes".</p>
 <p>Al escribir y leer datos de caracteres, éstos están en un formato legible para el ser humano, sin embargo, los datos binarios implican leer y escribir bytes que no son legibles si los abrimos en un editor de texto.</p>
+<h3 id="flujos-binarios-byte-streams">📦 Flujos binarios (byte streams)</h3>
 <ul>
-<li>Flujos binarios (byte streams): almacenan variables, clases del programa, archivos de imagen, sonido, etc. Por ejemplo, el archivo de código de bytes creado por el compilador de Java contiene instrucciones de máquina para la máquina virtual de Java. Estos no están destinados a representar caracteres, y la entrada y salida de ellos debe usar flujos de bytes. Las clases principales para manejar estos flujos son las clases abstractas <strong>InputStream</strong> y <strong>OutputStream</strong>.</li>
+<li>Usados para leer o escribir <strong>datos en formato binario</strong> (imágenes, vídeos, ficheros PDF, etc.).</li>
+<li>No interpretan el contenido como texto, sino como <strong>bytes puros</strong>.</li>
 </ul>
-<p><em>Clases principales de InputStream:</em></p>
-<p><img alt="JavaIO" src="../../img/ud1/2javaio.png" /></p>
-<p><em>Clases principales de OutputStream:</em></p>
-<p><img alt="JavaIO" src="../../img/ud1/3javaio.png" /></p>
-<ul>
-<li>Flujos de caracteres (character streams): están optimizados para datos de caracteres. Se utilizan con frecuencia para leer/escribir ficheros de texto, xml y json. Las clases principales para manejar estos flujos son las clases abstractas <strong>Reader</strong> y <strong>Writer</strong>.</li>
-</ul>
-<p><em>Clases principales de Reader</em>:</p>
-<p><img alt="JavaIO" src="../../img/ud1/4javaio.png" /></p>
-<p><em>Clases principales de Writer:</em></p>
-<p><img alt="JavaIO" src="../../img/ud1/5javaio.png" /></p>
-<p>La siguiente figura muestra la jerarquía del paquete <code>java.io</code>.
-Los streams pueden estar orientados a bytes u orientados a caracteres. Cada tipo tiene flujos de entrada y flujos de salida.</p>
+<p>Clases típicas:
+- <code>InputStream</code> (abstracta)
+  - <code>FileInputStream</code>
+  - <code>BufferedInputStream</code>
+- <code>OutputStream</code> (abstracta)
+  - <code>FileOutputStream</code>
+  - <code>BufferedOutputStream</code></p>
+<h3 id="flujos-de-caracteres">🔤 Flujos de caracteres</h3>
+<p>Usados para trabajar con texto (ficheros .txt, .csv, .xml...). Están optimizados para datos de caracteres.</p>
+<p>Interpretan los datos usando una codificación de caracteres (como UTF-8).</p>
+<p>Clases típicas:
+- <code>Reader</code> (abstracta)
+  - <code>FileReader</code>
+  - <code>BufferedReader</code>
+- <code>Writer</code> (abstracta)
+  - <code>FileWriter</code>
+  - <code>BufferedWriter</code></p>
+<p>La siguiente figura muestra la jerarquía del paquete <code>java.io</code>:</p>
 <p><img alt="JavaIO" src="../../img/ud1/2stream.png" /></p>
-<h3 id="flujos-orientados-a-bytes">Flujos orientados a bytes</h3>
-<ul>
-<li>Diseñado para entrada y salida de propósito general.</li>
-<li>Los datos pueden ser tipos de datos primitivos o bytes sin procesar.</li>
-</ul>
-<h3 id="flujos-orientados-a-caracteres">Flujos orientados a caracteres</h3>
-<ul>
-<li>Destinado a datos de caracteres.</li>
-<li>Los datos se transforman de/a caracteres Java de 16 bits utilizados dentro de los programas al formato utilizado externamente.</li>
-</ul>
-<h3 id="tipos-de-acceso-a-ficheros">Tipos de acceso a ficheros</h3>
-<ol>
-<li>
-<p>Acceso secuencial: Una lectura secuencial implica tener que acceder a un elemento antes de acceder al siguiente, es decir, de una manera lineal (sin saltos). Las clases <code>InputStream</code> y <code>OutputStream</code> son secuenciales.</p>
-</li>
-<li>
-<p>Acceso aleatorio: los ficheros de acceso aleatorio permiten acceder a sus datos de una forma aleatoria, esto es indicando una determinada posición desde la que leer/escribir.</p>
-</li>
-</ol>
+<hr />
+<h3 id="resumen-de-flujos-en-java">📋 Resumen de flujos en Java</h3>
+<h3 id="formas-de-acceso-a-un-fichero-en-java_1">🚪 Formas de acceso a un fichero en Java</h3>
+<p>Java permite trabajar con ficheros de diferentes formas, cada una con sus ventajas y usos específicos:</p>
+<table>
+<thead>
+<tr>
+<th>Forma de acceso</th>
+<th>Descripción breve</th>
+<th>¿Cuándo usarla?</th>
+<th>Clases más importantes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Basado en rutas (<code>File</code>, <code>Path</code>)</strong></td>
+<td>Trabaja con rutas de ficheros y directorios, sin leer ni escribir contenido.</td>
+<td>Para comprobar si existe, crear carpetas, borrar archivos, mover, copiar...</td>
+<td><code>File</code>, <code>Path</code>, <code>Paths</code>, <code>Files</code></td>
+</tr>
+<tr>
+<td><strong>Flujos binarios</strong></td>
+<td>Trabajan con bytes. Adecuado para imágenes, audio, datos binarios sin formato.</td>
+<td>Cuando se manejan archivos no de texto o binarios puros</td>
+<td><code>InputStream</code>, <code>OutputStream</code>, <code>FileInputStream</code>, <code>FileOutputStream</code></td>
+</tr>
+<tr>
+<td><strong>Flujos de caracteres</strong></td>
+<td>Trabajan con texto. Se basan en caracteres Unicode.</td>
+<td>Lectura y escritura de archivos <code>.txt</code>, <code>.csv</code>, <code>.json</code>, etc.</td>
+<td><code>Reader</code>, <code>Writer</code>, <code>FileReader</code>, <code>FileWriter</code>, <code>BufferedReader</code>, <code>BufferedWriter</code></td>
+</tr>
+<tr>
+<td><strong>NIO.2 (<code>java.nio.file</code>)</strong></td>
+<td>API moderna desde Java 7. Más robusta, segura, con mejor gestión de errores.</td>
+<td>Siempre que puedas. Sustituye a muchas tareas antiguas de <code>java.io</code></td>
+<td><code>Files</code>, <code>Path</code>, <code>Paths</code>, <code>DirectoryStream</code></td>
+</tr>
+<tr>
+<td><strong>Acceso aleatorio</strong></td>
+<td>Permite leer y escribir en cualquier parte del archivo sin recorrerlo todo.</td>
+<td>Para editar partes específicas de archivos grandes</td>
+<td><code>RandomAccessFile</code></td>
+</tr>
+</tbody>
+</table>
 <hr />
 
 
