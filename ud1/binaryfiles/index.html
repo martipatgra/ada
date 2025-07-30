@@ -1342,7 +1342,7 @@
 </code></pre></div>
 ✅ El buffer agrupa muchos bytes y los escribe en bloque, mejorando el rendimiento. Si queremos guardar en un punto del programa podemos hacer <code>bos.flush()</code> que realiza un volcado del buffer al fichero, guarda.</p>
 <h3 id="ejemplo-de-lectura-con-bufferedinputstream-buffer">✅ Ejemplo de lectura con BufferedInputStream (buffer)</h3>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">BufferedInputStream</span><span class="w"> </span><span class="n">bis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedInputStream</span><span class="p">(</span>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">BufferedInputStream</span><span class="w"> </span><span class="n">bis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedInputStream</span><span class="p">(</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">&quot;entrada.bin&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">byteLeido</span><span class="p">;</span>
 <span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">byteLeido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bis</span><span class="p">.</span><span class="na">read</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1350,6 +1350,11 @@
 <span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="7 "></span><span class="p">}</span>
 </code></pre></div>
+<code>BufferedInputStream</code> crea un buffer interno. Cuando llamas por primera vez a <code>bis.read()</code>, no lee 1 byte del disco, sino que:
+- Lee miles de bytes del disco de golpe (llamada costosa de E/S).
+- Los guarda en memoria (en su buffer interno).
+- Luego, cada llamada a <code>.read()</code> devuelve el siguiente byte del buffer, lo cual es muy rápido porque accede a memoria, no al disco.
+- Cuando el buffer se vacía, se vuelve a rellenar con otros 8192 bytes del fichero.</p>
 <hr />
 <h2 id="que-son-los-wrappers-y-por-que-usar-buffers">🧻 ¿Qué son los wrappers y por qué usar buffers?</h2>
 <p>En Java, muchas clases de entrada/salida se <strong>envuelven unas dentro de otras</strong> para mejorar su funcionamiento. Esto se llama <strong>patrón decorador</strong> y permite <strong>añadir funcionalidades</strong> sin modificar la clase original.</p>
