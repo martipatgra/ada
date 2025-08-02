@@ -508,6 +508,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3-filesreadstring-java-11" class="md-nav__link">
+    3. Files.readString() (Java 11+)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-filesnewbufferedreader" class="md-nav__link">
+    4. Files.newBufferedReader()
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -524,6 +538,20 @@
           <li class="md-nav__item">
   <a href="#1-fileswriteliststring" class="md-nav__link">
     1. Files.write(List&lt;String&gt;)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-fileswritestring-java-11" class="md-nav__link">
+    2. Files.writeString() (Java 11+)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-filesnewbufferedwriter" class="md-nav__link">
+    3. Files.newBufferedWriter()
   </a>
   
 </li>
@@ -1278,6 +1306,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3-filesreadstring-java-11" class="md-nav__link">
+    3. Files.readString() (Java 11+)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-filesnewbufferedreader" class="md-nav__link">
+    4. Files.newBufferedReader()
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1294,6 +1336,20 @@
           <li class="md-nav__item">
   <a href="#1-fileswriteliststring" class="md-nav__link">
     1. Files.write(List&lt;String&gt;)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-fileswritestring-java-11" class="md-nav__link">
+    2. Files.writeString() (Java 11+)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-filesnewbufferedwriter" class="md-nav__link">
+    3. Files.newBufferedWriter()
   </a>
   
 </li>
@@ -1473,6 +1529,34 @@
 <li>⚠️ Necesita <code>try-with-resources</code> porque abre un recurso</li>
 </ul>
 <hr />
+<h4 id="3-filesreadstring-java-11">3. <code>Files.readString()</code> (Java 11+)</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">contenido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">readString</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;entrada.txt&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">contenido</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>✅ Ideal si necesitas todo el contenido como una sola cadena</li>
+<li>✅ Muy simple y directo</li>
+</ul>
+<hr />
+<h4 id="4-filesnewbufferedreader">4. <code>Files.newBufferedReader()</code></h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">BufferedReader</span><span class="w"> </span><span class="n">br</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">newBufferedReader</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;entrada.txt&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">linea</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">linea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">linea</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>✅ Lectura eficiente sin necesidad de envolver <code>FileReader</code></li>
+<li>✅ Permite pasar <code>Charset</code> como segundo argumento opcional, lo cual es útil si quieres controlar la codificación del texto (por ejemplo, UTF-8, ISO-8859-1, etc.).</li>
+</ul>
+<hr />
 <h3 id="escritura-de-texto-javanio">✍️ Escritura de texto (<code>java.nio</code>)</h3>
 <h4 id="1-fileswriteliststring">1. <code>Files.write(List&lt;String&gt;)</code></h4>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">contenido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;Línea 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Línea 2&quot;</span><span class="p">);</span>
@@ -1481,6 +1565,30 @@
 <ul>
 <li>✅ Fácil de usar, sobrescribe por defecto</li>
 <li>✅ Codificación UTF-8 por defecto</li>
+</ul>
+<hr />
+<h4 id="2-fileswritestring-java-11">2. <code>Files.writeString()</code> (Java 11+)</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">Files</span><span class="p">.</span><span class="na">writeString</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;salida.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Texto de ejemplo&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>✅ Muy cómodo para una sola cadena</li>
+<li>✅ Puedes pasar un <code>Charset</code></li>
+</ul>
+<hr />
+<h4 id="3-filesnewbufferedwriter">3. <code>Files.newBufferedWriter()</code></h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">BufferedWriter</span><span class="w"> </span><span class="n">bw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">newBufferedWriter</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;salida.txt&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">bw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;Primera línea\nSegunda línea&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>✅ Similar a <code>BufferedWriter</code>, pero más moderno y flexible</li>
+<li>✅ Permite pasar <code>Charset</code> como segundo argumento opcional, lo cual es útil si quieres controlar la codificación del texto (por ejemplo, UTF-8, ISO-8859-1, etc.).</li>
 </ul>
 <hr />
 <h2 id="tabla-resumen-que-clase-usar-segun-la-situacion">🧠 Tabla resumen: ¿Qué clase usar según la situación?</h2>
@@ -1531,11 +1639,39 @@
 <td>Lectura perezosa, se debe cerrar el stream</td>
 </tr>
 <tr>
+<td><code>Files.readString()</code></td>
+<td>Lectura completa como cadena (Java 11+)</td>
+<td>❌ No</td>
+<td>❌ No</td>
+<td>Muy cómodo si necesitas todo el texto</td>
+</tr>
+<tr>
+<td><code>Files.newBufferedReader()</code></td>
+<td>Lectura eficiente con Charset opcional</td>
+<td>✅ Sí</td>
+<td>✅ Sí</td>
+<td>Alternativa moderna a <code>BufferedReader</code></td>
+</tr>
+<tr>
 <td><code>Files.write(List)</code></td>
 <td>Escritura rápida de texto si ya tienes las líneas</td>
 <td>❌ No</td>
 <td>❌ No</td>
 <td>Simple y cómodo</td>
+</tr>
+<tr>
+<td><code>Files.writeString()</code></td>
+<td>Escritura de cadena completa (Java 11+)</td>
+<td>❌ No</td>
+<td>❌ No</td>
+<td>Muy directo y moderno</td>
+</tr>
+<tr>
+<td><code>Files.newBufferedWriter()</code></td>
+<td>Escritura eficiente y configurable</td>
+<td>✅ Sí</td>
+<td>✅ Sí</td>
+<td>Permite especificar codificación</td>
 </tr>
 </tbody>
 </table>
@@ -1546,7 +1682,10 @@
 <li>Usa <code>Files.readAllLines()</code> o <code>Files.write()</code> para tareas sencillas y ficheros pequeños.</li>
 <li>Usa <code>Files.lines()</code> para procesar ficheros grandes sin cargarlos enteros a memoria.</li>
 <li>Usa <code>PrintWriter</code> si necesitas formatear tu salida con precisión.</li>
+<li>Usa <code>Files.readString()</code> y <code>Files.writeString()</code> si trabajas con cadenas completas (Java 11+).</li>
+<li>Usa <code>Files.newBufferedReader()</code> y <code>Files.newBufferedWriter()</code> si quieres un enfoque moderno con control de codificación.</li>
 </ul>
+<hr />
 
 
   
