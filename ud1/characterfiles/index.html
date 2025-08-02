@@ -1128,59 +1128,126 @@
 <li>❌ Sin búfer, menos eficiente</li>
 </ul>
 <hr />
-<h3 id="escritura-con-bufferedwriter">✍️ Escritura con <code>BufferedWriter</code></h3>
-<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">BufferedWriter</span><span class="w"> </span><span class="n">bw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedWriter</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;salida.txt&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<h3 id="2-bufferedwriter">2. <code>BufferedWriter</code></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">BufferedWriter</span><span class="w"> </span><span class="n">bw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedWriter</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;salida.txt&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">bw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;Hola mundo&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">bw</span><span class="p">.</span><span class="na">newLine</span><span class="p">();</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">bw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;Esto es una segunda línea.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">bw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&quot;Otra línea&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="5 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
 <span class="linenos" data-linenos="7 "></span><span class="p">}</span>
 </code></pre></div>
-✅ Escritura más rápida gracias al buffer.</p>
+<ul>
+<li>✅ Escritura más rápida y controlada</li>
+</ul>
 <hr />
-<h3 id="escritura-con-printwriter">✍️ Escritura con <code>PrintWriter</code></h3>
-<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">PrintWriter</span><span class="w"> </span><span class="n">pw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PrintWriter</span><span class="p">(</span><span class="s">&quot;log.txt&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<h3 id="3-printwriter">3. <code>PrintWriter</code></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">PrintWriter</span><span class="w"> </span><span class="n">pw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PrintWriter</span><span class="p">(</span><span class="s">&quot;log.txt&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">pw</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Inicio del log&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">pw</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;Valor: %.2f&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">12.345</span><span class="p">);</span>
 <span class="linenos" data-linenos="4 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
 <span class="linenos" data-linenos="6 "></span><span class="p">}</span>
 </code></pre></div>
-✅ Escribe texto con formato, ideal para logs.</p>
-<hr />
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Este es un ejemplo de escritura usando FileWriter.&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">FileWriter</span><span class="w"> </span><span class="n">fw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileWriter</span><span class="p">(</span><span class="s">&quot;output.txt&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="n">fw</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">fw</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error E/S: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
-</code></pre></div>
-<p>Cuando se cierra el stream <code>close()</code> se escribe en el fichero. Si quisiéramos grabar en el fichero en algún momento antes de cerrar, podemos usar el método <code>flush()</code>.</p>
-<h2 id="lectura-de-datos">Lectura de datos</h2>
-<p><code>FileReader</code> es una clase en el paquete java.io que se usa para leer una secuencia de caracteres de los ficheros. Esta clase se hereda de la clase <code>InputStreamReader</code>.</p>
 <ul>
-<li><code>FileReader</code> está diseñada para leer flujos de caracteres. Para leer flujos de bytes sin procesar, usaremos <code>FileInputStream</code>.</li>
+<li>✅ Permite formateo avanzado de texto</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ch</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="n">FileReader</span><span class="w"> </span><span class="n">fr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileReader</span><span class="p">(</span><span class="s">&quot;output.txt&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fr</span><span class="p">.</span><span class="na">read</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">//fin de fichero</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span><span class="w"> </span><span class="n">ch</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">            </span><span class="n">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fr</span><span class="p">.</span><span class="na">read</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">fr</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">fe</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error de E/S&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span>
+<hr />
+<h1 id="operaciones-con-javaniofilefiles">🗂️ Operaciones con <code>java.nio.file.Files</code></h1>
+<h2 id="lectura-de-texto-javanio">📥 Lectura de texto (<code>java.nio</code>)</h2>
+<h3 id="1-filesreadalllines">1. <code>Files.readAllLines()</code></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">ruta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;entrada.txt&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lineas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">readAllLines</span><span class="p">(</span><span class="n">ruta</span><span class="p">);</span>
 </code></pre></div>
-<p>Al igual que ocurría con los ficheros binarios, disponemos de las clases <code>BufferedReader</code> y <code>BufferedWriter</code> para leer y escribir usando el búfer y así acceder a los datos más rápidamente.</p>
+<ul>
+<li>✅ Muy cómodo para archivos pequeños o medianos</li>
+<li>⚠️ Carga todo a memoria</li>
+</ul>
+<hr />
+<h3 id="2-fileslines-stream">2. <code>Files.lines()</code> (stream)</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lineas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">lines</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;entrada.txt&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">lineas</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>✅ Lectura perezosa, ideal para archivos grandes</li>
+<li>✅ Permite filtros y transformaciones</li>
+</ul>
+<hr />
+<h2 id="escritura-de-texto-javanio">✍️ Escritura de texto (<code>java.nio</code>)</h2>
+<h3 id="1-fileswriteliststring">1. <code>Files.write(List&lt;String&gt;)</code></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">contenido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;Línea 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Línea 2&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Files</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;salida.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">contenido</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>✅ Fácil de usar, sobrescribe por defecto</li>
+<li>✅ Codificación UTF-8 por defecto</li>
+</ul>
+<hr />
+<h1 id="tabla-resumen-que-clase-usar-segun-la-situacion">🧠 Tabla resumen: ¿Qué clase usar según la situación?</h1>
+<table>
+<thead>
+<tr>
+<th>Herramienta</th>
+<th>¿Cuándo usarla?</th>
+<th>¿Buffer incluido?</th>
+<th>¿Requiere cerrar?</th>
+<th>Comentario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BufferedReader</code> / <code>BufferedWriter</code></td>
+<td>Lectura/escritura eficiente de texto línea a línea</td>
+<td>✅ Sí</td>
+<td>✅ Sí</td>
+<td>Ideal para logs o lectura línea a línea</td>
+</tr>
+<tr>
+<td><code>PrintWriter</code></td>
+<td>Cuando necesitas imprimir texto con formato</td>
+<td>✅ Sí</td>
+<td>✅ Sí</td>
+<td>Ofrece métodos print/println/printf</td>
+</tr>
+<tr>
+<td><code>FileReader</code> / <code>FileWriter</code></td>
+<td>Acceso directo a caracteres, sin buffer</td>
+<td>❌ No</td>
+<td>✅ Sí</td>
+<td>Puede ser ineficiente si no se envuelve</td>
+</tr>
+<tr>
+<td><code>Files.readAllLines()</code></td>
+<td>Lectura sencilla si el archivo es pequeño o mediano</td>
+<td>❌ No</td>
+<td>❌ No</td>
+<td>Devuelve <code>List&lt;String&gt;</code></td>
+</tr>
+<tr>
+<td><code>Files.lines()</code></td>
+<td>Lectura de grandes archivos como <code>Stream&lt;String&gt;</code></td>
+<td>✅ Sí</td>
+<td>✅ Sí</td>
+<td>Lectura perezosa, se debe cerrar el stream</td>
+</tr>
+<tr>
+<td><code>Files.write(List)</code></td>
+<td>Escritura rápida de texto si ya tienes las líneas</td>
+<td>❌ No</td>
+<td>❌ No</td>
+<td>Simple y cómodo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="recomendaciones">✅ Recomendaciones</h1>
+<ul>
+<li>Usa <code>BufferedReader</code> / <code>BufferedWriter</code> cuando leas o escribas muchas líneas.</li>
+<li>Usa <code>Files.readAllLines()</code> o <code>Files.write()</code> para tareas sencillas y ficheros pequeños.</li>
+<li>Usa <code>Files.lines()</code> para procesar ficheros grandes sin cargarlos enteros a memoria.</li>
+<li>Usa <code>PrintWriter</code> si necesitas formatear tu salida con precisión.</li>
+</ul>
 
 
   
