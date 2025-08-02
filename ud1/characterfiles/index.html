@@ -1165,13 +1165,16 @@
 </ul>
 <hr />
 <h3 id="2-fileslines-stream">2. <code>Files.lines()</code> (stream)</h3>
+<p>Devuelve un <strong>Stream de líneas</strong>, útil para procesar ficheros grandes.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lineas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">lines</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;entrada.txt&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">lineas</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
 <span class="linenos" data-linenos="3 "></span><span class="p">}</span>
 </code></pre></div>
 <ul>
-<li>✅ Lectura perezosa, ideal para archivos grandes</li>
+<li>✅ No carga todo en memoria: lectura <strong>perezosa (lazy)</strong>, ideal para ficheros grandes</li>
+<li>✅ Puedes usar operaciones con Stream (<code>filter</code>, <code>map</code>, etc.)</li>
 <li>✅ Permite filtros y transformaciones</li>
+<li>⚠️ Necesita <code>try-with-resources</code> porque abre un recurso</li>
 </ul>
 <hr />
 <h2 id="escritura-de-texto-javanio">✍️ Escritura de texto (<code>java.nio</code>)</h2>
