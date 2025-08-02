@@ -356,26 +356,27 @@
       
         <li class="md-nav__item">
   <a href="#clases-principales-para-flujos-binarios-javaio-de-acceso-secuencial" class="md-nav__link">
-    🧱 Clases principales para flujos binarios (java.io) de acceso secuencial
+    ✍️ Clases principales para flujos binarios (java.io) de acceso secuencial
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="✍️ Clases principales para flujos binarios (java.io) de acceso secuencial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#lectura-binaria-con-fileinputstream" class="md-nav__link">
     📥 Lectura binaria con FileInputStream
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#escritura-binaria-con-fileoutputstream" class="md-nav__link">
     📥 Escritura binaria con FileOutputStream
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#operaciones-con-buffers" class="md-nav__link">
     Operaciones con buffers
   </a>
@@ -408,8 +409,8 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#que-son-los-wrappers-y-por-que-usar-buffers" class="md-nav__link">
     🧻 ¿Qué son los wrappers y por qué usar buffers?
   </a>
@@ -421,6 +422,11 @@
   <a href="#por-que" class="md-nav__link">
     🔍 ¿Por qué?
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1093,26 +1099,27 @@
       
         <li class="md-nav__item">
   <a href="#clases-principales-para-flujos-binarios-javaio-de-acceso-secuencial" class="md-nav__link">
-    🧱 Clases principales para flujos binarios (java.io) de acceso secuencial
+    ✍️ Clases principales para flujos binarios (java.io) de acceso secuencial
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="✍️ Clases principales para flujos binarios (java.io) de acceso secuencial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#lectura-binaria-con-fileinputstream" class="md-nav__link">
     📥 Lectura binaria con FileInputStream
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#escritura-binaria-con-fileoutputstream" class="md-nav__link">
     📥 Escritura binaria con FileOutputStream
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#operaciones-con-buffers" class="md-nav__link">
     Operaciones con buffers
   </a>
@@ -1145,8 +1152,8 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#que-son-los-wrappers-y-por-que-usar-buffers" class="md-nav__link">
     🧻 ¿Qué son los wrappers y por qué usar buffers?
   </a>
@@ -1158,6 +1165,11 @@
   <a href="#por-que" class="md-nav__link">
     🔍 ¿Por qué?
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1260,7 +1272,7 @@
 <p>Los <strong>ficheros binarios</strong> almacenan datos en forma de <strong>bytes</strong>. Se utilizan para archivos <strong>no de texto</strong>, como imágenes, audio, vídeo, ficheros comprimidos, bases de datos, etc.</p>
 <p>Para leer y escribir este tipo de ficheros, se usan <strong>flujos de entrada/salida de bytes</strong>.</p>
 <hr />
-<h3 id="clases-principales-para-flujos-binarios-javaio-de-acceso-secuencial">🧱 Clases principales para flujos binarios (<code>java.io</code>) de acceso secuencial</h3>
+<h2 id="clases-principales-para-flujos-binarios-javaio-de-acceso-secuencial">✍️ Clases principales para flujos binarios (<code>java.io</code>) de acceso secuencial</h2>
 <table>
 <thead>
 <tr>
@@ -1294,7 +1306,7 @@
 </table>
 <p>Estas clases forman parte de la API clásica <code>java.io</code>.</p>
 <hr />
-<h2 id="lectura-binaria-con-fileinputstream">📥 Lectura binaria con <code>FileInputStream</code></h2>
+<h3 id="lectura-binaria-con-fileinputstream">📥 Lectura binaria con <code>FileInputStream</code></h3>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">FileInputStream</span><span class="w"> </span><span class="n">fis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">&quot;entrada.bin&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">byteLeido</span><span class="p">;</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">byteLeido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="na">read</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1306,7 +1318,7 @@
 </code></pre></div>
 🔎 Este código lee byte a byte. Para archivos grandes, es mejor usar un buffer.</p>
 <hr />
-<h2 id="escritura-binaria-con-fileoutputstream">📥 Escritura binaria con <code>FileOutputStream</code></h2>
+<h3 id="escritura-binaria-con-fileoutputstream">📥 Escritura binaria con <code>FileOutputStream</code></h3>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;salida.bin&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">datos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">65</span><span class="p">,</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w"> </span><span class="mi">67</span><span class="p">};</span><span class="w"> </span><span class="c1">// A, B, C</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">datos</span><span class="p">);</span>
@@ -1316,7 +1328,7 @@
 </code></pre></div>
 ✏️ También puedes escribir byte a byte con fos.write(65);</p>
 <hr />
-<h2 id="operaciones-con-buffers">Operaciones con buffers</h2>
+<h3 id="operaciones-con-buffers">Operaciones con buffers</h3>
 <p>Un <strong>buffer</strong> es una memoria intermedia que <strong>almacena temporalmente datos</strong> antes de leerlos o escribirlos. Esto hace que el programa:</p>
 <ul>
 <li>Haga <strong>menos accesos al disco</strong> (que son lentos)</li>
@@ -1324,7 +1336,7 @@
 </ul>
 <p>Este búfer almacena los bytes antes de que se escriban en el disco. Recuerda que un búfer es un bloque de memoria que se usa para ensamblar datos antes de que se escriban todos a la vez.</p>
 <p>Cuando se cierra el stream <code>close()</code>, es como si pincháramos en guardar de forma gráfica, es decir, que si no cerramos el stream es como si el fichero estuviera vacío. También la operación <code>flush()</code> que guarda en el fichero lo que contiene el buffer actualmente.</p>
-<h3 id="ejemplo-escritura-sin-buffer">🧱 Ejemplo escritura sin buffer</h3>
+<h4 id="ejemplo-escritura-sin-buffer">🧱 Ejemplo escritura sin buffer</h4>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;datos.bin&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"> </span><span class="c1">// Se escribe en disco 1000 veces, esto es muy lento</span>
@@ -1332,7 +1344,7 @@
 <span class="linenos" data-linenos="5 "></span><span class="p">}</span>
 </code></pre></div>
 ⚠️ Cada <code>write()</code> escribe directamente al disco. Muy lento.</p>
-<h3 id="ejemplo-de-escritura-con-bufferedoutputstream-buffer">✅ Ejemplo de escritura con BufferedOutputStream (buffer)</h3>
+<h4 id="ejemplo-de-escritura-con-bufferedoutputstream-buffer">✅ Ejemplo de escritura con BufferedOutputStream (buffer)</h4>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">BufferedOutputStream</span><span class="w"> </span><span class="n">bos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedOutputStream</span><span class="p">(</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;datos.bin&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1341,7 +1353,7 @@
 <span class="linenos" data-linenos="6 "></span><span class="p">}</span>
 </code></pre></div>
 ✅ El buffer agrupa muchos bytes y los escribe en bloque, mejorando el rendimiento. Si queremos guardar en un punto del programa podemos hacer <code>bos.flush()</code> que realiza un volcado del buffer al fichero, guarda.</p>
-<h3 id="ejemplo-de-lectura-con-bufferedinputstream-buffer">✅ Ejemplo de lectura con BufferedInputStream (buffer)</h3>
+<h4 id="ejemplo-de-lectura-con-bufferedinputstream-buffer">✅ Ejemplo de lectura con BufferedInputStream (buffer)</h4>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">BufferedInputStream</span><span class="w"> </span><span class="n">bis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedInputStream</span><span class="p">(</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">&quot;entrada.bin&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">byteLeido</span><span class="p">;</span>
@@ -1356,10 +1368,10 @@
 - Luego, cada llamada a <code>.read()</code> devuelve el siguiente byte del buffer, lo cual es muy rápido porque accede a memoria, no al disco.
 - Cuando el buffer se vacía, se vuelve a rellenar con otros 8192 bytes del fichero.</p>
 <hr />
-<h2 id="que-son-los-wrappers-y-por-que-usar-buffers">🧻 ¿Qué son los wrappers y por qué usar buffers?</h2>
+<h3 id="que-son-los-wrappers-y-por-que-usar-buffers">🧻 ¿Qué son los wrappers y por qué usar buffers?</h3>
 <p>En Java, muchas clases de entrada/salida se <strong>envuelven unas dentro de otras</strong> para mejorar su funcionamiento. Esto se llama <strong>patrón decorador</strong> y permite <strong>añadir funcionalidades</strong> sin modificar la clase original.</p>
 <p>La clase <code>BufferedInputStream</code>/<code>BufferedOuputStream</code> necesita siempre envolver otro <code>InputStream</code>, por lo tanto no se puede usar sola sin un wrapper.</p>
-<h3 id="por-que">🔍 ¿Por qué?</h3>
+<h4 id="por-que">🔍 ¿Por qué?</h4>
 <p>Porque la clase <code>BufferedInputStream</code> o <code>BufferedOuputStream</code> no sabe de dónde leer/escribir datos por sí misma. Su función es añadir un búfer a otro flujo de entrada (por ejemplo, FileInputStream/FileOutputStream), pero necesita que alguien le proporcione los datos reales.</p>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">BufferedInputStream</span><span class="w"> </span><span class="n">bis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedInputStream</span><span class="p">(</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">&quot;archivo.bin&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
