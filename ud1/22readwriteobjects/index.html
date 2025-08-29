@@ -484,6 +484,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#serialization" class="md-nav__link">
+    📦 Serialization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deserialization" class="md-nav__link">
     🎆 Deserialization
   </a>
@@ -492,7 +499,7 @@
       
         <li class="md-nav__item">
   <a href="#que-es-el-campo-serialversionuid" class="md-nav__link">
-    🎆 ¿Qué es el campo serialVersionUID?
+    📤 ¿Qué es el campo serialVersionUID?
   </a>
   
 </li>
@@ -1072,6 +1079,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#serialization" class="md-nav__link">
+    📦 Serialization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deserialization" class="md-nav__link">
     🎆 Deserialization
   </a>
@@ -1080,7 +1094,7 @@
       
         <li class="md-nav__item">
   <a href="#que-es-el-campo-serialversionuid" class="md-nav__link">
-    🎆 ¿Qué es el campo serialVersionUID?
+    📤 ¿Qué es el campo serialVersionUID?
   </a>
   
 </li>
@@ -1167,6 +1181,11 @@
 </tbody>
 </table>
 <hr />
+<h2 id="serialization">📦 Serialization</h2>
+<p>Imaginemos que tenemos la clase <code>Employee</code> que nos permitirá crear objetos de empleados.</p>
+<p>📌 <strong>Es obligatorio para serializar añadir <code>implements Serializable</code></strong> en la clase.
+Serializable es una interfaz marcadora (marker interface).
+No tiene métodos → solo sirve para indicar a la JVM: “esta clase se puede serializar”.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
@@ -1188,7 +1207,7 @@
 <span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="20 "></span><span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">WriteObject.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//Método para escribir objectos en un fichero</span>
+<div class="highlight"><span class="filename">WriteObject.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//Método para escribir objectos de empleados en un fichero</span>
 <span class="linenos" data-linenos="2 "></span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">writeObject</span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="n">employee</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">try</span><span class="p">(</span><span class="n">ObjectOutputStream</span><span class="w"> </span><span class="n">os</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectOutputStream</span><span class="p">(</span><span class="n">Files</span><span class="p">.</span><span class="na">newOutputStream</span><span class="p">(</span><span class="n">path</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">os</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">employee</span><span class="p">);</span>
@@ -1211,7 +1230,7 @@
 <p><img alt="JavaObjects" src="../../img/ud1/serialization.png" /></p>
 <p><em>¿Qué pasaría si cambiamos el campo age de la clase Employee de int a long después de haberlo serializado y, ahora volvemos a leerlo?</em></p>
 <p>Que se generaría una excepción de tipo <code>InvalidClassException</code> con el mensaje clase incompatible, con serialVersionUID diferentes.</p>
-<h2 id="que-es-el-campo-serialversionuid">🎆 ¿Qué es el campo serialVersionUID?</h2>
+<h2 id="que-es-el-campo-serialversionuid">📤 ¿Qué es el campo serialVersionUID?</h2>
 <p>El campo <code>serialVersionUID</code> <strong>es un campo que crea el compilador implícitamente en tiempo de ejecución si no se declara explícitamente</strong>, para las clases serializables. <em>Se basa en detalles de la clase como el número de campos, sus tipos y declaraciones, ...</em></p>
 <p>Por tanto, cambiar un campo como hemos hecho antes, generará un UID diferente. Cuando leemos un objeto de un stream, el runtime comprueba el serialVersionUID almacenado. Que se almacena con el objeto escrito en el fichero .dat y lo compara con el compilado de la clase. Si no coinciden, entonces hay un problema de compatibilidad y el runtime lanza esa excepción de clase inválida.</p>
 <div class="admonition note nota">
