@@ -525,6 +525,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#otras-formas-de-serializar-objetos-en-java" class="md-nav__link">
+    🌐 Otras formas de serializar objetos en Java
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Otras formas de serializar objetos en Java">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparativa-rapida" class="md-nav__link">
+    🔀 Comparativa rápida
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1120,6 +1140,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#otras-formas-de-serializar-objetos-en-java" class="md-nav__link">
+    🌐 Otras formas de serializar objetos en Java
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Otras formas de serializar objetos en Java">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparativa-rapida" class="md-nav__link">
+    🔀 Comparativa rápida
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1277,6 +1317,52 @@ cuántos bytes leemos)</li>
 <span class="linenos" data-linenos="9 "></span><span class="p">}</span>
 </code></pre></div>
 <p>Si probamos a escribir un objeto Employee con su accountId, veremos que al deserializarlo el accountId será 0, no se escribirá nada porque lo hemos declarado como <strong>transitorio o transient</strong>.</p>
+<h2 id="otras-formas-de-serializar-objetos-en-java">🌐 Otras formas de serializar objetos en Java</h2>
+<p>Hasta ahora hemos visto la <strong>serialización binaria nativa</strong> con <code>ObjectOutputStream</code>, pero no es la única forma de persistir o enviar objetos. Según el caso de uso, te interesará usar formatos <strong>portables</strong>, <strong>legibles</strong>, o <strong>muy eficientes</strong>.</p>
+<h3 id="comparativa-rapida">🔀 Comparativa rápida</h3>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Formato</th>
+<th>Ventajas principales</th>
+<th>Inconvenientes / Avisos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ObjectOutputStream</code></td>
+<td>Binario (Java)</td>
+<td>Simple en Java, guarda estructura y estado</td>
+<td>No portable entre lenguajes, versión de clases</td>
+</tr>
+<tr>
+<td>JSON (Jackson/Gson)</td>
+<td>Texto (JSON)</td>
+<td>Interoperable, legible, muy usado en APIs</td>
+<td>Tipado laxo, tamaño mayor que binario</td>
+</tr>
+<tr>
+<td>XML (JAXB)</td>
+<td>Texto (XML)</td>
+<td>Estandarizado, validación con XSD</td>
+<td>Verboso, más pesado</td>
+</tr>
+<tr>
+<td>Serialización manual</td>
+<td>A medida</td>
+<td>Control total del formato y compatibilidad</td>
+<td>Más código, riesgo de errores</td>
+</tr>
+<tr>
+<td>Bases de datos</td>
+<td>Estructurado</td>
+<td>Consulta/filtrado, persistencia robusta</td>
+<td>No es serialización 1:1 del objeto</td>
+</tr>
+</tbody>
+</table>
+<hr />
 
 
   
