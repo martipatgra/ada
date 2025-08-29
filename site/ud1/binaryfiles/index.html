@@ -19,7 +19,7 @@
     
     
       
-        <title>1.3.- Ficheros binarios - Acceso a Datos</title>
+        <title>1.2.2.- Operaciones con ficheros binarios en Java - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ficheros-binarios" class="md-skip">
+        <a href="#operaciones-con-ficheros-binarios-en-java" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1.3.- Ficheros binarios
+              1.2.2.- Operaciones con ficheros binarios en Java
             
           </span>
         </div>
@@ -276,10 +276,39 @@
               
   
   
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          1.2.- Lectura y escritura de ficheros de texto en Java
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.2.- Lectura y escritura de ficheros de texto en Java
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
   
     <li class="md-nav__item">
       <a href="../io/" class="md-nav__link">
-        1.2.- Entrada/Salida (I/O) de la información
+        1.2.1.- Introducción
       </a>
     </li>
   
@@ -302,12 +331,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          1.3.- Ficheros binarios
+          1.2.2.- Operaciones con ficheros binarios en Java
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        1.3.- Ficheros binarios
+        1.2.2.- Operaciones con ficheros binarios en Java
       </a>
       
         
@@ -326,23 +355,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#escribir-datos-en-un-fichero-binario" class="md-nav__link">
-    Escribir datos en un fichero binario
+  <a href="#clases-principales-para-flujos-binarios-javaio" class="md-nav__link">
+    🧱 Clases principales para flujos binarios (java.io)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#escritura-en-un-fichero-binario-usando-el-bufer" class="md-nav__link">
-    Escritura en un fichero binario usando el búfer
+  <a href="#lectura-binaria-con-fileinputstream" class="md-nav__link">
+    📥 Lectura binaria con FileInputStream
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#lectura-de-datos-en-un-fichero-binario" class="md-nav__link">
-    Lectura de datos en un fichero binario
+  <a href="#escritura-binaria-con-fileoutputstream" class="md-nav__link">
+    📥 Escritura binaria con FileOutputStream
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operaciones-con-buffers" class="md-nav__link">
+    Operaciones con buffers
+  </a>
+  
+    <nav class="md-nav" aria-label="Operaciones con buffers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-escritura-sin-buffer" class="md-nav__link">
+    🧱 Ejemplo escritura sin buffer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-con-bufferedoutputstream-buffer" class="md-nav__link">
+    ✅ Ejemplo con BufferedOutputStream (buffer)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -362,36 +418,15 @@
   
     <li class="md-nav__item">
       <a href="../13characterfiles/" class="md-nav__link">
-        1.4.- Ficheros de caracteres
+        1.2.3.- Operaciones con ficheros de caracteres en Java
       </a>
     </li>
   
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14fileclass/" class="md-nav__link">
-        1.5.- Clase File
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../15javanio/" class="md-nav__link">
-        1.6.- java.nio
-      </a>
+        </ul>
+      </nav>
     </li>
   
 
@@ -404,77 +439,7 @@
   
     <li class="md-nav__item">
       <a href="../16randomaccessfile/" class="md-nav__link">
-        1.7.- Ficheros de acceso aleatorio
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../17configfiles/" class="md-nav__link">
-        1.8.- Ficheros de configuración
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../18xmlfiles/" class="md-nav__link">
-        1.9.- XML
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../19jsonfiles/" class="md-nav__link">
-        1.10.- JSON
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../20createjar/" class="md-nav__link">
-        1.11.- Crear un .jar
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../trywithresources/" class="md-nav__link">
-        1.12.- try-with-resources
+        1.3.- Ficheros de acceso aleatorio
       </a>
     </li>
   
@@ -488,7 +453,63 @@
   
     <li class="md-nav__item">
       <a href="../22readwriteobjects/" class="md-nav__link">
-        1.13.- Lectura y escritura de objectos en Java
+        1.4.- Lectura y escritura de objectos en Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17configfiles/" class="md-nav__link">
+        1.5.- Ficheros de configuración
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19jsonfiles/" class="md-nav__link">
+        1.6.- JSON
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20createjar/" class="md-nav__link">
+        1.7.- Crear un .jar
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trywithresources/" class="md-nav__link">
+        1.8.- try-with-resources
       </a>
     </li>
   
@@ -970,23 +991,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#escribir-datos-en-un-fichero-binario" class="md-nav__link">
-    Escribir datos en un fichero binario
+  <a href="#clases-principales-para-flujos-binarios-javaio" class="md-nav__link">
+    🧱 Clases principales para flujos binarios (java.io)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#escritura-en-un-fichero-binario-usando-el-bufer" class="md-nav__link">
-    Escritura en un fichero binario usando el búfer
+  <a href="#lectura-binaria-con-fileinputstream" class="md-nav__link">
+    📥 Lectura binaria con FileInputStream
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#lectura-de-datos-en-un-fichero-binario" class="md-nav__link">
-    Lectura de datos en un fichero binario
+  <a href="#escritura-binaria-con-fileoutputstream" class="md-nav__link">
+    📥 Escritura binaria con FileOutputStream
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operaciones-con-buffers" class="md-nav__link">
+    Operaciones con buffers
+  </a>
+  
+    <nav class="md-nav" aria-label="Operaciones con buffers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-escritura-sin-buffer" class="md-nav__link">
+    🧱 Ejemplo escritura sin buffer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-con-bufferedoutputstream-buffer" class="md-nav__link">
+    ✅ Ejemplo con BufferedOutputStream (buffer)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1006,67 +1054,92 @@
 
 
 
-<h1 id="ficheros-binarios">Ficheros binarios</h1>
-<p><img alt="JavaIO" src="../../img/ud1/9extensionbinaryfiles.png" /></p>
-<h2 id="escribir-datos-en-un-fichero-binario">Escribir datos en un fichero binario</h2>
-<p>La escritura en ficheros binarios representa el flujo de salida de bytes, es decir, necesitamos utilizar las clases que derivan de <code>OutputStream</code>. Se puede escribir datos en un fichero binario de muchas formas. Veamos un ejemplo utilizando la clase <code>FileOutputStream</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="n">DataOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DataOutputStream</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;datos.dat&quot;</span><span class="p">));</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">fos</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">fos</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">FileNotFoundException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">//todas pueden derivar de IOException</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="11 "></span><span class="p">}</span>
+<h1 id="operaciones-con-ficheros-binarios-en-java">💾 Operaciones con ficheros binarios en Java</h1>
+<p>Los <strong>ficheros binarios</strong> almacenan datos en forma de <strong>bytes</strong>. Se utilizan para archivos <strong>no de texto</strong>, como imágenes, audio, vídeo, ficheros comprimidos, bases de datos, etc.</p>
+<p>Para leer y escribir este tipo de ficheros, se usan <strong>flujos de entrada/salida de bytes</strong>.</p>
+<hr />
+<h3 id="clases-principales-para-flujos-binarios-javaio">🧱 Clases principales para flujos binarios (<code>java.io</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Clase usada</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lectura binaria</td>
+<td><code>FileInputStream</code></td>
+<td>Lee byte a byte desde un fichero</td>
+</tr>
+<tr>
+<td>Escritura binaria</td>
+<td><code>FileOutputStream</code></td>
+<td>Escribe byte a byte en un fichero</td>
+</tr>
+<tr>
+<td>Lectura rápida</td>
+<td><code>BufferedInputStream</code></td>
+<td>Añade un búfer para mayor eficiencia</td>
+</tr>
+<tr>
+<td>Escritura rápida</td>
+<td><code>BufferedOutputStream</code></td>
+<td>Búfer de salida para rendimiento</td>
+</tr>
+</tbody>
+</table>
+<p>Estas clases forman parte de la API clásica <code>java.io</code>.</p>
+<hr />
+<h2 id="lectura-binaria-con-fileinputstream">📥 Lectura binaria con <code>FileInputStream</code></h2>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">FileInputStream</span><span class="w"> </span><span class="n">fis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">&quot;entrada.bin&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">byteLeido</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">byteLeido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="na">read</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">byteLeido</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
-<p>En el ejemplo, el constructor <code>FileOutputStream</code> abre el fichero <code>datos.dat</code> para escritura. Se crea un nuevo fichero; si un fichero antiguo tiene el mismo nombre, se eliminará. Luego, un <code>DataOutputStream</code> se conecta al <code>FileOutputStream</code>.</p>
-<p><code>DataOutputStream</code> tiene métodos para escribir datos primitivos en un flujo de salida. El método writeInt() escribe los cuatro bytes de un tipo de datos int en la secuencia.</p>
-<p>El programa escribe cuatro enteros en el flujo de salida y luego cierra el flujo.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Siempre hay que cerrar el flujo para asegurarse de liberar todos los recursos asociados a él y que el sistema operativo no consuma recursos.</p>
-</div>
-<p>La excepción <code>IOException</code> se lanza si el stream se ha cerrado y el flujo de salida contenido no admite la escritura después del cierre, o se produce otro error de I/O.</p>
-<h2 id="escritura-en-un-fichero-binario-usando-el-bufer">Escritura en un fichero binario usando el búfer</h2>
-<p>Ahora vamos a escribir más enteros en el fichero. Para ello utilizamos <code>BufferedOutputStream</code>. Este búfer almacena los bytes antes de que se escriban en el disco. Recuerda que un búfer es un bloque de memoria que se usa para ensamblar datos antes de que se escriban todos a la vez.</p>
-<p>Cuando se cierra el stream <code>close()</code>, es como si pincháramos en guardar de forma gráfica, es decir, que si no cerramos el stream es como si el fichero estuviera vacío.</p>
-<p><strong>El almacenamiento en búfer hace que las operaciones de E/S sean más eficientes.</strong> Para un programa que realiza E/S masivas, el almacenamiento en búfer es esencial. La E/S es muy lenta en comparación con las operaciones con almacenamiento principal. Sin almacenamiento en búfer, la E/S sería muy, muy lenta.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">writeBuffer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="n">DataOutputStream</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DataOutputStream</span><span class="p">(</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">                </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedOutputStream</span><span class="p">(</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;datosBufer.dat&quot;</span><span class="p">)));</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">            </span><span class="n">out</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">out</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">FileNotFoundException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="15 "></span><span class="p">}</span>
+🔎 Este código lee byte a byte. Para archivos grandes, es mejor usar un buffer.</p>
+<hr />
+<h2 id="escritura-binaria-con-fileoutputstream">📥 Escritura binaria con <code>FileOutputStream</code></h2>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;salida.bin&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">datos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">65</span><span class="p">,</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w"> </span><span class="mi">67</span><span class="p">};</span><span class="w"> </span><span class="c1">// A, B, C</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">datos</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
 </code></pre></div>
-<h2 id="lectura-de-datos-en-un-fichero-binario">Lectura de datos en un fichero binario</h2>
-<p>Para leer un fichero, primero hemos de preguntarnos un poco sobre él, es decir, si fue escrito por un programa Java, entonces necesitaremos saber qué tipos de datos se usaron, y así poder usar una subclase de <code>InputStream</code> para leer bytes para ese tipo de datos.</p>
-<p><code>InputStream</code>, como hemos visto en los diagramas, es una clase abstracta para objetos que leen flujos de bytes. Aunque, no todas las clases que derivan de ella están relacionadas con la entrada de ficheros de disco. Por ejemplo, <code>PipedInputStream</code> representa datos provenientes de otro programa en ejecución.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="n">DataInputStream</span><span class="w"> </span><span class="n">dis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DataInputStream</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">&quot;datos.dat&quot;</span><span class="p">));</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">dis</span><span class="p">.</span><span class="na">readInt</span><span class="p">());</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="n">dis</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">FileNotFoundException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">//todas pueden derivar de IOException</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+✏️ También puedes escribir byte a byte con fos.write(65);</p>
+<hr />
+<h2 id="operaciones-con-buffers">Operaciones con buffers</h2>
+<p>Un <strong>buffer</strong> es una memoria intermedia que <strong>almacena temporalmente datos</strong> antes de leerlos o escribirlos. Esto hace que el programa:</p>
+<ul>
+<li>Haga <strong>menos accesos al disco</strong> (que son lentos)</li>
+<li>Sea <strong>más eficiente y rápido</strong></li>
+</ul>
+<p>Este búfer almacena los bytes antes de que se escriban en el disco. Recuerda que un búfer es un bloque de memoria que se usa para ensamblar datos antes de que se escriban todos a la vez.</p>
+<p>Cuando se cierra el stream <code>close()</code>, es como si pincháramos en guardar de forma gráfica, es decir, que si no cerramos el stream es como si el fichero estuviera vacío. También la operación flush() que guarda en el fichero lo que contiene el buffer actualmente.</p>
+<h3 id="ejemplo-escritura-sin-buffer">🧱 Ejemplo escritura sin buffer</h3>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">fos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;datos.bin&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">fos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"> </span><span class="c1">// Se escribe en disco 1000 veces, esto es muy lento</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
 </code></pre></div>
-<p>Al igual que en la escritura para la lectura también disponemos de la clase <code>BufferedInputStream</code>.</p>
+⚠️ Cada write() escribe directamente al disco. Muy lento.</p>
+<h3 id="ejemplo-con-bufferedoutputstream-buffer">✅ Ejemplo con BufferedOutputStream (buffer)</h3>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">BufferedOutputStream</span><span class="w"> </span><span class="n">bos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedOutputStream</span><span class="p">(</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="s">&quot;datos.bin&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">bos</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"> </span><span class="c1">// Se acumulan en memoria y luego se escriben de golpe cuando se hace el close automático</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+✅ El buffer agrupa muchos bytes y los escribe en bloque, mejorando el rendimiento. Si queremos guardar en un punto del programa podemos hacer bos.flush() que realiza un volcado del buffer al fichero, guarda.</p>
+<hr />
 
 
   

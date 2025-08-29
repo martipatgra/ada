@@ -83,6 +83,15 @@ El paquete `java.io` es uno de los más antiguos de Java, e incluye **clases par
 
 ---
 
+### Crear un objeto File
+
+```java
+File f = new File("C:\\Users\\temp\\data.txt");
+```
+Un objeto `File` NO es el fichero real. No contiene los datos que contiene el fichero. Es un objeto que contiene métodos que afectan a un archivo o directorio en particular y las funciones para la manipulación real del archivo.
+
+---
+
 ## 🧠 Curiosidad didáctica
 
 - `java.io` es una **gran colección de clases que forman parte del núcleo de Java** desde sus inicios.

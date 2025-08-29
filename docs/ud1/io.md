@@ -81,11 +81,7 @@ La siguiente figura muestra la jerarquía del paquete `java.io`:
 
 ---
 
-### 📋 Resumen de flujos en Java
-
-### 🚪 Formas de acceso a un fichero en Java
-
-Java permite trabajar con ficheros de diferentes formas, cada una con sus ventajas y usos específicos:
+## 📋 Resumen de flujos en Java
 
 | Forma de acceso           | Descripción breve                                                                 | ¿Cuándo usarla?                                                                 | Clases más importantes                    |
 |---------------------------|------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|-------------------------------------------|
