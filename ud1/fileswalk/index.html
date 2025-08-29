@@ -9,22 +9,24 @@
       
       
       
-        <link rel="prev" href="../ud5/51modulo/">
+        <link rel="prev" href="../randomaccessfile/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+        <link rel="next" href="../serialization/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>About - Acceso a Datos</title>
+        <title>1.3.- Recorrido de directorios con `java.nio.file.Files` - Acceso a Datos</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -40,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -78,11 +80,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#about-me" class="md-skip">
-          Saltar a contenido
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -93,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabecera">
-    <a href=".." title="Acceso a Datos" class="md-header__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+    <a href="../.." title="Acceso a Datos" class="md-header__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -112,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              About
+              1.3.- Recorrido de directorios con `java.nio.file.Files`
             
           </span>
         </div>
@@ -199,7 +196,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Acceso a Datos" class="md-nav__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+    <a href="../.." title="Acceso a Datos" class="md-nav__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -218,7 +215,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Inicio
       </a>
     </li>
@@ -231,14 +228,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
       
@@ -247,7 +246,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           1.- Acceso a datos mediante ficheros [Actualizado Julio 25]
@@ -260,7 +259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud1/filevsfiles/" class="md-nav__link">
+      <a href="../filevsfiles/" class="md-nav__link">
         1.1.- Gestión de ficheros con Java
       </a>
     </li>
@@ -301,7 +300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud1/io/" class="md-nav__link">
+      <a href="../io/" class="md-nav__link">
         1.2.1.- Introducción
       </a>
     </li>
@@ -342,7 +341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud1/binaryfiles/" class="md-nav__link">
+      <a href="../binaryfiles/" class="md-nav__link">
         Operaciones con ficheros binarios en Java
       </a>
     </li>
@@ -356,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud1/characterfiles/" class="md-nav__link">
+      <a href="../characterfiles/" class="md-nav__link">
         Operaciones con ficheros de caracteres en Java
       </a>
     </li>
@@ -404,7 +403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud1/randomaccessfile/" class="md-nav__link">
+      <a href="../randomaccessfile/" class="md-nav__link">
         Operaciones con ficheros de acceso aleatorio en Java
       </a>
     </li>
@@ -430,11 +429,19 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../ud1/fileswalk/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         1.3.- Recorrido de directorios con `java.nio.file.Files`
       </a>
+      
     </li>
   
 
@@ -446,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud1/serialization/" class="md-nav__link">
+      <a href="../serialization/" class="md-nav__link">
         1.4.- Lectura y escritura de objectos en Java
       </a>
     </li>
@@ -460,7 +467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud1/propertiesfile/" class="md-nav__link">
+      <a href="../propertiesfile/" class="md-nav__link">
         1.5.- Ficheros de propiedades en Java
       </a>
     </li>
@@ -474,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud1/jsonfiles/" class="md-nav__link">
+      <a href="../jsonfiles/" class="md-nav__link">
         1.6.- Ficheros JSON en Java
       </a>
     </li>
@@ -488,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud1/createjar/" class="md-nav__link">
+      <a href="../createjar/" class="md-nav__link">
         1.7.- Crear un .jar
       </a>
     </li>
@@ -502,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud1/trywithresources/" class="md-nav__link">
+      <a href="../trywithresources/" class="md-nav__link">
         1.8.- try-with-resources
       </a>
     </li>
@@ -551,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud2/21persistencia/" class="md-nav__link">
+      <a href="../../ud2/21persistencia/" class="md-nav__link">
         2.1.- Persistencia de la información
       </a>
     </li>
@@ -565,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud2/22mapeo/" class="md-nav__link">
+      <a href="../../ud2/22mapeo/" class="md-nav__link">
         2.2.- Desfase objeto-relacional
       </a>
     </li>
@@ -579,7 +586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud2/23conectores/" class="md-nav__link">
+      <a href="../../ud2/23conectores/" class="md-nav__link">
         2.3.- Manejo de conectores - JDBC
       </a>
     </li>
@@ -593,7 +600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud2/24transactions/" class="md-nav__link">
+      <a href="../../ud2/24transactions/" class="md-nav__link">
         2.4.- Transacciones
       </a>
     </li>
@@ -607,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud2/25procedures/" class="md-nav__link">
+      <a href="../../ud2/25procedures/" class="md-nav__link">
         2.5.- Procedimientos y funciones almacenadas
       </a>
     </li>
@@ -621,7 +628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud2/26rendimiento/" class="md-nav__link">
+      <a href="../../ud2/26rendimiento/" class="md-nav__link">
         2.6.- Mejora del rendimiento
       </a>
     </li>
@@ -635,7 +642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud2/27projectstructure/" class="md-nav__link">
+      <a href="../../ud2/27projectstructure/" class="md-nav__link">
         2.7.- Estructura de los proyectos
       </a>
     </li>
@@ -684,7 +691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud3/31mapeo/" class="md-nav__link">
+      <a href="../../ud3/31mapeo/" class="md-nav__link">
         3.1.- Herramientas ORM
       </a>
     </li>
@@ -698,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud3/32jpa/" class="md-nav__link">
+      <a href="../../ud3/32jpa/" class="md-nav__link">
         3.2.- Jakarta - JPA
       </a>
     </li>
@@ -712,7 +719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud3/33hibernate/" class="md-nav__link">
+      <a href="../../ud3/33hibernate/" class="md-nav__link">
         3.3.- Hibernate
       </a>
     </li>
@@ -726,7 +733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud3/34dao/" class="md-nav__link">
+      <a href="../../ud3/34dao/" class="md-nav__link">
         3.4.- Patrón DAO
       </a>
     </li>
@@ -740,7 +747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud3/35service/" class="md-nav__link">
+      <a href="../../ud3/35service/" class="md-nav__link">
         3.5.- Service Layer
       </a>
     </li>
@@ -789,7 +796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../udmongodb/mongodb1/" class="md-nav__link">
+      <a href="../../udmongodb/mongodb1/" class="md-nav__link">
         4.1.- Introducción
       </a>
     </li>
@@ -838,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud4/41introduccionspring/" class="md-nav__link">
+      <a href="../../ud4/41introduccionspring/" class="md-nav__link">
         5.1.- Introducción a Spring Framework
       </a>
     </li>
@@ -852,7 +859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud4/42repository/" class="md-nav__link">
+      <a href="../../ud4/42repository/" class="md-nav__link">
         5.2.- Spring Data JPA
       </a>
     </li>
@@ -866,7 +873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud4/43rest/" class="md-nav__link">
+      <a href="../../ud4/43rest/" class="md-nav__link">
         5.3.- API REST - Spring Web
       </a>
     </li>
@@ -880,7 +887,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud4/44queryresponse/" class="md-nav__link">
+      <a href="../../ud4/44queryresponse/" class="md-nav__link">
         5.4.- @Query y Response
       </a>
     </li>
@@ -929,7 +936,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ud5/51modulo/" class="md-nav__link">
+      <a href="../../ud5/51modulo/" class="md-nav__link">
         6.1.- Módulos en Java
       </a>
     </li>
@@ -949,21 +956,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
         About
       </a>
-      
     </li>
   
 
@@ -985,8 +982,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -1002,11 +997,7 @@
 
 
 
-<h1 id="about-me">About me ❤️‍🔥</h1>
-<p>Mi nombre es <em>Patricia Martí</em>, soy Ingeniera en Informática. Durante casi una década me dediqué al desarrollo software de manera profesional en diferentes empresas nacionales e internacionales. </p>
-<p>Actualmente, soy docente en el campo de la programación, donde puedo compartir con entusiasmo y pasión los conocimientos y habilidades aprendidas durante mi trayectoria. </p>
-<p><em>Mi objetivo es inspirar a la próxima generación de desarrolladores y ayudarles a adentrarse en el emocionante mundo de la programación y la tecnología.</em></p>
-<p>Para cualquier consulta o mejora, pueden escribirme a través de mi correo electrónico <strong>p.marti2@edu.gva.es</strong>.</p>
+
 
 
   
@@ -1051,10 +1042,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "navitagion.tabs", "navigation.top"], "search": "../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navitagion.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.6df46069.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
       
     
   </body>
