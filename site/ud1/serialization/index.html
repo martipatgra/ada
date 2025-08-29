@@ -12,7 +12,7 @@
         <link rel="prev" href="../randomaccessfile/">
       
       
-        <link rel="next" href="../17configfiles/">
+        <link rel="next" href="../propertiesfile/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
@@ -498,6 +498,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#como-serializa-y-deserializa-java-los-objetos" class="md-nav__link">
+    ⚙️ ¿Cómo serializa y deserializa Java los objetos?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#que-es-el-campo-serialversionuid" class="md-nav__link">
     📤 ¿Qué es el campo serialVersionUID?
   </a>
@@ -560,8 +567,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../17configfiles/" class="md-nav__link">
-        1.4.- Ficheros de configuración
+      <a href="../propertiesfile/" class="md-nav__link">
+        1.4.- Ficheros de propiedades en Java
       </a>
     </li>
   
@@ -1113,6 +1120,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#como-serializa-y-deserializa-java-los-objetos" class="md-nav__link">
+    ⚙️ ¿Cómo serializa y deserializa Java los objetos?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#que-es-el-campo-serialversionuid" class="md-nav__link">
     📤 ¿Qué es el campo serialVersionUID?
   </a>
@@ -1266,15 +1280,18 @@ No tiene métodos → solo sirve para indicar a la JVM: “esta clase se puede s
 <span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
+<hr />
+<h2 id="como-serializa-y-deserializa-java-los-objetos">⚙️ ¿Cómo serializa y deserializa Java los objetos?</h2>
 <p><img alt="JavaObjects" src="../../img/ud1/serialization.png" /></p>
 <p><em>¿Qué pasaría si cambiamos el campo age de la clase Employee de int a long después de haberlo serializado y, ahora volvemos a leerlo?</em></p>
 <p>Que se generaría una excepción de tipo <code>InvalidClassException</code> con el mensaje clase incompatible, con serialVersionUID diferentes.</p>
 <h2 id="que-es-el-campo-serialversionuid">📤 ¿Qué es el campo serialVersionUID?</h2>
-<p>El campo <code>serialVersionUID</code> <strong>es un campo que crea el compilador implícitamente en tiempo de ejecución si no se declara explícitamente</strong>, para las clases serializables. <em>Se basa en detalles de la clase como el número de campos, sus tipos y declaraciones, ...</em></p>
-<p>Por tanto, cambiar un campo como hemos hecho antes, generará un UID diferente. Cuando leemos un objeto de un stream, el runtime comprueba el serialVersionUID almacenado. Que se almacena con el objeto escrito en el fichero .dat y lo compara con el compilado de la clase. Si no coinciden, entonces hay un problema de compatibilidad y el runtime lanza esa excepción de clase inválida.</p>
+<p>El campo <code>serialVersionUID</code> <strong>es un campo numérico tipo <code>long</code> que genera el compilador automáticamente implícitamente en tiempo de ejecución si no se declara uno explícitamente</strong>, para las clases serializables. <em>Se crea a partir de detalles de la clase (atributos, métodos, modificadores…).</em></p>
+<p>Cuando serializas un objeto, Java guarda también ese número. Al deserializar, comprueba que el número de la clase actual coincida con el que tenía la clase al momento de la serialización. Si no coincide → lanza InvalidClassException.</p>
+<p>Por tanto, cambiar un campo como hemos hecho antes, generará un UID diferente. Cuando leemos un objeto de un stream, el runtime comprueba el serialVersionUID almacenado. Que se almacena con el objeto escrito en el fichero y lo compara con el compilado de la clase. Si no coinciden, entonces hay un problema de compatibilidad y el runtime lanza esa excepción de clase inválida.</p>
 <div class="admonition note nota">
 <p class="admonition-title">Note</p>
-<p>También ocurre que, diferentes compiladores pueden generar diferentes versiones de UID. Incluso en nuevas versiones de Java también se generan diferentes versiones de UID para un mismo código, y puede ser que no seamos capaces de deserializar nuestros datos.</p>
+<p>También ocurre que, diferentes compiladores pueden generar automáticamente diferentes versiones de UID. Incluso en nuevas versiones de Java también se generan diferentes versiones de UID para un mismo código, y puede ser que no seamos capaces de deserializar nuestros datos.</p>
 </div>
 <p>Para asegurarnos que esto no pase, <strong>es encarecidamente recomendable incluir el campo de serialVersionUID como un campo estático de la clase</strong> como se muestra a continuación:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>

@@ -86,6 +86,9 @@ private static void readObject(Path path) {
 }
 ```
 
+---
+
+## ⚙️ ¿Cómo serializa y deserializa Java los objetos?
 
 ![JavaObjects](../img/ud1/serialization.png)
 
@@ -95,12 +98,14 @@ Que se generaría una excepción de tipo `InvalidClassException` con el mensaje 
 
 ## 📤 ¿Qué es el campo serialVersionUID?
 
-El campo `serialVersionUID` **es un campo que crea el compilador implícitamente en tiempo de ejecución si no se declara explícitamente**, para las clases serializables. *Se basa en detalles de la clase como el número de campos, sus tipos y declaraciones, ...*
+El campo `serialVersionUID` **es un campo numérico tipo `long` que genera el compilador automáticamente implícitamente en tiempo de ejecución si no se declara uno explícitamente**, para las clases serializables. *Se crea a partir de detalles de la clase (atributos, métodos, modificadores…).*
 
-Por tanto, cambiar un campo como hemos hecho antes, generará un UID diferente. Cuando leemos un objeto de un stream, el runtime comprueba el serialVersionUID almacenado. Que se almacena con el objeto escrito en el fichero .dat y lo compara con el compilado de la clase. Si no coinciden, entonces hay un problema de compatibilidad y el runtime lanza esa excepción de clase inválida.
+Cuando serializas un objeto, Java guarda también ese número. Al deserializar, comprueba que el número de la clase actual coincida con el que tenía la clase al momento de la serialización. Si no coincide → lanza InvalidClassException.
+
+Por tanto, cambiar un campo como hemos hecho antes, generará un UID diferente. Cuando leemos un objeto de un stream, el runtime comprueba el serialVersionUID almacenado. Que se almacena con el objeto escrito en el fichero y lo compara con el compilado de la clase. Si no coinciden, entonces hay un problema de compatibilidad y el runtime lanza esa excepción de clase inválida.
 
 !!! Note Nota
-    También ocurre que, diferentes compiladores pueden generar diferentes versiones de UID. Incluso en nuevas versiones de Java también se generan diferentes versiones de UID para un mismo código, y puede ser que no seamos capaces de deserializar nuestros datos.
+    También ocurre que, diferentes compiladores pueden generar automáticamente diferentes versiones de UID. Incluso en nuevas versiones de Java también se generan diferentes versiones de UID para un mismo código, y puede ser que no seamos capaces de deserializar nuestros datos.
 
 Para asegurarnos que esto no pase, **es encarecidamente recomendable incluir el campo de serialVersionUID como un campo estático de la clase** como se muestra a continuación:
 
