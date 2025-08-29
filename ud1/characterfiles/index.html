@@ -421,8 +421,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-filereader-sin-buffer" class="md-nav__link">
-    1. FileReader (sin buffer)
+  <a href="#1-filereader" class="md-nav__link">
+    1. FileReader
   </a>
   
 </li>
@@ -1219,8 +1219,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-filereader-sin-buffer" class="md-nav__link">
-    1. FileReader (sin buffer)
+  <a href="#1-filereader" class="md-nav__link">
+    1. FileReader
   </a>
   
 </li>
@@ -1438,7 +1438,7 @@
 <hr />
 <h2 id="operaciones-con-javaio">🗂️ Operaciones con <code>java.io</code></h2>
 <h3 id="lectura-de-texto-javaio">📥 Lectura de texto (<code>java.io</code>)</h3>
-<h4 id="1-filereader-sin-buffer">1. <code>FileReader</code> (sin buffer)</h4>
+<h4 id="1-filereader">1. <code>FileReader</code></h4>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">FileReader</span><span class="w"> </span><span class="n">fr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileReader</span><span class="p">(</span><span class="s">&quot;entrada.txt&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fr</span><span class="p">.</span><span class="na">read</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1449,8 +1449,8 @@
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
 <ul>
-<li>❌ Lento para ficheros grandes.</li>
-<li>✅ Adecuado para ejemplos sencillos o pruebas.</li>
+<li>❌ Lento para ficheros grandes. Aunque <code>FileReader</code> internamente usa un buffer en memoria, para ficheros grandes es más eficiente usar un <code>BufferedReader</code>, porque este maneja buffers más grandes y está optimizado</li>
+<li>✅ Adecuado para ejemplos sencillos o pruebas</li>
 </ul>
 <hr />
 <h4 id="2-bufferedreader-lectura-eficiente">2. <code>BufferedReader</code> (lectura eficiente)</h4>
@@ -1477,7 +1477,9 @@
 <span class="linenos" data-linenos="5 "></span><span class="p">}</span>
 </code></pre></div>
 <ul>
-<li>❌ Sin búfer, menos eficiente</li>
+<li>✅ Adecuado para ejemplos sencillos o pruebas</li>
+<li>❌ Menos eficiente que <code>BufferedWriter</code>. El texto se guarda primero en un buffer intermedio de memoria. Cuando el buffer se llena o cuando cierras (close()), se hace el volcado real al disco</li>
+<li>Al salir del try-with-resources, se ejecuta automáticamente <code>fw.close()</code>, que internamente hace un flush() → ahí se asegura que todo lo que estaba en memoria sí se escriba en el fichero</li>
 </ul>
 <hr />
 <h4 id="2-bufferedwriter">2. <code>BufferedWriter</code></h4>
@@ -1490,7 +1492,7 @@
 <span class="linenos" data-linenos="7 "></span><span class="p">}</span>
 </code></pre></div>
 <ul>
-<li>✅ Escritura más rápida y controlada</li>
+<li>✅ Escritura más rápida y controlada. Mantiene un buffer más grande en memoria. Solo cuando el buffer se llena (o haces flush()/close()) envía un bloque grande al writer subyacente</li>
 </ul>
 <hr />
 <h4 id="3-printwriter">3. <code>PrintWriter</code></h4>
@@ -1517,15 +1519,15 @@
 </ul>
 <hr />
 <h4 id="2-fileslines-stream">2. <code>Files.lines()</code> (stream)</h4>
-<p>Devuelve un <strong>Stream de líneas</strong>, útil para procesar ficheros grandes.</p>
+<p>Devuelve un <strong>Stream de líneas</strong>, útil para procesar ficheros grandes. No carga todo el fichero en memoria de golpe. Va leyendo línea a línea bajo demanda, a medida que el stream se consume.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lineas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">lines</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;entrada.txt&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">lineas</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
 <span class="linenos" data-linenos="3 "></span><span class="p">}</span>
 </code></pre></div>
 <ul>
 <li>✅ No carga todo en memoria: lectura <strong>perezosa (lazy)</strong>, ideal para ficheros grandes</li>
-<li>✅ Puedes usar operaciones con Stream (<code>filter</code>, <code>map</code>, etc.)</li>
-<li>✅ Permite filtros y transformaciones</li>
+<li>✅ Puedes usar operaciones con Stream (<code>filter</code>, <code>map</code>, etc.), filtros y transformaciones</li>
+<li>✅ Devuelve un Stream<String> que está respaldado por un BufferedReader interno.</li>
 <li>⚠️ Necesita <code>try-with-resources</code> porque abre un recurso</li>
 </ul>
 <hr />
@@ -1540,6 +1542,7 @@
 <ul>
 <li>✅ Ideal si necesitas todo el contenido como una sola cadena</li>
 <li>✅ Muy simple y directo</li>
+<li>⚠️ Carga todo a memoria</li>
 </ul>
 <hr />
 <h4 id="4-filesnewbufferedreader">4. <code>Files.newBufferedReader()</code></h4>
@@ -1559,12 +1562,17 @@
 <hr />
 <h3 id="escritura-de-texto-javanio">✍️ Escritura de texto (<code>java.nio</code>)</h3>
 <h4 id="1-fileswriteliststring">1. <code>Files.write(List&lt;String&gt;)</code></h4>
+<p>Sobrescribe por defecto el texto si no pasas opciones como <code>StandardOpenOption.APPEND</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">contenido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;Línea 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Línea 2&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="2 "></span><span class="n">Files</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;salida.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">contenido</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">//otra opción para no sobrescribir el texto</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">Files</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;salida.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">contenido</span><span class="p">,</span><span class="w"> </span><span class="n">StandardOpenOption</span><span class="p">.</span><span class="na">CREATE</span><span class="p">,</span><span class="w"> </span><span class="n">StandardOpenOption</span><span class="p">.</span><span class="na">APPEND</span><span class="p">);</span>
 </code></pre></div>
 <ul>
 <li>✅ Fácil de usar, sobrescribe por defecto</li>
 <li>✅ Codificación UTF-8 por defecto</li>
+<li>⚠️ Carga todo en memoria</li>
 </ul>
 <hr />
 <h4 id="2-fileswritestring-java-11">2. <code>Files.writeString()</code> (Java 11+)</h4>
@@ -1577,6 +1585,7 @@
 <ul>
 <li>✅ Muy cómodo para una sola cadena</li>
 <li>✅ Puedes pasar un <code>Charset</code></li>
+<li>⚠️ Carga todo en memoria</li>
 </ul>
 <hr />
 <h4 id="3-filesnewbufferedwriter">3. <code>Files.newBufferedWriter()</code></h4>

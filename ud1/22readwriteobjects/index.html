@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#escritura-y-lectura-de-objetos-en-java" class="md-skip">
+        <a href="#serializacion-y-deserializacion-de-objetos-en-java" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -470,8 +470,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#serialization" class="md-nav__link">
-    ✨ Serialization
+  <a href="#que-es-la-serializacion" class="md-nav__link">
+    📦 ¿Qué es la serialización?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clases-y-conceptos-clave-javaio" class="md-nav__link">
+    ✨ Clases y conceptos clave (java.io)
   </a>
   
 </li>
@@ -1051,8 +1058,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#serialization" class="md-nav__link">
-    ✨ Serialization
+  <a href="#que-es-la-serializacion" class="md-nav__link">
+    📦 ¿Qué es la serialización?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clases-y-conceptos-clave-javaio" class="md-nav__link">
+    ✨ Clases y conceptos clave (java.io)
   </a>
   
 </li>
@@ -1108,17 +1122,51 @@
 
 
 
-<h1 id="escritura-y-lectura-de-objetos-en-java">☄️ Escritura y lectura de objetos en Java</h1>
-<p>Para escribir un objeto y leer esos datos directamente de vuelta a un objeto Java, nos proporciona dos clases:</p>
+<h1 id="serializacion-y-deserializacion-de-objetos-en-java">📎Serialización y deserialización de objetos en Java</h1>
+<p>En esta sesión aprenderás a guardar objetos Java en archivos y recuperarlos más tarde mediante el proceso de serialización y deserialización.</p>
+<p>En esta sesión aprenderás a <strong>guardar objetos Java en archivos</strong> y recuperarlos más tarde mediante el proceso de <strong>serialización</strong> y <strong>deserialización</strong>.</p>
+<hr />
+<h2 id="que-es-la-serializacion">📦 ¿Qué es la serialización?</h2>
+<p>La <strong>serialización</strong> es el proceso de convertir un objeto en una secuencia de bytes que, representa el estado del objeto, incluidos sus datos y la estructura, para almacenarlo en un fichero, enviarlo por red o guardarlo en memoria. La <strong>deserialización</strong> permite reconstruir ese objeto desde los bytes.</p>
+<p>Se usa para:</p>
 <ul>
-<li><code>ObjectInputStream</code></li>
-<li><code>ObjectOutputStream</code></li>
+<li>Guardar el estado de un objeto.</li>
+<li>Enviar objetos a través de sockets.</li>
+<li>Persistir datos sin usar una base de datos.</li>
 </ul>
-<p>Para entender esto correctamente es necesario saber el significado de <strong>serialización</strong>.</p>
-<h2 id="serialization">✨ Serialization</h2>
-<p><strong>Serializar una clase en programación se refiere al proceso de convertir un objeto de esa clase en una secuencia de bytes que representa el estado del objeto, incluidos sus datos y la estructura.</strong> Esta secuencia de bytes puede ser almacenada, transmitida y posteriormente reconstruida para crear una copia exacta del objeto original, facilitando así operaciones como el almacenamiento persistente (en un fichero o BD) o la comunicación entre procesos. Esto es especialmente útil en contextos donde se necesita transferir datos entre diferentes componentes de un sistema, o entre distintos sistemas.</p>
-<p><strong>Solo las instancias de clases Serializables pueden ser serializadas, lo que significa que la clase debe implementar la interfaz <code>Serializable</code>.</strong></p>
-<p>Esta interfaz no tiene ningún método, sólo se utiliza para marcar la clase como serializable. <em>Todos los subtipos de una clase serializable son a su vez seriazables.</em></p>
+<hr />
+<h2 id="clases-y-conceptos-clave-javaio">✨ Clases y conceptos clave (<code>java.io</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Serializable</code></td>
+<td>Interfaz que debe implementar una clase para ser serializable.</td>
+</tr>
+<tr>
+<td><code>ObjectOutputStream</code></td>
+<td>Clase para escribir objetos en un flujo de salida.</td>
+</tr>
+<tr>
+<td><code>ObjectInputStream</code></td>
+<td>Clase para leer objetos desde un flujo de entrada.</td>
+</tr>
+<tr>
+<td><code>serialVersionUID</code></td>
+<td>Identificador de versión para compatibilidad entre clases serializadas.</td>
+</tr>
+<tr>
+<td><code>transient</code></td>
+<td>Palabra clave para excluir un atributo de la serialización.</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>

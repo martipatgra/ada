@@ -465,11 +465,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#leer-y-escribir-ficheros-binarios-con-javaniofilefiles" class="md-nav__link">
-    ✍️ Leer y escribir ficheros binarios con java.nio.file.Files
+  <a href="#leer-y-escribir-ficheros-binarios-con-javaniofilefiles-new-io-desde-java-14" class="md-nav__link">
+    ✍️ Leer y escribir ficheros binarios con java.nio.file.Files (New I/O, desde Java 1.4)
   </a>
   
-    <nav class="md-nav" aria-label="✍️ Leer y escribir ficheros binarios con java.nio.file.Files">
+    <nav class="md-nav" aria-label="✍️ Leer y escribir ficheros binarios con java.nio.file.Files (New I/O, desde Java 1.4)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1249,11 +1249,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#leer-y-escribir-ficheros-binarios-con-javaniofilefiles" class="md-nav__link">
-    ✍️ Leer y escribir ficheros binarios con java.nio.file.Files
+  <a href="#leer-y-escribir-ficheros-binarios-con-javaniofilefiles-new-io-desde-java-14" class="md-nav__link">
+    ✍️ Leer y escribir ficheros binarios con java.nio.file.Files (New I/O, desde Java 1.4)
   </a>
   
-    <nav class="md-nav" aria-label="✍️ Leer y escribir ficheros binarios con java.nio.file.Files">
+    <nav class="md-nav" aria-label="✍️ Leer y escribir ficheros binarios con java.nio.file.Files (New I/O, desde Java 1.4)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1439,7 +1439,7 @@
 - Cuando el buffer se vacía, se vuelve a rellenar con otros 8192 bytes del fichero.</p>
 <hr />
 <h3 id="que-son-los-wrappers-y-por-que-usar-buffers">🧻 ¿Qué son los wrappers y por qué usar buffers?</h3>
-<p>En Java, muchas clases de entrada/salida se <strong>envuelven unas dentro de otras</strong> para mejorar su funcionamiento. Esto se llama <strong>patrón decorador</strong> y permite <strong>añadir funcionalidades</strong> sin modificar la clase original.</p>
+<p>En Java, muchas clases de entrada/salida se <strong>envuelven unas dentro de otras</strong> para mejorar su funcionamiento. Esto se llama <strong>patrón decorador</strong> (decorator pattern) y permite <strong>añadir funcionalidades</strong> sin modificar la clase original.</p>
 <p>La clase <code>BufferedInputStream</code>/<code>BufferedOuputStream</code> necesita siempre envolver otro <code>InputStream</code>, por lo tanto no se puede usar sola sin un wrapper.</p>
 <h4 id="por-que">🔍 ¿Por qué?</h4>
 <p>Porque la clase <code>BufferedInputStream</code> o <code>BufferedOuputStream</code> no sabe de dónde leer/escribir datos por sí misma. Su función es añadir un búfer a otro flujo de entrada (por ejemplo, FileInputStream/FileOutputStream), pero necesita que alguien le proporcione los datos reales.</p>
@@ -1450,7 +1450,7 @@
 </code></pre></div>
 Aquí, <code>FileInputStream</code> accede al archivo y <code>BufferedInputStream</code> añade un buffer por encima.</p>
 <hr />
-<h2 id="leer-y-escribir-ficheros-binarios-con-javaniofilefiles">✍️ Leer y escribir ficheros binarios con <code>java.nio.file.Files</code></h2>
+<h2 id="leer-y-escribir-ficheros-binarios-con-javaniofilefiles-new-io-desde-java-14">✍️ Leer y escribir ficheros binarios con <code>java.nio.file.Files</code> (New I/O, desde Java 1.4)</h2>
 <p>En Java, la clase <code>java.nio.file.Files</code> ofrece formas muy sencillas y potentes de <strong>leer y escribir ficheros</strong> binarios o de texto. Aquí veremos las principales formas y <strong>las diferencias entre ellas</strong> para que puedas elegir la mejor según tu caso.</p>
 <hr />
 <h3 id="escribir-en-un-fichero-con-files">📤 Escribir en un fichero con <code>Files</code></h3>
