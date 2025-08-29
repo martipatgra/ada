@@ -4,7 +4,12 @@
 
 Un fichero es un conjunto lógico de información o de datos que se designa con un nombre y se configura como una unidad autónoma completa para el sistema o el usuario. Un archivo o fichero informático es un conjunto de bits que son almacenados en un dispositivo. Para poder acceder a ellos haremos uso de una ruta (path) ya sea relativa o absoluta.
 
-![JavaIO](../img/ud1/6path.png)
+```properties
+../Ada/Ejemplo/src/Main.java                --> Ruta relativa
+c:\User\Patricia\Ada\Ejemplo\src\Main.java  --> Ruta absoluta
+```
+
+---
 
 ## 🕰️ `java.io` vs `java.nio`
 

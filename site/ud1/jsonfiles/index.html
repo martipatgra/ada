@@ -12,14 +12,14 @@
         <link rel="prev" href="../propertiesfile/">
       
       
-        <link rel="next" href="../20createjar/">
+        <link rel="next" href="../createjar/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>1.5.- JSON - Acceso a Datos</title>
+        <title>1.5.- Ficheros JSON en Java - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ficheros-json" class="md-skip">
+        <a href="#ficheros-json-en-java" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1.5.- JSON
+              1.5.- Ficheros JSON en Java
             
           </span>
         </div>
@@ -474,12 +474,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          1.5.- JSON
+          1.5.- Ficheros JSON en Java
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        1.5.- JSON
+        1.5.- Ficheros JSON en Java
       </a>
       
         
@@ -498,30 +498,65 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-datos-disponibles" class="md-nav__link">
-    Tipos de datos disponibles
+  <a href="#por-que-centrarnos-en-json" class="md-nav__link">
+    ✅ ¿Por qué centrarnos en JSON?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#formato-json" class="md-nav__link">
-    Formato JSON
+  <a href="#estructura-de-un-json" class="md-nav__link">
+    📦 Estructura de un JSON
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-datos-disponibles" class="md-nav__link">
+    🧭 Tipos de datos disponibles
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#ejemplo-de-fichero-json" class="md-nav__link">
-    Ejemplo de fichero JSON
+    🧠 Ejemplo de fichero JSON
   </a>
   
-    <nav class="md-nav" aria-label="Ejemplo de fichero JSON">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#librerias-java-recomendadas" class="md-nav__link">
+    📚 Librerías Java recomendadas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usando-gson-google" class="md-nav__link">
+    🔧 Usando Gson (Google)
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Usando Gson (Google)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#url-oficial" class="md-nav__link">
-    URL oficial
+  <a href="#1-crear-clase-java" class="md-nav__link">
+    1. Crear clase Java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-serializar-a-json" class="md-nav__link">
+    2. Serializar a JSON
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deserializar-desde-json" class="md-nav__link">
+    3. Deserializar desde JSON
   </a>
   
 </li>
@@ -532,29 +567,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#json-vs-xml" class="md-nav__link">
-    JSON vs XML
+  <a href="#usando-jackson" class="md-nav__link">
+    🧰 Usando Jackson
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#java-json" class="md-nav__link">
-    Java JSON
-  </a>
-  
-    <nav class="md-nav" aria-label="Java JSON">
+    <nav class="md-nav" aria-label="🧰 Usando Jackson">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#leer-un-json-a-partir-de-una-api" class="md-nav__link">
-    Leer un JSON a partir de una API
+  <a href="#1-crear-clase-java_1" class="md-nav__link">
+    1. Crear clase Java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-serializar-a-json_1" class="md-nav__link">
+    2. Serializar a JSON
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deserializar-desde-json_1" class="md-nav__link">
+    3. Deserializar desde JSON
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparativa-gson-vs-jackson" class="md-nav__link">
+    📝 Comparativa Gson vs Jackson
+  </a>
   
 </li>
       
@@ -573,7 +622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../20createjar/" class="md-nav__link">
+      <a href="../createjar/" class="md-nav__link">
         1.6.- Crear un .jar
       </a>
     </li>
@@ -1070,30 +1119,65 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-datos-disponibles" class="md-nav__link">
-    Tipos de datos disponibles
+  <a href="#por-que-centrarnos-en-json" class="md-nav__link">
+    ✅ ¿Por qué centrarnos en JSON?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#formato-json" class="md-nav__link">
-    Formato JSON
+  <a href="#estructura-de-un-json" class="md-nav__link">
+    📦 Estructura de un JSON
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-datos-disponibles" class="md-nav__link">
+    🧭 Tipos de datos disponibles
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#ejemplo-de-fichero-json" class="md-nav__link">
-    Ejemplo de fichero JSON
+    🧠 Ejemplo de fichero JSON
   </a>
   
-    <nav class="md-nav" aria-label="Ejemplo de fichero JSON">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#librerias-java-recomendadas" class="md-nav__link">
+    📚 Librerías Java recomendadas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usando-gson-google" class="md-nav__link">
+    🔧 Usando Gson (Google)
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Usando Gson (Google)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#url-oficial" class="md-nav__link">
-    URL oficial
+  <a href="#1-crear-clase-java" class="md-nav__link">
+    1. Crear clase Java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-serializar-a-json" class="md-nav__link">
+    2. Serializar a JSON
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deserializar-desde-json" class="md-nav__link">
+    3. Deserializar desde JSON
   </a>
   
 </li>
@@ -1104,29 +1188,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#json-vs-xml" class="md-nav__link">
-    JSON vs XML
+  <a href="#usando-jackson" class="md-nav__link">
+    🧰 Usando Jackson
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#java-json" class="md-nav__link">
-    Java JSON
-  </a>
-  
-    <nav class="md-nav" aria-label="Java JSON">
+    <nav class="md-nav" aria-label="🧰 Usando Jackson">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#leer-un-json-a-partir-de-una-api" class="md-nav__link">
-    Leer un JSON a partir de una API
+  <a href="#1-crear-clase-java_1" class="md-nav__link">
+    1. Crear clase Java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-serializar-a-json_1" class="md-nav__link">
+    2. Serializar a JSON
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deserializar-desde-json_1" class="md-nav__link">
+    3. Deserializar desde JSON
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparativa-gson-vs-jackson" class="md-nav__link">
+    📝 Comparativa Gson vs Jackson
+  </a>
   
 </li>
       
@@ -1146,16 +1244,32 @@
 
 
 
-<h1 id="ficheros-json">Ficheros JSON</h1>
-<p>JSON (<strong>JavaScript Object Notation</strong>) es un formato ligero de intercambio de datos. Es un fichero fácil de leer y escribir para los humanos y también fácil de analizar y generar para las máquinas. Se basa en un subconjunto del lenguaje de programación JavaScript. Debido a su amplia adopción como alternativa a XML.
-JSON es un formato de texto que es completamente independiente del lenguaje pero utiliza convenciones que son ampliamente conocidos por los programadores de la familia de lenguajes C, incluyendo C, C++, C#, Java, JavaScript, Perl, Python, y muchos otros. Estas propiedades hacen que JSON sea un lenguaje ideal para el intercambio de datos.</p>
-<p>JSON se utiliza hoy en día en cada API web única.</p>
-<p>JSON se basa en dos estructuras que son universales; virtualmente todos los lenguajes de programación las soportan de una forma u otra:</p>
+<h1 id="ficheros-json-en-java">🧾 Ficheros JSON en Java</h1>
+<p>En esta sección nos centraremos en trabajar con ficheros <strong>JSON</strong> (JavaScript Object Notation) como formato ligero de intercambio de datos en Java. Aunque existen otros como XML o YAML, JSON es el <strong>estándar actual en la mayoría de APIs</strong> por su simplicidad, legibilidad y facilidad de uso.</p>
+<hr />
+<h2 id="por-que-centrarnos-en-json">✅ ¿Por qué centrarnos en JSON?</h2>
 <ul>
-<li>Una colección de pares de <strong>name/value</strong>. En varios lenguajes, esto se realiza como un objeto, registro, estructura, diccionario, tabla hash, lista con clave o matriz asociativa.</li>
-<li>Una lista ordenada de valores. En la mayoría de los lenguajes, esto se realiza como una matriz, vector, lista o secuencia.</li>
+<li>Es <strong>ligero</strong>, legible y fácil de generar.</li>
+<li>Tiene soporte nativo en la mayoría de lenguajes de programación.</li>
+<li>Es ampliamente usado en <strong>servicios web y APIs REST</strong>.</li>
+<li>Hay muchas librerías Java para leer y escribir JSON.</li>
 </ul>
-<h2 id="tipos-de-datos-disponibles">Tipos de datos disponibles</h2>
+<hr />
+<h2 id="estructura-de-un-json">📦 Estructura de un JSON</h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="nt">&quot;nombre&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Juan&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="nt">&quot;edad&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="nt">&quot;hobbies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;leer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;programar&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;jugar&quot;</span><span class="p">],</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">  </span><span class="nt">&quot;activo&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Objetos: pares clave/valor delimitados por llaves <code>{}</code>.</li>
+<li>Arrays: listas ordenadas delimitadas por corchetes <code>[]</code>.</li>
+<li>Valores: cadenas, números, booleanos, null, objetos o arrays.</li>
+</ul>
+<hr />
+<h2 id="tipos-de-datos-disponibles">🧭 Tipos de datos disponibles</h2>
 <ol>
 <li>Números: Se permiten números negativos y opcionalmente pueden contener parte fraccional separada por puntos. Ejemplo: 123.456</li>
 <li>Cadenas: Representan secuencias de cero o más caracteres. Se ponen entre doble comilla y se permiten cadenas de escape. Ejemplo: "Hola"</li>
@@ -1164,20 +1278,7 @@ JSON es un formato de texto que es completamente independiente del lenguaje pero
 <li>Array: Representa una lista ordenada de cero o más valores los cuales pueden ser de cualquier tipo. Los valores se separan por comas y el vector se mete entre corchetes.</li>
 <li>Objetos: Son colecciones no ordenadas de pares de la forma <code>nombre:valor</code> separados por comas y puestas entre llaves. El nombre tiene que ser una cadena entre comillas dobles. El valor puede ser de cualquier tipo.</li>
 </ol>
-<h2 id="formato-json">Formato JSON</h2>
-<ul>
-<li>Un objeto es un conjunto desordenado de pares de name/value. Un objeto comienza con {(llave izquierda) y termina con} (llave derecha). Cada nombre va seguido de: (dos puntos) y los pares de name/value están separados por, (coma).</li>
-</ul>
-<p><img alt="JavaIO" src="../../img/ud1/11json1.png" /></p>
-<ul>
-<li>Un array es una colección ordenada de valores. Una matriz comienza con [(corchete izquierdo) y termina con] (corchete derecho). Los valores están separados por (coma).</li>
-</ul>
-<p><img alt="JavaIO" src="../../img/ud1/11json2.png" /></p>
-<ul>
-<li>Un value puede ser una cadena entre comillas dobles, un número, verdadero, falso, nulo, un objeto o una matriz. Estas estructuras se pueden anidar.</li>
-</ul>
-<p><img alt="JavaIO" src="../../img/ud1/11json3.png" /></p>
-<h2 id="ejemplo-de-fichero-json">Ejemplo de fichero JSON</h2>
+<h2 id="ejemplo-de-fichero-json">🧠 Ejemplo de fichero JSON</h2>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="err">#</span><span class="w"> </span><span class="err">Fichero</span><span class="w"> </span><span class="err">JSON</span><span class="w"> </span>
 <span class="linenos" data-linenos=" 2 "></span>
 <span class="linenos" data-linenos=" 3 "></span><span class="p">{</span><span class="nt">&quot;web-app&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1225,46 +1326,115 @@ JSON es un formato de texto que es completamente independiente del lenguaje pero
 <span class="linenos" data-linenos="45 "></span><span class="p">}</span>
 </code></pre></div>
 <p>El fichero anterior se puede traducir como un array de objetos, por ejemplo de la clase <code>Servlet</code>, donde la clase <code>Servlet</code> estará compuesta por atributos como: servlet-name, servlet-class, etc.</p>
-<p>Existen varias librerías en Java para parsear ficheros JSON. Entre las más comunes están: Gson, Jackson, JSON.simple, org.json, JsonPATH, etc.</p>
-<h3 id="url-oficial">URL oficial</h3>
-<p><a href="http://www.json.org/json-es.html">The JSON Specification</a></p>
-<h2 id="json-vs-xml">JSON vs XML</h2>
-<p><img alt="JavaIO" src="../../img/ud1/12jsonvsxml.png" /></p>
-<h2 id="java-json">Java JSON</h2>
-<p>Java por defecto no ofrece ninguna funcionalidad integrada para analizar o crear JSON, en lugar de eso, tendremos que confiar en una biblioteca/paquete de terceros.</p>
-<p>En la actualidad existen varias librerías para pasar transformar un objeto Java en una cadena JSON (serialización) o viceversa (deserialización).</p>
-<p>Desde la página en donde se encuentra la especificación de JSON se indican las librerías más conocidas para tratar/generar información relativa al formato JSON en los diferentes lenguajes de programación.</p>
-<p>Vamos a ver cómo parsear un JSON utilizando el paquete <a href="https://mvnrepository.com/artifact/org.json/json/20220924">org.json</a>.
-Los archivos en este paquete implementan codificadores/decodificadores JSON en Java.</p>
-<h3 id="leer-un-json-a-partir-de-una-api">Leer un JSON a partir de una API</h3>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//Este método accede a una URL y se descarga el contenido en forma de String</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">stream</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">InputStream</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">URI</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="na">toURL</span><span class="p">().</span><span class="na">openStream</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">InputStreamReader</span><span class="w"> </span><span class="n">isr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">InputStreamReader</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">BufferedReader</span><span class="w"> </span><span class="n">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedReader</span><span class="p">(</span><span class="n">isr</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reader</span><span class="p">.</span><span class="na">read</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="n">json</span><span class="p">.</span><span class="na">append</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="15 "></span><span class="p">}</span>
-<span class="linenos" data-linenos="16 "></span>
-<span class="linenos" data-linenos="17 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">caturl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://catfact.ninja/facts&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="19 "></span>
-<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="c1">//parseamos un string a un JSONObject</span>
-<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="n">JSONObject</span><span class="w"> </span><span class="n">jsonObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JSONObject</span><span class="p">(</span><span class="n">stream</span><span class="p">(</span><span class="n">caturl</span><span class="p">));</span>
-<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="n">JSONArray</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jsonObject</span><span class="p">.</span><span class="na">getJSONArray</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="n">JSONObject</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">JSONObject</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;fact&quot;</span><span class="p">));</span>
-<span class="linenos" data-linenos="25 "></span>
-<span class="linenos" data-linenos="26 "></span><span class="p">}</span>
+<hr />
+<h2 id="librerias-java-recomendadas">📚 Librerías Java recomendadas</h2>
+<table>
+<thead>
+<tr>
+<th>Librería</th>
+<th>Ventajas principales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gson</td>
+<td>Simple, ligera, de Google</td>
+</tr>
+<tr>
+<td>Jackson</td>
+<td>Más completa, versátil y robusta</td>
+</tr>
+<tr>
+<td>org.json</td>
+<td>Muy directa, sin anotaciones</td>
+</tr>
+</tbody>
+</table>
+<p>A continuación veremos <strong>Gson</strong> y <strong>Jackson</strong>, por ser las más utilizadas.</p>
+<hr />
+<h2 id="usando-gson-google">🔧 Usando Gson (Google)</h2>
+<p>Es necesario agregar la dependencia de gson al proyecto para poder usarla.</p>
+<h3 id="1-crear-clase-java">1. Crear clase Java</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Persona</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hobbies</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">activo</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="c1">// Constructor, getters y setters</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
-<p>Un <code>JSONObject</code> es una colección desordenada de pares clave y valor, que se asemeja a las implementaciones Map nativas de Java.</p>
+<h3 id="2-serializar-a-json">2. Serializar a JSON</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Gson</span><span class="w"> </span><span class="n">gson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Gson</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Persona</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;leer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bailar&quot;</span><span class="p">),</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">String</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gson</span><span class="p">.</span><span class="na">toJson</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">json</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="3-deserializar-desde-json">3. Deserializar desde JSON</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">entrada</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;{\&quot;nombre\&quot;:\&quot;Ana\&quot;,\&quot;edad\&quot;:25,&quot;</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">                  </span><span class="s">&quot;\&quot;hobbies\&quot;:[\&quot;leer\&quot;,\&quot;bailar\&quot;],\&quot;activo\&quot;:true}&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Persona</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gson</span><span class="p">.</span><span class="na">fromJson</span><span class="p">(</span><span class="n">entrada</span><span class="p">,</span><span class="w"> </span><span class="n">Persona</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">p2</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
+</code></pre></div>
+<hr />
+<h2 id="usando-jackson">🧰 Usando Jackson</h2>
+<p>Es necesario agregar la dependencia de jackson al proyecto para poder usarla.</p>
+<h3 id="1-crear-clase-java_1">1. Crear clase Java</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Persona</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hobbies</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">activo</span><span class="p">;</span>
+<span class="linenos" data-linenos="6 "></span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="c1">// Constructor, getters, setters</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div>
+<h3 id="2-serializar-a-json_1">2. Serializar a JSON</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">ObjectMapper</span><span class="w"> </span><span class="n">mapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectMapper</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Persona</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">&quot;Luis&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;cine&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;deporte&quot;</span><span class="p">),</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">String</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapper</span><span class="p">.</span><span class="na">writeValueAsString</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">json</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="3-deserializar-desde-json_1">3. Deserializar desde JSON</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">entrada</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;{\&quot;nombre\&quot;:\&quot;Luis\&quot;,\&quot;edad\&quot;:28,&quot;</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">                  </span><span class="s">&quot;\&quot;hobbies\&quot;:[\&quot;cine\&quot;,\&quot;deporte\&quot;],\&quot;activo\&quot;:false}&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Persona</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapper</span><span class="p">.</span><span class="na">readValue</span><span class="p">(</span><span class="n">entrada</span><span class="p">,</span><span class="w"> </span><span class="n">Persona</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">p2</span><span class="p">.</span><span class="na">getEdad</span><span class="p">());</span>
+</code></pre></div>
+<hr />
+<h2 id="comparativa-gson-vs-jackson">📝 Comparativa Gson vs Jackson</h2>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Gson</th>
+<th>Jackson</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Curva de aprendizaje</td>
+<td>Muy sencilla</td>
+<td>Media</td>
+</tr>
+<tr>
+<td>Velocidad</td>
+<td>Rápida</td>
+<td>Más rápida en general</td>
+</tr>
+<tr>
+<td>Anotaciones avanzadas</td>
+<td>Limitadas</td>
+<td>Muy completas</td>
+</tr>
+<tr>
+<td>Soporte de formatos</td>
+<td>Solo JSON</td>
+<td>JSON, XML, YAML...</td>
+</tr>
+</tbody>
+</table>
+<hr />
 
 
   
