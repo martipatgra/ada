@@ -484,15 +484,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#serialization" class="md-nav__link">
-    📦 Serialization
+  <a href="#serializacion-binaria-de-java-objectoutputstream" class="md-nav__link">
+    📦 Serialización binaria de Java (ObjectOutputStream)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#deserialization" class="md-nav__link">
-    🎆 Deserialization
+  <a href="#deserializacion-binaria-de-java-objectinputstream" class="md-nav__link">
+    🎆 Deserialización binaria de Java (ObjectInputStream)
   </a>
   
 </li>
@@ -1079,15 +1079,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#serialization" class="md-nav__link">
-    📦 Serialization
+  <a href="#serializacion-binaria-de-java-objectoutputstream" class="md-nav__link">
+    📦 Serialización binaria de Java (ObjectOutputStream)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#deserialization" class="md-nav__link">
-    🎆 Deserialization
+  <a href="#deserializacion-binaria-de-java-objectinputstream" class="md-nav__link">
+    🎆 Deserialización binaria de Java (ObjectInputStream)
   </a>
   
 </li>
@@ -1140,14 +1140,13 @@
 <p>En esta sesión aprenderás a <strong>guardar objetos Java en archivos</strong> y recuperarlos más tarde mediante el proceso de <strong>serialización</strong> y <strong>deserialización</strong>.</p>
 <hr />
 <h2 id="que-es-la-serializacion">📦 ¿Qué es la serialización?</h2>
-<p>La <strong>serialización</strong> es el proceso de convertir un objeto en una secuencia de bytes que, representa el estado del objeto, incluidos sus datos y la estructura, para almacenarlo en un fichero, enviarlo por red o guardarlo en memoria. </p>
-<p>La <strong>deserialización</strong> permite reconstruir ese objeto desde los bytes.</p>
-<p>Se usa para:</p>
+<p>La <strong>serialización</strong> es el proceso de convertir un objeto en una secuencia de bytes que, representa el estado del objeto, incluidos sus datos y la estructura, para almacenarlo en un fichero, enviarlo por red o guardarlo en memoria. Se usa para:</p>
 <ul>
 <li>Guardar el estado de un objeto.</li>
 <li>Enviar objetos a través de sockets.</li>
 <li>Persistir datos sin usar una base de datos.</li>
 </ul>
+<p>Después se hace la operación inversa <strong>deserialización</strong>, donde se reconstruye ese objeto desde los bytes.</p>
 <hr />
 <h2 id="clases-y-conceptos-clave-javaio">✨ Clases y conceptos clave (<code>java.io</code>)</h2>
 <table>
@@ -1181,7 +1180,7 @@
 </tbody>
 </table>
 <hr />
-<h2 id="serialization">📦 Serialization</h2>
+<h2 id="serializacion-binaria-de-java-objectoutputstream">📦 Serialización binaria de Java (<code>ObjectOutputStream</code>)</h2>
 <p>Imaginemos que tenemos la clase <code>Employee</code> que nos permitirá crear objetos de empleados y queremos enviar o guardar estos objetos.</p>
 <p>📌 <strong>Es obligatorio para serializar añadir <code>implements Serializable</code></strong> en la clase.
 Serializable es una interfaz marcadora (marker interface).
@@ -1216,7 +1215,7 @@ No tiene métodos → solo sirve para indicar a la JVM: “esta clase se puede s
 <span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
-<h2 id="deserialization">🎆 Deserialization</h2>
+<h2 id="deserializacion-binaria-de-java-objectinputstream">🎆 Deserialización binaria de Java (<code>ObjectInputStream</code>)</h2>
 <p>La serialización por defecto escribe la clase del objeto, la firma de la clase, y los valores de los campos no estáticos. Estos elementos se utilizan para <strong>restaurar el objeto y su estado durante la operación de lectura</strong>. A este proceso se le conoce como reconstitución de los datos o <strong>deserialización</strong>.</p>
 <div class="highlight"><span class="filename">ReadObject.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//Método para leer objectos que han sido serializados</span>
 <span class="linenos" data-linenos="2 "></span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">readObject</span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
