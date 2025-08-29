@@ -484,36 +484,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cargar-el-fichero-de-configuracion" class="md-nav__link">
-    Cargar el fichero de configuración
+  <a href="#cargar-propiedades-del-fichero" class="md-nav__link">
+    📥 Cargar propiedades del fichero
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#leer-una-propiedad" class="md-nav__link">
-    Leer una propiedad
+    📖 Leer una propiedad
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#leer-todas-las-propiedades-cargadas" class="md-nav__link">
-    Leer todas las propiedades cargadas
+    🔁 Leer todas las propiedades cargadas
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#anadir-o-modificar-una-propiedad-esto-no-modifica-el-fichero" class="md-nav__link">
-    Añadir o modificar una propiedad (esto no modifica el fichero)
+    ✍️ Añadir o modificar una propiedad (esto no modifica el fichero)
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#guardar-las-propiedades-en-el-fichero" class="md-nav__link">
-    Guardar las propiedades en el fichero
+    📦 Guardar las propiedades en el fichero
   </a>
   
 </li>
@@ -1044,36 +1044,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cargar-el-fichero-de-configuracion" class="md-nav__link">
-    Cargar el fichero de configuración
+  <a href="#cargar-propiedades-del-fichero" class="md-nav__link">
+    📥 Cargar propiedades del fichero
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#leer-una-propiedad" class="md-nav__link">
-    Leer una propiedad
+    📖 Leer una propiedad
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#leer-todas-las-propiedades-cargadas" class="md-nav__link">
-    Leer todas las propiedades cargadas
+    🔁 Leer todas las propiedades cargadas
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#anadir-o-modificar-una-propiedad-esto-no-modifica-el-fichero" class="md-nav__link">
-    Añadir o modificar una propiedad (esto no modifica el fichero)
+    ✍️ Añadir o modificar una propiedad (esto no modifica el fichero)
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#guardar-las-propiedades-en-el-fichero" class="md-nav__link">
-    Guardar las propiedades en el fichero
+    📦 Guardar las propiedades en el fichero
   </a>
   
 </li>
@@ -1109,7 +1109,7 @@
 <span class="linenos" data-linenos="3 "></span><span class="na">db.password</span><span class="o">=</span><span class="s">secret</span>
 <span class="linenos" data-linenos="4 "></span><span class="na">db.port</span><span class="o">=</span><span class="s">3306</span>
 </code></pre></div>
-<h2 id="cargar-el-fichero-de-configuracion">Cargar el fichero de configuración</h2>
+<h2 id="cargar-propiedades-del-fichero">📥 Cargar propiedades del fichero</h2>
 <p>Lo primero que haremos será inicializar nuestro objeto Properties. Este objeto será el contenedor en memoria de todas las claves/valores.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Properties</span><span class="w"> </span><span class="n">properties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Properties</span><span class="p">();</span>
 </code></pre></div>
@@ -1120,13 +1120,13 @@
 <span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
 <span class="linenos" data-linenos="5 "></span><span class="p">}</span>
 </code></pre></div>
-<h2 id="leer-una-propiedad">Leer una propiedad</h2>
+<h2 id="leer-una-propiedad">📖 Leer una propiedad</h2>
 <p>El método <code>properties.getProperty(String)</code> nos permite, pasándole una clave, obtener el valor asociado a ella. En nuestro ejemplo, pasando como clave <em>"db.username"</em>, obtendríamos el valor asociado a ella <em>"admin"</em> (siempre como String, aunque sea un número).</p>
 <p>Si la clave no existe, obtendremos <code>null</code> como resultado. Sin embargo, tenemos una variante de <code>getProperty()</code> que permite obtener un valor por defecto en caso de que no exista la clave, como en el siguiente código:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">properties</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="s">&quot;db.username&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;default value&quot;</span><span class="p">));</span>
 </code></pre></div>
 <p>Al método <code>getProperty()</code> le pasamos como primer parámetro la clave cuyo valor queremos obtener, y como segundo parámetro el valor que queremos por defecto, en caso de que la clave no tenga valor asociado.</p>
-<h2 id="leer-todas-las-propiedades-cargadas">Leer todas las propiedades cargadas</h2>
+<h2 id="leer-todas-las-propiedades-cargadas">🔁 Leer todas las propiedades cargadas</h2>
 <p>La clase <code>Properties</code> tiene varios métodos que nos permiten obtener todas las claves que hay en el fichero. Para ello recurriremos a un objeto <code>Enumeration</code> que nos permitirá iterar sobre ellas.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Enumeration</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">properties</span><span class="p">.</span><span class="na">keys</span><span class="p">();</span><span class="w"> </span>
 <span class="linenos" data-linenos="2 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">keys</span><span class="p">.</span><span class="na">hasMoreElements</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
@@ -1137,11 +1137,11 @@
 <span class="linenos" data-linenos="7 "></span><span class="c1">//otra forma</span>
 <span class="linenos" data-linenos="8 "></span><span class="n">properties</span><span class="p">.</span><span class="na">forEach</span><span class="p">((</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">key</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">value</span><span class="p">));</span>
 </code></pre></div>
-<h2 id="anadir-o-modificar-una-propiedad-esto-no-modifica-el-fichero">Añadir o modificar una propiedad (esto no modifica el fichero)</h2>
+<h2 id="anadir-o-modificar-una-propiedad-esto-no-modifica-el-fichero">✍️ Añadir o modificar una propiedad (esto no modifica el fichero)</h2>
 <p>Para añadir/modificar el valor de una propiedad, la clase <code>Properties</code> tiene un método llamado <code>setProperty(String key, String value)</code> que te permite añadir una pareja clave/valor nuevas o modificar una ya existente.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">properties</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;db.port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;4020&quot;</span><span class="p">);</span>
 </code></pre></div>
-<h2 id="guardar-las-propiedades-en-el-fichero">Guardar las propiedades en el fichero</h2>
+<h2 id="guardar-las-propiedades-en-el-fichero">📦 Guardar las propiedades en el fichero</h2>
 <p>Una vez que hemos modificado/añadido propiedades, tendremos que guardarlas en el fichero. Para ello la clase <code>Properties</code> tiene dos métodos: <code>save()</code> y <code>store()</code>. El método <code>save()</code> está obsoleto, por lo que no se aconseja su uso. Para guardar los cambios, debemos llamar a <code>store()</code> pasándole un <code>OutputStream</code> o un <code>Writer</code> de java.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Writer</span><span class="w"> </span><span class="n">writer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">newBufferedWriter</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;datasource.properties&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">properties</span><span class="p">.</span><span class="na">store</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Added database port&quot;</span><span class="p">);</span>
