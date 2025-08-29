@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../43rest/">
+        <link rel="prev" href="../serialization/">
       
       
-        <link rel="next" href="../../ud5/51modulo/">
+        <link rel="next" href="../19jsonfiles/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>5.4.- @Query y Response - Acceso a Datos</title>
+        <title>1.4.- Ficheros de propiedades en Java - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#anotacion-query-y-response" class="md-skip">
+        <a href="#ficheros-de-propiedades-en-java" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5.4.- @Query y Response
+              1.4.- Ficheros de propiedades en Java
             
           </span>
         </div>
@@ -233,14 +233,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
       
@@ -249,7 +251,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           1.- Acceso a datos mediante ficheros [Actualizado Julio 25]
@@ -262,7 +264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud1/filevsfiles/" class="md-nav__link">
+      <a href="../filevsfiles/" class="md-nav__link">
         1.1.- Gestión de ficheros con Java
       </a>
     </li>
@@ -303,7 +305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud1/io/" class="md-nav__link">
+      <a href="../io/" class="md-nav__link">
         1.2.1.- Introducción
       </a>
     </li>
@@ -344,7 +346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud1/binaryfiles/" class="md-nav__link">
+      <a href="../binaryfiles/" class="md-nav__link">
         Operaciones con ficheros binarios en Java
       </a>
     </li>
@@ -358,7 +360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud1/characterfiles/" class="md-nav__link">
+      <a href="../characterfiles/" class="md-nav__link">
         Operaciones con ficheros de caracteres en Java
       </a>
     </li>
@@ -406,7 +408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud1/randomaccessfile/" class="md-nav__link">
+      <a href="../randomaccessfile/" class="md-nav__link">
         Operaciones con ficheros de acceso aleatorio en Java
       </a>
     </li>
@@ -434,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud1/serialization/" class="md-nav__link">
+      <a href="../serialization/" class="md-nav__link">
         1.3.- Lectura y escritura de objectos en Java
       </a>
     </li>
@@ -446,11 +448,80 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../ud1/propertiesfile/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          1.4.- Ficheros de propiedades en Java
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         1.4.- Ficheros de propiedades en Java
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cargar-propiedades-del-fichero" class="md-nav__link">
+    📥 Cargar propiedades del fichero
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leer-una-propiedad" class="md-nav__link">
+    📖 Leer una propiedad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leer-todas-las-propiedades-cargadas" class="md-nav__link">
+    🔁 Leer todas las propiedades cargadas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anadir-o-modificar-una-propiedad-esto-no-modifica-el-fichero" class="md-nav__link">
+    ✍️ Añadir o modificar una propiedad (esto no modifica el fichero)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guardar-las-propiedades-en-el-fichero" class="md-nav__link">
+    📦 Guardar las propiedades en el fichero
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -462,7 +533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud1/19jsonfiles/" class="md-nav__link">
+      <a href="../19jsonfiles/" class="md-nav__link">
         1.5.- JSON
       </a>
     </li>
@@ -476,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud1/20createjar/" class="md-nav__link">
+      <a href="../20createjar/" class="md-nav__link">
         1.6.- Crear un .jar
       </a>
     </li>
@@ -490,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud1/trywithresources/" class="md-nav__link">
+      <a href="../trywithresources/" class="md-nav__link">
         1.7.- try-with-resources
       </a>
     </li>
@@ -797,16 +868,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
       
       
       
@@ -815,7 +884,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           5.- Spring Framework
@@ -828,7 +897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../41introduccionspring/" class="md-nav__link">
+      <a href="../../ud4/41introduccionspring/" class="md-nav__link">
         5.1.- Introducción a Spring Framework
       </a>
     </li>
@@ -842,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../42repository/" class="md-nav__link">
+      <a href="../../ud4/42repository/" class="md-nav__link">
         5.2.- Spring Data JPA
       </a>
     </li>
@@ -856,7 +925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../43rest/" class="md-nav__link">
+      <a href="../../ud4/43rest/" class="md-nav__link">
         5.3.- API REST - Spring Web
       </a>
     </li>
@@ -868,59 +937,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          5.4.- @Query y Response
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ud4/44queryresponse/" class="md-nav__link">
         5.4.- @Query y Response
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#la-anotacion-query-tiene-4-usos" class="md-nav__link">
-    ❓ La anotación '@Query' tiene 4 usos
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#response-de-una-api-rest" class="md-nav__link">
-    🆗 Response de una API rest
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1023,15 +1044,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#la-anotacion-query-tiene-4-usos" class="md-nav__link">
-    ❓ La anotación '@Query' tiene 4 usos
+  <a href="#cargar-propiedades-del-fichero" class="md-nav__link">
+    📥 Cargar propiedades del fichero
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#response-de-una-api-rest" class="md-nav__link">
-    🆗 Response de una API rest
+  <a href="#leer-una-propiedad" class="md-nav__link">
+    📖 Leer una propiedad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leer-todas-las-propiedades-cargadas" class="md-nav__link">
+    🔁 Leer todas las propiedades cargadas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anadir-o-modificar-una-propiedad-esto-no-modifica-el-fichero" class="md-nav__link">
+    ✍️ Añadir o modificar una propiedad (esto no modifica el fichero)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guardar-las-propiedades-en-el-fichero" class="md-nav__link">
+    📦 Guardar las propiedades en el fichero
   </a>
   
 </li>
@@ -1052,45 +1094,64 @@
 
 
 
-<h1 id="anotacion-query-y-response">❓ Anotación @Query y 🆗 Response</h1>
-<h2 id="la-anotacion-query-tiene-4-usos">❓ La anotación '@Query' tiene 4 usos</h2>
-<p><strong>1 Consultas personalizadas</strong>: Puedes definir consultas personalizadas que van más allá de los métodos CRUD básicos proporcionados por Spring Data JPA. Esto es útil cuando necesitas realizar operaciones más complejas o específicas que no se cubren automáticamente.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT t FROM Todo t WHERE t.completed = true&quot;</span><span class="p">)</span><span class="c1">//lenguaje objeto</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Todo</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">encontrarTodosCompletados</span><span class="p">();</span>
-<span class="linenos" data-linenos="3 "></span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;select t from Todo t where t.title = ?1&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">Todo</span><span class="w"> </span><span class="nf">findByTitleQuery</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">title</span><span class="p">);</span>
-</code></pre></div>
-<p><strong>2 Consultas nativas</strong>: Puedes ejecutar consultas SQL nativas utilizando la anotación @Query. Esto es útil cuando necesitas aprovechar funcionalidades específicas del motor de base de datos que no están cubiertas por JPQL.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT * FROM todo WHERE title LIKE %:texto%&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nativeQuery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Todo</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">encontrarPorTextoEnTitulo</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">texto</span><span class="p">);</span>
-<span class="linenos" data-linenos="3 "></span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;select * from todo t where t.title = ?1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nativeQuery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">Todo</span><span class="w"> </span><span class="nf">findByTitle</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">title</span><span class="p">);</span>
-</code></pre></div>
-<p><strong>3 Actualizaciones y eliminaciones personalizadas</strong>: Puedes usar @Query para definir consultas de actualización o eliminación personalizadas.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Modifying</span><span class="w"> </span><span class="c1">//Indica que la consulta modificará el estado de la base de datos.</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="nd">@Transactional</span><span class="w"> </span><span class="c1">//Indica que la transacción debe estar activa para ejecutar esta consulta.</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;UPDATE Todo t SET t.title = :nuevoTitulo WHERE t.id = :todoId&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">updateTitleById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">todoId</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nuevoTitulo</span><span class="p">);</span>
-</code></pre></div>
-<p><strong>4 Mapeo de resultados personalizados</strong>: Puedes especificar cómo se deben mapear los resultados de la consulta a objetos Java específicos como DTOs.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT new es.severo.ud4.dto.TodoDTO(t.id, t.title) FROM Todo t WHERE t.completed = false&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">TodoDTO</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">encontrarTodosNoCompletados</span><span class="p">();</span>
-</code></pre></div>
-<h2 id="response-de-una-api-rest">🆗 Response de una API rest</h2>
-<p>Para responder a una petición de una api de un endpoint tenemos varias formas: ResponseEntity, @ResponeStatus y @ResponseBody.</p>
+<h1 id="ficheros-de-propiedades-en-java">📑 Ficheros de propiedades en Java</h1>
+<p>En Java es habitual guardar algunos parámetros de configuración de nuestro programa en un fichero de propiedades.</p>
+<p>Un fichero <code>.properties</code> en Java:</p>
 <ul>
-<li>
-<p><strong>ResponseEntity</strong>: es una clase que de forma flexible nos permite manejar la respuesta HTTP. Te permite controlar tanto el cuerpo de la respuesta como los encabezados y el estado HTTP. Útil con códigos personalizados</p>
-</li>
-<li>
-<p><strong>@ResponeStatus</strong>: es una anotación que se puede utilizar en métodos de controlador para especificar un código de estado predeterminado para todas las respuestas generadas por ese método. Es útil cuando deseas establecer un código de estado específico para todas las respuestas sin necesidad de usar ResponseEntity.</p>
-</li>
-<li>
-<p><strong>@ResponseBody</strong>: es una anotación que se puede usar para indicar que el valor de retorno  de un método de controlador debe ser serializado directamente en el cuerpo de la respuesta HTTP. Es útil cuando simplemente deseas devolver el cuerpo de la respuesta sin personalización adicional.</p>
-</li>
+<li>Es un fichero de <strong>texto plano</strong> con extensión <code>.properties</code>.</li>
+<li>Cada línea contiene una pareja <strong>clave=valor</strong>.</li>
+<li>Los comentarios se indican con <code>#</code>.</li>
+<li>Se usa para <strong>parametrizar</strong> aplicaciones sin cambiar el código fuente.</li>
 </ul>
+<p>Java nos proporciona la clase <code>Properties</code>, para leer de forma sencilla los ficheros de configuración.</p>
+<p>Aquí se muestra un ejemplo de fichero de configuración, llamado <code>datasource.properties</code>, que almacena información sobre la base de datos:</p>
+<p>Ejemplo: <code>datasource.properties</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># Configuración de la base de datos</span>
+<span class="linenos" data-linenos="2 "></span><span class="na">db.username</span><span class="o">=</span><span class="s">admin</span>
+<span class="linenos" data-linenos="3 "></span><span class="na">db.password</span><span class="o">=</span><span class="s">secret</span>
+<span class="linenos" data-linenos="4 "></span><span class="na">db.port</span><span class="o">=</span><span class="s">3306</span>
+</code></pre></div>
+<h2 id="cargar-propiedades-del-fichero">📥 Cargar propiedades del fichero</h2>
+<p>Lo primero que haremos será inicializar nuestro objeto Properties. Este objeto será el contenedor en memoria de todas las claves/valores.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Properties</span><span class="w"> </span><span class="n">properties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Properties</span><span class="p">();</span>
+</code></pre></div>
+<p>Esta clase tiene un método <code>load()</code> que permite cargar el fichero. No tenemos más que pasarle un <code>InputStream</code> o un <code>Reader</code> de java.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Reader</span><span class="w"> </span><span class="n">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">newBufferedReader</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;datasource.properties&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">properties</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">reader</span><span class="p">);</span><span class="w"> </span><span class="c1">//carga el fichero en el objeto properties</span>
+<span class="linenos" data-linenos="3 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+</code></pre></div>
+<h2 id="leer-una-propiedad">📖 Leer una propiedad</h2>
+<p>El método <code>properties.getProperty(String)</code> nos permite, pasándole una clave, obtener el valor asociado a ella. En nuestro ejemplo, pasando como clave <em>"db.username"</em>, obtendríamos el valor asociado a ella <em>"admin"</em> (siempre como String, aunque sea un número).</p>
+<p>Si la clave no existe, obtendremos <code>null</code> como resultado. Sin embargo, tenemos una variante de <code>getProperty()</code> que permite obtener un valor por defecto en caso de que no exista la clave, como en el siguiente código:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">properties</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="s">&quot;db.username&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;default value&quot;</span><span class="p">));</span>
+</code></pre></div>
+<p>Al método <code>getProperty()</code> le pasamos como primer parámetro la clave cuyo valor queremos obtener, y como segundo parámetro el valor que queremos por defecto, en caso de que la clave no tenga valor asociado.</p>
+<h2 id="leer-todas-las-propiedades-cargadas">🔁 Leer todas las propiedades cargadas</h2>
+<p>La clase <code>Properties</code> tiene varios métodos que nos permiten obtener todas las claves que hay en el fichero. Para ello recurriremos a un objeto <code>Enumeration</code> que nos permitirá iterar sobre ellas.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Enumeration</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">properties</span><span class="p">.</span><span class="na">keys</span><span class="p">();</span><span class="w"> </span>
+<span class="linenos" data-linenos="2 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">keys</span><span class="p">.</span><span class="na">hasMoreElements</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">Object</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keys</span><span class="p">.</span><span class="na">nextElement</span><span class="p">();</span><span class="w"> </span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">key</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; = &quot;</span><span class="o">+</span><span class="w"> </span><span class="n">properties</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">));</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="6 "></span>
+<span class="linenos" data-linenos="7 "></span><span class="c1">//otra forma</span>
+<span class="linenos" data-linenos="8 "></span><span class="n">properties</span><span class="p">.</span><span class="na">forEach</span><span class="p">((</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">key</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">value</span><span class="p">));</span>
+</code></pre></div>
+<h2 id="anadir-o-modificar-una-propiedad-esto-no-modifica-el-fichero">✍️ Añadir o modificar una propiedad (esto no modifica el fichero)</h2>
+<p>Para añadir/modificar el valor de una propiedad, la clase <code>Properties</code> tiene un método llamado <code>setProperty(String key, String value)</code> que te permite añadir una pareja clave/valor nuevas o modificar una ya existente.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">properties</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;db.port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;4020&quot;</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="guardar-las-propiedades-en-el-fichero">📦 Guardar las propiedades en el fichero</h2>
+<p>Una vez que hemos modificado/añadido propiedades, tendremos que guardarlas en el fichero. Para ello la clase <code>Properties</code> tiene dos métodos: <code>save()</code> y <code>store()</code>. El método <code>save()</code> está obsoleto, por lo que no se aconseja su uso. Para guardar los cambios, debemos llamar a <code>store()</code> pasándole un <code>OutputStream</code> o un <code>Writer</code> de java.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Writer</span><span class="w"> </span><span class="n">writer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">newBufferedWriter</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;datasource.properties&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">properties</span><span class="p">.</span><span class="na">store</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Added database port&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="c1">//manejar excepción</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+</code></pre></div>
+<p>El método <code>store()</code> admite un segundo parámetro que es un comentario que se añadirá como una línea de cabecera en el fichero.</p>
 
 
   
