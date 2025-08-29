@@ -5,7 +5,7 @@ nav:
       - 1.1.- Gestión de ficheros con Java: ud1/filevsfiles.md
       - 1.2.- Lectura y escritura de ficheros en Java:
         - 1.2.1.- Introducción: ud1/io.md
-        - 1.2.2.- Acceso secuencial: 
+        - 1.2.2.- Acceso secuencial:
           - Operaciones con ficheros binarios en Java: ud1/binaryfiles.md
           - Operaciones con ficheros de caracteres en Java: ud1/characterfiles.md
         - 1.2.3.- Acceso aleatorio:
@@ -16,7 +16,7 @@ nav:
       - 1.6.- Crear un .jar: ud1/20createjar.md
       - 1.7.- try-with-resources: ud1/trywithresources.md
       
-    - 2.- Acceso a bases de datos relacionales con JDBC: 
+    - 2.- Acceso a bases de datos relacionales con JDBC:
       - 2.1.- Persistencia de la información: ud2/21persistencia.md
       - 2.2.- Desfase objeto-relacional: ud2/22mapeo.md
       - 2.3.- Manejo de conectores - JDBC: ud2/23conectores.md
