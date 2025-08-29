@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../16randomaccessfile/">
+        <link rel="prev" href="../randomaccessfile/">
       
       
         <link rel="next" href="../17configfiles/">
@@ -19,7 +19,7 @@
     
     
       
-        <title>1.4.- Lectura y escritura de objectos en Java - Acceso a Datos</title>
+        <title>1.3.- Lectura y escritura de objectos en Java - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#escritura-y-lectura-de-objetos-en-java" class="md-skip">
+        <a href="#serializacion-y-deserializacion-de-objetos-en-java" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1.4.- Lectura y escritura de objectos en Java
+              1.3.- Lectura y escritura de objectos en Java
             
           </span>
         </div>
@@ -288,14 +288,14 @@
       
       
         <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
-          1.2.- Lectura y escritura de ficheros de texto en Java
+          1.2.- Lectura y escritura de ficheros en Java
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2_2">
           <span class="md-nav__icon md-icon"></span>
-          1.2.- Lectura y escritura de ficheros de texto en Java
+          1.2.- Lectura y escritura de ficheros en Java
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -318,9 +318,36 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+          1.2.2.- Acceso secuencial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.2.2.- Acceso secuencial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../binaryfiles/" class="md-nav__link">
-        1.2.2.- Operaciones con ficheros binarios en Java
+        Operaciones con ficheros binarios en Java
       </a>
     </li>
   
@@ -333,8 +360,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../13characterfiles/" class="md-nav__link">
-        1.2.3.- Operaciones con ficheros de caracteres en Java
+      <a href="../characterfiles/" class="md-nav__link">
+        Operaciones con ficheros de caracteres en Java
       </a>
     </li>
   
@@ -353,10 +380,51 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
+          1.2.3.- Acceso aleatorio
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          1.2.3.- Acceso aleatorio
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../16randomaccessfile/" class="md-nav__link">
-        1.3.- Ficheros de acceso aleatorio
+      <a href="../randomaccessfile/" class="md-nav__link">
+        Operaciones con ficheros de acceso aleatorio en Java
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -378,12 +446,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          1.4.- Lectura y escritura de objectos en Java
+          1.3.- Lectura y escritura de objectos en Java
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        1.4.- Lectura y escritura de objectos en Java
+        1.3.- Lectura y escritura de objectos en Java
       </a>
       
         
@@ -402,22 +470,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#serialization" class="md-nav__link">
-    ✨ Serialization
+  <a href="#que-es-la-serializacion" class="md-nav__link">
+    📦 ¿Qué es la serialización?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#deserialization" class="md-nav__link">
-    🎆 Deserialization
+  <a href="#clases-y-conceptos-clave-javaio" class="md-nav__link">
+    ✨ Clases y conceptos clave (java.io)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serializacion-binaria-de-java-objectoutputstream" class="md-nav__link">
+    📦 Serialización binaria de Java (ObjectOutputStream)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deserializacion-binaria-de-java-objectinputstream" class="md-nav__link">
+    🎆 Deserialización binaria de Java (ObjectInputStream)
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#que-es-el-campo-serialversionuid" class="md-nav__link">
-    🎆 ¿Qué es el campo serialVersionUID?
+    📤 ¿Qué es el campo serialVersionUID?
   </a>
   
 </li>
@@ -443,6 +525,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#otras-formas-de-serializar-objetos-en-java" class="md-nav__link">
+    🌐 Otras formas de serializar objetos en Java
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Otras formas de serializar objetos en Java">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparativa-rapida" class="md-nav__link">
+    🔀 Comparativa rápida
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -459,7 +561,7 @@
   
     <li class="md-nav__item">
       <a href="../17configfiles/" class="md-nav__link">
-        1.5.- Ficheros de configuración
+        1.4.- Ficheros de configuración
       </a>
     </li>
   
@@ -473,7 +575,7 @@
   
     <li class="md-nav__item">
       <a href="../19jsonfiles/" class="md-nav__link">
-        1.6.- JSON
+        1.5.- JSON
       </a>
     </li>
   
@@ -487,7 +589,7 @@
   
     <li class="md-nav__item">
       <a href="../20createjar/" class="md-nav__link">
-        1.7.- Crear un .jar
+        1.6.- Crear un .jar
       </a>
     </li>
   
@@ -501,7 +603,7 @@
   
     <li class="md-nav__item">
       <a href="../trywithresources/" class="md-nav__link">
-        1.8.- try-with-resources
+        1.7.- try-with-resources
       </a>
     </li>
   
@@ -983,22 +1085,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#serialization" class="md-nav__link">
-    ✨ Serialization
+  <a href="#que-es-la-serializacion" class="md-nav__link">
+    📦 ¿Qué es la serialización?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#deserialization" class="md-nav__link">
-    🎆 Deserialization
+  <a href="#clases-y-conceptos-clave-javaio" class="md-nav__link">
+    ✨ Clases y conceptos clave (java.io)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serializacion-binaria-de-java-objectoutputstream" class="md-nav__link">
+    📦 Serialización binaria de Java (ObjectOutputStream)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deserializacion-binaria-de-java-objectinputstream" class="md-nav__link">
+    🎆 Deserialización binaria de Java (ObjectInputStream)
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#que-es-el-campo-serialversionuid" class="md-nav__link">
-    🎆 ¿Qué es el campo serialVersionUID?
+    📤 ¿Qué es el campo serialVersionUID?
   </a>
   
 </li>
@@ -1024,6 +1140,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#otras-formas-de-serializar-objetos-en-java" class="md-nav__link">
+    🌐 Otras formas de serializar objetos en Java
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Otras formas de serializar objetos en Java">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparativa-rapida" class="md-nav__link">
+    🔀 Comparativa rápida
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1040,17 +1176,55 @@
 
 
 
-<h1 id="escritura-y-lectura-de-objetos-en-java">☄️ Escritura y lectura de objetos en Java</h1>
-<p>Para escribir un objeto y leer esos datos directamente de vuelta a un objeto Java, nos proporciona dos clases:</p>
+<h1 id="serializacion-y-deserializacion-de-objetos-en-java">📎Serialización y deserialización de objetos en Java</h1>
+<p>En esta sesión aprenderás a <strong>guardar objetos Java en archivos</strong> y recuperarlos más tarde mediante el proceso de <strong>serialización</strong> y <strong>deserialización</strong>.</p>
+<hr />
+<h2 id="que-es-la-serializacion">📦 ¿Qué es la serialización?</h2>
+<p>La <strong>serialización</strong> es el proceso de convertir un objeto en una secuencia de bytes que, representa el estado del objeto, incluidos sus datos y la estructura, para almacenarlo en un fichero, enviarlo por red o guardarlo en memoria. Se usa para:</p>
 <ul>
-<li><code>ObjectInputStream</code></li>
-<li><code>ObjectOutputStream</code></li>
+<li>Guardar el estado de un objeto.</li>
+<li>Enviar objetos a través de sockets.</li>
+<li>Persistir datos sin usar una base de datos.</li>
 </ul>
-<p>Para entender esto correctamente es necesario saber el significado de <strong>serialización</strong>.</p>
-<h2 id="serialization">✨ Serialization</h2>
-<p><strong>Serializar una clase en programación se refiere al proceso de convertir un objeto de esa clase en una secuencia de bytes que representa el estado del objeto, incluidos sus datos y la estructura.</strong> Esta secuencia de bytes puede ser almacenada, transmitida y posteriormente reconstruida para crear una copia exacta del objeto original, facilitando así operaciones como el almacenamiento persistente (en un fichero o BD) o la comunicación entre procesos. Esto es especialmente útil en contextos donde se necesita transferir datos entre diferentes componentes de un sistema, o entre distintos sistemas.</p>
-<p><strong>Solo las instancias de clases Serializables pueden ser serializadas, lo que significa que la clase debe implementar la interfaz <code>Serializable</code>.</strong></p>
-<p>Esta interfaz no tiene ningún método, sólo se utiliza para marcar la clase como serializable. <em>Todos los subtipos de una clase serializable son a su vez seriazables.</em></p>
+<p>Después se hace la operación inversa <strong>deserialización</strong>, donde se reconstruye ese objeto desde los bytes.</p>
+<hr />
+<h2 id="clases-y-conceptos-clave-javaio">✨ Clases y conceptos clave (<code>java.io</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Serializable</code></td>
+<td>Interfaz que debe implementar una clase para ser serializable.</td>
+</tr>
+<tr>
+<td><code>ObjectOutputStream</code></td>
+<td>Clase para escribir objetos en un flujo de salida.</td>
+</tr>
+<tr>
+<td><code>ObjectInputStream</code></td>
+<td>Clase para leer objetos desde un flujo de entrada.</td>
+</tr>
+<tr>
+<td><code>serialVersionUID</code></td>
+<td>Identificador de versión para compatibilidad entre clases serializadas.</td>
+</tr>
+<tr>
+<td><code>transient</code></td>
+<td>Palabra clave para excluir un atributo de la serialización.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="serializacion-binaria-de-java-objectoutputstream">📦 Serialización binaria de Java (<code>ObjectOutputStream</code>)</h2>
+<p>Imaginemos que tenemos la clase <code>Employee</code> que nos permitirá crear objetos de empleados y queremos enviar o guardar estos objetos.</p>
+<p>📌 <strong>Es obligatorio para serializar añadir <code>implements Serializable</code></strong> en la clase.
+Serializable es una interfaz marcadora (marker interface).
+No tiene métodos → solo sirve para indicar a la JVM: “esta clase se puede serializar”.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
@@ -1072,7 +1246,7 @@
 <span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="20 "></span><span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">WriteObject.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//Método para escribir objectos en un fichero</span>
+<div class="highlight"><span class="filename">WriteObject.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//Método para escribir objectos de empleados en un fichero</span>
 <span class="linenos" data-linenos="2 "></span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">writeObject</span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="n">employee</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="k">try</span><span class="p">(</span><span class="n">ObjectOutputStream</span><span class="w"> </span><span class="n">os</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectOutputStream</span><span class="p">(</span><span class="n">Files</span><span class="p">.</span><span class="na">newOutputStream</span><span class="p">(</span><span class="n">path</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="n">os</span><span class="p">.</span><span class="na">writeObject</span><span class="p">(</span><span class="n">employee</span><span class="p">);</span>
@@ -1081,7 +1255,7 @@
 <span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
-<h2 id="deserialization">🎆 Deserialization</h2>
+<h2 id="deserializacion-binaria-de-java-objectinputstream">🎆 Deserialización binaria de Java (<code>ObjectInputStream</code>)</h2>
 <p>La serialización por defecto escribe la clase del objeto, la firma de la clase, y los valores de los campos no estáticos. Estos elementos se utilizan para <strong>restaurar el objeto y su estado durante la operación de lectura</strong>. A este proceso se le conoce como reconstitución de los datos o <strong>deserialización</strong>.</p>
 <div class="highlight"><span class="filename">ReadObject.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//Método para leer objectos que han sido serializados</span>
 <span class="linenos" data-linenos="2 "></span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">readObject</span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1095,7 +1269,7 @@
 <p><img alt="JavaObjects" src="../../img/ud1/serialization.png" /></p>
 <p><em>¿Qué pasaría si cambiamos el campo age de la clase Employee de int a long después de haberlo serializado y, ahora volvemos a leerlo?</em></p>
 <p>Que se generaría una excepción de tipo <code>InvalidClassException</code> con el mensaje clase incompatible, con serialVersionUID diferentes.</p>
-<h2 id="que-es-el-campo-serialversionuid">🎆 ¿Qué es el campo serialVersionUID?</h2>
+<h2 id="que-es-el-campo-serialversionuid">📤 ¿Qué es el campo serialVersionUID?</h2>
 <p>El campo <code>serialVersionUID</code> <strong>es un campo que crea el compilador implícitamente en tiempo de ejecución si no se declara explícitamente</strong>, para las clases serializables. <em>Se basa en detalles de la clase como el número de campos, sus tipos y declaraciones, ...</em></p>
 <p>Por tanto, cambiar un campo como hemos hecho antes, generará un UID diferente. Cuando leemos un objeto de un stream, el runtime comprueba el serialVersionUID almacenado. Que se almacena con el objeto escrito en el fichero .dat y lo compara con el compilado de la clase. Si no coinciden, entonces hay un problema de compatibilidad y el runtime lanza esa excepción de clase inválida.</p>
 <div class="admonition note nota">
@@ -1143,6 +1317,46 @@ cuántos bytes leemos)</li>
 <span class="linenos" data-linenos="9 "></span><span class="p">}</span>
 </code></pre></div>
 <p>Si probamos a escribir un objeto Employee con su accountId, veremos que al deserializarlo el accountId será 0, no se escribirá nada porque lo hemos declarado como <strong>transitorio o transient</strong>.</p>
+<h2 id="otras-formas-de-serializar-objetos-en-java">🌐 Otras formas de serializar objetos en Java</h2>
+<p>Hasta ahora hemos visto la <strong>serialización binaria nativa</strong> con <code>ObjectOutputStream</code>, pero no es la única forma de persistir o enviar objetos. Según el caso de uso, te interesará usar formatos <strong>portables</strong>, <strong>legibles</strong>, o <strong>muy eficientes</strong>.</p>
+<h3 id="comparativa-rapida">🔀 Comparativa rápida</h3>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Formato</th>
+<th>Ventajas principales</th>
+<th>Inconvenientes / Avisos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ObjectOutputStream</code></td>
+<td>Binario (Java)</td>
+<td>Simple en Java, guarda estructura y estado</td>
+<td>No portable entre lenguajes, versión de clases</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>Texto (JSON)</td>
+<td>Interoperable, legible, muy usado en APIs y microservicios</td>
+<td>Tipado laxo, tamaño mayor que binario, integración con otros lenguajes</td>
+</tr>
+<tr>
+<td>XML</td>
+<td>Texto (XML)</td>
+<td>Estandarizado, validación con XSD</td>
+<td>Verboso, más pesado</td>
+</tr>
+<tr>
+<td>Bases de datos</td>
+<td>Estructurado</td>
+<td>Consulta/filtrado, persistencia robusta</td>
+<td>No es serialización 1:1 del objeto, no estás guardando el objeto completo directamente, sino su información descompuesta en otra forma de representación.</td>
+</tr>
+</tbody>
+</table>
+<hr />
 
 
   

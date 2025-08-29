@@ -1,19 +1,41 @@
-# ☄️ Escritura y lectura de objetos en Java
+# 📎Serialización y deserialización de objetos en Java
 
-Para escribir un objeto y leer esos datos directamente de vuelta a un objeto Java, nos proporciona dos clases:
+En esta sesión aprenderás a **guardar objetos Java en archivos** y recuperarlos más tarde mediante el proceso de **serialización** y **deserialización**.
 
-- `ObjectInputStream`
-- `ObjectOutputStream`
+---
 
-Para entender esto correctamente es necesario saber el significado de **serialización**.
+## 📦 ¿Qué es la serialización?
 
-## ✨ Serialization
+La **serialización** es el proceso de convertir un objeto en una secuencia de bytes que, representa el estado del objeto, incluidos sus datos y la estructura, para almacenarlo en un fichero, enviarlo por red o guardarlo en memoria. Se usa para:
 
-**Serializar una clase en programación se refiere al proceso de convertir un objeto de esa clase en una secuencia de bytes que representa el estado del objeto, incluidos sus datos y la estructura.** Esta secuencia de bytes puede ser almacenada, transmitida y posteriormente reconstruida para crear una copia exacta del objeto original, facilitando así operaciones como el almacenamiento persistente (en un fichero o BD) o la comunicación entre procesos. Esto es especialmente útil en contextos donde se necesita transferir datos entre diferentes componentes de un sistema, o entre distintos sistemas.
+- Guardar el estado de un objeto.
+- Enviar objetos a través de sockets.
+- Persistir datos sin usar una base de datos.
 
-**Solo las instancias de clases Serializables pueden ser serializadas, lo que significa que la clase debe implementar la interfaz `Serializable`.**
+Después se hace la operación inversa **deserialización**, donde se reconstruye ese objeto desde los bytes.
 
-Esta interfaz no tiene ningún método, sólo se utiliza para marcar la clase como serializable. *Todos los subtipos de una clase serializable son a su vez seriazables.*
+---
+
+## ✨ Clases y conceptos clave (`java.io`)
+
+| Elemento             | Descripción                                                             |
+| -------------------- | ----------------------------------------------------------------------- |
+| `Serializable`       | Interfaz que debe implementar una clase para ser serializable.          |
+| `ObjectOutputStream` | Clase para escribir objetos en un flujo de salida.                      |
+| `ObjectInputStream`  | Clase para leer objetos desde un flujo de entrada.                      |
+| `serialVersionUID`   | Identificador de versión para compatibilidad entre clases serializadas. |
+| `transient`          | Palabra clave para excluir un atributo de la serialización.             |
+
+---
+
+## 📦 Serialización binaria de Java (`ObjectOutputStream`)
+
+
+Imaginemos que tenemos la clase `Employee` que nos permitirá crear objetos de empleados y queremos enviar o guardar estos objetos.
+
+📌 **Es obligatorio para serializar añadir `implements Serializable`** en la clase.
+Serializable es una interfaz marcadora (marker interface).
+No tiene métodos → solo sirve para indicar a la JVM: “esta clase se puede serializar”.
 
 ```java
 class Employee implements Serializable {
@@ -39,7 +61,7 @@ class Employee implements Serializable {
 ```
 
 ```java title="WriteObject.java"
-//Método para escribir objectos en un fichero
+//Método para escribir objectos de empleados en un fichero
 private static void writeObject(Path path, Employee employee) {
     try(ObjectOutputStream os = new ObjectOutputStream(Files.newOutputStream(path))) {
         os.writeObject(employee);
@@ -49,7 +71,7 @@ private static void writeObject(Path path, Employee employee) {
 }
 ```
 
-## 🎆 Deserialization
+## 🎆 Deserialización binaria de Java (`ObjectInputStream`)
 
 La serialización por defecto escribe la clase del objeto, la firma de la clase, y los valores de los campos no estáticos. Estos elementos se utilizan para **restaurar el objeto y su estado durante la operación de lectura**. A este proceso se le conoce como reconstitución de los datos o **deserialización**.
 
@@ -64,13 +86,14 @@ private static void readObject(Path path) {
 }
 ```
 
+
 ![JavaObjects](../img/ud1/serialization.png)
 
 *¿Qué pasaría si cambiamos el campo age de la clase Employee de int a long después de haberlo serializado y, ahora volvemos a leerlo?*
 
 Que se generaría una excepción de tipo `InvalidClassException` con el mensaje clase incompatible, con serialVersionUID diferentes.
 
-## 🎆 ¿Qué es el campo serialVersionUID?
+## 📤 ¿Qué es el campo serialVersionUID?
 
 El campo `serialVersionUID` **es un campo que crea el compilador implícitamente en tiempo de ejecución si no se declara explícitamente**, para las clases serializables. *Se basa en detalles de la clase como el número de campos, sus tipos y declaraciones, ...*
 
@@ -127,3 +150,18 @@ class Employee implements Serializable {
 ```
 
 Si probamos a escribir un objeto Employee con su accountId, veremos que al deserializarlo el accountId será 0, no se escribirá nada porque lo hemos declarado como **transitorio o transient**.
+
+## 🌐 Otras formas de serializar objetos en Java
+
+Hasta ahora hemos visto la **serialización binaria nativa** con `ObjectOutputStream`, pero no es la única forma de persistir o enviar objetos. Según el caso de uso, te interesará usar formatos **portables**, **legibles**, o **muy eficientes**.
+
+### 🔀 Comparativa rápida
+
+| Método                     | Formato       | Ventajas principales                                     | Inconvenientes / Avisos                         |
+|---------------------------|---------------|----------------------------------------------------------|-------------------------------------------------|
+| `ObjectOutputStream`      | Binario (Java)| Simple en Java, guarda estructura y estado               | No portable entre lenguajes, versión de clases  |
+| JSON                      | Texto (JSON)  | Interoperable, legible, muy usado en APIs y microservicios              | Tipado laxo, tamaño mayor que binario, integración con otros lenguajes    |
+| XML                       | Texto (XML)   | Estandarizado, validación con XSD                        | Verboso, más pesado                             |
+| Bases de datos            | Estructurado  | Consulta/filtrado, persistencia robusta                  | No es serialización 1:1 del objeto, no estás guardando el objeto completo directamente, sino su información descompuesta en otra forma de representación.             |
+
+---
