@@ -1162,13 +1162,13 @@ Este desajuste se conoce como <strong>desfase objeto–relacional (Object–Rela
 <h2 id="protocolos-de-acceso-a-bases-de-datos">🌐 Protocolos de acceso a bases de datos</h2>
 <p>Los conectores JDBC utilizan <strong>protocolos de acceso estándar</strong> para comunicarse con el SGBD.<br />
 Una URL de conexión JDBC suele tener la siguiente forma:</p>
-<blockquote>
-<p>jdbc:<strong>gestor</strong>://<strong>host</strong>:<strong>puerto</strong>/<strong>base_datos</strong></p>
-</blockquote>
-<p>Ejemplo para MySQL en local:</p>
-<blockquote>
-<p>jdbc:mysql://localhost:3306/mi_bd</p>
-</blockquote>
+<div class="admonition example">
+<p class="admonition-title">Example 🤓</p>
+<ul>
+<li><strong>jdbc</strong>:<em>bbdd</em>://<em>server</em>:<em>port</em>/<em>schema</em></li>
+<li><strong>jdbc</strong>:mysql://localhost:3306/severo</li>
+</ul>
+</div>
 <hr />
 <h2 id="tipos-de-conectores-jdbc">🔧 Tipos de conectores JDBC</h2>
 <p>Un <strong>conector JDBC (driver)</strong> es una librería que implementa las interfaces de JDBC para un SGBD específico.<br />

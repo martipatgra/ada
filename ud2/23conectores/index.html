@@ -617,26 +617,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#jdbc" class="md-nav__link">
-    JDBC
+  <a href="#carga-del-driver" class="md-nav__link">
+    📥 Carga del driver
   </a>
   
-    <nav class="md-nav" aria-label="JDBC">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clase-drivermanager" class="md-nav__link">
+    🛠️ Clase DriverManager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objeto-connection" class="md-nav__link">
+    🔌 Objeto Connection
+  </a>
+  
+    <nav class="md-nav" aria-label="🔌 Objeto Connection">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#conexion-con-la-bbdd-desde-jdbc" class="md-nav__link">
-    Conexión con la BBDD desde JDBC
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#establecimiento-y-cierre-de-conexion" class="md-nav__link">
-    Establecimiento y cierre de conexión
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#operaciones-basicas" class="md-nav__link">
@@ -1071,26 +1071,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#jdbc" class="md-nav__link">
-    JDBC
+  <a href="#carga-del-driver" class="md-nav__link">
+    📥 Carga del driver
   </a>
   
-    <nav class="md-nav" aria-label="JDBC">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clase-drivermanager" class="md-nav__link">
+    🛠️ Clase DriverManager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objeto-connection" class="md-nav__link">
+    🔌 Objeto Connection
+  </a>
+  
+    <nav class="md-nav" aria-label="🔌 Objeto Connection">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#conexion-con-la-bbdd-desde-jdbc" class="md-nav__link">
-    Conexión con la BBDD desde JDBC
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#establecimiento-y-cierre-de-conexion" class="md-nav__link">
-    Establecimiento y cierre de conexión
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#operaciones-basicas" class="md-nav__link">
@@ -1136,50 +1136,40 @@
 
 <h1 id="establecimiento-de-conexiones">⚙️ Establecimiento de conexiones</h1>
 <p>Un <strong>conector</strong> o <strong>driver</strong> es un mecanismo que permite a un lenguaje de programación conectarse, y trabajar, contra una base de datos. Se encarga de mantener el diálogo con la base de datos, para poder llevar a cabo el acceso y manipulación de los datos.</p>
-<p>Algunos de los más conocidos son:</p>
+<hr />
+<h2 id="carga-del-driver">📥 Carga del driver</h2>
+<p>Para que Java pueda comunicarse con una base de datos necesitamos el <strong>driver JDBC</strong> correspondiente.<br />
+Ese driver se añade normalmente como un archivo <code>.jar</code> en el proyecto.</p>
+<p>Para descargar el driver JDBC para MySQL podemos hacerlo desde el repositorio de Maven:
+<a href="https://mvnrepository.com/artifact/com.mysql/mysql-connector-j">MySQL JDBC</a></p>
+<p>En versiones antiguas de Java era necesario cargar explícitamente el driver con <code>Class.forName()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">&quot;com.mysql.cj.jdbc.Driver&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Hoy en día, si el driver está en el classpath, se carga automáticamente, por lo que no suele ser necesario llamar a Class.forName.</p>
+<hr />
+<h2 id="clase-drivermanager">🛠️ Clase DriverManager</h2>
+<p>La clase DriverManager es la encargada de gestionar los drivers JDBC instalados y proporcionar conexiones a la base de datos.</p>
+<p>Método más utilizado:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">usuario</span><span class="p">,</span><span class="w"> </span><span class="n">contraseña</span><span class="p">);</span>
+</code></pre></div>
+<p>Parámetros:</p>
 <ul>
-<li>
-<p><strong>ODBC (Open Database Connectivity)</strong>. Es un estándar viejo. Esta tecnología proporciona una interfaz común para tener acceso a bases de datos SQL heterogéneas. ODBC está basado en SQL (Structured Query Language) como un estándar para tener acceso a datos. ODBC permite la conexión fácil desde varios lenguajes de programación y se utiliza mucho en el entorno Windows.</p>
-</li>
-<li>
-<p><strong>JDBC (Java Data Base Connectivity)</strong>.</p>
-</li>
+<li><strong>url</strong>: cadena con el protocolo y los datos de conexión, por ejemplo<br />
+<code>jdbc:mysql://localhost:3306/mi_bd</code>  </li>
+<li><strong>usuario</strong>: nombre del usuario de la base de datos.  </li>
+<li><strong>contraseña</strong>: la clave de acceso.  </li>
 </ul>
-<p>En este curso, nos vamos a centrar en JDBC, puesto que, desde el punto de vista de Java, es una de las tecnologías más importantes de conectividad a la base de datos. Y, además, Java 8 ha eliminado el puente JDBC-ODBC, lo que significa que los controladores ODBC de Microsoft ya no funcionan.</p>
-<h2 id="jdbc">JDBC</h2>
-<p>Casi de forma simultánea a ODBC, la empresa Sun Microsystems, en 1997 sacó a la luz JDBC, un API conector de bases de datos, implementado específicamente para usar con el lenguaje Java. Se trata de un API bastante similar a ODBC en cuanto a funcionalidad, pero adaptado a las especificidades de Java. Es decir, la funcionalidad se encuentra capsulada en clases (ya que Java es un lenguaje totalmente orientado a objetos) y, además, no depende de ninguna plataforma específica, de acuerdo con la característica multiplataforma defendida por Java.</p>
-<p>Es una API que permite la ejecución de operaciones contra una base de datos desde Java independientemente del sistema operativo donde se ejecute o de la base de datos a la cual se acceda. Podemos pensar en JDBC como un intermediario que se encuentra entre una aplicación Java y una fuente de datos.</p>
-<p>Para usar una fuente de datos particular en una aplicación, necesitamos el controlador JDBC para la fuente de datos. Por ejemplo, para acceder a una BD SQLite desde una aplicación, necesitamos un controlador JDBC de SQLite.</p>
-<p><img alt="jdbc" src="../../img/ud2/4jdbc.png" /></p>
-<p>El driver o controlador es simplemente una biblioteca Java que contiene clases que implementan la API de JDBC. Como todos los drivers JDBC tienen que implementar la misma interfaz, es muy sencillo cambiar de una fuente de datos a otra.</p>
-<p>Es importante destacar también que JDBC no exige ninguna instalación, ni ningún cambio sustancial en el código a la hora de utilizar uno u otro controlador. Esta característica se sustenta, en primer lugar, en la utilidad de Java que permite cargar programáticamente cualquier clase a partir de su nombre; en segundo lugar, en la funcionalidad de la clase DriverManager (de la API JDBC), que sin necesidad de indicarle el driver específico que hay que utilizar es capaz de encontrarlo y seleccionarlo de entre todos los que el sistema tenga cargados en memoria.</p>
-<p>A pesar de eso tampoco es mucho problema ya que actualmente podemos encontrar un driver JDBC para prácticamente cualquier SGBDR existente. El conector lo proporciona el fabricante de la base de datos o bien un tercero.</p>
-<p><em>JDBC consta de dos paquetes, java.sql and javax.sql (opcional). Las API del paquete javax.sql son necesarias cuando se trabaja con servidores de bases de datos.</em></p>
-<h3 id="conexion-con-la-bbdd-desde-jdbc">Conexión con la BBDD desde JDBC</h3>
-<p>Antes de empezar a desarrollar aplicaciones JDBC es necesario aseguramos que tenemos instalado el SGBD, y además que tenemos acceso desde el lugar donde estemos desarrollando la aplicación.
-Una vez verificado el sistema gestor de base de datos, será necesario obtener el controlador JDBC del sistema gestor. Generalmente, cada fabricante pondrá a disposición de sus usuarios los diferentes tipos de controladores que tenga para sus productos.
-Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como mínimo una biblioteca en formato .jar con todas las clases de la API JDBC. Habrá que añadir el archivo .jar como biblioteca de nuestra aplicación.</p>
-<p>Para descargar el driver JDBC para MySQL podemos hacerlo desde el repositorio de Maven:</p>
-<p><a href="https://mvnrepository.com/artifact/com.mysql/mysql-connector-j">MySQL JDBC</a></p>
-<h3 id="establecimiento-y-cierre-de-conexion">Establecimiento y cierre de conexión</h3>
-<p>Las clases que afectan a la gestión de la conexión con la BBDD son:</p>
+<hr />
+<h2 id="objeto-connection">🔌 Objeto Connection</h2>
+<p><code>Connection</code> representa una conexión activa con la base de datos.<br />
+Con este objeto podremos:</p>
 <ul>
-<li>
-<p><code>DriverManager</code>: esta clase se utiliza para registrar el controlador para un tipo de base de datos específico (por ejemplo, MySQL en este tutorial) y para establecer una conexión de base de datos con el servidor a través de su método <code>getConnection()</code>.</p>
-</li>
-<li>
-<p><code>Connection</code>, es una interfaz que representa una conexión a la base de datos establecida (sesión) desde la cual podemos crear declaraciones para ejecutar consultas y recuperar resultados, obtener metadatos sobre la base de datos, cerrar conexión, etc.Los objetos <code>Connection</code> mantendrán la capacidad de comunicarse con el sistema gestor mientras permanezcan abiertos. Esto es, desde que se crean hasta que se cierran utilizando el método close.</p>
-</li>
+<li>Crear sentencias (<code>Statement</code>, <code>PreparedStatement</code>, <code>CallableStatement</code>).  </li>
+<li>Ejecutar consultas y modificaciones.  </li>
+<li>Controlar transacciones (commit, rollback).  </li>
+<li>Cerrar la conexión cuando ya no sea necesaria.  </li>
 </ul>
-<p>El objeto <code>Connection</code> está totalmente vinculado a una fuente de datos, por eso en pedir la conexión hay que especificar de qué fuente se trata siguiendo el protocolo JDBC e indicando la url de los datos, y en su caso el usuario y password.</p>
-<div class="admonition example">
-<p class="admonition-title">Example 🤓</p>
-<ul>
-<li><strong>jdbc</strong>:<em>bbdd</em>://<em>server</em>:<em>port</em>/<em>schema</em></li>
-<li><strong>jdbc</strong>:postgresql://localhost:5432/severo</li>
-</ul>
-</div>
-<p>La url seguirá el protocolo JDBC, comenzará siempre por la palabra <strong>jdbc</strong> seguida de dos puntos. El resto dependerá del tipo de controlador utilizado, del host donde se aloje el SGBD, del puerto que este use para escuchar las peticiones y del nombre de la base de datos o esquema con el que queremos trabajar.</p>
+<p>Ejemplo básico:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.Connection</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.DriverManager</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.SQLException</span><span class="p">;</span>
@@ -1200,6 +1190,8 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 <span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="19 "></span><span class="p">}</span>
 </code></pre></div>
+<p>Con <code>try-with-resources</code> la conexión se cerrará automáticamente al finalizar el bloque.</p>
+<hr />
 <h3 id="operaciones-basicas">Operaciones básicas</h3>
 <p>El API JDBC distingue dos tipos de consultas:</p>
 <ul>
