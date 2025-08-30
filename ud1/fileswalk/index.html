@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#recorrido-de-directorios-con-javaniofilefiles" class="md-skip">
+        <a href="#recorrido-de-directorios-con-java-nio" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -442,6 +442,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           1.3.- Recorrido de directorios con java.nio
@@ -458,6 +460,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -466,22 +470,71 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#recorrido-de-directorios-con-javaniofilefiles" class="md-nav__link">
-    📂 Recorrido de directorios con java.nio.file.Files
+  <a href="#por-que-usar-javanio-para-recorrer-directorios" class="md-nav__link">
+    📌 ¿Por qué usar java.nio para recorrer directorios?
   </a>
   
-    <nav class="md-nav" aria-label="📂 Recorrido de directorios con java.nio.file.Files">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metodos-principales-de-recorrido" class="md-nav__link">
+    📚 Métodos principales de recorrido
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 Métodos principales de recorrido">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#fileslistpath" class="md-nav__link">
-    🔹 Files.list(Path)
+    ✅ Files.list(Path)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fileswalkpath" class="md-nav__link">
+    ✅ Files.walk(Path)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filesfindpath-int-bipredicate" class="md-nav__link">
+    ✅ Files.find(Path, int, BiPredicate)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filesnewdirectorystreampath" class="md-nav__link">
+    ✅ Files.newDirectoryStream(Path)
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabla-comparativa-de-metodos" class="md-nav__link">
+    🧲 Tabla comparativa de métodos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recomendacion-final" class="md-nav__link">
+    📎 Recomendación final
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uso-de-try-with-resources" class="md-nav__link">
+    🧠 USO de try-with-resources
+  </a>
   
 </li>
       
@@ -1029,6 +1082,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1037,22 +1092,71 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#recorrido-de-directorios-con-javaniofilefiles" class="md-nav__link">
-    📂 Recorrido de directorios con java.nio.file.Files
+  <a href="#por-que-usar-javanio-para-recorrer-directorios" class="md-nav__link">
+    📌 ¿Por qué usar java.nio para recorrer directorios?
   </a>
   
-    <nav class="md-nav" aria-label="📂 Recorrido de directorios con java.nio.file.Files">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metodos-principales-de-recorrido" class="md-nav__link">
+    📚 Métodos principales de recorrido
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 Métodos principales de recorrido">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#fileslistpath" class="md-nav__link">
-    🔹 Files.list(Path)
+    ✅ Files.list(Path)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fileswalkpath" class="md-nav__link">
+    ✅ Files.walk(Path)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filesfindpath-int-bipredicate" class="md-nav__link">
+    ✅ Files.find(Path, int, BiPredicate)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filesnewdirectorystreampath" class="md-nav__link">
+    ✅ Files.newDirectoryStream(Path)
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabla-comparativa-de-metodos" class="md-nav__link">
+    🧲 Tabla comparativa de métodos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recomendacion-final" class="md-nav__link">
+    📎 Recomendación final
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uso-de-try-with-resources" class="md-nav__link">
+    🧠 USO de try-with-resources
+  </a>
   
 </li>
       
@@ -1072,19 +1176,138 @@
 
 
 
-  <h1>1.3.- Recorrido de directorios con java.nio</h1>
-
-<h2 id="recorrido-de-directorios-con-javaniofilefiles">📂 Recorrido de directorios con <code>java.nio.file.Files</code></h2>
-<p>Las clases del paquete <code>java.nio.file</code> ofrecen métodos modernos para recorrer directorios, listarlos o buscar archivos fácilmente. A diferencia de <code>File.listFiles()</code>, permiten trabajar con streams, aplicar filtros y recorrer subdirectorios con facilidad.</p>
-<h3 id="fileslistpath">🔹 <code>Files.list(Path)</code></h3>
+<h1 id="recorrido-de-directorios-con-java-nio">📁 Recorrido de directorios con Java NIO</h1>
+<p>En esta página exploramos las distintas formas modernas de recorrer directorios utilizando la API java.nio.file.</p>
+<hr />
+<h2 id="por-que-usar-javanio-para-recorrer-directorios">📌 ¿Por qué usar java.nio para recorrer directorios?</h2>
+<p>Java NIO ofrece una forma más <strong>moderna, flexible y funcional</strong> de acceder a ficheros y directorios, evitando la necesidad de estructuras clásicas más verbosas como <code>File</code>.</p>
+<p>Sus ventajas:</p>
 <ul>
-<li>Lista <strong>solo el contenido inmediato</strong> (no recursivo) de un directorio.</li>
+<li>Uso de <strong>streams</strong> para trabajar con los ficheros como flujos de datos.</li>
+<li>Posibilidad de aplicar <strong>filtros y operaciones funcionales</strong>.</li>
+<li>Facilidad para recorrer subdirectorios.</li>
+<li>Mejor manejo de excepciones.</li>
+</ul>
+<hr />
+<h2 id="metodos-principales-de-recorrido">📚 Métodos principales de recorrido</h2>
+<h3 id="fileslistpath">✅ <code>Files.list(Path)</code></h3>
+<ul>
+<li>Lista solo los archivos y carpetas de primer nivel.</li>
 <li>Devuelve un <code>Stream&lt;Path&gt;</code>.</li>
+<li>⚠️ No entra en subdirectorios.</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">list</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;miDirectorio&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">stream</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
 <span class="linenos" data-linenos="3 "></span><span class="p">}</span>
 </code></pre></div>
+<hr />
+<h3 id="fileswalkpath">✅ <code>Files.walk(Path)</code></h3>
+<ul>
+<li>Recorre <strong>recursivamente</strong> todos los subdirectorios.</li>
+<li>Devuelve un <code>Stream&lt;Path&gt;</code>.</li>
+<li>Admite profundidad máxima opcional.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">walk</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;miDirectorio&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">stream</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="p">}</span>
+</code></pre></div>
+<p>El método walk contempla un segundo argumento, para limitar la profundidad:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Files</span><span class="p">.</span><span class="na">walk</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;miDirectorio&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h3 id="filesfindpath-int-bipredicate">✅ <code>Files.find(Path, int, BiPredicate)</code></h3>
+<ul>
+<li>Recorre recursivamente con <strong>filtros personalizados</strong>.</li>
+<li>🔍 Permite especificar una función lambda como predicado que se puede usar para buscar por nombre, tamaño, tipo, fechas, etc.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">find</span><span class="p">(</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;miDirectorio&quot;</span><span class="p">),</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">attr</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">attr</span><span class="p">.</span><span class="na">isRegularFile</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="na">toString</span><span class="p">().</span><span class="na">endsWith</span><span class="p">(</span><span class="s">&quot;.txt&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="n">stream</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="filesnewdirectorystreampath">✅ <code>Files.newDirectoryStream(Path)</code></h3>
+<ul>
+<li>Método clásico de NIO para recorrer directorios de un solo nivel.</li>
+<li>Devuelve un <code>DirectoryStream&lt;Path&gt;</code> que se puede recorrer con un bucle <code>for</code>.</li>
+<li>Consume poca memoria y permite aplicar filtros.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">DirectoryStream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">newDirectoryStream</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;miDirectorio&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">stream</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+</code></pre></div>
+<p>También permite usar un filtro directamente:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">DirectoryStream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">newDirectoryStream</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;miDirectorio&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;*.java&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">stream</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="tabla-comparativa-de-metodos">🧲 Tabla comparativa de métodos</h2>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Recursivo</th>
+<th>Permite filtrar</th>
+<th>Devuelve</th>
+<th>Comentario útil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Files.list()</code></td>
+<td>❌ No</td>
+<td>⚠️ No directo</td>
+<td><code>Stream&lt;Path&gt;</code></td>
+<td>Rápido para listar raíz</td>
+</tr>
+<tr>
+<td><code>Files.walk()</code></td>
+<td>✅ Sí</td>
+<td>✅ Sí</td>
+<td><code>Stream&lt;Path&gt;</code></td>
+<td>Perfecto para árboles de carpetas</td>
+</tr>
+<tr>
+<td><code>Files.find()</code></td>
+<td>✅ Sí</td>
+<td>✅ Muy flexible</td>
+<td><code>Stream&lt;Path&gt;</code></td>
+<td>Potente para búsquedas personalizadas</td>
+</tr>
+<tr>
+<td><code>Files.newDirectoryStream()</code></td>
+<td>❌ No</td>
+<td>✅ Sí</td>
+<td><code>DirectoryStream&lt;Path&gt;</code></td>
+<td>Alternativa clásica y eficiente</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="recomendacion-final">📎 Recomendación final</h2>
+<p>Usa:
+- <code>Files.list()</code> si solo necesitas el contenido directo del directorio
+- <code>Files.walk()</code> si necesitas recorrer subdirectorios
+- <code>Files.find()</code> si quieres aplicar condiciones de búsqueda
+- <code>DirectoryStream</code> si prefieres no usar streams o necesitas menor consumo</p>
+<hr />
+<h2 id="uso-de-try-with-resources">🧠 USO de <code>try-with-resources</code></h2>
+<p>Los métodos anteriores devuelven objetos que <strong>abren recursos del sistema</strong>, como descriptores de directorios. </p>
+<p><strong>Si no los cierras correctamente, puedes provocar:</strong>
+- Fugas de memoria
+- Archivos bloqueados
+- Excepciones en sistemas como Windows</p>
+<p>🔒 Por eso <strong>se recomienda SIEMPRE</strong> usarlos con <code>try-with-resources</code>, incluso aunque Java no te lo exija.</p>
 <hr />
 
 
