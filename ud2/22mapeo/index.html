@@ -19,7 +19,7 @@
     
     
       
-        <title>2.2.- Desfase objeto-relacional - Acceso a Datos</title>
+        <title>2.2.- Introducción a JDBC y conectores - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#desfase-objeto-relacional" class="md-skip">
+        <a href="#introduccion-a-jdbc-y-conectores" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.2.- Desfase objeto-relacional
+              2.2.- Introducción a JDBC y conectores
             
           </span>
         </div>
@@ -579,12 +579,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          2.2.- Desfase objeto-relacional
+          2.2.- Introducción a JDBC y conectores
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        2.2.- Desfase objeto-relacional
+        2.2.- Introducción a JDBC y conectores
       </a>
       
         
@@ -603,9 +603,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mapeo-objeto-relacional" class="md-nav__link">
-    Mapeo objeto - relacional
+  <a href="#que-es-jdbc" class="md-nav__link">
+    📖 ¿Qué es JDBC?
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-desfase-objetorelacional" class="md-nav__link">
+    ⚖️ El desfase objeto–relacional
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocolos-de-acceso-a-bases-de-datos" class="md-nav__link">
+    🌐 Protocolos de acceso a bases de datos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-conectores-jdbc" class="md-nav__link">
+    🔧 Tipos de conectores JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Tipos de conectores JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drivers-embebidos-embedded" class="md-nav__link">
+    🗂️ Drivers embebidos (embedded)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drivers-independientes-cliente-servidor" class="md-nav__link">
+    🖥️ Drivers independientes (cliente-servidor)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1030,9 +1071,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mapeo-objeto-relacional" class="md-nav__link">
-    Mapeo objeto - relacional
+  <a href="#que-es-jdbc" class="md-nav__link">
+    📖 ¿Qué es JDBC?
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-desfase-objetorelacional" class="md-nav__link">
+    ⚖️ El desfase objeto–relacional
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocolos-de-acceso-a-bases-de-datos" class="md-nav__link">
+    🌐 Protocolos de acceso a bases de datos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-conectores-jdbc" class="md-nav__link">
+    🔧 Tipos de conectores JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Tipos de conectores JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drivers-embebidos-embedded" class="md-nav__link">
+    🗂️ Drivers embebidos (embedded)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drivers-independientes-cliente-servidor" class="md-nav__link">
+    🖥️ Drivers independientes (cliente-servidor)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1052,20 +1134,61 @@
 
 
 
-<h1 id="desfase-objeto-relacional">⛓️ Desfase objeto - relacional</h1>
-<p>Las bases de datos relacionales no están diseñadas para almacenar objetos, ya que existe un desfase entre las construcciones típicas que proporciona el modelo relacional y las proporcionadas por la programación basada en objetos.</p>
-<p>El desfase objeto-relacional consiste en la diferencia de aspectos que existen entre la programación orientada a objetos y la base de datos.</p>
-<p>Hay que recordar que el modelo relacional trata con relaciones y conjuntos y que, en las BD relacionales tenemos reglas de integridad:</p>
+<h1 id="introduccion-a-jdbc-y-conectores">🔌 Introducción a JDBC y conectores</h1>
+<p>Un <strong>conector o driver</strong> es un mecanismo que permite a un lenguaje de programación conectarse, y trabajar, contra una base de datos. Se encarga de mantener el diálogo con la base de datos, para poder llevar a cabo el acceso y manipulación de los datos.</p>
+<p>En este curso, nos vamos a centrar en <strong>JDBC (Java Data Base Connectivity)</strong>, puesto que, desde el punto de vista de Java, es una de las tecnologías más importantes de conectividad a la base de datos.</p>
+<h2 id="que-es-jdbc">📖 ¿Qué es JDBC?</h2>
+<p><strong>JDBC (Java DataBase Connectivity)</strong> es una API de Java diseñada por Sun/Oracle que permite a las aplicaciones acceder a <strong>bases de datos relacionales</strong> de manera uniforme.<br />
+Con JDBC podemos:</p>
 <ul>
-<li>Todas las tablas deben tener una clave primaria</li>
-<li>La clave primaria tiene que ser única y no puede ser NULL</li>
-<li>Para relacionar dos tablas usamos una foreign key</li>
+<li>🔗 Conectarnos a diferentes sistemas gestores de bases de datos (SGBD).  </li>
+<li>📝 Ejecutar sentencias SQL.  </li>
+<li>📊 Recuperar y manipular resultados.  </li>
 </ul>
-<p>Sin embargo, el modelo de Programación Orientada a Objetos trata con objetos y las asociaciones entre ellos. Por esta razón, el problema entre estos dos modelos surge en el momento de querer persistir los objetos.</p>
-<h2 id="mapeo-objeto-relacional">Mapeo objeto - relacional</h2>
-<p>Al trabajar con POO y BDR tenemos que estar continuamente gestionando los objetos para escribir la sentencia SQL, o recolectar todos los atributos para componer un objeto cuando leemos información desde la base de datos.</p>
-<p>A este conjunto de técnicas se le conoce como mapeo objeto-relacional. Y puede hacerse ayudándose de alguna herramienta o bien manualmente por el programador.</p>
-<p><img alt="mapeo" src="../../img/ud2/3persistence.png" /></p>
+<p>👉 En resumen, JDBC actúa como un <strong>puente entre Java y la base de datos</strong>.</p>
+<hr />
+<h2 id="el-desfase-objetorelacional">⚖️ El desfase objeto–relacional</h2>
+<p>Las bases de datos relacionales no están diseñadas para almacenar objetos, ya que existe un desfase entre las construcciones típicas que proporciona el modelo relacional y las proporcionadas por la programación basada en objetos.</p>
+<p>Java trabaja con <strong>objetos</strong>, mientras que las bases de datos relacionales almacenan información en <strong>tablas</strong> con filas y columnas.<br />
+Este desajuste se conoce como <strong>desfase objeto–relacional (Object–Relational Impedance Mismatch)</strong>.</p>
+<p>Ejemplos de problemas comunes:</p>
+<ul>
+<li>🔄 Conversión entre <strong>tipos de datos</strong> (<code>int</code> ↔ <code>INTEGER</code>, <code>String</code> ↔ <code>VARCHAR</code>).  </li>
+<li>🔗 Representación de <strong>relaciones</strong> (1:N, N:M) en estructuras de objetos.  </li>
+<li>🧬 Manejo de <strong>herencia</strong> en BBDD que no la soportan de forma nativa.  </li>
+</ul>
+<p>👉 En esta UD lo resolveremos manualmente con JDBC. Más adelante veremos soluciones ORM como <strong>Hibernate</strong>.</p>
+<hr />
+<h2 id="protocolos-de-acceso-a-bases-de-datos">🌐 Protocolos de acceso a bases de datos</h2>
+<p>Los conectores JDBC utilizan <strong>protocolos de acceso estándar</strong> para comunicarse con el SGBD.<br />
+Una URL de conexión JDBC suele tener la siguiente forma:</p>
+<blockquote>
+<p>jdbc:<gestor>://<host>:<puerto>/<base_datos></p>
+</blockquote>
+<p>Ejemplo para MySQL en local:</p>
+<blockquote>
+<p>jdbc:mysql://localhost:3306/mi_bd</p>
+</blockquote>
+<hr />
+<h2 id="tipos-de-conectores-jdbc">🔧 Tipos de conectores JDBC</h2>
+<p>Un <strong>conector JDBC (driver)</strong> es una librería que implementa las interfaces de JDBC para un SGBD específico.<br />
+Cada gestor (MySQL, PostgreSQL, Oracle…) tiene su propio driver.</p>
+<p>Existen dos tipos principales:</p>
+<h3 id="drivers-embebidos-embedded">🗂️ Drivers embebidos (embedded)</h3>
+<ul>
+<li>La base de datos se ejecuta <strong>dentro de la aplicación</strong>.  </li>
+<li>Ejemplos: <strong>H2</strong>, <strong>Apache Derby</strong>.  </li>
+<li>✅ Ventajas: sencillos, portables, sin instalación aparte.  </li>
+<li>❌ Inconvenientes: poca escalabilidad, no aptos para producción masiva.  </li>
+</ul>
+<h3 id="drivers-independientes-cliente-servidor">🖥️ Drivers independientes (cliente-servidor)</h3>
+<ul>
+<li>Se conectan a un <strong>SGBD externo</strong>.  </li>
+<li>Ejemplos: <strong>MySQL</strong>, <strong>PostgreSQL</strong>, <strong>Oracle</strong>.  </li>
+<li>✅ Ventajas: potentes, multiusuario, adecuados para aplicaciones reales.  </li>
+<li>❌ Inconvenientes: requieren instalación y configuración del servidor.  </li>
+</ul>
+<hr />
 
 
   
