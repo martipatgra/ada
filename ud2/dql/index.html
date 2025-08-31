@@ -687,6 +687,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#statement-vs-preparedstatement-en-consultas-select" class="md-nav__link">
+    🛠️ Statement vs PreparedStatement en consultas SELECT
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Statement vs PreparedStatement en consultas SELECT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statement" class="md-nav__link">
+    📄 Statement
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparedstatement" class="md-nav__link">
+    🔒 PreparedStatement
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#resumen" class="md-nav__link">
     📌 Resumen
   </a>
@@ -1128,6 +1155,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#statement-vs-preparedstatement-en-consultas-select" class="md-nav__link">
+    🛠️ Statement vs PreparedStatement en consultas SELECT
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Statement vs PreparedStatement en consultas SELECT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statement" class="md-nav__link">
+    📄 Statement
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparedstatement" class="md-nav__link">
+    🔒 PreparedStatement
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#resumen" class="md-nav__link">
     📌 Resumen
   </a>
@@ -1247,6 +1301,33 @@ Esto permite trabajar de forma más natural con la información.</p>
 <span class="linenos" data-linenos="20 "></span>
 <span class="linenos" data-linenos="21 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Alumnos cargados: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lista</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
 </code></pre></div>
+<hr />
+<h2 id="statement-vs-preparedstatement-en-consultas-select">🛠️ Statement vs PreparedStatement en consultas SELECT</h2>
+<p>En las consultas DQL (<code>SELECT</code>) se pueden usar tanto <code>Statement</code> como <code>PreparedStatement</code>, pero presentan diferencias importantes:</p>
+<h3 id="statement">📄 Statement</h3>
+<ul>
+<li>Adecuado para consultas <strong>simples y estáticas</strong>.  </li>
+<li>Ejemplo:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM alumnos&quot;</span><span class="p">);</span>
+</code></pre></div></li>
+<li>✅ Ventaja: sencillo de usar en pruebas o consultas fijas.</li>
+<li>❌ Inconveniente: vulnerable a SQL Injection si concatenamos parámetros en la cadena SQL.</li>
+</ul>
+<h2 id="preparedstatement">🔒 PreparedStatement</h2>
+<ul>
+<li>Recomendado para consultas con parámetros dinámicos.</li>
+<li>Ejemplo:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT * FROM alumnos WHERE edad &gt; ?&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">ps</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ps</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">();</span>
+</code></pre></div></li>
+<li>✅ Ventajas:</li>
+<li>Previene ataques de SQL Injection.</li>
+<li>Mejor rendimiento en consultas repetidas (se precompila en el SGBD).</li>
+<li>Código más claro y mantenible.</li>
+</ul>
 <hr />
 <h2 id="resumen">📌 Resumen</h2>
 <ul>
