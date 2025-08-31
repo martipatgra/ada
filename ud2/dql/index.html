@@ -677,6 +677,26 @@
     🔄 Tipos de cursores
   </a>
   
+    <nav class="md-nav" aria-label="🔄 Tipos de cursores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forward-only-por-defecto" class="md-nav__link">
+    Forward-only (por defecto)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scrollable-bidireccional" class="md-nav__link">
+    Scrollable (bidireccional)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1145,6 +1165,26 @@
     🔄 Tipos de cursores
   </a>
   
+    <nav class="md-nav" aria-label="🔄 Tipos de cursores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forward-only-por-defecto" class="md-nav__link">
+    Forward-only (por defecto)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scrollable-bidireccional" class="md-nav__link">
+    Scrollable (bidireccional)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1242,15 +1282,13 @@ Permite recorrer fila a fila los registros devueltos por la consulta y acceder a
 <h2 id="tipos-de-cursores">🔄 Tipos de cursores</h2>
 <p>El <code>ResultSet</code> se comporta como un cursor que recorre los resultados.<br />
 Existen distintos tipos según cómo se puedan mover:</p>
+<h3 id="forward-only-por-defecto"><strong>Forward-only (por defecto)</strong></h3>
 <ul>
-<li><strong>Forward-only (por defecto)</strong>  </li>
 <li>Solo permite avanzar hacia adelante (<code>next()</code>).  </li>
-<li>
-<p>Es el más rápido y ligero.  </p>
-</li>
-<li>
-<p><strong>Scrollable (bidireccional)</strong>  </p>
-</li>
+<li>Es el más rápido y ligero.  </li>
+</ul>
+<h3 id="scrollable-bidireccional"><strong>Scrollable (bidireccional)</strong></h3>
+<ul>
 <li>Permite moverse hacia adelante y atrás (<code>next()</code>, <code>previous()</code>), ir a la primera o última fila (<code>first()</code>, <code>last()</code>), o saltar a una fila concreta (<code>absolute(n)</code>).  </li>
 <li>Se obtiene indicando el tipo al crear el <code>Statement</code>:</li>
 </ul>
