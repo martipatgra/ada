@@ -728,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../24transactions/" class="md-nav__link">
+      <a href="../24transactions.md" class="md-nav__link">
         2.8.- Gestión de transacciones en JDBC
       </a>
     </li>
@@ -1196,7 +1196,7 @@ Las sentencias más importantes son:</p>
 <span class="linenos" data-linenos=" 9 "></span><span class="w">                     </span><span class="s">&quot;nombre VARCHAR(50),&quot;</span><span class="w"> </span><span class="o">+</span>
 <span class="linenos" data-linenos="10 "></span><span class="w">                     </span><span class="s">&quot;edad INT)&quot;</span><span class="p">;</span>
 <span class="linenos" data-linenos="11 "></span>
-<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
 <span class="linenos" data-linenos="13 "></span><span class="w">             </span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="14 "></span>
 <span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="n">st</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
