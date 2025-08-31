@@ -41,7 +41,7 @@ public class CrearTabla {
                      "nombre VARCHAR(50)," +
                      "edad INT)";
 
-        try (Connection con = DriverManager.getConnection(url, user, password);
+        try (final Connection con = DriverManager.getConnection(url, user, password);
              Statement st = con.createStatement()) {
 
             st.executeUpdate(sql);

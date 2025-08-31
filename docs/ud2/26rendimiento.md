@@ -1,88 +1,160 @@
-# 🧠 Mejora del rendimiento
+# 🧠 Mejora del rendimiento y buenas prácticas
 
-Otro aspecto importante que mide la calidad de las aplicaciones es la **eficiencia** con la que se consigue comunicar con el SGBD. Para **optimizar** la conexión es importante reconocer qué procesos pueden actuar de cuello de botella y bajo qué circunstancias o qué otras agilizan las respuestas de los SGBD.
+Optimizar el acceso a BD no va solo de “hacer menos queries”, sino de **gestionar bien las conexiones** y **ejecutar SQL eficientemente**. Estos son los puntos clave:
 
-1.  En primer lugar, {++analizaremos la petición de conexión++} a un SGBD porque se trata de un proceso costoso pero inevitable que hay que considerar.
+---
 
-2.  En segundo lugar, {++estudiaremos las sentencias predefinidas (`PreparedStatement`)++}, porqué su uso facilita la creación de datos clave e índices temporales de modo que sea posible anticiparse a la demanda o disponer de los datos de forma mucho más rápida.
+## 🔌 Conexión: ¿singleton o pool?
 
-## 🪐 Ciclo de vida de una conexión
+🔹 Singleton  
+- Patrón de diseño que asegura que solo exista **una instancia** de una clase en toda la aplicación.
 
-El establecimiento de una conexión es un procedimiento bastante lento, tanto en la parte cliente como la parte servidor. En la parte cliente, `DriverManager` debe descubrir el controlador correcto de entre todos los que tenga que gestionar. La mayoría de veces las aplicaciones trabajarán sólo con un único controlador, pero hay que tener en cuenta que `DriverManager` no conoce a priori qué URL de conexión corresponde a cada controlador, y para averiguarlo envía una petición de conexión a cada controlador que tenga registrado, el controlador que no le devuelve error será el correcto.
+🔹 Pool de conexiones  
+- Conjunto de **múltiples conexiones abiertas** y gestionadas por un `DataSource`.
 
-En el lado servidor, se creará un contexto específico y se habilitarán un conjunto de recursos para cada cliente conectado. Es decir, que durante la petición de conexión del SGBD debe gastar un tiempo considerable antes de no dejar operativa la comunicación cliente-servidor.
+- ❌ **Evita un `Connection` “singleton”** en aplicaciones con concurrencia:
+    - Una `Connection` **no es thread-safe** → cuellos de botella y errores.
+    - Punto único de fallo (si cae, cae todo).
+    - Conexiones largas pueden caducar o quedar “colgadas”.
 
-Este elevado gasto de tiempo concentrado en el momento de la petición de conexión nos hace plantear si podemos considerar ineficiente abrir y cerrar la conexión cada vez que tengamos que ejecutar una sentencia SQL, como hemos hecho hasta ahora. Desafortunadamente no hay una única respuesta, sino que depende de la frecuencia de uso de la conexión y el número de conexiones contra un mismo SGBD coexistiendo al mismo tiempo.
+- ✅ **Usa un *pool de conexiones*** (`DataSource`) en su lugar:
+    - Reutiliza conexiones abiertas (muy rápido).
+    - Gestiona caducidad, validación, tamaño del pool y timeouts.
+    - Ideal tanto para apps de escritorio con cierta concurrencia como para aplicaciones web.
 
-![jdbc](../img/ud2/5jdbc.png)
-
-Como en todo, se trata de encontrar {==el punto de equilibrio entre la cantidad de recursos empleados por conexión y la rentabilidad que se saca en mantenerlas abiertas==}. 
-
-* Si el número de clientes, y por tanto de conexiones, es bajo y la frecuencia de uso es alta, será preferible mantener las conexiones abiertas mucho tiempo. 
-
-* Por el contrario, si el número de conexiones es muy alto y el uso infrecuente, lo que será preferible será abrir y cerrar la conexión cada vez que se necesite. 
-
-Mientras tanto, habrá una multitud de casos en que la solución consistirá en mantener las conexiones abiertas, pero no permanentemente. Se puede dar **un tiempo de vida a cada conexión**, o bien cerrarlas después de restar inactiva una cantidad determinada de tiempo, o se puede usar el criterio de **mantener un número máximo de conexiones abiertas**, cerrando las más antiguas o las más inactivas cuando se sobrepase el límite.
-
-!!! note "😶‍🌫️ Nota"
-    Por otra parte, hay que tener en cuenta también que una misma aplicación puede trabajar con varias conexiones simultáneamente para incrementar la eficiencia. Cada conexión abre un hilo de ejecución independiente, por lo que es posible el envío simultáneo de peticiones.
-
-## ⚡ Sentencias predefinidas
-
-**`PreparedStatement`** presenta ventajas sobre su antecesor **`Statement`** cuando tengamos que trabajar con sentencias que haya que ejecutar varias veces. 
-
-| ⭐Statement⭐                                                                    | ⭐PreparedStatement⭐                                                                            |
-|------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| Statement is usually parsed and executed each time.                          | PreparedStatement is parsed once and executed with different parameters repeatedly.          |
-| A statement is a static Sql statement.It does not support parameters.        | A PreparedStatement is a dynamic Sql statement.It does supports parameters.                  |
-| It is slower because every time the statements get parsed and executed.      | This is faster because this is precompiled once and gets executed with different parameters. |
-| Statement verifies metadata against database everytime.                      | PreparedStatement verifies metadata against database only once.                              |
-| If we want to execute sql statement once it is recommended to use statement. | If we want to execute sql statements repeatedly it is recommended to use PreparedStatement.  |
-
-La razón es que cualquier sentencia SQL, cuando se envía el SGBD será compilada antes de ser ejecutada.
-Usando un objeto `Statement`, cada vez que hacemos una ejecución de una sentencia, ya sea vía executeUpdate o bien vía executeQuery, el SGBD la compilará, ya que le llegará en forma de cadena de caracteres.
-
-En cambio, al `PreparedStament` la sentencia nunca varía y por lo tanto se puede compilar y almacenar dentro del mismo objeto, por lo que las siguientes veces que se ejecute no habrá que compilarla. Esto reducirá sensiblemente el tiempo de ejecución. La parametrización, además, ayuda a crear sentencias muy genéricas que se puedan reutilizar fácilmente.
-
-En algunos sistemas gestores, además, usar `PreparedStatement` puede llegar a suponer más ventajas, ya que utilizan la secuencia de bytes de la sentencia para detectar si se trata de una sentencia nueva o ya se ha servido con anterioridad. De esta manera se propicia que el sistema almacene las respuestas en la caché, de manera que se puedan entregar de forma más rápida.
-
-!!! important "Important 🤔"
-    The use of a `Statement` in JDBC should be 100% localized to being used for DDL (ALTER, CREATE, GRANT, etc) as these are the only statement types that cannot accept BIND VARIABLES. `PreparedStatements` or `CallableStatements` should be used for EVERY OTHER type of statement (DML, Queries). As these are the statement types that accept bind variables.
-
-    This is a fact, a rule, a law -- **use prepared statements EVERYWHERE. Use STATEMENTS almost no where**.
-
-### 📝 Ejemplos de problemas con Statement
-
-- [x] 1. `Statement` acepta cadenas como consultas SQL. Por lo tanto, el código se vuelve menos legible cuando concatenamos cadenas SQL:
+### Ejemplo con HikariCP (recomendado)
 
 ```java
-public void insert(PersonEntity personEntity) {
-    String query = "INSERT INTO persons(id, name, age, email) VALUES(" + personEntity.getId() 
-                    + ", '" + personEntity.getName() + ", '" + personEntity.getAge() 
-                    + ", '" + personEntity.getEmail() + "')";
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+import javax.sql.DataSource;
 
-    Statement statement = connection.createStatement();
-    statement.executeUpdate(query);
+public final class DataSourceSingleton {
+    private static final HikariDataSource ds;
+
+    static {
+        HikariConfig cfg = new HikariConfig();
+        cfg.setJdbcUrl("jdbc:mysql://localhost:3306/severo?useSSL=false");
+        cfg.setUsername("patricia");
+        cfg.setPassword("marti");
+
+        // Configuración del pool
+        cfg.setMaximumPoolSize(10);
+        cfg.setMinimumIdle(2);
+        cfg.setConnectionTimeout(10000); // ms
+        cfg.setIdleTimeout(600000);      // ms
+        cfg.setMaxLifetime(1800000);     // ms
+
+        ds = new HikariDataSource(cfg);
+    }
+
+    private DataSourceSingleton() {}
+
+    public static DataSource getDataSource() { return ds; }
 }
 ```
 
-- [x] 2. Es vulnerable a la **inyección de SQL**. 
-
+Uso:
 ```java
-public void check(String name) {
-    String query = "SELECT * FROM users WHERE name = '" + name + "';";
+try (Cfinal onnection con = DataSourceSingleton.getDataSource().getConnection();
+     PreparedStatement ps = con.prepareStatement("SELECT id, user_name FROM login WHERE id < ?")) {
 
-    Statement statement = connection.createStatement();
-    statement.executeUpdate(query);
+    ps.setInt(1, 10);
+    try (ResultSet rs = ps.executeQuery()) {
+        while (rs.next()) {
+            System.out.println(rs.getInt("id") + " - " + rs.getString("user_name"));
+        }
+    }
 }
 ```
 
-Si un usuario malintencionado escribe como nombre de usuario a consultar: 
+---
 
-> **`Alicia'; DROP TABLE usuarios; SELECT * FROM datos WHERE nombre LIKE '%`**
+### 📦 ¿Cómo añadir HikariCP?
 
-Se generaría la siguiente consulta SQL, (el color verde es lo que pretende el programador, el azul es el dato, y el rojo, el código SQL inyectado):
+HikariCP no forma parte de Java SE, hay que añadirlo como dependencia externa.
 
-![jdbc](../img/ud2/7inyection.png)
+#### Con Maven
+```xml
+<dependency>
+    <groupId>com.zaxxer</groupId>
+    <artifactId>HikariCP</artifactId>
+    <version>5.1.0</version>
+</dependency>
+```
 
-En la base de datos se ejecutaría la consulta en el orden dado, se seleccionarían todos los registros con el nombre 'Alicia', se borraría la tabla 'usuarios' y finalmente se seleccionaría toda la tabla "datos", que no debería estar disponible para los usuarios web comunes.'
+#### Con Gradle
+```gradle
+implementation 'com.zaxxer:HikariCP:5.1.0'
+```
+
+#### Manualmente
+- Descargar el `.jar` de [Maven Central](https://mvnrepository.com/artifact/com.zaxxer/HikariCP).  
+- Añadirlo al **classpath** del proyecto en IntelliJ/Eclipse.  
+- También se necesita el **driver JDBC** de la BD (ej: `mysql-connector-j`).
+
+---
+
+## 🧵 Multihilo y conexiones
+
+- Un **hilo ≠ una conexión fija**. Pide la conexión al pool **cuando la necesites** y ciérrala lo antes posible.  
+- No compartas `Connection`, `Statement` o `ResultSet` entre hilos.  
+- Mantén las **transacciones cortas** para reducir bloqueos.
+
+---
+
+## ⚙️ PreparedStatement y caché
+
+- Usa `PreparedStatement` para casi todo tipo de SQL (también `SELECT`).  
+- Previene **SQL Injection** y mejora el rendimiento gracias al **plan cache** del SGBD.
+- Activa la caché de prepareds en MySQL con:  
+  - `cachePrepStmts=true&prepStmtCacheSize=256&prepStmtCacheSqlLimit=2048`  
+
+---
+
+## 🚀 Inserciones masivas con batch
+
+Para grandes volúmenes de datos, agrupa operaciones con `addBatch()`:
+
+```java
+String sql = "INSERT INTO login(user_name, password) VALUES (?, ?)";
+try (final Connection con = DataSourceSingleton.getDataSource().getConnection();
+     PreparedStatement ps = con.prepareStatement(sql)) {
+
+    con.setAutoCommit(false);
+    for (Login l : lista) {
+        ps.setString(1, l.getUsername());
+        ps.setString(2, l.getPassword());
+        ps.addBatch();
+    }
+    ps.executeBatch(); // 🚀 se envía todo junto en un lote
+    con.commit();
+}
+```
+
+---
+
+## 🔒 Transacciones
+
+- Desactiva `autoCommit` solo cuando necesites agrupar operaciones.  
+- Confirma con `commit()` y revierte con `rollback()` en caso de error.  
+- Ejemplo:
+```java
+con.setAutoCommit(false);
+try {
+    // operaciones SQL
+    con.commit();
+} catch (SQLException e) {
+    con.rollback();
+}
+```
+
+---
+
+## 🧹 Otras buenas prácticas
+
+- Selecciona solo las columnas necesarias (`SELECT columna1, columna2`).
+- Usa índices adecuados en el SGBD.
+- Define `setQueryTimeout` para queries largas.
+- Cierra siempre recursos en orden: `ResultSet` → `Statement` → `Connection`. Usa `try-with-resources`.
+

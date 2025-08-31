@@ -103,7 +103,7 @@ Algunos de sus métodos más importantes son:
 - `.getNextException()` → Permite recorrer la cadena de excepciones encadenadas.  
 
 ```java
-try (Connection con = DriverManager.getConnection(url, user, password);
+try (final Connection con = DriverManager.getConnection(url, user, password);
      Statement st = con.createStatement()) {
 
     ResultSet rs = st.executeQuery("SELECT * FROM tabla_inexistente");
@@ -155,7 +155,7 @@ public class CierreRecursos {
         String user = "root";
         String password = "1234";
 
-        try (Connection con = DriverManager.getConnection(url, user, password);
+        try (final Connection con = DriverManager.getConnection(url, user, password);
              Statement st = con.createStatement();) {//al cerrar el Statement se cierra automáticamente el ResultSet
             
             ResultSet rs = st.executeQuery("SELECT id, nombre FROM alumnos");

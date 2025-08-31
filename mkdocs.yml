@@ -24,8 +24,8 @@ nav:
       - 2.5.- Modificación de datos con JDBC (DML): ud2/dml.md
       - 2.6.- Consultas y manipulación de resultados con JDBC (DQL): ud2/dql.md
       - 2.7.- Procedimientos almacenados y CallableStatement: ud2/procedures.md
-      - 2.8.- Transacciones: ud2/24transactions.md
-      - 2.9.- Mejora del rendimiento: ud2/26rendimiento.md
+      - 2.8.- Gestión de transacciones en JDBC: ud2/transactions.md
+      - 2.9.- Mejora del rendimiento y buenas prácticas: ud2/26rendimiento.md
       - 2.10.- Estructura de los proyectos: ud2/27projectstructure.md
     - 3.- ORM con Hibernate y JPA:
       - 3.1.- Herramientas ORM: ud3/31mapeo.md

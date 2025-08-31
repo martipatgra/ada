@@ -27,7 +27,7 @@ Ejemplo:
 ```java
 String sql = "SELECT id, nombre, edad FROM alumnos";
 
-try (Connection con = DriverManager.getConnection(url, user, password);
+try (final Connection con = DriverManager.getConnection(url, user, password);
      Statement st = con.createStatement();
      ResultSet rs = st.executeQuery(sql)) {
 
@@ -78,7 +78,7 @@ List<Alumno> lista = new ArrayList<>();
 
 String sql = "SELECT id, nombre, edad FROM alumnos";
 
-try (Connection con = DriverManager.getConnection(url, user, password);
+try (final Connection con = DriverManager.getConnection(url, user, password);
      Statement st = con.createStatement();
      ResultSet rs = st.executeQuery(sql)) {
 

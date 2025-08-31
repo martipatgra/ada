@@ -21,14 +21,15 @@ DELETE FROM alumnos WHERE id = 1;
 
 ---
 
-## 💻 Uso con Statement
+## 💻 Uso con Statement (No recomendado en DML)
 
-Podemos ejecutar sentencias DML en Java con el método `executeUpdate()` de la interfaz `Statement`. 
+Podemos ejecutar sentencias DML en Java con el método `executeUpdate()` de la interfaz `Statement`. Pero no es muy recomendable.
+Su uso se ceñiría solamente para consultas estáticas a las que no se les pasa ningún parámetro.
 
 Ejemplo:
 
 ```java
-try (Connection con = DriverManager.getConnection(url, user, password);
+try (final Connection con = DriverManager.getConnection(url, user, password);
      Statement st = con.createStatement()) {
 
     String sql = "INSERT INTO alumnos (id, nombre, edad) VALUES (2, 'Luis', 22)";
@@ -55,7 +56,7 @@ Ejemplo:
 ```java
 String sql = "INSERT INTO alumnos (id, nombre, edad) VALUES (?, ?, ?)";
 
-try (Connection con = DriverManager.getConnection(url, user, password);
+try (final Connection con = DriverManager.getConnection(url, user, password);
      PreparedStatement ps = con.prepareStatement(sql)) {
 
     ps.setInt(1, 3);
@@ -72,7 +73,7 @@ try (Connection con = DriverManager.getConnection(url, user, password);
 
 ---
 
-## 🔒 Prevención de SQL Injection
+### 🔒 Prevención de SQL Injection
 
 El uso de `PreparedStatement` es la mejor práctica para prevenir **SQL Injection**.  
 Ejemplo de riesgo con `Statement`:
@@ -98,6 +99,29 @@ try (PreparedStatement ps = con.prepareStatement(sql)) {
 ```
 
 En este caso, los parámetros se envían al SGBD de forma segura, sin alterar la estructura de la sentencia.
+
+---
+
+### Otro Ejemplo SQL Inyection
+
+```java
+public void check(String name) {
+    String query = "SELECT * FROM users WHERE name = '" + name + "';";
+
+    Statement statement = connection.createStatement();
+    statement.executeUpdate(query);
+}
+```
+
+Si un usuario malintencionado escribe como nombre de usuario a consultar: 
+
+> **`Alicia'; DROP TABLE usuarios; SELECT * FROM datos WHERE nombre LIKE '%`**
+
+Se generaría la siguiente consulta SQL, (el color verde es lo que pretende el programador, el azul es el dato, y el rojo, el código SQL inyectado):
+
+![jdbc](../img/ud2/7inyection.png)
+
+En la base de datos se ejecutaría la consulta en el orden dado, se seleccionarían todos los registros con el nombre 'Alicia', se borraría la tabla 'usuarios' y finalmente se seleccionaría toda la tabla "datos", que no debería estar disponible para los usuarios web comunes.'
 
 ---
 
