@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../24transactions/">
+        <link rel="prev" href="../dql/">
       
       
-        <link rel="next" href="../26rendimiento/">
+        <link rel="next" href="../24transactions/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>2.8.- Procedimientos y funciones almacenadas - Acceso a Datos</title>
+        <title>2.7.- Procedimientos almacenados y CallableStatement - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#procedimientos-y-funciones-almacenadas" class="md-skip">
+        <a href="#procedimientos-almacenados-y-callablestatement" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.8.- Procedimientos y funciones almacenadas
+              2.7.- Procedimientos almacenados y CallableStatement
             
           </span>
         </div>
@@ -555,7 +555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../21persistencia/" class="md-nav__link">
+      <a href="../persistencia/" class="md-nav__link">
         2.1.- Persistencia de la información
       </a>
     </li>
@@ -569,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../22mapeo/" class="md-nav__link">
+      <a href="../mapeo/" class="md-nav__link">
         2.2.- Introducción a JDBC y conectores
       </a>
     </li>
@@ -583,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../23conectores/" class="md-nav__link">
+      <a href="../conectores/" class="md-nav__link">
         2.3.- Fundamentos de JDBC
       </a>
     </li>
@@ -637,20 +637,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../24transactions/" class="md-nav__link">
-        2.7.- Transacciones
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -663,12 +649,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          2.8.- Procedimientos y funciones almacenadas
+          2.7.- Procedimientos almacenados y CallableStatement
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        2.8.- Procedimientos y funciones almacenadas
+        2.7.- Procedimientos almacenados y CallableStatement
       </a>
       
         
@@ -687,15 +673,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#procedimientos-almacenados" class="md-nav__link">
-    📁 Procedimientos almacenados
+  <a href="#que-es-un-procedimiento-almacenado" class="md-nav__link">
+    📘 ¿Qué es un procedimiento almacenado?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#funciones" class="md-nav__link">
-    📁 Funciones
+  <a href="#ejecucion-en-java-con-callablestatement" class="md-nav__link">
+    💻 Ejecución en Java con CallableStatement
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 Ejecución en Java con CallableStatement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametros-de-entrada-y-salida" class="md-nav__link">
+    🔄 Parámetros de entrada y salida
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    📌 Resumen
   </a>
   
 </li>
@@ -704,6 +710,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24transactions/" class="md-nav__link">
+        2.8.- Transacciones
+      </a>
     </li>
   
 
@@ -1079,15 +1099,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#procedimientos-almacenados" class="md-nav__link">
-    📁 Procedimientos almacenados
+  <a href="#que-es-un-procedimiento-almacenado" class="md-nav__link">
+    📘 ¿Qué es un procedimiento almacenado?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#funciones" class="md-nav__link">
-    📁 Funciones
+  <a href="#ejecucion-en-java-con-callablestatement" class="md-nav__link">
+    💻 Ejecución en Java con CallableStatement
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 Ejecución en Java con CallableStatement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametros-de-entrada-y-salida" class="md-nav__link">
+    🔄 Parámetros de entrada y salida
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    📌 Resumen
   </a>
   
 </li>
@@ -1108,43 +1148,85 @@
 
 
 
-<h1 id="procedimientos-y-funciones-almacenadas">📘Procedimientos y funciones almacenadas</h1>
-<p>Un procedimiento almacenado es un procedimiento o subprograma que está almacenado en la base de datos.
-Muchos sistemas gestores de bases de datos los soportan, por ejemplo: MySQL, Oracle, etc.</p>
-<p>Además, estos procedimientos suelen ser de dos clases:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Procedimientos almacenados.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Funciones, las cuales devuelven un valor que se puede emplear en otras sentencias SQL.</li>
+<h1 id="procedimientos-almacenados-y-callablestatement">📘 Procedimientos almacenados y CallableStatement</h1>
+<h2 id="que-es-un-procedimiento-almacenado">📘 ¿Qué es un procedimiento almacenado?</h2>
+<p>Un <strong>procedimiento almacenado</strong> es un conjunto de sentencias SQL que se guarda en la base de datos y puede ejecutarse cuando se necesite.<br />
+Se utiliza para:</p>
+<ul>
+<li>Reutilizar lógica de negocio en el servidor.  </li>
+<li>Mejorar el rendimiento (menos tráfico entre aplicación y BD).  </li>
+<li>Centralizar validaciones o cálculos.  </li>
 </ul>
-<h2 id="procedimientos-almacenados">📁 Procedimientos almacenados</h2>
-<p>La ejecución de procedimientos almacenados sigue la misma estructura que cualquiera de las sentencias SQL de los ejemplos anteriores, con la excepción de que usaremos la clase <code>CallableStatement</code> para representar al procedimiento y el método <code>execute()</code> de la misma para ejecutarlo.</p>
-<p><code>CallableStatement</code> extiende de <code>PreparedStatement</code>.</p>
-<div class="highlight"><span class="filename">Procedure.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CallableStatement</span><span class="w"> </span><span class="n">stmt</span><span class="o">=</span><span class="n">con</span><span class="p">.</span><span class="na">prepareCall</span><span class="p">(</span><span class="s">&quot;{call insertUser(?,?)}&quot;</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos="2 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1011</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos="3 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s">&quot;Patricia&quot;</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos="4 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w"> </span>
+<p>Ejemplo en MySQL:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">obtenerAlumnosMayores</span><span class="p">(</span><span class="k">IN</span><span class="w"> </span><span class="n">edad_min</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">BEGIN</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumnos</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">edad_min</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span><span class="k">END</span><span class="w"> </span><span class="o">//</span>
+<span class="linenos" data-linenos="6 "></span><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
 </code></pre></div>
-<h2 id="funciones">📁 Funciones</h2>
-<p>En el caso de las funciones almacenadas, para su ejecución seguiremos la misma estructura que hemos visto en el caso de las consultas SQL para el caso concreto de las funciones agregadas, ya que nuestras funciones nos devolverán siempre un solo valor (o null en el caso de que no devuelvan nada).</p>
-<div class="highlight"><span class="filename">Function.sql</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">sum4</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 2 "></span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">number</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">number</span><span class="p">)</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 3 "></span><span class="k">return</span><span class="w"> </span><span class="nb">number</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 4 "></span><span class="k">is</span><span class="w">   </span>
-<span class="linenos" data-linenos=" 5 "></span><span class="n">temp</span><span class="w"> </span><span class="nb">number</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 6 "></span><span class="k">begin</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 7 "></span><span class="n">temp</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="n">n1</span><span class="o">+</span><span class="n">n2</span><span class="p">;</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 8 "></span><span class="k">return</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 9 "></span><span class="k">end</span><span class="p">;</span><span class="w">  </span>
-<span class="linenos" data-linenos="10 "></span><span class="o">/</span><span class="w">  </span>
+<hr />
+<h2 id="ejecucion-en-java-con-callablestatement">💻 Ejecución en Java con <code>CallableStatement</code></h2>
+<p>Para invocar un procedimiento almacenado en JDBC se utiliza la interfaz <strong><code>CallableStatement</code></strong>.<br />
+Se obtiene a través de la conexión con el método <code>prepareCall()</code>.
+Ejemplo básico:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;{ call obtenerAlumnosMayores(?) }&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">     </span><span class="n">CallableStatement</span><span class="w"> </span><span class="n">cs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareCall</span><span class="p">(</span><span class="n">sql</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="c1">// Parámetro de entrada</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">cs</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="c1">// Ejecutar procedimiento</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">();</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">&quot;edad&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="18 "></span><span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Sum.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CallableStatement</span><span class="w"> </span><span class="n">stmt</span><span class="o">=</span><span class="n">con</span><span class="p">.</span><span class="na">prepareCall</span><span class="p">(</span><span class="s">&quot;{?= call sum4(?,?)}&quot;</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos="2 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos="3 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">43</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos="4 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">registerOutParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Types</span><span class="p">.</span><span class="na">INTEGER</span><span class="p">);</span><span class="w">  </span><span class="c1">//valor de retorno</span>
-<span class="linenos" data-linenos="5 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
-<span class="linenos" data-linenos="6 "></span>
-<span class="linenos" data-linenos="7 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">stmt</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w">  </span>
+<hr />
+<h3 id="parametros-de-entrada-y-salida">🔄 Parámetros de entrada y salida</h3>
+<p>Los procedimientos almacenados pueden tener <strong>parámetros de entrada (IN)</strong>, <strong>de salida (OUT)</strong> o ambos (<strong>INOUT</strong>).  </p>
+<p>Ejemplo de procedimiento con salida en MySQL:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">contarAlumnos</span><span class="p">(</span><span class="k">IN</span><span class="w"> </span><span class="n">edad_min</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="k">OUT</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">BEGIN</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumnos</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">edad_min</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span><span class="k">END</span><span class="w"> </span><span class="o">//</span>
+<span class="linenos" data-linenos="6 "></span><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
 </code></pre></div>
+<p>Uso en Java:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;{ call contarAlumnos(?, ?) }&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">     </span><span class="n">CallableStatement</span><span class="w"> </span><span class="n">cs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareCall</span><span class="p">(</span><span class="n">sql</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">cs</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span><span class="w"> </span><span class="c1">// Parámetro IN</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">cs</span><span class="p">.</span><span class="na">registerOutParameter</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Types</span><span class="p">.</span><span class="na">INTEGER</span><span class="p">);</span><span class="w"> </span><span class="c1">// Parámetro OUT</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="n">cs</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Número de alumnos mayores de 18: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">total</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="16 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="resumen">📌 Resumen</h2>
+<ul>
+<li>Los <strong>procedimientos almacenados</strong> permiten encapsular lógica SQL en la base de datos.  </li>
+<li>Se ejecutan desde Java con <code>CallableStatement</code>.  </li>
+<li>Pueden tener parámetros de <strong>entrada (IN)</strong>, <strong>salida (OUT)</strong> o ambos (<strong>INOUT</strong>).  </li>
+<li>Son útiles para mejorar el rendimiento y la reutilización de código.  </li>
+</ul>
+<hr />
 
 
   
