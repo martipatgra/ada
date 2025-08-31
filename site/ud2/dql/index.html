@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../21persistencia/">
+        <link rel="prev" href="../dml/">
       
       
-        <link rel="next" href="../23conectores/">
+        <link rel="next" href="../procedures/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>2.2.- Desfase objeto-relacional - Acceso a Datos</title>
+        <title>2.6.- Consultas y manipulación de resultados con JDBC (DQL) - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#desfase-objeto-relacional" class="md-skip">
+        <a href="#consultas-y-manipulacion-de-resultados-con-jdbc-dql" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.2.- Desfase objeto-relacional
+              2.6.- Consultas y manipulación de resultados con JDBC (DQL)
             
           </span>
         </div>
@@ -245,14 +245,14 @@
       
       
         <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-          1.- Acceso a datos mediante ficheros [Actualizado Julio 25]
+          1.- Acceso a datos mediante ficheros
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          1.- Acceso a datos mediante ficheros [Actualizado Julio 25]
+          1.- Acceso a datos mediante ficheros
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -434,8 +434,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../../ud1/fileswalk/" class="md-nav__link">
+        1.3.- Recorrido de directorios con java.nio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../ud1/serialization/" class="md-nav__link">
-        1.3.- Lectura y escritura de objectos en Java
+        1.4.- Lectura y escritura de objectos en Java
       </a>
     </li>
   
@@ -449,7 +463,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/propertiesfile/" class="md-nav__link">
-        1.4.- Ficheros de propiedades en Java
+        1.5.- Ficheros de propiedades en Java
       </a>
     </li>
   
@@ -463,7 +477,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/jsonfiles/" class="md-nav__link">
-        1.5.- Ficheros JSON en Java
+        1.6.- Ficheros JSON en Java
       </a>
     </li>
   
@@ -477,7 +491,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/createjar/" class="md-nav__link">
-        1.6.- Crear un .jar
+        1.7.- Crear un .jar
       </a>
     </li>
   
@@ -491,7 +505,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/trywithresources/" class="md-nav__link">
-        1.7.- try-with-resources
+        1.8.- try-with-resources
       </a>
     </li>
   
@@ -541,8 +555,64 @@
   
   
     <li class="md-nav__item">
-      <a href="../21persistencia/" class="md-nav__link">
+      <a href="../persistencia/" class="md-nav__link">
         2.1.- Persistencia de la información
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapeo/" class="md-nav__link">
+        2.2.- Introducción a JDBC y conectores
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conectores/" class="md-nav__link">
+        2.3.- Fundamentos de JDBC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ddl/" class="md-nav__link">
+        2.4.- Definición de estructuras de BD y ejecución de sentencias DDL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dml/" class="md-nav__link">
+        2.5.- Modificación de datos con JDBC (DML)
       </a>
     </li>
   
@@ -565,12 +635,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          2.2.- Desfase objeto-relacional
+          2.6.- Consultas y manipulación de resultados con JDBC (DQL)
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        2.2.- Desfase objeto-relacional
+        2.6.- Consultas y manipulación de resultados con JDBC (DQL)
       </a>
       
         
@@ -589,8 +659,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mapeo-objeto-relacional" class="md-nav__link">
-    Mapeo objeto - relacional
+  <a href="#sentencias-select" class="md-nav__link">
+    📘 Sentencias SELECT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objeto-resultset" class="md-nav__link">
+    📊 Objeto ResultSet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-cursores" class="md-nav__link">
+    🔄 Tipos de cursores
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapeo-de-resultados-a-objetos" class="md-nav__link">
+    🧩 Mapeo de resultados a objetos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statement-vs-preparedstatement-en-consultas-select" class="md-nav__link">
+    🛠️ Statement vs PreparedStatement en consultas SELECT
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Statement vs PreparedStatement en consultas SELECT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statement" class="md-nav__link">
+    📄 Statement
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparedstatement" class="md-nav__link">
+    🔒 PreparedStatement
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    📌 Resumen
   </a>
   
 </li>
@@ -610,8 +735,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../23conectores/" class="md-nav__link">
-        2.3.- Manejo de conectores - JDBC
+      <a href="../procedures/" class="md-nav__link">
+        2.7.- Procedimientos almacenados y CallableStatement
       </a>
     </li>
   
@@ -625,21 +750,7 @@
   
     <li class="md-nav__item">
       <a href="../24transactions/" class="md-nav__link">
-        2.4.- Transacciones
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../25procedures/" class="md-nav__link">
-        2.5.- Procedimientos y funciones almacenadas
+        2.8.- Transacciones
       </a>
     </li>
   
@@ -653,7 +764,7 @@
   
     <li class="md-nav__item">
       <a href="../26rendimiento/" class="md-nav__link">
-        2.6.- Mejora del rendimiento
+        2.9.- Mejora del rendimiento
       </a>
     </li>
   
@@ -667,7 +778,7 @@
   
     <li class="md-nav__item">
       <a href="../27projectstructure/" class="md-nav__link">
-        2.7.- Estructura de los proyectos
+        2.10.- Estructura de los proyectos
       </a>
     </li>
   
@@ -1016,8 +1127,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mapeo-objeto-relacional" class="md-nav__link">
-    Mapeo objeto - relacional
+  <a href="#sentencias-select" class="md-nav__link">
+    📘 Sentencias SELECT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objeto-resultset" class="md-nav__link">
+    📊 Objeto ResultSet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-cursores" class="md-nav__link">
+    🔄 Tipos de cursores
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapeo-de-resultados-a-objetos" class="md-nav__link">
+    🧩 Mapeo de resultados a objetos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statement-vs-preparedstatement-en-consultas-select" class="md-nav__link">
+    🛠️ Statement vs PreparedStatement en consultas SELECT
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Statement vs PreparedStatement en consultas SELECT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statement" class="md-nav__link">
+    📄 Statement
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparedstatement" class="md-nav__link">
+    🔒 PreparedStatement
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    📌 Resumen
   </a>
   
 </li>
@@ -1038,20 +1204,117 @@
 
 
 
-<h1 id="desfase-objeto-relacional">⛓️ Desfase objeto - relacional</h1>
-<p>Las bases de datos relacionales no están diseñadas para almacenar objetos, ya que existe un desfase entre las construcciones típicas que proporciona el modelo relacional y las proporcionadas por la programación basada en objetos.</p>
-<p>El desfase objeto-relacional consiste en la diferencia de aspectos que existen entre la programación orientada a objetos y la base de datos.</p>
-<p>Hay que recordar que el modelo relacional trata con relaciones y conjuntos y que, en las BD relacionales tenemos reglas de integridad:</p>
+<h1 id="consultas-y-manipulacion-de-resultados-con-jdbc-dql">🔎 Consultas y manipulación de resultados con JDBC (DQL)</h1>
+<h2 id="sentencias-select">📘 Sentencias SELECT</h2>
+<p>Las consultas de lectura en SQL se realizan mediante la sentencia <strong>SELECT</strong>.<br />
+Ejemplos:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumnos</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumnos</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">18</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumnos</span><span class="p">;</span>
+</code></pre></div>
+<p>En JDBC, las sentencias <code>SELECT</code> se ejecutan con el método <strong><code>executeQuery()</code></strong>, que devuelve un objeto <code>ResultSet</code>.</p>
+<hr />
+<h2 id="objeto-resultset">📊 Objeto ResultSet</h2>
+<p>El objeto <strong><code>ResultSet</code></strong> representa la tabla de resultados de una consulta SQL.<br />
+Permite recorrer fila a fila los registros devueltos por la consulta y acceder a las columnas por nombre o por índice.</p>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT id, nombre, edad FROM alumnos&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">     </span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">     </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="n">sql</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">&quot;edad&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">edad</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="17 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="tipos-de-cursores">🔄 Tipos de cursores</h2>
+<p>El <code>ResultSet</code> se comporta como un cursor que recorre los resultados.  </p>
+<p>Existen distintos tipos según cómo se puedan mover, pero nosotros usaremos el <strong>Forward-only (por defecto)</strong>:<br />
+- Solo permite avanzar hacia adelante (<code>next()</code>).<br />
+- Es el más rápido y ligero.</p>
+<h2 id="mapeo-de-resultados-a-objetos">🧩 Mapeo de resultados a objetos</h2>
+<p>En aplicaciones reales, los datos obtenidos con <code>ResultSet</code> suelen mapearse a <strong>objetos de Java</strong>.<br />
+Esto permite trabajar de forma más natural con la información.</p>
+<p>Ejemplo: mapeo a una clase <code>Alumno</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Alumno</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="c1">// Constructor, getters y setters...</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Uso en la consulta:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Alumno</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lista</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT id, nombre, edad FROM alumnos&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">     </span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">     </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="n">sql</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">Alumno</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Alumno</span><span class="p">();</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="na">setNombre</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="na">setEdad</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">&quot;edad&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="n">lista</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="19 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Alumnos cargados: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lista</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+</code></pre></div>
+<hr />
+<h2 id="statement-vs-preparedstatement-en-consultas-select">🛠️ Statement vs PreparedStatement en consultas SELECT</h2>
+<p>En las consultas DQL (<code>SELECT</code>) se pueden usar tanto <code>Statement</code> como <code>PreparedStatement</code>, pero presentan diferencias importantes:</p>
+<h3 id="statement">📄 Statement</h3>
 <ul>
-<li>Todas las tablas deben tener una clave primaria</li>
-<li>La clave primaria tiene que ser única y no puede ser NULL</li>
-<li>Para relacionar dos tablas usamos una foreign key</li>
+<li>Adecuado para consultas <strong>simples y estáticas</strong>.  </li>
+<li>Ejemplo:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM alumnos&quot;</span><span class="p">);</span>
+</code></pre></div></li>
+<li>✅ Ventaja: sencillo de usar en pruebas o consultas fijas.</li>
+<li>❌ Inconveniente: vulnerable a SQL Injection si concatenamos parámetros en la cadena SQL.</li>
 </ul>
-<p>Sin embargo, el modelo de Programación Orientada a Objetos trata con objetos y las asociaciones entre ellos. Por esta razón, el problema entre estos dos modelos surge en el momento de querer persistir los objetos.</p>
-<h2 id="mapeo-objeto-relacional">Mapeo objeto - relacional</h2>
-<p>Al trabajar con POO y BDR tenemos que estar continuamente gestionando los objetos para escribir la sentencia SQL, o recolectar todos los atributos para componer un objeto cuando leemos información desde la base de datos.</p>
-<p>A este conjunto de técnicas se le conoce como mapeo objeto-relacional. Y puede hacerse ayudándose de alguna herramienta o bien manualmente por el programador.</p>
-<p><img alt="mapeo" src="../../img/ud2/3persistence.png" /></p>
+<h2 id="preparedstatement">🔒 PreparedStatement</h2>
+<ul>
+<li>Recomendado para consultas con parámetros dinámicos.</li>
+<li>Ejemplo:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT * FROM alumnos WHERE edad &gt; ?&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">ps</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ps</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">();</span>
+</code></pre></div></li>
+<li>✅ Ventajas:</li>
+<li>Previene ataques de SQL Injection.</li>
+<li>Mejor rendimiento en consultas repetidas (se precompila en el SGBD).</li>
+<li>Código más claro y mantenible.</li>
+</ul>
+<hr />
+<h2 id="resumen">📌 Resumen</h2>
+<ul>
+<li>Las consultas SQL se realizan con <code>SELECT</code>.  </li>
+<li>En JDBC, se ejecutan con <code>executeQuery()</code>, que devuelve un <code>ResultSet</code>.  </li>
+<li><code>ResultSet</code> permite recorrer los registros y acceder a los valores por nombre o índice.  </li>
+<li>Los cursores pueden ser <strong>forward-only</strong> o <strong>scrollable</strong>.  </li>
+<li>Es buena práctica mapear los resultados a objetos Java para facilitar el manejo de datos en la aplicación.</li>
+</ul>
 
 
   

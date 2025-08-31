@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../24transactions/">
+        <link rel="prev" href="../conectores/">
       
       
-        <link rel="next" href="../26rendimiento/">
+        <link rel="next" href="../dml/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>2.5.- Procedimientos y funciones almacenadas - Acceso a Datos</title>
+        <title>2.4.- Definición de estructuras de BD y ejecución de sentencias DDL - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#procedimientos-y-funciones-almacenadas" class="md-skip">
+        <a href="#definicion-de-estructuras-de-bd-y-ejecucion-de-sentencias-ddl" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.5.- Procedimientos y funciones almacenadas
+              2.4.- Definición de estructuras de BD y ejecución de sentencias DDL
             
           </span>
         </div>
@@ -245,14 +245,14 @@
       
       
         <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-          1.- Acceso a datos mediante ficheros [Actualizado Julio 25]
+          1.- Acceso a datos mediante ficheros
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          1.- Acceso a datos mediante ficheros [Actualizado Julio 25]
+          1.- Acceso a datos mediante ficheros
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -434,8 +434,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../../ud1/fileswalk/" class="md-nav__link">
+        1.3.- Recorrido de directorios con java.nio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../ud1/serialization/" class="md-nav__link">
-        1.3.- Lectura y escritura de objectos en Java
+        1.4.- Lectura y escritura de objectos en Java
       </a>
     </li>
   
@@ -449,7 +463,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/propertiesfile/" class="md-nav__link">
-        1.4.- Ficheros de propiedades en Java
+        1.5.- Ficheros de propiedades en Java
       </a>
     </li>
   
@@ -463,7 +477,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/jsonfiles/" class="md-nav__link">
-        1.5.- Ficheros JSON en Java
+        1.6.- Ficheros JSON en Java
       </a>
     </li>
   
@@ -477,7 +491,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/createjar/" class="md-nav__link">
-        1.6.- Crear un .jar
+        1.7.- Crear un .jar
       </a>
     </li>
   
@@ -491,7 +505,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/trywithresources/" class="md-nav__link">
-        1.7.- try-with-resources
+        1.8.- try-with-resources
       </a>
     </li>
   
@@ -541,7 +555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../21persistencia/" class="md-nav__link">
+      <a href="../persistencia/" class="md-nav__link">
         2.1.- Persistencia de la información
       </a>
     </li>
@@ -555,8 +569,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../22mapeo/" class="md-nav__link">
-        2.2.- Desfase objeto-relacional
+      <a href="../mapeo/" class="md-nav__link">
+        2.2.- Introducción a JDBC y conectores
       </a>
     </li>
   
@@ -569,22 +583,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../23conectores/" class="md-nav__link">
-        2.3.- Manejo de conectores - JDBC
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../24transactions/" class="md-nav__link">
-        2.4.- Transacciones
+      <a href="../conectores/" class="md-nav__link">
+        2.3.- Fundamentos de JDBC
       </a>
     </li>
   
@@ -607,12 +607,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          2.5.- Procedimientos y funciones almacenadas
+          2.4.- Definición de estructuras de BD y ejecución de sentencias DDL
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        2.5.- Procedimientos y funciones almacenadas
+        2.4.- Definición de estructuras de BD y ejecución de sentencias DDL
       </a>
       
         
@@ -631,15 +631,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#procedimientos-almacenados" class="md-nav__link">
-    📁 Procedimientos almacenados
+  <a href="#sentencias-sql-ddl" class="md-nav__link">
+    📘 Sentencias SQL DDL
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#funciones" class="md-nav__link">
-    📁 Funciones
+  <a href="#ejecucion-en-java-con-statement" class="md-nav__link">
+    💻 Ejecución en Java con Statement
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-y-borrado-de-tablas-desde-java" class="md-nav__link">
+    🗑️ Creación y borrado de tablas desde Java
+  </a>
+  
+    <nav class="md-nav" aria-label="🗑️ Creación y borrado de tablas desde Java">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    📌 Resumen
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statement-vs-preparedstatement-en-ddl" class="md-nav__link">
+    🛠️ Statement vs PreparedStatement en DDL
   </a>
   
 </li>
@@ -659,8 +686,64 @@
   
   
     <li class="md-nav__item">
+      <a href="../dml/" class="md-nav__link">
+        2.5.- Modificación de datos con JDBC (DML)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dql/" class="md-nav__link">
+        2.6.- Consultas y manipulación de resultados con JDBC (DQL)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procedures/" class="md-nav__link">
+        2.7.- Procedimientos almacenados y CallableStatement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24transactions/" class="md-nav__link">
+        2.8.- Transacciones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../26rendimiento/" class="md-nav__link">
-        2.6.- Mejora del rendimiento
+        2.9.- Mejora del rendimiento
       </a>
     </li>
   
@@ -674,7 +757,7 @@
   
     <li class="md-nav__item">
       <a href="../27projectstructure/" class="md-nav__link">
-        2.7.- Estructura de los proyectos
+        2.10.- Estructura de los proyectos
       </a>
     </li>
   
@@ -1023,15 +1106,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#procedimientos-almacenados" class="md-nav__link">
-    📁 Procedimientos almacenados
+  <a href="#sentencias-sql-ddl" class="md-nav__link">
+    📘 Sentencias SQL DDL
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#funciones" class="md-nav__link">
-    📁 Funciones
+  <a href="#ejecucion-en-java-con-statement" class="md-nav__link">
+    💻 Ejecución en Java con Statement
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-y-borrado-de-tablas-desde-java" class="md-nav__link">
+    🗑️ Creación y borrado de tablas desde Java
+  </a>
+  
+    <nav class="md-nav" aria-label="🗑️ Creación y borrado de tablas desde Java">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    📌 Resumen
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statement-vs-preparedstatement-en-ddl" class="md-nav__link">
+    🛠️ Statement vs PreparedStatement en DDL
   </a>
   
 </li>
@@ -1052,43 +1162,75 @@
 
 
 
-<h1 id="procedimientos-y-funciones-almacenadas">📘Procedimientos y funciones almacenadas</h1>
-<p>Un procedimiento almacenado es un procedimiento o subprograma que está almacenado en la base de datos.
-Muchos sistemas gestores de bases de datos los soportan, por ejemplo: MySQL, Oracle, etc.</p>
-<p>Además, estos procedimientos suelen ser de dos clases:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Procedimientos almacenados.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Funciones, las cuales devuelven un valor que se puede emplear en otras sentencias SQL.</li>
+<h1 id="definicion-de-estructuras-de-bd-y-ejecucion-de-sentencias-ddl">🏗️ Definición de estructuras de BD y ejecución de sentencias DDL</h1>
+<h2 id="sentencias-sql-ddl">📘 Sentencias SQL DDL</h2>
+<p>El <strong>lenguaje de definición de datos (DDL)</strong> permite crear, modificar y eliminar la estructura de las bases de datos.<br />
+Las sentencias más importantes son:</p>
+<ul>
+<li><strong>CREATE</strong> → Crea bases de datos, tablas, índices o vistas.  </li>
+<li><strong>ALTER</strong> → Modifica estructuras existentes (añadir columnas, cambiar tipos, etc.).  </li>
+<li><strong>DROP</strong> → Elimina bases de datos u objetos (tablas, índices, vistas).  </li>
 </ul>
-<h2 id="procedimientos-almacenados">📁 Procedimientos almacenados</h2>
-<p>La ejecución de procedimientos almacenados sigue la misma estructura que cualquiera de las sentencias SQL de los ejemplos anteriores, con la excepción de que usaremos la clase <code>CallableStatement</code> para representar al procedimiento y el método <code>execute()</code> de la misma para ejecutarlo.</p>
-<p><code>CallableStatement</code> extiende de <code>PreparedStatement</code>.</p>
-<div class="highlight"><span class="filename">Procedure.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CallableStatement</span><span class="w"> </span><span class="n">stmt</span><span class="o">=</span><span class="n">con</span><span class="p">.</span><span class="na">prepareCall</span><span class="p">(</span><span class="s">&quot;{call insertUser(?,?)}&quot;</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos="2 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1011</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos="3 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s">&quot;Patricia&quot;</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos="4 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w"> </span>
-</code></pre></div>
-<h2 id="funciones">📁 Funciones</h2>
-<p>En el caso de las funciones almacenadas, para su ejecución seguiremos la misma estructura que hemos visto en el caso de las consultas SQL para el caso concreto de las funciones agregadas, ya que nuestras funciones nos devolverán siempre un solo valor (o null en el caso de que no devuelvan nada).</p>
-<div class="highlight"><span class="filename">Function.sql</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">sum4</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 2 "></span><span class="p">(</span><span class="n">n1</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">number</span><span class="p">,</span><span class="n">n2</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">number</span><span class="p">)</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 3 "></span><span class="k">return</span><span class="w"> </span><span class="nb">number</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 4 "></span><span class="k">is</span><span class="w">   </span>
-<span class="linenos" data-linenos=" 5 "></span><span class="n">temp</span><span class="w"> </span><span class="nb">number</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 6 "></span><span class="k">begin</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 7 "></span><span class="n">temp</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="n">n1</span><span class="o">+</span><span class="n">n2</span><span class="p">;</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 8 "></span><span class="k">return</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span><span class="w">  </span>
-<span class="linenos" data-linenos=" 9 "></span><span class="k">end</span><span class="p">;</span><span class="w">  </span>
-<span class="linenos" data-linenos="10 "></span><span class="o">/</span><span class="w">  </span>
-</code></pre></div>
-<div class="highlight"><span class="filename">Sum.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CallableStatement</span><span class="w"> </span><span class="n">stmt</span><span class="o">=</span><span class="n">con</span><span class="p">.</span><span class="na">prepareCall</span><span class="p">(</span><span class="s">&quot;{?= call sum4(?,?)}&quot;</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos="2 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos="3 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">43</span><span class="p">);</span><span class="w">  </span>
-<span class="linenos" data-linenos="4 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">registerOutParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Types</span><span class="p">.</span><span class="na">INTEGER</span><span class="p">);</span><span class="w">  </span><span class="c1">//valor de retorno</span>
-<span class="linenos" data-linenos="5 "></span><span class="n">stmt</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">alumnos</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">edad</span><span class="w"> </span><span class="nb">INT</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">);</span>
 <span class="linenos" data-linenos="6 "></span>
-<span class="linenos" data-linenos="7 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">stmt</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w">  </span>
+<span class="linenos" data-linenos="7 "></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">alumnos</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="linenos" data-linenos="8 "></span>
+<span class="linenos" data-linenos="9 "></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">alumnos</span><span class="p">;</span>
 </code></pre></div>
+<hr />
+<h2 id="ejecucion-en-java-con-statement">💻 Ejecución en Java con Statement</h2>
+<p>En JDBC, las sentencias DDL se ejecutan usando el método <code>executeUpdate()</code> de la interfaz <code>Statement</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CrearTabla</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jdbc:mysql://localhost:3306/mi_bd&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;root&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1234&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;CREATE TABLE alumnos (&quot;</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">                     </span><span class="s">&quot;id INT PRIMARY KEY,&quot;</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">                     </span><span class="s">&quot;nombre VARCHAR(50),&quot;</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">                     </span><span class="s">&quot;edad INT)&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">             </span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="n">st</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Tabla creada correctamente.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="22 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="creacion-y-borrado-de-tablas-desde-java">🗑️ Creación y borrado de tablas desde Java</h2>
+<p>Además de crear tablas, también podemos borrarlas con <code>DROP TABLE</code> desde nuestro programa Java:</p>
+<ul>
+<li>⚠️ Atención: <code>DROP TABLE</code> borra la tabla y todos sus datos de forma permanente.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DROP TABLE alumnos&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">st</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Tabla eliminada.&quot;</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h3 id="resumen">📌 Resumen</h3>
+<ul>
+<li>Las sentencias DDL (CREATE, ALTER, DROP) definen la estructura de la base de datos.</li>
+<li>En Java, se ejecutan mediante <code>Statement.executeUpdate(sql)</code>.</li>
+<li>Podemos crear o eliminar tablas directamente desde código Java.</li>
+</ul>
+<hr />
+<h2 id="statement-vs-preparedstatement-en-ddl">🛠️ Statement vs PreparedStatement en DDL</h2>
+<ul>
+<li>En <strong>DDL se usa <code>Statement</code></strong> porque las sentencias de creación de estructuras suelen ser fijas (no llevan parámetros dinámicos). Es decir, no se le pasa ningún parámetro o variable a la consulta.</li>
+<li>En <strong>DML se recomienda <code>PreparedStatement</code></strong>, ya que permite parametrizar (<code>?</code>), evitar inyección SQL y reutilizar la sentencia compilada.  </li>
+</ul>
 
 
   

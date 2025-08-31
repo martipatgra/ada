@@ -1,7 +1,7 @@
 site_name: Acceso a Datos
 nav:
     - Inicio: index.md
-    - 1.- Acceso a datos mediante ficheros [Actualizado Julio 25]: 
+    - 1.- Acceso a datos mediante ficheros: 
       - 1.1.- Gestión de ficheros con Java: ud1/filevsfiles.md
       - 1.2.- Lectura y escritura de ficheros en Java:
         - 1.2.1.- Introducción: ud1/io.md
@@ -10,20 +10,23 @@ nav:
           - Operaciones con ficheros de caracteres en Java: ud1/characterfiles.md
         - 1.2.3.- Acceso aleatorio:
           - Operaciones con ficheros de acceso aleatorio en Java: ud1/randomaccessfile.md
-      - 1.3.- Lectura y escritura de objectos en Java: ud1/serialization.md
-      - 1.4.- Ficheros de propiedades en Java: ud1/propertiesfile.md
-      - 1.5.- Ficheros JSON en Java: ud1/jsonfiles.md
-      - 1.6.- Crear un .jar: ud1/createjar.md
-      - 1.7.- try-with-resources: ud1/trywithresources.md
-      
+      - 1.3.- Recorrido de directorios con java.nio: ud1/fileswalk.md
+      - 1.4.- Lectura y escritura de objectos en Java: ud1/serialization.md
+      - 1.5.- Ficheros de propiedades en Java: ud1/propertiesfile.md
+      - 1.6.- Ficheros JSON en Java: ud1/jsonfiles.md
+      - 1.7.- Crear un .jar: ud1/createjar.md
+      - 1.8.- try-with-resources: ud1/trywithresources.md
     - 2.- Acceso a bases de datos relacionales con JDBC:
-      - 2.1.- Persistencia de la información: ud2/21persistencia.md
-      - 2.2.- Desfase objeto-relacional: ud2/22mapeo.md
-      - 2.3.- Manejo de conectores - JDBC: ud2/23conectores.md
-      - 2.4.- Transacciones: ud2/24transactions.md
-      - 2.5.- Procedimientos y funciones almacenadas: ud2/25procedures.md
-      - 2.6.- Mejora del rendimiento: ud2/26rendimiento.md
-      - 2.7.- Estructura de los proyectos: ud2/27projectstructure.md
+      - 2.1.- Persistencia de la información: ud2/persistencia.md
+      - 2.2.- Introducción a JDBC y conectores: ud2/mapeo.md
+      - 2.3.- Fundamentos de JDBC: ud2/conectores.md
+      - 2.4.- Definición de estructuras de BD y ejecución de sentencias DDL: ud2/ddl.md
+      - 2.5.- Modificación de datos con JDBC (DML): ud2/dml.md
+      - 2.6.- Consultas y manipulación de resultados con JDBC (DQL): ud2/dql.md
+      - 2.7.- Procedimientos almacenados y CallableStatement: ud2/procedures.md
+      - 2.8.- Transacciones: ud2/24transactions.md
+      - 2.9.- Mejora del rendimiento: ud2/26rendimiento.md
+      - 2.10.- Estructura de los proyectos: ud2/27projectstructure.md
     - 3.- ORM con Hibernate y JPA:
       - 3.1.- Herramientas ORM: ud3/31mapeo.md
       - 3.2.- Jakarta - JPA: ud3/32jpa.md

@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../22mapeo/">
+        <link rel="prev" href="../mapeo/">
       
       
-        <link rel="next" href="../24transactions/">
+        <link rel="next" href="../ddl/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>2.3.- Manejo de conectores - JDBC - Acceso a Datos</title>
+        <title>2.3.- Fundamentos de JDBC - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#conectores-o-drivers" class="md-skip">
+        <a href="#fundamentos-de-jdbc-conexion-recursos-y-ejecucion" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.3.- Manejo de conectores - JDBC
+              2.3.- Fundamentos de JDBC
             
           </span>
         </div>
@@ -245,14 +245,14 @@
       
       
         <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-          1.- Acceso a datos mediante ficheros [Actualizado Julio 25]
+          1.- Acceso a datos mediante ficheros
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          1.- Acceso a datos mediante ficheros [Actualizado Julio 25]
+          1.- Acceso a datos mediante ficheros
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -434,8 +434,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../../ud1/fileswalk/" class="md-nav__link">
+        1.3.- Recorrido de directorios con java.nio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../ud1/serialization/" class="md-nav__link">
-        1.3.- Lectura y escritura de objectos en Java
+        1.4.- Lectura y escritura de objectos en Java
       </a>
     </li>
   
@@ -449,7 +463,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/propertiesfile/" class="md-nav__link">
-        1.4.- Ficheros de propiedades en Java
+        1.5.- Ficheros de propiedades en Java
       </a>
     </li>
   
@@ -463,7 +477,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/jsonfiles/" class="md-nav__link">
-        1.5.- Ficheros JSON en Java
+        1.6.- Ficheros JSON en Java
       </a>
     </li>
   
@@ -477,7 +491,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/createjar/" class="md-nav__link">
-        1.6.- Crear un .jar
+        1.7.- Crear un .jar
       </a>
     </li>
   
@@ -491,7 +505,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/trywithresources/" class="md-nav__link">
-        1.7.- try-with-resources
+        1.8.- try-with-resources
       </a>
     </li>
   
@@ -541,7 +555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../21persistencia/" class="md-nav__link">
+      <a href="../persistencia/" class="md-nav__link">
         2.1.- Persistencia de la información
       </a>
     </li>
@@ -555,8 +569,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../22mapeo/" class="md-nav__link">
-        2.2.- Desfase objeto-relacional
+      <a href="../mapeo/" class="md-nav__link">
+        2.2.- Introducción a JDBC y conectores
       </a>
     </li>
   
@@ -579,12 +593,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          2.3.- Manejo de conectores - JDBC
+          2.3.- Fundamentos de JDBC
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        2.3.- Manejo de conectores - JDBC
+        2.3.- Fundamentos de JDBC
       </a>
       
         
@@ -603,44 +617,99 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#jdbc" class="md-nav__link">
-    JDBC
+  <a href="#carga-del-driver" class="md-nav__link">
+    📥 Carga del driver
   </a>
   
-    <nav class="md-nav" aria-label="JDBC">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clase-drivermanager" class="md-nav__link">
+    🛠️ Clase DriverManager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces-y-clases-principales-de-jdbc" class="md-nav__link">
+    🧩 Interfaces y clases principales de JDBC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objeto-connection" class="md-nav__link">
+    🔌 Objeto Connection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sqlexception" class="md-nav__link">
+    🤓 SQLException
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#liberacion-de-recursos-en-jdbc" class="md-nav__link">
+    🔒 Liberación de recursos en JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Liberación de recursos en JDBC">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#conexion-con-la-bbdd-desde-jdbc" class="md-nav__link">
-    Conexión con la BBDD desde JDBC
+  <a href="#por-que-cerrarlos" class="md-nav__link">
+    ⚡ ¿Por qué cerrarlos?
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#establecimiento-y-cierre-de-conexion" class="md-nav__link">
-    Establecimiento y cierre de conexión
+  <a href="#orden-recomendado-de-cierre" class="md-nav__link">
+    📑 Orden recomendado de cierre
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metodos-principales-para-ejecutar-sql-en-jdbc" class="md-nav__link">
+    ⚡ Métodos principales para ejecutar SQL en JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Métodos principales para ejecutar SQL en JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#executequerystring-sql" class="md-nav__link">
+    🔍 executeQuery(String sql)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#operaciones-basicas" class="md-nav__link">
-    Operaciones básicas
+  <a href="#executeupdatestring-sql" class="md-nav__link">
+    ✍️ executeUpdate(String sql)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#interfaces-y-clases-principales-de-jdbc" class="md-nav__link">
-    Interfaces y clases principales de JDBC
+  <a href="#executestring-sql" class="md-nav__link">
+    🌀 execute(String sql)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#liberacion-de-recursos" class="md-nav__link">
-    Liberación de recursos
+  <a href="#resumen-de-uso" class="md-nav__link">
+    📌 Resumen de uso
   </a>
   
 </li>
@@ -665,8 +734,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../24transactions/" class="md-nav__link">
-        2.4.- Transacciones
+      <a href="../ddl/" class="md-nav__link">
+        2.4.- Definición de estructuras de BD y ejecución de sentencias DDL
       </a>
     </li>
   
@@ -679,8 +748,50 @@
   
   
     <li class="md-nav__item">
-      <a href="../25procedures/" class="md-nav__link">
-        2.5.- Procedimientos y funciones almacenadas
+      <a href="../dml/" class="md-nav__link">
+        2.5.- Modificación de datos con JDBC (DML)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dql/" class="md-nav__link">
+        2.6.- Consultas y manipulación de resultados con JDBC (DQL)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procedures/" class="md-nav__link">
+        2.7.- Procedimientos almacenados y CallableStatement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24transactions/" class="md-nav__link">
+        2.8.- Transacciones
       </a>
     </li>
   
@@ -694,7 +805,7 @@
   
     <li class="md-nav__item">
       <a href="../26rendimiento/" class="md-nav__link">
-        2.6.- Mejora del rendimiento
+        2.9.- Mejora del rendimiento
       </a>
     </li>
   
@@ -708,7 +819,7 @@
   
     <li class="md-nav__item">
       <a href="../27projectstructure/" class="md-nav__link">
-        2.7.- Estructura de los proyectos
+        2.10.- Estructura de los proyectos
       </a>
     </li>
   
@@ -1057,44 +1168,99 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#jdbc" class="md-nav__link">
-    JDBC
+  <a href="#carga-del-driver" class="md-nav__link">
+    📥 Carga del driver
   </a>
   
-    <nav class="md-nav" aria-label="JDBC">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clase-drivermanager" class="md-nav__link">
+    🛠️ Clase DriverManager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces-y-clases-principales-de-jdbc" class="md-nav__link">
+    🧩 Interfaces y clases principales de JDBC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objeto-connection" class="md-nav__link">
+    🔌 Objeto Connection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sqlexception" class="md-nav__link">
+    🤓 SQLException
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#liberacion-de-recursos-en-jdbc" class="md-nav__link">
+    🔒 Liberación de recursos en JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Liberación de recursos en JDBC">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#conexion-con-la-bbdd-desde-jdbc" class="md-nav__link">
-    Conexión con la BBDD desde JDBC
+  <a href="#por-que-cerrarlos" class="md-nav__link">
+    ⚡ ¿Por qué cerrarlos?
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#establecimiento-y-cierre-de-conexion" class="md-nav__link">
-    Establecimiento y cierre de conexión
+  <a href="#orden-recomendado-de-cierre" class="md-nav__link">
+    📑 Orden recomendado de cierre
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metodos-principales-para-ejecutar-sql-en-jdbc" class="md-nav__link">
+    ⚡ Métodos principales para ejecutar SQL en JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Métodos principales para ejecutar SQL en JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#executequerystring-sql" class="md-nav__link">
+    🔍 executeQuery(String sql)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#operaciones-basicas" class="md-nav__link">
-    Operaciones básicas
+  <a href="#executeupdatestring-sql" class="md-nav__link">
+    ✍️ executeUpdate(String sql)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#interfaces-y-clases-principales-de-jdbc" class="md-nav__link">
-    Interfaces y clases principales de JDBC
+  <a href="#executestring-sql" class="md-nav__link">
+    🌀 execute(String sql)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#liberacion-de-recursos" class="md-nav__link">
-    Liberación de recursos
+  <a href="#resumen-de-uso" class="md-nav__link">
+    📌 Resumen de uso
   </a>
   
 </li>
@@ -1120,52 +1286,52 @@
 
 
 
-<h1 id="conectores-o-drivers">⚙️ Conectores o drivers</h1>
+<h1 id="fundamentos-de-jdbc-conexion-recursos-y-ejecucion">📚 Fundamentos de JDBC: conexión, recursos y ejecución</h1>
 <p>Un <strong>conector</strong> o <strong>driver</strong> es un mecanismo que permite a un lenguaje de programación conectarse, y trabajar, contra una base de datos. Se encarga de mantener el diálogo con la base de datos, para poder llevar a cabo el acceso y manipulación de los datos.</p>
-<p>Algunos de los más conocidos son:</p>
+<hr />
+<h2 id="carga-del-driver">📥 Carga del driver</h2>
+<p>Para que Java pueda comunicarse con una base de datos necesitamos el <strong>driver JDBC</strong> correspondiente.<br />
+Ese driver se añade normalmente como un archivo <code>.jar</code> en el proyecto.</p>
+<p>Para descargar el driver JDBC para MySQL podemos hacerlo desde el repositorio de Maven:
+<a href="https://mvnrepository.com/artifact/com.mysql/mysql-connector-j">MySQL JDBC</a></p>
+<p>En versiones antiguas de Java era necesario cargar explícitamente el driver con <code>Class.forName()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">&quot;com.mysql.cj.jdbc.Driver&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Hoy en día, si el driver está en el classpath, se carga automáticamente, por lo que no suele ser necesario llamar a Class.forName.</p>
+<hr />
+<h2 id="clase-drivermanager">🛠️ Clase DriverManager</h2>
+<p>La clase DriverManager es la encargada de gestionar los drivers JDBC instalados y proporcionar conexiones a la base de datos.</p>
+<p>Método más utilizado:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">usuario</span><span class="p">,</span><span class="w"> </span><span class="n">contraseña</span><span class="p">);</span>
+</code></pre></div>
+<p>Parámetros:</p>
 <ul>
-<li>
-<p><strong>ODBC (Open Database Connectivity)</strong>. Es un estándar viejo. Esta tecnología proporciona una interfaz común para tener acceso a bases de datos SQL heterogéneas. ODBC está basado en SQL (Structured Query Language) como un estándar para tener acceso a datos. ODBC permite la conexión fácil desde varios lenguajes de programación y se utiliza mucho en el entorno Windows.</p>
-</li>
-<li>
-<p><strong>JDBC (Java Data Base Connectivity)</strong>.</p>
-</li>
+<li><strong>url</strong>: cadena con el protocolo y los datos de conexión, por ejemplo<br />
+<code>jdbc:mysql://localhost:3306/mi_bd</code>  </li>
+<li><strong>usuario</strong>: nombre del usuario de la base de datos.  </li>
+<li><strong>contraseña</strong>: la clave de acceso.  </li>
 </ul>
-<p>En este curso, nos vamos a centrar en JDBC, puesto que, desde el punto de vista de Java, es una de las tecnologías más importantes de conectividad a la base de datos. Y, además, Java 8 ha eliminado el puente JDBC-ODBC, lo que significa que los controladores ODBC de Microsoft ya no funcionan.</p>
-<h2 id="jdbc">JDBC</h2>
-<p>Casi de forma simultánea a ODBC, la empresa Sun Microsystems, en 1997 sacó a la luz JDBC, un API conector de bases de datos, implementado específicamente para usar con el lenguaje Java. Se trata de un API bastante similar a ODBC en cuanto a funcionalidad, pero adaptado a las especificidades de Java. Es decir, la funcionalidad se encuentra capsulada en clases (ya que Java es un lenguaje totalmente orientado a objetos) y, además, no depende de ninguna plataforma específica, de acuerdo con la característica multiplataforma defendida por Java.</p>
-<p>Es una API que permite la ejecución de operaciones contra una base de datos desde Java independientemente del sistema operativo donde se ejecute o de la base de datos a la cual se acceda. Podemos pensar en JDBC como un intermediario que se encuentra entre una aplicación Java y una fuente de datos.</p>
-<p>Para usar una fuente de datos particular en una aplicación, necesitamos el controlador JDBC para la fuente de datos. Por ejemplo, para acceder a una BD SQLite desde una aplicación, necesitamos un controlador JDBC de SQLite.</p>
-<p><img alt="jdbc" src="../../img/ud2/4jdbc.png" /></p>
-<p>El driver o controlador es simplemente una biblioteca Java que contiene clases que implementan la API de JDBC. Como todos los drivers JDBC tienen que implementar la misma interfaz, es muy sencillo cambiar de una fuente de datos a otra.</p>
-<p>Es importante destacar también que JDBC no exige ninguna instalación, ni ningún cambio sustancial en el código a la hora de utilizar uno u otro controlador. Esta característica se sustenta, en primer lugar, en la utilidad de Java que permite cargar programáticamente cualquier clase a partir de su nombre; en segundo lugar, en la funcionalidad de la clase DriverManager (de la API JDBC), que sin necesidad de indicarle el driver específico que hay que utilizar es capaz de encontrarlo y seleccionarlo de entre todos los que el sistema tenga cargados en memoria.</p>
-<p>A pesar de eso tampoco es mucho problema ya que actualmente podemos encontrar un driver JDBC para prácticamente cualquier SGBDR existente. El conector lo proporciona el fabricante de la base de datos o bien un tercero.</p>
-<p><em>JDBC consta de dos paquetes, java.sql and javax.sql (opcional). Las API del paquete javax.sql son necesarias cuando se trabaja con servidores de bases de datos.</em></p>
-<h3 id="conexion-con-la-bbdd-desde-jdbc">Conexión con la BBDD desde JDBC</h3>
-<p>Antes de empezar a desarrollar aplicaciones JDBC es necesario aseguramos que tenemos instalado el SGBD, y además que tenemos acceso desde el lugar donde estemos desarrollando la aplicación.
-Una vez verificado el sistema gestor de base de datos, será necesario obtener el controlador JDBC del sistema gestor. Generalmente, cada fabricante pondrá a disposición de sus usuarios los diferentes tipos de controladores que tenga para sus productos.
-Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como mínimo una biblioteca en formato .jar con todas las clases de la API JDBC. Habrá que añadir el archivo .jar como biblioteca de nuestra aplicación.</p>
-<p>Para descargar el driver JDBC para MySQL podemos hacerlo desde el repositorio de Maven:</p>
-<p><a href="https://mvnrepository.com/artifact/mysql/mysql-connector-java">MySQL JDBC</a></p>
-<h3 id="establecimiento-y-cierre-de-conexion">Establecimiento y cierre de conexión</h3>
-<p>Las clases que afectan a la gestión de la conexión con la BBDD son:</p>
+<hr />
+<h2 id="interfaces-y-clases-principales-de-jdbc">🧩 Interfaces y clases principales de JDBC</h2>
+<p>Las más utilizadas en cualquier aplicación JDBC son:</p>
 <ul>
-<li>
-<p><code>DriverManager</code>: esta clase se utiliza para registrar el controlador para un tipo de base de datos específico (por ejemplo, MySQL en este tutorial) y para establecer una conexión de base de datos con el servidor a través de su método <code>getConnection()</code>.</p>
-</li>
-<li>
-<p><code>Connection</code>, es una interfaz que representa una conexión a la base de datos establecida (sesión) desde la cual podemos crear declaraciones para ejecutar consultas y recuperar resultados, obtener metadatos sobre la base de datos, cerrar conexión, etc.Los objetos <code>Connection</code> mantendrán la capacidad de comunicarse con el sistema gestor mientras permanezcan abiertos. Esto es, desde que se crean hasta que se cierran utilizando el método close.</p>
-</li>
+<li><code>Connection</code> → Representa la conexión activa con la base de datos.</li>
+<li><code>Statement</code> → Ejecuta sentencias SQL estáticas <strong>(sin parámetros)</strong>. Útil para DDL o consultas sencillas</li>
+<li><code>PreparedStatement</code> → Versión mejorada de Statement, permite parametrizar con el símbolo "?". Más seguro (previene SQL Injection) y <strong>eficiente en ejecuciones repetidas</strong>.</li>
+<li><code>CallableStatement</code> → Se utiliza para ejecutar <strong>procedimientos almacenados</strong> en la base de datos.</li>
+<li><code>ResultSet</code> → Representa el <strong>conjunto de resultados devuelto</strong> por una consulta SELECT. Permite recorrer las filas y leer los datos columna a columna.</li>
 </ul>
-<p>El objeto <code>Connection</code> está totalmente vinculado a una fuente de datos, por eso en pedir la conexión hay que especificar de qué fuente se trata siguiendo el protocolo JDBC e indicando la url de los datos, y en su caso el usuario y password.</p>
-<div class="admonition example">
-<p class="admonition-title">Example 🤓</p>
+<hr />
+<h2 id="objeto-connection">🔌 Objeto Connection</h2>
+<p><code>Connection</code> representa una conexión activa con la base de datos.<br />
+Con este objeto podremos:</p>
 <ul>
-<li><strong>jdbc</strong>:<em>bbdd</em>://<em>server</em>:<em>port</em>/<em>schema</em></li>
-<li><strong>jdbc</strong>:postgresql://localhost:5432/severo</li>
+<li>Crear sentencias (<code>Statement</code>, <code>PreparedStatement</code>, <code>CallableStatement</code>).  </li>
+<li>Ejecutar consultas y modificaciones.  </li>
+<li>Controlar transacciones (commit, rollback).  </li>
+<li>Cerrar la conexión cuando ya no sea necesaria.  </li>
 </ul>
-</div>
-<p>La url seguirá el protocolo JDBC, comenzará siempre por la palabra <strong>jdbc</strong> seguida de dos puntos. El resto dependerá del tipo de controlador utilizado, del host donde se aloje el SGBD, del puerto que este use para escuchar las peticiones y del nombre de la base de datos o esquema con el que queremos trabajar.</p>
+<p>Ejemplo básico:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.Connection</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.DriverManager</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.SQLException</span><span class="p">;</span>
@@ -1186,79 +1352,150 @@ Sea cual sea el tipo de controlador que finalmente necesita, éste tendrá como 
 <span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="19 "></span><span class="p">}</span>
 </code></pre></div>
-<h3 id="operaciones-basicas">Operaciones básicas</h3>
-<p>El API JDBC distingue dos tipos de consultas:</p>
+<p>Con <code>try-with-resources</code> la conexión se cerrará automáticamente al finalizar el bloque.</p>
+<hr />
+<h2 id="sqlexception">🤓 SQLException</h2>
+<p>Es la excepción que se lanza cuando ocurre un problema entre la base de datos y el programa Java JDBC.<br />
+Algunos de sus métodos más importantes son:</p>
 <ul>
-<li><strong>Consultas</strong>: SELECT</li>
-<li><strong>Actualizaciones</strong>: INSERT, UPDATE, DELETE, sentencias DDL.</li>
+<li><code>.getMessage()</code> → Descripción del error.  </li>
+<li><code>.getSQLState()</code> → Código SQL estándar ISO/ANSI que identifica el error. <a href="https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-error-sqlstates.html">SQLState Official</a>  </li>
+<li><code>.getErrorCode()</code> → Código específico del proveedor de BD.  </li>
+<li><code>.getCause()</code> → Devuelve la excepción original que provocó el error (si existe).  </li>
+<li><code>.getNextException()</code> → Permite recorrer la cadena de excepciones encadenadas.  </li>
 </ul>
-<h3 id="interfaces-y-clases-principales-de-jdbc">Interfaces y clases principales de JDBC</h3>
-<ul>
-<li>
-<p><code>Statement</code> y <code>PreparedStatement</code>: estas interfaces se utilizan para ejecutar consultas SQL estáticas y consultas SQL parametrizadas, respectivamente. <code>Statement</code> es la superinterfaz de la interfaz <code>PreparedStatement</code>, que se utiliza para consultas parametrizadas. Sus métodos comúnmente utilizados son:</p>
-<ul>
-<li><strong><code>boolean execute(String sql)</code></strong>: ejecuta una sentencia SQL general. Devuelve verdadero si la consulta devuelve un <code>ResultSet</code>, falso si la consulta devuelve un recuento de actualizaciones o no devuelve nada. Este método solo se puede utilizar con una sentencia.</li>
-<li>
-<p><strong><code>int executeUpdate(String sql)</code></strong>: ejecuta una sentencia INSERT, UPDATE o DELETE y devuelve un conteo actualizado que indica el número de filas afectadas (por ejemplo, 1 fila insertada, 2 filas actualizadas o 0 filas afectadas).</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Statement</span><span class="w"> </span><span class="n">stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">String</span><span class="w"> </span><span class="n">q1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;insert into userid values (1,root,Patricia Marti)&quot;</span><span class="p">;</span>
-<span class="hll"><span class="linenos" data-linenos="3 "></span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stmt</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">q1</span><span class="p">);</span>
-</span></code></pre></div>
-</li>
-</ul>
-</li>
-<li>
-<p><code>ResultSet executeQuery(String sql)</code>: ejecuta una sentencia SELECT y devuelve un objeto <code>ResultSet</code> que contiene los resultados devueltos por la consulta.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Statement</span><span class="w"> </span><span class="n">stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">String</span><span class="w"> </span><span class="n">q1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;select * from userid where id = &#39;&quot;</span><span class="w"> </span>
-<span class="linenos" data-linenos="3 "></span><span class="w">            </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&#39; AND pwd = &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pwd</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&#39;&quot;</span><span class="p">;</span>
-<span class="hll"><span class="linenos" data-linenos="4 "></span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stmt</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="n">q1</span><span class="p">);</span>
-</span></code></pre></div>
-</li>
-<li>
-<p><code>ResultSet</code>: contiene los datos de la tabla devueltos por una consulta SELECT. Este objeto se usa para iterar sobre las filas en el conjunto de resultados usando el método <code>next()</code>.</p>
-</li>
-</ul>
-<div class="admonition example">
-<p class="admonition-title">🤓 SQLException: Es la excepción que se lanza cuando hay algún problema entre la base de datos y el programa Java JDBC. Contiene los siguientes métodos:</p>
-<ul>
-<li><code>.getMessage()</code>, nos indica la descripción del mensaje de error.</li>
-<li><code>.getSQLState()</code>, devuelve un código SQL estándar definido por ISO/ANSI y el Open Group que identifica de forma unívoca el error que se ha producido. <a href="https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-error-sqlstates.html">SQLState Official</a></li>
-<li><code>.getErrorCode(</code>), es un código de error que lanza la base de datos. En este caso el código de error es diferente dependiendo del proveedor de base de datos que estemos utilizando.</li>
-<li><code>.getCause()</code>, nos devuelve una lista de objetos que han provocado el error.</li>
-<li><code>.getNextException()</code>, devuelve la cadena de excepciones que se ha producido. De tal manera que podemos navegar sobre ella para ver en detalle de esas excepciones.</li>
-</ul>
-</div>
-<h3 id="liberacion-de-recursos">Liberación de recursos</h3>
-<div class="admonition danger">
-<p class="admonition-title">Danger 😬</p>
-<p>Se debe cerrar explícitamente <code>Statement</code>, <code>ResultSet</code> y <code>Connection</code> cuando ya no se necesiten, a menos que se declaren con un try-catch-with-resources.</p>
-</div>
-<p>Las instancias de <code>Connection</code> y las de <code>Statement</code> almacenan, en memoria, mucha información relacionada con las ejecuciones realizadas. Además, mientras permanecen activas mantienen en el SGBD un conjunto importante de recursos abiertos, destinados a servir de forma eficiente las peticiones de los clientes. El cierre de estos objetos permite liberar recursos tanto del cliente como del servidor.</p>
-<p>Aunque se haya cerrado la conexión, los objetos <code>Statements</code> que no se habían cerrado expresamente permanecen más tiempo en memoria que los objetos cerrados previamente, ya que el garbage collector de Java deberá hacer más comprobaciones para asegurar que ya no dispone de dependencias ni internas ni externas y se puede eliminar.
-Es por ello que se recomienda proceder siempre a cerrarlo manualmente utilizando el método <code>close()</code>. El cierre de los objetos <code>Statement</code> asegura la liberación inmediata de los recursos y la anulación de las dependencias.</p>
-<p>Si en un mismo método queremos cerrar un objeto <code>Statement</code> y <code>Connection</code>, lo haremos siguiendo estos pasos:</p>
-<ol>
-<li>
-<p>Cerramos el <code>Statement</code> y</p>
-</li>
-<li>
-<p>la instancia <code>Connection</code>.</p>
-</li>
-</ol>
-<div class="admonition failure">
-<p class="admonition-title">Failure 😵‍💫</p>
-<p>Si lo hiciéramos al revés, cuando intentáramos cerrar el <code>Statement</code> nos saltaría una excepción de tipo <code>SQLException</code>, ya que el cierre de la conexión lo habría dejado inaccesible.</p>
-</div>
-<p>Cuando se cierra un objeto <code>Statement</code>, su objeto <code>ResultSet</code> actual, si existe, también se cierra. Pero eso no ocurre cuando se cierra la conexión.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataSource</span><span class="p">.</span><span class="na">getConnection</span><span class="p">();</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">Statement</span><span class="w"> </span><span class="n">statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="na">createStatement</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="3 "></span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ResultSet</span><span class="w"> </span><span class="n">resultSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">statement</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM ....&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">        </span><span class="c1">// Do actions.</span>
-<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">     </span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM tabla_inexistente&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;SQLState: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getSQLState</span><span class="p">());</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Código de error: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getErrorCode</span><span class="p">());</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
 </code></pre></div>
+<h2 id="liberacion-de-recursos-en-jdbc">🔒 Liberación de recursos en JDBC</h2>
+<p>Los objetos de JDBC (<code>Connection</code>, <code>Statement</code> y <code>ResultSet</code>) consumen recursos importantes tanto en el cliente como en el servidor.<br />
+Por ello, deben <strong>cerrarse siempre</strong> cuando ya no se necesiten.  </p>
+<hr />
+<h3 id="por-que-cerrarlos">⚡ ¿Por qué cerrarlos?</h3>
+<ul>
+<li><code>Connection</code> mantiene la conexión abierta con el SGBD y consume recursos del servidor.  </li>
+<li><code>Statement</code> almacena información de ejecución y mantiene cursores abiertos.  </li>
+<li><code>ResultSet</code> ocupa memoria y punteros sobre los resultados de una consulta.  </li>
+</ul>
+<p>Si no se cierran manualmente:<br />
+- El <strong>garbage collector</strong> los liberará más tarde, pero mientras tanto siguen consumiendo recursos.<br />
+- Se pueden producir <strong>fugas de memoria</strong> o saturar el servidor de BD con conexiones abiertas.</p>
+<hr />
+<h3 id="orden-recomendado-de-cierre">📑 Orden recomendado de cierre</h3>
+<ol>
+<li><code>ResultSet</code>  </li>
+<li><code>Statement</code>  </li>
+<li><code>Connection</code>  </li>
+</ol>
+<p>⚠️ Si se cierra la conexión antes que el statement, al intentar cerrarlo después lanzará una <code>SQLException</code>.  </p>
+<p>Además:<br />
+- Cerrar un <code>Statement</code> cierra automáticamente su <code>ResultSet</code> asociado.<br />
+- Pero cerrar una <code>Connection</code> <strong>no</strong> cierra automáticamente todos los statements.</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CierreRecursos</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jdbc:mysql://localhost:3306/mi_bd&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;root&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1234&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">             </span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();)</span><span class="w"> </span><span class="p">{</span><span class="c1">//al cerrar el Statement se cierra automáticamente el ResultSet</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT id, nombre FROM alumnos&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="metodos-principales-para-ejecutar-sql-en-jdbc">⚡ Métodos principales para ejecutar SQL en JDBC</h2>
+<p>En JDBC disponemos de tres métodos principales para ejecutar sentencias SQL desde las interfaces <code>Statement</code> o <code>PreparedStatement</code>.<br />
+Cada uno está pensado para un tipo distinto de operación:</p>
+<hr />
+<h3 id="executequerystring-sql">🔍 <code>executeQuery(String sql)</code></h3>
+<ul>
+<li>Uso: <strong>consultas de lectura (SELECT)</strong>.  </li>
+<li>Devuelve: un objeto <code>ResultSet</code> con las filas obtenidas.  </li>
+<li>Ejemplo:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM alumnos&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="executeupdatestring-sql">✍️ <code>executeUpdate(String sql)</code></h3>
+<ul>
+<li>Uso: <strong>operaciones de modificación de datos (DML)</strong> y <strong>sentencias DDL</strong>.  </li>
+<li>DML: <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>.  </li>
+<li>DDL: <code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>.  </li>
+<li>Devuelve: un <code>int</code> con el número de filas afectadas (en DML) o <code>0</code> en DDL.  </li>
+<li>Ejemplo:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">filas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="s">&quot;INSERT INTO alumnos VALUES (1, &#39;Ana&#39;, 20)&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Filas insertadas: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">filas</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h3 id="executestring-sql">🌀 <code>execute(String sql)</code></h3>
+<ul>
+<li>Uso: <strong>genérico</strong>. Puede ejecutar cualquier tipo de sentencia SQL.  </li>
+<li>Devuelve:  </li>
+<li><code>true</code> → si la operación devuelve un <code>ResultSet</code>.  </li>
+<li><code>false</code> → si devuelve solo un número de filas afectadas.  </li>
+<li>Ejemplo:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">tieneResultados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;SELECT * FROM alumnos&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tieneResultados</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">getResultSet</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">filas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">getUpdateCount</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Filas modificadas: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">filas</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="resumen-de-uso">📌 Resumen de uso</h3>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Uso principal</th>
+<th>Devuelve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>executeQuery(sql)</code></td>
+<td>Consultas <code>SELECT</code></td>
+<td><code>ResultSet</code></td>
+</tr>
+<tr>
+<td><code>executeUpdate(sql)</code></td>
+<td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, DDL</td>
+<td>Nº filas afectadas (<code>int</code>)</td>
+</tr>
+<tr>
+<td><code>execute(sql)</code></td>
+<td>Cualquier sentencia (menos habitual)</td>
+<td><code>boolean</code> + <code>ResultSet</code>/<code>int</code></td>
+</tr>
+</tbody>
+</table>
 
 
   

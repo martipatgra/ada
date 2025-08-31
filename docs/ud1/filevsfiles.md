@@ -88,7 +88,7 @@ El paquete `java.io` es uno de los más antiguos de Java, e incluye **clases par
 
 ---
 
-### Crear un objeto File
+### 📂 Crear un objeto File
 
 ```java
 File f = new File("C:\\Users\\temp\\data.txt");

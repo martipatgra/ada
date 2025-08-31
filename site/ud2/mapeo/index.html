@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../../ud1/trywithresources/">
+        <link rel="prev" href="../persistencia/">
       
       
-        <link rel="next" href="../22mapeo/">
+        <link rel="next" href="../conectores/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>2.1.- Persistencia de la información - Acceso a Datos</title>
+        <title>2.2.- Introducción a JDBC y conectores - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#persistencia-de-la-informacion" class="md-skip">
+        <a href="#introduccion-a-jdbc-y-conectores" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.1.- Persistencia de la información
+              2.2.- Introducción a JDBC y conectores
             
           </span>
         </div>
@@ -245,14 +245,14 @@
       
       
         <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-          1.- Acceso a datos mediante ficheros [Actualizado Julio 25]
+          1.- Acceso a datos mediante ficheros
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          1.- Acceso a datos mediante ficheros [Actualizado Julio 25]
+          1.- Acceso a datos mediante ficheros
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -434,8 +434,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../../ud1/fileswalk/" class="md-nav__link">
+        1.3.- Recorrido de directorios con java.nio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../ud1/serialization/" class="md-nav__link">
-        1.3.- Lectura y escritura de objectos en Java
+        1.4.- Lectura y escritura de objectos en Java
       </a>
     </li>
   
@@ -449,7 +463,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/propertiesfile/" class="md-nav__link">
-        1.4.- Ficheros de propiedades en Java
+        1.5.- Ficheros de propiedades en Java
       </a>
     </li>
   
@@ -463,7 +477,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/jsonfiles/" class="md-nav__link">
-        1.5.- Ficheros JSON en Java
+        1.6.- Ficheros JSON en Java
       </a>
     </li>
   
@@ -477,7 +491,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/createjar/" class="md-nav__link">
-        1.6.- Crear un .jar
+        1.7.- Crear un .jar
       </a>
     </li>
   
@@ -491,7 +505,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud1/trywithresources/" class="md-nav__link">
-        1.7.- try-with-resources
+        1.8.- try-with-resources
       </a>
     </li>
   
@@ -539,6 +553,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../persistencia/" class="md-nav__link">
+        2.1.- Persistencia de la información
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -551,12 +579,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          2.1.- Persistencia de la información
+          2.2.- Introducción a JDBC y conectores
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        2.1.- Persistencia de la información
+        2.2.- Introducción a JDBC y conectores
       </a>
       
         
@@ -575,9 +603,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-bases-de-datos" class="md-nav__link">
-    Tipos de bases de datos
+  <a href="#que-es-jdbc" class="md-nav__link">
+    📖 ¿Qué es JDBC?
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-desfase-objetorelacional" class="md-nav__link">
+    ⚖️ El desfase objeto–relacional
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocolos-de-acceso-a-bases-de-datos" class="md-nav__link">
+    🌐 Protocolos de acceso a bases de datos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-conectores-jdbc" class="md-nav__link">
+    🔧 Tipos de conectores JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Tipos de conectores JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drivers-embebidos-embedded" class="md-nav__link">
+    🗂️ Drivers embebidos (embedded)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drivers-independientes-cliente-servidor" class="md-nav__link">
+    🖥️ Drivers independientes (cliente-servidor)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -596,8 +665,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../22mapeo/" class="md-nav__link">
-        2.2.- Desfase objeto-relacional
+      <a href="../conectores/" class="md-nav__link">
+        2.3.- Fundamentos de JDBC
       </a>
     </li>
   
@@ -610,8 +679,50 @@
   
   
     <li class="md-nav__item">
-      <a href="../23conectores/" class="md-nav__link">
-        2.3.- Manejo de conectores - JDBC
+      <a href="../ddl/" class="md-nav__link">
+        2.4.- Definición de estructuras de BD y ejecución de sentencias DDL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dml/" class="md-nav__link">
+        2.5.- Modificación de datos con JDBC (DML)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dql/" class="md-nav__link">
+        2.6.- Consultas y manipulación de resultados con JDBC (DQL)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procedures/" class="md-nav__link">
+        2.7.- Procedimientos almacenados y CallableStatement
       </a>
     </li>
   
@@ -625,21 +736,7 @@
   
     <li class="md-nav__item">
       <a href="../24transactions/" class="md-nav__link">
-        2.4.- Transacciones
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../25procedures/" class="md-nav__link">
-        2.5.- Procedimientos y funciones almacenadas
+        2.8.- Transacciones
       </a>
     </li>
   
@@ -653,7 +750,7 @@
   
     <li class="md-nav__item">
       <a href="../26rendimiento/" class="md-nav__link">
-        2.6.- Mejora del rendimiento
+        2.9.- Mejora del rendimiento
       </a>
     </li>
   
@@ -667,7 +764,7 @@
   
     <li class="md-nav__item">
       <a href="../27projectstructure/" class="md-nav__link">
-        2.7.- Estructura de los proyectos
+        2.10.- Estructura de los proyectos
       </a>
     </li>
   
@@ -1016,9 +1113,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-bases-de-datos" class="md-nav__link">
-    Tipos de bases de datos
+  <a href="#que-es-jdbc" class="md-nav__link">
+    📖 ¿Qué es JDBC?
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-desfase-objetorelacional" class="md-nav__link">
+    ⚖️ El desfase objeto–relacional
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocolos-de-acceso-a-bases-de-datos" class="md-nav__link">
+    🌐 Protocolos de acceso a bases de datos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-conectores-jdbc" class="md-nav__link">
+    🔧 Tipos de conectores JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Tipos de conectores JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drivers-embebidos-embedded" class="md-nav__link">
+    🗂️ Drivers embebidos (embedded)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drivers-independientes-cliente-servidor" class="md-nav__link">
+    🖥️ Drivers independientes (cliente-servidor)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1038,19 +1176,62 @@
 
 
 
-<h1 id="persistencia-de-la-informacion">💾 Persistencia de la información</h1>
-<p>La persistencia es la capacidad de guardar el estado de un objeto en algún tipo de almacenamiento, para poder restaurarlo en algún momento posteriormente.</p>
-<p><img alt="mapeo" src="../../img/ud2/1persistence.png" /></p>
-<p>Hoy en día, la mayoría de aplicaciones informáticas necesitan almacenar y gestionar gran cantidad de datos.</p>
-<p>Esos datos, se suelen guardar en bases de datos relacionales, ya que éstas son las más extendidas actualmente.</p>
-<h2 id="tipos-de-bases-de-datos">Tipos de bases de datos</h2>
-<p>Una base de datos es una herramienta que recopila datos, los organiza y los relaciona para que se pueda hacer una rápida búsqueda y recuperar con ayuda de un ordenador. Hoy en día, las bases de datos también sirven para desarrollar análisis. Las bases de datos más modernas tienen motores específicos para sacar informes de datos complejos.</p>
-<p>Además, es importante saber que hay varios tipos de base de datos: la relacional; la distribuida; NoSQL; orientada a objetos; y, gráficas. La existencia de estas diversas bases de datos se debe a la variedad de forma de trabajo que se requiere de ellas.</p>
-<p>Las bases de datos relacionales representan la información en forma de tablas, con filas y columnas que se relacionan mediante campos clave. Además se trabaja con el lenguaje estándar conocido como <strong>SQL</strong>, para poder realizar las consultas que deseemos a la base de datos.</p>
-<p>El sistema gestor de bases de datos, en inglés conocido como: <em>Database Management System</em> (DBMS), gestiona el modo en que los datos se almacenan, mantienen y recuperan.</p>
-<p>En el caso de una base de datos relacional, el sistema gestor de base de datos se denomina: <em>Relational Database Management System</em> (RDBMS).</p>
-<p><img alt="mapeo" src="../../img/ud2/2persistence.png" /></p>
-<p>Tradicionalmente, la programación de bases de datos ha sido un caos debido a la gran cantidad de productos de bases de datos en el mercado, cada uno con sus características y lenguaje diferente.</p>
+<h1 id="introduccion-a-jdbc-y-conectores">🔌 Introducción a JDBC y conectores</h1>
+<p>Un <strong>conector o driver</strong> es un mecanismo que permite a un lenguaje de programación conectarse, y trabajar, contra una base de datos. Se encarga de mantener el diálogo con la base de datos, para poder llevar a cabo el acceso y manipulación de los datos.</p>
+<p>En este curso, nos vamos a centrar en <strong>JDBC (Java Data Base Connectivity)</strong>, puesto que, desde el punto de vista de Java, es una de las tecnologías más importantes de conectividad a la base de datos.</p>
+<h2 id="que-es-jdbc">📖 ¿Qué es JDBC?</h2>
+<p><strong>JDBC (Java DataBase Connectivity)</strong> es una API de Java diseñada por Sun/Oracle que permite a las aplicaciones acceder a <strong>bases de datos relacionales</strong> de manera uniforme.<br />
+Con JDBC podemos:</p>
+<ul>
+<li>🔗 Conectarnos a diferentes sistemas gestores de bases de datos (SGBD).  </li>
+<li>📝 Ejecutar sentencias SQL.  </li>
+<li>📊 Recuperar y manipular resultados.  </li>
+</ul>
+<p>👉 En resumen, JDBC actúa como un <strong>puente entre Java y la base de datos</strong>.</p>
+<hr />
+<h2 id="el-desfase-objetorelacional">⚖️ El desfase objeto–relacional</h2>
+<p>Las bases de datos relacionales no están diseñadas para almacenar objetos, ya que existe un desfase entre las construcciones típicas que proporciona el modelo relacional y las proporcionadas por la programación basada en objetos.</p>
+<p>Java trabaja con <strong>objetos</strong>, mientras que las bases de datos relacionales almacenan información en <strong>tablas</strong> con filas y columnas.<br />
+Este desajuste se conoce como <strong>desfase objeto–relacional (Object–Relational Impedance Mismatch)</strong>.</p>
+<p>Ejemplos de problemas comunes:</p>
+<ul>
+<li>🔄 Conversión entre <strong>tipos de datos</strong> (<code>int</code> ↔ <code>INTEGER</code>, <code>String</code> ↔ <code>VARCHAR</code>).  </li>
+<li>🔗 Representación de <strong>relaciones</strong> (1:N, N:M) en estructuras de objetos.  </li>
+<li>🧬 Manejo de <strong>herencia</strong> en BBDD que no la soportan de forma nativa.  </li>
+</ul>
+<p>👉 En esta UD lo resolveremos manualmente con JDBC. Más adelante veremos soluciones ORM como <strong>Hibernate</strong>.</p>
+<hr />
+<h2 id="protocolos-de-acceso-a-bases-de-datos">🌐 Protocolos de acceso a bases de datos</h2>
+<p>Los conectores JDBC utilizan <strong>protocolos de acceso estándar</strong> para comunicarse con el SGBD.<br />
+Una URL de conexión JDBC suele tener la siguiente forma:</p>
+<div class="admonition example">
+<p class="admonition-title">Example 🤓</p>
+<ul>
+<li><strong>jdbc</strong>:<em>bbdd</em>://<em>server</em>:<em>port</em>/<em>schema</em></li>
+<li><strong>jdbc</strong>:mysql://localhost:3306/severo</li>
+</ul>
+</div>
+<hr />
+<h2 id="tipos-de-conectores-jdbc">🔧 Tipos de conectores JDBC</h2>
+<p>Un <strong>conector JDBC (driver)</strong> es una librería que implementa las interfaces de JDBC para un SGBD específico.<br />
+Cada gestor (MySQL, PostgreSQL, Oracle…) tiene su propio driver.</p>
+<p>Existen dos tipos principales:</p>
+<h3 id="drivers-embebidos-embedded">🗂️ Drivers embebidos (embedded)</h3>
+<ul>
+<li>La base de datos se ejecuta <strong>dentro de la aplicación</strong>.  </li>
+<li>Ejemplos: <strong>H2</strong>, <strong>Apache Derby</strong>.  </li>
+<li>✅ Ventajas: sencillos, portables, sin instalación aparte.  </li>
+<li>❌ Inconvenientes: poca escalabilidad, no aptos para producción masiva.  </li>
+</ul>
+<h3 id="drivers-independientes-cliente-servidor">🖥️ Drivers independientes (cliente-servidor)</h3>
+<ul>
+<li>Se conectan a un <strong>SGBD externo</strong>.  </li>
+<li>Ejemplos: <strong>MySQL</strong>, <strong>PostgreSQL</strong>, <strong>Oracle</strong>.  </li>
+<li>✅ Ventajas: potentes, multiusuario, adecuados para aplicaciones reales.  </li>
+<li>❌ Inconvenientes: requieren instalación y configuración del servidor.  </li>
+</ul>
+<hr />
+<p><img alt="jdbc" src="../../img/ud2/4jdbc.png" /></p>
 
 
   
