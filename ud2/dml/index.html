@@ -652,8 +652,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#uso-con-statement" class="md-nav__link">
-    💻 Uso con Statement
+  <a href="#uso-con-statement-no-recomendado" class="md-nav__link">
+    💻 Uso con Statement (No recomendado)
   </a>
   
 </li>
@@ -663,12 +663,25 @@
     🛠️ Uso con PreparedStatement
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="🛠️ Uso con PreparedStatement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#prevencion-de-sql-injection" class="md-nav__link">
     🔒 Prevención de SQL Injection
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otro-ejemplo-sql-inyection" class="md-nav__link">
+    Otro Ejemplo SQL Inyection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1107,8 +1120,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#uso-con-statement" class="md-nav__link">
-    💻 Uso con Statement
+  <a href="#uso-con-statement-no-recomendado" class="md-nav__link">
+    💻 Uso con Statement (No recomendado)
   </a>
   
 </li>
@@ -1118,12 +1131,25 @@
     🛠️ Uso con PreparedStatement
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="🛠️ Uso con PreparedStatement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#prevencion-de-sql-injection" class="md-nav__link">
     🔒 Prevención de SQL Injection
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otro-ejemplo-sql-inyection" class="md-nav__link">
+    Otro Ejemplo SQL Inyection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1167,8 +1193,9 @@ Las sentencias más utilizadas son:</p>
 <span class="linenos" data-linenos="5 "></span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumnos</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 </code></pre></div>
 <hr />
-<h2 id="uso-con-statement">💻 Uso con Statement</h2>
-<p>Podemos ejecutar sentencias DML en Java con el método <code>executeUpdate()</code> de la interfaz <code>Statement</code>. </p>
+<h2 id="uso-con-statement-no-recomendado">💻 Uso con Statement (No recomendado)</h2>
+<p>Podemos ejecutar sentencias DML en Java con el método <code>executeUpdate()</code> de la interfaz <code>Statement</code>.
+Solo recomendable para consultas estáticas a las que no se les pasa ningún parámetro.</p>
 <p>Ejemplo:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">     </span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
@@ -1205,7 +1232,7 @@ Esto evita errores, facilita la reutilización de la sentencia y protege contra 
 <span class="linenos" data-linenos="15 "></span><span class="p">}</span>
 </code></pre></div>
 <hr />
-<h2 id="prevencion-de-sql-injection">🔒 Prevención de SQL Injection</h2>
+<h3 id="prevencion-de-sql-injection">🔒 Prevención de SQL Injection</h3>
 <p>El uso de <code>PreparedStatement</code> es la mejor práctica para prevenir <strong>SQL Injection</strong>.<br />
 Ejemplo de riesgo con <code>Statement</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">String</span><span class="w"> </span><span class="n">usuario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pepe&quot;</span><span class="p">;</span>
@@ -1224,6 +1251,22 @@ Ejemplo de riesgo con <code>Statement</code>:</p>
 <span class="linenos" data-linenos="7 "></span><span class="p">}</span>
 </code></pre></div>
 <p>En este caso, los parámetros se envían al SGBD de forma segura, sin alterar la estructura de la sentencia.</p>
+<hr />
+<h3 id="otro-ejemplo-sql-inyection">Otro Ejemplo SQL Inyection</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">check</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT * FROM users WHERE name = &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&#39;;&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">Statement</span><span class="w"> </span><span class="n">statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">statement</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Si un usuario malintencionado escribe como nombre de usuario a consultar: </p>
+<blockquote>
+<p><strong><code>Alicia'; DROP TABLE usuarios; SELECT * FROM datos WHERE nombre LIKE '%</code></strong></p>
+</blockquote>
+<p>Se generaría la siguiente consulta SQL, (el color verde es lo que pretende el programador, el azul es el dato, y el rojo, el código SQL inyectado):</p>
+<p><img alt="jdbc" src="../../img/ud2/7inyection.png" /></p>
+<p>En la base de datos se ejecutaría la consulta en el orden dado, se seleccionarían todos los registros con el nombre 'Alicia', se borraría la tabla 'usuarios' y finalmente se seleccionaría toda la tabla "datos", que no debería estar disponible para los usuarios web comunes.'</p>
 <hr />
 <h2 id="resumen">📌 Resumen</h2>
 <ul>

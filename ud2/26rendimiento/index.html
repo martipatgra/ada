@@ -707,26 +707,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#sentencias-predefinidas" class="md-nav__link">
-    ⚡ Sentencias predefinidas
-  </a>
-  
-    <nav class="md-nav" aria-label="⚡ Sentencias predefinidas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ejemplos-de-problemas-con-statement" class="md-nav__link">
-    📝 Ejemplos de problemas con Statement
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1098,26 +1078,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#sentencias-predefinidas" class="md-nav__link">
-    ⚡ Sentencias predefinidas
-  </a>
-  
-    <nav class="md-nav" aria-label="⚡ Sentencias predefinidas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ejemplos-de-problemas-con-statement" class="md-nav__link">
-    📝 Ejemplos de problemas con Statement
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1163,77 +1123,6 @@
 <p class="admonition-title">😶‍🌫️ Nota</p>
 <p>Por otra parte, hay que tener en cuenta también que una misma aplicación puede trabajar con varias conexiones simultáneamente para incrementar la eficiencia. Cada conexión abre un hilo de ejecución independiente, por lo que es posible el envío simultáneo de peticiones.</p>
 </div>
-<h2 id="sentencias-predefinidas">⚡ Sentencias predefinidas</h2>
-<p><strong><code>PreparedStatement</code></strong> presenta ventajas sobre su antecesor <strong><code>Statement</code></strong> cuando tengamos que trabajar con sentencias que haya que ejecutar varias veces. </p>
-<table>
-<thead>
-<tr>
-<th>⭐Statement⭐</th>
-<th>⭐PreparedStatement⭐</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Statement is usually parsed and executed each time.</td>
-<td>PreparedStatement is parsed once and executed with different parameters repeatedly.</td>
-</tr>
-<tr>
-<td>A statement is a static Sql statement.It does not support parameters.</td>
-<td>A PreparedStatement is a dynamic Sql statement.It does supports parameters.</td>
-</tr>
-<tr>
-<td>It is slower because every time the statements get parsed and executed.</td>
-<td>This is faster because this is precompiled once and gets executed with different parameters.</td>
-</tr>
-<tr>
-<td>Statement verifies metadata against database everytime.</td>
-<td>PreparedStatement verifies metadata against database only once.</td>
-</tr>
-<tr>
-<td>If we want to execute sql statement once it is recommended to use statement.</td>
-<td>If we want to execute sql statements repeatedly it is recommended to use PreparedStatement.</td>
-</tr>
-</tbody>
-</table>
-<p>La razón es que cualquier sentencia SQL, cuando se envía el SGBD será compilada antes de ser ejecutada.
-Usando un objeto <code>Statement</code>, cada vez que hacemos una ejecución de una sentencia, ya sea vía executeUpdate o bien vía executeQuery, el SGBD la compilará, ya que le llegará en forma de cadena de caracteres.</p>
-<p>En cambio, al <code>PreparedStament</code> la sentencia nunca varía y por lo tanto se puede compilar y almacenar dentro del mismo objeto, por lo que las siguientes veces que se ejecute no habrá que compilarla. Esto reducirá sensiblemente el tiempo de ejecución. La parametrización, además, ayuda a crear sentencias muy genéricas que se puedan reutilizar fácilmente.</p>
-<p>En algunos sistemas gestores, además, usar <code>PreparedStatement</code> puede llegar a suponer más ventajas, ya que utilizan la secuencia de bytes de la sentencia para detectar si se trata de una sentencia nueva o ya se ha servido con anterioridad. De esta manera se propicia que el sistema almacene las respuestas en la caché, de manera que se puedan entregar de forma más rápida.</p>
-<div class="admonition important">
-<p class="admonition-title">Important 🤔</p>
-<p>The use of a <code>Statement</code> in JDBC should be 100% localized to being used for DDL (ALTER, CREATE, GRANT, etc) as these are the only statement types that cannot accept BIND VARIABLES. <code>PreparedStatements</code> or <code>CallableStatements</code> should be used for EVERY OTHER type of statement (DML, Queries). As these are the statement types that accept bind variables.</p>
-<p>This is a fact, a rule, a law -- <strong>use prepared statements EVERYWHERE. Use STATEMENTS almost no where</strong>.</p>
-</div>
-<h3 id="ejemplos-de-problemas-con-statement">📝 Ejemplos de problemas con Statement</h3>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 1. <code>Statement</code> acepta cadenas como consultas SQL. Por lo tanto, el código se vuelve menos legible cuando concatenamos cadenas SQL:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">PersonEntity</span><span class="w"> </span><span class="n">personEntity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;INSERT INTO persons(id, name, age, email) VALUES(&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personEntity</span><span class="p">.</span><span class="na">getId</span><span class="p">()</span><span class="w"> </span>
-<span class="linenos" data-linenos="3 "></span><span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personEntity</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personEntity</span><span class="p">.</span><span class="na">getAge</span><span class="p">()</span><span class="w"> </span>
-<span class="linenos" data-linenos="4 "></span><span class="w">                    </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personEntity</span><span class="p">.</span><span class="na">getEmail</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&#39;)&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="5 "></span>
-<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="n">Statement</span><span class="w"> </span><span class="n">statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
-<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="n">statement</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
-<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
-</code></pre></div>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 2. Es vulnerable a la <strong>inyección de SQL</strong>. </li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">check</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT * FROM users WHERE name = &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&#39;;&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="3 "></span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">Statement</span><span class="w"> </span><span class="n">statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">statement</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
-<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
-</code></pre></div>
-<p>Si un usuario malintencionado escribe como nombre de usuario a consultar: </p>
-<blockquote>
-<p><strong><code>Alicia'; DROP TABLE usuarios; SELECT * FROM datos WHERE nombre LIKE '%</code></strong></p>
-</blockquote>
-<p>Se generaría la siguiente consulta SQL, (el color verde es lo que pretende el programador, el azul es el dato, y el rojo, el código SQL inyectado):</p>
-<p><img alt="jdbc" src="../../img/ud2/7inyection.png" /></p>
-<p>En la base de datos se ejecutaría la consulta en el orden dado, se seleccionarían todos los registros con el nombre 'Alicia', se borraría la tabla 'usuarios' y finalmente se seleccionaría toda la tabla "datos", que no debería estar disponible para los usuarios web comunes.'</p>
 
 
   
