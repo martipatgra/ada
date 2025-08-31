@@ -19,7 +19,7 @@
     
     
       
-        <title>2.8.- Transacciones - Acceso a Datos</title>
+        <title>2.8.- Gestión de transacciones en JDBC - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#transacciones" class="md-skip">
+        <a href="#gestion-de-transacciones-en-jdbc" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.8.- Transacciones
+              2.8.- Gestión de transacciones en JDBC
             
           </span>
         </div>
@@ -662,9 +662,54 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          2.8.- Gestión de transacciones en JDBC
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
-        2.8.- Transacciones
+        2.8.- Gestión de transacciones en JDBC
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concepto-de-transaccion" class="md-nav__link">
+    📘 Concepto de transacción
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-commit-en-jdbc" class="md-nav__link">
+    ⚡ Auto-commit en JDBC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commit-y-rollback" class="md-nav__link">
+    ✅ commit() y ❌ rollback()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1034,6 +1079,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concepto-de-transaccion" class="md-nav__link">
+    📘 Concepto de transacción
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-commit-en-jdbc" class="md-nav__link">
+    ⚡ Auto-commit en JDBC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commit-y-rollback" class="md-nav__link">
+    ✅ commit() y ❌ rollback()
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1048,37 +1122,53 @@
 
 
 
-<h1 id="transacciones">⚡Transacciones</h1>
-<p>En el ámbito de las Bases de Datos, una <strong>transacción</strong> es cualquier conjunto de sentencias SQL que se ejecutan como si de una sola se tratara. La idea principal es poder ejecutar varias sentencias, que están relacionadas de alguna manera, de forma que, si cualquiera de ellas fallara o produjera un error, no se ejecutara ninguna más e incluso se deshicieran todos los cambios que hayan podido efectuar las que ya se habían ejecutado dentro de la misma transacción, por eso decimos, que <strong>las transacciones se consideran unitarias</strong>. Es decir, las operaciones que componen la transacción se deben ejecutar todas o ninguna. Esto ayuda a preservarla integridad de los datos e impide posibles desfases entre clientes y servidor.</p>
-<p>De entrada, cualquier sentencia SQL se considera una transacción en sí misma y si se produce un error durante su ejecución se anularán todas las operaciones simples derivadas de la ejecución de la sentencia.</p>
-<p>Una transacción tiene dos finales posibles, <strong><code>COMMIT</code></strong> o <strong><code>ROLLBACK</code></strong>. Si se finaliza correctamente y sin problemas se hará con <code>COMMIT</code>, con lo que los cambios se realizan en la base de datos, y si por alguna razón hay un fallo, se deshacen los cambios efectuados hasta ese momento, con la ejecución de <code>ROLLBACK</code>.</p>
+<h1 id="gestion-de-transacciones-en-jdbc">⚡Gestión de transacciones en JDBC</h1>
+<h2 id="concepto-de-transaccion">📘 Concepto de transacción</h2>
+<p>En el ámbito de las Bases de Datos, una <strong>transacción</strong> es un conjunto de sentencias SQL que se ejecutan como si fueran una sola, es decir, de forma <strong>atómica</strong>.
+o se realizan todas con éxito, o ninguna de ellas se aplica.<br />
+La idea principal es que las operaciones que la componen se deben ejecutar <strong>todas o ninguna</strong>.<br />
+Esto ayuda a preservar la integridad de los datos e impide posibles desfases entre clientes y servidor.</p>
+<p>Una transacción tiene dos finales posibles:<br />
+- <strong><code>COMMIT</code></strong> → confirma los cambios en la base de datos.<br />
+- <strong><code>ROLLBACK</code></strong> → deshace los cambios efectuados hasta el momento.</p>
 <p><img alt="transaction" src="../../img/ud2/6transaction.png" /></p>
-<p>Por defecto, al menos en <strong>MySQL</strong>, en una conexión trabajamos en modo autocommit con valor <strong>true</strong>. Eso significa que cada consulta es una transacción en la base de datos, es decir, que los cambios se aplicarán en la base de datos una vez que la query se haya ejecutado correctamente.</p>
-<p>Por tanto, si queremos definir una transacción de varias operaciones, estableceremos el modo <strong>autocommit</strong> a false con el método <code>setAutoCommit</code> de la clase <code>Connection</code>.</p>
-<p>En modo <code>no autocommit</code> las transacciones quedan definidas por las ejecuciones de los métodos <code>commit</code> y <code>rollback</code>. Una transacción abarca desde el último commit o rollback hasta el siguiente commit. Los métodos <code>commit</code> o <code>rollback</code> forman parte de la clase <code>Connection</code>.</p>
-<p>En la siguiente porción de código, se puede ver un ejemplo sencillo de cómo se puede utilizar <code>commit</code> y <code>rollback</code>: tras las operaciones se realiza el <code>commit</code>, y si ocurre una excepción, al capturarla realizaríamos el <code>rollback</code>.</p>
+<p>Propiedades ACID de una transacción:
+- <strong>Atomicidad</strong> → todas las operaciones se ejecutan o se deshacen.
+- <strong>Consistencia</strong> → la base de datos pasa de un estado válido a otro válido.
+- <strong>Aislamiento</strong> → las transacciones concurrentes no interfieren entre sí.
+- <strong>Durabilidad</strong> → una vez confirmado, el resultado es permanente.</p>
+<hr />
+<h2 id="auto-commit-en-jdbc">⚡ Auto-commit en JDBC</h2>
+<p>Por defecto, al menos en <strong>MySQL</strong>, una conexión trabaja en modo <strong>auto-commit = true</strong>.<br />
+Esto significa que <strong>cada sentencia SQL es en sí misma una transacción</strong>: los cambios se aplican automáticamente si no hay error.  </p>
+<p>Para definir transacciones manuales de varias operaciones, debemos desactivar el auto-commit:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">con</span><span class="p">.</span><span class="na">setAutoCommit</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="commit-y-rollback">✅ commit() y ❌ rollback()</h2>
+<p>Cuando el auto-commit está desactivado, debemos controlar explícitamente el final de la transacción:
+- <strong>commit()</strong> → Confirma la transacción y hace permanentes los cambios.
+- <strong>rollback()</strong> → Revierte los cambios realizados desde el último commit o rollback.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">execute</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="o">[]</span><span class="w"> </span><span class="n">sqlqueries</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">autocommit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;patricia&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;marti&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jdbc:mysql://localhost/severo_ad&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Statement</span><span class="w"> </span><span class="n">stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="n">autocommit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">getAutoCommit</span><span class="p">();</span>
-<span class="hll"><span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="n">con</span><span class="p">.</span><span class="na">setAutoCommit</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-</span><span class="linenos" data-linenos="11 "></span>
-<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">sqlqueries</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">                </span><span class="n">stmt</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="p">}</span>
-<span class="hll"><span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="n">con</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
-</span><span class="hll"><span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="n">con</span><span class="p">.</span><span class="na">setAutoCommit</span><span class="p">(</span><span class="n">autocommit</span><span class="p">);</span>
-</span><span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="hll"><span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="n">con</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
-</span><span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">ex</span><span class="p">;</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="22 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;patricia&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;marti&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jdbc:mysql://localhost/severo_ad&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Statement</span><span class="w"> </span><span class="n">stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="linenos" data-linenos=" 8 "></span><span class="w">            </span><span class="n">con</span><span class="p">.</span><span class="na">setAutoCommit</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</span><span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">sqlqueries</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">                </span><span class="n">stmt</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="p">}</span>
+<span class="hll"><span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="n">con</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="n">con</span><span class="p">.</span><span class="na">setAutoCommit</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="n">con</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
+</span><span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error en la transacción. Cambios revertidos.&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
 </code></pre></div>
 
 
