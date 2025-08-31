@@ -652,8 +652,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#uso-con-statement-no-recomendado" class="md-nav__link">
-    💻 Uso con Statement (No recomendado)
+  <a href="#uso-con-statement-no-recomendado-en-dml" class="md-nav__link">
+    💻 Uso con Statement (No recomendado en DML)
   </a>
   
 </li>
@@ -750,7 +750,7 @@
   
     <li class="md-nav__item">
       <a href="../26rendimiento/" class="md-nav__link">
-        2.9.- Mejora del rendimiento
+        2.9.- Mejora del rendimiento y buenas prácticas
       </a>
     </li>
   
@@ -1120,8 +1120,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#uso-con-statement-no-recomendado" class="md-nav__link">
-    💻 Uso con Statement (No recomendado)
+  <a href="#uso-con-statement-no-recomendado-en-dml" class="md-nav__link">
+    💻 Uso con Statement (No recomendado en DML)
   </a>
   
 </li>
@@ -1193,9 +1193,9 @@ Las sentencias más utilizadas son:</p>
 <span class="linenos" data-linenos="5 "></span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumnos</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 </code></pre></div>
 <hr />
-<h2 id="uso-con-statement-no-recomendado">💻 Uso con Statement (No recomendado)</h2>
-<p>Podemos ejecutar sentencias DML en Java con el método <code>executeUpdate()</code> de la interfaz <code>Statement</code>.
-Solo recomendable para consultas estáticas a las que no se les pasa ningún parámetro.</p>
+<h2 id="uso-con-statement-no-recomendado-en-dml">💻 Uso con Statement (No recomendado en DML)</h2>
+<p>Podemos ejecutar sentencias DML en Java con el método <code>executeUpdate()</code> de la interfaz <code>Statement</code>. Pero no es muy recomendable.
+Su uso se ceñiría solamente para consultas estáticas a las que no se les pasa ningún parámetro.</p>
 <p>Ejemplo:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">     </span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
