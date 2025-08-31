@@ -700,13 +700,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mapeo-de-resultados-a-objetos" class="md-nav__link">
-    🧩 Mapeo de resultados a objetos
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#statement-vs-preparedstatement-en-consultas-select" class="md-nav__link">
     🛠️ Statement vs PreparedStatement en consultas SELECT
   </a>
@@ -1188,13 +1181,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mapeo-de-resultados-a-objetos" class="md-nav__link">
-    🧩 Mapeo de resultados a objetos
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#statement-vs-preparedstatement-en-consultas-select" class="md-nav__link">
     🛠️ Statement vs PreparedStatement en consultas SELECT
   </a>
@@ -1292,30 +1278,33 @@ Existen distintos tipos según cómo se puedan mover:</p>
 <li>Permite moverse hacia adelante y atrás (<code>next()</code>, <code>previous()</code>), ir a la primera o última fila (<code>first()</code>, <code>last()</code>), o saltar a una fila concreta (<code>absolute(n)</code>).  </li>
 <li>Se obtiene indicando el tipo al crear el <code>Statement</code>:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">(</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">ResultSet</span><span class="p">.</span><span class="na">TYPE_SCROLL_INSENSITIVE</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">ResultSet</span><span class="p">.</span><span class="na">CONCUR_READ_ONLY</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="p">);</span>
-<span class="linenos" data-linenos=" 5 "></span>
-<span class="linenos" data-linenos=" 6 "></span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM alumnos&quot;</span><span class="p">);</span>
+<p>```java Scrollable ResultSet
+Statement st = con.createStatement(
+    ResultSet.TYPE_SCROLL_INSENSITIVE,//Permite moverse hacia adelante y atrás (next(), previous()).
+    ResultSet.CONCUR_READ_ONLY //solo lectura
+);</p>
+<p>ResultSet rs = st.executeQuery("SELECT * FROM alumnos");</p>
+<p>rs.last(); // Mueve el cursor al último registro
+int total = rs.getRow();
+System.out.println("Número de filas: " + total);
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>---
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span>## 🧩 Mapeo de resultados a objetos
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span>En aplicaciones reales, los datos obtenidos con `ResultSet` suelen mapearse a **objetos de Java**.  
+<span class="linenos" data-linenos=" 6 "></span>Esto permite trabajar de forma más natural con la información.
 <span class="linenos" data-linenos=" 7 "></span>
-<span class="linenos" data-linenos=" 8 "></span><span class="n">rs</span><span class="p">.</span><span class="na">last</span><span class="p">();</span><span class="w"> </span><span class="c1">// Mueve el cursor al último registro</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getRow</span><span class="p">();</span>
-<span class="linenos" data-linenos="10 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Número de filas: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">total</span><span class="p">);</span>
-</code></pre></div>
-<hr />
-<h2 id="mapeo-de-resultados-a-objetos">🧩 Mapeo de resultados a objetos</h2>
-<p>En aplicaciones reales, los datos obtenidos con <code>ResultSet</code> suelen mapearse a <strong>objetos de Java</strong>.<br />
-Esto permite trabajar de forma más natural con la información.</p>
-<p>Ejemplo: mapeo a una clase <code>Alumno</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Alumno</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="p">;</span>
-<span class="linenos" data-linenos="5 "></span>
-<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="c1">// Constructor, getters y setters...</span>
-<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
-</code></pre></div>
+<span class="linenos" data-linenos=" 8 "></span>Ejemplo: mapeo a una clase `Alumno`.
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span>```java
+<span class="linenos" data-linenos="11 "></span>public class Alumno {
+<span class="linenos" data-linenos="12 "></span>    private int id;
+<span class="linenos" data-linenos="13 "></span>    private String nombre;
+<span class="linenos" data-linenos="14 "></span>    private int edad;
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span>    // Constructor, getters y setters...
+<span class="linenos" data-linenos="17 "></span>}
+</code></pre></div></p>
 <p>Uso en la consulta:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Alumno</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lista</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 <span class="linenos" data-linenos=" 2 "></span>
