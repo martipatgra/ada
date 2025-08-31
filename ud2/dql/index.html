@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../../ud1/trywithresources/">
+        <link rel="prev" href="../dml/">
       
       
-        <link rel="next" href="../22mapeo/">
+        <link rel="next" href="../24transactions/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>2.1.- Persistencia de la información - Acceso a Datos</title>
+        <title>2.6.- Consultas y manipulación de resultados con JDBC (DQL) - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#persistencia-de-la-informacion" class="md-skip">
+        <a href="#consultas-y-manipulacion-de-resultados-con-jdbc-dql" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.1.- Persistencia de la información
+              2.6.- Consultas y manipulación de resultados con JDBC (DQL)
             
           </span>
         </div>
@@ -553,79 +553,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          2.1.- Persistencia de la información
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../21persistencia/" class="md-nav__link">
         2.1.- Persistencia de la información
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tipos-de-bases-de-datos" class="md-nav__link">
-    📂 Tipos de bases de datos
-  </a>
-  
-    <nav class="md-nav" aria-label="📂 Tipos de bases de datos">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bases-de-datos-relacionales-y-sql" class="md-nav__link">
-    📝 Bases de datos relacionales y SQL
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sistemas-gestores-de-bases-de-datos-dbms-rdbms" class="md-nav__link">
-    🛠️ Sistemas gestores de bases de datos (DBMS / RDBMS)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#evolucion-y-necesidad-de-estandares" class="md-nav__link">
-    📈 Evolución y necesidad de estándares
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -691,11 +623,80 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../dql/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          2.6.- Consultas y manipulación de resultados con JDBC (DQL)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         2.6.- Consultas y manipulación de resultados con JDBC (DQL)
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sentencias-select" class="md-nav__link">
+    📘 Sentencias SELECT
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objeto-resultset" class="md-nav__link">
+    📊 Objeto ResultSet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-cursores" class="md-nav__link">
+    🔄 Tipos de cursores
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapeo-de-resultados-a-objetos" class="md-nav__link">
+    🧩 Mapeo de resultados a objetos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    📌 Resumen
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1099,35 +1100,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-bases-de-datos" class="md-nav__link">
-    📂 Tipos de bases de datos
-  </a>
-  
-    <nav class="md-nav" aria-label="📂 Tipos de bases de datos">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bases-de-datos-relacionales-y-sql" class="md-nav__link">
-    📝 Bases de datos relacionales y SQL
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sistemas-gestores-de-bases-de-datos-dbms-rdbms" class="md-nav__link">
-    🛠️ Sistemas gestores de bases de datos (DBMS / RDBMS)
+  <a href="#sentencias-select" class="md-nav__link">
+    📘 Sentencias SELECT
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#evolucion-y-necesidad-de-estandares" class="md-nav__link">
-    📈 Evolución y necesidad de estándares
+  <a href="#objeto-resultset" class="md-nav__link">
+    📊 Objeto ResultSet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-cursores" class="md-nav__link">
+    🔄 Tipos de cursores
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapeo-de-resultados-a-objetos" class="md-nav__link">
+    🧩 Mapeo de resultados a objetos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    📌 Resumen
   </a>
   
 </li>
@@ -1148,43 +1150,112 @@
 
 
 
-<h1 id="persistencia-de-la-informacion">💾 Persistencia de la información</h1>
-<p>En la mayoría de aplicaciones, los datos no deben desaparecer al cerrar el programa: necesitamos guardarlos de forma <strong>persistente</strong> para poder volver a utilizarlos más tarde.<br />
-A esta capacidad de <strong>guardar el estado de un objeto en un almacenamiento</strong> (ficheros, bases de datos, etc.) y restaurarlo posteriormente se le llama <strong>persistencia de la información</strong>.</p>
-<p><img alt="mapeo" src="../../img/ud2/1persistence.png" /></p>
-<p>Hoy en día, la mayoría de aplicaciones informáticas necesitan almacenar y gestionar grandes volúmenes de datos.<br />
-Estos datos suelen guardarse en <strong>bases de datos relacionales</strong>, ya que son las más extendidas y estandarizadas.</p>
+<h1 id="consultas-y-manipulacion-de-resultados-con-jdbc-dql">🔎 Consultas y manipulación de resultados con JDBC (DQL)</h1>
+<h2 id="sentencias-select">📘 Sentencias SELECT</h2>
+<p>Las consultas de lectura en SQL se realizan mediante la sentencia <strong>SELECT</strong>.<br />
+Ejemplos:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumnos</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumnos</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">18</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">alumnos</span><span class="p">;</span>
+</code></pre></div>
+<p>En JDBC, las sentencias <code>SELECT</code> se ejecutan con el método <strong><code>executeQuery()</code></strong>, que devuelve un objeto <code>ResultSet</code>.</p>
 <hr />
-<h2 id="tipos-de-bases-de-datos">📂 Tipos de bases de datos</h2>
-<p>Una <strong>base de datos</strong> es una herramienta que recopila datos, los organiza y los relaciona para que puedan consultarse y analizarse de forma eficiente.<br />
-Las más modernas incorporan motores de análisis que permiten obtener informes y resultados complejos.</p>
-<p>Existen distintos tipos de bases de datos según su modelo de almacenamiento:</p>
+<h2 id="objeto-resultset">📊 Objeto ResultSet</h2>
+<p>El objeto <strong><code>ResultSet</code></strong> representa la tabla de resultados de una consulta SQL.<br />
+Permite recorrer fila a fila los registros devueltos por la consulta y acceder a las columnas por nombre o por índice.</p>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT id, nombre, edad FROM alumnos&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">     </span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">     </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="n">sql</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">&quot;edad&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">edad</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="17 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="tipos-de-cursores">🔄 Tipos de cursores</h2>
+<p>El <code>ResultSet</code> se comporta como un cursor que recorre los resultados.<br />
+Existen distintos tipos según cómo se puedan mover:</p>
 <ul>
-<li><strong>Relacionales (SQL)</strong> → Representan la información en forma de <strong>tablas</strong> con filas y columnas que se relacionan mediante claves. Se consultan con el lenguaje <strong>SQL</strong>.  </li>
-<li><strong>Distribuidas</strong> → Reparten los datos entre varios servidores o nodos, aumentando la disponibilidad y tolerancia a fallos.  </li>
-<li><strong>NoSQL</strong> → No siguen un modelo tabular. Incluyen bases de datos de documentos (MongoDB), clave–valor (Redis), orientadas a columnas (Cassandra) o a grafos.  </li>
-<li><strong>Orientadas a objetos</strong> → Guardan objetos completos, más cercanas al paradigma de la Programación Orientada a Objetos.  </li>
-<li><strong>Gráficas</strong> → Optimizadas para representar y consultar relaciones complejas (ej.: redes sociales, rutas).  </li>
+<li><strong>Forward-only (por defecto)</strong>  </li>
+<li>Solo permite avanzar hacia adelante (<code>next()</code>).  </li>
+<li>
+<p>Es el más rápido y ligero.  </p>
+</li>
+<li>
+<p><strong>Scrollable (bidireccional)</strong>  </p>
+</li>
+<li>Permite moverse hacia adelante y atrás (<code>next()</code>, <code>previous()</code>), ir a la primera o última fila (<code>first()</code>, <code>last()</code>), o saltar a una fila concreta (<code>absolute(n)</code>).  </li>
+<li>Se obtiene indicando el tipo al crear el <code>Statement</code>:</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">ResultSet</span><span class="p">.</span><span class="na">TYPE_SCROLL_INSENSITIVE</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">ResultSet</span><span class="p">.</span><span class="na">CONCUR_READ_ONLY</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM alumnos&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">rs</span><span class="p">.</span><span class="na">last</span><span class="p">();</span><span class="w"> </span><span class="c1">// Mueve el cursor al último registro</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getRow</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Número de filas: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">total</span><span class="p">);</span>
+</code></pre></div>
 <hr />
-<h3 id="bases-de-datos-relacionales-y-sql">📝 Bases de datos relacionales y SQL</h3>
-<p>Las <strong>bases de datos relacionales</strong> (RDB) almacenan la información en tablas relacionadas entre sí mediante <strong>claves primarias y foráneas</strong>.<br />
-Su lenguaje estándar es <strong>SQL (Structured Query Language)</strong>, que permite:</p>
+<h2 id="mapeo-de-resultados-a-objetos">🧩 Mapeo de resultados a objetos</h2>
+<p>En aplicaciones reales, los datos obtenidos con <code>ResultSet</code> suelen mapearse a <strong>objetos de Java</strong>.<br />
+Esto permite trabajar de forma más natural con la información.</p>
+<p>Ejemplo: mapeo a una clase <code>Alumno</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Alumno</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="c1">// Constructor, getters y setters...</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Uso en la consulta:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Alumno</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lista</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT id, nombre, edad FROM alumnos&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">     </span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">     </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="n">sql</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">Alumno</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Alumno</span><span class="p">();</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="na">setNombre</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="na">setEdad</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">&quot;edad&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="n">lista</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="19 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Alumnos cargados: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lista</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+</code></pre></div>
+<hr />
+<h2 id="resumen">📌 Resumen</h2>
 <ul>
-<li>🏗️ <strong>Definir estructuras de datos</strong> (<strong>DDL – Data Definition Language</strong>).  </li>
-<li>✍️ <strong>Insertar, modificar o eliminar registros</strong> (<strong>DML – Data Manipulation Language</strong>).  </li>
-<li>🔍 <strong>Realizar consultas</strong> para obtener información (<strong>DQL – Data Query Language</strong>).  </li>
+<li>Las consultas SQL se realizan con <code>SELECT</code>.  </li>
+<li>En JDBC, se ejecutan con <code>executeQuery()</code>, que devuelve un <code>ResultSet</code>.  </li>
+<li><code>ResultSet</code> permite recorrer los registros y acceder a los valores por nombre o índice.  </li>
+<li>Los cursores pueden ser <strong>forward-only</strong> o <strong>scrollable</strong>.  </li>
+<li>Es buena práctica mapear los resultados a objetos Java para facilitar el manejo de datos en la aplicación.</li>
 </ul>
-<hr />
-<h2 id="sistemas-gestores-de-bases-de-datos-dbms-rdbms">🛠️ Sistemas gestores de bases de datos (DBMS / RDBMS)</h2>
-<p>Un DBMS (Database Management System) es el software encargado de gestionar cómo se almacenan, mantienen y recuperan los datos.</p>
-<p>Cuando el DBMS sigue el modelo relacional, se denomina RDBMS (Relational DBMS).</p>
-<p><img alt="mapeo" src="../../img/ud2/2persistence.png" /></p>
-<hr />
-<h2 id="evolucion-y-necesidad-de-estandares">📈 Evolución y necesidad de estándares</h2>
-<p>En el pasado, trabajar con bases de datos resultaba complejo debido a la gran diversidad de productos, cada uno con su propio lenguaje y características.
-Para solventar este problema, se estandarizó el uso de SQL y, en el caso de Java, se creó una API común: <strong>JDBC</strong>.</p>
-<p>👉 En las siguientes secciones estudiaremos cómo usar JDBC en Java para acceder a diferentes bases de datos sin depender directamente de cada gestor.</p>
 
 
   
