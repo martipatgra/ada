@@ -677,26 +677,6 @@
     🔄 Tipos de cursores
   </a>
   
-    <nav class="md-nav" aria-label="🔄 Tipos de cursores">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#forward-only-por-defecto" class="md-nav__link">
-    Forward-only (por defecto)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scrollable-bidireccional" class="md-nav__link">
-    Scrollable (bidireccional)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1165,26 +1145,6 @@
     🔄 Tipos de cursores
   </a>
   
-    <nav class="md-nav" aria-label="🔄 Tipos de cursores">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#forward-only-por-defecto" class="md-nav__link">
-    Forward-only (por defecto)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scrollable-bidireccional" class="md-nav__link">
-    Scrollable (bidireccional)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1280,31 +1240,10 @@ Permite recorrer fila a fila los registros devueltos por la consulta y acceder a
 </code></pre></div>
 <hr />
 <h2 id="tipos-de-cursores">🔄 Tipos de cursores</h2>
-<p>El <code>ResultSet</code> se comporta como un cursor que recorre los resultados.<br />
-Existen distintos tipos según cómo se puedan mover:</p>
-<h3 id="forward-only-por-defecto"><strong>Forward-only (por defecto)</strong></h3>
-<ul>
-<li>Solo permite avanzar hacia adelante (<code>next()</code>).  </li>
-<li>Es el más rápido y ligero.  </li>
-</ul>
-<h3 id="scrollable-bidireccional"><strong>Scrollable (bidireccional)</strong></h3>
-<ul>
-<li>Permite moverse hacia adelante y atrás (<code>next()</code>, <code>previous()</code>), ir a la primera o última fila (<code>first()</code>, <code>last()</code>), o saltar a una fila concreta (<code>absolute(n)</code>).  </li>
-<li>Se obtiene indicando el tipo al crear el <code>Statement</code>:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//Scrollable ResultSet</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">(</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">ResultSet</span><span class="p">.</span><span class="na">TYPE_SCROLL_INSENSITIVE</span><span class="p">,</span><span class="c1">//Permite moverse hacia adelante y atrás (next(), previous()).</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="n">ResultSet</span><span class="p">.</span><span class="na">CONCUR_READ_ONLY</span><span class="w"> </span><span class="c1">//solo lectura</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="p">);</span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM alumnos&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="n">rs</span><span class="p">.</span><span class="na">last</span><span class="p">();</span><span class="w"> </span><span class="c1">// Mueve el cursor al último registro</span>
-<span class="linenos" data-linenos="10 "></span><span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getRow</span><span class="p">();</span>
-<span class="linenos" data-linenos="11 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Número de filas: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">total</span><span class="p">);</span>
-</code></pre></div>
-<hr />
+<p>El <code>ResultSet</code> se comporta como un cursor que recorre los resultados.  </p>
+<p>Existen distintos tipos según cómo se puedan mover, pero nosotros usaremos el <strong>Forward-only (por defecto)</strong>:<br />
+- Solo permite avanzar hacia adelante (<code>next()</code>).<br />
+- Es el más rápido y ligero.</p>
 <h2 id="mapeo-de-resultados-a-objetos">🧩 Mapeo de resultados a objetos</h2>
 <p>En aplicaciones reales, los datos obtenidos con <code>ResultSet</code> suelen mapearse a <strong>objetos de Java</strong>.<br />
 Esto permite trabajar de forma más natural con la información.</p>
