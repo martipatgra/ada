@@ -1144,13 +1144,14 @@ Esto ayuda a preservar la integridad de los datos e impide posibles desfases ent
 <p>Por defecto, al menos en <strong>MySQL</strong>, una conexión trabaja en modo <strong>auto-commit = true</strong>.<br />
 Esto significa que <strong>cada sentencia SQL es en sí misma una transacción</strong>: los cambios se aplican automáticamente si no hay error.  </p>
 <p>Para definir transacciones manuales de varias operaciones, debemos desactivar el auto-commit:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">con</span><span class="p">.</span><span class="na">setAutoCommit</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">con</span><span class="p">.</span><span class="na">setAutoCommit</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
 </code></pre></div>
+s</p>
 <hr />
 <h2 id="commit-y-rollback">✅ commit() y ❌ rollback()</h2>
 <p>Cuando el auto-commit está desactivado, debemos controlar explícitamente el final de la transacción:<br />
-- <strong>commit()</strong> → Confirma la transacción y hace permanentes los cambios.
-- <strong>rollback()</strong> → Revierte los cambios realizados desde el último commit o rollback.</p>
+- <strong>commit()</strong> → Confirma la transacción y hace permanentes los cambios.<br />
+- <strong>rollback()</strong> → Revierte los cambios realizados desde el último commit o rollback.  </p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">execute</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="o">[]</span><span class="w"> </span><span class="n">sqlqueries</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;patricia&quot;</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;marti&quot;</span><span class="p">;</span>
