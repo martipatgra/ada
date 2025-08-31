@@ -1071,11 +1071,13 @@ Esto ayuda a preservar la integridad de los datos e impide posibles desfases ent
 - <strong><code>COMMIT</code></strong> → confirma los cambios en la base de datos.<br />
 - <strong><code>ROLLBACK</code></strong> → deshace los cambios efectuados hasta el momento.</p>
 <p><img alt="transaction" src="../../img/ud2/6transaction.png" /></p>
-<p>Propiedades ACID de una transacción:
-- <strong>Atomicidad</strong> → todas las operaciones se ejecutan o se deshacen.
-- <strong>Consistencia</strong> → la base de datos pasa de un estado válido a otro válido.
-- <strong>Aislamiento</strong> → las transacciones concurrentes no interfieren entre sí.
-- <strong>Durabilidad</strong> → una vez confirmado, el resultado es permanente.</p>
+<p>Propiedades ACID de una transacción:</p>
+<ul>
+<li><strong>Atomicidad</strong> → todas las operaciones se ejecutan o se deshacen.</li>
+<li><strong>Consistencia</strong> → la base de datos pasa de un estado válido a otro válido.</li>
+<li><strong>Aislamiento</strong> → las transacciones concurrentes no interfieren entre sí.</li>
+<li><strong>Durabilidad</strong> → una vez confirmado, el resultado es permanente.</li>
+</ul>
 <hr />
 <h2 id="auto-commit-en-jdbc">⚡ Auto-commit en JDBC</h2>
 <p>Por defecto, al menos en <strong>MySQL</strong>, una conexión trabaja en modo <strong>auto-commit = true</strong>.<br />
@@ -1085,9 +1087,11 @@ Esto significa que <strong>cada sentencia SQL es en sí misma una transacción</
 </code></pre></div>
 <hr />
 <h2 id="commit-y-rollback">✅ commit() y ❌ rollback()</h2>
-<p>Cuando el auto-commit está desactivado, debemos controlar explícitamente el final de la transacción:
-- <strong>commit()</strong> → Confirma la transacción y hace permanentes los cambios.
-- <strong>rollback()</strong> → Revierte los cambios realizados desde el último commit o rollback.</p>
+<p>Cuando el auto-commit está desactivado, debemos controlar explícitamente el final de la transacción:</p>
+<ul>
+<li><strong>commit()</strong> → Confirma la transacción y hace permanentes los cambios.</li>
+<li><strong>rollback()</strong> → Revierte los cambios realizados desde el último commit o rollback.</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">execute</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="o">[]</span><span class="w"> </span><span class="n">sqlqueries</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;patricia&quot;</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;marti&quot;</span><span class="p">;</span>
