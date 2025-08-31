@@ -1148,7 +1148,7 @@ Esto significa que <strong>cada sentencia SQL es en sí misma una transacción</
 </code></pre></div>
 <hr />
 <h2 id="commit-y-rollback">✅ commit() y ❌ rollback()</h2>
-<p>Cuando el auto-commit está desactivado, debemos controlar explícitamente el final de la transacción:
+<p>Cuando el auto-commit está desactivado, debemos controlar explícitamente el final de la transacción:<br />
 - <strong>commit()</strong> → Confirma la transacción y hace permanentes los cambios.
 - <strong>rollback()</strong> → Revierte los cambios realizados desde el último commit o rollback.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">execute</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="o">[]</span><span class="w"> </span><span class="n">sqlqueries</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
