@@ -1262,23 +1262,27 @@
 <p>Optimizar el acceso a BD no va solo de “hacer menos queries”, sino de <strong>gestionar bien las conexiones</strong> y <strong>ejecutar SQL eficientemente</strong>. Estos son los puntos clave:</p>
 <hr />
 <h2 id="conexion-singleton-o-pool">🔌 Conexión: ¿singleton o pool?</h2>
-<p>🔹 Singleton
+<p>🔹 Singleton:
 - Patrón de diseño que asegura que solo exista <strong>una instancia</strong> de una clase en toda la aplicación.</p>
-<p>🔹 Pool de conexiones
+<p>🔹 Pool de conexiones:
 - Conjunto de <strong>múltiples conexiones abiertas</strong> y gestionadas por un <code>DataSource</code>.</p>
 <ul>
-<li>❌ <strong>Evita un <code>Connection</code> “singleton”</strong> en aplicaciones con concurrencia:</li>
+<li>
+<p>❌ <strong>Evita un <code>Connection</code> “singleton”</strong> en aplicaciones con concurrencia:</p>
+<ul>
 <li>Una <code>Connection</code> <strong>no es thread-safe</strong> → cuellos de botella y errores.</li>
 <li>Punto único de fallo (si cae, cae todo).</li>
-<li>
-<p>Conexiones largas pueden caducar o quedar “colgadas”.</p>
+<li>Conexiones largas pueden caducar o quedar “colgadas”.</li>
+</ul>
 </li>
 <li>
 <p>✅ <strong>Usa un <em>pool de conexiones</em></strong> (<code>DataSource</code>) en su lugar:</p>
-</li>
+<ul>
 <li>Reutiliza conexiones abiertas (muy rápido).</li>
 <li>Gestiona caducidad, validación, tamaño del pool y timeouts.</li>
 <li>Ideal tanto para apps de escritorio con cierta concurrencia como para aplicaciones web.</li>
+</ul>
+</li>
 </ul>
 <h3 id="ejemplo-con-hikaricp-recomendado">Ejemplo con HikariCP (recomendado)</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.zaxxer.hikari.HikariConfig</span><span class="p">;</span>
@@ -1310,7 +1314,7 @@
 <span class="linenos" data-linenos="27 "></span><span class="p">}</span>
 </code></pre></div>
 <p>Uso:
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceSingleton</span><span class="p">.</span><span class="na">getDataSource</span><span class="p">().</span><span class="na">getConnection</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Cfinal</span><span class="w"> </span><span class="n">onnection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceSingleton</span><span class="p">.</span><span class="na">getDataSource</span><span class="p">().</span><span class="na">getConnection</span><span class="p">();</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">     </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="s">&quot;SELECT id, user_name FROM login WHERE id &lt; ?&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 3 "></span>
 <span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="n">ps</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
