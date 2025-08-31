@@ -1262,10 +1262,10 @@
 <p>Optimizar el acceso a BD no va solo de “hacer menos queries”, sino de <strong>gestionar bien las conexiones</strong> y <strong>ejecutar SQL eficientemente</strong>. Estos son los puntos clave:</p>
 <hr />
 <h2 id="conexion-singleton-o-pool">🔌 Conexión: ¿singleton o pool?</h2>
-<p>🔹 Singleton:
-- Patrón de diseño que asegura que solo exista <strong>una instancia</strong> de una clase en toda la aplicación.</p>
-<p>🔹 Pool de conexiones:
-- Conjunto de <strong>múltiples conexiones abiertas</strong> y gestionadas por un <code>DataSource</code>.</p>
+<p>🔹 Singleton
+    - Patrón de diseño que asegura que solo exista <strong>una instancia</strong> de una clase en toda la aplicación.</p>
+<p>🔹 Pool de conexiones
+    - Conjunto de <strong>múltiples conexiones abiertas</strong> y gestionadas por un <code>DataSource</code>.</p>
 <ul>
 <li>
 <p>❌ <strong>Evita un <code>Connection</code> “singleton”</strong> en aplicaciones con concurrencia:</p>
