@@ -664,6 +664,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#statement-vs-preparedstatement-en-ddl" class="md-nav__link">
+    🛠️ Statement vs PreparedStatement en DDL
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1118,6 +1125,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#statement-vs-preparedstatement-en-ddl" class="md-nav__link">
+    🛠️ Statement vs PreparedStatement en DDL
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1196,6 +1210,12 @@ Las sentencias más importantes son:</p>
 <li>Las sentencias DDL (CREATE, ALTER, DROP) definen la estructura de la base de datos.</li>
 <li>En Java, se ejecutan mediante <code>Statement.executeUpdate(sql)</code>.</li>
 <li>Podemos crear o eliminar tablas directamente desde código Java.</li>
+</ul>
+<hr />
+<h2 id="statement-vs-preparedstatement-en-ddl">🛠️ Statement vs PreparedStatement en DDL</h2>
+<ul>
+<li>En <strong>DDL se usa <code>Statement</code></strong> porque las sentencias de creación de estructuras suelen ser fijas (no llevan parámetros dinámicos). Es decir, no se le pasa ningún parámetro o variable a la consulta.</li>
+<li>En <strong>DML se recomienda <code>PreparedStatement</code></strong>, ya que permite parametrizar (<code>?</code>), evitar inyección SQL y reutilizar la sentencia compilada.  </li>
 </ul>
 
 

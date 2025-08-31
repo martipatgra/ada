@@ -678,6 +678,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#metodos-principales-para-ejecutar-sql-en-jdbc" class="md-nav__link">
+    ⚡ Métodos principales para ejecutar SQL en JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Métodos principales para ejecutar SQL en JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#executequerystring-sql" class="md-nav__link">
+    🔍 executeQuery(String sql)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executeupdatestring-sql" class="md-nav__link">
+    ✍️ executeUpdate(String sql)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executestring-sql" class="md-nav__link">
+    🌀 execute(String sql)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-uso" class="md-nav__link">
+    📌 Resumen de uso
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1174,6 +1215,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#metodos-principales-para-ejecutar-sql-en-jdbc" class="md-nav__link">
+    ⚡ Métodos principales para ejecutar SQL en JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Métodos principales para ejecutar SQL en JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#executequerystring-sql" class="md-nav__link">
+    🔍 executeQuery(String sql)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executeupdatestring-sql" class="md-nav__link">
+    ✍️ executeUpdate(String sql)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executestring-sql" class="md-nav__link">
+    🌀 execute(String sql)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-uso" class="md-nav__link">
+    📌 Resumen de uso
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1221,7 +1303,7 @@ Ese driver se añade normalmente como un archivo <code>.jar</code> en el proyect
 <ul>
 <li><code>Connection</code> → Representa la conexión activa con la base de datos.</li>
 <li><code>Statement</code> → Ejecuta sentencias SQL estáticas <strong>(sin parámetros)</strong>. Útil para DDL o consultas sencillas</li>
-<li><code>PreparedStatement</code> → Versión mejorada de Statement, permite parametrizar con ?. Más seguro (previene SQL Injection) y <strong>eficiente en ejecuciones repetidas</strong>.</li>
+<li><code>PreparedStatement</code> → Versión mejorada de Statement, permite parametrizar con el símbolo "?". Más seguro (previene SQL Injection) y <strong>eficiente en ejecuciones repetidas</strong>.</li>
 <li><code>CallableStatement</code> → Se utiliza para ejecutar <strong>procedimientos almacenados</strong> en la base de datos.</li>
 <li><code>ResultSet</code> → Representa el <strong>conjunto de resultados devuelto</strong> por una consulta SELECT. Permite recorrer las filas y leer los datos columna a columna.</li>
 </ul>
@@ -1324,6 +1406,82 @@ Por ello, deben <strong>cerrarse siempre</strong> cuando ya no se necesiten.  </
 <span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="19 "></span><span class="p">}</span>
 </code></pre></div>
+<hr />
+<h2 id="metodos-principales-para-ejecutar-sql-en-jdbc">⚡ Métodos principales para ejecutar SQL en JDBC</h2>
+<p>En JDBC disponemos de tres métodos principales para ejecutar sentencias SQL desde las interfaces <code>Statement</code> o <code>PreparedStatement</code>.<br />
+Cada uno está pensado para un tipo distinto de operación:</p>
+<hr />
+<h3 id="executequerystring-sql">🔍 <code>executeQuery(String sql)</code></h3>
+<ul>
+<li>Uso: <strong>consultas de lectura (SELECT)</strong>.  </li>
+<li>Devuelve: un objeto <code>ResultSet</code> con las filas obtenidas.  </li>
+<li>Ejemplo:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM alumnos&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="executeupdatestring-sql">✍️ <code>executeUpdate(String sql)</code></h3>
+<ul>
+<li>Uso: <strong>operaciones de modificación de datos (DML)</strong> y <strong>sentencias DDL</strong>.  </li>
+<li>DML: <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>.  </li>
+<li>DDL: <code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>.  </li>
+<li>Devuelve: un <code>int</code> con el número de filas afectadas (en DML) o <code>0</code> en DDL.  </li>
+<li>Ejemplo:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">int</span><span class="w"> </span><span class="n">filas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">(</span><span class="s">&quot;INSERT INTO alumnos VALUES (1, &#39;Ana&#39;, 20)&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Filas insertadas: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">filas</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h3 id="executestring-sql">🌀 <code>execute(String sql)</code></h3>
+<ul>
+<li>Uso: <strong>genérico</strong>. Puede ejecutar cualquier tipo de sentencia SQL.  </li>
+<li>Devuelve:  </li>
+<li><code>true</code> → si la operación devuelve un <code>ResultSet</code>.  </li>
+<li><code>false</code> → si devuelve solo un número de filas afectadas.  </li>
+<li>Ejemplo:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kt">boolean</span><span class="w"> </span><span class="n">tieneResultados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;SELECT * FROM alumnos&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tieneResultados</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">getResultSet</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">filas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">getUpdateCount</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Filas modificadas: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">filas</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="resumen-de-uso">📌 Resumen de uso</h3>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Uso principal</th>
+<th>Devuelve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>executeQuery(sql)</code></td>
+<td>Consultas <code>SELECT</code></td>
+<td><code>ResultSet</code></td>
+</tr>
+<tr>
+<td><code>executeUpdate(sql)</code></td>
+<td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, DDL</td>
+<td>Nº filas afectadas (<code>int</code>)</td>
+</tr>
+<tr>
+<td><code>execute(sql)</code></td>
+<td>Cualquier sentencia (menos habitual)</td>
+<td><code>boolean</code> + <code>ResultSet</code>/<code>int</code></td>
+</tr>
+</tbody>
+</table>
 
 
   
