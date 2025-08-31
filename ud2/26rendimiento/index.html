@@ -1314,7 +1314,7 @@
 <span class="linenos" data-linenos="27 "></span><span class="p">}</span>
 </code></pre></div>
 <p>Hay un único HikariDataSource (singleton) por cada origen de datos.<br />
-- Ese DataSource gestiona internamente un pool de conexiones.
+- Ese DataSource gestiona internamente un pool de conexiones.<br />
 - Cada vez que llamas a <code>getConnection()</code> de <code>DataSource</code>, no abre un socket nuevo:<br />
     - ✅ Si hay una conexión libre en el pool → te la entrega.<br />
     - ✅ Si no, crea una nueva hasta llegar al maximumPoolSize.
