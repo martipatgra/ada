@@ -1313,16 +1313,12 @@
 <span class="linenos" data-linenos="26 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="nf">getDataSource</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ds</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="linenos" data-linenos="27 "></span><span class="p">}</span>
 </code></pre></div>
-<ul>
-<li>Hay un único HikariDataSource (singleton) por cada origen de datos.  <ul>
-<li>Ese DataSource gestiona internamente un pool de conexiones.  </li>
-<li>Cada vez que llamas a <code>getConnection()</code> de <code>DataSource</code>, no abre un socket nuevo:  </li>
-<li>✅ Si hay una conexión libre en el pool → te la entrega.  </li>
-<li>✅ Si no, crea una nueva hasta llegar al maximumPoolSize.</li>
-<li>✅ Cuando cierras la conexión (try-with-resources), no se destruye, sino que vuelve al pool para reutilizarse. Ese préstamo/devolución es muy rápido y thread-safe.</li>
-</ul>
-</li>
-</ul>
+<p>Hay un único HikariDataSource (singleton) por cada origen de datos.<br />
+- Ese DataSource gestiona internamente un pool de conexiones.<br />
+- Cada vez que llamas a <code>getConnection()</code> de <code>DataSource</code>, no abre un socket nuevo:<br />
+    - ✅ Si hay una conexión libre en el pool → te la entrega.<br />
+    - ✅ Si no, crea una nueva hasta llegar al maximumPoolSize.
+    - ✅ Cuando cierras la conexión (try-with-resources), no se destruye, sino que vuelve al pool para reutilizarse. Ese préstamo/devolución es muy rápido y thread-safe.</p>
 <p>Uso:
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceSingleton</span><span class="p">.</span><span class="na">getDataSource</span><span class="p">().</span><span class="na">getConnection</span><span class="p">();</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">     </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="s">&quot;SELECT id, user_name FROM login WHERE id &lt; ?&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
