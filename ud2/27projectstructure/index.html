@@ -19,7 +19,7 @@
     
     
       
-        <title>2.10.- Estructura de los proyectos - Acceso a Datos</title>
+        <title>2.10.- Desarrollo de aplicaciones completas con JDBC - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#estructura-de-un-proyecto-con-jdbc" class="md-skip">
+        <a href="#desarrollo-de-aplicaciones-completas-con-jdbc" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.10.- Estructura de los proyectos
+              2.10.- Desarrollo de aplicaciones completas con JDBC
             
           </span>
         </div>
@@ -691,12 +691,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          2.10.- Estructura de los proyectos
+          2.10.- Desarrollo de aplicaciones completas con JDBC
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        2.10.- Estructura de los proyectos
+        2.10.- Desarrollo de aplicaciones completas con JDBC
       </a>
       
         
@@ -722,8 +722,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-clase-connection" class="md-nav__link">
-    2️⃣ - Clase Connection
+  <a href="#2-clase-de-conexion-con-singleton-de-datasource" class="md-nav__link">
+    2️⃣ - Clase de conexión con Singleton de DataSource
   </a>
   
 </li>
@@ -750,11 +750,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-fichero-readme" class="md-nav__link">
-    6️⃣ - Fichero README
+  <a href="#6-crud-basico-con-jdbc" class="md-nav__link">
+    6️⃣ CRUD básico con JDBC
   </a>
   
-    <nav class="md-nav" aria-label="6️⃣ - Fichero README">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-uso-de-transacciones" class="md-nav__link">
+    7️⃣ Uso de transacciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-procedimientos-almacenados" class="md-nav__link">
+    8️⃣ Procedimientos almacenados
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-fichero-readme" class="md-nav__link">
+    9️⃣ - Fichero README
+  </a>
+  
+    <nav class="md-nav" aria-label="9️⃣ - Fichero README">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1141,8 +1162,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-clase-connection" class="md-nav__link">
-    2️⃣ - Clase Connection
+  <a href="#2-clase-de-conexion-con-singleton-de-datasource" class="md-nav__link">
+    2️⃣ - Clase de conexión con Singleton de DataSource
   </a>
   
 </li>
@@ -1169,11 +1190,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-fichero-readme" class="md-nav__link">
-    6️⃣ - Fichero README
+  <a href="#6-crud-basico-con-jdbc" class="md-nav__link">
+    6️⃣ CRUD básico con JDBC
   </a>
   
-    <nav class="md-nav" aria-label="6️⃣ - Fichero README">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-uso-de-transacciones" class="md-nav__link">
+    7️⃣ Uso de transacciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-procedimientos-almacenados" class="md-nav__link">
+    8️⃣ Procedimientos almacenados
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-fichero-readme" class="md-nav__link">
+    9️⃣ - Fichero README
+  </a>
+  
+    <nav class="md-nav" aria-label="9️⃣ - Fichero README">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1218,12 +1260,13 @@
 
 
 
-<h1 id="estructura-de-un-proyecto-con-jdbc">🧭 Estructura de un proyecto con JDBC</h1>
+<h1 id="desarrollo-de-aplicaciones-completas-con-jdbc">🧭 Desarrollo de aplicaciones completas con JDBC</h1>
 <p>Para las tareas de clase vamos a seguir una estructura que iremos perfilando basada en el <strong>MVC</strong> <strong>(modelo - vista - controlador)</strong>.
 En el IntelliJ, crearemos un nuevo proyecto con la siguiente distribución de paquetes:</p>
 <p><img alt="jdbc" src="../../img/ud2/9structure.png" /></p>
+<hr />
 <h2 id="1-creando-la-bbdd">1️⃣ - Creando la BBDD</h2>
-<p>Lo primero que tendremos que hacer asegurarnos de que tenemos el servidor de base de datos instalado y la base de datos creada con las tablas que necesitemos para nuestra aplicación.</p>
+<p>Asegúrate de que tienes el servidor de base de datos instalado y la base de datos creada con las tablas necesarias para tu aplicación.  </p>
 <p><img alt="jdbc" src="../../img/ud2/8createschema.png" /></p>
 <p>Creamos también la tabla <strong>login</strong> con la que vamos a trabajar en los ejemplos:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">login</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
@@ -1235,42 +1278,46 @@ En el IntelliJ, crearemos un nuevo proyecto con la siguiente distribución de pa
 <span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">user_name</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">user_name</span><span class="o">`</span><span class="p">)</span>
 <span class="linenos" data-linenos="8 "></span><span class="p">);</span>
 </code></pre></div>
-<h2 id="2-clase-connection">2️⃣ - Clase <code>Connection</code></h2>
-<p>Conectar a la BD es un coste muy grande, ya que es un proceso lento, por lo tanto, implementaremos la clase de conexión a la base de datos utilizando el patrón singleton. </p>
+<hr />
+<h2 id="2-clase-de-conexion-con-singleton-de-datasource">2️⃣ - Clase de conexión con Singleton de DataSource</h2>
+<p>Conectar a la BD es un coste muy grande, ya que es un proceso lento, por lo tanto, usaremos un <strong>Singleton de <code>DataSource</code> con pool de conexiones</strong>.<br />
+Esto es mucho más eficiente y seguro en aplicaciones reales.</p>
 <p>Esta clase estará ubicada dentro del paquete <strong><em>util</em></strong>.</p>
 <blockquote>
 <p>Ejemplo de conexión a la BBDD usando Singleton:</p>
 </blockquote>
-<div class="highlight"><span class="filename">DatabaseConnection.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DatabaseConnection</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<div class="highlight"><span class="filename">DataSourceSingleton.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.zaxxer.hikari.HikariConfig</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">com.zaxxer.hikari.HikariDataSource</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">javax.sql.DataSource</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">DatabaseConnection</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kd">static</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jdbc:mysql://localhost/severo&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;patricia&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;marti&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="n">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="18 "></span>
-<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="nf">getConnection</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">connection</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DataSourceSingleton</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">HikariDataSource</span><span class="w"> </span><span class="n">ds</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">HikariConfig</span><span class="w"> </span><span class="n">cfg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HikariConfig</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">cfg</span><span class="p">.</span><span class="na">setJdbcUrl</span><span class="p">(</span><span class="s">&quot;jdbc:mysql://localhost:3306/severo?useSSL=false&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">cfg</span><span class="p">.</span><span class="na">setUsername</span><span class="p">(</span><span class="s">&quot;patricia&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">cfg</span><span class="p">.</span><span class="na">setPassword</span><span class="p">(</span><span class="s">&quot;marti&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">        </span><span class="n">cfg</span><span class="p">.</span><span class="na">setMaximumPoolSize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="n">cfg</span><span class="p">.</span><span class="na">setMinimumIdle</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="n">cfg</span><span class="p">.</span><span class="na">setConnectionTimeout</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="n">cfg</span><span class="p">.</span><span class="na">setIdleTimeout</span><span class="p">(</span><span class="mi">600000</span><span class="p">);</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="n">cfg</span><span class="p">.</span><span class="na">setMaxLifetime</span><span class="p">(</span><span class="mi">1800000</span><span class="p">);</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="n">ds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HikariDataSource</span><span class="p">(</span><span class="n">cfg</span><span class="p">);</span>
 <span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="22 "></span>
-<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">close</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="n">connection</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">DataSourceSingleton</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="linenos" data-linenos="24 "></span>
+<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">DataSource</span><span class="w"> </span><span class="nf">getDataSource</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ds</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="linenos" data-linenos="26 "></span><span class="p">}</span>
 </code></pre></div>
+<hr />
 <h2 id="3-creando-el-modelo">3️⃣ - Creando el modelo</h2>
 <p><ins class="critic">El modelo contiene una representación de los datos que maneja la aplicación y su lógica de negocio</ins>.</p>
-<p>Para el ejemplo, el modelo de <code>Login</code> debe contener los atributos que contiene la tabla login como variables de la clase Normalmente los modelos de la clase se encuentran en un paquete llamado <strong><em>model</em></strong>.</p>
+<p>Para el ejemplo, el modelo de <code>Login</code> debe contener los atributos que contiene la tabla login como variables de la clase.
+Normalmente los modelos de la clase se encuentran en un paquete llamado <strong><em>model</em></strong>.</p>
 <div class="highlight"><span class="filename">Login.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Login</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
@@ -1293,40 +1340,40 @@ En el IntelliJ, crearemos un nuevo proyecto con la siguiente distribución de pa
 <span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="21 "></span><span class="p">}</span>
 </code></pre></div>
+<hr />
 <h2 id="4-clases-para-la-manipulacion-de-la-base-de-datos">4️⃣ - Clases para la manipulación de la base de datos</h2>
 <p>Dentro del paquete <strong><em>mysql</em></strong> añadiremos clases que serán las encargadas de manipular la información contra la base de datos. </p>
 <p>En el ejemplo tenemos una clase que realiza la manipulación de la información referente a la tabla login.</p>
 <div class="highlight"><span class="filename">LoginAccessDB.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LoginAccessDB</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DatabaseConnection</span><span class="p">.</span><span class="na">getConnection</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Login</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getLogins</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Login</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getLogins</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT * FROM login&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Login</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lista</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 <span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT * FROM login&quot;</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Statement</span><span class="w"> </span><span class="n">statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">            </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Login</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">resultSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">statement</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
-<span class="linenos" data-linenos="11 "></span>
-<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">                </span><span class="n">Login</span><span class="w"> </span><span class="n">login</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Login</span><span class="p">();</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">                </span><span class="n">login</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">                </span><span class="n">login</span><span class="p">.</span><span class="na">setUsername</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;username&quot;</span><span class="p">));</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">                </span><span class="n">login</span><span class="p">.</span><span class="na">setPassword</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;password&quot;</span><span class="p">));</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">                </span><span class="n">login</span><span class="p">.</span><span class="na">setCreatedAt</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getTimestamp</span><span class="p">(</span><span class="s">&quot;created_at&quot;</span><span class="p">).</span><span class="na">toLocalDateTime</span><span class="p">());</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">                </span><span class="n">lg</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">login</span><span class="p">);</span>
-<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="p">}</span>
-<span class="linenos" data-linenos="20 "></span>
-<span class="linenos" data-linenos="21 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">lg</span><span class="p">;</span>
-<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="24 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceSingleton</span><span class="p">.</span><span class="na">getDataSource</span><span class="p">().</span><span class="na">getConnection</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">             </span><span class="n">Statement</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">             </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="n">sql</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">                </span><span class="n">Login</span><span class="w"> </span><span class="n">login</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Login</span><span class="p">();</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">                </span><span class="n">login</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">                </span><span class="n">login</span><span class="p">.</span><span class="na">setUsername</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;user_name&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">                </span><span class="n">login</span><span class="p">.</span><span class="na">setPassword</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;password&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">                </span><span class="n">login</span><span class="p">.</span><span class="na">setCreatedAt</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getTimestamp</span><span class="p">(</span><span class="s">&quot;created_at&quot;</span><span class="p">).</span><span class="na">toLocalDateTime</span><span class="p">());</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">                </span><span class="n">lista</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">login</span><span class="p">);</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">lista</span><span class="p">;</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="22 "></span><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">😶‍🌫️ Nota</p>
-<p>Más adelante veremos que hay clases que siguen el patrón <strong><em>DAO</em></strong> que se encargan del acceso a base de datos.</p>
+<p>Más adelante veremos el patrón DAO para estructurar mejor el acceso a BD.</p>
 </div>
+<hr />
 <h2 id="5-test">5️⃣ - Test</h2>
-<p>Por último comprobamos que todo funciona correctamente haciendo una pequeña prueba en nuestro <code>main</code> o punto de entrada al programa.</p>
+<p>Por último comprobamos que todo funciona correctamente haciendo una pequeña prueba en nuestro <code>main</code>.</p>
 <div class="highlight"><span class="filename">MainApp.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MainApp</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1343,7 +1390,82 @@ En el IntelliJ, crearemos un nuevo proyecto con la siguiente distribución de pa
 <span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="15 "></span><span class="p">}</span>
 </code></pre></div>
-<h2 id="6-fichero-readme">6️⃣ - Fichero README</h2>
+<hr />
+<h2 id="6-crud-basico-con-jdbc">6️⃣ CRUD básico con JDBC</h2>
+<p>Ejemplos de operaciones clásicas:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">// INSERT</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">String</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;INSERT INTO login(user_name, password) VALUES(?, ?)&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceSingleton</span><span class="p">.</span><span class="na">getDataSource</span><span class="p">().</span><span class="na">getConnection</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">     </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">insert</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1234&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">ps</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="c1">// UPDATE</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">String</span><span class="w"> </span><span class="n">update</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;UPDATE login SET password=? WHERE user_name=?&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="12 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceSingleton</span><span class="p">.</span><span class="na">getDataSource</span><span class="p">().</span><span class="na">getConnection</span><span class="p">();</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">     </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">update</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nuevaPass&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="n">ps</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
+<span class="linenos" data-linenos="17 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="18 "></span>
+<span class="linenos" data-linenos="19 "></span><span class="c1">// DELETE</span>
+<span class="linenos" data-linenos="20 "></span><span class="n">String</span><span class="w"> </span><span class="n">delete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DELETE FROM login WHERE user_name=?&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos="21 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceSingleton</span><span class="p">.</span><span class="na">getDataSource</span><span class="p">().</span><span class="na">getConnection</span><span class="p">();</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">     </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">delete</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="n">ps</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
+<span class="linenos" data-linenos="25 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="7-uso-de-transacciones">7️⃣ Uso de transacciones</h2>
+<p>Ejemplo de dos operaciones que deben ir juntas:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceSingleton</span><span class="p">.</span><span class="na">getDataSource</span><span class="p">().</span><span class="na">getConnection</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="n">con</span><span class="p">.</span><span class="na">setAutoCommit</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="s">&quot;UPDATE cuentas SET saldo = saldo - ? WHERE id=?&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">         </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="s">&quot;UPDATE cuentas SET saldo = saldo + ? WHERE id=?&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">ps1</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">ps1</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="n">ps1</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">ps2</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">ps2</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="n">ps2</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="n">con</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="n">con</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="8-procedimientos-almacenados">8️⃣ Procedimientos almacenados</h2>
+<p>Ejemplo en MySQL:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">DELIMITER</span><span class="w"> </span><span class="o">//</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">obtenerLogin</span><span class="p">(</span><span class="k">IN</span><span class="w"> </span><span class="n">userName</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">BEGIN</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">login</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">user_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userName</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span><span class="k">END</span><span class="w"> </span><span class="o">//</span>
+<span class="linenos" data-linenos="6 "></span><span class="k">DELIMITER</span><span class="w"> </span><span class="p">;</span>
+</code></pre></div>
+<p>Invocación en Java:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;{ call obtenerLogin(?) }&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DataSourceSingleton</span><span class="p">.</span><span class="na">getDataSource</span><span class="p">().</span><span class="na">getConnection</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">     </span><span class="n">CallableStatement</span><span class="w"> </span><span class="n">cs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareCall</span><span class="p">(</span><span class="n">sql</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="n">cs</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;patricia&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;user_name&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="9-fichero-readme">9️⃣ - Fichero README</h2>
 <p><strong><em>Readme</em></strong>: el propio nombre, <ins class="critic">léeme</ins>, indica su propósito: <ins class="critic">ser leído</ins>. El archivo readme <strong>es el primer archivo que un desarrollador debe mirar antes de embarcarse en un proyecto</strong>, por lo que también es esencial saber cómo escribir un buen archivo readme, para que toda la información relevante se presente de forma compacta.</p>
 <div class="admonition advice">
 <p class="admonition-title">Consejo</p>
@@ -1364,6 +1486,7 @@ En el IntelliJ, crearemos un nuevo proyecto con la siguiente distribución de pa
 <p>El contenido del fichero README debe estar en inglés.</p>
 <p><img alt="readme" src="../../img/ud2/10readme.png" /></p>
 <p><a href="https://www.makeareadme.com/">Cómo crear un fichero README</a></p>
+<hr />
 <h2 id="exportar-la-bbdd-de-mysql">Exportar la BBDD de MySQL</h2>
 <p>En MySQL workbench seleccionamos <strong>Server --&gt; Data Export</strong></p>
 <p><img alt="export" src="../../img/ud2/13dataexport.png" /></p>
