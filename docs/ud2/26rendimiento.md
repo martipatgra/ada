@@ -54,9 +54,16 @@ public final class DataSourceSingleton {
 }
 ```
 
+- Hay un único HikariDataSource (singleton) por cada origen de datos.  
+    - Ese DataSource gestiona internamente un pool de conexiones.  
+    - Cada vez que llamas a `getConnection()` de `DataSource`, no abre un socket nuevo:  
+       - ✅ Si hay una conexión libre en el pool → te la entrega.  
+       - ✅ Si no, crea una nueva hasta llegar al maximumPoolSize.
+       - ✅ Cuando cierras la conexión (try-with-resources), no se destruye, sino que vuelve al pool para reutilizarse. Ese préstamo/devolución es muy rápido y thread-safe.
+
 Uso:
 ```java
-try (Cfinal onnection con = DataSourceSingleton.getDataSource().getConnection();
+try (Connection con = DataSourceSingleton.getDataSource().getConnection();
      PreparedStatement ps = con.prepareStatement("SELECT id, user_name FROM login WHERE id < ?")) {
 
     ps.setInt(1, 10);

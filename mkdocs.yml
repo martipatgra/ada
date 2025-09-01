@@ -26,7 +26,7 @@ nav:
       - 2.7.- Procedimientos almacenados y CallableStatement: ud2/procedures.md
       - 2.8.- Gestión de transacciones en JDBC: ud2/transactions.md
       - 2.9.- Mejora del rendimiento y buenas prácticas: ud2/26rendimiento.md
-      - 2.10.- Estructura de los proyectos: ud2/27projectstructure.md
+      - 2.10.- Desarrollo de aplicaciones completas con JDBC: ud2/27projectstructure.md
     - 3.- ORM con Hibernate y JPA:
       - 3.1.- Herramientas ORM: ud3/31mapeo.md
       - 3.2.- Jakarta - JPA: ud3/32jpa.md
