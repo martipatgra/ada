@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../../ud2/27projectstructure/">
+        <link rel="prev" href="../31mapeo/">
       
       
-        <link rel="next" href="../jakartajpa/">
+        <link rel="next" href="../installation/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>3.1.- Fundamentos del ORM - Acceso a Datos</title>
+        <title>3.2.- Jakarta - JPA - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fundamentos-del-orm" class="md-skip">
+        <a href="#jakarta-jpa-java-persistence-api" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3.1.- Fundamentos del ORM
+              3.2.- Jakarta - JPA
             
           </span>
         </div>
@@ -728,6 +728,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../31mapeo/" class="md-nav__link">
+        3.1.- Fundamentos del ORM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -740,12 +754,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          3.1.- Fundamentos del ORM
+          3.2.- Jakarta - JPA
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        3.1.- Fundamentos del ORM
+        3.2.- Jakarta - JPA
       </a>
       
         
@@ -764,76 +778,79 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#concepto-de-mapeo-objetorelacional-orm" class="md-nav__link">
-    🧩 Concepto de mapeo objeto‑relacional (ORM)
+  <a href="#que-cubre-jpa" class="md-nav__link">
+    🧠 ¿Qué cubre JPA?
   </a>
-  
-    <nav class="md-nav" aria-label="🧩 Concepto de mapeo objeto‑relacional (ORM)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#correspondencias-basicas" class="md-nav__link">
-    Correspondencias básicas
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#problemas-con-jdbc-y-necesidad-de-un-orm" class="md-nav__link">
-    ⚙️ Problemas con JDBC y necesidad de un ORM
+  <a href="#arquitectura-general" class="md-nav__link">
+    🧱 Arquitectura general
   </a>
-  
-    <nav class="md-nav" aria-label="⚙️ Problemas con JDBC y necesidad de un ORM">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#por-que-necesitamos-un-orm" class="md-nav__link">
-    ¿Por qué necesitamos un ORM?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ventajas-de-orm" class="md-nav__link">
-    ✅ Ventajas de ORM
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#desventajas-de-orm" class="md-nav__link">
-    ❌ Desventajas de ORM
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#caracteristicas-de-las-herramientas-orm" class="md-nav__link">
-    🔌 Características de las herramientas ORM
-  </a>
-  
-    <nav class="md-nav" aria-label="🔌 Características de las herramientas ORM">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#herramientas-orm-mas-utilizadas" class="md-nav__link">
-    📦 Herramientas ORM más utilizadas
+  <a href="#entidades-entity" class="md-nav__link">
+    🧩 Entidades (@Entity)
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#entitymanagerfactory-y-entitymanager" class="md-nav__link">
+    🏭 EntityManagerFactory y EntityManager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence-context-firstlevel-cache" class="md-nav__link">
+    🧰 Persistence Context (First‑Level Cache)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estados-de-las-entidades" class="md-nav__link">
+    🔄 Estados de las entidades
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fichero-de-persistencia-persistencexml" class="md-nav__link">
+    🧪 Fichero de persistencia: persistence.xml
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jpql-y-consultas" class="md-nav__link">
+    🔎 JPQL y consultas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transacciones-y-excepciones" class="md-nav__link">
+    ⚙️ Transacciones y excepciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrencia-y-thread-safety" class="md-nav__link">
+    🧵 Concurrencia y thread-safety
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementaciones-de-jpa-providers" class="md-nav__link">
+    🧰 Implementaciones de JPA (providers)
+  </a>
   
 </li>
       
@@ -841,20 +858,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../jakartajpa/" class="md-nav__link">
-        3.2.- Jakarta - JPA
-      </a>
     </li>
   
 
@@ -1153,76 +1156,79 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#concepto-de-mapeo-objetorelacional-orm" class="md-nav__link">
-    🧩 Concepto de mapeo objeto‑relacional (ORM)
+  <a href="#que-cubre-jpa" class="md-nav__link">
+    🧠 ¿Qué cubre JPA?
   </a>
-  
-    <nav class="md-nav" aria-label="🧩 Concepto de mapeo objeto‑relacional (ORM)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#correspondencias-basicas" class="md-nav__link">
-    Correspondencias básicas
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#problemas-con-jdbc-y-necesidad-de-un-orm" class="md-nav__link">
-    ⚙️ Problemas con JDBC y necesidad de un ORM
+  <a href="#arquitectura-general" class="md-nav__link">
+    🧱 Arquitectura general
   </a>
-  
-    <nav class="md-nav" aria-label="⚙️ Problemas con JDBC y necesidad de un ORM">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#por-que-necesitamos-un-orm" class="md-nav__link">
-    ¿Por qué necesitamos un ORM?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ventajas-de-orm" class="md-nav__link">
-    ✅ Ventajas de ORM
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#desventajas-de-orm" class="md-nav__link">
-    ❌ Desventajas de ORM
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#caracteristicas-de-las-herramientas-orm" class="md-nav__link">
-    🔌 Características de las herramientas ORM
-  </a>
-  
-    <nav class="md-nav" aria-label="🔌 Características de las herramientas ORM">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#herramientas-orm-mas-utilizadas" class="md-nav__link">
-    📦 Herramientas ORM más utilizadas
+  <a href="#entidades-entity" class="md-nav__link">
+    🧩 Entidades (@Entity)
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#entitymanagerfactory-y-entitymanager" class="md-nav__link">
+    🏭 EntityManagerFactory y EntityManager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence-context-firstlevel-cache" class="md-nav__link">
+    🧰 Persistence Context (First‑Level Cache)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estados-de-las-entidades" class="md-nav__link">
+    🔄 Estados de las entidades
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fichero-de-persistencia-persistencexml" class="md-nav__link">
+    🧪 Fichero de persistencia: persistence.xml
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jpql-y-consultas" class="md-nav__link">
+    🔎 JPQL y consultas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transacciones-y-excepciones" class="md-nav__link">
+    ⚙️ Transacciones y excepciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrencia-y-thread-safety" class="md-nav__link">
+    🧵 Concurrencia y thread-safety
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementaciones-de-jpa-providers" class="md-nav__link">
+    🧰 Implementaciones de JPA (providers)
+  </a>
   
 </li>
       
@@ -1242,75 +1248,192 @@
 
 
 
-<h1 id="fundamentos-del-orm">🗂️ Fundamentos del ORM</h1>
-<h2 id="concepto-de-mapeo-objetorelacional-orm">🧩 Concepto de mapeo objeto‑relacional (ORM)</h2>
+<h1 id="jakarta-jpa-java-persistence-api">🏛️ Jakarta – JPA (Java Persistence API)</h1>
+<p>JPA es una <strong>especificación</strong> que define <em>cómo</em> debe gestionarse la <strong>persistencia de objetos</strong> en aplicaciones Java.<br />
+👉 Al ser una especificación, <strong>JPA no es una librería concreta</strong>: necesita un <strong>proveedor</strong> (implementación) como <strong>Hibernate</strong>, <strong>EclipseLink</strong>, <strong>OpenJPA</strong>, etc.</p>
 <blockquote>
-<p><strong>Idea clave:</strong> El <em>mapeo objeto-relacional</em> es el conjunto de reglas que <strong>relaciona tu modelo orientado a objetos (clases, atributos, asociaciones, herencia)</strong> con el <strong>modelo relacional</strong> de una base de datos (<strong>tablas, columnas, claves y relaciones</strong>). Un ORM implementa este mapeo para que trabajes con <strong>objetos</strong> y no con SQL de bajo nivel.</p>
+<p><strong>Renombrado:</strong> En 2019 <em>Java EE</em> pasó a la <em>Eclipse Foundation</em> y JPA se renombró a <strong>Jakarta Persistence</strong>. Desde <strong>Jakarta Persistence 3.0</strong> (2020), los paquetes cambiaron de <code>javax.persistence</code> a <strong><code>jakarta.persistence</code></strong>.</p>
 </blockquote>
-<h3 id="correspondencias-basicas">Correspondencias básicas</h3>
-<ul>
-<li><strong>Clase ↔ Tabla</strong></li>
-<li><strong>Atributo ↔ Columna</strong></li>
-<li><strong>Identidad ↔ Clave primaria</strong></li>
-<li><strong>Asociación ↔ Relación</strong></li>
-</ul>
 <hr />
-<h2 id="problemas-con-jdbc-y-necesidad-de-un-orm">⚙️ Problemas con JDBC y necesidad de un ORM</h2>
-<p>Aunque JDBC nos permitía abstraer la conexión del driver con la base de datos correcta, <strong>todavía presenta limitaciones</strong>:</p>
+<h2 id="que-cubre-jpa">🧠 ¿Qué cubre JPA?</h2>
 <ul>
-<li>Número importante de líneas de código.  </li>
-<li>Necesidad de trabajar con los dos modelos (relacional y orientado a objetos).  </li>
-<li>Cuanto mayor crece la base de datos más complicado resulta el mantenimiento.  </li>
-<li>Gestión manual de conexión, cierre de conexión, etc.  </li>
-<li>Persisten los problemas del <strong>desfase objeto-relacional</strong>: debemos descomponer los objetos para construir sentencias <strong>INSERT, DELETE o UPDATE</strong>.</li>
+<li><strong>API</strong> (interfaces, anotaciones) en <code>jakarta.persistence</code>  </li>
+<li><strong>Lenguaje de consultas</strong> <strong>JPQL</strong> (Java Persistence Query Language)  </li>
+<li><strong>Metadatos</strong> para el mapeo objeto/relacional (anotaciones o XML)</li>
 </ul>
-<p><img alt="orm" src="../../img/ud2/11problemsjdbc.png" /></p>
-<h3 id="por-que-necesitamos-un-orm">¿Por qué necesitamos un ORM?</h3>
-<p>Un ORM (Object Relational Mapping) actúa como una capa intermedia que:<br />
-- Define cómo mapear clases ↔ tablas y atributos ↔ columnas.<br />
-- Permite trabajar con objetos en memoria y sincronizarlos con la base de datos.<br />
-- Ofrece una API unificada para operaciones de persistencia.</p>
-<p>Ejemplo con Hibernate:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1234&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">session</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>JPA define <strong>interfaces</strong> (p. ej., <code>EntityManager</code>), no clases de uso directo. Para usarlas necesitas una <strong>implementación</strong> (Hibernate, EclipseLink…).</p>
+</div>
+<hr />
+<h2 id="arquitectura-general">🧱 Arquitectura general</h2>
+<p><img alt="arquitectura jpa" src="../../img/ud3/1arquitecturajpa.png" /></p>
+<p>Componentes clave:
+- <strong>Entidades</strong> (<code>@Entity</code>): clases cuyo <strong>estado</strong> queremos guardar en BD.<br />
+- <strong>EntityManagerFactory (EMF)</strong>: fábrica de <code>EntityManager</code>. Es <strong>pesada</strong>, <strong>thread‑safe</strong> y suele existir <strong>una por <em>persistence unit</em></strong> en toda la aplicación.<br />
+- <strong>EntityManager (EM)</strong>: gestiona el <strong>contexto de persistencia</strong> (<em>first‑level cache</em>) y el ciclo de vida de las entidades. <strong>No es thread‑safe</strong>; se usa <strong>por transacción / petición</strong>.<br />
+- <strong>Persistence Context</strong>: conjunto de entidades <strong>gestionadas</strong> (estado <em>managed</em>) que el <code>EntityManager</code> sincroniza con la BD.</p>
+<hr />
+<h2 id="entidades-entity">🧩 Entidades (<code>@Entity</code>)</h2>
+<p>Para JPA, <strong>una entidad es un objeto cuyo estado se persiste</strong> en una tabla.<br />
+Toda entidad necesita una <strong>identidad</strong> (PK).</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.*</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nd">@Entity</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;usuarios&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Usuario</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">  </span><span class="nd">@Id</span><span class="w"> </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">  </span><span class="nd">@Column</span><span class="p">(</span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">  </span><span class="nd">@Column</span><span class="p">(</span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">unique</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">  </span><span class="c1">// getters/setters</span>
+<span class="linenos" data-linenos="16 "></span><span class="p">}</span>
 </code></pre></div>
-<p><img alt="orm" src="../../img/ud2/12orm.png" /></p>
-<h3 id="ventajas-de-orm">✅ Ventajas de ORM</h3>
 <ul>
-<li>Menos código repetitivo.  </li>
-<li>Persistencia de objetos con <code>persist()</code>.  </li>
-<li>Recuperación sencilla de objetos con <code>get()</code> o <code>load()</code>.  </li>
-<li>Lenguaje propio de consultas (HQL, JPQL).  </li>
-<li>Independencia del motor de base de datos.  </li>
-</ul>
-<h3 id="desventajas-de-orm">❌ Desventajas de ORM</h3>
-<ul>
-<li>Curva de aprendizaje pronunciada.  </li>
-<li>Menor rendimiento relativo (traducción de consultas).  </li>
-<li>Complejidad en sistemas con modelos relacionales muy avanzados.  </li>
+<li>Las entidades pueden tener relaciones (<code>@OneToMany</code>, <code>@ManyToOne</code>, <code>@ManyToMany</code>) y tipos embebidos (<code>@Embeddable</code>).  </li>
+<li>El <strong>diseño de la identidad</strong> (PK) es clave para el rendimiento y la igualdad (<code>equals/hashCode</code>).</li>
 </ul>
 <hr />
-<h2 id="caracteristicas-de-las-herramientas-orm">🔌 Características de las herramientas ORM</h2>
-<p>Las herramientas ORM comparten una serie de <strong>características comunes</strong>:</p>
+<h2 id="entitymanagerfactory-y-entitymanager">🏭 EntityManagerFactory y EntityManager</h2>
+<p><img alt="emf-em" src="../../img/ud3/2entitymanagerfactory.png" /></p>
 <ul>
-<li><strong>Abstracción del acceso a la base de datos</strong>: el programador trabaja con objetos.  </li>
-<li><strong>Automatización del mapeo</strong>: entre clases ↔ tablas y atributos ↔ columnas.  </li>
-<li><strong>Gestión de sesiones y estados</strong>: objetos transitorios, persistentes, separados.  </li>
-<li><strong>Lenguaje de consultas orientado a objetos</strong>: HQL (Hibernate Query Language), JPQL (Java Persistence Query Language).  </li>
-<li><strong>Gestión de transacciones</strong> integrada.  </li>
-<li><strong>Independencia del motor de BD</strong>: cambiar de MySQL a PostgreSQL sin apenas modificar código.  </li>
-<li><strong>Compatibilidad con herencia y relaciones complejas</strong>.  </li>
+<li>
+<p><strong>EMF</strong> se crea normalmente al arrancar la aplicación:<br />
+  <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="n">emf</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">Persistence</span><span class="p">.</span><span class="na">createEntityManagerFactory</span><span class="p">(</span><span class="s">&quot;default&quot;</span><span class="p">);</span>
+</code></pre></div>
+  Mantén <strong>una única instancia</strong> (por <em>persistence unit</em>) y ciérrala al apagar la app.</p>
+</li>
+<li>
+<p><strong>EM</strong> se crea cuando necesitas operar con datos y <strong>no se comparte entre hilos</strong>:<br />
+  <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">EntityManager</span><span class="w"> </span><span class="n">em</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emf</span><span class="p">.</span><span class="na">createEntityManager</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">begin</span><span class="p">();</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="c1">// ... usar em.persist/merge/find/query</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">  </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">  </span><span class="n">em</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div></p>
+</li>
 </ul>
-<h3 id="herramientas-orm-mas-utilizadas">📦 Herramientas ORM más utilizadas</h3>
+<blockquote>
+<p><strong>Regla práctica:</strong> <em>EMF = singleton de la app</em>; <em>EM = por petición/uso/tx</em>.</p>
+</blockquote>
+<hr />
+<h2 id="persistence-context-firstlevel-cache">🧰 Persistence Context (First‑Level Cache)</h2>
+<p><img alt="persistence context" src="../../img/ud3/3persistencecontext.png" /></p>
 <ul>
-<li><strong>Hibernate</strong> (Java).  </li>
-<li><strong>JPA (Jakarta Persistence API)</strong> – estándar en Java EE y Spring.  </li>
-<li><strong>EclipseLink</strong> (implementación oficial de JPA).  </li>
-<li><strong>MyBatis</strong> (Java, con mayor control de SQL).  </li>
-<li><strong>Entity Framework</strong> (C#/.NET).  </li>
-<li><strong>Django ORM</strong> (Python).  </li>
-<li><strong>Sequelize</strong> (Node.js).  </li>
+<li>El <code>EntityManager</code> mantiene un <strong>conjunto de entidades gestionadas</strong>.  </li>
+<li>La sincronización con la BD ocurre al <strong><code>commit</code></strong> o al <strong><code>flush()</code></strong>.  </li>
+<li><strong>Dirty checking</strong>: si cambias un atributo de una entidad <em>managed</em>, JPA genera el <code>UPDATE</code> automáticamente al sincronizar.</li>
 </ul>
+<p>Para conseguir que alguno de nuestros objetos pase a ubicarse dentro del PersistenceContext bastará con invocar los métodos persist, merge, sobre él.</p>
+<p>Operaciones típicas:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">em</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="n">ent</span><span class="p">);</span><span class="w">   </span><span class="c1">// transient -&gt; managed (INSERT en flush/commit)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">em</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">detached</span><span class="p">);</span><span class="c1">// detached/new -&gt; managed (SELECT/INSERT/UPDATE)</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">em</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">ent</span><span class="p">);</span><span class="w">    </span><span class="c1">// managed -&gt; removed (DELETE en flush/commit)</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">em</span><span class="p">.</span><span class="na">flush</span><span class="p">();</span><span class="w">        </span><span class="c1">// fuerza sincronización ahora</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">em</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span><span class="w">        </span><span class="c1">// vacía el contexto (pasa managed -&gt; detached)</span>
+</code></pre></div></p>
+<p><img alt="pc-ops" src="../../img/ud3/4persistencecontext.png" /></p>
+<hr />
+<h2 id="estados-de-las-entidades">🔄 Estados de las entidades</h2>
+<ul>
+<li><strong>Transient (new)</strong>: recién creada con <code>new</code>, aún no gestionada.  </li>
+<li><strong>Managed</strong>: dentro del <code>EntityManager</code>; cambios se sincronizan.  </li>
+<li><strong>Detached</strong>: estuvo gestionada, pero ya no (p. ej., tras <code>clear()</code> o cerrar EM).  </li>
+<li><strong>Removed</strong>: marcada para eliminación; se borrará al sincronizar.</li>
+</ul>
+<p>Relación con métodos:
+- <code>persist()</code> → <strong>new → managed</strong><br />
+- <code>remove()</code> → <strong>managed → removed</strong><br />
+- <code>detach()</code> → <strong>managed → detached</strong><br />
+- <code>merge()</code> → <strong>detached/new → managed</strong></p>
+<hr />
+<h2 id="fichero-de-persistencia-persistencexml">🧪 Fichero de persistencia: <code>persistence.xml</code></h2>
+<p>El <strong><code>EntityManagerFactory</code></strong> se configura mediante <strong>unidades de persistencia</strong> en <code>META-INF/persistence.xml</code>:</p>
+<div class="highlight"><span class="filename">META-INF/persistence.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;persistence</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;https://jakarta.ee/xml/ns/persistence&quot;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">             </span><span class="na">version=</span><span class="s">&quot;3.0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">  </span><span class="nt">&lt;persistence-unit</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;default&quot;</span><span class="w"> </span><span class="na">transaction-type=</span><span class="s">&quot;RESOURCE_LOCAL&quot;</span><span class="nt">&gt;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="nt">&lt;class&gt;</span>es.severo.entity.Tramite<span class="nt">&lt;/class&gt;</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="nt">&lt;properties&gt;</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">      </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.jdbc.driver&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;com.mysql.cj.jdbc.Driver&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">      </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.jdbc.url&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;jdbc:mysql://localhost:3306/testdb2&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">      </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.jdbc.user&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">      </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.jdbc.password&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">      </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.show_sql&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">      </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.format_sql&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="nt">&lt;/properties&gt;</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">  </span><span class="nt">&lt;/persistence-unit&gt;</span>
+<span class="linenos" data-linenos="16 "></span><span class="nt">&lt;/persistence&gt;</span>
+</code></pre></div>
+<p><strong>Claves del XML</strong>
+- <strong><code>&lt;persistence-unit name="..."&gt;</code></strong>: identifica la unidad; ese nombre se usa en <code>createEntityManagerFactory(...)</code>.<br />
+- <strong><code>transaction-type</code></strong>:<br />
+  - <code>RESOURCE_LOCAL</code> → transacciones locales controladas por la app.<br />
+  - <code>JTA</code> → transacciones gestionadas por un <em>application server</em>.<br />
+- <strong><code>&lt;class&gt;</code></strong>: lista de entidades (algunos <em>runtimes</em> permiten <em>auto-scan</em>).<br />
+- <strong><code>&lt;properties&gt;</code></strong>: conexión, <em>dialect</em>, <em>DDL</em>, <em>pooling</em>, etc.</p>
+<blockquote>
+<p>Puedes tener <strong>varias</strong> <em>persistence units</em> si conectas a <strong>distintas BDs</strong> o necesitas configuraciones separadas.</p>
+</blockquote>
+<hr />
+<h2 id="jpql-y-consultas">🔎 JPQL y consultas</h2>
+<p><strong>JPQL</strong> consulta <strong>entidades y sus atributos</strong>, no tablas. JPA traduce JPQL → SQL.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">// Búsqueda por email</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">TypedQuery</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="s">&quot;SELECT u FROM Usuario u WHERE u.email = :email&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">q</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;email&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana@example.com&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="na">getSingleResult</span><span class="p">();</span>
+</code></pre></div>
+<ul>
+<li><strong>JOINs</strong> siguen las relaciones del modelo:<br />
+<code>SELECT p FROM Pedido p JOIN p.usuario u WHERE u.nombre = :n</code>  </li>
+<li><strong>Actualizaciones masivas</strong>:<br />
+<code>UPDATE Usuario u SET u.nombre = 'Anon' WHERE u.email LIKE '%@test%'</code>  </li>
+<li><strong>Criteria API</strong> (tipado, dinámico) también está disponible.</li>
+</ul>
+<hr />
+<h2 id="transacciones-y-excepciones">⚙️ Transacciones y excepciones</h2>
+<p>En modo <strong><code>RESOURCE_LOCAL</code></strong>:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">begin</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="c1">// ... operaciones</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">RuntimeException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">rollback</span><span class="p">();</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="n">ex</span><span class="p">;</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div></p>
+<ul>
+<li>Las excepciones de JPA son <strong><code>RuntimeException</code></strong>, con raíz común <strong><code>PersistenceException</code></strong>.  </li>
+<li>En <strong><code>JTA</code></strong>, las transacciones las gestiona el contenedor (por ejemplo, usando anotaciones <code>@Transactional</code> en Jakarta EE/Spring).</li>
+</ul>
+<hr />
+<h2 id="concurrencia-y-thread-safety">🧵 Concurrencia y <em>thread-safety</em></h2>
+<ul>
+<li><strong><code>EntityManagerFactory</code></strong> → <strong>thread‑safe</strong>; <strong>una instancia</strong> por <em>persistence unit</em>.  </li>
+<li><strong><code>EntityManager</code></strong> → <strong>no</strong> thread‑safe; <strong>no usar</strong> como <code>static</code> ni compartir entre hilos. Crear por uso/petición/tx.  </li>
+<li>Cerrar siempre <code>EntityManager</code> en un <code>finally</code> (o equivalente del marco).</li>
+</ul>
+<hr />
+<h2 id="implementaciones-de-jpa-providers">🧰 Implementaciones de JPA (providers)</h2>
+<ul>
+<li><strong>Hibernate</strong> (el más extendido; HQL, gran ecosistema).  </li>
+<li><strong>EclipseLink</strong> (referencia de Jakarta).  </li>
+<li><strong>OpenJPA</strong>, <strong>DataNucleus</strong>, <strong>ObjectDB</strong> (alcances específicos).</li>
+</ul>
+<blockquote>
+<p>Ventaja de JPA: <strong>intercambiabilidad</strong> de proveedores con cambios mínimos si sigues la especificación.</p>
+</blockquote>
 <hr />
 
 
