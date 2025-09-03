@@ -1268,7 +1268,7 @@
 <hr />
 <h2 id="arquitectura-general">🧱 Arquitectura general</h2>
 <p><img alt="arquitectura jpa" src="../../img/ud3/1arquitecturajpa.png" /></p>
-<p>Componentes clave:
+<p>Componentes clave:<br />
 - <strong>Entidades</strong> (<code>@Entity</code>): clases cuyo <strong>estado</strong> queremos guardar en BD.<br />
 - <strong>EntityManagerFactory (EMF)</strong>: fábrica de <code>EntityManager</code>. Es <strong>pesada</strong>, <strong>thread‑safe</strong> y suele existir <strong>una por <em>persistence unit</em></strong> en toda la aplicación.<br />
 - <strong>EntityManager (EM)</strong>: gestiona el <strong>contexto de persistencia</strong> (<em>first‑level cache</em>) y el ciclo de vida de las entidades. <strong>No es thread‑safe</strong>; se usa <strong>por transacción / petición</strong>.<br />
