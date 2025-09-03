@@ -818,6 +818,61 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mapeo-basado-en-anotaciones" class="md-nav__link">
+    🏷️ Mapeo basado en anotaciones
+  </a>
+  
+    <nav class="md-nav" aria-label="🏷️ Mapeo basado en anotaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-entidad-basica" class="md-nav__link">
+    📄 1 Entidad básica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-relaciones" class="md-nav__link">
+    2 Relaciones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch-lazy-vs-eager" class="md-nav__link">
+    fetch (LAZY vs EAGER)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orphanremoval" class="md-nav__link">
+    orphanRemoval
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cascade" class="md-nav__link">
+    cascade
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buenas-practicas" class="md-nav__link">
+    📌 Buenas prácticas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1132,6 +1187,61 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mapeo-basado-en-anotaciones" class="md-nav__link">
+    🏷️ Mapeo basado en anotaciones
+  </a>
+  
+    <nav class="md-nav" aria-label="🏷️ Mapeo basado en anotaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-entidad-basica" class="md-nav__link">
+    📄 1 Entidad básica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-relaciones" class="md-nav__link">
+    2 Relaciones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch-lazy-vs-eager" class="md-nav__link">
+    fetch (LAZY vs EAGER)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orphanremoval" class="md-nav__link">
+    orphanRemoval
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cascade" class="md-nav__link">
+    cascade
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buenas-practicas" class="md-nav__link">
+    📌 Buenas prácticas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1174,12 +1284,21 @@
 <span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>mysql-connector-j<span class="nt">&lt;/artifactId&gt;</span>
 <span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="nt">&lt;version&gt;</span>8.4.0<span class="nt">&lt;/version&gt;</span>
 <span class="linenos" data-linenos="19 "></span><span class="nt">&lt;/dependency&gt;</span>
-<span class="linenos" data-linenos="20 "></span><span class="nt">&lt;/dependencies&gt;</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="cm">&lt;!-- Logging sencillo para ver SQL en consola (opcional en demos) --&gt;</span>
+<span class="linenos" data-linenos="22 "></span><span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">  </span><span class="nt">&lt;groupId&gt;</span>org.slf4j<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">  </span><span class="nt">&lt;artifactId&gt;</span>slf4j-simple<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">  </span><span class="nt">&lt;version&gt;</span>2.0.13<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="26 "></span><span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos="27 "></span><span class="nt">&lt;/dependencies&gt;</span>
 </code></pre></div>
 <h3 id="2-configuracion-mediante-hibernatecfgxml">2. Configuración mediante <code>hibernate.cfg.xml</code></h3>
-<p>El fichero .cfg.xml debe crearse y hibernate debe colocarse en el classpath del proyecto, en:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nt">src</span><span class="o">/</span><span class="nt">main</span><span class="o">/</span><span class="nt">resources</span><span class="o">/</span>
-</code></pre></div>
+<p>El fichero debe estar en el <strong>classpath</strong> (Maven/Gradle los copian a <code>target/classes/</code>).
+El fichero .cfg.xml debe crearse y hibernate debe colocarse en el classpath del proyecto, en:</p>
+<ul>
+<li><strong>Hibernate (clásico)</strong> → <code>src/main/resources/hibernate.cfg.xml</code>  </li>
+</ul>
 <p>Es el fichero principal de configuración de Hibernate cuando trabajas sin JPA puro.
 En él defines:<br />
 - Conexión a la base de datos (driver, URL, usuario, contraseña).
@@ -1199,17 +1318,160 @@ En él defines:<br />
 <span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.connection.username&quot;</span><span class="nt">&gt;</span>patri<span class="nt">&lt;/property&gt;</span>
 <span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.connection.password&quot;</span><span class="nt">&gt;</span>1234<span class="nt">&lt;/property&gt;</span>
 <span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="cm">&lt;!-- Hibernate --&gt;</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="cm">&lt;!-- Dialecto --&gt;</span>
 <span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.dialect&quot;</span><span class="nt">&gt;</span>org.hibernate.dialect.MySQLDialect<span class="nt">&lt;/property&gt;</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.hbm2ddl.auto&quot;</span><span class="nt">&gt;</span>update<span class="nt">&lt;/property&gt;</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.show_sql&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/property&gt;</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.format_sql&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="cm">&lt;!-- Generación de esquema (solo desarrollo) --&gt;</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.hbm2ddl.auto&quot;</span><span class="nt">&gt;</span>update<span class="nt">&lt;/property&gt;</span>
 <span class="linenos" data-linenos="19 "></span>
-<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="cm">&lt;!-- Entidades anotadas (opcional si se autodetecta mediante escaneo de paquetes) --&gt;</span>
-<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;es.ejemplo.Usuario&quot;</span><span class="nt">/&gt;</span>
-<span class="linenos" data-linenos="22 "></span><span class="w">  </span><span class="nt">&lt;/session-factory&gt;</span>
-<span class="linenos" data-linenos="23 "></span><span class="nt">&lt;/hibernate-configuration&gt;</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="cm">&lt;!-- Logging de SQL (para aprender / depurar) --&gt;</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.show_sql&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.format_sql&quot;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="cm">&lt;!-- Zona horaria consistente --&gt;</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.jdbc.time_zone&quot;</span><span class="nt">&gt;</span>UTC<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos="26 "></span>
+<span class="linenos" data-linenos="27 "></span><span class="w">    </span><span class="cm">&lt;!-- Pool de conexiones (HikariCP) --&gt;</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">    </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.connection.provider_class&quot;</span><span class="nt">&gt;</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">      </span>org.hibernate.hikaricp.internal.HikariCPConnectionProvider
+<span class="linenos" data-linenos="30 "></span><span class="w">    </span><span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">    </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.hikari.maximumPoolSize&quot;</span><span class="nt">&gt;</span>10<span class="nt">&lt;/property&gt;</span>
+<span class="linenos" data-linenos="32 "></span>
+<span class="linenos" data-linenos="33 "></span><span class="w">    </span><span class="cm">&lt;!-- Entidades anotadas --&gt;</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">    </span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;com.ejemplo.Usuario&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">  </span><span class="nt">&lt;/session-factory&gt;</span>
+<span class="linenos" data-linenos="36 "></span><span class="nt">&lt;/hibernate-configuration&gt;</span>
 </code></pre></div>
+<h2 id="mapeo-basado-en-anotaciones">🏷️ Mapeo basado en anotaciones</h2>
+<p>El mapeo basado en anotaciones consiste en definir la correspondencia clase ↔ tabla y atributo ↔ columna directamente en el código Java usando anotaciones de JPA/Jakarta</p>
+<h3 id="1-entidad-basica">📄 1 Entidad básica</h3>
+<ul>
+<li><code>@Entity</code> → Marca la clase como persistente.</li>
+<li><code>@Table(name="...")</code> → Cambia el nombre de la tabla y permite uniqueConstraints/indexes.</li>
+</ul>
+<p>Identidad: <br />
+- <code>@Id</code> → Clave primaria.
+- <code>@GeneratedValue(strategy=…)</code> → Estrategia de generación:<br />
+    - IDENTITY (auto-increment en MySQL),
+    - SEQUENCE (PostgreSQL/Oracle; suele usarse con @SequenceGenerator),
+    - AUTO (deja que el proveedor decida),
+    - TABLE (tabla de secuencias).</p>
+<p>Mapeo de columnas:<br />
+- <code>@Column(name="...", nullable=…, length=…, unique=…)</code> → Personaliza la columna.
+- <code>@Transient</code> → No persistir el atributo.
+- <code>@Enumerated(EnumType.STRING)</code> → Guarda el nombre del enum (mejor que ORDINAL).
+- <code>@Lob</code> → CLOB/BLOB para textos o binarios grandes.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@Entity</span><span class="w"> </span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;usuarios&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Usuario</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">  </span><span class="nd">@Id</span><span class="w"> </span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">  </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span><span class="w"> </span><span class="c1">// MySQL</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">  </span><span class="nd">@Column</span><span class="p">(</span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="nd">@Column</span><span class="p">(</span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">unique</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
+<span class="linenos" data-linenos="13 "></span><span class="p">}</span>
+</code></pre></div>
+<h3 id="2-relaciones">2 Relaciones</h3>
+<p><strong>N:1 (muchos-a-uno)</strong>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@ManyToOne</span><span class="p">(</span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">,</span><span class="w"> </span><span class="n">optional</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;usuario_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="kd">private</span><span class="w"> </span><span class="n">Usuario</span><span class="w"> </span><span class="n">usuario</span><span class="p">;</span>
+</code></pre></div></p>
+<p><strong>1:N (uno-a-muchos)</strong>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;usuario&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cascade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CascadeType</span><span class="p">.</span><span class="na">ALL</span><span class="p">,</span><span class="w"> </span><span class="n">orphanRemoval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Pedido</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pedidos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</code></pre></div></p>
+<p><strong>1:1 (uno-a-uno)</strong>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@OneToOne</span><span class="p">(</span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">,</span><span class="w"> </span><span class="n">optional</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;perfil_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">unique</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="kd">private</span><span class="w"> </span><span class="n">Perfil</span><span class="w"> </span><span class="n">perfil</span><span class="p">;</span>
+</code></pre></div></p>
+<p><strong>N:N (muchos-a-muchos) sin atributos en la relación</strong>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@ManyToMany</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@JoinTable</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;usuarios_roles&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="n">joinColumns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;usuario_id&quot;</span><span class="p">),</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="n">inverseJoinColumns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rol_id&quot;</span><span class="p">))</span>
+<span class="linenos" data-linenos="5 "></span><span class="kd">private</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Rol</span><span class="o">&gt;</span><span class="w"> </span><span class="n">roles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</code></pre></div></p>
+<p><strong>N:N (muchos-a-muchos) con atributos que salen de la relación</strong>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@Entity</span><span class="w"> </span><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cursos&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Curso</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">  </span><span class="nd">@Id</span><span class="w"> </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">titulo</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">  </span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;curso&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cascade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CascadeType</span><span class="p">.</span><span class="na">ALL</span><span class="p">,</span><span class="w"> </span><span class="n">orphanRemoval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Matricula</span><span class="o">&gt;</span><span class="w"> </span><span class="n">matriculas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="11 "></span><span class="nd">@Entity</span><span class="w"> </span><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;alumnos&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Alumno</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">  </span><span class="nd">@Id</span><span class="w"> </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">  </span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;alumno&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cascade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CascadeType</span><span class="p">.</span><span class="na">ALL</span><span class="p">,</span><span class="w"> </span><span class="n">orphanRemoval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Matricula</span><span class="o">&gt;</span><span class="w"> </span><span class="n">matriculas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="nd">@Embeddable</span>
+<span class="linenos" data-linenos="23 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MatriculaId</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">alumnoId</span><span class="p">;</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">cursoId</span><span class="p">;</span>
+<span class="linenos" data-linenos="26 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="27 "></span><span class="nd">@Entity</span><span class="w"> </span><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;matriculas&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="28 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Matricula</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="29 "></span>
+<span class="linenos" data-linenos="30 "></span><span class="w">  </span><span class="nd">@EmbeddedId</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">MatriculaId</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos="32 "></span>
+<span class="linenos" data-linenos="33 "></span><span class="w">  </span><span class="nd">@ManyToOne</span><span class="p">(</span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">)</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">  </span><span class="nd">@MapsId</span><span class="p">(</span><span class="s">&quot;alumnoId&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// usa alumno.id para rellenar la parte de la PK</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">  </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;alumno_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">alumno</span><span class="p">;</span>
+<span class="linenos" data-linenos="37 "></span>
+<span class="linenos" data-linenos="38 "></span><span class="w">  </span><span class="nd">@ManyToOne</span><span class="p">(</span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">)</span>
+<span class="linenos" data-linenos="39 "></span><span class="w">  </span><span class="nd">@MapsId</span><span class="p">(</span><span class="s">&quot;cursoId&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// usa curso.id para rellenar la parte de la PK</span>
+<span class="linenos" data-linenos="40 "></span><span class="w">  </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;curso_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="linenos" data-linenos="41 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Curso</span><span class="w"> </span><span class="n">curso</span><span class="p">;</span>
+<span class="linenos" data-linenos="42 "></span><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="fetch-lazy-vs-eager"><code>fetch (LAZY vs EAGER)</code></h3>
+<p>Controla cuándo se cargan las relaciones.</p>
+<p>LAZY: no se carga la relación hasta que la accedes (proxy).<br />
+- ✔️ Ahorra queries y memoria.
+- ⚠️ Si accedes fuera de la sesión/EM: LazyInitializationException.</p>
+<p>EAGER: se carga ya junto con la entidad principal.<br />
+- ✔️ Cómodo si siempre lo necesitas.
+- ⚠️ Puede disparar N+1 consultas o traer “medio grafo” sin querer.</p>
+<h3 id="orphanremoval"><code>orphanRemoval</code></h3>
+<p>Hace que se elimine de la BD el “hijo” cuando deja de estar asociado al “padre” (se queda “huérfano” en la relación). Útil en agregados y cuando el hijo no tiene sentido sin el padre.
+Funciona con @OneToOne y @OneToMany (no con @ManyToMany).</p>
+<p>Diferente de cascade = REMOVE:<br />
+- cascade REMOVE borra hijos cuando borras el padre.
+- orphanRemoval = true borra el hijo cuando lo quitas de la colección o rompes la referencia, aunque el padre siga existiendo.</p>
+<h3 id="cascade"><code>cascade</code></h3>
+<p>Indica qué operaciones del EntityManager se propagan desde una entidad a las relacionadas (en la dirección de la relación donde lo declaras).</p>
+<p>Tipos más usados: <br />
+- <code>PERSIST</code> → al guardar el padre, también guarda los hijos nuevos.
+- <code>MERGE</code> → al hacer merge del padre, aplica cambios a los hijos.
+- <code>REMOVE</code> → al borrar el padre, borra los hijos.
+- <code>REFRESH</code> → recarga también los hijos desde BD.
+- <code>DETACH</code> → los hijos pasan a detached cuando el padre se separa.
+- <code>ALL</code> → equivale a todas las anteriores.</p>
+<h3 id="buenas-practicas">📌 Buenas prácticas</h3>
+<ul>
+<li>Prefiere <strong><code>LAZY</code></strong> y controla cargas con <code>JOIN FETCH</code>/entity graphs.  </li>
+<li>Define <strong>índices</strong> en FKs/columnas de búsqueda.  </li>
+<li>Evita bidireccionales innecesarias; no metas colecciones en <code>equals/hashCode</code>.  </li>
+<li>Usa <strong>DTOs</strong> para lecturas complejas; no expongas entidades en controladores.</li>
+</ul>
+<hr />
 
 
   
