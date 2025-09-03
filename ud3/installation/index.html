@@ -902,6 +902,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../operaciones/" class="md-nav__link">
+        3.5.- Operaciones con objetos en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../34dao/" class="md-nav__link">
         3.5.- Patrón DAO
       </a>
@@ -1470,6 +1484,26 @@ Funciona con @OneToOne y @OneToMany (no con @ManyToMany).</p>
 <li>Define <strong>índices</strong> en FKs/columnas de búsqueda.  </li>
 <li>Evita bidireccionales innecesarias; no metas colecciones en <code>equals/hashCode</code>.  </li>
 <li>Usa <strong>DTOs</strong> para lecturas complejas; no expongas entidades en controladores.</li>
+<li>La <strong>PK</strong> (id) identifica a la entidad en BD.</li>
+<li>Para <code>equals()</code>/<code>hashCode()</code>:</li>
+<li>Si tienes una <strong>clave natural inmutable</strong> (p.ej., <code>dni</code>, <code>email</code> único), puedes usarla.</li>
+<li>Si usas <strong>PK autogenerada</strong>, no la uses antes de existir; una estrategia común es:<ul>
+<li>Si <code>id == null</code>, usa identidad de objeto (super) o un UUID efímero.</li>
+<li>Si <code>id != null</code>, compara por <code>id</code>.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Objetivo: que un objeto no “cambie de identidad” dentro de colecciones (<code>Set</code>, <code>Map</code>) al persistirlo.</p>
+</blockquote>
+<ul>
+<li><code>@ManyToOne</code>, <code>@OneToMany</code>, <code>@OneToOne</code>, <code>@ManyToMany</code> con <code>@JoinColumn</code>/<code>@JoinTable</code>.</li>
+<li><strong>Dueño</strong> de la relación = quien <strong>tiene la FK</strong>.</li>
+<li><strong>Colecciones</strong>: por defecto usa <code>Set</code> (sin duplicados). Usa <code>List + @OrderColumn</code> si el <strong>orden es parte del negocio</strong>.</li>
+<li>Helpers para mantener la bidireccionalidad:
+  <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addPedido</span><span class="p">(</span><span class="n">Pedido</span><span class="w"> </span><span class="n">p</span><span class="p">){</span><span class="w"> </span><span class="n">pedidos</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">setUsuario</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">removePedido</span><span class="p">(</span><span class="n">Pedido</span><span class="w"> </span><span class="n">p</span><span class="p">){</span><span class="w"> </span><span class="n">pedidos</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">setUsuario</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></li>
 </ul>
 <hr />
 
