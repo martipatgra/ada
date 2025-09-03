@@ -1397,8 +1397,6 @@ Toda entidad necesita una <strong>identidad</strong> (PK).</p>
 <ul>
 <li><strong>JOINs</strong> siguen las relaciones del modelo:<br />
 <code>SELECT p FROM Pedido p JOIN p.usuario u WHERE u.nombre = :n</code>  </li>
-<li><strong>Actualizaciones masivas</strong>:<br />
-<code>UPDATE Usuario u SET u.nombre = 'Anon' WHERE u.email LIKE '%@test%'</code>  </li>
 <li><strong>Criteria API</strong> (tipado, dinámico) también está disponible.</li>
 </ul>
 <hr />
