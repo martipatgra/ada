@@ -842,8 +842,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-actualizacion" class="md-nav__link">
-    3 Actualización
+  <a href="#3-actualizacion-merge" class="md-nav__link">
+    3 Actualización - Merge
   </a>
   
 </li>
@@ -865,6 +865,13 @@
           <li class="md-nav__item">
   <a href="#6-buenas-practicas" class="md-nav__link">
     6 Buenas prácticas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mini-guia-de-uso-persist-vs-merge" class="md-nav__link">
+    Mini-guía de uso (persist vs merge)
   </a>
   
 </li>
@@ -1251,8 +1258,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-actualizacion" class="md-nav__link">
-    3 Actualización
+  <a href="#3-actualizacion-merge" class="md-nav__link">
+    3 Actualización - Merge
   </a>
   
 </li>
@@ -1274,6 +1281,13 @@
           <li class="md-nav__item">
   <a href="#6-buenas-practicas" class="md-nav__link">
     6 Buenas prácticas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mini-guia-de-uso-persist-vs-merge" class="md-nav__link">
+    Mini-guía de uso (persist vs merge)
   </a>
   
 </li>
@@ -1403,7 +1417,7 @@
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w">          </span><span class="c1">// SELECT inmediato</span>
 <span class="linenos" data-linenos="2 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">getReference</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w">  </span><span class="c1">// Proxy LAZY</span>
 </code></pre></div>
-<h3 id="3-actualizacion">3 Actualización</h3>
+<h3 id="3-actualizacion-merge">3 Actualización - Merge</h3>
 <ul>
 <li><strong>Entidad detached</strong>: usa <code>merge(detached)</code>. <strong>Devuelve otra instancia</strong> <em>managed</em>.</li>
 </ul>
@@ -1431,10 +1445,14 @@
 </ul>
 <h3 id="6-buenas-practicas">6 Buenas prácticas</h3>
 <ul>
-<li>Prefiere cambiar <strong>entidades managed</strong> en lugar de hacer <code>merge</code> masivo de DTOs.</li>
 <li>Usa <code>getReference</code> para asociar por id sin SELECT extra.</li>
 <li>Helpers <code>add/remove</code> en colecciones bidireccionales (y <code>orphanRemoval</code> si aplica).</li>
-<li>Evita <code>EAGER</code>; usa <code>JOIN FETCH</code> cuando necesites traer relaciones.</li>
+<li>Transacciones en servicios, no en DAOs (usa <code>@Transactional</code>).</li>
+</ul>
+<h3 id="mini-guia-de-uso-persist-vs-merge">Mini-guía de uso (persist vs merge)</h3>
+<ul>
+<li><code>persist</code>: para nuevos (id null). Pasa la instancia a managed.</li>
+<li><code>merge</code>: para detached (crea/actualiza), entidades con id. Devuelve la instancia managed (no la que le pasas).</li>
 </ul>
 <hr />
 <h2 id="consultas-sql-hqljpql-y-criteria-api">🔎 Consultas: SQL, HQL/JPQL y Criteria API</h2>
