@@ -309,39 +309,18 @@
     🕰️ java.io vs java.nio
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#introduccion-al-sistema-de-archivos-en-java" class="md-nav__link">
-    🧭 Introducción al sistema de archivos en Java
-  </a>
-  
-    <nav class="md-nav" aria-label="🧭 Introducción al sistema de archivos en Java">
+    <nav class="md-nav" aria-label="🕰️ java.io vs java.nio">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cual-usar" class="md-nav__link">
-    ⚠️ ¿Cuál usar?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#por-que-usar-javaniofile-hoy" class="md-nav__link">
-    ✅ ¿Por qué usar java.nio.file hoy?
+  <a href="#cual-usar-y-por-que" class="md-nav__link">
+    ⚠️ ¿Cuál usar y por qué?
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparativa-entre-javaiofile-y-javaniofile" class="md-nav__link">
-    🆚 Comparativa entre java.io.File y java.nio.file
-  </a>
   
 </li>
       
@@ -459,6 +438,19 @@
   <a href="#vista-general-de-javaniofile" class="md-nav__link">
     🖼️ Vista general de java.nio.file
   </a>
+  
+    <nav class="md-nav" aria-label="🖼️ Vista general de java.nio.file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparativa-entre-javaiofile-y-javaniofile" class="md-nav__link">
+    🆚 Comparativa entre java.io.File y java.nio.file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1276,39 +1268,18 @@
     🕰️ java.io vs java.nio
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#introduccion-al-sistema-de-archivos-en-java" class="md-nav__link">
-    🧭 Introducción al sistema de archivos en Java
-  </a>
-  
-    <nav class="md-nav" aria-label="🧭 Introducción al sistema de archivos en Java">
+    <nav class="md-nav" aria-label="🕰️ java.io vs java.nio">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cual-usar" class="md-nav__link">
-    ⚠️ ¿Cuál usar?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#por-que-usar-javaniofile-hoy" class="md-nav__link">
-    ✅ ¿Por qué usar java.nio.file hoy?
+  <a href="#cual-usar-y-por-que" class="md-nav__link">
+    ⚠️ ¿Cuál usar y por qué?
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparativa-entre-javaiofile-y-javaniofile" class="md-nav__link">
-    🆚 Comparativa entre java.io.File y java.nio.file
-  </a>
   
 </li>
       
@@ -1427,6 +1398,19 @@
     🖼️ Vista general de java.nio.file
   </a>
   
+    <nav class="md-nav" aria-label="🖼️ Vista general de java.nio.file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparativa-entre-javaiofile-y-javaniofile" class="md-nav__link">
+    🆚 Comparativa entre java.io.File y java.nio.file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1469,17 +1453,8 @@
 <p><strong><code>java.nio</code></strong> (New Input/Output) se introdujo en <strong>Java 1.4</strong> (2002), y se amplió con el paquete <strong><code>java.nio.file</code> en Java 7</strong> (2011). Esta nueva API ofrece clases modernas como <code>Path</code>, <code>Files</code> o <code>DirectoryStream</code>, y un enfoque más seguro y potente para trabajar con el sistema de archivos.</p>
 </li>
 </ul>
-<hr />
-<h2 id="introduccion-al-sistema-de-archivos-en-java">🧭 Introducción al sistema de archivos en Java</h2>
-<p>En Java existen <strong>dos formas principales de trabajar con archivos y carpetas</strong>:</p>
-<ul>
-<li><code>java.io.File</code>: fue la primera API que ofrecía funciones básicas para trabajar con el sistema de archivos.</li>
-<li><code>java.nio.file</code>: introducida en Java 7, es <strong>más moderna, potente y segura</strong>.</li>
-</ul>
-<h3 id="cual-usar">⚠️ ¿Cuál usar?</h3>
+<h3 id="cual-usar-y-por-que">⚠️ ¿Cuál usar y por qué?</h3>
 <p>Aunque <code>java.io.File</code> aún funciona, tiene muchas limitaciones. Por eso <strong>recomendamos usar <code>java.nio.file</code> siempre que sea posible</strong>.</p>
-<hr />
-<h3 id="por-que-usar-javaniofile-hoy">✅ ¿Por qué usar <code>java.nio.file</code> hoy?</h3>
 <ul>
 <li>Mejor gestión de errores (lanzando excepciones con mensajes útiles)</li>
 <li>Soporte para rutas absolutas, relativas y enlaces simbólicos</li>
@@ -1489,58 +1464,6 @@
 <blockquote>
 <p>En esta unidad aprenderás directamente a usar <code>java.nio.file</code>, pero también conocerás brevemente las limitaciones de <code>java.io.File</code> para que puedas comparar y entender por qué hoy se considera una API anticuada.</p>
 </blockquote>
-<h2 id="comparativa-entre-javaiofile-y-javaniofile">🆚 Comparativa entre <code>java.io.File</code> y <code>java.nio.file</code></h2>
-<table>
-<thead>
-<tr>
-<th>Funcionalidad</th>
-<th><code>java.io.File</code> (limitada)</th>
-<th><code>java.nio.file</code> (moderna)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Crear archivo</strong></td>
-<td><code>file.createNewFile()</code><br>❌ Devuelve <code>false</code>, sin detalles</td>
-<td><code>Files.createFile(path)</code><br>✅ Lanza excepción útil</td>
-</tr>
-<tr>
-<td><strong>Comprobar si existe</strong></td>
-<td><code>file.exists()</code></td>
-<td><code>Files.exists(path)</code></td>
-</tr>
-<tr>
-<td><strong>Crear directorio</strong></td>
-<td><code>file.mkdir()</code></td>
-<td><code>Files.createDirectory(path)</code></td>
-</tr>
-<tr>
-<td><strong>Listar archivos</strong></td>
-<td><code>file.listFiles()</code><br>❌ Devuelve <code>null</code> si falla</td>
-<td><code>DirectoryStream&lt;Path&gt;</code><br>✅ Más controlado</td>
-</tr>
-<tr>
-<td><strong>Eliminar archivo</strong></td>
-<td><code>file.delete()</code><br>❌ Devuelve <code>false</code></td>
-<td><code>Files.delete(path)</code><br>✅ Con control de errores</td>
-</tr>
-<tr>
-<td><strong>Copiar/Mover archivos</strong></td>
-<td>❌ No se puede directamente</td>
-<td>✅ <code>Files.copy()</code>, <code>Files.move()</code></td>
-</tr>
-<tr>
-<td><strong>Leer archivo completo</strong></td>
-<td>❌ Necesita bucles y buffers</td>
-<td>✅ <code>Files.readAllLines(path)</code></td>
-</tr>
-<tr>
-<td><strong>Manejo de errores</strong></td>
-<td>❌ Poca información</td>
-<td>✅ Lanza excepciones claras</td>
-</tr>
-</tbody>
-</table>
 <hr />
 <h2 id="que-hay-dentro-de-javaio">📂 ¿Qué hay dentro de <code>java.io</code>?</h2>
 <p>El paquete <code>java.io</code> es uno de los más antiguos de Java, e incluye <strong>clases para:</strong></p>
@@ -1705,6 +1628,59 @@ usuarios/admin/documentos/</p>
 <h2 id="vista-general-de-javaniofile">🖼️ Vista general de <code>java.nio.file</code></h2>
 <p>La siguiente imagen muestra las clases más importantes dentro de <code>java.nio.file</code>:</p>
 <p><img alt="JavaIO" src="../../img/ud1/java.nio.png" /></p>
+<hr />
+<h3 id="comparativa-entre-javaiofile-y-javaniofile">🆚 Comparativa entre <code>java.io.File</code> y <code>java.nio.file</code></h3>
+<table>
+<thead>
+<tr>
+<th>Funcionalidad</th>
+<th><code>java.io.File</code> (limitada)</th>
+<th><code>java.nio.file</code> (moderna)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Crear archivo</strong></td>
+<td><code>file.createNewFile()</code><br>❌ Devuelve <code>false</code>, sin detalles</td>
+<td><code>Files.createFile(path)</code><br>✅ Lanza excepción útil</td>
+</tr>
+<tr>
+<td><strong>Comprobar si existe</strong></td>
+<td><code>file.exists()</code></td>
+<td><code>Files.exists(path)</code></td>
+</tr>
+<tr>
+<td><strong>Crear directorio</strong></td>
+<td><code>file.mkdir()</code></td>
+<td><code>Files.createDirectory(path)</code></td>
+</tr>
+<tr>
+<td><strong>Listar archivos</strong></td>
+<td><code>file.listFiles()</code><br>❌ Devuelve <code>null</code> si falla</td>
+<td><code>DirectoryStream&lt;Path&gt;</code><br>✅ Más controlado</td>
+</tr>
+<tr>
+<td><strong>Eliminar archivo</strong></td>
+<td><code>file.delete()</code><br>❌ Devuelve <code>false</code></td>
+<td><code>Files.delete(path)</code><br>✅ Con control de errores</td>
+</tr>
+<tr>
+<td><strong>Copiar/Mover archivos</strong></td>
+<td>❌ No se puede directamente</td>
+<td>✅ <code>Files.copy()</code>, <code>Files.move()</code></td>
+</tr>
+<tr>
+<td><strong>Leer archivo completo</strong></td>
+<td>❌ Necesita bucles y buffers</td>
+<td>✅ <code>Files.readAllLines(path)</code></td>
+</tr>
+<tr>
+<td><strong>Manejo de errores</strong></td>
+<td>❌ Poca información</td>
+<td>✅ Lanza excepciones claras</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="buenas-practicas-con-javaniofile">✅ Buenas prácticas con <code>java.nio.file</code></h2>
 <ul>
