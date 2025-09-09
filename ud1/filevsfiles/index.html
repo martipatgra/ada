@@ -381,15 +381,15 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#curiosidad-didactica" class="md-nav__link">
     🧠 Curiosidad didáctica
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -408,22 +408,22 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#operaciones-basicas-con-ficheros" class="md-nav__link">
     🛠️ Operaciones básicas con ficheros
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#operaciones-basicas-con-directorios" class="md-nav__link">
     📁 Operaciones básicas con directorios
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1340,15 +1340,15 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#curiosidad-didactica" class="md-nav__link">
     🧠 Curiosidad didáctica
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1367,22 +1367,22 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#operaciones-basicas-con-ficheros" class="md-nav__link">
     🛠️ Operaciones básicas con ficheros
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#operaciones-basicas-con-directorios" class="md-nav__link">
     📁 Operaciones básicas con directorios
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1504,12 +1504,13 @@
 </code></pre></div>
 Un objeto <code>File</code> <strong>NO es el fichero real</strong>. No contiene los datos que contiene el fichero. Es un objeto que contiene métodos que afectan a un archivo o directorio en particular y las funciones para la manipulación real del archivo.</p>
 <hr />
-<h2 id="curiosidad-didactica">🧠 Curiosidad didáctica</h2>
+<h3 id="curiosidad-didactica">🧠 Curiosidad didáctica</h3>
 <ul>
 <li><code>java.io</code> es una <strong>gran colección de clases que forman parte del núcleo de Java</strong> desde sus inicios.</li>
 <li>Muchas de ellas son <strong>abstractas o extensibles</strong>, pensadas para que puedas combinarlas (por ejemplo: envolver un <code>FileReader</code> con un <code>BufferedReader</code>).</li>
 <li>Aunque hoy en día muchas tareas se pueden hacer mejor con <code>java.nio</code>, algunas de estas clases aún <strong>tienen utilidad complementaria</strong>, sobre todo en flujos de texto o para serialización básica.</li>
 </ul>
+<hr />
 <h2 id="que-hay-dentro-de-javaniofile">📂 ¿Qué hay dentro de <code>java.nio.file</code>?</h2>
 <p>El paquete <code>java.nio.file</code> fue introducido en Java 7 y es parte de la API moderna para trabajar con rutas, archivos y directorios de forma segura y eficiente.</p>
 <h3 id="clases-principales">🔧 Clases principales</h3>
@@ -1534,7 +1535,7 @@ Un objeto <code>File</code> <strong>NO es el fichero real</strong>. No contiene 
 </li>
 </ul>
 <hr />
-<h2 id="operaciones-basicas-con-ficheros">🛠️ Operaciones básicas con ficheros</h2>
+<h3 id="operaciones-basicas-con-ficheros">🛠️ Operaciones básicas con ficheros</h3>
 <ul>
 <li><strong>Crear un objeto Path que representa la ruta relativa al fichero nota.txt, dentro del directorio documentos. Si nota.txt no existe no falla, Paths.get(...) solo crea un objeto Path, es decir, una representación en memoria de una ruta. No comprueba si existe ni intenta acceder al fichero.</strong>
     <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">archivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;documentos/nota.txt&quot;</span><span class="p">);</span>
@@ -1578,7 +1579,7 @@ Un objeto <code>File</code> <strong>NO es el fichero real</strong>. No contiene 
 Si el path apunta a un fichero, devuelve el tamaño del contenido del fichero.
 Si el path apunta a un directorio, lanza una excepción (IOException o AccessDeniedException), ya que NO SE PUEDE MEDIR EL TAMAÑO DE UN DIRECTORIO.</p>
 <hr />
-<h2 id="operaciones-basicas-con-directorios">📁 Operaciones básicas con directorios</h2>
+<h3 id="operaciones-basicas-con-directorios">📁 Operaciones básicas con directorios</h3>
 <ul>
 <li><strong>Paths.get es un método estático que crea un objeto de tipo Path. En este caso, crea una ruta relativa al directorio actual con el nombre "nuevaCarpeta".:</strong>
     <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">carpeta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;nuevaCarpeta&quot;</span><span class="p">);</span>
