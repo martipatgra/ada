@@ -19,22 +19,9 @@ Java ofrece varias formas de trabajar con archivos y directorios. A lo largo del
 
 - **`java.nio`** (New Input/Output) se introdujo en **Java 1.4** (2002), y se amplió con el paquete **`java.nio.file` en Java 7** (2011). Esta nueva API ofrece clases modernas como `Path`, `Files` o `DirectoryStream`, y un enfoque más seguro y potente para trabajar con el sistema de archivos.
 
----
-
-## 🧭 Introducción al sistema de archivos en Java
-
-En Java existen **dos formas principales de trabajar con archivos y carpetas**:
-
-- `java.io.File`: fue la primera API que ofrecía funciones básicas para trabajar con el sistema de archivos.
-- `java.nio.file`: introducida en Java 7, es **más moderna, potente y segura**.
-
-### ⚠️ ¿Cuál usar?
+### ⚠️ ¿Cuál usar y por qué?
 
 Aunque `java.io.File` aún funciona, tiene muchas limitaciones. Por eso **recomendamos usar `java.nio.file` siempre que sea posible**.
-
----
-
-### ✅ ¿Por qué usar `java.nio.file` hoy?
 
 - Mejor gestión de errores (lanzando excepciones con mensajes útiles)
 - Soporte para rutas absolutas, relativas y enlaces simbólicos
@@ -42,19 +29,6 @@ Aunque `java.io.File` aún funciona, tiene muchas limitaciones. Por eso **recome
 - Más control y modularidad
 
 > En esta unidad aprenderás directamente a usar `java.nio.file`, pero también conocerás brevemente las limitaciones de `java.io.File` para que puedas comparar y entender por qué hoy se considera una API anticuada.
-
-## 🆚 Comparativa entre `java.io.File` y `java.nio.file`
-
-| Funcionalidad | `java.io.File` (limitada) | `java.nio.file` (moderna) |
-|---------------|----------------------------|----------------------------|
-| **Crear archivo** | `file.createNewFile()`<br>❌ Devuelve `false`, sin detalles | `Files.createFile(path)`<br>✅ Lanza excepción útil |
-| **Comprobar si existe** | `file.exists()` | `Files.exists(path)` |
-| **Crear directorio** | `file.mkdir()` | `Files.createDirectory(path)` |
-| **Listar archivos** | `file.listFiles()`<br>❌ Devuelve `null` si falla | `DirectoryStream<Path>`<br>✅ Más controlado |
-| **Eliminar archivo** | `file.delete()`<br>❌ Devuelve `false` | `Files.delete(path)`<br>✅ Con control de errores |
-| **Copiar/Mover archivos** | ❌ No se puede directamente | ✅ `Files.copy()`, `Files.move()` |
-| **Leer archivo completo** | ❌ Necesita bucles y buffers | ✅ `Files.readAllLines(path)` |
-| **Manejo de errores** | ❌ Poca información | ✅ Lanza excepciones claras |
 
 ---
 
@@ -93,15 +67,17 @@ El paquete `java.io` es uno de los más antiguos de Java, e incluye **clases par
 ```java
 File f = new File("C:\\Users\\temp\\data.txt");
 ```
-Un objeto `File` NO es el fichero real. No contiene los datos que contiene el fichero. Es un objeto que contiene métodos que afectan a un archivo o directorio en particular y las funciones para la manipulación real del archivo.
+Un objeto `File` **NO es el fichero real**. No contiene los datos que contiene el fichero. Es un objeto que contiene métodos que afectan a un archivo o directorio en particular y las funciones para la manipulación real del archivo.
 
 ---
 
-## 🧠 Curiosidad didáctica
+### 🧠 Curiosidad didáctica
 
 - `java.io` es una **gran colección de clases que forman parte del núcleo de Java** desde sus inicios.
 - Muchas de ellas son **abstractas o extensibles**, pensadas para que puedas combinarlas (por ejemplo: envolver un `FileReader` con un `BufferedReader`).
 - Aunque hoy en día muchas tareas se pueden hacer mejor con `java.nio`, algunas de estas clases aún **tienen utilidad complementaria**, sobre todo en flujos de texto o para serialización básica.
+
+---
 
 ## 📂 ¿Qué hay dentro de `java.nio.file`?
 
@@ -127,7 +103,7 @@ El paquete `java.nio.file` fue introducido en Java 7 y es parte de la API modern
 
 ---
 
-## 🛠️ Operaciones básicas con ficheros
+### 🛠️ Operaciones básicas con ficheros
 
 - **Crear un objeto Path que representa la ruta relativa al fichero nota.txt, dentro del directorio documentos. Si nota.txt no existe no falla, Paths.get(...) solo crea un objeto Path, es decir, una representación en memoria de una ruta. No comprueba si existe ni intenta acceder al fichero.**
     ```java
@@ -174,9 +150,10 @@ El paquete `java.nio.file` fue introducido en Java 7 y es parte de la API modern
   ```
 Si el path apunta a un fichero, devuelve el tamaño del contenido del fichero.
 Si el path apunta a un directorio, lanza una excepción (IOException o AccessDeniedException), ya que NO SE PUEDE MEDIR EL TAMAÑO DE UN DIRECTORIO.
+
 ---
 
-## 📁 Operaciones básicas con directorios
+### 📁 Operaciones básicas con directorios
 
 - **Paths.get es un método estático que crea un objeto de tipo Path. En este caso, crea una ruta relativa al directorio actual con el nombre "nuevaCarpeta".:**
     ```java
@@ -233,6 +210,21 @@ La siguiente imagen muestra la jerarquía de clases dentro del paquete `java.io`
 La siguiente imagen muestra las clases más importantes dentro de `java.nio.file`:
 
 ![JavaIO](../img/ud1/java.nio.png)
+
+---
+
+## 🆚 Comparativa entre `java.io.File` y `java.nio.file`
+
+| Funcionalidad | `java.io.File` (limitada) | `java.nio.file` (moderna) |
+|---------------|----------------------------|----------------------------|
+| **Crear archivo** | `file.createNewFile()`<br>❌ Devuelve `false`, sin detalles | `Files.createFile(path)`<br>✅ Lanza excepción útil |
+| **Comprobar si existe** | `file.exists()` | `Files.exists(path)` |
+| **Crear directorio** | `file.mkdir()` | `Files.createDirectory(path)` |
+| **Listar archivos** | `file.listFiles()`<br>❌ Devuelve `null` si falla | `DirectoryStream<Path>`<br>✅ Más controlado |
+| **Eliminar archivo** | `file.delete()`<br>❌ Devuelve `false` | `Files.delete(path)`<br>✅ Con control de errores |
+| **Copiar/Mover archivos** | ❌ No se puede directamente | ✅ `Files.copy()`, `Files.move()` |
+| **Leer archivo completo** | ❌ Necesita bucles y buffers | ✅ `Files.readAllLines(path)` |
+| **Manejo de errores** | ❌ Poca información | ✅ Lanza excepciones claras |
 
 ---
 

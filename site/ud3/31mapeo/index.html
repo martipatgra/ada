@@ -12,14 +12,14 @@
         <link rel="prev" href="../../ud2/27projectstructure/">
       
       
-        <link rel="next" href="../32jpa/">
+        <link rel="next" href="../jakartajpa/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>3.1.- Herramientas ORM - Acceso a Datos</title>
+        <title>3.1.- Fundamentos del ORM - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#herramientas-mapeo-objeto-relacional-orm" class="md-skip">
+        <a href="#fundamentos-del-orm" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3.1.- Herramientas ORM
+              3.1.- Fundamentos del ORM
             
           </span>
         </div>
@@ -740,12 +740,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          3.1.- Herramientas ORM
+          3.1.- Fundamentos del ORM
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        3.1.- Herramientas ORM
+        3.1.- Fundamentos del ORM
       </a>
       
         
@@ -764,37 +764,70 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#problemas-con-jdbc" class="md-nav__link">
-    Problemas con JDBC
+  <a href="#concepto-de-mapeo-objetorelacional-orm" class="md-nav__link">
+    🧩 Concepto de mapeo objeto‑relacional (ORM)
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#por-que-necesitamos-un-orm" class="md-nav__link">
-    ¿Por qué necesitamos un ORM?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#orm" class="md-nav__link">
-    ORM
-  </a>
-  
-    <nav class="md-nav" aria-label="ORM">
+    <nav class="md-nav" aria-label="🧩 Concepto de mapeo objeto‑relacional (ORM)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#correspondencias-basicas" class="md-nav__link">
+    Correspondencias básicas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas-con-jdbc-y-necesidad-de-un-orm" class="md-nav__link">
+    ⚙️ Problemas con JDBC y necesidad de un ORM
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Problemas con JDBC y necesidad de un ORM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-necesitamos-un-orm" class="md-nav__link">
+    🧪 ¿Por qué necesitamos un ORM?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ventajas-de-orm" class="md-nav__link">
-    Ventajas de ORM
+    ✅ Ventajas de ORM
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#desventajas-de-orm" class="md-nav__link">
-    Desventajas de ORM
+    ❌ Desventajas de ORM
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caracteristicas-de-las-herramientas-orm" class="md-nav__link">
+    🔌 Características de las herramientas ORM
+  </a>
+  
+    <nav class="md-nav" aria-label="🔌 Características de las herramientas ORM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#herramientas-orm-mas-utilizadas" class="md-nav__link">
+    📦 Herramientas ORM más utilizadas
   </a>
   
 </li>
@@ -819,7 +852,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../32jpa/" class="md-nav__link">
+      <a href="../jakartajpa/" class="md-nav__link">
         3.2.- Jakarta - JPA
       </a>
     </li>
@@ -833,8 +866,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        3.3.- Configuración e instalación de Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../33hibernate/" class="md-nav__link">
-        3.3.- Hibernate
+        3.4.- Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operaciones/" class="md-nav__link">
+        3.5.- Operaciones con objetos en Hibernate
       </a>
     </li>
   
@@ -848,7 +909,7 @@
   
     <li class="md-nav__item">
       <a href="../34dao/" class="md-nav__link">
-        3.4.- Patrón DAO
+        3.5.- Patrón DAO
       </a>
     </li>
   
@@ -862,7 +923,7 @@
   
     <li class="md-nav__item">
       <a href="../35service/" class="md-nav__link">
-        3.5.- Service Layer
+        3.6.- Service Layer
       </a>
     </li>
   
@@ -1106,37 +1167,70 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#problemas-con-jdbc" class="md-nav__link">
-    Problemas con JDBC
+  <a href="#concepto-de-mapeo-objetorelacional-orm" class="md-nav__link">
+    🧩 Concepto de mapeo objeto‑relacional (ORM)
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#por-que-necesitamos-un-orm" class="md-nav__link">
-    ¿Por qué necesitamos un ORM?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#orm" class="md-nav__link">
-    ORM
-  </a>
-  
-    <nav class="md-nav" aria-label="ORM">
+    <nav class="md-nav" aria-label="🧩 Concepto de mapeo objeto‑relacional (ORM)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#correspondencias-basicas" class="md-nav__link">
+    Correspondencias básicas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas-con-jdbc-y-necesidad-de-un-orm" class="md-nav__link">
+    ⚙️ Problemas con JDBC y necesidad de un ORM
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Problemas con JDBC y necesidad de un ORM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-necesitamos-un-orm" class="md-nav__link">
+    🧪 ¿Por qué necesitamos un ORM?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ventajas-de-orm" class="md-nav__link">
-    Ventajas de ORM
+    ✅ Ventajas de ORM
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#desventajas-de-orm" class="md-nav__link">
-    Desventajas de ORM
+    ❌ Desventajas de ORM
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caracteristicas-de-las-herramientas-orm" class="md-nav__link">
+    🔌 Características de las herramientas ORM
+  </a>
+  
+    <nav class="md-nav" aria-label="🔌 Características de las herramientas ORM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#herramientas-orm-mas-utilizadas" class="md-nav__link">
+    📦 Herramientas ORM más utilizadas
   </a>
   
 </li>
@@ -1162,39 +1256,75 @@
 
 
 
-<h1 id="herramientas-mapeo-objeto-relacional-orm">💾 Herramientas mapeo objeto - relacional (ORM)</h1>
-<h2 id="problemas-con-jdbc">Problemas con JDBC</h2>
+<h1 id="fundamentos-del-orm">🗂️ Fundamentos del ORM</h1>
+<h2 id="concepto-de-mapeo-objetorelacional-orm">🧩 Concepto de mapeo objeto‑relacional (ORM)</h2>
+<blockquote>
+<p><strong>Idea clave:</strong> El <em>mapeo objeto-relacional</em> es el conjunto de reglas que <strong>relaciona tu modelo orientado a objetos (clases, atributos, asociaciones, herencia)</strong> con el <strong>modelo relacional</strong> de una base de datos (<strong>tablas, columnas, claves y relaciones</strong>). Un ORM implementa este mapeo para que trabajes con <strong>objetos</strong> y no con SQL de bajo nivel.</p>
+</blockquote>
+<h3 id="correspondencias-basicas">Correspondencias básicas</h3>
+<ul>
+<li><strong>Clase ↔ Tabla</strong></li>
+<li><strong>Atributo ↔ Columna</strong></li>
+<li><strong>Identidad ↔ Clave primaria</strong></li>
+<li><strong>Asociación ↔ Relación</strong></li>
+</ul>
+<hr />
+<h2 id="problemas-con-jdbc-y-necesidad-de-un-orm">⚙️ Problemas con JDBC y necesidad de un ORM</h2>
 <p>Aunque JDBC nos permitía abstraer la conexión del driver con la base de datos correcta, <strong>todavía presenta limitaciones</strong>:</p>
 <ul>
-<li>Número importante de líneas de código</li>
-<li>Invertir tiempo en los dos modelos relacional y orientado a objetos</li>
-<li>Cuánto mayor crece la base de datos más complicado se hace el mantenimiento</li>
-<li>Manejo de conexión, cierre de conexión, etc</li>
-<li>Seguimos teniendo desfase en el mapeo objeto modelo relacional, JDBC no solventa del todo este desfase puesto que todavía tenemos que descomponer el objeto para construir la sentencia <strong>INSERT, DELETE o UPDATE</strong> que queremos utilizar.</li>
+<li>Número importante de líneas de código.  </li>
+<li>Necesidad de trabajar con los dos modelos (relacional y orientado a objetos).  </li>
+<li>Cuanto mayor crece la base de datos más complicado resulta el mantenimiento.  </li>
+<li>Gestión manual de conexión, cierre de conexión, etc.  </li>
+<li>Persisten los problemas del <strong>desfase objeto-relacional</strong>: debemos descomponer los objetos para construir sentencias <strong>INSERT, DELETE o UPDATE</strong>.</li>
 </ul>
 <p><img alt="orm" src="../../img/ud2/11problemsjdbc.png" /></p>
-<h2 id="por-que-necesitamos-un-orm">¿Por qué necesitamos un ORM?</h2>
-<p>Las herramientas ORM (<strong>Object Relational Mapping</strong>) intentan aprovechar la madurez y la eficiencia de las bases de datos relacionales minimizando en lo posible el desfase objeto relacional.</p>
-<p>Se trata de bibliotecas y marcos de programación que definen un formato para expresar múltiples situaciones de transformación entre ambos paradigmas.</p>
-<p>En cierta forma podríamos decir que <em>implementan una base de datos orientada a objetos virtual para que aportan características propias del paradigma OO</em>, pero el sustrato donde se acaban almacenando los objetos es un SGBD relacional.</p>
-<h2 id="orm">ORM</h2>
-<p>Un ORM intenta hacer todas estas tareas pesadas por nosotros. Deberemos definir la forma en la que estableceremos la correspondencia entre las clases y las tablas una sóla vez (indicando qué propiedad se corresponde con qué columna, qué clase con qué tabla, etc).</p>
-<p>Después, podremos hacer cosas como utilizar <strong>POJO</strong>'s(Plain Old Java Objects) de nuestra aplicación y decirle a nuestro ORM que los haga persistentes, con una instrucción similar a esta <code>save(myObject)</code>. Es decir, <strong><em>una herramienta ORM puede leer o escribir en la base de datos utilizando objetos directamente</em></strong>.</p>
-<p><img alt="orm" src="../../img/ud2/12orm.png" /></p>
-<p><mark class="critic"> Una herramienta ORM permite tomar un objeto Java y hacerlo persistente, cargar el objeto de la base de datos en memoria y hacer consultas a las tablas de la base de datos. </mark></p>
-<h3 id="ventajas-de-orm">Ventajas de ORM</h3>
-<p>❇️ Ayudan a reducir el tiempo de desarrollo de software. La mayoría de las herramientas ORM disponibles, permiten la creación del modelo a través del esquema de la base de datos, es decir, el usuario crea la base de datos y la herramienta automáticamente lee el esquema de tablas y relaciones y crea un modelo ajustado.</p>
-<p>❇️ Abstracción de la base de datos.</p>
-<p>❇️ Reutilización.</p>
-<p>❇️ Permiten persistir objetos a través de un método save o persist y generar el SQL correspondiente.</p>
-<p>❇️ Permiten recuperar los objetos persistidos a través de un método load o get.</p>
-<p>❇️ Lenguaje propio para realizar las consultas.</p>
-<p>❇️ Independencia de la base de datos.</p>
-<p>❇️ Incentivan la portabilidad y escalabilidad de los programas de software.</p>
-<h3 id="desventajas-de-orm">Desventajas de ORM</h3>
-<p>✴️ <strong>Tiempo utilizado en el aprendizaje</strong>. Este tipo de herramientas suelen ser complejas por lo que su correcta utilización lleva un tiempo que hay que emplear en ver el funcionamiento correcto y ver todo el partido que se le puede sacar.</p>
-<p>✴️ <strong>Menor rendimiento (aplicaciones algo más lentas)</strong>. Esto es debido a que todas las consultas que se hagan sobre la base de datos, el sistema primero deberá de transformarlas al lenguaje propio de la herramienta, luego leer los registros y por último crear los objetos.</p>
-<p>✴️ <strong>Sistemas complejos</strong>. Normalmente la utilidad de ORM desciende con la mayor complejidad del sistema relacional.</p>
+<h3 id="por-que-necesitamos-un-orm">🧪 ¿Por qué necesitamos un ORM?</h3>
+<p>Un ORM (Object Relational Mapping) actúa como una capa intermedia que:<br />
+- Define cómo mapear clases ↔ tablas y atributos ↔ columnas.<br />
+- Permite trabajar con objetos en memoria y sincronizarlos con la base de datos.<br />
+- Ofrece una API unificada para operaciones de persistencia.</p>
+<p>Ejemplo con Hibernate:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1234&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">session</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="ventajas-de-orm">✅ Ventajas de ORM</h3>
+<ul>
+<li>Menos código repetitivo.  </li>
+<li>Persistencia de objetos con <code>persist()</code>.  </li>
+<li>Recuperación sencilla de objetos con <code>get()</code> o <code>load()</code>.  </li>
+<li>Lenguaje propio de consultas (HQL, JPQL).  </li>
+<li>Independencia del motor de base de datos.  </li>
+</ul>
+<h3 id="desventajas-de-orm">❌ Desventajas de ORM</h3>
+<ul>
+<li>Curva de aprendizaje pronunciada.  </li>
+<li>Menor rendimiento relativo (traducción de consultas).  </li>
+<li>Complejidad en sistemas con modelos relacionales muy avanzados.  </li>
+</ul>
+<hr />
+<h2 id="caracteristicas-de-las-herramientas-orm">🔌 Características de las herramientas ORM</h2>
+<p>Las herramientas ORM comparten una serie de <strong>características comunes</strong>:</p>
+<ul>
+<li><strong>Abstracción del acceso a la base de datos</strong>: el programador trabaja con objetos.  </li>
+<li><strong>Automatización del mapeo</strong>: entre clases ↔ tablas y atributos ↔ columnas.  </li>
+<li><strong>Gestión de sesiones y estados</strong>: objetos transitorios, persistentes, separados.  </li>
+<li><strong>Lenguaje de consultas orientado a objetos</strong>: HQL (Hibernate Query Language), JPQL (Java Persistence Query Language).  </li>
+<li><strong>Gestión de transacciones</strong> integrada.  </li>
+<li><strong>Independencia del motor de BD</strong>: cambiar de MySQL a PostgreSQL sin apenas modificar código.  </li>
+<li><strong>Compatibilidad con herencia y relaciones complejas</strong>.  </li>
+</ul>
+<h3 id="herramientas-orm-mas-utilizadas">📦 Herramientas ORM más utilizadas</h3>
+<ul>
+<li><strong>Hibernate</strong> (Java).  </li>
+<li><strong>JPA (Jakarta Persistence API)</strong> – estándar en Java EE y Spring.  </li>
+<li><strong>EclipseLink</strong> (implementación oficial de JPA).  </li>
+<li><strong>MyBatis</strong> (Java, con mayor control de SQL).  </li>
+<li><strong>Entity Framework</strong> (C#/.NET).  </li>
+<li><strong>Django ORM</strong> (Python).  </li>
+<li><strong>Sequelize</strong> (Node.js).  </li>
+</ul>
+<hr />
 
 
   

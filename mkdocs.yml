@@ -28,11 +28,13 @@ nav:
       - 2.9.- Mejora del rendimiento y buenas prácticas: ud2/26rendimiento.md
       - 2.10.- Desarrollo de aplicaciones completas con JDBC: ud2/27projectstructure.md
     - 3.- ORM con Hibernate y JPA:
-      - 3.1.- Herramientas ORM: ud3/31mapeo.md
-      - 3.2.- Jakarta - JPA: ud3/32jpa.md
-      - 3.3.- Hibernate: ud3/33hibernate.md
-      - 3.4.- Patrón DAO: ud3/34dao.md
-      - 3.5.- Service Layer: ud3/35service.md
+      - 3.1.- Fundamentos del ORM: ud3/31mapeo.md
+      - 3.2.- Jakarta - JPA: ud3/jakartajpa.md
+      - 3.3.- Configuración e instalación de Hibernate: ud3/installation.md
+      - 3.4.- Hibernate: ud3/33hibernate.md
+      - 3.5.- Operaciones con objetos en Hibernate: ud3/operaciones.md
+      - 3.5.- Patrón DAO: ud3/34dao.md
+      - 3.6.- Service Layer: ud3/35service.md
     - 4.- Bases de datos documentales con MongoDB:
       - 4.1.- Introducción: udmongodb/mongodb1.md
     - 5.- Spring Framework:

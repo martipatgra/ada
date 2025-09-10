@@ -10,6 +10,16 @@ La solución estándar consiste en recurrir al **patrón de diseño Data Access 
 
 Exponemos una API y todo lo demás **queda encapsulado y abstraído en los DAOs**, los cuales, generalmente, obtendremos con una factoría. Por lo común, cuando la fuente de datos es una base de datos relacional, una clase DAO contiene todas las operaciones centradas en una tabla, es decir, crearemos un DAO para cada entidad que lo requiera.
 
+## Transacciones en la capa service, no en DAOs
+
+El límite de la transacción (abrir, confirmar, deshacer) **debe estar en la capa de servicio** (caso de uso), no dentro de cada método DAO. Así, un único @Transactional envuelve todas las operaciones que forman el caso de uso y o bien se confirman todas, o se deshacen todas.
+
+### ¿Por qué así?
+
+Un caso de uso suele tocar varios DAOs. Si cada DAO hiciera su propia transacción, tendrías commits parciales y perderías atomicidad.
+
+Centralizar la transacción en el servicio simplifica el DAO (solo hace CRUD) y la regla de negocio queda claramente delimitada.
+
 ## 🪀 1. Creación de las interfaces DAO
 
 Lo primero que haremos será **crear las interfaces de las entidades que requieran acceso a la base de datos**. Creamos interfaces para exponerlas en forma de API sus operaciones. Ya que la implementación de éstas estará en otras clases para encapsular las operaciones.
@@ -21,9 +31,9 @@ public interface PersonDao {
 
     Optional<Person> findById(Long id);
 
-    void create(Person person);
+    void saveNew(Person person);
 
-    void save(Person person);
+    void update(Person person);
 
     void deleteById(Long id);
 
@@ -42,53 +52,30 @@ Cada interfaz DAO tendrá su implementación. Las clases que implementan las int
 public class PersonDaoImpl implements PersonDao {
 
     @Override
-    public Optional<Person> findById(Long id) {
-        try (Session session = HibenateUtil.getSessionFactory().openSession();) {
-            return Optional.ofNullable(session.find(Person.class, id));
-        }
+    public Optional<Person> findById(Session s, Long id) {
+        return Optional.ofNullable(s.get(Person.class, id));
     }
 
     @Override
-    public void create(Person person) {
-        try (Session session = HibenateUtil.getSessionFactory().openSession();) {
-            Transaction tx = null;
-            try {
-                tx = session.beginTransaction();
-                session.persist(person);
-                tx.commit();
-            } catch (RuntimeException e) {
-                if (tx != null)
-                    tx.rollback();
-                e.printStackTrace();
-            }
-        }
+    public void saveNew(Session s, Person person) {
+        s.persist(person); // INSERT en flush/commit
     }
 
     @Override
-    public void save(Person person) {
-        try (Session session = HibenateUtil.getSessionFactory().openSession();) {
-            session.beginTransaction();
-            session.merge(person);
-            session.getTransaction().commit();
-        }
+    public void update(Session s, Person person) {
+        s.merge(person);   // devuelve instancia managed (si la necesitas, cambia la firma a Person)
     }
 
     @Override
-    public void deleteById(Long id) {
-        try (Session session = HibenateUtil.getSessionFactory().openSession();) {
-            session.beginTransaction();
-            session.remove(session.find(Person.class, id));
-            session.getTransaction().commit();
-        }
+    public void deleteById(Session s, Long id) {
+        Person ref = s.byId(Person.class).getReference(id); // sin SELECT
+        s.remove(ref);
     }
 
     @Override
-    public void delete(Person person) {
-        try (Session session = HibenateUtil.getSessionFactory().openSession();) {
-            session.beginTransaction();
-            session.remove(person);
-            session.getTransaction().commit();
-        }
+    public void delete(Session s, Person person) {
+        if (s.contains(person)) s.remove(person);
+        else s.remove(s.merge(person)); // asegura managed
     }
 }
 ```
@@ -100,17 +87,24 @@ Si hiciéramos lo mismo para la entidad `Address`, es decir, creáramos la inter
 **Para mejorar la reusabilidad y legilibidad del código** deberíamos hacer uso de los genéricos que nos ofrece Java. Por tanto, se ha de crear un DAO general que incluya las funcionalidades más genéricas de los DAO, `GenericDao`.
 
 ```java title="GenericDao.java"
-public interface GenericDao<T> {
 
-    Optional<T> findById(Long id);
+public interface GenericDao<T, ID extends Serializable> {
 
-    void create(T entity);
+    Optional<T> findById(Session s, ID id);
 
-    void save(T entity);
+    List<T> findAll(Session s);
 
-    void deleteById(Long id);
+    T saveNew(Session s, T entity);    // nuevos -> persist
 
-    void delete(T entity);
+    T update(Session s, T entity);     // detached/upsert -> merge (devuelve managed)
+
+    void deleteById(Session s, ID id);
+
+    void delete(Session s, T entity);
+
+    boolean existsById(Session s, ID id);
+
+    long count(Session s);
 }
 ```
 
@@ -118,77 +112,91 @@ Todos los DAOs heredarán de `GenericDao`, lo que quiere decir que todos los DAO
 
 ## 🪀 4. Implementación del DAO genérico
 
-```java title="GenericDaoImpl.java"
-public class GenericDaoImpl<T> implements GenericDao<T> {
+```java title="GenericDaoHibernate.java"
+public class GenericDaoHibernate<T, ID extends Serializable>
+        implements GenericDao<T, ID> {
 
     private final Class<T> entityClass;
 
-    public GenericDaoImpl(Class<T> entityClass) {
+    public GenericDaoHibernate(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
     @Override
-    public Optional<T> findById(Long id) {
-        try (Session session = HibenateUtil.getSessionFactory().openSession();) {
-            return Optional.ofNullable(session.find(entityClass, id));
+    public Optional<T> findById(Session s, ID id) {
+        return Optional.ofNullable(s.get(entityClass, id));
+    }
+
+    @Override
+    public List<T> findAll(Session s) {
+        String hql = "from " + entityClass.getName();
+        return s.createQuery(hql, entityClass).getResultList();
+    }
+
+    @Override
+    public T saveNew(Session s, T entity) {
+        s.persist(entity);              // INSERT en flush/commit
+        return entity;                  // ya está managed
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public T update(Session s, T entity) {
+        return (T) s.merge(entity);     // devuelve instancia managed
+    }
+
+    @Override
+    public void deleteById(Session s, ID id) {
+        T ref = s.byId(entityClass).getReference(id); // sin SELECT previo
+        s.remove(ref);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void delete(Session s, T entity) {
+        if (s.contains(entity)) {
+            s.remove(entity);
+        } else {
+            s.remove(s.merge(entity));  // asegura managed antes de borrar
         }
     }
 
     @Override
-    public void create(T entity) {
-        try (Session session = HibenateUtil.getSessionFactory().openSession();) {
-            Transaction tx = null;
-            try {
-                tx = session.beginTransaction();
-                session.persist(entity);
-                tx.commit();
-            } catch (RuntimeException e) {
-                if(tx != null)
-                    tx.rollback();
-                e.printStackTrace();
-            }
-        }
+    public boolean existsById(Session s, ID id) {
+        // opción rápida sin traer toda la entidad
+        String hql = "select 1 from " + entityClass.getName() + " e where e.id = :id";
+        Integer one = s.createQuery(hql, Integer.class)
+                       .setParameter("id", id)
+                       .setMaxResults(1)
+                       .uniqueResult();
+        return one != null;
     }
 
     @Override
-    public void save(T entity) {
-        try (Session session = HibenateUtil.getSessionFactory().openSession();) {
-            session.beginTransaction();
-            session.merge(entity);
-            session.getTransaction().commit();
-        }
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        try (Session session = HibenateUtil.getSessionFactory().openSession();) {
-            session.beginTransaction();
-            session.remove(session.find(entityClass, id));
-            session.getTransaction().commit();
-        }
-    }
-
-    @Override
-    public void delete(T entity) {
-        try (Session session = HibenateUtil.getSessionFactory().openSession();) {
-            session.beginTransaction();
-            session.remove(entity);
-            session.getTransaction().commit();
-        }
+    public long count(Session s) {
+        String hql = "select count(e) from " + entityClass.getName() + " e";
+        return s.createQuery(hql, Long.class).getSingleResult();
     }
 }
+```
+
+Para usarlo en el service:  
+
+```java
+GenericDao<Person, Long> personDao = new GenericDaoHibernate<>(Person.class);
+    personDao.saveNew(s, new Person("Ana", "ana@example.com"));
 ```
 
 La creación de esta clase genérica conlleva los siguientes cambios en las clases DAO:
 
 ```java title="AddressDao.java"
-public interface AddressDao extends GenericDao<Address> {
+public interface AddressDao extends GenericDao<Address, Long> {
 
 }
 ```
 
 ```java title="AddressDaoImpl.java"
-public class AddressDaoImpl extends GenericDaoImpl<Address> implements AddressDao {
+public class AddressDaoImpl extends GenericDaoHibernate<Address, Long> implements AddressDao {
 
     public AddressDaoImpl() {
         super(Address.class);

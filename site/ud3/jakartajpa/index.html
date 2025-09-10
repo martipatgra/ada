@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../installation/">
+        <link rel="prev" href="../31mapeo/">
       
       
-        <link rel="next" href="../operaciones/">
+        <link rel="next" href="../installation/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>3.4.- Hibernate - Acceso a Datos</title>
+        <title>3.2.- Jakarta - JPA - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#jakarta-jpa-java-persistence-api" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3.4.- Hibernate
+              3.2.- Jakarta - JPA
             
           </span>
         </div>
@@ -742,11 +742,122 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../jakartajpa/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          3.2.- Jakarta - JPA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         3.2.- Jakarta - JPA
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-cubre-jpa" class="md-nav__link">
+    🧠 ¿Qué cubre JPA?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitectura-general" class="md-nav__link">
+    🧱 Arquitectura general
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidades-entity" class="md-nav__link">
+    🧩 Entidades (@Entity)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entitymanagerfactory-y-entitymanager" class="md-nav__link">
+    🏭 EntityManagerFactory y EntityManager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence-context-firstlevel-cache" class="md-nav__link">
+    🧰 Persistence Context (First‑Level Cache)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estados-de-las-entidades" class="md-nav__link">
+    🔄 Estados de las entidades
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fichero-de-persistencia-persistencexml" class="md-nav__link">
+    🧪 Fichero de persistencia: persistence.xml
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jpql-y-consultas" class="md-nav__link">
+    🔎 JPQL y consultas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transacciones-y-excepciones" class="md-nav__link">
+    ⚙️ Transacciones y excepciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrencia-y-thread-safety" class="md-nav__link">
+    🧵 Concurrencia y thread-safety
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementaciones-de-jpa-providers" class="md-nav__link">
+    🧰 Implementaciones de JPA (providers)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -770,134 +881,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          3.4.- Hibernate
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../33hibernate/" class="md-nav__link">
         3.4.- Hibernate
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#arquitectura" class="md-nav__link">
-    ⚙️ Arquitectura
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#clases-persistentes-pojos-entidades" class="md-nav__link">
-    📦 Clases persistentes (POJOs, entidades)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-requisitos-basicos-de-una-entidad-jpa" class="md-nav__link">
-    1) Requisitos básicos de una entidad JPA
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sesiones-y-estados-de-un-objeto" class="md-nav__link">
-    🧠 Sesiones y estados de un objeto
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#persistence-context" class="md-nav__link">
-    Persistence Context
-  </a>
-  
-    <nav class="md-nav" aria-label="Persistence Context">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#estados-de-una-entidad-y-transiciones" class="md-nav__link">
-    🧨 Estados de una entidad y transiciones
-  </a>
-  
-    <nav class="md-nav" aria-label="🧨 Estados de una entidad y transiciones">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#transient-o-new" class="md-nav__link">
-    🧣 Transient (o new)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#managed-o-persistente" class="md-nav__link">
-    🧣 Managed (o persistente)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#detached-separado" class="md-nav__link">
-    🧣 Detached (separado)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removed" class="md-nav__link">
-    🧣 Removed
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#clase-hibernateutil" class="md-nav__link">
-    Clase HibernateUtil
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1182,90 +1170,78 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#arquitectura" class="md-nav__link">
-    ⚙️ Arquitectura
+  <a href="#que-cubre-jpa" class="md-nav__link">
+    🧠 ¿Qué cubre JPA?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#clases-persistentes-pojos-entidades" class="md-nav__link">
-    📦 Clases persistentes (POJOs, entidades)
+  <a href="#arquitectura-general" class="md-nav__link">
+    🧱 Arquitectura general
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-requisitos-basicos-de-una-entidad-jpa" class="md-nav__link">
-    1) Requisitos básicos de una entidad JPA
+  <a href="#entidades-entity" class="md-nav__link">
+    🧩 Entidades (@Entity)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sesiones-y-estados-de-un-objeto" class="md-nav__link">
-    🧠 Sesiones y estados de un objeto
+  <a href="#entitymanagerfactory-y-entitymanager" class="md-nav__link">
+    🏭 EntityManagerFactory y EntityManager
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#persistence-context" class="md-nav__link">
-    Persistence Context
+  <a href="#persistence-context-firstlevel-cache" class="md-nav__link">
+    🧰 Persistence Context (First‑Level Cache)
   </a>
-  
-    <nav class="md-nav" aria-label="Persistence Context">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#estados-de-una-entidad-y-transiciones" class="md-nav__link">
-    🧨 Estados de una entidad y transiciones
-  </a>
-  
-    <nav class="md-nav" aria-label="🧨 Estados de una entidad y transiciones">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#transient-o-new" class="md-nav__link">
-    🧣 Transient (o new)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#managed-o-persistente" class="md-nav__link">
-    🧣 Managed (o persistente)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#detached-separado" class="md-nav__link">
-    🧣 Detached (separado)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removed" class="md-nav__link">
-    🧣 Removed
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#clase-hibernateutil" class="md-nav__link">
-    Clase HibernateUtil
+  <a href="#estados-de-las-entidades" class="md-nav__link">
+    🔄 Estados de las entidades
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fichero-de-persistencia-persistencexml" class="md-nav__link">
+    🧪 Fichero de persistencia: persistence.xml
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jpql-y-consultas" class="md-nav__link">
+    🔎 JPQL y consultas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transacciones-y-excepciones" class="md-nav__link">
+    ⚙️ Transacciones y excepciones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrencia-y-thread-safety" class="md-nav__link">
+    🧵 Concurrencia y thread-safety
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementaciones-de-jpa-providers" class="md-nav__link">
+    🧰 Implementaciones de JPA (providers)
   </a>
   
 </li>
@@ -1286,117 +1262,190 @@
 
 
 
-<h1 id="_1"><img alt="hibernate" src="../../img/ud3/9hibernate.png" /></h1>
-<p>🐻‍❄️ Hibernate, como una solución ORM, efectivamente "se ubica entre" la capa de acceso a datos de la aplicación Java y la base de datos relacional, como se puede ver en el diagrama siguiente.</p>
-<p><a href="https://hibernate.org/orm/documentation/6.1/">🌐 Documentación oficial</a></p>
-<h2 id="arquitectura">⚙️ Arquitectura</h2>
-<p>La arquitectura "completa" abstrae la aplicación de las APIs de JDBC/JTA y permite que Hibernate se encargue de los detalles.
-Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
-<table>
-<thead>
-<tr>
-<th><img alt="hibernate" src="../../img/ud3/6hibernate.png" /></th>
-<th><img alt="hibernate" src="../../img/ud3/8hibernate.png" /></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<h1 id="jakarta-jpa-java-persistence-api">🏛️ Jakarta – JPA (Java Persistence API)</h1>
+<p>JPA es una <strong>especificación</strong> que define <em>cómo</em> debe gestionarse la <strong>persistencia de objetos</strong> en aplicaciones Java.<br />
+👉 Al ser una especificación, <strong>JPA no es una librería concreta</strong>: necesita un <strong>proveedor</strong> (implementación) como <strong>Hibernate</strong>, <strong>EclipseLink</strong>, <strong>OpenJPA</strong>, etc.</p>
+<blockquote>
+<p><strong>Renombrado:</strong> En 2019 <em>Java EE</em> pasó a la <em>Eclipse Foundation</em> y JPA se renombró a <strong>Jakarta Persistence</strong>. Desde <strong>Jakarta Persistence 3.0</strong> (2020), los paquetes cambiaron de <code>javax.persistence</code> a <strong><code>jakarta.persistence</code></strong>.</p>
+</blockquote>
 <hr />
-<h2 id="clases-persistentes-pojos-entidades">📦 Clases persistentes (POJOs, entidades)</h2>
-<p>En JPA/Hibernate, una <strong>clase persistente</strong> es una clase “normal” (POJO) que el ORM gestiona para <strong>leer/escribir su estado</strong> en la base de datos. Habitualmente la marcamos con anotaciones JPA y la llamamos <strong>entidad</strong>.</p>
-<hr />
-<h2 id="1-requisitos-basicos-de-una-entidad-jpa">1) Requisitos básicos de una entidad JPA</h2>
+<h2 id="que-cubre-jpa">🧠 ¿Qué cubre JPA?</h2>
 <ul>
-<li><code>@Entity</code> en la clase (y opcional <code>@Table</code> para nombrar la tabla).</li>
-<li><strong>Identificador</strong> con <code>@Id</code> (+ <code>@GeneratedValue</code> si es autogenerado).</li>
-<li>🚀 Incluir atributos de clase con visibilidad privada, <strong>private</strong>.</li>
-<li>🚀 Incluir <strong>getters y setters</strong>.</li>
-<li><strong>Constructor no-args</strong> <code>public</code> o <code>protected</code> (lo usa el ORM).</li>
-<li>Clase <strong>no final</strong> y, si vas a usar proxies de Hibernate, <strong>métodos no final</strong> (para <code>LAZY</code>).</li>
-<li>Evita lógica pesada en constructor/no-args.</li>
-<li>Decide <strong>acceso por campo</strong> (anotaciones sobre atributos) o <strong>por propiedad</strong> (anotaciones en getters).</li>
+<li><strong>API</strong> (interfaces, anotaciones) en <code>jakarta.persistence</code>  </li>
+<li><strong>Lenguaje de consultas</strong> <strong>JPQL</strong> (Java Persistence Query Language)  </li>
+<li><strong>Metadatos</strong> para el mapeo objeto/relacional (anotaciones o XML)</li>
 </ul>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>JPA define <strong>interfaces</strong> (p. ej., <code>EntityManager</code>), no clases de uso directo. Para usarlas necesitas una <strong>implementación</strong> (Hibernate, EclipseLink…).</p>
+</div>
 <hr />
-<h2 id="sesiones-y-estados-de-un-objeto">🧠 Sesiones y estados de un objeto</h2>
-<p>En JPA la unidad de trabajo es el <strong>EntityManager (EM)</strong>; en Hibernate clásico, la <strong>Session</strong>. Ambos gestionan el <strong>contexto de persistencia</strong> (caché de 1er nivel) y el <strong>ciclo de vida</strong> de las entidades.</p>
+<h2 id="arquitectura-general">🧱 Arquitectura general</h2>
+<p><img alt="arquitectura jpa" src="../../img/ud3/1arquitecturajpa.png" /></p>
+<p>Componentes clave:<br />
+- <strong>Entidades</strong> (<code>@Entity</code>): clases cuyo <strong>estado</strong> queremos guardar en BD.<br />
+- <strong>EntityManagerFactory (EMF)</strong>: fábrica de <code>EntityManager</code>. Es <strong>pesada</strong>, <strong>thread‑safe</strong> y suele existir <strong>una por <em>persistence unit</em></strong> en toda la aplicación.<br />
+- <strong>EntityManager (EM)</strong>: gestiona el <strong>contexto de persistencia</strong> (<em>first‑level cache</em>) y el ciclo de vida de las entidades. <strong>No es thread‑safe</strong>; se usa <strong>por transacción / petición</strong>.<br />
+- <strong>Persistence Context</strong>: conjunto de entidades <strong>gestionadas</strong> (estado <em>managed</em>) que el <code>EntityManager</code> sincroniza con la BD.</p>
 <hr />
-<h2 id="persistence-context">Persistence Context</h2>
-<ul>
-<li>Es el <strong>conjunto de entidades gestionadas</strong> (<em>managed</em>) por un Session.</li>
-</ul>
-<h3 id="estados-de-una-entidad-y-transiciones">🧨 Estados de una entidad y transiciones</h3>
-<h4 id="transient-o-new">🧣 <code>Transient</code> (o <em>new</em>)</h4>
-<p>Objeto creado con <code>new</code>, <strong>no</strong> está en BD ni gestionado por el EM.
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana@example.com&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// transient</span>
-</code></pre></div></p>
-<h4 id="managed-o-persistente">🧣 <code>Managed</code> (o <em>persistente</em>)</h4>
-<p>Bajo control del EM; cambios se detectan (<strong>dirty checking</strong>) y se sincronizan.
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">em</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="n">u</span><span class="p">);</span><span class="w">               </span><span class="c1">// transient -&gt; managed (INSERT en flush/commit)</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w"> </span><span class="c1">// managed</span>
-<span class="linenos" data-linenos="3 "></span><span class="n">v</span><span class="p">.</span><span class="na">setNombre</span><span class="p">(</span><span class="s">&quot;Ana Maria&quot;</span><span class="p">);</span><span class="w">    </span><span class="c1">// se hace UPDATE al sincronizar</span>
-</code></pre></div></p>
-<h4 id="detached-separado">🧣 <code>Detached</code> (<em>separado</em>)</h4>
-<p>Entidad que <strong>estuvo</strong> managed pero ya <strong>no</strong> (cerrar EM, <code>clear()</code>, <code>detach()</code>).
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">em</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span><span class="w"> </span><span class="c1">// todas pasan a detached</span>
-<span class="linenos" data-linenos="2 "></span><span class="c1">// v ahora es detached</span>
-<span class="linenos" data-linenos="3 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="c1">// devuelve una copia managed con los cambios</span>
-</code></pre></div></p>
-<h4 id="removed">🧣 <code>Removed</code></h4>
-<p>Marcada para borrado; se ejecuta <code>DELETE</code> al sincronizar.
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">em</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="c1">// managed -&gt; removed (DELETE en flush/commit)</span>
-</code></pre></div></p>
-<h2 id="clase-hibernateutil">Clase <code>HibernateUtil</code></h2>
-<p>Crearemos esta clase de utilidad <code>HibernateUtil</code> para inicializar una sola vez el SessionFactory de Hibernate y exponerlo al resto de la aplicación. Usaremos el patrón Singleton. </p>
-<p>Así evitaremos crear SessionFactory repetidamente y mantenemos centralizado dónde se configura/gestiona Hibernate.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HibernateUtil</span><span class="w"> </span><span class="p">{</span>
+<h2 id="entidades-entity">🧩 Entidades (<code>@Entity</code>)</h2>
+<p>Para JPA, <strong>una entidad es un objeto cuyo estado se persiste</strong> en una tabla.<br />
+Toda entidad necesita una <strong>identidad</strong> (PK).</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.*</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">SessionFactory</span><span class="w"> </span><span class="n">sessionFactory</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">HibernateUtil</span><span class="p">(){}</span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">SessionFactory</span><span class="w"> </span><span class="nf">buildSessionFactory</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">Logger</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="s">&quot;org.hibernate&quot;</span><span class="p">).</span><span class="na">setLevel</span><span class="p">(</span><span class="n">Level</span><span class="p">.</span><span class="na">SEVERE</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="n">Configuration</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Configuration</span><span class="p">();</span>
-<span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="n">ServiceRegistry</span><span class="w"> </span><span class="n">serviceRegistry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StandardServiceRegistryBuilder</span><span class="p">()</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">                    </span><span class="p">.</span><span class="na">configure</span><span class="p">(</span><span class="s">&quot;META-INF/hibernate.cfg.xml&quot;</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
-<span class="linenos" data-linenos="15 "></span>
-<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="c1">//meter xml de las entity</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="n">Metadata</span><span class="w"> </span><span class="n">metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MetadataSources</span><span class="p">(</span><span class="n">serviceRegistry</span><span class="p">).</span><span class="na">getMetadataBuilder</span><span class="p">().</span><span class="na">build</span><span class="p">();</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="na">getSessionFactoryBuilder</span><span class="p">().</span><span class="na">build</span><span class="p">();</span>
-<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="23 "></span>
-<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">SessionFactory</span><span class="w"> </span><span class="nf">getSessionFactory</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="25 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sessionFactory</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="26 "></span><span class="w">            </span><span class="n">sessionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buildSessionFactory</span><span class="p">();</span>
-<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sessionFactory</span><span class="p">;</span>
-<span class="linenos" data-linenos="29 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="30 "></span>
-<span class="linenos" data-linenos="31 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">close</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="32 "></span><span class="w">        </span><span class="c1">//Closes caches and connections pools</span>
-<span class="linenos" data-linenos="33 "></span><span class="w">        </span><span class="n">getSessionFactory</span><span class="p">().</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="34 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="35 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nd">@Entity</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;usuarios&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Usuario</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">  </span><span class="nd">@Id</span><span class="w"> </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">  </span><span class="nd">@Column</span><span class="p">(</span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">  </span><span class="nd">@Column</span><span class="p">(</span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">unique</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">  </span><span class="c1">// getters/setters</span>
+<span class="linenos" data-linenos="16 "></span><span class="p">}</span>
 </code></pre></div>
-<p><strong>Resumen de operaciones</strong><br />
-- <code>persist(x)</code> → transient → managed<br />
-- <code>remove(x)</code> → managed → removed<br />
-- <code>merge(x)</code> → (detached/new) → managed (devuelve <em>otra instancia</em>)<br />
-- <code>detach(x)</code> / <code>clear()</code> → managed → detached<br />
-- <code>refresh(x)</code> → recarga desde BD (descarta cambios no sincronizados)<br />
-- <code>flush()</code> → fuerza sincronización ahora</p>
-<p><img alt="hibernate" src="../../img/ud3/10hibernate.png" /></p>
+<ul>
+<li>Las entidades pueden tener relaciones (<code>@OneToMany</code>, <code>@ManyToOne</code>, <code>@ManyToMany</code>) y tipos embebidos (<code>@Embeddable</code>).  </li>
+<li>El <strong>diseño de la identidad</strong> (PK) es clave para el rendimiento y la igualdad (<code>equals/hashCode</code>).</li>
+</ul>
+<hr />
+<h2 id="entitymanagerfactory-y-entitymanager">🏭 EntityManagerFactory y EntityManager</h2>
+<p><img alt="emf-em" src="../../img/ud3/2entitymanagerfactory.png" /></p>
+<ul>
+<li>
+<p><strong>EMF</strong> se crea normalmente al arrancar la aplicación:<br />
+  <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="n">emf</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">Persistence</span><span class="p">.</span><span class="na">createEntityManagerFactory</span><span class="p">(</span><span class="s">&quot;default&quot;</span><span class="p">);</span>
+</code></pre></div>
+  Mantén <strong>una única instancia</strong> (por <em>persistence unit</em>) y ciérrala al apagar la app.</p>
+</li>
+<li>
+<p><strong>EM</strong> se crea cuando necesitas operar con datos y <strong>no se comparte entre hilos</strong>:<br />
+  <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">EntityManager</span><span class="w"> </span><span class="n">em</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emf</span><span class="p">.</span><span class="na">createEntityManager</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">begin</span><span class="p">();</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="c1">// ... usar em.persist/merge/find/query</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">  </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">  </span><span class="n">em</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Regla práctica:</strong> <em>EMF = singleton de la app</em>; <em>EM = por petición/uso/tx</em>.</p>
+</blockquote>
+<hr />
+<h2 id="persistence-context-firstlevel-cache">🧰 Persistence Context (First‑Level Cache)</h2>
+<p><img alt="persistence context" src="../../img/ud3/3persistencecontext.png" /></p>
+<ul>
+<li>El <code>EntityManager</code> mantiene un <strong>conjunto de entidades gestionadas</strong>.  </li>
+<li>La sincronización con la BD ocurre al <strong><code>commit</code></strong> o al <strong><code>flush()</code></strong>.  </li>
+<li><strong>Dirty checking</strong>: si cambias un atributo de una entidad <em>managed</em>, JPA genera el <code>UPDATE</code> automáticamente al sincronizar.</li>
+</ul>
+<p>Para conseguir que alguno de nuestros objetos pase a ubicarse dentro del PersistenceContext bastará con invocar los métodos persist, merge, sobre él.</p>
+<p>Operaciones típicas:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">em</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="n">ent</span><span class="p">);</span><span class="w">   </span><span class="c1">// transient -&gt; managed (INSERT en flush/commit)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">em</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">detached</span><span class="p">);</span><span class="c1">// detached/new -&gt; managed (SELECT/INSERT/UPDATE)</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">em</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">ent</span><span class="p">);</span><span class="w">    </span><span class="c1">// managed -&gt; removed (DELETE en flush/commit)</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">em</span><span class="p">.</span><span class="na">flush</span><span class="p">();</span><span class="w">        </span><span class="c1">// fuerza sincronización ahora</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">em</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span><span class="w">        </span><span class="c1">// vacía el contexto (pasa managed -&gt; detached)</span>
+</code></pre></div></p>
+<p><img alt="pc-ops" src="../../img/ud3/4persistencecontext.png" /></p>
+<hr />
+<h2 id="estados-de-las-entidades">🔄 Estados de las entidades</h2>
+<ul>
+<li><strong>Transient (new)</strong>: recién creada con <code>new</code>, aún no gestionada.  </li>
+<li><strong>Managed</strong>: dentro del <code>EntityManager</code>; cambios se sincronizan.  </li>
+<li><strong>Detached</strong>: estuvo gestionada, pero ya no (p. ej., tras <code>clear()</code> o cerrar EM).  </li>
+<li><strong>Removed</strong>: marcada para eliminación; se borrará al sincronizar.</li>
+</ul>
+<p>Relación con métodos:
+- <code>persist()</code> → <strong>new → managed</strong><br />
+- <code>remove()</code> → <strong>managed → removed</strong><br />
+- <code>detach()</code> → <strong>managed → detached</strong><br />
+- <code>merge()</code> → <strong>detached/new → managed</strong></p>
+<hr />
+<h2 id="fichero-de-persistencia-persistencexml">🧪 Fichero de persistencia: <code>persistence.xml</code></h2>
+<p>El <strong><code>EntityManagerFactory</code></strong> se configura mediante <strong>unidades de persistencia</strong> en <code>META-INF/persistence.xml</code>:</p>
+<div class="highlight"><span class="filename">META-INF/persistence.xml</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;persistence</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;https://jakarta.ee/xml/ns/persistence&quot;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">             </span><span class="na">version=</span><span class="s">&quot;3.0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">  </span><span class="nt">&lt;persistence-unit</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;default&quot;</span><span class="w"> </span><span class="na">transaction-type=</span><span class="s">&quot;RESOURCE_LOCAL&quot;</span><span class="nt">&gt;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="nt">&lt;class&gt;</span>es.severo.entity.Tramite<span class="nt">&lt;/class&gt;</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="nt">&lt;properties&gt;</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">      </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.jdbc.driver&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;com.mysql.cj.jdbc.Driver&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">      </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.jdbc.url&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;jdbc:mysql://localhost:3306/testdb2&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">      </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.jdbc.user&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">      </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;jakarta.persistence.jdbc.password&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;root&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">      </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.show_sql&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">      </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hibernate.format_sql&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="nt">&lt;/properties&gt;</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">  </span><span class="nt">&lt;/persistence-unit&gt;</span>
+<span class="linenos" data-linenos="16 "></span><span class="nt">&lt;/persistence&gt;</span>
+</code></pre></div>
+<p><strong>Claves del XML</strong>
+- <strong><code>&lt;persistence-unit name="..."&gt;</code></strong>: identifica la unidad; ese nombre se usa en <code>createEntityManagerFactory(...)</code>.<br />
+- <strong><code>transaction-type</code></strong>:<br />
+  - <code>RESOURCE_LOCAL</code> → transacciones locales controladas por la app.<br />
+  - <code>JTA</code> → transacciones gestionadas por un <em>application server</em>.<br />
+- <strong><code>&lt;class&gt;</code></strong>: lista de entidades (algunos <em>runtimes</em> permiten <em>auto-scan</em>).<br />
+- <strong><code>&lt;properties&gt;</code></strong>: conexión, <em>dialect</em>, <em>DDL</em>, <em>pooling</em>, etc.</p>
+<blockquote>
+<p>Puedes tener <strong>varias</strong> <em>persistence units</em> si conectas a <strong>distintas BDs</strong> o necesitas configuraciones separadas.</p>
+</blockquote>
+<hr />
+<h2 id="jpql-y-consultas">🔎 JPQL y consultas</h2>
+<p><strong>JPQL</strong> consulta <strong>entidades y sus atributos</strong>, no tablas. JPA traduce JPQL → SQL.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">// Búsqueda por email</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">TypedQuery</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="s">&quot;SELECT u FROM Usuario u WHERE u.email = :email&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">q</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;email&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana@example.com&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="na">getSingleResult</span><span class="p">();</span>
+</code></pre></div>
+<ul>
+<li><strong>JOINs</strong> siguen las relaciones del modelo:<br />
+<code>SELECT p FROM Pedido p JOIN p.usuario u WHERE u.nombre = :n</code>  </li>
+<li><strong>Criteria API</strong> (tipado, dinámico) también está disponible.</li>
+</ul>
+<hr />
+<h2 id="transacciones-y-excepciones">⚙️ Transacciones y excepciones</h2>
+<p>En modo <strong><code>RESOURCE_LOCAL</code></strong>:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">begin</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="c1">// ... operaciones</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">RuntimeException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="6 "></span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">rollback</span><span class="p">();</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="n">ex</span><span class="p">;</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
+</code></pre></div></p>
+<ul>
+<li>Las excepciones de JPA son <strong><code>RuntimeException</code></strong>, con raíz común <strong><code>PersistenceException</code></strong>.  </li>
+<li>En <strong><code>JTA</code></strong>, las transacciones las gestiona el contenedor (por ejemplo, usando anotaciones <code>@Transactional</code> en Jakarta EE/Spring).</li>
+</ul>
+<hr />
+<h2 id="concurrencia-y-thread-safety">🧵 Concurrencia y <em>thread-safety</em></h2>
+<ul>
+<li><strong><code>EntityManagerFactory</code></strong> → <strong>thread‑safe</strong>; <strong>una instancia</strong> por <em>persistence unit</em>.  </li>
+<li><strong><code>EntityManager</code></strong> → <strong>no</strong> thread‑safe; <strong>no usar</strong> como <code>static</code> ni compartir entre hilos. Crear por uso/petición/tx.  </li>
+<li>Cerrar siempre <code>EntityManager</code> en un <code>finally</code> (o equivalente del marco).</li>
+</ul>
+<hr />
+<h2 id="implementaciones-de-jpa-providers">🧰 Implementaciones de JPA (providers)</h2>
+<ul>
+<li><strong>Hibernate</strong> (el más extendido; HQL, gran ecosistema).  </li>
+<li><strong>EclipseLink</strong> (referencia de Jakarta).  </li>
+<li><strong>OpenJPA</strong>, <strong>DataNucleus</strong>, <strong>ObjectDB</strong> (alcances específicos).</li>
+</ul>
+<blockquote>
+<p>Ventaja de JPA: <strong>intercambiabilidad</strong> de proveedores con cambios mínimos si sigues la especificación.</p>
+</blockquote>
 <hr />
 
 
