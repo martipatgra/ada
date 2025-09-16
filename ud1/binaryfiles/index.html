@@ -1516,11 +1516,13 @@
 <span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="7 "></span><span class="p">}</span>
 </code></pre></div>
-<code>BufferedInputStream</code> crea un buffer interno. Cuando llamas por primera vez a <code>bis.read()</code>, no lee 1 byte del disco, sino que:
-- Lee miles de bytes del disco de golpe (llamada costosa de E/S).
-- Los guarda en memoria (en su buffer interno).
-- Luego, cada llamada a <code>.read()</code> devuelve el siguiente byte del buffer, lo cual es muy rápido porque accede a memoria, no al disco.
-- Cuando el buffer se vacía, se vuelve a rellenar con otros 8192 bytes del fichero.</p>
+<code>BufferedInputStream</code> crea un buffer interno. Cuando llamas por primera vez a <code>bis.read()</code>, no lee 1 byte del disco, sino que:      </p>
+<ul>
+<li>Lee miles de bytes del disco de golpe (llamada costosa de E/S).</li>
+<li>Los guarda en memoria (en su buffer interno).</li>
+<li>Luego, cada llamada a <code>.read()</code> devuelve el siguiente byte del buffer, lo cual es muy rápido porque accede a memoria, no al disco.</li>
+<li>Cuando el buffer se vacía, se vuelve a rellenar con otros 8192 bytes del fichero.</li>
+</ul>
 <hr />
 <h3 id="que-son-los-wrappers-y-por-que-usar-buffers">🧻 ¿Qué son los wrappers y por qué usar buffers?</h3>
 <p>En Java, muchas clases de entrada/salida se <strong>envuelven unas dentro de otras</strong> para mejorar su funcionamiento. Esto se llama <strong>patrón decorador</strong> (decorator pattern) y permite <strong>añadir funcionalidades</strong> sin modificar la clase original.</p>
