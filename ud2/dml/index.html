@@ -659,12 +659,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#uso-con-preparedstatement" class="md-nav__link">
-    🛠️ Uso con PreparedStatement
+  <a href="#uso-con-preparedstatement-recomendado" class="md-nav__link">
+    🛠️ Uso con PreparedStatement - Recomendado
   </a>
   
-    <nav class="md-nav" aria-label="🛠️ Uso con PreparedStatement">
+    <nav class="md-nav" aria-label="🛠️ Uso con PreparedStatement - Recomendado">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtener-el-id-autogenerado-tras-un-insert" class="md-nav__link">
+    🎯 Obtener el ID autogenerado tras un INSERT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consejos-adicionales" class="md-nav__link">
+    🧩 Consejos adicionales
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#prevencion-de-sql-injection" class="md-nav__link">
@@ -1155,12 +1169,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#uso-con-preparedstatement" class="md-nav__link">
-    🛠️ Uso con PreparedStatement
+  <a href="#uso-con-preparedstatement-recomendado" class="md-nav__link">
+    🛠️ Uso con PreparedStatement - Recomendado
   </a>
   
-    <nav class="md-nav" aria-label="🛠️ Uso con PreparedStatement">
+    <nav class="md-nav" aria-label="🛠️ Uso con PreparedStatement - Recomendado">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtener-el-id-autogenerado-tras-un-insert" class="md-nav__link">
+    🎯 Obtener el ID autogenerado tras un INSERT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consejos-adicionales" class="md-nav__link">
+    🧩 Consejos adicionales
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#prevencion-de-sql-injection" class="md-nav__link">
@@ -1239,7 +1267,7 @@ Su uso se ceñiría solamente para consultas estáticas a las que no se les pasa
 </code></pre></div>
 <p>⚠️ <strong>No es recomendable su uso</strong>. Por seguridad y eficiencia es mejor usar <code>PreparedStatement</code> para DML.</p>
 <hr />
-<h2 id="uso-con-preparedstatement">🛠️ Uso con PreparedStatement</h2>
+<h2 id="uso-con-preparedstatement-recomendado">🛠️ Uso con PreparedStatement - Recomendado</h2>
 <p><code>PreparedStatement</code> es una versión mejorada de <code>Statement</code> que permite <strong>parametrizar sentencias SQL</strong> mediante el uso de <code>?</code>.<br />
 Esto evita errores, facilita la reutilización de la sentencia y protege contra inyecciones SQL.  </p>
 <p>Ejemplo:</p>
@@ -1259,6 +1287,37 @@ Esto evita errores, facilita la reutilización de la sentencia y protege contra 
 <span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
 <span class="linenos" data-linenos="15 "></span><span class="p">}</span>
 </code></pre></div>
+<h3 id="obtener-el-id-autogenerado-tras-un-insert">🎯 Obtener el ID autogenerado tras un INSERT</h3>
+<p>Usa <code>prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)</code>.
+Tras <code>executeUpdate()</code>, llama a <code>ps.getGeneratedKeys()</code>.</p>
+<p>Si la tabla tiene clave compuesta o múltiples claves, el ResultSet puede traer varias columnas.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;INSERT INTO alumnos (nombre, edad) VALUES (?, ?)&quot;</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">     </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">con</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span><span class="w"> </span><span class="n">Statement</span><span class="p">.</span><span class="na">RETURN_GENERATED_KEYS</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;María&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">ps</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">filas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ps</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Filas insertadas: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">filas</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ps</span><span class="p">.</span><span class="na">getGeneratedKeys</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="kt">long</span><span class="w"> </span><span class="n">idGenerado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// primera columna devuelta</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;ID generado: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">idGenerado</span><span class="p">);</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="18 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
+</code></pre></div>
+<h3 id="consejos-adicionales">🧩 Consejos adicionales</h3>
+<ul>
+<li>🪄 Batch inserts: si usas addBatch() + executeBatch(), puedes recorrer ps.getGeneratedKeys() para obtener todos los IDs generados.        </li>
+<li>🔢 Tipo del ID: usa getInt(1) o getLong(1) según el tipo de la columna.       </li>
+<li>Si la clave primaria no es autoincremental (por ejemplo, UUID), deberás gestionarla manualmente en la aplicación.    </li>
+</ul>
 <hr />
 <h3 id="prevencion-de-sql-injection">🔒 Prevención de SQL Injection</h3>
 <p>El uso de <code>PreparedStatement</code> es la mejor práctica para prevenir <strong>SQL Injection</strong>.<br />
