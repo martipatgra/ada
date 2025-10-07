@@ -1305,7 +1305,7 @@ Ejemplo básico:</p>
 <span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="n">cs</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span><span class="w"> </span><span class="c1">// Parámetro IN</span>
 <span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">cs</span><span class="p">.</span><span class="na">registerOutParameter</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Types</span><span class="p">.</span><span class="na">INTEGER</span><span class="p">);</span><span class="w"> </span><span class="c1">// Parámetro OUT</span>
 <span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="n">cs</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">hasResultSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
 <span class="linenos" data-linenos="10 "></span>
 <span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 <span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Número de alumnos mayores de 18: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">total</span><span class="p">);</span>
@@ -1347,7 +1347,7 @@ La sintaxis utiliza <code>? = call ...</code> para capturar el valor devuelto.</
 <span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">cs</span><span class="p">.</span><span class="na">registerOutParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Types</span><span class="p">.</span><span class="na">DECIMAL</span><span class="p">);</span>
 <span class="linenos" data-linenos=" 8 "></span>
 <span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="c1">// Ejecutar</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="n">cs</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">hasResultSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
 <span class="linenos" data-linenos="11 "></span>
 <span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="c1">// Recuperar el valor devuelto</span>
 <span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">media</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs</span><span class="p">.</span><span class="na">getDouble</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
@@ -1369,6 +1369,10 @@ La sintaxis utiliza <code>? = call ...</code> para capturar el valor devuelto.</
 <li>Los <strong>procedimientos y funciones almacenados</strong> permiten encapsular lógica SQL en la base de datos.  </li>
 <li>Se ejecutan desde Java con <code>CallableStatement</code>.</li>
 <li>Son útiles para mejorar el rendimiento y la reutilización de código.</li>
+<li>Solo OUT/INOUT → execute() y lee los OUT. No necesitas if (cs.execute()).</li>
+<li>Procedure que devuelve ResultSet → if(execute()) y usa el booleano/getResultSet().</li>
+<li>Si sabes que viene solo un ResultSet → executeQuery().</li>
+<li>No uses executeQuery() con OUT: puede fallar en algunos drivers.</li>
 </ul>
 
 
