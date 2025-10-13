@@ -46,7 +46,7 @@ try (final Connection con = DriverManager.getConnection(url, user, password);
 
 ---
 
-## 🛠️ Uso con PreparedStatement
+## 🛠️ Uso con PreparedStatement - Recomendado
 
 `PreparedStatement` es una versión mejorada de `Statement` que permite **parametrizar sentencias SQL** mediante el uso de `?`.  
 Esto evita errores, facilita la reutilización de la sentencia y protege contra inyecciones SQL.  
@@ -70,6 +70,43 @@ try (final Connection con = DriverManager.getConnection(url, user, password);
     e.printStackTrace();
 }
 ```
+
+### 🎯 Obtener el ID autogenerado tras un INSERT
+
+Usa `prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)`.
+Tras `executeUpdate()`, llama a `ps.getGeneratedKeys()`.
+
+Si la tabla tiene clave compuesta o múltiples claves, el ResultSet puede traer varias columnas.
+
+```java
+String sql = "INSERT INTO alumnos (nombre, edad) VALUES (?, ?)";
+
+try (Connection con = DriverManager.getConnection(url, user, password);
+     PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+    ps.setString(1, "María");
+    ps.setInt(2, 19);
+
+    int filas = ps.executeUpdate();
+    System.out.println("Filas insertadas: " + filas);
+
+    try (ResultSet rs = ps.getGeneratedKeys()) {
+        if (rs.next()) {
+            long idGenerado = rs.getLong(1); // primera columna devuelta
+            System.out.println("ID generado: " + idGenerado);
+        }
+    }
+} catch (SQLException e) {
+    e.printStackTrace();
+}
+
+```
+
+### 🧩 Consejos adicionales
+
+- 🪄 Batch inserts: si usas addBatch() + executeBatch(), puedes recorrer ps.getGeneratedKeys() para obtener todos los IDs generados.        
+- 🔢 Tipo del ID: usa getInt(1) o getLong(1) según el tipo de la columna.       
+- Si la clave primaria no es autoincremental (por ejemplo, UUID), deberás gestionarla manualmente en la aplicación.    
 
 ---
 

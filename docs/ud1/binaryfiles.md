@@ -45,7 +45,7 @@ try (FileOutputStream fos = new FileOutputStream("salida.bin")) {
     e.printStackTrace();
 }
 ```
-✏️ También puedes escribir byte a byte con fos.write(65);
+✏️ También puedes escribir byte a byte con fos.write(int b);
 
 ---
 
@@ -87,14 +87,15 @@ try (BufferedOutputStream bos = new BufferedOutputStream(
 
 ```java
 try (BufferedInputStream bis = new BufferedInputStream(
-        new FileInputStream("entrada.bin"))) {
+        new FileInputStream("datos.bin"))) {
     int byteLeido;
     while ((byteLeido = bis.read()) != -1) {
         System.out.println(byteLeido);
     }
 }
 ```
-`BufferedInputStream` crea un buffer interno. Cuando llamas por primera vez a `bis.read()`, no lee 1 byte del disco, sino que:
+`BufferedInputStream` crea un buffer interno. Cuando llamas por primera vez a `bis.read()`, no lee 1 byte del disco, sino que:      
+
 - Lee miles de bytes del disco de golpe (llamada costosa de E/S).
 - Los guarda en memoria (en su buffer interno).
 - Luego, cada llamada a `.read()` devuelve el siguiente byte del buffer, lo cual es muy rápido porque accede a memoria, no al disco.
@@ -167,10 +168,11 @@ Files.write(Paths.get("datos.log"), datos, StandardOpenOption.APPEND);
 Lee el contenido del fichero como un array de bytes.
 
 ```java
-Path ruta = Paths.get("datos.bin");
+Path ruta = Paths.get("salida.bin");
 try {
     byte[] contenido = Files.readAllBytes(ruta);
     System.out.println("Tamaño: " + contenido.length);
+    System.out.println(Arrays.toString(contenido));
 } catch (IOException e) {
     e.printStackTrace();
 }

@@ -124,6 +124,11 @@ public class Persona {
 ### 2. Serializar a JSON
 ```java
 Gson gson = new Gson();
+//si quiero imprimir el json en formato "bonito" (tabulado e indentado)
+/*Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();*/
+
 Persona p = new Persona("Ana", 25, List.of("leer", "bailar"), true);
 String json = gson.toJson(p);
 System.out.println(json);

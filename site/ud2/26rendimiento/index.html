@@ -1295,17 +1295,17 @@
 <p>🔹 Pool de conexiones<br />
 - Conjunto de <strong>múltiples conexiones abiertas</strong> y gestionadas por un <code>DataSource</code>.</p>
 <ul>
-<li>
-<p>❌ <strong>Evita un <code>Connection</code> “singleton”</strong> en aplicaciones con concurrencia:</p>
-<ul>
-<li>Una <code>Connection</code> <strong>no es thread-safe</strong> → cuellos de botella y errores.</li>
+<li>❌ <strong>Evita un <code>Connection</code> “singleton”</strong> en aplicaciones con concurrencia:<ul>
+<li>Una <code>Connection</code> <strong>no es thread-safe</strong> → cuellos de botella y errores, compartir una misma conexión entre hilos.</li>
 <li>Punto único de fallo (si cae, cae todo).</li>
 <li>Conexiones largas pueden caducar o quedar “colgadas”.</li>
+<li>Se caduca (timeouts, caídas de red); si la única conexión muere, tu app también.</li>
 </ul>
 </li>
-<li>
-<p>✅ <strong>Usa un <em>pool de conexiones</em></strong> (<code>DataSource</code>) en su lugar:</p>
+</ul>
+<p>Bloquea transacciones: una única conexión obliga a serializar todo.</p>
 <ul>
+<li>✅ <strong>Usa un <em>pool de conexiones</em></strong> (<code>DataSource</code>) en su lugar:<ul>
 <li>Reutiliza conexiones abiertas (muy rápido).</li>
 <li>Gestiona caducidad, validación, tamaño del pool y timeouts.</li>
 <li>Ideal tanto para apps de escritorio con cierta concurrencia como para aplicaciones web.</li>
@@ -1343,7 +1343,9 @@
 </code></pre></div>
 <ul>
 <li>Hay un único HikariDataSource (singleton) por cada origen de datos.  <ul>
-<li>Ese DataSource gestiona internamente un pool de conexiones.  </li>
+<li>Ese DataSource gestiona internamente un pool de conexiones. Un pool paraleliza</li>
+<li>Los DataSource <strong>con pool</strong> (HikariCP, c3p0, DBCP…) están diseñados para uso concurrente. Internamente gestionan un conjunto de conexiones y sincronizan el acceso. Tú llamas <code>getConnection()</code> desde muchos hilos y el pool reparte conexiones libres o crea nuevas hasta el maximumPoolSize.    </li>
+<li><strong>Es un único gestor de muchas conexiones.</strong></li>
 <li>Cada vez que llamas a <code>getConnection()</code> de <code>DataSource</code>, no abre un socket nuevo:  </li>
 <li>✅ Si hay una conexión libre en el pool → te la entrega.  </li>
 <li>✅ Si no, crea una nueva hasta llegar al maximumPoolSize.</li>
@@ -1436,6 +1438,8 @@
 <li>Usa índices adecuados en el SGBD.</li>
 <li>Define <code>setQueryTimeout</code> para queries largas.</li>
 <li>Cierra siempre recursos en orden: <code>ResultSet</code> → <code>Statement</code> → <code>Connection</code>. Usa <code>try-with-resources</code>.</li>
+<li>Nunca guardes <code>Connection</code> en campos estáticos, variables globales o Singleton.</li>
+<li>Abrir/cerrar una <code>Connection</code> por operación o por transacción (try-with-resources).     </li>
 </ul>
 
 

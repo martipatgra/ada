@@ -33,7 +33,7 @@ Properties properties = new Properties();
 Esta clase tiene un método `load()` que permite cargar el fichero. No tenemos más que pasarle un `InputStream` o un `Reader` de java.
 
 ```java
-try (Reader reader = Files.newBufferedReader(Paths.get("datasource.properties"))) {
+try (Reader/BufferedReader reader = Files.newBufferedReader(Paths.get("datasource.properties"))) {
     properties.load(reader); //carga el fichero en el objeto properties
 } catch (IOException e) {
     e.printStackTrace();
@@ -80,7 +80,7 @@ properties.setProperty("db.port", "4020");
 Una vez que hemos modificado/añadido propiedades, tendremos que guardarlas en el fichero. Para ello la clase `Properties` tiene dos métodos: `save()` y `store()`. El método `save()` está obsoleto, por lo que no se aconseja su uso. Para guardar los cambios, debemos llamar a `store()` pasándole un `OutputStream` o un `Writer` de java.
 
 ```java
-try (Writer writer = Files.newBufferedWriter(Paths.get("datasource.properties"))) {
+try (Writer/BufferedWriter writer = Files.newBufferedWriter(Paths.get("datasource.properties"))) {
     properties.store(writer, "Added database port");
 } catch (IOException e) {
     //manejar excepción

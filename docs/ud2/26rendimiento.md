@@ -13,9 +13,12 @@ Optimizar el acceso a BD no va solo de “hacer menos queries”, sino de **gest
 - Conjunto de **múltiples conexiones abiertas** y gestionadas por un `DataSource`.
 
 - ❌ **Evita un `Connection` “singleton”** en aplicaciones con concurrencia:
-    - Una `Connection` **no es thread-safe** → cuellos de botella y errores.
+    - Una `Connection` **no es thread-safe** → cuellos de botella y errores, compartir una misma conexión entre hilos.
     - Punto único de fallo (si cae, cae todo).
     - Conexiones largas pueden caducar o quedar “colgadas”.
+    - Se caduca (timeouts, caídas de red); si la única conexión muere, tu app también.
+
+Bloquea transacciones: una única conexión obliga a serializar todo.
 
 - ✅ **Usa un *pool de conexiones*** (`DataSource`) en su lugar:
     - Reutiliza conexiones abiertas (muy rápido).
@@ -55,7 +58,9 @@ public final class DataSourceSingleton {
 ```
 
 - Hay un único HikariDataSource (singleton) por cada origen de datos.  
-    - Ese DataSource gestiona internamente un pool de conexiones.  
+    - Ese DataSource gestiona internamente un pool de conexiones. Un pool paraleliza
+    - Los DataSource **con pool** (HikariCP, c3p0, DBCP…) están diseñados para uso concurrente. Internamente gestionan un conjunto de conexiones y sincronizan el acceso. Tú llamas `getConnection()` desde muchos hilos y el pool reparte conexiones libres o crea nuevas hasta el maximumPoolSize.    
+    - **Es un único gestor de muchas conexiones.**
     - Cada vez que llamas a `getConnection()` de `DataSource`, no abre un socket nuevo:  
        - ✅ Si hay una conexión libre en el pool → te la entrega.  
        - ✅ Si no, crea una nueva hasta llegar al maximumPoolSize.
@@ -164,4 +169,6 @@ try {
 - Usa índices adecuados en el SGBD.
 - Define `setQueryTimeout` para queries largas.
 - Cierra siempre recursos en orden: `ResultSet` → `Statement` → `Connection`. Usa `try-with-resources`.
+- Nunca guardes `Connection` en campos estáticos, variables globales o Singleton.
+- Abrir/cerrar una `Connection` por operación o por transacción (try-with-resources).     
 

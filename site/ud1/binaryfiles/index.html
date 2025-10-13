@@ -1480,7 +1480,7 @@
 <span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
 <span class="linenos" data-linenos="6 "></span><span class="p">}</span>
 </code></pre></div>
-✏️ También puedes escribir byte a byte con fos.write(65);</p>
+✏️ También puedes escribir byte a byte con fos.write(int b);</p>
 <hr />
 <h3 id="operaciones-con-buffers">Operaciones con buffers</h3>
 <p>Un <strong>buffer</strong> es una memoria intermedia que <strong>almacena temporalmente datos</strong> antes de leerlos o escribirlos. Esto hace que el programa:</p>
@@ -1509,18 +1509,20 @@
 ✅ El buffer agrupa muchos bytes y los escribe en bloque, mejorando el rendimiento. Si queremos guardar en un punto del programa podemos hacer <code>bos.flush()</code> que realiza un volcado del buffer al fichero, guarda.</p>
 <h4 id="ejemplo-de-lectura-con-bufferedinputstream-buffer">✅ Ejemplo de lectura con BufferedInputStream (buffer)</h4>
 <p><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">BufferedInputStream</span><span class="w"> </span><span class="n">bis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BufferedInputStream</span><span class="p">(</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">&quot;entrada.bin&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">&quot;datos.bin&quot;</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">byteLeido</span><span class="p">;</span>
 <span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">byteLeido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bis</span><span class="p">.</span><span class="na">read</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="5 "></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">byteLeido</span><span class="p">);</span>
 <span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="7 "></span><span class="p">}</span>
 </code></pre></div>
-<code>BufferedInputStream</code> crea un buffer interno. Cuando llamas por primera vez a <code>bis.read()</code>, no lee 1 byte del disco, sino que:
-- Lee miles de bytes del disco de golpe (llamada costosa de E/S).
-- Los guarda en memoria (en su buffer interno).
-- Luego, cada llamada a <code>.read()</code> devuelve el siguiente byte del buffer, lo cual es muy rápido porque accede a memoria, no al disco.
-- Cuando el buffer se vacía, se vuelve a rellenar con otros 8192 bytes del fichero.</p>
+<code>BufferedInputStream</code> crea un buffer interno. Cuando llamas por primera vez a <code>bis.read()</code>, no lee 1 byte del disco, sino que:      </p>
+<ul>
+<li>Lee miles de bytes del disco de golpe (llamada costosa de E/S).</li>
+<li>Los guarda en memoria (en su buffer interno).</li>
+<li>Luego, cada llamada a <code>.read()</code> devuelve el siguiente byte del buffer, lo cual es muy rápido porque accede a memoria, no al disco.</li>
+<li>Cuando el buffer se vacía, se vuelve a rellenar con otros 8192 bytes del fichero.</li>
+</ul>
 <hr />
 <h3 id="que-son-los-wrappers-y-por-que-usar-buffers">🧻 ¿Qué son los wrappers y por qué usar buffers?</h3>
 <p>En Java, muchas clases de entrada/salida se <strong>envuelven unas dentro de otras</strong> para mejorar su funcionamiento. Esto se llama <strong>patrón decorador</strong> (decorator pattern) y permite <strong>añadir funcionalidades</strong> sin modificar la clase original.</p>
@@ -1564,13 +1566,14 @@ Aquí, <code>FileInputStream</code> accede al archivo y <code>BufferedInputStrea
 <h3 id="leer-desde-un-fichero-con-files">📥 Leer desde un fichero con <code>Files</code></h3>
 <h4 id="1-filesreadallbytespath-path-todo-el-contenido-de-golpe">1. <code>Files.readAllBytes(Path path)</code> (todo el contenido de golpe)</h4>
 <p>Lee el contenido del fichero como un array de bytes.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">ruta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;datos.bin&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Path</span><span class="w"> </span><span class="n">ruta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;salida.bin&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="2 "></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">contenido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Files</span><span class="p">.</span><span class="na">readAllBytes</span><span class="p">(</span><span class="n">ruta</span><span class="p">);</span>
 <span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Tamaño: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">contenido</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
-<span class="linenos" data-linenos="5 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">contenido</span><span class="p">));</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span>
 </code></pre></div>
 <ul>
 <li>✅ Ideal para ficheros <strong>pequeños o medianos</strong></li>

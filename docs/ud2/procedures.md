@@ -13,7 +13,7 @@ Ejemplo en MySQL:
 
 ```sql
 DELIMITER //
-CREATE PROCEDURE obtenerAlumnosMayores(IN edad_min INT)
+CREATE PROCEDURE obtener_alumnos_mayores(IN edad_min INT)
 BEGIN
     SELECT * FROM alumnos WHERE edad > edad_min;
 END //
@@ -29,7 +29,7 @@ Se obtiene a través de la conexión con el método `prepareCall()`.
 Ejemplo básico:
 
 ```java
-String sql = "{ call obtenerAlumnosMayores(?) }";
+String sql = "{ call obtener_alumnos_mayores(?) }";
 
 try (final Connection con = DriverManager.getConnection(url, user, password);
      CallableStatement cs = con.prepareCall(sql)) {
@@ -59,7 +59,7 @@ Ejemplo de procedimiento con salida en MySQL:
 
 ```sql
 DELIMITER //
-CREATE PROCEDURE contarAlumnos(IN edad_min INT, OUT total INT)
+CREATE PROCEDURE contar_alumnos(IN edad_min INT, OUT total INT)
 BEGIN
     SELECT COUNT(*) INTO total FROM alumnos WHERE edad > edad_min;
 END //
@@ -69,7 +69,7 @@ DELIMITER ;
 Uso en Java:
 
 ```java
-String sql = "{ call contarAlumnos(?, ?) }";
+String sql = "{ call contar_alumnos(?, ?) }";
 
 try (final Connection con = DriverManager.getConnection(url, user, password);
      CallableStatement cs = con.prepareCall(sql)) {
@@ -77,7 +77,7 @@ try (final Connection con = DriverManager.getConnection(url, user, password);
     cs.setInt(1, 18); // Parámetro IN
     cs.registerOutParameter(2, java.sql.Types.INTEGER); // Parámetro OUT
 
-    cs.execute();
+    boolean hasResultSet = cs.execute();
 
     int total = cs.getInt(2);
     System.out.println("Número de alumnos mayores de 18: " + total);
@@ -104,7 +104,9 @@ Una **función almacenada** es similar a un procedimiento, pero con diferencias 
 
 ```sql
 DELIMITER //
-CREATE FUNCTION calcularEdadMedia() RETURNS DECIMAL(5,2)
+CREATE FUNCTION calcular_edad_media() RETURNS DECIMAL(5,2)
+NOT DETERMINISTIC
+READS SQL DATA
 BEGIN
     DECLARE media DECIMAL(5,2);
     SELECT AVG(edad) INTO media FROM alumnos;
@@ -121,7 +123,7 @@ En JDBC se puede invocar una función almacenada usando `CallableStatement`.
 La sintaxis utiliza `? = call ...` para capturar el valor devuelto.
 
 ```java
-String sql = "{ ? = call calcularEdadMedia() }";
+String sql = "{ ? = call calcular_edad_media() }";
 
 try (final Connection con = DriverManager.getConnection(url, user, password);
      CallableStatement cs = con.prepareCall(sql)) {
@@ -130,7 +132,7 @@ try (final Connection con = DriverManager.getConnection(url, user, password);
     cs.registerOutParameter(1, java.sql.Types.DECIMAL);
 
     // Ejecutar
-    cs.execute();
+    boolean hasResultSet = cs.execute();
 
     // Recuperar el valor devuelto
     double media = cs.getDouble(1);
@@ -155,3 +157,7 @@ try (final Connection con = DriverManager.getConnection(url, user, password);
 - Los **procedimientos y funciones almacenados** permiten encapsular lógica SQL en la base de datos.  
 - Se ejecutan desde Java con `CallableStatement`.
 - Son útiles para mejorar el rendimiento y la reutilización de código.
+- Solo OUT/INOUT → execute() y lee los OUT. No necesitas if (cs.execute()).
+- Procedure que devuelve ResultSet → if(execute()) y usa el booleano/getResultSet().
+- Si sabes que viene solo un ResultSet → executeQuery().
+- No uses executeQuery() con OUT: puede fallar en algunos drivers.
