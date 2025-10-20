@@ -1562,7 +1562,8 @@
 </code></pre></div>
 <ul>
 <li>✅ Adecuado para ejemplos sencillos o pruebas</li>
-<li>❌ Menos eficiente que <code>BufferedWriter</code>. El texto se guarda primero en un buffer intermedio de memoria. Cuando el buffer se llena o cuando cierras (close()), se hace el volcado real al disco.</li>
+<li>❌ Menos eficiente que <code>BufferedWriter</code>. No aporta un buffer grande de caracteres como BufferedWriter. Pero si tiene un buffer/caché del sistema operativo y un buffer de codificación interno (con OutputStreamWriter), que puede retener bytes.     </li>
+<li>Sin <strong>close()/flush()</strong>, <strong>no garantizas que todo lo escrito haya salido de esos buffers hacia el fichero</strong>.  </li>
 <li>Al salir del try-with-resources, se ejecuta automáticamente <code>fw.close()</code>, que internamente hace un flush() → ahí se asegura que todo lo que estaba en memoria sí se escriba en el fichero.</li>
 </ul>
 <hr />
