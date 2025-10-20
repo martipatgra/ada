@@ -1562,8 +1562,8 @@
 </code></pre></div>
 <ul>
 <li>✅ Adecuado para ejemplos sencillos o pruebas</li>
-<li>❌ Menos eficiente que <code>BufferedWriter</code>. El texto se guarda primero en un buffer intermedio de memoria. Cuando el buffer se llena o cuando cierras (close()), se hace el volcado real al disco</li>
-<li>Al salir del try-with-resources, se ejecuta automáticamente <code>fw.close()</code>, que internamente hace un flush() → ahí se asegura que todo lo que estaba en memoria sí se escriba en el fichero</li>
+<li>❌ Menos eficiente que <code>BufferedWriter</code>. El texto se guarda primero en un buffer intermedio de memoria. Cuando el buffer se llena o cuando cierras (close()), se hace el volcado real al disco.</li>
+<li>Al salir del try-with-resources, se ejecuta automáticamente <code>fw.close()</code>, que internamente hace un flush() → ahí se asegura que todo lo que estaba en memoria sí se escriba en el fichero.</li>
 </ul>
 <hr />
 <h4 id="2-bufferedwriter">2. <code>BufferedWriter</code></h4>
@@ -1576,7 +1576,7 @@
 <span class="linenos" data-linenos="7 "></span><span class="p">}</span>
 </code></pre></div>
 <ul>
-<li>✅ Escritura más rápida y controlada. Mantiene un buffer más grande en memoria. Solo cuando el buffer se llena (o haces flush()/close()) envía un bloque grande al writer subyacente</li>
+<li>✅ Escritura más rápida y controlada. Mantiene un buffer más grande en memoria. Solo cuando el buffer se llena o haces flush()/close() se envía un bloque grande al writer subyacente, que en este caso es el FileWriter <strong>y escribe en disco</strong>.</li>
 </ul>
 <hr />
 <h4 id="3-printwriter">3. <code>PrintWriter</code></h4>
