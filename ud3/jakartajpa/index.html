@@ -1358,12 +1358,37 @@ Toda entidad necesita una <strong>identidad</strong> (PK).</p>
 <p><img alt="pc-ops" src="../../img/ud3/4persistencecontext.png" /></p>
 <hr />
 <h2 id="estados-de-las-entidades">🔄 Estados de las entidades</h2>
-<ul>
-<li><strong>Transient (new)</strong>: recién creada con <code>new</code>, aún no gestionada.  </li>
-<li><strong>Managed</strong>: dentro del <code>EntityManager</code>; cambios se sincronizan.  </li>
-<li><strong>Detached</strong>: estuvo gestionada, pero ya no (p. ej., tras <code>clear()</code> o cerrar EM).  </li>
-<li><strong>Removed</strong>: marcada para eliminación; se borrará al sincronizar.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Significado</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Transient (transitorio)</strong></td>
+<td>El objeto existe en memoria, pero <strong>no en la BD ni en la sesión</strong>.</td>
+<td><code>Customer c = new Customer("Ada");</code></td>
+</tr>
+<tr>
+<td><strong>Persistent (persistente)</strong></td>
+<td>Está <strong>asociada a una <code>Session</code></strong> (o <code>EntityManager</code>) y <strong>Hibernate la rastrea</strong>. Si cambias un atributo, el cambio se guardará al hacer <code>commit()</code>.</td>
+<td><code>session.persist(c);</code></td>
+</tr>
+<tr>
+<td><strong>Detached (desasociado)</strong></td>
+<td>Existía en la BD, pero ya <strong>no está siendo gestionada</strong> (por ejemplo, la sesión se cerró).</td>
+<td>Objeto obtenido con <code>find()</code> pero fuera del contexto.</td>
+</tr>
+<tr>
+<td><strong>Removed (eliminado)</strong></td>
+<td>Está marcada para eliminarse en el commit.</td>
+<td><code>session.remove(c);</code></td>
+</tr>
+</tbody>
+</table>
 <p>Relación con métodos:
 - <code>persist()</code> → <strong>new → managed</strong><br />
 - <code>remove()</code> → <strong>managed → removed</strong><br />
