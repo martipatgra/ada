@@ -852,6 +852,26 @@
     ⚙️ DAO vs Service – Estructura recomendada
   </a>
   
+    <nav class="md-nav" aria-label="⚙️ DAO vs Service – Estructura recomendada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dao-data-access-object" class="md-nav__link">
+    🧩 DAO (Data Access Object)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-capa-de-negocio" class="md-nav__link">
+    🧠 Service (Capa de negocio)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1111,6 +1131,26 @@
     ⚙️ DAO vs Service – Estructura recomendada
   </a>
   
+    <nav class="md-nav" aria-label="⚙️ DAO vs Service – Estructura recomendada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dao-data-access-object" class="md-nav__link">
+    🧩 DAO (Data Access Object)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-capa-de-negocio" class="md-nav__link">
+    🧠 Service (Capa de negocio)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1217,17 +1257,21 @@
 </ul>
 <hr />
 <h2 id="dao-vs-service-estructura-recomendada">⚙️ DAO vs Service – Estructura recomendada</h2>
-<p>🧩 DAO (Data Access Object)   <br />
-- 📄 Uno por entidad o agregado (SpaceDao, UserDao, BookingDao…)      <br />
-- 🎯 Responsabilidad: acceso a datos (persist, find, remove, queries).    <br />
-- 🚫 Sin transacciones ni lógica de negocio.      <br />
-- 🔄 Reutilizable desde distintos servicios.        </p>
-<p>🧠 Service (Capa de negocio)      <br />
-- 🧩 Debe existir uno por caso de uso / lógica de negocio, <strong>no necesariamente por entidad</strong>.
-- 🎯 Responsabilidad: Agrupa y orquesta varios DAOs.       <br />
-- 💡 Define casos de uso completos, no solo operaciones CRUD.     <br />
-- 🧾 Contiene la transacción (beginTransaction / commit / rollback).      <br />
-- 🔐 Aplica validaciones y reglas de negocio.       </p>
+<h3 id="dao-data-access-object">🧩 DAO (Data Access Object)</h3>
+<ul>
+<li>📄 Uno por entidad o agregado (SpaceDao, UserDao, BookingDao…)        </li>
+<li>🎯 Responsabilidad: acceso a datos (persist, find, remove, queries).      </li>
+<li>🚫 Sin transacciones ni lógica de negocio.        </li>
+<li>🔄 Reutilizable desde distintos servicios.        </li>
+</ul>
+<h3 id="service-capa-de-negocio">🧠 Service (Capa de negocio)</h3>
+<ul>
+<li>🧩 Debe existir uno por caso de uso / lógica de negocio, <strong>no necesariamente por entidad</strong>.</li>
+<li>🎯 Responsabilidad: Agrupa y orquesta varios DAOs.         </li>
+<li>💡 Define casos de uso completos, no solo operaciones CRUD.       </li>
+<li>🧾 Contiene la transacción (beginTransaction / commit / rollback).        </li>
+<li>🔐 Aplica validaciones y reglas de negocio.       </li>
+</ul>
 <hr />
 <h2 id="testeo-de-la-aplicacion">🔮 Testeo de la aplicación</h2>
 <p>Para probar el código simplemente tendremos que crear un objeto de la clase service y ejecutar los métodos convenientes:</p>
