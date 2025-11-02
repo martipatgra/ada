@@ -1411,8 +1411,24 @@
 </code></pre></div>
 <h3 id="2-carga-de-entidades">2 Carga de entidades</h3>
 <ul>
-<li><code>find(Entidad.class, id)</code> / <code>getReference(...)</code> (proxy, no SELECT hasta acceso).</li>
-<li>Consultas (<code>createQuery</code>) → <code>getResultList()</code> / <code>getSingleResult()</code>.</li>
+<li><code>find(Entidad.class, id)</code> → <strong>ACCESO REAL</strong> (SELECT inmediato):       </li>
+<li>Ejecuta enseguida un SELECT ... FROM customer WHERE id = 1.   </li>
+<li>Devuelve el objeto completo, ya inicializado.   </li>
+<li>Si no existe, devuelve null.    </li>
+<li>
+<p>El objeto está gestionado por el EntityManager/Session.</p>
+</li>
+<li>
+<p><code>getReference(...)</code> → <strong>PROXY</strong> (carga diferida / lazy, no SELECT hasta acceso):    </p>
+</li>
+<li><strong>NO ejecuta</strong> ningún <strong>SELECT</strong> todavía.   </li>
+<li>Devuelve un <strong>proxy</strong> (un objeto “fantasma” que simula ser el <code>Usuario</code>).    </li>
+<li>
+<p>El proxy <strong>solo contiene el ID</strong> y un mecanismo interno para hacer SELECT más tarde, si tocas algún campo que necesita los datos.     </p>
+</li>
+<li>
+<p>Consultas (<code>createQuery</code>) → <code>getResultList()</code> / <code>getSingleResult()</code>.</p>
+</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w">          </span><span class="c1">// SELECT inmediato</span>
 <span class="linenos" data-linenos="2 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">getReference</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w">  </span><span class="c1">// Proxy LAZY</span>
