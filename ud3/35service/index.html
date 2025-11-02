@@ -848,6 +848,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#dao-vs-service-estructura-recomendada" class="md-nav__link">
+    ⚙️ DAO vs Service – Estructura recomendada
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#testeo-de-la-aplicacion" class="md-nav__link">
     🔮 Testeo de la aplicación
   </a>
@@ -1100,6 +1107,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#dao-vs-service-estructura-recomendada" class="md-nav__link">
+    ⚙️ DAO vs Service – Estructura recomendada
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#testeo-de-la-aplicacion" class="md-nav__link">
     🔮 Testeo de la aplicación
   </a>
@@ -1201,6 +1215,19 @@
 <li>SessionFactory = se crea 1 vez al inicio, se comparte; no se crea por método.</li>
 <li>El service recibe el <code>SessionFactory</code> (y los DAOs) por constructor y abre/cierra la transacción por cada caso de uso.</li>
 </ul>
+<hr />
+<h2 id="dao-vs-service-estructura-recomendada">⚙️ DAO vs Service – Estructura recomendada</h2>
+<p>🧩 DAO (Data Access Object)   <br />
+- 📄 Uno por entidad o agregado (SpaceDao, UserDao, BookingDao…)      <br />
+- 🎯 Responsabilidad: acceso a datos (persist, find, remove, queries).    <br />
+- 🚫 Sin transacciones ni lógica de negocio.      <br />
+- 🔄 Reutilizable desde distintos servicios.        </p>
+<p>🧠 Service (Capa de negocio)      <br />
+- 🎯 Debe existir uno por caso de uso / lógica de negocio, <strong>no necesariamente por entidad</strong>.
+- 🧩 Agrupa y orquesta varios DAOs.       <br />
+- 💡 Define casos de uso completos, no solo operaciones CRUD.     <br />
+- 🧾 Contiene la transacción (beginTransaction / commit / rollback).      <br />
+- 🔐 Aplica validaciones y reglas de negocio.       </p>
 <hr />
 <h2 id="testeo-de-la-aplicacion">🔮 Testeo de la aplicación</h2>
 <p>Para probar el código simplemente tendremos que crear un objeto de la clase service y ejecutar los métodos convenientes:</p>
