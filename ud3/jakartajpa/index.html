@@ -1389,11 +1389,58 @@ Toda entidad necesita una <strong>identidad</strong> (PK).</p>
 </tr>
 </tbody>
 </table>
-<p>Relación con métodos:
-- <code>persist()</code> → <strong>new → managed</strong><br />
-- <code>remove()</code> → <strong>managed → removed</strong><br />
-- <code>detach()</code> → <strong>managed → detached</strong><br />
-- <code>merge()</code> → <strong>detached/new → managed</strong></p>
+<p>Relación con métodos:</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Qué hace</th>
+<th>Estado que afecta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>persist(entity)</code></td>
+<td>Inserta la entidad en el contexto (nuevo → persistente).</td>
+<td>transient → persistent</td>
+</tr>
+<tr>
+<td><code>find(Entidad.class, id)</code></td>
+<td>Busca en BD y la mete en el contexto.</td>
+<td>detached → persistent</td>
+</tr>
+<tr>
+<td><code>merge(entity)</code></td>
+<td>Reasocia una entidad detached, actualizando los cambios.</td>
+<td>detached → persistent</td>
+</tr>
+<tr>
+<td><code>remove(entity)</code></td>
+<td>Marca la entidad para borrado al commit.</td>
+<td>persistent → removed</td>
+</tr>
+<tr>
+<td><code>refresh(entity)</code></td>
+<td>Relee los valores desde la BD.</td>
+<td>persistent</td>
+</tr>
+<tr>
+<td><code>detach(entity)</code></td>
+<td>La saca del contexto (deja de estar gestionada).</td>
+<td>persistent → detached</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Saca <strong>todas</strong> las entidades del contexto.</td>
+<td>persistent → detached</td>
+</tr>
+<tr>
+<td><code>flush()</code></td>
+<td>Sincroniza el contexto con la BD sin cerrar la sesión.</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="fichero-de-persistencia-persistencexml">🧪 Fichero de persistencia: <code>persistence.xml</code></h2>
 <p>El <strong><code>EntityManagerFactory</code></strong> se configura mediante <strong>unidades de persistencia</strong> en <code>META-INF/persistence.xml</code>:</p>
