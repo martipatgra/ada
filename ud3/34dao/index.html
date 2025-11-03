@@ -1213,8 +1213,9 @@
 <h2 id="transacciones-en-la-capa-service-no-en-daos">Transacciones en la capa service, no en DAOs</h2>
 <p>El límite de la transacción (abrir, confirmar, deshacer) <strong>debe estar en la capa de servicio</strong> (caso de uso), no dentro de cada método DAO. Así, un único @Transactional envuelve todas las operaciones que forman el caso de uso y o bien se confirman todas, o se deshacen todas.</p>
 <h3 id="por-que-asi">¿Por qué así?</h3>
-<p>Un caso de uso suele tocar varios DAOs. Si cada DAO hiciera su propia transacción, tendrías commits parciales y perderías atomicidad.</p>
+<p><strong>Un caso de uso suele tocar varios DAOs</strong>. Si cada DAO hiciera su propia transacción, tendrías commits parciales y perderías atomicidad.</p>
 <p>Centralizar la transacción en el servicio simplifica el DAO (solo hace CRUD) y la regla de negocio queda claramente delimitada.</p>
+<p>El DAO debe ser <strong>fino y reutilizable</strong>; <strong>no debe decidir reglas de negocio</strong>. Encapsula acceso a datos y propaga (o traduce) errores técnicos</p>
 <h2 id="1-creacion-de-las-interfaces-dao">🪀 1. Creación de las interfaces DAO</h2>
 <p>Lo primero que haremos será <strong>crear las interfaces de las entidades que requieran acceso a la base de datos</strong>. Creamos interfaces para exponerlas en forma de API sus operaciones. Ya que la implementación de éstas estará en otras clases para encapsular las operaciones.</p>
 <p>Usaremos los ejemplos de clase <code>Person</code> y <code>Address</code> que tenían una relación muchos a muchos.</p>
