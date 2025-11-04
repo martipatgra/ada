@@ -1904,7 +1904,7 @@ Ejemplo:</p>
 <span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="p">.</span><span class="na">setMaxResults</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">.</span><span class="na">getSingleResultOrNull</span><span class="p">();</span>
 </code></pre></div>
-<p>La interfaz TypedQuery se utiliza para controlar la ejecución de la consulta. Ofrece tres tipos de resultados:</p>
+<p>La interfaz <code>TypedQuery</code> se utiliza para controlar la ejecución de la consulta. Ofrece tres tipos de resultados:</p>
 <ul>
 <li><code>getResultList()</code>: devuelve una lista con los resultados (lista vacía si no hay filas). No lanza excepción por “cero resultados”..</li>
 <li><code>getSingleResult()</code>: es solo para casos en los que la consulta siempre <strong>devuelve exactamente un resultado</strong>. Lanza excepción si no hay ninguno o si hay más de uno.</li>
