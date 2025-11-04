@@ -828,8 +828,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-hace" class="md-nav__link">
-    📘 Qué hace
+  <a href="#persist" class="md-nav__link">
+    📘 persist
   </a>
   
 </li>
@@ -855,8 +855,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-hace_1" class="md-nav__link">
-    📘 Qué hace
+  <a href="#findgetreference" class="md-nav__link">
+    📘 find/getReference
   </a>
   
 </li>
@@ -875,8 +875,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-hace_2" class="md-nav__link">
-    📘 Qué hace
+  <a href="#merge-o-entidad-en-estado-managed" class="md-nav__link">
+    📘 merge o entidad en estado managed
   </a>
   
 </li>
@@ -902,8 +902,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-hace_3" class="md-nav__link">
-    📘 Qué hace
+  <a href="#remove" class="md-nav__link">
+    remove
   </a>
   
 </li>
@@ -1251,8 +1251,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-hace" class="md-nav__link">
-    📘 Qué hace
+  <a href="#persist" class="md-nav__link">
+    📘 persist
   </a>
   
 </li>
@@ -1278,8 +1278,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-hace_1" class="md-nav__link">
-    📘 Qué hace
+  <a href="#findgetreference" class="md-nav__link">
+    📘 find/getReference
   </a>
   
 </li>
@@ -1298,8 +1298,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-hace_2" class="md-nav__link">
-    📘 Qué hace
+  <a href="#merge-o-entidad-en-estado-managed" class="md-nav__link">
+    📘 merge o entidad en estado managed
   </a>
   
 </li>
@@ -1325,8 +1325,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-hace_3" class="md-nav__link">
-    📘 Qué hace
+  <a href="#remove" class="md-nav__link">
+    remove
   </a>
   
 </li>
@@ -1398,7 +1398,7 @@
 <p>En este bloque verás cómo <strong>cargar, guardar, actualizar y borrar</strong> entidades con JPA/Hibernate.</p>
 <hr />
 <h2 id="1-create-insertar-registros">🧩 1️⃣ CREATE (Insertar registros)</h2>
-<h3 id="que-hace">📘 Qué hace</h3>
+<h3 id="persist">📘 <code>persist</code></h3>
 <p>Inserta nuevas entidades en la base de datos.<br />
 Hibernate se encarga de generar el <code>INSERT</code> SQL automáticamente.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana@example.com&quot;</span><span class="p">);</span>
@@ -1415,7 +1415,7 @@ Hibernate se encarga de generar el <code>INSERT</code> SQL automáticamente.</p>
 </ul>
 <hr />
 <h2 id="2-read-leer-registros">🧾 2️⃣ READ (Leer registros)</h2>
-<h3 id="que-hace_1">📘 Qué hace</h3>
+<h3 id="findgetreference">📘 <code>find/getReference</code></h3>
 <p>Recupera entidades desde la base de datos.</p>
 <p>Se utilizan los métodos find/getReference:      </p>
 <p><code>find(Entidad.class, id)</code> → <strong>ACCESO REAL</strong> (SELECT inmediato):     <br />
@@ -1432,7 +1432,7 @@ Hibernate se encarga de generar el <code>INSERT</code> SQL automáticamente.</p>
 </code></pre></div>
 <hr />
 <h2 id="3-update-actualizar-registros">🔁 3️⃣ UPDATE (Actualizar registros)</h2>
-<h3 id="que-hace_2">📘 Qué hace</h3>
+<h3 id="merge-o-entidad-en-estado-managed">📘 <code>merge</code> o entidad en estado managed</h3>
 <p>Modifica una entidad existente. Hibernate detecta los cambios automáticamente si la entidad está <strong>en estado “managed”</strong>.</p>
 <ul>
 <li><strong>Entidad detached</strong>: usa <code>merge(detached)</code>. <strong>Devuelve otra instancia</strong> <em>managed</em>.</li>
@@ -1455,7 +1455,7 @@ Hibernate se encarga de generar el <code>INSERT</code> SQL automáticamente.</p>
 </code></pre></div></p>
 <hr />
 <h2 id="4-delete-eliminar-registros">❌ 4️⃣ DELETE (Eliminar registros)</h2>
-<h3 id="que-hace_3">📘 Qué hace</h3>
+<h3 id="remove"><code>remove</code></h3>
 <p>Borra una entidad de la base de datos.</p>
 <ul>
 <li><code>remove(managed)</code> → marca <strong>removed</strong> → <code>DELETE</code> en flush/commit.</li>
