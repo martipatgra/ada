@@ -19,7 +19,7 @@
     
     
       
-        <title>3.3.- Configuración e instalación de Hibernate - Acceso a Datos</title>
+        <title>3.3.- Configuración e instalación de Hibernate. Mapeo de entidades - Acceso a Datos</title>
       
     
     
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3.3.- Configuración e instalación de Hibernate
+              3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
             
           </span>
         </div>
@@ -768,12 +768,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          3.3.- Configuración e instalación de Hibernate
+          3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        3.3.- Configuración e instalación de Hibernate
+        3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
       </a>
       
         
@@ -1430,21 +1430,21 @@ En él defines:<br />
 <p>El mapeo basado en anotaciones consiste en definir la correspondencia clase ↔ tabla y atributo ↔ columna directamente en el código Java usando anotaciones de JPA/Jakarta</p>
 <h3 id="1-entidad-basica">📄 1 Entidad básica</h3>
 <ul>
-<li><code>@Entity</code> → Marca la clase como persistente.</li>
-<li><code>@Table(name="...")</code> → Cambia el nombre de la tabla y permite uniqueConstraints/indexes.</li>
+<li><code>@Entity</code> → Marca la clase como persistente.    </li>
+<li><code>@Table(name="...")</code> → Cambia el nombre de la tabla y permite uniqueConstraints/indexes.    </li>
 </ul>
-<p>Identidad: <br />
-- <code>@Id</code> → Clave primaria.
-- <code>@GeneratedValue(strategy=…)</code> → Estrategia de generación:<br />
-    - IDENTITY (auto-increment en MySQL),
-    - SEQUENCE (PostgreSQL/Oracle; suele usarse con @SequenceGenerator),
-    - AUTO (deja que el proveedor decida),
-    - TABLE (tabla de secuencias).</p>
-<p>Mapeo de columnas:<br />
-- <code>@Column(name="...", nullable=…, length=…, unique=…)</code> → Personaliza la columna.
-- <code>@Transient</code> → No persistir el atributo.
-- <code>@Enumerated(EnumType.STRING)</code> → Guarda el nombre del enum (mejor que ORDINAL).
-- <code>@Lob</code> → CLOB/BLOB para textos o binarios grandes.</p>
+<p>Identidad:  <br />
+- <code>@Id</code> → Clave primaria.   <br />
+- <code>@GeneratedValue(strategy=…)</code> → Estrategia de generación:     <br />
+    - IDENTITY (auto-increment en MySQL),   <br />
+    - SEQUENCE (PostgreSQL/Oracle; suele usarse con @SequenceGenerator),  <br />
+    - AUTO (deja que el proveedor decida),  <br />
+    - TABLE (tabla de secuencias).    </p>
+<p>Mapeo de columnas:    <br />
+- <code>@Column(name="...", nullable=…, length=…, unique=…)</code> → Personaliza la columna.     <br />
+- <code>@Transient</code> → No persistir el atributo.      <br />
+- <code>@Enumerated(EnumType.STRING)</code> → Guarda el nombre del enum (mejor que ORDINAL). <br />
+- <code>@Lob</code> → CLOB/BLOB para textos o binarios grandes.      </p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@Entity</span><span class="w"> </span>
 <span class="linenos" data-linenos=" 2 "></span><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;usuarios&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Usuario</span><span class="w"> </span><span class="p">{</span>
