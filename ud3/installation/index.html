@@ -1433,14 +1433,14 @@ En él defines:<br />
 <li><code>@Entity</code> → Marca la clase como persistente.    </li>
 <li><code>@Table(name="...")</code> → Cambia el nombre de la tabla y permite uniqueConstraints/indexes.    </li>
 </ul>
-<p>Identidad:  <br />
+<p><strong>Identidad</strong>:  <br />
 - <code>@Id</code> → Clave primaria.   <br />
 - <code>@GeneratedValue(strategy=…)</code> → Estrategia de generación:     <br />
     - IDENTITY (auto-increment en MySQL),   <br />
     - SEQUENCE (PostgreSQL/Oracle; suele usarse con @SequenceGenerator),  <br />
     - AUTO (deja que el proveedor decida),  <br />
     - TABLE (tabla de secuencias).    </p>
-<p>Mapeo de columnas:    <br />
+<p><strong>Mapeo de columnas</strong>:    <br />
 - <code>@Column(name="...", nullable=…, length=…, unique=…)</code> → Personaliza la columna.     <br />
 - <code>@Transient</code> → No persistir el atributo.      <br />
 - <code>@Enumerated(EnumType.STRING)</code> → Guarda el nombre del enum (mejor que ORDINAL). <br />
