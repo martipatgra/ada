@@ -1,0 +1,2006 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../queries/">
+      
+      
+        <link rel="next" href="../34dao/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>3.7.- Relaciones avanzadas en Hibernate - Acceso a Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#relaciones-avanzadas-en-hibernate" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acceso a Datos" class="md-header__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acceso a Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3.7.- Relaciones avanzadas en Hibernate
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acceso a Datos" class="md-nav__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Acceso a Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          1.- Acceso a datos mediante ficheros
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.- Acceso a datos mediante ficheros
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/filevsfiles/" class="md-nav__link">
+        1.1.- Gestión de ficheros con Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          1.2.- Lectura y escritura de ficheros en Java
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.2.- Lectura y escritura de ficheros en Java
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/io/" class="md-nav__link">
+        1.2.1.- Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+          1.2.2.- Acceso secuencial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.2.2.- Acceso secuencial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/binaryfiles/" class="md-nav__link">
+        Operaciones con ficheros binarios en Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/characterfiles/" class="md-nav__link">
+        Operaciones con ficheros de caracteres en Java
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
+          1.2.3.- Acceso aleatorio
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          1.2.3.- Acceso aleatorio
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/randomaccessfile/" class="md-nav__link">
+        Operaciones con ficheros de acceso aleatorio en Java
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/fileswalk/" class="md-nav__link">
+        1.3.- Recorrido de directorios con java.nio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/serialization/" class="md-nav__link">
+        1.4.- Lectura y escritura de objectos en Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/propertiesfile/" class="md-nav__link">
+        1.5.- Ficheros de propiedades en Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/jsonfiles/" class="md-nav__link">
+        1.6.- Ficheros JSON en Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/createjar/" class="md-nav__link">
+        1.7.- Crear un .jar
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/trywithresources/" class="md-nav__link">
+        1.8.- try-with-resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          2.- Acceso a bases de datos relacionales con JDBC
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          2.- Acceso a bases de datos relacionales con JDBC
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/persistencia/" class="md-nav__link">
+        2.1.- Persistencia de la información
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/mapeo/" class="md-nav__link">
+        2.2.- Introducción a JDBC y conectores
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/conectores/" class="md-nav__link">
+        2.3.- Fundamentos de JDBC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/ddl/" class="md-nav__link">
+        2.4.- Definición de estructuras de BD y ejecución de sentencias DDL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/dml/" class="md-nav__link">
+        2.5.- Modificación de datos con JDBC (DML)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/dql/" class="md-nav__link">
+        2.6.- Consultas y manipulación de resultados con JDBC (DQL)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/procedures/" class="md-nav__link">
+        2.7.- Procedimientos almacenados y CallableStatement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/transactions/" class="md-nav__link">
+        2.8.- Gestión de transacciones en JDBC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/26rendimiento/" class="md-nav__link">
+        2.9.- Mejora del rendimiento y buenas prácticas
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/27projectstructure/" class="md-nav__link">
+        2.10.- Desarrollo de aplicaciones completas con JDBC
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          3.- ORM con Hibernate y JPA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          3.- ORM con Hibernate y JPA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../31mapeo/" class="md-nav__link">
+        3.1.- Fundamentos del ORM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jakartajpa/" class="md-nav__link">
+        3.2.- Jakarta - JPA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../33hibernate/" class="md-nav__link">
+        3.4.- Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operacionescrud/" class="md-nav__link">
+        3.5.- Operaciones CRUD con objetos en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/" class="md-nav__link">
+        3.6.- Formas de realizar consultas en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          3.7.- Relaciones avanzadas en Hibernate
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        3.7.- Relaciones avanzadas en Hibernate
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-estrategias-de-carga-fetchtypelazy-vs-fetchtypeeager" class="md-nav__link">
+    🎯 1. Estrategias de carga (FetchType.LAZY vs FetchType.EAGER)
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 1. Estrategias de carga (FetchType.LAZY vs FetchType.EAGER)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo" class="md-nav__link">
+    🧠 Ejemplo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-cascadas-cascade" class="md-nav__link">
+    🔗 2. Cascadas (cascade)
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 2. Cascadas (cascade)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-cascadetype" class="md-nav__link">
+    Tipos de CascadeType
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo_1" class="md-nav__link">
+    🧠 Ejemplo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso" class="md-nav__link">
+    ⚖️ Uso
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-eliminacion-de-huerfanos-orphanremoval" class="md-nav__link">
+    🧹 3. Eliminación de huérfanos (orphanRemoval)
+  </a>
+  
+    <nav class="md-nav" aria-label="🧹 3. Eliminación de huérfanos (orphanRemoval)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo_2" class="md-nav__link">
+    🧠 Ejemplo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso_1" class="md-nav__link">
+    ⚖️ Uso
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-que-atributos-se-pueden-usar-en-cada-relacion" class="md-nav__link">
+    🧱 4. Qué atributos se pueden usar en cada relación
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-optional-y-nullable" class="md-nav__link">
+    🔒 5. optional y nullable
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 5. optional y nullable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solo-nullable-false-sin-poner-optional-false" class="md-nav__link">
+    Solo nullable = false sin poner optional = false
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solo-optional-false-sin-poner-nullable-false" class="md-nav__link">
+    Solo optional = false sin poner nullable = false
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recomendacion-usar-las-dos-optional-false-y-nullable-false" class="md-nav__link">
+    Recomendación usar las dos optional = false y nullable = false
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-obligatorio" class="md-nav__link">
+    🧠 Ejemplo obligatorio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-resumen-visual" class="md-nav__link">
+    ✅ 6. Resumen visual
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problema-n1-queries-en-hibernate" class="md-nav__link">
+    💥 Problema N+1 Queries en Hibernate
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-significa-n1" class="md-nav__link">
+    ⚠️ ¿Qué significa “N+1”?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-clasico" class="md-nav__link">
+    🧩 Ejemplo clásico
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 Ejemplo clásico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lo-que-pasa-internamente" class="md-nav__link">
+    🔍 Lo que pasa internamente
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-evitar-el-n1" class="md-nav__link">
+    🚀 Cómo evitar el N+1
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Cómo evitar el N+1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opcion-1-usar-join-fetch" class="md-nav__link">
+    ✅ Opción 1: Usar JOIN FETCH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-2-cambiar-fetch-eager-con-precaucion" class="md-nav__link">
+    ✅ Opción 2: Cambiar fetch = EAGER (con precaución)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../34dao/" class="md-nav__link">
+        3.8.- Patrón DAO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../35service/" class="md-nav__link">
+        3.9.- Service Layer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          4.- Bases de datos documentales con MongoDB
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          4.- Bases de datos documentales con MongoDB
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../udmongodb/mongodb1/" class="md-nav__link">
+        4.1.- Introducción
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          5.- Spring Framework
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          5.- Spring Framework
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/41introduccionspring/" class="md-nav__link">
+        5.1.- Introducción a Spring Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/42repository/" class="md-nav__link">
+        5.2.- Spring Data JPA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/43rest/" class="md-nav__link">
+        5.3.- API REST - Spring Web
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud4/44queryresponse/" class="md-nav__link">
+        5.4.- @Query y Response
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          6.- Java Modules
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          6.- Java Modules
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/51modulo/" class="md-nav__link">
+        6.1.- Módulos en Java
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-estrategias-de-carga-fetchtypelazy-vs-fetchtypeeager" class="md-nav__link">
+    🎯 1. Estrategias de carga (FetchType.LAZY vs FetchType.EAGER)
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 1. Estrategias de carga (FetchType.LAZY vs FetchType.EAGER)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo" class="md-nav__link">
+    🧠 Ejemplo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-cascadas-cascade" class="md-nav__link">
+    🔗 2. Cascadas (cascade)
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 2. Cascadas (cascade)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-cascadetype" class="md-nav__link">
+    Tipos de CascadeType
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo_1" class="md-nav__link">
+    🧠 Ejemplo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso" class="md-nav__link">
+    ⚖️ Uso
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-eliminacion-de-huerfanos-orphanremoval" class="md-nav__link">
+    🧹 3. Eliminación de huérfanos (orphanRemoval)
+  </a>
+  
+    <nav class="md-nav" aria-label="🧹 3. Eliminación de huérfanos (orphanRemoval)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo_2" class="md-nav__link">
+    🧠 Ejemplo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso_1" class="md-nav__link">
+    ⚖️ Uso
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-que-atributos-se-pueden-usar-en-cada-relacion" class="md-nav__link">
+    🧱 4. Qué atributos se pueden usar en cada relación
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-optional-y-nullable" class="md-nav__link">
+    🔒 5. optional y nullable
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 5. optional y nullable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solo-nullable-false-sin-poner-optional-false" class="md-nav__link">
+    Solo nullable = false sin poner optional = false
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solo-optional-false-sin-poner-nullable-false" class="md-nav__link">
+    Solo optional = false sin poner nullable = false
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recomendacion-usar-las-dos-optional-false-y-nullable-false" class="md-nav__link">
+    Recomendación usar las dos optional = false y nullable = false
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-obligatorio" class="md-nav__link">
+    🧠 Ejemplo obligatorio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-resumen-visual" class="md-nav__link">
+    ✅ 6. Resumen visual
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problema-n1-queries-en-hibernate" class="md-nav__link">
+    💥 Problema N+1 Queries en Hibernate
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-significa-n1" class="md-nav__link">
+    ⚠️ ¿Qué significa “N+1”?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-clasico" class="md-nav__link">
+    🧩 Ejemplo clásico
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 Ejemplo clásico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lo-que-pasa-internamente" class="md-nav__link">
+    🔍 Lo que pasa internamente
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-evitar-el-n1" class="md-nav__link">
+    🚀 Cómo evitar el N+1
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Cómo evitar el N+1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opcion-1-usar-join-fetch" class="md-nav__link">
+    ✅ Opción 1: Usar JOIN FETCH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-2-cambiar-fetch-eager-con-precaucion" class="md-nav__link">
+    ✅ Opción 2: Cambiar fetch = EAGER (con precaución)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="relaciones-avanzadas-en-hibernate">🧩 Relaciones avanzadas en Hibernate</h1>
+<p>Este documento explica de forma clara y visual los conceptos más importantes relacionados con <strong>las relaciones entre entidades en Hibernate</strong>, incluyendo:</p>
+<ul>
+<li>🎯 Estrategias de carga (<code>fetch</code>)</li>
+<li>🔗 Cascadas (<code>cascade</code>)</li>
+<li>🧹 Eliminación de huérfanos (<code>orphanRemoval</code>)</li>
+<li>🧱 Atributos disponibles en cada tipo de relación</li>
+<li>🔒 Uso de <code>optional</code> y <code>nullable</code> correctamente</li>
+</ul>
+<hr />
+<h2 id="1-estrategias-de-carga-fetchtypelazy-vs-fetchtypeeager">🎯 1. Estrategias de carga (<code>FetchType.LAZY</code> vs <code>FetchType.EAGER</code>)</h2>
+<p>Determinan <strong>cuándo</strong> se cargan las entidades relacionadas.</p>
+<ul>
+<li><strong>LAZY (perezoso):</strong> solo se carga la entidad principal; la relación se carga <strong>cuando se accede por primera vez</strong> al atributo.</li>
+<li><strong>EAGER (ansioso):</strong> la relación se carga <strong>junto con la entidad principal</strong>, en la misma consulta (JOIN o varias consultas internas).</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Ejemplo típico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LAZY</code></td>
+<td>Se carga solo cuando se accede al atributo. ✅ Recomendado para la mayoría de casos.</td>
+<td><code>@OneToMany(fetch = FetchType.LAZY)</code></td>
+</tr>
+<tr>
+<td><code>EAGER</code></td>
+<td>Se carga automáticamente junto con la entidad principal. ⚠️ Puede generar sobrecarga o el problema N+1.</td>
+<td><code>@ManyToOne(fetch = FetchType.EAGER)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejemplo">🧠 Ejemplo</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@Entity</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Departamento</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="nd">@GeneratedValue</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;departamento&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="n">empleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="nd">@Entity</span>
+<span class="linenos" data-linenos="12 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Empleado</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="nd">@GeneratedValue</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="nd">@ManyToOne</span><span class="p">(</span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">EAGER</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;departamento_id&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Departamento</span><span class="w"> </span><span class="n">departamento</span><span class="p">;</span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
+</code></pre></div>
+<p>👉 Al cargar un <code>Departamento</code>, los <code>Empleados</code> <strong>no se traen</strong> hasta que accedemos a ellos con el método  <code>getEmpleados()</code>.
+👉 Al obtener un <code>Empleado</code>, su <code>departamento</code> se carga inmediatamente.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Departamento</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Departamento</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w"> </span><span class="c1">// empleados no se cargan</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="na">getNombre</span><span class="p">());</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="na">getEmpleados</span><span class="p">().</span><span class="na">size</span><span class="p">());</span><span class="w"> </span><span class="c1">// aquí Hibernate lanza otra query y carga los empleados</span>
+</code></pre></div>
+<blockquote>
+<p>💡 <strong>Consejo:</strong> Usa <code>LAZY</code> por defecto. Solo cambia a <code>EAGER</code> si realmente necesitas los datos siempre. Un mal uso puede causar el problema <strong>N+1 queries</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="2-cascadas-cascade">🔗 2. Cascadas (<code>cascade</code>)</h2>
+<p>Permite que una operación sobre una entidad principal (persist, remove, merge...) se aplique también a sus entidades relacionadas.</p>
+<h3 id="tipos-de-cascadetype">Tipos de <code>CascadeType</code></h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PERSIST</code></td>
+<td>Inserta entidades relacionadas automáticamente.</td>
+</tr>
+<tr>
+<td><code>MERGE</code></td>
+<td>Actualiza entidades relacionadas.</td>
+</tr>
+<tr>
+<td><code>REMOVE</code></td>
+<td>Elimina las relacionadas.</td>
+</tr>
+<tr>
+<td><code>REFRESH</code></td>
+<td>Refresca las entidades relacionadas desde la BD.</td>
+</tr>
+<tr>
+<td><code>DETACH</code></td>
+<td>Las elimina o saca del contexto de persistencia.</td>
+</tr>
+<tr>
+<td><code>ALL</code></td>
+<td>Aplica todos los anteriores.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="ejemplo_1">🧠 Ejemplo</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@Entity</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Pedido</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="nd">@GeneratedValue</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">cliente</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pedido&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cascade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CascadeType</span><span class="p">.</span><span class="na">ALL</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">LineaPedido</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lineas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="nd">@Entity</span>
+<span class="linenos" data-linenos="12 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LineaPedido</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="nd">@GeneratedValue</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">producto</span><span class="p">;</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="nd">@ManyToOne</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pedido_id&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Pedido</span><span class="w"> </span><span class="n">pedido</span><span class="p">;</span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
+</code></pre></div>
+<p>👉 Al guardar un <code>Pedido</code>, se guardan también sus <code>LineaPedido</code> gracias al <code>cascade</code>.</p>
+<h3 id="uso">⚖️ Uso</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">Pedido</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Pedido</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">p</span><span class="p">.</span><span class="na">setCliente</span><span class="p">(</span><span class="s">&quot;Juan&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">LineaPedido</span><span class="w"> </span><span class="n">l1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LineaPedido</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">l1</span><span class="p">.</span><span class="na">setProducto</span><span class="p">(</span><span class="s">&quot;Teclado&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">l1</span><span class="p">.</span><span class="na">setCantidad</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">l1</span><span class="p">.</span><span class="na">setPedido</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">p</span><span class="p">.</span><span class="na">getLineas</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">l1</span><span class="p">);</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="n">session</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="c1">// ✅ Gracias al cascade, también se guarda LineaPedido</span>
+</code></pre></div>
+<hr />
+<h2 id="3-eliminacion-de-huerfanos-orphanremoval">🧹 3. Eliminación de huérfanos (<code>orphanRemoval</code>)</h2>
+<p>Cuando se elimina un objeto de una colección en el lado del padre, o cuando se desconecta o desvincula una relación, por ejemplo, al establecer un campo a null o al asignar una nueva entidad. Si esa colección tiene <code>orphanRemoval=true</code>, Hibernate lo borra también de la BD.</p>
+<h3 id="ejemplo_2">🧠 Ejemplo</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pedido&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">orphanRemoval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">LineaPedido</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lineas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">// Uso</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">pedido</span><span class="p">.</span><span class="na">getLineas</span><span class="p">().</span><span class="na">remove</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">//</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">session</span><span class="p">.</span><span class="na">flush</span><span class="p">();</span><span class="w"> </span><span class="c1">// 🧹 La línea eliminada desaparece de la BD</span>
+</code></pre></div>
+<blockquote>
+<p>⚠️ <strong>Importante:</strong> <code>orphanRemoval</code> solo funciona con relaciones tipo <code>@OneToOne</code> o <code>@OneToMany</code>.</p>
+</blockquote>
+<h3 id="uso_1">⚖️ Uso</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Pedido</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Pedido</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">LineaPedido</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">getLineas</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="n">p</span><span class="p">.</span><span class="na">getLineas</span><span class="p">().</span><span class="na">remove</span><span class="p">(</span><span class="n">l</span><span class="p">);</span><span class="w"> </span><span class="c1">// ❌ se elimina de la lista de líneas del pedido</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">session</span><span class="p">.</span><span class="na">flush</span><span class="p">();</span><span class="w"> </span><span class="c1">// 🧹 Hibernate borra la LineaPedido de la BD</span>
+</code></pre></div>
+<hr />
+<h2 id="4-que-atributos-se-pueden-usar-en-cada-relacion">🧱 4. Qué atributos se pueden usar en cada relación</h2>
+<table>
+<thead>
+<tr>
+<th>Relación</th>
+<th>mappedBy</th>
+<th>cascade</th>
+<th>fetch</th>
+<th>orphanRemoval</th>
+<th>JoinColumn</th>
+<th>JoinTable</th>
+<th>optional</th>
+<th>nullable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@ManyToOne</code></td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>@OneToMany</code></td>
+<td>✅/❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅ (solo unidireccional)</td>
+<td>✅ (si no hay mappedBy)</td>
+<td>❌</td>
+<td>⚠️ solo si unidireccional</td>
+</tr>
+<tr>
+<td><code>@OneToOne</code></td>
+<td>✅/❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>@ManyToMany</code></td>
+<td>✅/❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<p>📘 <strong>Notas rápidas</strong>
+- <code>mappedBy</code> → se usa en el lado <strong>no propietario</strong> (donde no está la FK).<br />
+- <code>cascade</code> y <code>fetch</code> → se pueden usar en todas.<br />
+- <code>orphanRemoval</code> → solo en <strong>@OneToOne / @OneToMany</strong>.<br />
+- <code>JoinColumn</code> → define la <strong>columna FK</strong> (solo en el lado propietario).<br />
+- <code>JoinTable</code> → se usa en relaciones <strong>@ManyToMany</strong> (y algunas unidireccionales).  </p>
+<hr />
+<h2 id="5-optional-y-nullable">🔒 5. <code>optional</code> y <code>nullable</code></h2>
+<ul>
+<li>
+<p><code>@JoinColumn(nullable = false)</code> → Regla de <strong>base de datos/DDL</strong>: la columna FK es NOT NULL.
+La validación “dura” sucede en la <strong>BD</strong> (ConstraintViolation) al hacer <code>flush</code> o <code>commit</code>. Asegura el esquema físico de BD.</p>
+</li>
+<li>
+<p><code>@ManyToOne(optional = false)</code> → Regla <strong>de modelo JPA</strong> (runtime): esta asociación <strong>no puede ser null</strong>.
+Le da pistas a Hibernate para <strong>validar antes, optimizar joins y evitar selects innecesarios</strong> con LAZY.
+No garantiza que en la BD la FK sea NOT NULL.</p>
+</li>
+</ul>
+<p>Se aconseja su uso conjunto.</p>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Capa</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>optional</code></td>
+<td>Hibernate (en tiempo de ejecución)</td>
+<td>Si la referencia puede ser <code>null</code> en memoria.</td>
+</tr>
+<tr>
+<td><code>nullable</code></td>
+<td>Base de datos (DDL)</td>
+<td>Si la columna FK permite <code>NULL</code>.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🧩 Si la relación es obligatoria, usa <strong>los dos</strong>:<br />
+<code>optional = false</code> + <code>@JoinColumn(nullable = false)</code></p>
+</blockquote>
+<h3 id="solo-nullable-false-sin-poner-optional-false">Solo <code>nullable = false</code> sin poner <code>optional = false</code></h3>
+<p>Persistes una entindad con la relación a <code>null</code> → Hibernate hace <code>INSERT ...</code> con <code>relacion_id</code> = null → <strong>la BD lanza el error</strong> (ConstraintViolation) en el <code>flush</code>. Has hecho un viaje a BD para nada y el mensaje suele ser menos expresivo.</p>
+<p>Si hubiera puesto los dos, Hibernate <strong>sabe que es ilegal en el modelo y puede lanzar</strong> una <code>PropertyValueException</code> antes o durante la preparación del insert, sin depender de la BD. Mensaje más claro y te ahorras roundtrip.</p>
+<h3 id="solo-optional-false-sin-poner-nullable-false">Solo <code>optional = false</code> sin poner <code>nullable = false</code></h3>
+<p><strong>Modelo JPA</strong>: marcas la relación como obligatoria; si llega <code>venue == null</code>, el proveedor fallará (normalmente al <code>flush</code>) con una excepción de JPA/Hibernate.</p>
+<p><strong>Esquema de BD: no garantizas nada</strong>. La columna puede seguir siendo NULL en la tabla si no has puesto <code>@JoinColumn(nullable=false)</code> (y no debes asumir que el proveedor de BD traducirá optional=false a NOT NULL en el DDL; no está garantizado por la especificación). </p>
+<p><strong>Integridad real</strong>: si alguien inserta/actualiza por fuera de JPA, por ejemplo, de forma manual directamente en la BD, <strong>podrá meter NULLs en la FK y romper tu invariante</strong>.</p>
+<p><strong>Efectos colaterales</strong>: si acaban entrando NULLs, tus consultas que asumen relación obligatoria (INNER JOIN, filtros, etc.) pueden dar <strong>resultados incoherentes</strong>.</p>
+<h3 id="recomendacion-usar-las-dos-optional-false-y-nullable-false">Recomendación usar las dos <code>optional = false</code> y <code>nullable = false</code></h3>
+<p>Garantiza:  <br />
+- Plan de consulta y rendimiento  <br />
+- Coherencia entre capas y herramientas   </p>
+<h3 id="ejemplo-obligatorio">🧠 Ejemplo obligatorio</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@ManyToOne</span><span class="p">(</span><span class="n">optional</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;departamento_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="kd">private</span><span class="w"> </span><span class="n">Departamento</span><span class="w"> </span><span class="n">departamento</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="nd">@ManyToOne</span><span class="p">(</span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">,</span><span class="w"> </span><span class="n">optional</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w">     </span><span class="c1">// Regla en el modelo JPA (runtime/optimización)</span>
+<span class="linenos" data-linenos="6 "></span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;venue_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w">          </span><span class="c1">// Regla física en BD (NOT NULL)</span>
+<span class="linenos" data-linenos="7 "></span><span class="kd">private</span><span class="w"> </span><span class="n">Venue</span><span class="w"> </span><span class="n">venue</span><span class="p">;</span>
+</code></pre></div>
+<p>📌 En colecciones (<code>@OneToMany</code>, <code>@ManyToMany</code>) <strong>no se usa <code>optional</code></strong>, solo <code>nullable</code> en el lado hijo si hay <code>JoinColumn</code>.</p>
+<hr />
+<h2 id="6-resumen-visual">✅ 6. Resumen visual</h2>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Aplica a</th>
+<th>Efecto principal</th>
+<th>Capa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fetch</code></td>
+<td>Todas</td>
+<td>Controla cuándo se carga la relación</td>
+<td>ORM</td>
+</tr>
+<tr>
+<td><code>cascade</code></td>
+<td>Todas</td>
+<td>Propaga operaciones (guardar, eliminar...)</td>
+<td>ORM</td>
+</tr>
+<tr>
+<td><code>orphanRemoval</code></td>
+<td>OneToOne / OneToMany</td>
+<td>Elimina hijos al quitarlos del padre</td>
+<td>ORM</td>
+</tr>
+<tr>
+<td><code>optional</code></td>
+<td>OneToOne / ManyToOne</td>
+<td>Define si la referencia puede ser null</td>
+<td>ORM</td>
+</tr>
+<tr>
+<td><code>nullable</code></td>
+<td>Todas (FK)</td>
+<td>Define si la columna permite null</td>
+<td>BD</td>
+</tr>
+<tr>
+<td><code>mappedBy</code></td>
+<td>OneToOne / OneToMany / ManyToMany</td>
+<td>Marca el lado inverso de la relación</td>
+<td>ORM</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="problema-n1-queries-en-hibernate">💥 Problema N+1 Queries en Hibernate</h2>
+<p>El <strong>problema N+1 queries</strong> es uno de los errores de rendimiento más comunes al usar Hibernate.<br />
+Sucede cuando Hibernate ejecuta <strong>una query para obtener la entidad principal</strong> y luego <strong>N queries adicionales</strong>, una por cada entidad relacionada.</p>
+<hr />
+<h2 id="que-significa-n1">⚠️ ¿Qué significa “N+1”?</h2>
+<ul>
+<li><code>1</code> → la primera query para obtener la lista principal.  </li>
+<li><code>N</code> → una query adicional por cada elemento para cargar sus relaciones.</li>
+</ul>
+<p><strong>Ejemplo:</strong><br />
+Si cargas 10 departamentos, Hibernate ejecutará <strong>1 (departamentos) + 10 (empleados)</strong> = <strong>11 queries</strong>.</p>
+<hr />
+<h2 id="ejemplo-clasico">🧩 Ejemplo clásico</h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@Entity</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Departamento</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="nd">@GeneratedValue</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;departamento&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="n">empleados</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="nd">@Entity</span>
+<span class="linenos" data-linenos="12 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Empleado</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="nd">@Id</span><span class="w"> </span><span class="nd">@GeneratedValue</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="nd">@ManyToOne</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;departamento_id&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Departamento</span><span class="w"> </span><span class="n">departamento</span><span class="p">;</span>
+<span class="linenos" data-linenos="20 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Código en el servicio:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Departamento</span><span class="o">&gt;</span><span class="w"> </span><span class="n">departamentos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="s">&quot;FROM Departamento&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Departamento</span><span class="p">.</span><span class="na">class</span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Departamento</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">departamentos</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; → &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="na">getEmpleados</span><span class="p">().</span><span class="na">size</span><span class="p">());</span><span class="c1">//aquí hará una consulta para traerse el dpto.</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span>
+</code></pre></div>
+<h3 id="lo-que-pasa-internamente">🔍 Lo que pasa internamente</h3>
+<p>1️⃣ Hibernate lanza:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">departamento</span><span class="p">;</span>
+</code></pre></div></p>
+<p>2️⃣ Luego, por <strong>cada departamento</strong>:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">empleado</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">departamento_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">?</span><span class="p">;</span>
+</code></pre></div></p>
+<p>➡️ Resultado: <strong>N+1 queries</strong> (una por cada departamento).<br />
+➡️ En listas grandes, esto puede ser <strong>muy lento</strong>.</p>
+<hr />
+<h2 id="como-evitar-el-n1">🚀 Cómo evitar el N+1</h2>
+<h3 id="opcion-1-usar-join-fetch">✅ Opción 1: Usar <code>JOIN FETCH</code></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Departamento</span><span class="o">&gt;</span><span class="w"> </span><span class="n">deps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="s">&quot;SELECT d FROM Departamento d JOIN FETCH d.empleados&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="n">Departamento</span><span class="p">.</span><span class="na">class</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span>
+</code></pre></div>
+<p>Hibernate genera:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">SELECT</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="o">*</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">FROM</span><span class="w"> </span><span class="n">departamento</span><span class="w"> </span><span class="n">d</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">empleado</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">departamento_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</code></pre></div></p>
+<p>➡️ Todo se carga en una sola query.  </p>
+<blockquote>
+<p>💡 Es la <strong>solución más directa y recomendada</strong> para evitar el problema N+1.</p>
+</blockquote>
+<hr />
+<h3 id="opcion-2-cambiar-fetch-eager-con-precaucion">✅ Opción 2: Cambiar <code>fetch = EAGER</code> (con precaución)</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;departamento&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">EAGER</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Empleado</span><span class="o">&gt;</span><span class="w"> </span><span class="n">empleados</span><span class="p">;</span>
+</code></pre></div>
+<p>Hibernate hará automáticamente el JOIN, pero:<br />
+⚠️ Puede generar <strong>joins masivos e innecesarios</strong> si hay muchas relaciones.<br />
+Se recomienda solo cuando <strong>siempre necesitas los datos relacionados</strong>.</p>
+<hr />
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Volver al principio
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navitagion.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+    
+  </body>
+</html>
