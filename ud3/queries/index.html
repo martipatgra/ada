@@ -980,6 +980,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#group-by-having" class="md-nav__link">
+    Group By, Having
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1001,6 +1008,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabla-resumen" class="md-nav__link">
+    ➡️ Tabla Resumen
+  </a>
   
 </li>
       
@@ -1554,6 +1568,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#group-by-having" class="md-nav__link">
+    Group By, Having
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1575,6 +1596,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabla-resumen" class="md-nav__link">
+    ➡️ Tabla Resumen
+  </a>
   
 </li>
       
@@ -1835,13 +1863,178 @@ Lenguaje orientado a <strong>entidades</strong> y <strong>atributos</strong>, no
 Ideal cuando los filtros dependen de condiciones del usuario o se generan en tiempo de ejecución.</p>
 <h3 id="pasos">🚶 Pasos</h3>
 <ol>
-<li>Consigue el CriteriaBuilder de la session</li>
+<li>Consigue el CriteriaBuilder de la session.</li>
 </ol>
+<p><code>CriteriaBuilder</code> es la fábrica de construcciones (builder) stateless de la API de Criteria de JPA/Hibernate.
+Sirve para <strong>crear de forma tipada</strong> todos los “ladrillos” de una consulta. Cada llamada <strong>devuelve objetos nuevos</strong>. No guarda configuración ni estado global.</p>
+<table>
+<thead>
+<tr>
+<th>Categoría</th>
+<th>Método</th>
+<th>Uso / Ejemplo</th>
+<th>SQL equivalente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Select / Agregación</strong></td>
+<td><code>cb.count(expr)</code></td>
+<td>Cuenta filas</td>
+<td><code>COUNT(*)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.countDistinct(expr)</code></td>
+<td>Cuenta sin duplicados</td>
+<td><code>COUNT(DISTINCT x)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.sum(expr)</code> / <code>cb.avg(expr)</code></td>
+<td>Suma / media</td>
+<td><code>SUM(x)</code> / <code>AVG(x)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.max(expr)</code> / <code>cb.min(expr)</code></td>
+<td>Máximo / mínimo</td>
+<td><code>MAX(x)</code> / <code>MIN(x)</code></td>
+</tr>
+<tr>
+<td><strong>Comparación</strong></td>
+<td><code>cb.equal(x, y)</code> / <code>cb.notEqual(x, y)</code></td>
+<td>Igual / distinto</td>
+<td><code>=</code>, <code>&lt;&gt;</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.greaterThan(x, y)</code> / <code>cb.greaterThanOrEqualTo(x, y)</code></td>
+<td>Mayor / mayor o igual</td>
+<td><code>&gt;</code>, <code>&gt;=</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.lessThan(x, y)</code> / <code>cb.lessThanOrEqualTo(x, y)</code></td>
+<td>Menor / menor o igual</td>
+<td><code>&lt;</code>, <code>&lt;=</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.between(x, a, b)</code></td>
+<td>Dentro de un rango</td>
+<td><code>BETWEEN a AND b</code></td>
+</tr>
+<tr>
+<td><strong>Booleanos</strong></td>
+<td><code>cb.isTrue(expr)</code></td>
+<td>Comprueba <code>true</code></td>
+<td><code>WHERE col = true</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.isFalse(expr)</code></td>
+<td>Comprueba <code>false</code></td>
+<td><code>WHERE col = false</code></td>
+</tr>
+<tr>
+<td><strong>Nulos y colecciones</strong></td>
+<td><code>cb.isNull(expr)</code> / <code>cb.isNotNull(expr)</code></td>
+<td>Valor nulo / no nulo</td>
+<td><code>IS NULL</code> / <code>IS NOT NULL</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.isEmpty(collection)</code> / <code>cb.isNotEmpty(collection)</code></td>
+<td>Colección vacía / no vacía</td>
+<td><code>NOT EXISTS(...)</code> / <code>EXISTS(...)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.isMember(elem, collection)</code> / <code>cb.isNotMember(elem, collection)</code></td>
+<td>Pertenencia a colección</td>
+<td><code>elem IN (subquery)</code></td>
+</tr>
+<tr>
+<td><strong>Texto / cadenas</strong></td>
+<td><code>cb.like(expr, pattern)</code> / <code>cb.notLike(expr, pattern)</code></td>
+<td>Coincidencia parcial</td>
+<td><code>LIKE</code> / <code>NOT LIKE</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.lower(expr)</code> / <code>cb.upper(expr)</code></td>
+<td>Minúsculas / mayúsculas</td>
+<td><code>LOWER()</code> / <code>UPPER()</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.concat(a, b)</code></td>
+<td>Concatenación de cadenas</td>
+<td><code>CONCAT(a, b)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.length(expr)</code></td>
+<td>Longitud de cadena</td>
+<td><code>LENGTH(expr)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.locate(str, sub)</code></td>
+<td>Posición de substring</td>
+<td><code>LOCATE(sub, str)</code></td>
+</tr>
+<tr>
+<td><strong>Fechas / tiempos</strong></td>
+<td><code>cb.currentDate()</code> / <code>cb.currentTimestamp()</code></td>
+<td>Fecha/hora actual</td>
+<td><code>CURRENT_DATE</code> / <code>CURRENT_TIMESTAMP</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.greaterThan(date1, date2)</code></td>
+<td>Comparar fechas</td>
+<td><code>&gt;</code></td>
+</tr>
+<tr>
+<td><strong>Lógicos</strong></td>
+<td><code>cb.and(p1, p2, …)</code></td>
+<td>Conjunción</td>
+<td><code>AND</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.or(p1, p2, …)</code></td>
+<td>Disyunción</td>
+<td><code>OR</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>cb.not(p)</code></td>
+<td>Negación</td>
+<td><code>NOT</code></td>
+</tr>
+<tr>
+<td><strong>Subconsultas</strong></td>
+<td><code>cb.exists(subquery)</code> / <code>cb.not(cb.exists(...))</code></td>
+<td>Comprobar existencia</td>
+<td><code>EXISTS(subquery)</code></td>
+</tr>
+<tr>
+<td><strong>Ordenación</strong></td>
+<td><code>cb.asc(expr)</code> / <code>cb.desc(expr)</code></td>
+<td>Orden asc / desc</td>
+<td><code>ORDER BY col ASC/DESC</code></td>
+</tr>
+</tbody>
+</table>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">cb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getCriteriaBuilder</span><span class="p">();</span>
 </code></pre></div>
 <ol>
 <li>Crea la consulta (elige el tipo de resultado):</li>
 </ol>
+<p>CriteriaQuery es la representación en Java de una consulta JPQL.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cb</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"> </span><span class="c1">// tipada</span>
 <span class="linenos" data-linenos="2 "></span><span class="c1">// o: CriteriaQuery&lt;Tuple&gt; cq = cb.createTupleQuery();      // tuplas</span>
 <span class="linenos" data-linenos="3 "></span><span class="c1">// o: CriteriaQuery&lt;Object[]&gt; cq = cb.createQuery(Object[].class); // arrays</span>
@@ -1960,6 +2153,17 @@ Ideal cuando los filtros dependen de condiciones del usuario o se generan en tie
 <span class="linenos" data-linenos="18 "></span><span class="w">      </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w">  </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;   &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">venueName</span><span class="p">);</span>
 <span class="linenos" data-linenos="19 "></span><span class="w">  </span><span class="p">}</span>
 </code></pre></div>
+<h4 id="group-by-having">Group By, Having</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">[]&gt;</span><span class="w"> </span><span class="n">cq2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cb</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">Object</span><span class="o">[]</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Root</span><span class="o">&lt;</span><span class="n">Space</span><span class="o">&gt;</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cq2</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Space</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Join</span><span class="o">&lt;</span><span class="n">Space</span><span class="p">,</span><span class="w"> </span><span class="n">Venue</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="na">join</span><span class="p">(</span><span class="s">&quot;venue&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="n">Expression</span><span class="o">&lt;</span><span class="n">BigDecimal</span><span class="o">&gt;</span><span class="w"> </span><span class="n">avgPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cb</span><span class="p">.</span><span class="na">avg</span><span class="p">(</span><span class="n">s2</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;price&quot;</span><span class="p">)).</span><span class="na">as</span><span class="p">(</span><span class="n">BigDecimal</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span>
+<span class="linenos" data-linenos="7 "></span><span class="n">cq2</span><span class="p">.</span><span class="na">multiselect</span><span class="p">(</span><span class="n">v2</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;city&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">avgPrice</span><span class="p">)</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">   </span><span class="p">.</span><span class="na">groupBy</span><span class="p">(</span><span class="n">v2</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;city&quot;</span><span class="p">))</span>
+<span class="linenos" data-linenos="9 "></span><span class="w">   </span><span class="p">.</span><span class="na">having</span><span class="p">(</span><span class="n">cb</span><span class="p">.</span><span class="na">greaterThan</span><span class="p">(</span><span class="n">avgPrice</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;20&quot;</span><span class="p">)));</span>
+</code></pre></div>
 <h3 id="tipo-de-dato-devuelto_1">🧩 Tipo de dato devuelto</h3>
 <ul>
 <li>Si defines <code>CriteriaQuery&lt;Space&gt;</code> → <code>List&lt;Space&gt;</code>  </li>
@@ -1973,6 +2177,97 @@ Ideal cuando los filtros dependen de condiciones del usuario o se generan en tie
 <li>Ideal para consultas dinámicas.  </li>
 <li>100% estándar JPA.</li>
 </ul>
+<h2 id="tabla-resumen">➡️ Tabla Resumen</h2>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th>Qué es</th>
+<th>Quién la crea</th>
+<th>Dónde se usa</th>
+<th>Ejemplo corto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CriteriaBuilder</code></td>
+<td>Fábrica y helpers</td>
+<td><code>em.getCriteriaBuilder()</code></td>
+<td>En todas partes para construir cosas</td>
+<td><code>cb.equal(…), cb.and(…), cb.sum(…)</code></td>
+</tr>
+<tr>
+<td><code>CriteriaQuery&lt;T&gt;</code></td>
+<td>Plano tipado de la query <code>SELECT</code></td>
+<td><code>cb.createQuery(T.class)</code></td>
+<td><code>select</code>, <code>where</code>, <code>groupBy</code>, …</td>
+<td><code>cq.select(u).where(pred)</code></td>
+</tr>
+<tr>
+<td><code>Root&lt;T&gt;</code></td>
+<td>Raíz de <code>FROM</code> (tabla principal)</td>
+<td><code>cq.from(T.class)</code></td>
+<td>Para acceder a campos y hacer joins</td>
+<td><code>Root&lt;User&gt; u = cq.from(User.class)</code></td>
+</tr>
+<tr>
+<td><code>Join&lt;X,Y&gt;</code></td>
+<td>Join tipado a una relación</td>
+<td><code>root.join("roles")</code></td>
+<td>Igual que tabla unida</td>
+<td><code>Join&lt;User,Role&gt; r = u.join("roles")</code></td>
+</tr>
+<tr>
+<td><code>Path&lt;X&gt;</code></td>
+<td>Ruta a un atributo</td>
+<td><code>root.get("email")</code></td>
+<td>Alimenta <code>Expression</code>, <code>Predicate</code></td>
+<td><code>Path&lt;String&gt; p = u.get("name")</code></td>
+</tr>
+<tr>
+<td><code>Expression&lt;X&gt;</code></td>
+<td>Expresión (número, texto, fecha…)</td>
+<td><code>cb.lower(path)</code>, <code>cb.sum(…)</code></td>
+<td><code>select</code>, <code>groupBy</code>, <code>orderBy</code>, <code>having</code></td>
+<td><code>Expression&lt;String&gt; e = cb.lower(p)</code></td>
+</tr>
+<tr>
+<td><code>Predicate</code></td>
+<td>Condición booleana</td>
+<td><code>cb.equal(…)</code>, <code>cb.and(…)</code></td>
+<td><code>where</code>, <code>having</code></td>
+<td><code>Predicate p = cb.equal(u.get("active"), true)</code></td>
+</tr>
+<tr>
+<td><code>Order</code></td>
+<td>Ordenación</td>
+<td><code>cb.asc(expr)</code>, <code>cb.desc(expr)</code></td>
+<td><code>orderBy</code></td>
+<td><code>cq.orderBy(cb.desc(u.get("createdAt")))</code></td>
+</tr>
+<tr>
+<td><code>Subquery&lt;X&gt;</code></td>
+<td>Subconsulta</td>
+<td><code>cq.subquery(X.class)</code></td>
+<td>Como parte de <code>where</code>, <code>select</code></td>
+<td><code>Subquery&lt;Long&gt; sq = cq.subquery(Long.class)</code></td>
+</tr>
+<tr>
+<td><code>CompoundSelection&lt;T&gt;</code></td>
+<td>Selección compuesta (DTO/tuple)</td>
+<td><code>cb.construct(Dto.class, …)</code></td>
+<td><code>select</code> / <code>multiselect</code></td>
+<td><code>cq.select(cb.construct(Dto.class, u.get("id"), …))</code></td>
+</tr>
+<tr>
+<td><code>Tuple</code> y <code>TupleQuery</code></td>
+<td>Fila heterogénea y su query</td>
+<td><code>cb.createTupleQuery()</code></td>
+<td>Cuando quieres columnas sueltas</td>
+<td><code>TupleQuery tq = cb.createTupleQuery()</code></td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="3-sql-nativo-createnativequery">3️⃣ SQL Nativo (<code>createNativeQuery</code>)</h2>
 <h3 id="que-es_2">📘 Qué es</h3>
