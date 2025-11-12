@@ -1909,13 +1909,13 @@ Sirve para <strong>crear de forma tipada</strong> todos los “ladrillos” de u
 </tr>
 <tr>
 <td></td>
-<td><code>cb.greaterThan(x, y)</code> / <code>cb.greaterThanOrEqualTo(x, y)</code></td>
+<td><code>cb.greaterThan(x,y)</code>, <code>cb.gt</code> / <code>cb.ge</code>, <code>cb.greaterThanOrEqualTo</code></td>
 <td>Mayor / mayor o igual</td>
 <td><code>&gt;</code>, <code>&gt;=</code></td>
 </tr>
 <tr>
 <td></td>
-<td><code>cb.lessThan(x, y)</code> / <code>cb.lessThanOrEqualTo(x, y)</code></td>
+<td><code>cb.lessThan(x, y)</code>, <code>cb/lt</code> / <code>cb.le</code>, <code>cb.lessThanOrEqualTo</code></td>
 <td>Menor / menor o igual</td>
 <td><code>&lt;</code>, <code>&lt;=</code></td>
 </tr>
@@ -2178,6 +2178,11 @@ Sirve para <strong>crear de forma tipada</strong> todos los “ladrillos” de u
 <li>100% estándar JPA.</li>
 </ul>
 <h2 id="tabla-resumen">➡️ Tabla Resumen</h2>
+<ul>
+<li>CriteriaBuilder (<code>cb</code>) → fábrica de piezas: <code>Predicate</code>, <code>Expression</code>, <code>Order</code>, etc.   </li>
+<li>CriteriaQuery (<code>cq</code>) → plano de la consulta: <code>select</code>, <code>from</code>, <code>where</code>, <code>groupBy</code>, <code>having</code>, <code>orderBy</code>, <code>distinct</code>.   </li>
+<li>Desde el <code>from</code> (un Root/Join) sacas rutas (Path) y haces joins.      </li>
+</ul>
 <table>
 <thead>
 <tr>
