@@ -870,7 +870,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/" class="md-nav__link">
-        3.3.- Configuración e instalación de Hibernate
+        3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
       </a>
     </li>
   
@@ -897,8 +897,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../operaciones/" class="md-nav__link">
-        3.5.- Operaciones con objetos en Hibernate
+      <a href="../operacionescrud/" class="md-nav__link">
+        3.5.- Operaciones CRUD con objetos en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/" class="md-nav__link">
+        3.6.- Formas de realizar consultas en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../relations/" class="md-nav__link">
+        3.7.- Relaciones avanzadas en Hibernate
       </a>
     </li>
   
@@ -912,7 +940,7 @@
   
     <li class="md-nav__item">
       <a href="../34dao/" class="md-nav__link">
-        3.5.- Patrón DAO
+        3.8.- Patrón DAO
       </a>
     </li>
   
@@ -926,7 +954,7 @@
   
     <li class="md-nav__item">
       <a href="../35service/" class="md-nav__link">
-        3.6.- Service Layer
+        3.9.- Service Layer
       </a>
     </li>
   
@@ -1358,17 +1386,89 @@ Toda entidad necesita una <strong>identidad</strong> (PK).</p>
 <p><img alt="pc-ops" src="../../img/ud3/4persistencecontext.png" /></p>
 <hr />
 <h2 id="estados-de-las-entidades">🔄 Estados de las entidades</h2>
-<ul>
-<li><strong>Transient (new)</strong>: recién creada con <code>new</code>, aún no gestionada.  </li>
-<li><strong>Managed</strong>: dentro del <code>EntityManager</code>; cambios se sincronizan.  </li>
-<li><strong>Detached</strong>: estuvo gestionada, pero ya no (p. ej., tras <code>clear()</code> o cerrar EM).  </li>
-<li><strong>Removed</strong>: marcada para eliminación; se borrará al sincronizar.</li>
-</ul>
-<p>Relación con métodos:
-- <code>persist()</code> → <strong>new → managed</strong><br />
-- <code>remove()</code> → <strong>managed → removed</strong><br />
-- <code>detach()</code> → <strong>managed → detached</strong><br />
-- <code>merge()</code> → <strong>detached/new → managed</strong></p>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Significado</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Transient (transitorio)</strong></td>
+<td>El objeto existe en memoria, pero <strong>no en la BD ni en la sesión</strong>.</td>
+<td><code>Customer c = new Customer("Ada");</code></td>
+</tr>
+<tr>
+<td><strong>Persistent (persistente)</strong></td>
+<td>Está <strong>asociada a una <code>Session</code></strong> (o <code>EntityManager</code>) y <strong>Hibernate la rastrea</strong>. Si cambias un atributo, el cambio se guardará al hacer <code>commit()</code>.</td>
+<td><code>session.persist(c);</code></td>
+</tr>
+<tr>
+<td><strong>Detached (desasociado)</strong></td>
+<td>Existía en la BD, pero ya <strong>no está siendo gestionada</strong> (por ejemplo, la sesión se cerró).</td>
+<td>Objeto obtenido con <code>find()</code> pero fuera del contexto.</td>
+</tr>
+<tr>
+<td><strong>Removed (eliminado)</strong></td>
+<td>Está marcada para eliminarse en el commit.</td>
+<td><code>session.remove(c);</code></td>
+</tr>
+</tbody>
+</table>
+<p>Relación con métodos:</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Qué hace</th>
+<th>Estado que afecta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>persist(entity)</code></td>
+<td>Inserta la entidad en el contexto (nuevo → persistente).</td>
+<td>transient → persistent</td>
+</tr>
+<tr>
+<td><code>find(Entidad.class, id)</code></td>
+<td>Busca en BD y la mete en el contexto.</td>
+<td>detached → persistent</td>
+</tr>
+<tr>
+<td><code>merge(entity)</code></td>
+<td>Reasocia una entidad detached, actualizando los cambios.</td>
+<td>detached → persistent</td>
+</tr>
+<tr>
+<td><code>remove(entity)</code></td>
+<td>Marca la entidad para borrado al commit.</td>
+<td>persistent → removed</td>
+</tr>
+<tr>
+<td><code>refresh(entity)</code></td>
+<td>Relee los valores desde la BD.</td>
+<td>persistent</td>
+</tr>
+<tr>
+<td><code>detach(entity)</code></td>
+<td>La saca del contexto (deja de estar gestionada).</td>
+<td>persistent → detached</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Saca <strong>todas</strong> las entidades del contexto.</td>
+<td>persistent → detached</td>
+</tr>
+<tr>
+<td><code>flush()</code></td>
+<td>Sincroniza el contexto con la BD sin cerrar la sesión.</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="fichero-de-persistencia-persistencexml">🧪 Fichero de persistencia: <code>persistence.xml</code></h2>
 <p>El <strong><code>EntityManagerFactory</code></strong> se configura mediante <strong>unidades de persistencia</strong> en <code>META-INF/persistence.xml</code>:</p>

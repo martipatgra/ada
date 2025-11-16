@@ -109,16 +109,26 @@ em.clear();        // vacía el contexto (pasa managed -> detached)
 ---
 ## 🔄 Estados de las entidades
 
-- **Transient (new)**: recién creada con `new`, aún no gestionada.  
-- **Managed**: dentro del `EntityManager`; cambios se sincronizan.  
-- **Detached**: estuvo gestionada, pero ya no (p. ej., tras `clear()` o cerrar EM).  
-- **Removed**: marcada para eliminación; se borrará al sincronizar.
+| Estado                       | Significado                                                                                                                                          | Ejemplo                                               |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| **Transient (transitorio)**  | El objeto existe en memoria, pero **no en la BD ni en la sesión**.                                                                                   | `Customer c = new Customer("Ada");`                   |
+| **Persistent (persistente)** | Está **asociada a una `Session`** (o `EntityManager`) y **Hibernate la rastrea**. Si cambias un atributo, el cambio se guardará al hacer `commit()`. | `session.persist(c);`                                 |
+| **Detached (desasociado)**   | Existía en la BD, pero ya **no está siendo gestionada** (por ejemplo, la sesión se cerró).                                                           | Objeto obtenido con `find()` pero fuera del contexto. |
+| **Removed (eliminado)**      | Está marcada para eliminarse en el commit.                                                                                                           | `session.remove(c);`                                  |
+
 
 Relación con métodos:
-- `persist()` → **new → managed**  
-- `remove()` → **managed → removed**  
-- `detach()` → **managed → detached**  
-- `merge()` → **detached/new → managed**
+
+| Método                    | Qué hace                                                 | Estado que afecta      |
+| ------------------------- | -------------------------------------------------------- | ---------------------- |
+| `persist(entity)`         | Inserta la entidad en el contexto (nuevo → persistente). | transient → persistent |
+| `find(Entidad.class, id)` | Busca en BD y la mete en el contexto.                    | detached → persistent  |
+| `merge(entity)`           | Reasocia una entidad detached, actualizando los cambios. | detached → persistent  |
+| `remove(entity)`          | Marca la entidad para borrado al commit.                 | persistent → removed   |
+| `refresh(entity)`         | Relee los valores desde la BD.                           | persistent             |
+| `detach(entity)`          | La saca del contexto (deja de estar gestionada).         | persistent → detached  |
+| `clear()`                 | Saca **todas** las entidades del contexto.               | persistent → detached  |
+| `flush()`                 | Sincroniza el contexto con la BD sin cerrar la sesión.   | —                      |
 
 ---
 

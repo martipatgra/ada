@@ -12,7 +12,7 @@
         <link rel="prev" href="../installation/">
       
       
-        <link rel="next" href="../operaciones/">
+        <link rel="next" href="../operacionescrud/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
@@ -759,7 +759,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/" class="md-nav__link">
-        3.3.- Configuración e instalación de Hibernate
+        3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
       </a>
     </li>
   
@@ -909,8 +909,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../operaciones/" class="md-nav__link">
-        3.5.- Operaciones con objetos en Hibernate
+      <a href="../operacionescrud/" class="md-nav__link">
+        3.5.- Operaciones CRUD con objetos en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/" class="md-nav__link">
+        3.6.- Formas de realizar consultas en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../relations/" class="md-nav__link">
+        3.7.- Relaciones avanzadas en Hibernate
       </a>
     </li>
   
@@ -924,7 +952,7 @@
   
     <li class="md-nav__item">
       <a href="../34dao/" class="md-nav__link">
-        3.5.- Patrón DAO
+        3.8.- Patrón DAO
       </a>
     </li>
   
@@ -938,7 +966,7 @@
   
     <li class="md-nav__item">
       <a href="../35service/" class="md-nav__link">
-        3.6.- Service Layer
+        3.9.- Service Layer
       </a>
     </li>
   
@@ -1353,41 +1381,56 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 <h2 id="clase-hibernateutil">Clase <code>HibernateUtil</code></h2>
 <p>Crearemos esta clase de utilidad <code>HibernateUtil</code> para inicializar una sola vez el SessionFactory de Hibernate y exponerlo al resto de la aplicación. Usaremos el patrón Singleton. </p>
 <p>Así evitaremos crear SessionFactory repetidamente y mantenemos centralizado dónde se configura/gestiona Hibernate.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HibernateUtil</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HibernateUtil</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">SessionFactory</span><span class="w"> </span><span class="n">sessionFactory</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">HibernateUtil</span><span class="p">(){}</span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">SessionFactory</span><span class="w"> </span><span class="nf">buildSessionFactory</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">        </span><span class="n">Logger</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="s">&quot;org.hibernate&quot;</span><span class="p">).</span><span class="na">setLevel</span><span class="p">(</span><span class="n">Level</span><span class="p">.</span><span class="na">SEVERE</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="n">Configuration</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Configuration</span><span class="p">();</span>
-<span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="n">ServiceRegistry</span><span class="w"> </span><span class="n">serviceRegistry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StandardServiceRegistryBuilder</span><span class="p">()</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">                    </span><span class="p">.</span><span class="na">configure</span><span class="p">(</span><span class="s">&quot;META-INF/hibernate.cfg.xml&quot;</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">volatile</span><span class="w"> </span><span class="n">SessionFactory</span><span class="w"> </span><span class="n">sessionFactory</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">volatile</span><span class="w"> </span><span class="n">StandardServiceRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">HibernateUtil</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">SessionFactory</span><span class="w"> </span><span class="nf">getSessionFactory</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sessionFactory</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">            </span><span class="n">Properties</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loadAppProperties</span><span class="p">();</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">            </span><span class="n">init</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sessionFactory</span><span class="p">;</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="15 "></span>
-<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="c1">//meter xml de las entity</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="n">Metadata</span><span class="w"> </span><span class="n">metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MetadataSources</span><span class="p">(</span><span class="n">serviceRegistry</span><span class="p">).</span><span class="na">getMetadataBuilder</span><span class="p">().</span><span class="na">build</span><span class="p">();</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="na">getSessionFactoryBuilder</span><span class="p">().</span><span class="na">build</span><span class="p">();</span>
-<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="23 "></span>
-<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">SessionFactory</span><span class="w"> </span><span class="nf">getSessionFactory</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="25 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sessionFactory</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="26 "></span><span class="w">            </span><span class="n">sessionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buildSessionFactory</span><span class="p">();</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">Properties</span><span class="w"> </span><span class="n">properties</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sessionFactory</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="n">registry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StandardServiceRegistryBuilder</span><span class="p">()</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">                    </span><span class="p">.</span><span class="na">applySettings</span><span class="p">(</span><span class="n">properties</span><span class="p">)</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">                    </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="w">            </span><span class="n">sessionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MetadataSources</span><span class="p">(</span><span class="n">registry</span><span class="p">)</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">                    </span><span class="p">.</span><span class="na">addAnnotatedClass</span><span class="p">(</span><span class="n">Customer</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="c1">//entidades a cargar</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">                    </span><span class="p">.</span><span class="na">addAnnotatedClass</span><span class="p">(</span><span class="n">Order</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">                    </span><span class="p">.</span><span class="na">buildMetadata</span><span class="p">()</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">                    </span><span class="p">.</span><span class="na">buildSessionFactory</span><span class="p">();</span>
 <span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sessionFactory</span><span class="p">;</span>
-<span class="linenos" data-linenos="29 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="30 "></span>
-<span class="linenos" data-linenos="31 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">close</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="32 "></span><span class="w">        </span><span class="c1">//Closes caches and connections pools</span>
-<span class="linenos" data-linenos="33 "></span><span class="w">        </span><span class="n">getSessionFactory</span><span class="p">().</span><span class="na">close</span><span class="p">();</span>
-<span class="linenos" data-linenos="34 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="35 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="29 "></span>
+<span class="linenos" data-linenos="30 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Properties</span><span class="w"> </span><span class="nf">loadAppProperties</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">InputStream</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">()</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">                </span><span class="p">.</span><span class="na">getContextClassLoader</span><span class="p">()</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">                </span><span class="p">.</span><span class="na">getResourceAsStream</span><span class="p">(</span><span class="s">&quot;application.properties&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="34 "></span>
+<span class="linenos" data-linenos="35 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">in</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalStateException</span><span class="p">(</span><span class="s">&quot;No se encuentra application.properties en el classpath&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">            </span><span class="p">}</span>
+<span class="linenos" data-linenos="38 "></span><span class="w">            </span><span class="n">Properties</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Properties</span><span class="p">();</span>
+<span class="linenos" data-linenos="39 "></span><span class="w">            </span><span class="n">p</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">in</span><span class="p">);</span>
+<span class="linenos" data-linenos="40 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="linenos" data-linenos="41 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="42 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Error cargando application.properties&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
+<span class="linenos" data-linenos="43 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="44 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="45 "></span>
+<span class="linenos" data-linenos="46 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">close</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="47 "></span><span class="w">        </span><span class="c1">//Closes caches and connections pools</span>
+<span class="linenos" data-linenos="48 "></span><span class="w">        </span><span class="n">getSessionFactory</span><span class="p">().</span><span class="na">close</span><span class="p">();</span>
+<span class="linenos" data-linenos="49 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="50 "></span><span class="p">}</span>
 </code></pre></div>
 <p><strong>Resumen de operaciones</strong><br />
 - <code>persist(x)</code> → transient → managed<br />

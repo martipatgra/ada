@@ -16,9 +16,11 @@ El límite de la transacción (abrir, confirmar, deshacer) **debe estar en la ca
 
 ### ¿Por qué así?
 
-Un caso de uso suele tocar varios DAOs. Si cada DAO hiciera su propia transacción, tendrías commits parciales y perderías atomicidad.
+**Un caso de uso suele tocar varios DAOs**. Si cada DAO hiciera su propia transacción, tendrías commits parciales y perderías atomicidad.
 
 Centralizar la transacción en el servicio simplifica el DAO (solo hace CRUD) y la regla de negocio queda claramente delimitada.
+
+El DAO debe ser **fino y reutilizable**; **no debe decidir reglas de negocio**. Encapsula acceso a datos y propaga (o traduce) errores técnicos
 
 ## 🪀 1. Creación de las interfaces DAO
 
@@ -29,15 +31,15 @@ Usaremos los ejemplos de clase `Person` y `Address` que tenían una relación mu
 ```java title="PersonDao.java"
 public interface PersonDao {
 
-    Optional<Person> findById(Long id);
+    Optional<Person> findById(Session s, Long id);
 
-    void saveNew(Person person);
+    void saveNew(Session s, Person person);
 
-    void update(Person person);
+    void update(Session s, Person person);
 
-    void deleteById(Long id);
+    void deleteById(Session s, Long id);
 
-    void delete(Person person);
+    void delete(Session s, Person person);
 }
 ```
 
@@ -100,7 +102,7 @@ public interface GenericDao<T, ID extends Serializable> {
 
     void deleteById(Session s, ID id);
 
-    void delete(Session s, T entity);
+    boolean delete(Session s, T entity);
 
     boolean existsById(Session s, ID id);
 
@@ -124,7 +126,7 @@ public class GenericDaoHibernate<T, ID extends Serializable>
 
     @Override
     public Optional<T> findById(Session s, ID id) {
-        return Optional.ofNullable(s.get(entityClass, id));
+        return Optional.ofNullable(s.find(entityClass, id));
     }
 
     @Override
@@ -135,30 +137,29 @@ public class GenericDaoHibernate<T, ID extends Serializable>
 
     @Override
     public T saveNew(Session s, T entity) {
-        s.persist(entity);              // INSERT en flush/commit
-        return entity;                  // ya está managed
+        s.persist(entity);
+        s.flush();
+        return (ID) s.getIdentifier(entity);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public T update(Session s, T entity) {
-        return (T) s.merge(entity);     // devuelve instancia managed
+        return s.merge(entity);
     }
 
     @Override
-    public void deleteById(Session s, ID id) {
-        T ref = s.byId(entityClass).getReference(id); // sin SELECT previo
-        s.remove(ref);
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
     public void delete(Session s, T entity) {
-        if (s.contains(entity)) {
-            s.remove(entity);
-        } else {
-            s.remove(s.merge(entity));  // asegura managed antes de borrar
+        s.remove(entity);
+    }
+
+    @Override
+    public boolean deleteById(Session s, ID id) {
+        T found = s.find(entityClass, id);
+        if (found != null) {
+            s.remove(found);
+            return true;
         }
+        return false;
     }
 
     @Override

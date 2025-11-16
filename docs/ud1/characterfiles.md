@@ -71,8 +71,9 @@ try (FileWriter fw = new FileWriter("salida.txt")) {
 ```
 
 - ✅ Adecuado para ejemplos sencillos o pruebas
-- ❌ Menos eficiente que `BufferedWriter`. El texto se guarda primero en un buffer intermedio de memoria. Cuando el buffer se llena o cuando cierras (close()), se hace el volcado real al disco
-- Al salir del try-with-resources, se ejecuta automáticamente `fw.close()`, que internamente hace un flush() → ahí se asegura que todo lo que estaba en memoria sí se escriba en el fichero
+- ❌ Menos eficiente que `BufferedWriter`. No aporta un buffer grande de caracteres como BufferedWriter. Pero si tiene un buffer/caché del sistema operativo y un buffer de codificación interno (con OutputStreamWriter), que puede retener bytes.     
+- Sin **close()/flush()**, **no garantizas que todo lo escrito haya salido de esos buffers hacia el fichero**.  
+- Al salir del try-with-resources, se ejecuta automáticamente `fw.close()`, que internamente hace un flush() → ahí se asegura que todo lo que estaba en memoria sí se escriba en el fichero.
 
 ---
 
@@ -88,7 +89,8 @@ try (BufferedWriter bw = new BufferedWriter(new FileWriter("salida.txt"))) {
 }
 ```
 
-- ✅ Escritura más rápida y controlada. Mantiene un buffer más grande en memoria. Solo cuando el buffer se llena (o haces flush()/close()) envía un bloque grande al writer subyacente
+- ✅ Escritura más rápida y controlada. Mantiene un buffer más grande en memoria.   
+- **Solo cuando el buffer se llena o haces flush()/close() escribe en disco**.      
 
 ---
 

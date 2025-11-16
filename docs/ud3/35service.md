@@ -11,18 +11,20 @@ public class PersonService {
     private final SessionFactory sf;
     private final PersonDao personDao;
 
-    public PersonService(SessionFactory sf, PersonDao personDao) {
-        this.sf = sf; this.personDao = personDao;
+    public PersonService() {
+        this.sf = HibernateUtil.getSessionFactory();
+        this.personDao = new PersonDaoImpl();
     }
 
     public Long create(Person p) {
         Transaction tx = null;
-        try (Session s = sf.openSession()) {      // abres la sesión aquí
-            tx = s.beginTransaction();            // y la transacción aquí
-            personDao.saveNew(s, p);              // pasas la sesión a los DAOs
+        try {
+            Session s = sf.getCurrentSession();      
+            tx = s.beginTransaction();            
+            personDao.saveNew(s, p);              
             tx.commit();
             return p.getId();
-        } catch (RuntimeException e) {
+        } catch (PersistenceException e) {
             if (tx != null && tx.isActive()) tx.rollback();
             throw e;
         }
@@ -30,12 +32,13 @@ public class PersonService {
 
     public Optional<Person> findById(Long id) {
         Transaction tx = null;
-        try (Session s = sf.openSession()) {
+        try {
+            Session s = sf.getCurrentSession();
             tx = s.beginTransaction();
             Optional<Person> res = personDao.findById(s, id);
             tx.commit();
             return res;
-        } catch (RuntimeException e) {
+        } catch (PersistenceException e) {
             if (tx != null && tx.isActive()) tx.rollback();
             throw e;
         }
@@ -43,11 +46,12 @@ public class PersonService {
 
     public void update(Person p) {
         Transaction tx = null;
-        try (Session s = sf.openSession()) {
+        try {
+            Session s = sf.getCurrentSession();
             tx = s.beginTransaction();
             personDao.update(s, p);
             tx.commit();
-        } catch (RuntimeException e) {
+        } catch (PersistenceException e) {
             if (tx != null && tx.isActive()) tx.rollback();
             throw e;
         }
@@ -55,11 +59,12 @@ public class PersonService {
 
     public void deleteById(Long id) {
         Transaction tx = null;
-        try (Session s = sf.openSession()) {
+        try {
+            Session s = sf.getCurrentSession();
             tx = s.beginTransaction();
             personDao.deleteById(s, id);
             tx.commit();
-        } catch (RuntimeException e) {
+        } catch (PersistenceException e) {
             if (tx != null && tx.isActive()) tx.rollback();
             throw e;
         }
@@ -67,11 +72,12 @@ public class PersonService {
 
     public void delete(Person p) {
         Transaction tx = null;
-        try (Session s = sf.openSession()) {
+        try {
+            Session s = sf.getCurrentSession();
             tx = s.beginTransaction();
             personDao.delete(s, p);
             tx.commit();
-        } catch (RuntimeException e) {
+        } catch (PersistenceException e) {
             if (tx != null && tx.isActive()) tx.rollback();
             throw e;
         }
@@ -84,6 +90,23 @@ public class PersonService {
 
 ---
 
+## ⚙️ DAO vs Service – Estructura recomendada
+
+### 🧩 DAO (Data Access Object)     
+- 📄 Uno por entidad o agregado (SpaceDao, UserDao, BookingDao…)        
+- 🎯 Responsabilidad: acceso a datos (persist, find, remove, queries).      
+- 🚫 Sin transacciones ni lógica de negocio.        
+- 🔄 Reutilizable desde distintos servicios.        
+
+### 🧠 Service (Capa de negocio)        
+- 🧩 Debe existir uno por caso de uso / lógica de negocio, **no necesariamente por entidad**.           
+- 🎯 Responsabilidad: Agrupa y orquesta varios DAOs.         
+- 💡 Define casos de uso completos, no solo operaciones CRUD.       
+- 🧾 Contiene la transacción (beginTransaction / commit / rollback).        
+- 🔐 Aplica validaciones y reglas de negocio.       
+
+---
+
 ## 🔮 Testeo de la aplicación
 
 Para probar el código simplemente tendremos que crear un objeto de la clase service y ejecutar los métodos convenientes:
@@ -91,14 +114,17 @@ Para probar el código simplemente tendremos que crear un objeto de la clase ser
 ```java title="Test.java"
 public class Main {
   public static void main(String[] args) {
-    SessionFactory sf = HibernateUtil.getSessionFactory();       // <-- aquí nace
-    PersonDao personDao = new PersonDaoImpl(sf);                 // se inyecta
-    PersonService service = new PersonService(sf, personDao);    // se inyecta
+    try {
+        PersonService service = new PersonService();
 
-    // usar el servicio (abrirá transacciones con sf)
-    service.create(new Person("Ana", "ana@example.com"));
-
-    HibernateUtil.close(); // al terminar la app
+        // usar el servicio (abrirá transacciones con sf)
+        service.create(new Person("Ana", "ana@example.com"));
+        
+    } catch(PersistenceException e) {
+        //imprimo la excepción
+    } finally {
+        HibernateUtil.close(); // al terminar la app
+    }
   }
 }
 ```

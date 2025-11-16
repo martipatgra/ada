@@ -19,7 +19,7 @@
     
     
       
-        <title>3.6.- Service Layer - Acceso a Datos</title>
+        <title>3.9.- Service Layer - Acceso a Datos</title>
       
     
     
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3.6.- Service Layer
+              3.9.- Service Layer
             
           </span>
         </div>
@@ -759,7 +759,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/" class="md-nav__link">
-        3.3.- Configuración e instalación de Hibernate
+        3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
       </a>
     </li>
   
@@ -786,8 +786,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../operaciones/" class="md-nav__link">
-        3.5.- Operaciones con objetos en Hibernate
+      <a href="../operacionescrud/" class="md-nav__link">
+        3.5.- Operaciones CRUD con objetos en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/" class="md-nav__link">
+        3.6.- Formas de realizar consultas en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../relations/" class="md-nav__link">
+        3.7.- Relaciones avanzadas en Hibernate
       </a>
     </li>
   
@@ -801,7 +829,7 @@
   
     <li class="md-nav__item">
       <a href="../34dao/" class="md-nav__link">
-        3.5.- Patrón DAO
+        3.8.- Patrón DAO
       </a>
     </li>
   
@@ -824,12 +852,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          3.6.- Service Layer
+          3.9.- Service Layer
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        3.6.- Service Layer
+        3.9.- Service Layer
       </a>
       
         
@@ -846,6 +874,33 @@
       Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dao-vs-service-estructura-recomendada" class="md-nav__link">
+    ⚙️ DAO vs Service – Estructura recomendada
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ DAO vs Service – Estructura recomendada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dao-data-access-object" class="md-nav__link">
+    🧩 DAO (Data Access Object)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-capa-de-negocio" class="md-nav__link">
+    🧠 Service (Capa de negocio)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#testeo-de-la-aplicacion" class="md-nav__link">
@@ -1100,6 +1155,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#dao-vs-service-estructura-recomendada" class="md-nav__link">
+    ⚙️ DAO vs Service – Estructura recomendada
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ DAO vs Service – Estructura recomendada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dao-data-access-object" class="md-nav__link">
+    🧩 DAO (Data Access Object)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-capa-de-negocio" class="md-nav__link">
+    🧠 Service (Capa de negocio)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#testeo-de-la-aplicacion" class="md-nav__link">
     🔮 Testeo de la aplicación
   </a>
@@ -1130,92 +1212,118 @@
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">SessionFactory</span><span class="w"> </span><span class="n">sf</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">PersonDao</span><span class="w"> </span><span class="n">personDao</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">PersonService</span><span class="p">(</span><span class="n">SessionFactory</span><span class="w"> </span><span class="n">sf</span><span class="p">,</span><span class="w"> </span><span class="n">PersonDao</span><span class="w"> </span><span class="n">personDao</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">sf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="p">;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">personDao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">personDao</span><span class="p">;</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="p">.</span><span class="na">openSession</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">      </span><span class="c1">// abres la sesión aquí</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">            </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span><span class="w">            </span><span class="c1">// y la transacción aquí</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="n">personDao</span><span class="p">.</span><span class="na">saveNew</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w">              </span><span class="c1">// pasas la sesión a los DAOs</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">getId</span><span class="p">();</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">RuntimeException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
-<span class="linenos" data-linenos="19 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="21 "></span>
-<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="p">.</span><span class="na">openSession</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="25 "></span><span class="w">            </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
-<span class="linenos" data-linenos="26 "></span><span class="w">            </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">personDao</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
-<span class="linenos" data-linenos="27 "></span><span class="w">            </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
-<span class="linenos" data-linenos="28 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
-<span class="linenos" data-linenos="29 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">RuntimeException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="30 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
-<span class="linenos" data-linenos="31 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
-<span class="linenos" data-linenos="32 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="33 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="34 "></span>
-<span class="linenos" data-linenos="35 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="36 "></span><span class="w">        </span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="linenos" data-linenos="37 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="p">.</span><span class="na">openSession</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="38 "></span><span class="w">            </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
-<span class="linenos" data-linenos="39 "></span><span class="w">            </span><span class="n">personDao</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span>
-<span class="linenos" data-linenos="40 "></span><span class="w">            </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
-<span class="linenos" data-linenos="41 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">RuntimeException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="42 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
-<span class="linenos" data-linenos="43 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
-<span class="linenos" data-linenos="44 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="45 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="46 "></span>
-<span class="linenos" data-linenos="47 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="48 "></span><span class="w">        </span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="linenos" data-linenos="49 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="p">.</span><span class="na">openSession</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="50 "></span><span class="w">            </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
-<span class="linenos" data-linenos="51 "></span><span class="w">            </span><span class="n">personDao</span><span class="p">.</span><span class="na">deleteById</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
-<span class="linenos" data-linenos="52 "></span><span class="w">            </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
-<span class="linenos" data-linenos="53 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">RuntimeException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="54 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
-<span class="linenos" data-linenos="55 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
-<span class="linenos" data-linenos="56 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="57 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="58 "></span>
-<span class="linenos" data-linenos="59 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="60 "></span><span class="w">        </span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="linenos" data-linenos="61 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Session</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="p">.</span><span class="na">openSession</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="62 "></span><span class="w">            </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
-<span class="linenos" data-linenos="63 "></span><span class="w">            </span><span class="n">personDao</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span>
-<span class="linenos" data-linenos="64 "></span><span class="w">            </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
-<span class="linenos" data-linenos="65 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">RuntimeException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="66 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
-<span class="linenos" data-linenos="67 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
-<span class="linenos" data-linenos="68 "></span><span class="w">        </span><span class="p">}</span>
-<span class="linenos" data-linenos="69 "></span><span class="w">    </span><span class="p">}</span>
-<span class="linenos" data-linenos="70 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">PersonService</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">sf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibernateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">personDao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PersonDaoImpl</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">            </span><span class="n">Session</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="p">.</span><span class="na">getCurrentSession</span><span class="p">();</span><span class="w">      </span>
+<span class="linenos" data-linenos="14 "></span><span class="w">            </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span><span class="w">            </span>
+<span class="linenos" data-linenos="15 "></span><span class="w">            </span><span class="n">personDao</span><span class="p">.</span><span class="na">saveNew</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w">              </span>
+<span class="linenos" data-linenos="16 "></span><span class="w">            </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">getId</span><span class="p">();</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">PersistenceException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">        </span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">            </span><span class="n">Session</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="p">.</span><span class="na">getCurrentSession</span><span class="p">();</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">            </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">            </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">personDao</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">            </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">PersistenceException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+<span class="linenos" data-linenos="35 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="37 "></span>
+<span class="linenos" data-linenos="38 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="39 "></span><span class="w">        </span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="linenos" data-linenos="40 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="41 "></span><span class="w">            </span><span class="n">Session</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="p">.</span><span class="na">getCurrentSession</span><span class="p">();</span>
+<span class="linenos" data-linenos="42 "></span><span class="w">            </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
+<span class="linenos" data-linenos="43 "></span><span class="w">            </span><span class="n">personDao</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span>
+<span class="linenos" data-linenos="44 "></span><span class="w">            </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="45 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">PersistenceException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="46 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
+<span class="linenos" data-linenos="47 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+<span class="linenos" data-linenos="48 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="49 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="50 "></span>
+<span class="linenos" data-linenos="51 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="52 "></span><span class="w">        </span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="linenos" data-linenos="53 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="54 "></span><span class="w">            </span><span class="n">Session</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="p">.</span><span class="na">getCurrentSession</span><span class="p">();</span>
+<span class="linenos" data-linenos="55 "></span><span class="w">            </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
+<span class="linenos" data-linenos="56 "></span><span class="w">            </span><span class="n">personDao</span><span class="p">.</span><span class="na">deleteById</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="linenos" data-linenos="57 "></span><span class="w">            </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="58 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">PersistenceException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="59 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
+<span class="linenos" data-linenos="60 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+<span class="linenos" data-linenos="61 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="62 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="63 "></span>
+<span class="linenos" data-linenos="64 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Person</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="65 "></span><span class="w">        </span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="linenos" data-linenos="66 "></span><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="67 "></span><span class="w">            </span><span class="n">Session</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="p">.</span><span class="na">getCurrentSession</span><span class="p">();</span>
+<span class="linenos" data-linenos="68 "></span><span class="w">            </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
+<span class="linenos" data-linenos="69 "></span><span class="w">            </span><span class="n">personDao</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span>
+<span class="linenos" data-linenos="70 "></span><span class="w">            </span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<span class="linenos" data-linenos="71 "></span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">PersistenceException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="72 "></span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span><span class="w"> </span><span class="n">tx</span><span class="p">.</span><span class="na">rollback</span><span class="p">();</span>
+<span class="linenos" data-linenos="73 "></span><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+<span class="linenos" data-linenos="74 "></span><span class="w">        </span><span class="p">}</span>
+<span class="linenos" data-linenos="75 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="76 "></span><span class="p">}</span>
 </code></pre></div>
 <ul>
 <li>SessionFactory = se crea 1 vez al inicio, se comparte; no se crea por método.</li>
 <li>El service recibe el <code>SessionFactory</code> (y los DAOs) por constructor y abre/cierra la transacción por cada caso de uso.</li>
 </ul>
 <hr />
+<h2 id="dao-vs-service-estructura-recomendada">⚙️ DAO vs Service – Estructura recomendada</h2>
+<h3 id="dao-data-access-object">🧩 DAO (Data Access Object)</h3>
+<ul>
+<li>📄 Uno por entidad o agregado (SpaceDao, UserDao, BookingDao…)        </li>
+<li>🎯 Responsabilidad: acceso a datos (persist, find, remove, queries).      </li>
+<li>🚫 Sin transacciones ni lógica de negocio.        </li>
+<li>🔄 Reutilizable desde distintos servicios.        </li>
+</ul>
+<h3 id="service-capa-de-negocio">🧠 Service (Capa de negocio)</h3>
+<ul>
+<li>🧩 Debe existir uno por caso de uso / lógica de negocio, <strong>no necesariamente por entidad</strong>.           </li>
+<li>🎯 Responsabilidad: Agrupa y orquesta varios DAOs.         </li>
+<li>💡 Define casos de uso completos, no solo operaciones CRUD.       </li>
+<li>🧾 Contiene la transacción (beginTransaction / commit / rollback).        </li>
+<li>🔐 Aplica validaciones y reglas de negocio.       </li>
+</ul>
+<hr />
 <h2 id="testeo-de-la-aplicacion">🔮 Testeo de la aplicación</h2>
 <p>Para probar el código simplemente tendremos que crear un objeto de la clase service y ejecutar los métodos convenientes:</p>
 <div class="highlight"><span class="filename">Test.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="n">SessionFactory</span><span class="w"> </span><span class="n">sf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HibernateUtil</span><span class="p">.</span><span class="na">getSessionFactory</span><span class="p">();</span><span class="w">       </span><span class="c1">// &lt;-- aquí nace</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="n">PersonDao</span><span class="w"> </span><span class="n">personDao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PersonDaoImpl</span><span class="p">(</span><span class="n">sf</span><span class="p">);</span><span class="w">                 </span><span class="c1">// se inyecta</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">    </span><span class="n">PersonService</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PersonService</span><span class="p">(</span><span class="n">sf</span><span class="p">,</span><span class="w"> </span><span class="n">personDao</span><span class="p">);</span><span class="w">    </span><span class="c1">// se inyecta</span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="c1">// usar el servicio (abrirá transacciones con sf)</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="n">service</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana@example.com&quot;</span><span class="p">));</span>
-<span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="n">HibernateUtil</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"> </span><span class="c1">// al terminar la app</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="p">}</span>
-<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="n">PersonService</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PersonService</span><span class="p">();</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">        </span><span class="c1">// usar el servicio (abrirá transacciones con sf)</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">        </span><span class="n">service</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana@example.com&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="p">(</span><span class="n">PersistenceException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="c1">//imprimo la excepción</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">        </span><span class="n">HibernateUtil</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"> </span><span class="c1">// al terminar la app</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">  </span><span class="p">}</span>
+<span class="linenos" data-linenos="15 "></span><span class="p">}</span>
 </code></pre></div>
 
 

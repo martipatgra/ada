@@ -1,4 +1,4 @@
-# 🔹 Configuración e instalación de Hibernate
+# 🔹 Configuración e instalación de Hibernate. Mapeo de entidades
 
 En este bloque aprenderemos a **instalar y configurar Hibernate**, además de explorar dos formas de definir el mapeo: mediante **ficheros XML** y mediante **anotaciones en las clases Java**.
 
@@ -13,31 +13,36 @@ La forma más habitual es incluir Hibernate y JPA en un proyecto **Maven** o **G
 
 ```xml
 <dependencies>
-<dependency>
-  <groupId>org.hibernate.orm</groupId>
-  <artifactId>hibernate-core</artifactId>
-  <version>6.5.2.Final</version>
-</dependency>
+    <dependency>
+        <groupId>org.hibernate.orm</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>${hibernate.version}</version>
+    </dependency>
 
-<dependency>
-  <groupId>jakarta.persistence</groupId>
-  <artifactId>jakarta.persistence-api</artifactId>
-  <version>3.1.0</version>
-</dependency>
+    <dependency>
+        <groupId>org.hibernate.orm</groupId>
+        <artifactId>hibernate-hikaricp</artifactId>
+        <version>${hibernate.version}</version>
+    </dependency>
 
-<!-- MySQL JDBC Driver -->
-<dependency>
-    <groupId>com.mysql</groupId>
-    <artifactId>mysql-connector-j</artifactId>
-    <version>8.4.0</version>
-</dependency>
+    <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>9.5.0</version>
+    </dependency>
 
-<!-- Logging sencillo para ver SQL en consola (opcional en demos) -->
-<dependency>
-  <groupId>org.slf4j</groupId>
-  <artifactId>slf4j-simple</artifactId>
-  <version>2.0.13</version>
-</dependency>
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>2.19.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j2-impl</artifactId>
+        <version>2.23.1</version>
+    </dependency>
+
 </dependencies>
 ```
 
@@ -94,28 +99,71 @@ En él defines:
 </hibernate-configuration>
 ```
 
+### 2. Configuración mediante `application.properties`
+
+En vez de crear el fichero hibernate.cfg.xml, podemos meter toda la configuración en un fichero .properties.
+
+Para ello, el fichero debe estar dentro de /src/main/resources/application.properties con el siguiente contenido de configuración:
+
+```sql
+# --- Hibernate usa Hikari internamente ---
+hibernate.connection.provider_class=org.hibernate.hikaricp.internal.HikariCPConnectionProvider
+hibernate.hikari.dataSourceClassName=com.mysql.cj.jdbc.MysqlDataSource
+hibernate.hikari.dataSource.url=jdbc:mysql://localhost:3306/newada
+hibernate.hikari.dataSource.user=root
+hibernate.hikari.dataSource.password=admin
+hibernate.hikari.autoCommit=false
+
+# Pool
+hibernate.hikari.maximumPoolSize=15
+hibernate.hikari.minimumIdle=5
+hibernate.hikari.idleTimeout=600000
+hibernate.hikari.maxLifetime=1700000
+hibernate.hikari.connectionTimeout=30000
+
+# Hibernate, La sesión se abre al empezar la transacción y se cierra al hacer commit/rollback.
+hibernate.current_session_context_class=thread
+hibernate.dialect=org.hibernate.dialect.MySQLDialect
+hibernate.hbm2ddl.auto=update
+hibernate.show_sql=false
+hibernate.format_sql=false
+hibernate.jdbc.batch_size=25
+hibernate.order_inserts=true
+hibernate.order_updates=true
+hibernate.generate_statistics=false
+hibernate.connection.provider_disables_autocommit=true
+
+# Opciones más comunes de hibernate.hbm2ddl.auto:
+#create → crea el esquema desde cero en cada arranque (borra y crea lo anterior).
+#create-drop → como create, pero además borra al parar la app (borra -crea - borra, útil en tests).
+#update → crea y altera tablas/columnas necesarias sin borrar datos (ojo: no es un migrador).
+#validate → valida únicamente (Hibernate compara esquemas y falla si falta algo).
+#none (o no ponerla) → no hace nada.
+
+```
+
 ## 🏷️ Mapeo basado en anotaciones
 
 El mapeo basado en anotaciones consiste en definir la correspondencia clase ↔ tabla y atributo ↔ columna directamente en el código Java usando anotaciones de JPA/Jakarta
 
 ### 📄 1 Entidad básica
 
-- `@Entity` → Marca la clase como persistente.
-- `@Table(name="...")` → Cambia el nombre de la tabla y permite uniqueConstraints/indexes.
+- `@Entity` → Marca la clase como persistente.    
+- `@Table(name="...")` → Cambia el nombre de la tabla y permite uniqueConstraints/indexes.    
 
-Identidad:   
-- `@Id` → Clave primaria.
-- `@GeneratedValue(strategy=…)` → Estrategia de generación:  
-    - IDENTITY (auto-increment en MySQL),
-    - SEQUENCE (PostgreSQL/Oracle; suele usarse con @SequenceGenerator),
-    - AUTO (deja que el proveedor decida),
-    - TABLE (tabla de secuencias).
+**Identidad**:    
+- `@Id` → Clave primaria.     
+- `@GeneratedValue(strategy=…)` → Estrategia de generación:       
+    - IDENTITY (auto-increment en MySQL),     
+    - SEQUENCE (PostgreSQL/Oracle; suele usarse con @SequenceGenerator),    
+    - AUTO (deja que el proveedor decida),    
+    - TABLE (tabla de secuencias).    
 
-Mapeo de columnas:  
-- `@Column(name="...", nullable=…, length=…, unique=…)` → Personaliza la columna.
-- `@Transient` → No persistir el atributo.
-- `@Enumerated(EnumType.STRING)` → Guarda el nombre del enum (mejor que ORDINAL).
-- `@Lob` → CLOB/BLOB para textos o binarios grandes.
+**Mapeo de columnas**:      
+- `@Column(name="...", nullable=…, length=…, unique=…)` → Personaliza la columna.       
+- `@Transient` → No persistir el atributo.        
+- `@Enumerated(EnumType.STRING)` → Guarda el nombre del enum (mejor que ORDINAL).   
+- `@Lob` → CLOB/BLOB para textos o binarios grandes.      
 
 ```java
 @Entity 
@@ -125,11 +173,15 @@ public class Usuario {
   @GeneratedValue(strategy = GenerationType.IDENTITY) // MySQL
   private Long id;
 
-  @Column(nullable = false, length = 100)
+  @Column(name="nombre", nullable = false, length = 100)
   private String nombre;
 
-  @Column(nullable = false, unique = true, length = 150)
+  @Column(name="email", nullable = false, unique = true, length = 150)
   private String email;
+
+  @Column(name="tipo")
+  @Enumerated(EnumType.STRING) //guarda el nombre en forma de string, en vez de un ordinal
+  private Tipo tipo;
 }
 ```
 

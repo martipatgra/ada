@@ -980,7 +980,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud3/installation/" class="md-nav__link">
-        3.3.- Configuración e instalación de Hibernate
+        3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
       </a>
     </li>
   
@@ -1007,8 +1007,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ud3/operaciones/" class="md-nav__link">
-        3.5.- Operaciones con objetos en Hibernate
+      <a href="../../ud3/operacionescrud/" class="md-nav__link">
+        3.5.- Operaciones CRUD con objetos en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/queries/" class="md-nav__link">
+        3.6.- Formas de realizar consultas en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/relations/" class="md-nav__link">
+        3.7.- Relaciones avanzadas en Hibernate
       </a>
     </li>
   
@@ -1022,7 +1050,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud3/34dao/" class="md-nav__link">
-        3.5.- Patrón DAO
+        3.8.- Patrón DAO
       </a>
     </li>
   
@@ -1036,7 +1064,7 @@
   
     <li class="md-nav__item">
       <a href="../../ud3/35service/" class="md-nav__link">
-        3.6.- Service Layer
+        3.9.- Service Layer
       </a>
     </li>
   
@@ -1562,8 +1590,9 @@
 </code></pre></div>
 <ul>
 <li>✅ Adecuado para ejemplos sencillos o pruebas</li>
-<li>❌ Menos eficiente que <code>BufferedWriter</code>. El texto se guarda primero en un buffer intermedio de memoria. Cuando el buffer se llena o cuando cierras (close()), se hace el volcado real al disco</li>
-<li>Al salir del try-with-resources, se ejecuta automáticamente <code>fw.close()</code>, que internamente hace un flush() → ahí se asegura que todo lo que estaba en memoria sí se escriba en el fichero</li>
+<li>❌ Menos eficiente que <code>BufferedWriter</code>. No aporta un buffer grande de caracteres como BufferedWriter. Pero si tiene un buffer/caché del sistema operativo y un buffer de codificación interno (con OutputStreamWriter), que puede retener bytes.     </li>
+<li>Sin <strong>close()/flush()</strong>, <strong>no garantizas que todo lo escrito haya salido de esos buffers hacia el fichero</strong>.  </li>
+<li>Al salir del try-with-resources, se ejecuta automáticamente <code>fw.close()</code>, que internamente hace un flush() → ahí se asegura que todo lo que estaba en memoria sí se escriba en el fichero.</li>
 </ul>
 <hr />
 <h4 id="2-bufferedwriter">2. <code>BufferedWriter</code></h4>
@@ -1576,7 +1605,8 @@
 <span class="linenos" data-linenos="7 "></span><span class="p">}</span>
 </code></pre></div>
 <ul>
-<li>✅ Escritura más rápida y controlada. Mantiene un buffer más grande en memoria. Solo cuando el buffer se llena (o haces flush()/close()) envía un bloque grande al writer subyacente</li>
+<li>✅ Escritura más rápida y controlada. Mantiene un buffer más grande en memoria.   </li>
+<li><strong>Solo cuando el buffer se llena o haces flush()/close() escribe en disco</strong>.      </li>
 </ul>
 <hr />
 <h4 id="3-printwriter">3. <code>PrintWriter</code></h4>

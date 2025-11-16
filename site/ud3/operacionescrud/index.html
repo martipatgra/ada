@@ -12,14 +12,14 @@
         <link rel="prev" href="../33hibernate/">
       
       
-        <link rel="next" href="../34dao/">
+        <link rel="next" href="../queries/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>3.5.- Operaciones con objetos en Hibernate - Acceso a Datos</title>
+        <title>3.5.- Operaciones CRUD con objetos en Hibernate - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#operaciones-con-objetos" class="md-skip">
+        <a href="#operaciones-crud-con-objetos-en-hibernate" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3.5.- Operaciones con objetos en Hibernate
+              3.5.- Operaciones CRUD con objetos en Hibernate
             
           </span>
         </div>
@@ -759,7 +759,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/" class="md-nav__link">
-        3.3.- Configuración e instalación de Hibernate
+        3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
       </a>
     </li>
   
@@ -796,12 +796,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          3.5.- Operaciones con objetos en Hibernate
+          3.5.- Operaciones CRUD con objetos en Hibernate
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        3.5.- Operaciones con objetos en Hibernate
+        3.5.- Operaciones CRUD con objetos en Hibernate
       </a>
       
         
@@ -820,58 +820,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#operaciones-de-carga-almacenamiento-y-modificacion-orm" class="md-nav__link">
-    💾 Operaciones de carga, almacenamiento y modificación (ORM)
+  <a href="#1-create-insertar-registros" class="md-nav__link">
+    🧩 1️⃣ CREATE (Insertar registros)
   </a>
   
-    <nav class="md-nav" aria-label="💾 Operaciones de carga, almacenamiento y modificación (ORM)">
+    <nav class="md-nav" aria-label="🧩 1️⃣ CREATE (Insertar registros)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-persistir-guardar" class="md-nav__link">
-    1 Persistir / guardar
+  <a href="#persist" class="md-nav__link">
+    📘 persist
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-carga-de-entidades" class="md-nav__link">
-    2 Carga de entidades
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-actualizacion-merge" class="md-nav__link">
-    3 Actualización - Merge
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-borrado" class="md-nav__link">
-    4 Borrado
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-flush-clear-estados" class="md-nav__link">
-    5 flush(), clear(), estados
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-buenas-practicas" class="md-nav__link">
-    6 Buenas prácticas
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mini-guia-de-uso-persist-vs-merge" class="md-nav__link">
-    Mini-guía de uso (persist vs merge)
+  <a href="#notas" class="md-nav__link">
+    🧩 Notas
   </a>
   
 </li>
@@ -882,31 +847,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#consultas-sql-hqljpql-y-criteria-api" class="md-nav__link">
-    🔎 Consultas: SQL, HQL/JPQL y Criteria API
+  <a href="#2-read-leer-registros" class="md-nav__link">
+    🧾 2️⃣ READ (Leer registros)
   </a>
   
-    <nav class="md-nav" aria-label="🔎 Consultas: SQL, HQL/JPQL y Criteria API">
+    <nav class="md-nav" aria-label="🧾 2️⃣ READ (Leer registros)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-jpqlhql-orientado-a-entidades" class="md-nav__link">
-    🧨 1 JPQL/HQL (orientado a entidades)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-sql-nativo" class="md-nav__link">
-    🧨 2 SQL nativo
-  </a>
-  
-    <nav class="md-nav" aria-label="🧨 2 SQL nativo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ejecutando-la-consulta" class="md-nav__link">
-    🎐 EJECUTANDO la consulta
+  <a href="#findgetreference" class="md-nav__link">
+    📘 find/getReference
   </a>
   
 </li>
@@ -915,25 +865,25 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#3-criteria-api-tipado-dinamico-sitio-web-oficial" class="md-nav__link">
-    3 Criteria API (tipado, dinámico) Sitio Web Oficial
+      
+        <li class="md-nav__item">
+  <a href="#3-update-actualizar-registros" class="md-nav__link">
+    🔁 3️⃣ UPDATE (Actualizar registros)
   </a>
   
-    <nav class="md-nav" aria-label="3 Criteria API (tipado, dinámico) Sitio Web Oficial">
+    <nav class="md-nav" aria-label="🔁 3️⃣ UPDATE (Actualizar registros)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-es-y-cuando-usarla" class="md-nav__link">
-    🧮 ¿Qué es y cuándo usarla?
+  <a href="#merge-o-entidad-en-estado-managed" class="md-nav__link">
+    📘 merge o entidad en estado managed
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#pasos" class="md-nav__link">
-    🚶 Pasos
+  <a href="#si-la-entidad-no-esta-en-sesion" class="md-nav__link">
+    ⚙️ Si la entidad no está en sesión
   </a>
   
 </li>
@@ -942,16 +892,59 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#4-delete-eliminar-registros" class="md-nav__link">
+    ❌ 4️⃣ DELETE (Eliminar registros)
+  </a>
+  
+    <nav class="md-nav" aria-label="❌ 4️⃣ DELETE (Eliminar registros)">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#consejos-de-consultas" class="md-nav__link">
-    📌 Consejos de consultas
+  <a href="#remove" class="md-nav__link">
+    remove
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precaucion" class="md-nav__link">
+    ⚠️ Precaución
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flush-clear" class="md-nav__link">
+    flush(), clear()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-de-vida-de-una-entidad" class="md-nav__link">
+    🔄 Ciclo de vida de una entidad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buenas-practicas" class="md-nav__link">
+    🧠 Buenas prácticas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    🧾 Conclusión
+  </a>
   
 </li>
       
@@ -977,8 +970,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../queries/" class="md-nav__link">
+        3.6.- Formas de realizar consultas en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../relations/" class="md-nav__link">
+        3.7.- Relaciones avanzadas en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../34dao/" class="md-nav__link">
-        3.5.- Patrón DAO
+        3.8.- Patrón DAO
       </a>
     </li>
   
@@ -992,7 +1013,7 @@
   
     <li class="md-nav__item">
       <a href="../35service/" class="md-nav__link">
-        3.6.- Service Layer
+        3.9.- Service Layer
       </a>
     </li>
   
@@ -1236,58 +1257,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#operaciones-de-carga-almacenamiento-y-modificacion-orm" class="md-nav__link">
-    💾 Operaciones de carga, almacenamiento y modificación (ORM)
+  <a href="#1-create-insertar-registros" class="md-nav__link">
+    🧩 1️⃣ CREATE (Insertar registros)
   </a>
   
-    <nav class="md-nav" aria-label="💾 Operaciones de carga, almacenamiento y modificación (ORM)">
+    <nav class="md-nav" aria-label="🧩 1️⃣ CREATE (Insertar registros)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-persistir-guardar" class="md-nav__link">
-    1 Persistir / guardar
+  <a href="#persist" class="md-nav__link">
+    📘 persist
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-carga-de-entidades" class="md-nav__link">
-    2 Carga de entidades
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-actualizacion-merge" class="md-nav__link">
-    3 Actualización - Merge
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-borrado" class="md-nav__link">
-    4 Borrado
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-flush-clear-estados" class="md-nav__link">
-    5 flush(), clear(), estados
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-buenas-practicas" class="md-nav__link">
-    6 Buenas prácticas
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mini-guia-de-uso-persist-vs-merge" class="md-nav__link">
-    Mini-guía de uso (persist vs merge)
+  <a href="#notas" class="md-nav__link">
+    🧩 Notas
   </a>
   
 </li>
@@ -1298,31 +1284,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#consultas-sql-hqljpql-y-criteria-api" class="md-nav__link">
-    🔎 Consultas: SQL, HQL/JPQL y Criteria API
+  <a href="#2-read-leer-registros" class="md-nav__link">
+    🧾 2️⃣ READ (Leer registros)
   </a>
   
-    <nav class="md-nav" aria-label="🔎 Consultas: SQL, HQL/JPQL y Criteria API">
+    <nav class="md-nav" aria-label="🧾 2️⃣ READ (Leer registros)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-jpqlhql-orientado-a-entidades" class="md-nav__link">
-    🧨 1 JPQL/HQL (orientado a entidades)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-sql-nativo" class="md-nav__link">
-    🧨 2 SQL nativo
-  </a>
-  
-    <nav class="md-nav" aria-label="🧨 2 SQL nativo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ejecutando-la-consulta" class="md-nav__link">
-    🎐 EJECUTANDO la consulta
+  <a href="#findgetreference" class="md-nav__link">
+    📘 find/getReference
   </a>
   
 </li>
@@ -1331,25 +1302,25 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#3-criteria-api-tipado-dinamico-sitio-web-oficial" class="md-nav__link">
-    3 Criteria API (tipado, dinámico) Sitio Web Oficial
+      
+        <li class="md-nav__item">
+  <a href="#3-update-actualizar-registros" class="md-nav__link">
+    🔁 3️⃣ UPDATE (Actualizar registros)
   </a>
   
-    <nav class="md-nav" aria-label="3 Criteria API (tipado, dinámico) Sitio Web Oficial">
+    <nav class="md-nav" aria-label="🔁 3️⃣ UPDATE (Actualizar registros)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#que-es-y-cuando-usarla" class="md-nav__link">
-    🧮 ¿Qué es y cuándo usarla?
+  <a href="#merge-o-entidad-en-estado-managed" class="md-nav__link">
+    📘 merge o entidad en estado managed
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#pasos" class="md-nav__link">
-    🚶 Pasos
+  <a href="#si-la-entidad-no-esta-en-sesion" class="md-nav__link">
+    ⚙️ Si la entidad no está en sesión
   </a>
   
 </li>
@@ -1358,16 +1329,59 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#4-delete-eliminar-registros" class="md-nav__link">
+    ❌ 4️⃣ DELETE (Eliminar registros)
+  </a>
+  
+    <nav class="md-nav" aria-label="❌ 4️⃣ DELETE (Eliminar registros)">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#consejos-de-consultas" class="md-nav__link">
-    📌 Consejos de consultas
+  <a href="#remove" class="md-nav__link">
+    remove
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precaucion" class="md-nav__link">
+    ⚠️ Precaución
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flush-clear" class="md-nav__link">
+    flush(), clear()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-de-vida-de-una-entidad" class="md-nav__link">
+    🔄 Ciclo de vida de una entidad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buenas-practicas" class="md-nav__link">
+    🧠 Buenas prácticas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    🧾 Conclusión
+  </a>
   
 </li>
       
@@ -1394,201 +1408,136 @@
 
 
 
-<h1 id="operaciones-con-objetos">🧪 Operaciones con objetos</h1>
-<p>En este bloque verás cómo <strong>cargar, guardar, actualizar y borrar</strong> entidades; cómo <strong>consultar</strong> usando <strong>HQL/JPQL</strong>, <strong>SQL nativo</strong> y <strong>Criteria API</strong>; y cómo <strong>gestionar transacciones</strong> con JPA/Hibernate.</p>
+<h1 id="operaciones-crud-con-objetos-en-hibernate">🧪 Operaciones CRUD con objetos en Hibernate</h1>
+<p>En este bloque verás cómo <strong>cargar, guardar, actualizar y borrar</strong> entidades con JPA/Hibernate.</p>
 <hr />
-<h2 id="operaciones-de-carga-almacenamiento-y-modificacion-orm">💾 Operaciones de carga, almacenamiento y modificación (ORM)</h2>
-<h3 id="1-persistir-guardar">1 Persistir / guardar</h3>
-<ul>
-<li><strong>JPA/Hibernate</strong>: <code>persist(ent)</code> → <em>transient → managed</em> → genera <strong>INSERT</strong> en <code>flush/commit</code>.</li>
-<li>Id <strong>autogenerado</strong>: no confíes en él hasta el <code>flush</code> (o tras commit).</li>
-</ul>
+<h2 id="1-create-insertar-registros">🧩 1️⃣ CREATE (Insertar registros)</h2>
+<h3 id="persist">📘 <code>persist</code></h3>
+<p>Inserta nuevas entidades en la base de datos.<br />
+Hibernate se encarga de generar el <code>INSERT</code> SQL automáticamente.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana@example.com&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="2 "></span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
 <span class="linenos" data-linenos="3 "></span><span class="n">session</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="n">u</span><span class="p">);</span><span class="w">          </span><span class="c1">// INSERT en flush/commit</span>
 <span class="linenos" data-linenos="4 "></span>
 <span class="linenos" data-linenos="5 "></span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span>
 </code></pre></div>
-<h3 id="2-carga-de-entidades">2 Carga de entidades</h3>
+<h3 id="notas">🧩 Notas</h3>
 <ul>
-<li><code>find(Entidad.class, id)</code> / <code>getReference(...)</code> (proxy, no SELECT hasta acceso).</li>
-<li>Consultas (<code>createQuery</code>) → <code>getResultList()</code> / <code>getSingleResult()</code>.</li>
+<li><code>persist()</code> no devuelve el ID (asigna el ID a la entidad en memoria).   </li>
+<li><strong>Marca la entidad como “managed”</strong>, lista para sincronizar con la BD al hacer <code>commit()</code>.    </li>
+<li>Id <strong>autogenerado</strong>: no confíes en él hasta el <code>flush</code> (o tras commit).   </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w">          </span><span class="c1">// SELECT inmediato</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">getReference</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w">  </span><span class="c1">// Proxy LAZY</span>
+<hr />
+<h2 id="2-read-leer-registros">🧾 2️⃣ READ (Leer registros)</h2>
+<h3 id="findgetreference">📘 <code>find/getReference</code></h3>
+<p>Recupera entidades desde la base de datos.</p>
+<p>Se utilizan los métodos find/getReference:      </p>
+<p><code>find(Entidad.class, id)</code> → <strong>ACCESO REAL</strong> (SELECT inmediato):     <br />
+  - Ejecuta enseguida un SELECT ... FROM customer WHERE id = 1. <br />
+  - Devuelve el objeto completo, ya inicializado. <br />
+  - Si no existe, devuelve null.  <br />
+  - El objeto está gestionado por el EntityManager/Session.</p>
+<p><code>getReference(...)</code> → <strong>PROXY</strong> (carga diferida / lazy, no SELECT hasta acceso):  <br />
+  - <strong>NO ejecuta</strong> ningún <strong>SELECT</strong> todavía. <br />
+  - Devuelve un <strong>proxy</strong> (un objeto “fantasma” que simula ser el <code>Usuario</code>).  <br />
+  - El proxy <strong>solo contiene el ID</strong> y un mecanismo interno para hacer SELECT más tarde, si tocas algún campo que necesita los datos.     </p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w">          </span><span class="c1">// SELECT inmediato</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getReference</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w">  </span><span class="c1">// Proxy LAZY</span>
 </code></pre></div>
-<h3 id="3-actualizacion-merge">3 Actualización - Merge</h3>
+<hr />
+<h2 id="3-update-actualizar-registros">🔁 3️⃣ UPDATE (Actualizar registros)</h2>
+<h3 id="merge-o-entidad-en-estado-managed">📘 <code>merge</code> o entidad en estado managed</h3>
+<p>Modifica una entidad existente. Hibernate detecta los cambios automáticamente si la entidad está <strong>en estado “managed”</strong>.</p>
 <ul>
 <li><strong>Entidad detached</strong>: usa <code>merge(detached)</code>. <strong>Devuelve otra instancia</strong> <em>managed</em>.</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">// managed</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span>
-<span class="linenos" data-linenos="3 "></span><span class="n">u</span><span class="p">.</span><span class="na">setNombre</span><span class="p">(</span><span class="s">&quot;Ana María&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// UPDATE al sincronizar</span>
-<span class="linenos" data-linenos="4 "></span>
-<span class="linenos" data-linenos="5 "></span><span class="c1">// detached -&gt; managed</span>
-<span class="linenos" data-linenos="6 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">dto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span><span class="w"> </span><span class="c1">// construido fuera</span>
-<span class="linenos" data-linenos="7 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">dto</span><span class="p">);</span><span class="w"> </span><span class="c1">// m es managed, hay que hacer commit o flush para la BD</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w"> </span><span class="c1">//entidad user en estado managed</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">user</span><span class="p">.</span><span class="na">setEmail</span><span class="p">(</span><span class="s">&quot;nuevoemail@example.com&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Hibernate detecta el cambio</span>
+<span class="linenos" data-linenos="6 "></span>
+<span class="linenos" data-linenos="7 "></span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span><span class="w"> </span><span class="c1">// Hibernate ejecuta el UPDATE automáticamente</span>
 </code></pre></div>
-<h3 id="4-borrado">4 Borrado</h3>
+<h3 id="si-la-entidad-no-esta-en-sesion">⚙️ Si la entidad no está en sesión</h3>
+<p>Usa <code>merge()</code> para sincronizar los datos con el contexto:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">User</span><span class="w"> </span><span class="n">detachedUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">detachedUser</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="mi">1L</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">detachedUser</span><span class="p">.</span><span class="na">setEmail</span><span class="p">(</span><span class="s">&quot;nuevoemail@example.com&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="n">session</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">detachedUser</span><span class="p">);</span><span class="w"> </span><span class="c1">// sincroniza y actualiza</span>
+</code></pre></div></p>
+<hr />
+<h2 id="4-delete-eliminar-registros">❌ 4️⃣ DELETE (Eliminar registros)</h2>
+<h3 id="remove"><code>remove</code></h3>
+<p>Borra una entidad de la base de datos.</p>
 <ul>
 <li><code>remove(managed)</code> → marca <strong>removed</strong> → <code>DELETE</code> en flush/commit.</li>
-<li>Con relaciones: cuida <code>cascade = REMOVE</code> y <code>orphanRemoval = true</code> donde proceda.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">em</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">u</span><span class="p">);</span><span class="w"> </span><span class="c1">// DELETE</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="n">session</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">u</span><span class="p">);</span><span class="w"> </span><span class="c1">// DELETE</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span>
 </code></pre></div>
-<h3 id="5-flush-clear-estados">5 <code>flush()</code>, <code>clear()</code>, estados</h3>
+<h3 id="precaucion">⚠️ Precaución</h3>
+<ul>
+<li>Si la entidad tiene relaciones (<code>@OneToMany</code>, etc.), el borrado puede cascadar si usas <code>cascade = CascadeType.REMOVE</code>.</li>
+<li>Si no existe en BD, <code>find()</code> devuelve <code>null</code> (no lanza error).</li>
+</ul>
+<hr />
+<h2 id="flush-clear"><code>flush()</code>, <code>clear()</code></h2>
 <ul>
 <li><code>flush()</code> → sincroniza ahora con la BD.</li>
 <li><code>clear()</code> → vacía el contexto (managed → detached).</li>
-<li>Estados: <strong>transient</strong>, <strong>managed</strong>, <strong>detached</strong>, <strong>removed</strong>.</li>
 </ul>
-<h3 id="6-buenas-practicas">6 Buenas prácticas</h3>
+<hr />
+<h2 id="ciclo-de-vida-de-una-entidad">🔄 Ciclo de vida de una entidad</h2>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Transient</strong></td>
+<td>No está asociada al contexto ni en la BD.</td>
+<td><code>new User()</code></td>
+</tr>
+<tr>
+<td><strong>Persistent (Managed)</strong></td>
+<td>Asociada a una sesión activa (<code>persist</code>, <code>find</code>).</td>
+<td><code>session.persist(user)</code></td>
+</tr>
+<tr>
+<td><strong>Detached</strong></td>
+<td>Ya no gestionada (sesión cerrada).</td>
+<td>después de <code>session.close()</code></td>
+</tr>
+<tr>
+<td><strong>Removed</strong></td>
+<td>Marcada para eliminación.</td>
+<td><code>session.remove(user)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="buenas-practicas">🧠 Buenas prácticas</h2>
 <ul>
+<li>Usa <strong>transacciones</strong> (<code>beginTransaction</code> / <code>commit</code>) para todas las operaciones de escritura.  </li>
+<li>Cierra siempre la <strong>sesión</strong> (<code>session.close()</code>) para liberar recursos.  </li>
+<li>Evita <code>session.flush()</code> manual salvo que sea necesario.  </li>
+<li>Usa <strong>DAO y servicios</strong> para encapsular la lógica CRUD.</li>
 <li>Usa <code>getReference</code> para asociar por id sin SELECT extra.</li>
-<li>Helpers <code>add/remove</code> en colecciones bidireccionales (y <code>orphanRemoval</code> si aplica).</li>
-<li>Transacciones en servicios, no en DAOs (usa <code>@Transactional</code>).</li>
-</ul>
-<h3 id="mini-guia-de-uso-persist-vs-merge">Mini-guía de uso (persist vs merge)</h3>
-<ul>
-<li><code>persist</code>: para nuevos (id null). Pasa la instancia a managed.</li>
-<li><code>merge</code>: para detached (crea/actualiza), entidades con id. Devuelve la instancia managed (no la que le pasas).</li>
 </ul>
 <hr />
-<h2 id="consultas-sql-hqljpql-y-criteria-api">🔎 Consultas: SQL, HQL/JPQL y Criteria API</h2>
-<p>Hibernate Query Language - <a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#hql">HQL Official Website</a></p>
-<p>JPQL (Java Persistence Query Language) se inspiró en las primeras versiones de HQL y es un subconjunto del HQL moderno.</p>
-<p>HQL (y JPQL) se basan libremente en SQL y son fáciles de aprender para cualquiera que esté familiarizado con SQL.</p>
-<p>Hibernate usa un poderoso lenguaje de consulta (HQL) que es similar en apariencia a SQL. Sin embargo, en comparación con SQL, <strong>HQL está completamente orientado a objetos y comprende nociones como herencia, polimorfismo y asociación</strong>.</p>
-<h3 id="1-jpqlhql-orientado-a-entidades">🧨 1 JPQL/HQL (orientado a entidades)</h3>
+<h2 id="conclusion">🧾 Conclusión</h2>
 <ul>
-<li>Consulta <strong>entidades y sus atributos</strong>, NO tablas.</li>
-<li>🎐 <em>BINDING arguments en los parámetros de la query</em>. Parámetros <strong>nombrados</strong> <code>:param</code> o <strong>posicionales</strong> <code>?1</code>.</li>
-<li><strong>JOIN</strong> sobre asociaciones del modelo.</li>
-</ul>
-<div class="highlight"><span class="filename">named parameters</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">//JPQL</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">TypedQuery</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="s">&quot;SELECT u FROM Usuario u WHERE u.email LIKE :mail ORDER BY u.nombre&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
-<span class="linenos" data-linenos="5 "></span><span class="n">q</span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="s">&quot;mail&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%@example.com%&quot;</span><span class="p">);</span>
-<span class="linenos" data-linenos="6 "></span><span class="n">q</span><span class="p">.</span><span class="na">setMaxResults</span><span class="p">(</span><span class="mi">50</span><span class="p">).</span><span class="na">setFirstResult</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// paginación</span>
-<span class="linenos" data-linenos="7 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">usuarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="na">getResultList</span><span class="p">();</span>
-</code></pre></div>
-<div class="highlight"><span class="filename">ordinal parameters</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="n">TypedQuery</span><span class="o">&lt;</span><span class="n">Tramite</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">                            </span><span class="s">&quot;from Tramite where tipo = ?1&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">                            </span><span class="n">Tramite</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">                    </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crédito&quot;</span><span class="p">);</span>
-</code></pre></div>
-<div class="admonition warning warning">
-<p class="admonition-title">Warning</p>
-<p>No es una buena idea mezclar <em>named parameters</em> y <em>ordinales</em> en una sola consulta.</p>
-</div>
-<p><strong>JOIN y proyecciones (DTO):</strong>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">UsuarioPedidoDTO</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dtos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="w">  </span><span class="s">&quot;SELECT new com.acme.dto.UsuarioPedidoDTO(u.id, u.nombre, COUNT(p)) &quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">  </span><span class="s">&quot;FROM Usuario u LEFT JOIN u.pedidos p &quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">  </span><span class="s">&quot;GROUP BY u.id, u.nombre &quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">  </span><span class="s">&quot;ORDER BY COUNT(p) DESC&quot;</span><span class="p">,</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">  </span><span class="n">UsuarioPedidoDTO</span><span class="p">.</span><span class="na">class</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="c1">//también se puede hacer el join implícito  (INNER JOIN) navegando con &quot;.&quot;: r.event.name, navegamos </span>
-<span class="linenos" data-linenos="10 "></span><span class="c1">//desde Registration, por Event hasta el atributo de name en la entidad Event.</span>
-<span class="linenos" data-linenos="11 "></span><span class="n">String</span><span class="w"> </span><span class="n">jpql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT r.event.name, r.event.organizer.name, r.registrationDate, r.attendee.name &quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">                    </span><span class="s">&quot;FROM Registration r &quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="linenos" data-linenos="13 "></span><span class="w">                    </span><span class="s">&quot;WHERE r.event.organizer.email = ?1 &quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="linenos" data-linenos="14 "></span><span class="w">                    </span><span class="s">&quot;AND r.status = &#39;confirmed&#39; &quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">                    </span><span class="s">&quot;ORDER BY r.event.name&quot;</span><span class="p">;</span>
-</code></pre></div></p>
-<h3 id="2-sql-nativo">🧨 2 SQL nativo</h3>
-<ul>
-<li>Útil para funciones específicas del motor o <em>performance</em>.</li>
-<li>Puedes mapear a <strong>entidades</strong>, <strong>DTOs</strong> (proyecciones) o <strong>escalares</strong>.</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">[]&gt;</span><span class="w"> </span><span class="n">filas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createNativeQuery</span><span class="p">(</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="s">&quot;SELECT id, nombre FROM usuarios WHERE email LIKE ?&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="p">.</span><span class="na">setParameter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%@example.com%&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="p">.</span><span class="na">getResultList</span><span class="p">();</span>
-</code></pre></div>
-<h4 id="ejecutando-la-consulta">🎐 <em>EJECUTANDO la consulta</em></h4>
-<p>La interfaz Query se utiliza para controlar la ejecución de la consulta. Ofrece tres tipos de resultados:</p>
-<ul>
-<li><code>getResultList()</code>: devuelve una lista con los resultados (lista vacía si no hay filas). No lanza excepción por “cero resultados”..</li>
-<li><code>getSingleResult()</code>: es solo para casos en los que la consulta siempre <strong>devuelve exactamente un resultado</strong>. Lanza excepción si no hay ninguno o si hay más de uno.</li>
-<li><code>getSingleResultOrNull()</code> → devuelve el único resultado o null si no hay ninguno; sigue lanzando excepción si hay más de uno.</li>
-<li><code>getResultStream()</code>: permite que los resultados se recuperen <strong>de forma incremental</strong>, utilizando un cursor de base de datos.</li>
-</ul>
-<div class="admonition warning warning">
-<p class="admonition-title">Warning</p>
-<p>El método <code>getResultStream()</code> <strong>no suele ser útil</strong>. Casi siempre es una mala idea mantener abierto el cursor de una base de datos.</p>
-</div>
-<h3 id="3-criteria-api-tipado-dinamico-sitio-web-oficial">3 Criteria API (tipado, dinámico) <a href="https://docs.jboss.org/hibernate/orm/6.1/userguide/html_single/Hibernate_User_Guide.html#criteria">Sitio Web Oficial</a></h3>
-<h4 id="que-es-y-cuando-usarla">🧮 ¿Qué es y cuándo usarla?</h4>
-<p>La Criteria API permite construir consultas tipadas y dinámicas (con filtros opcionales) en tiempo de compilación. Es ideal cuando:</p>
-<ul>
-<li>La consulta se arma condicionalmente (si viene un filtro, si no, etc.).</li>
-<li>Quieres seguridad de tipos (sin strings JPQL).</li>
-</ul>
-<h4 id="pasos">🚶 Pasos</h4>
-<ol>
-<li>Consigue el CriteriaBuilder de la session</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">cb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">getCriteriaBuilder</span><span class="p">();</span>
-</code></pre></div>
-<ol>
-<li>Crea la consulta (elige el tipo de resultado):</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">CriteriaQuery</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cb</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"> </span><span class="c1">// tipada</span>
-<span class="linenos" data-linenos="2 "></span><span class="c1">// o: CriteriaQuery&lt;Tuple&gt; cq = cb.createTupleQuery();      // tuplas</span>
-<span class="linenos" data-linenos="3 "></span><span class="c1">// o: CriteriaQuery&lt;Object[]&gt; cq = cb.createQuery(Object[].class); // arrays</span>
-</code></pre></div>
-<ol>
-<li>Define la raíz (Root)</li>
-</ol>
-<p>La raíz siempre es una entidad.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Root</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cq</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
-</code></pre></div>
-<ol>
-<li>Define las uniones JOIN, si las necesitas</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Root</span><span class="o">&lt;</span><span class="n">Reservation</span><span class="o">&gt;</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">criteria</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Reservation</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">Join</span><span class="o">&lt;</span><span class="n">Reservation</span><span class="p">,</span><span class="w"> </span><span class="n">Space</span><span class="o">&gt;</span><span class="w"> </span><span class="n">join</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">join</span><span class="p">(</span><span class="s">&quot;space&quot;</span><span class="p">);</span><span class="c1">//nombre del objeto en la clase Reservation</span>
-</code></pre></div>
-<ol>
-<li>Selecciona lo que quieres devolver</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">cq</span><span class="p">.</span><span class="na">select</span><span class="p">(</span><span class="n">u</span><span class="p">);</span><span class="w"> </span><span class="c1">// opcional si solo hay un root, devuelve todo el objeto</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">cq</span><span class="p">.</span><span class="na">select</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;email&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">//devuelve un campo</span>
-<span class="linenos" data-linenos="3 "></span><span class="n">cq</span><span class="p">.</span><span class="na">multiselect</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// -&gt; devuelve varios campos en forma de Tuple</span>
-<span class="linenos" data-linenos="4 "></span><span class="n">cq</span><span class="p">.</span><span class="na">select</span><span class="p">(</span><span class="n">cb</span><span class="p">.</span><span class="na">construct</span><span class="p">(</span><span class="n">UserDTO</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">)));</span><span class="w"> </span><span class="c1">//Como DTO/wrapper (lo más limpio)</span>
-</code></pre></div>
-<ol>
-<li>Añade filtros (predicados)</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w"> </span><span class="n">cq</span><span class="p">.</span><span class="na">multiselect</span><span class="p">(</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">            </span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">),</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">            </span><span class="n">cb</span><span class="p">.</span><span class="na">count</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">))</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="p">)</span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="n">cb</span><span class="p">.</span><span class="na">and</span><span class="p">(</span><span class="n">cb</span><span class="p">.</span><span class="na">isNull</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;fechaFin&quot;</span><span class="p">)),</span>
-<span class="linenos" data-linenos="6 "></span><span class="w">            </span><span class="n">cb</span><span class="p">.</span><span class="na">ge</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;capacidad&quot;</span><span class="p">),</span><span class="mi">10</span><span class="p">)))</span><span class="w">     </span><span class="c1">//decimos que la fechaFin no sea nula y que capacidad sea mayor que 10</span>
-</code></pre></div>
-<ol>
-<li>Orden/paginación (opcional)</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">cq</span><span class="p">.</span><span class="na">orderBy</span><span class="p">(</span><span class="n">cb</span><span class="p">.</span><span class="na">asc</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;nombre&quot;</span><span class="p">)));</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">TypedQuery</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">cq</span><span class="p">);</span>
-<span class="linenos" data-linenos="3 "></span><span class="n">q</span><span class="p">.</span><span class="na">setFirstResult</span><span class="p">((</span><span class="n">pagina</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">tam</span><span class="p">).</span><span class="na">setMaxResults</span><span class="p">(</span><span class="n">tam</span><span class="p">);</span>
-</code></pre></div>
-<ol>
-<li>Ejecuta</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">resultados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="n">cq</span><span class="p">).</span><span class="na">getResultList</span><span class="p">();</span>
-</code></pre></div>
-<hr />
-<h3 id="consejos-de-consultas">📌 Consejos de consultas</h3>
-<ul>
-<li>Proyecciones a <strong>DTO</strong> para lecturas complejas; no devuelvas entidades a la capa web.</li>
-<li>Indexa columnas de filtrado/ordenación.</li>
+<li>Hibernate gestiona automáticamente las operaciones CRUD basándose en el <strong>estado de la entidad</strong>.  </li>
+<li>La mayoría de los <code>INSERT</code>, <code>UPDATE</code> y <code>DELETE</code> se ejecutan automáticamente al hacer <code>commit()</code>.  </li>
+<li>Usar patrones DAO/Service mantiene un código limpio, mantenible y desacoplado.</li>
 </ul>
 <hr />
 <h2 id="gestion-de-transacciones">🔐 Gestión de transacciones</h2>

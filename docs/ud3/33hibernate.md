@@ -79,34 +79,49 @@ Crearemos esta clase de utilidad `HibernateUtil` para inicializar una sola vez e
 Así evitaremos crear SessionFactory repetidamente y mantenemos centralizado dónde se configura/gestiona Hibernate.
 
 ```java
-public class HibernateUtil {
+public final class HibernateUtil {
 
-    private static SessionFactory sessionFactory;
+    private static volatile SessionFactory sessionFactory;
+    private static volatile StandardServiceRegistry registry;
 
-    private HibernateUtil(){}
-
-    private static SessionFactory buildSessionFactory() {
-        Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
-
-        try {
-            Configuration configuration = new Configuration();
-
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                    .configure("META-INF/hibernate.cfg.xml").build();
-
-            //meter xml de las entity
-            Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
-            return metadata.getSessionFactoryBuilder().build();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    private HibernateUtil() { }
 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
-            sessionFactory = buildSessionFactory();
+            Properties props = loadAppProperties();
+            init(props);
         }
         return sessionFactory;
+    }
+
+    private static synchronized void init(Properties properties) {
+        if (sessionFactory == null) {
+            registry = new StandardServiceRegistryBuilder()
+                    .applySettings(properties)
+                    .build();
+
+            sessionFactory = new MetadataSources(registry)
+                    .addAnnotatedClass(Customer.class)//entidades a cargar
+                    .addAnnotatedClass(Order.class)
+                    .buildMetadata()
+                    .buildSessionFactory();
+        }
+    }
+
+    private static Properties loadAppProperties() {
+        try (InputStream in = Thread.currentThread()
+                .getContextClassLoader()
+                .getResourceAsStream("application.properties")) {
+
+            if (in == null) {
+                throw new IllegalStateException("No se encuentra application.properties en el classpath");
+            }
+            Properties p = new Properties();
+            p.load(in);
+            return p;
+        } catch (Exception e) {
+            throw new RuntimeException("Error cargando application.properties", e);
+        }
     }
 
     public static void close() {
@@ -114,7 +129,6 @@ public class HibernateUtil {
         getSessionFactory().close();
     }
 }
-
 ```
 
 **Resumen de operaciones**  

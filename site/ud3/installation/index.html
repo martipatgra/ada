@@ -19,7 +19,7 @@
     
     
       
-        <title>3.3.- Configuración e instalación de Hibernate - Acceso a Datos</title>
+        <title>3.3.- Configuración e instalación de Hibernate. Mapeo de entidades - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuracion-e-instalacion-de-hibernate" class="md-skip">
+        <a href="#configuracion-e-instalacion-de-hibernate-mapeo-de-entidades" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3.3.- Configuración e instalación de Hibernate
+              3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
             
           </span>
         </div>
@@ -768,12 +768,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          3.3.- Configuración e instalación de Hibernate
+          3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        3.3.- Configuración e instalación de Hibernate
+        3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
       </a>
       
         
@@ -809,6 +809,13 @@
           <li class="md-nav__item">
   <a href="#2-configuracion-mediante-hibernatecfgxml" class="md-nav__link">
     2. Configuración mediante hibernate.cfg.xml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configuracion-mediante-applicationproperties" class="md-nav__link">
+    2. Configuración mediante application.properties
   </a>
   
 </li>
@@ -902,8 +909,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../operaciones/" class="md-nav__link">
-        3.5.- Operaciones con objetos en Hibernate
+      <a href="../operacionescrud/" class="md-nav__link">
+        3.5.- Operaciones CRUD con objetos en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/" class="md-nav__link">
+        3.6.- Formas de realizar consultas en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../relations/" class="md-nav__link">
+        3.7.- Relaciones avanzadas en Hibernate
       </a>
     </li>
   
@@ -917,7 +952,7 @@
   
     <li class="md-nav__item">
       <a href="../34dao/" class="md-nav__link">
-        3.5.- Patrón DAO
+        3.8.- Patrón DAO
       </a>
     </li>
   
@@ -931,7 +966,7 @@
   
     <li class="md-nav__item">
       <a href="../35service/" class="md-nav__link">
-        3.6.- Service Layer
+        3.9.- Service Layer
       </a>
     </li>
   
@@ -1196,6 +1231,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#2-configuracion-mediante-applicationproperties" class="md-nav__link">
+    2. Configuración mediante application.properties
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1272,7 +1314,7 @@
 
 
 
-<h1 id="configuracion-e-instalacion-de-hibernate">🔹 Configuración e instalación de Hibernate</h1>
+<h1 id="configuracion-e-instalacion-de-hibernate-mapeo-de-entidades">🔹 Configuración e instalación de Hibernate. Mapeo de entidades</h1>
 <p>En este bloque aprenderemos a <strong>instalar y configurar Hibernate</strong>, además de explorar dos formas de definir el mapeo: mediante <strong>ficheros XML</strong> y mediante <strong>anotaciones en las clases Java</strong>.</p>
 <hr />
 <h2 id="1instalacion-y-configuracion-de-hibernate">⚙️ 1.Instalación y configuración de Hibernate</h2>
@@ -1280,32 +1322,37 @@
 <p>La forma más habitual es incluir Hibernate y JPA en un proyecto <strong>Maven</strong> o <strong>Gradle</strong>.</p>
 <p><strong>Ejemplo con Maven (<code>pom.xml</code>):</strong></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nt">&lt;dependencies&gt;</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="nt">&lt;dependency&gt;</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">  </span><span class="nt">&lt;groupId&gt;</span>org.hibernate.orm<span class="nt">&lt;/groupId&gt;</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="w">  </span><span class="nt">&lt;artifactId&gt;</span>hibernate-core<span class="nt">&lt;/artifactId&gt;</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">  </span><span class="nt">&lt;version&gt;</span>6.5.2.Final<span class="nt">&lt;/version&gt;</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">        </span><span class="nt">&lt;groupId&gt;</span>org.hibernate.orm<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>hibernate-core<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">        </span><span class="nt">&lt;version&gt;</span>${hibernate.version}<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
 <span class="linenos" data-linenos=" 7 "></span>
-<span class="linenos" data-linenos=" 8 "></span><span class="nt">&lt;dependency&gt;</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">  </span><span class="nt">&lt;groupId&gt;</span>jakarta.persistence<span class="nt">&lt;/groupId&gt;</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">  </span><span class="nt">&lt;artifactId&gt;</span>jakarta.persistence-api<span class="nt">&lt;/artifactId&gt;</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="nt">&lt;version&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
-<span class="linenos" data-linenos="12 "></span><span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">        </span><span class="nt">&lt;groupId&gt;</span>org.hibernate.orm<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>hibernate-hikaricp<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">        </span><span class="nt">&lt;version&gt;</span>${hibernate.version}<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
 <span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span><span class="cm">&lt;!-- MySQL JDBC Driver --&gt;</span>
-<span class="linenos" data-linenos="15 "></span><span class="nt">&lt;dependency&gt;</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.mysql<span class="nt">&lt;/groupId&gt;</span>
-<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>mysql-connector-j<span class="nt">&lt;/artifactId&gt;</span>
-<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="nt">&lt;version&gt;</span>8.4.0<span class="nt">&lt;/version&gt;</span>
-<span class="linenos" data-linenos="19 "></span><span class="nt">&lt;/dependency&gt;</span>
-<span class="linenos" data-linenos="20 "></span>
-<span class="linenos" data-linenos="21 "></span><span class="cm">&lt;!-- Logging sencillo para ver SQL en consola (opcional en demos) --&gt;</span>
-<span class="linenos" data-linenos="22 "></span><span class="nt">&lt;dependency&gt;</span>
-<span class="linenos" data-linenos="23 "></span><span class="w">  </span><span class="nt">&lt;groupId&gt;</span>org.slf4j<span class="nt">&lt;/groupId&gt;</span>
-<span class="linenos" data-linenos="24 "></span><span class="w">  </span><span class="nt">&lt;artifactId&gt;</span>slf4j-simple<span class="nt">&lt;/artifactId&gt;</span>
-<span class="linenos" data-linenos="25 "></span><span class="w">  </span><span class="nt">&lt;version&gt;</span>2.0.13<span class="nt">&lt;/version&gt;</span>
-<span class="linenos" data-linenos="26 "></span><span class="nt">&lt;/dependency&gt;</span>
-<span class="linenos" data-linenos="27 "></span><span class="nt">&lt;/dependencies&gt;</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">        </span><span class="nt">&lt;groupId&gt;</span>com.mysql<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>mysql-connector-j<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">        </span><span class="nt">&lt;version&gt;</span>9.5.0<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="nt">&lt;groupId&gt;</span>org.apache.logging.log4j<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>log4j-core<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="nt">&lt;version&gt;</span>2.19.0<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">        </span><span class="nt">&lt;groupId&gt;</span>org.apache.logging.log4j<span class="nt">&lt;/groupId&gt;</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>log4j-slf4j2-impl<span class="nt">&lt;/artifactId&gt;</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">        </span><span class="nt">&lt;version&gt;</span>2.23.1<span class="nt">&lt;/version&gt;</span>
+<span class="linenos" data-linenos="30 "></span><span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="linenos" data-linenos="31 "></span>
+<span class="linenos" data-linenos="32 "></span><span class="nt">&lt;/dependencies&gt;</span>
 </code></pre></div>
 <h3 id="2-configuracion-mediante-hibernatecfgxml">2. Configuración mediante <code>hibernate.cfg.xml</code></h3>
 <p>El fichero debe estar en el <strong>classpath</strong> (Maven/Gradle los copian a <code>target/classes/</code>).
@@ -1356,25 +1403,62 @@ En él defines:<br />
 <span class="linenos" data-linenos="35 "></span><span class="w">  </span><span class="nt">&lt;/session-factory&gt;</span>
 <span class="linenos" data-linenos="36 "></span><span class="nt">&lt;/hibernate-configuration&gt;</span>
 </code></pre></div>
+<h3 id="2-configuracion-mediante-applicationproperties">2. Configuración mediante <code>application.properties</code></h3>
+<p>En vez de crear el fichero hibernate.cfg.xml, podemos meter toda la configuración en un fichero .properties.</p>
+<p>Para ello, el fichero debe estar dentro de /src/main/resources/application.properties con el siguiente contenido de configuración:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="o">#</span><span class="w"> </span><span class="c1">--- Hibernate usa Hikari internamente ---</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">hibernate</span><span class="p">.</span><span class="k">connection</span><span class="p">.</span><span class="n">provider_class</span><span class="o">=</span><span class="n">org</span><span class="p">.</span><span class="n">hibernate</span><span class="p">.</span><span class="n">hikaricp</span><span class="p">.</span><span class="n">internal</span><span class="p">.</span><span class="n">HikariCPConnectionProvider</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">hikari</span><span class="p">.</span><span class="n">dataSourceClassName</span><span class="o">=</span><span class="n">com</span><span class="p">.</span><span class="n">mysql</span><span class="p">.</span><span class="n">cj</span><span class="p">.</span><span class="n">jdbc</span><span class="p">.</span><span class="n">MysqlDataSource</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">hikari</span><span class="p">.</span><span class="n">dataSource</span><span class="p">.</span><span class="n">url</span><span class="o">=</span><span class="n">jdbc</span><span class="p">:</span><span class="n">mysql</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">3306</span><span class="o">/</span><span class="n">newada</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">hikari</span><span class="p">.</span><span class="n">dataSource</span><span class="p">.</span><span class="k">user</span><span class="o">=</span><span class="n">root</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">hikari</span><span class="p">.</span><span class="n">dataSource</span><span class="p">.</span><span class="n">password</span><span class="o">=</span><span class="k">admin</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">hikari</span><span class="p">.</span><span class="n">autoCommit</span><span class="o">=</span><span class="k">false</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="o">#</span><span class="w"> </span><span class="n">Pool</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">hikari</span><span class="p">.</span><span class="n">maximumPoolSize</span><span class="o">=</span><span class="mi">15</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">hikari</span><span class="p">.</span><span class="n">minimumIdle</span><span class="o">=</span><span class="mi">5</span>
+<span class="linenos" data-linenos="12 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">hikari</span><span class="p">.</span><span class="n">idleTimeout</span><span class="o">=</span><span class="mi">600000</span>
+<span class="linenos" data-linenos="13 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">hikari</span><span class="p">.</span><span class="n">maxLifetime</span><span class="o">=</span><span class="mi">1700000</span>
+<span class="linenos" data-linenos="14 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">hikari</span><span class="p">.</span><span class="n">connectionTimeout</span><span class="o">=</span><span class="mi">30000</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="o">#</span><span class="w"> </span><span class="n">Hibernate</span><span class="p">,</span><span class="w"> </span><span class="n">La</span><span class="w"> </span><span class="n">sesión</span><span class="w"> </span><span class="n">se</span><span class="w"> </span><span class="n">abre</span><span class="w"> </span><span class="n">al</span><span class="w"> </span><span class="n">empezar</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">transacción</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">se</span><span class="w"> </span><span class="n">cierra</span><span class="w"> </span><span class="n">al</span><span class="w"> </span><span class="n">hacer</span><span class="w"> </span><span class="k">commit</span><span class="o">/</span><span class="k">rollback</span><span class="p">.</span>
+<span class="linenos" data-linenos="17 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">current_session_context_class</span><span class="o">=</span><span class="n">thread</span>
+<span class="linenos" data-linenos="18 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">dialect</span><span class="o">=</span><span class="n">org</span><span class="p">.</span><span class="n">hibernate</span><span class="p">.</span><span class="n">dialect</span><span class="p">.</span><span class="n">MySQLDialect</span>
+<span class="linenos" data-linenos="19 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">hbm2ddl</span><span class="p">.</span><span class="n">auto</span><span class="o">=</span><span class="k">update</span>
+<span class="linenos" data-linenos="20 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">show_sql</span><span class="o">=</span><span class="k">false</span>
+<span class="linenos" data-linenos="21 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">format_sql</span><span class="o">=</span><span class="k">false</span>
+<span class="linenos" data-linenos="22 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">jdbc</span><span class="p">.</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">25</span>
+<span class="linenos" data-linenos="23 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">order_inserts</span><span class="o">=</span><span class="k">true</span>
+<span class="linenos" data-linenos="24 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">order_updates</span><span class="o">=</span><span class="k">true</span>
+<span class="linenos" data-linenos="25 "></span><span class="n">hibernate</span><span class="p">.</span><span class="n">generate_statistics</span><span class="o">=</span><span class="k">false</span>
+<span class="linenos" data-linenos="26 "></span><span class="n">hibernate</span><span class="p">.</span><span class="k">connection</span><span class="p">.</span><span class="n">provider_disables_autocommit</span><span class="o">=</span><span class="k">true</span>
+<span class="linenos" data-linenos="27 "></span>
+<span class="linenos" data-linenos="28 "></span><span class="o">#</span><span class="w"> </span><span class="n">Opciones</span><span class="w"> </span><span class="n">más</span><span class="w"> </span><span class="n">comunes</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">hibernate</span><span class="p">.</span><span class="n">hbm2ddl</span><span class="p">.</span><span class="n">auto</span><span class="p">:</span>
+<span class="linenos" data-linenos="29 "></span><span class="o">#</span><span class="k">create</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">crea</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="n">esquema</span><span class="w"> </span><span class="n">desde</span><span class="w"> </span><span class="n">cero</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">cada</span><span class="w"> </span><span class="n">arranque</span><span class="w"> </span><span class="p">(</span><span class="n">borra</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">crea</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="n">anterior</span><span class="p">).</span>
+<span class="linenos" data-linenos="30 "></span><span class="o">#</span><span class="k">create</span><span class="o">-</span><span class="k">drop</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">como</span><span class="w"> </span><span class="k">create</span><span class="p">,</span><span class="w"> </span><span class="n">pero</span><span class="w"> </span><span class="n">además</span><span class="w"> </span><span class="n">borra</span><span class="w"> </span><span class="n">al</span><span class="w"> </span><span class="n">parar</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="p">(</span><span class="n">borra</span><span class="w"> </span><span class="o">-</span><span class="n">crea</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">borra</span><span class="p">,</span><span class="w"> </span><span class="err">ú</span><span class="n">til</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">tests</span><span class="p">).</span>
+<span class="linenos" data-linenos="31 "></span><span class="o">#</span><span class="k">update</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">crea</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">altera</span><span class="w"> </span><span class="n">tablas</span><span class="o">/</span><span class="n">columnas</span><span class="w"> </span><span class="n">necesarias</span><span class="w"> </span><span class="n">sin</span><span class="w"> </span><span class="n">borrar</span><span class="w"> </span><span class="n">datos</span><span class="w"> </span><span class="p">(</span><span class="n">ojo</span><span class="p">:</span><span class="w"> </span><span class="k">no</span><span class="w"> </span><span class="n">es</span><span class="w"> </span><span class="n">un</span><span class="w"> </span><span class="n">migrador</span><span class="p">).</span>
+<span class="linenos" data-linenos="32 "></span><span class="o">#</span><span class="n">validate</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">valida</span><span class="w"> </span><span class="err">ú</span><span class="n">nicamente</span><span class="w"> </span><span class="p">(</span><span class="n">Hibernate</span><span class="w"> </span><span class="n">compara</span><span class="w"> </span><span class="n">esquemas</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">falla</span><span class="w"> </span><span class="n">si</span><span class="w"> </span><span class="n">falta</span><span class="w"> </span><span class="n">algo</span><span class="p">).</span>
+<span class="linenos" data-linenos="33 "></span><span class="o">#</span><span class="k">none</span><span class="w"> </span><span class="p">(</span><span class="n">o</span><span class="w"> </span><span class="k">no</span><span class="w"> </span><span class="n">ponerla</span><span class="p">)</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="k">no</span><span class="w"> </span><span class="n">hace</span><span class="w"> </span><span class="n">nada</span><span class="p">.</span>
+</code></pre></div>
 <h2 id="mapeo-basado-en-anotaciones">🏷️ Mapeo basado en anotaciones</h2>
 <p>El mapeo basado en anotaciones consiste en definir la correspondencia clase ↔ tabla y atributo ↔ columna directamente en el código Java usando anotaciones de JPA/Jakarta</p>
 <h3 id="1-entidad-basica">📄 1 Entidad básica</h3>
 <ul>
-<li><code>@Entity</code> → Marca la clase como persistente.</li>
-<li><code>@Table(name="...")</code> → Cambia el nombre de la tabla y permite uniqueConstraints/indexes.</li>
+<li><code>@Entity</code> → Marca la clase como persistente.    </li>
+<li><code>@Table(name="...")</code> → Cambia el nombre de la tabla y permite uniqueConstraints/indexes.    </li>
 </ul>
-<p>Identidad: <br />
-- <code>@Id</code> → Clave primaria.
-- <code>@GeneratedValue(strategy=…)</code> → Estrategia de generación:<br />
-    - IDENTITY (auto-increment en MySQL),
-    - SEQUENCE (PostgreSQL/Oracle; suele usarse con @SequenceGenerator),
-    - AUTO (deja que el proveedor decida),
-    - TABLE (tabla de secuencias).</p>
-<p>Mapeo de columnas:<br />
-- <code>@Column(name="...", nullable=…, length=…, unique=…)</code> → Personaliza la columna.
-- <code>@Transient</code> → No persistir el atributo.
-- <code>@Enumerated(EnumType.STRING)</code> → Guarda el nombre del enum (mejor que ORDINAL).
-- <code>@Lob</code> → CLOB/BLOB para textos o binarios grandes.</p>
+<p><strong>Identidad</strong>:  <br />
+- <code>@Id</code> → Clave primaria.   <br />
+- <code>@GeneratedValue(strategy=…)</code> → Estrategia de generación:     <br />
+    - IDENTITY (auto-increment en MySQL),   <br />
+    - SEQUENCE (PostgreSQL/Oracle; suele usarse con @SequenceGenerator),  <br />
+    - AUTO (deja que el proveedor decida),  <br />
+    - TABLE (tabla de secuencias).    </p>
+<p><strong>Mapeo de columnas</strong>:    <br />
+- <code>@Column(name="...", nullable=…, length=…, unique=…)</code> → Personaliza la columna.     <br />
+- <code>@Transient</code> → No persistir el atributo.      <br />
+- <code>@Enumerated(EnumType.STRING)</code> → Guarda el nombre del enum (mejor que ORDINAL). <br />
+- <code>@Lob</code> → CLOB/BLOB para textos o binarios grandes.      </p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@Entity</span><span class="w"> </span>
 <span class="linenos" data-linenos=" 2 "></span><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;usuarios&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Usuario</span><span class="w"> </span><span class="p">{</span>
@@ -1382,12 +1466,16 @@ En él defines:<br />
 <span class="linenos" data-linenos=" 5 "></span><span class="w">  </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span><span class="w"> </span><span class="c1">// MySQL</span>
 <span class="linenos" data-linenos=" 6 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
 <span class="linenos" data-linenos=" 7 "></span>
-<span class="linenos" data-linenos=" 8 "></span><span class="w">  </span><span class="nd">@Column</span><span class="p">(</span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">  </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;nombre&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
 <span class="linenos" data-linenos=" 9 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nombre</span><span class="p">;</span>
 <span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="nd">@Column</span><span class="p">(</span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">unique</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">unique</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">)</span>
 <span class="linenos" data-linenos="12 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
-<span class="linenos" data-linenos="13 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="w">  </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;tipo&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">  </span><span class="nd">@Enumerated</span><span class="p">(</span><span class="n">EnumType</span><span class="p">.</span><span class="na">STRING</span><span class="p">)</span><span class="w"> </span><span class="c1">//guarda el nombre en forma de string, en vez de un ordinal</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Tipo</span><span class="w"> </span><span class="n">tipo</span><span class="p">;</span>
+<span class="linenos" data-linenos="17 "></span><span class="p">}</span>
 </code></pre></div>
 <h3 id="2-relaciones">2 Relaciones</h3>
 <p><strong>N:1 (muchos-a-uno)</strong>
