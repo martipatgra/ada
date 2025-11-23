@@ -1913,12 +1913,12 @@
 <ul>
 <li>
 <p><code>@JoinColumn(nullable = false)</code> → Regla de <strong>base de datos/DDL</strong>: la columna FK es NOT NULL.
-La validación “dura” sucede en la <strong>BD</strong> (ConstraintViolation) al hacer <code>flush</code> o <code>commit</code>. Asegura el esquema físico de BD.</p>
+La validación “dura” sucede en la <strong>BD</strong> (ConstraintViolation) al hacer <code>flush</code> o <code>commit</code>. Asegura el esquema físico de BD (si la columna puede ser NULL en la tabla).</p>
 </li>
 <li>
 <p><code>@ManyToOne(optional = false)</code> → Regla <strong>de modelo JPA</strong> (runtime): esta asociación <strong>no puede ser null</strong>.
 Le da pistas a Hibernate para <strong>validar antes, optimizar joins y evitar selects innecesarios</strong> con LAZY.
-No garantiza que en la BD la FK sea NOT NULL.</p>
+No garantiza que en la BD la FK sea NOT NULL (si la relación puede ser null en el modelo de objetos).</p>
 </li>
 </ul>
 <p>Se aconseja su uso conjunto.</p>
