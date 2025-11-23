@@ -938,6 +938,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#en-que-tipos-de-relacion-se-puede-usar-orphanremoval" class="md-nav__link">
+    ✅ ¿En qué tipos de relación se puede usar orphanRemoval?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ejemplo_2" class="md-nav__link">
     🧠 Ejemplo
   </a>
@@ -1436,6 +1443,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#en-que-tipos-de-relacion-se-puede-usar-orphanremoval" class="md-nav__link">
+    ✅ ¿En qué tipos de relación se puede usar orphanRemoval?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ejemplo_2" class="md-nav__link">
     🧠 Ejemplo
   </a>
@@ -1785,23 +1799,45 @@
 <hr />
 <h2 id="3-eliminacion-de-huerfanos-orphanremoval">🧹 3. Eliminación de huérfanos (<code>orphanRemoval</code>)</h2>
 <p>Cuando se elimina un objeto de una colección en el lado del padre, o cuando se desconecta o desvincula una relación, por ejemplo, al establecer un campo a null o al asignar una nueva entidad. Si esa colección tiene <code>orphanRemoval=true</code>, Hibernate lo borra también de la BD.</p>
+<h3 id="en-que-tipos-de-relacion-se-puede-usar-orphanremoval">✅ ¿En qué tipos de relación se puede usar <code>orphanRemoval</code>?</h3>
+<p>Solo tiene sentido (y está soportado por JPA/Hibernate) en:       <br />
+- <code>@OneToOne</code>     <br />
+- <code>@OneToMany</code>          </p>
+<p>Da igual si:          <br />
+- Es el lado propietario (@JoinColumn)    <br />
+- O el lado mappedBy        </p>
+<p>Lo importante es que sea una relación 1:1 o 1:N donde el hijo dependa del padre.</p>
 <h3 id="ejemplo_2">🧠 Ejemplo</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pedido&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">orphanRemoval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
 <span class="linenos" data-linenos="2 "></span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">LineaPedido</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lineas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 <span class="linenos" data-linenos="3 "></span>
 <span class="linenos" data-linenos="4 "></span><span class="c1">// Uso</span>
 <span class="linenos" data-linenos="5 "></span><span class="n">pedido</span><span class="p">.</span><span class="na">getLineas</span><span class="p">().</span><span class="na">remove</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">//</span>
-<span class="linenos" data-linenos="6 "></span><span class="n">session</span><span class="p">.</span><span class="na">flush</span><span class="p">();</span><span class="w"> </span><span class="c1">// 🧹 La línea eliminada desaparece de la BD</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">session</span><span class="p">.</span><span class="na">flush</span><span class="p">();</span><span class="w"> </span><span class="c1">// 🧹 La línea quitada de la lista en pedido desaparece de la BD</span>
 </code></pre></div>
 <blockquote>
 <p>⚠️ <strong>Importante:</strong> <code>orphanRemoval</code> solo funciona con relaciones tipo <code>@OneToOne</code> o <code>@OneToMany</code>.</p>
 </blockquote>
 <h3 id="uso_1">⚖️ Uso</h3>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Pedido</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Pedido</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span>
-<span class="linenos" data-linenos="2 "></span><span class="n">LineaPedido</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">getLineas</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="linenos" data-linenos="3 "></span>
-<span class="linenos" data-linenos="4 "></span><span class="n">p</span><span class="p">.</span><span class="na">getLineas</span><span class="p">().</span><span class="na">remove</span><span class="p">(</span><span class="n">l</span><span class="p">);</span><span class="w"> </span><span class="c1">// ❌ se elimina de la lista de líneas del pedido</span>
-<span class="linenos" data-linenos="5 "></span><span class="n">session</span><span class="p">.</span><span class="na">flush</span><span class="p">();</span><span class="w"> </span><span class="c1">// 🧹 Hibernate borra la LineaPedido de la BD</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">Pedido</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Pedido</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">LineaPedido</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">getLineas</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">p</span><span class="p">.</span><span class="na">getLineas</span><span class="p">().</span><span class="na">remove</span><span class="p">(</span><span class="n">l</span><span class="p">);</span><span class="w"> </span><span class="c1">// ❌ se elimina de la lista de líneas del pedido</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">session</span><span class="p">.</span><span class="na">flush</span><span class="p">();</span><span class="w"> </span><span class="c1">// 🧹 Hibernate borra la LineaPedido de la BD</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">p</span><span class="p">.</span><span class="na">setLines</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">());</span><span class="w"> </span><span class="c1">//→ borras todas las líneas en BD.</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">p</span><span class="p">.</span><span class="na">getLines</span><span class="p">().</span><span class="na">clear</span><span class="p">();</span><span class="w"> </span><span class="c1">// DELETE de todas las líneas</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="c1">//Relaciones 1:1</span>
+<span class="linenos" data-linenos="12 "></span><span class="nd">@Entity</span>
+<span class="linenos" data-linenos="13 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">User</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="nd">@OneToOne</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;user&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">              </span><span class="n">orphanRemoval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">AccessCard</span><span class="w"> </span><span class="n">accessCard</span><span class="p">;</span>
+<span class="linenos" data-linenos="18 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="19 "></span><span class="n">user</span><span class="p">.</span><span class="na">setAccessCard</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">AccessCard</span><span class="w"> </span><span class="n">se</span><span class="w"> </span><span class="n">borra</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">BD</span><span class="p">.</span>
 </code></pre></div>
 <hr />
 <h2 id="4-que-atributos-se-pueden-usar-en-cada-relacion">🧱 4. Qué atributos se pueden usar en cada relación</h2>
