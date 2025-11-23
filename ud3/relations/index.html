@@ -856,6 +856,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#relaciones-manytoone-y-onetoone-to-one" class="md-nav__link">
+    🏷️ Relaciones @ManyToOne y @OneToOne (To-One)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relaciones-onetomany-y-manytomany-colecciones" class="md-nav__link">
+    🏷️ Relaciones @OneToMany y @ManyToMany (colecciones)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-en-tabla" class="md-nav__link">
+    📄 Resumen en tabla
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ejemplo" class="md-nav__link">
     🧠 Ejemplo
   </a>
@@ -877,7 +898,14 @@
         
           <li class="md-nav__item">
   <a href="#tipos-de-cascadetype" class="md-nav__link">
-    Tipos de CascadeType
+    ⭐ Tipos de CascadeType
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donde-si-y-donde-no-poner-cascade-reglas-finales" class="md-nav__link">
+    ⭐ DÓNDE SÍ Y DÓNDE NO PONER cascade (reglas finales)
   </a>
   
 </li>
@@ -1326,6 +1354,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#relaciones-manytoone-y-onetoone-to-one" class="md-nav__link">
+    🏷️ Relaciones @ManyToOne y @OneToOne (To-One)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relaciones-onetomany-y-manytomany-colecciones" class="md-nav__link">
+    🏷️ Relaciones @OneToMany y @ManyToMany (colecciones)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-en-tabla" class="md-nav__link">
+    📄 Resumen en tabla
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ejemplo" class="md-nav__link">
     🧠 Ejemplo
   </a>
@@ -1347,7 +1396,14 @@
         
           <li class="md-nav__item">
   <a href="#tipos-de-cascadetype" class="md-nav__link">
-    Tipos de CascadeType
+    ⭐ Tipos de CascadeType
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donde-si-y-donde-no-poner-cascade-reglas-finales" class="md-nav__link">
+    ⭐ DÓNDE SÍ Y DÓNDE NO PONER cascade (reglas finales)
   </a>
   
 </li>
@@ -1541,32 +1597,72 @@
 </ul>
 <hr />
 <h2 id="1-estrategias-de-carga-fetchtypelazy-vs-fetchtypeeager">🎯 1. Estrategias de carga (<code>FetchType.LAZY</code> vs <code>FetchType.EAGER</code>)</h2>
-<p>Determinan <strong>cuándo</strong> se cargan las entidades relacionadas.</p>
+<p>Determinan <strong>cuándo</strong> se cargan las entidades relacionadas. Se puede usar <strong>en todas las relaciones</strong>, pero no tiene el mismo sentido ni las mismas “consecuencias” según el tipo.</p>
 <ul>
-<li><strong>LAZY (perezoso):</strong> solo se carga la entidad principal; la relación se carga <strong>cuando se accede por primera vez</strong> al atributo.</li>
-<li><strong>EAGER (ansioso):</strong> la relación se carga <strong>junto con la entidad principal</strong>, en la misma consulta (JOIN o varias consultas internas).</li>
+<li><strong><code>FetchType.LAZY</code> (perezoso):</strong> se devuelve un proxy o una colección perezosa y la relación <strong>solo se carga cuando accedes al getter</strong>.</li>
+<li><strong><code>FetchType.EAGER</code> (ansioso):</strong> cuando <strong>cargas la entidad principal</strong>, siempre se carga <strong>también la relación</strong>, en la misma consulta (JOIN o varias consultas internas).</li>
 </ul>
+<p><em>Proxy es un objeto “falso” que Hibernate coloca en lugar de la entidad real cuando usamos LAZY. Solo guarda el id y una referencia a la sesión.</em></p>
+<h3 id="relaciones-manytoone-y-onetoone-to-one">🏷️ Relaciones @ManyToOne y @OneToOne (To-One)</h3>
+<p>Defaults JPA:      <br />
+- <code>@ManyToOne</code> → EAGER por defecto.     <br />
+- <code>@OneToOne</code> → EAGER por defecto.      </p>
+<blockquote>
+<p>En Hibernate es totalmente válido y muy recomendable usar fetch = LAZY en @ManyToOne y @OneToOne, salvo que de verdad necesites siempre esa relación.</p>
+</blockquote>
+<h3 id="relaciones-onetomany-y-manytomany-colecciones">🏷️ Relaciones @OneToMany y @ManyToMany (colecciones)</h3>
+<p>Defaults JPA:         <br />
+- <code>@OneToMany</code> → LAZY por defecto.      <br />
+- <code>@ManyToMany</code> → LAZY por defecto.       </p>
+<blockquote>
+<p><strong>¿Por qué casi nunca interesa EAGER aquí?</strong> Si pones EAGER en colecciones, cada vez que cargues la entidad principal, Hibernate tendrá que hacer joins complejos, o lanzar queries adicionales para cada colección.</p>
+</blockquote>
+<h3 id="resumen-en-tabla">📄 Resumen en tabla</h3>
 <table>
 <thead>
 <tr>
-<th>Tipo</th>
-<th>Descripción</th>
-<th>Ejemplo típico</th>
+<th>Tipo de relación</th>
+<th>Default JPA</th>
+<th>¿Se puede poner LAZY?</th>
+<th>¿Se puede poner EAGER?</th>
+<th>Recomendación real en Hibernate</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>LAZY</code></td>
-<td>Se carga solo cuando se accede al atributo. ✅ Recomendado para la mayoría de casos.</td>
-<td><code>@OneToMany(fetch = FetchType.LAZY)</code></td>
+<td><code>@ManyToOne</code></td>
+<td>EAGER</td>
+<td>Sí (muy usado)</td>
+<td>Sí</td>
+<td><strong>LAZY casi siempre</strong></td>
 </tr>
 <tr>
-<td><code>EAGER</code></td>
-<td>Se carga automáticamente junto con la entidad principal. ⚠️ Puede generar sobrecarga o el problema N+1.</td>
-<td><code>@ManyToOne(fetch = FetchType.EAGER)</code></td>
+<td><code>@OneToOne</code></td>
+<td>EAGER</td>
+<td>Sí (Hibernate lo soporta)</td>
+<td>Sí</td>
+<td><strong>LAZY casi siempre</strong></td>
+</tr>
+<tr>
+<td><code>@OneToMany</code> (colección)</td>
+<td>LAZY</td>
+<td>Sí (default)</td>
+<td>Sí</td>
+<td><strong>LAZY siempre</strong>, evitar EAGER</td>
+</tr>
+<tr>
+<td><code>@ManyToMany</code></td>
+<td>LAZY</td>
+<td>Sí (default)</td>
+<td>Sí</td>
+<td><strong>LAZY siempre</strong>, evitar EAGER</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note importante">
+<p class="admonition-title">Note</p>
+<p><code>LazyInitializationException</code> se obtiene cuando cuando se dan estas dos condiciones: tienes algo mapeado como LAZY (un @ManyToOne, @OneToMany, @ManyToMany, etc.) e intentas acceder a esa relación cuando la Session ya está cerrada (o la entidad está detach). El proxy intenta inicializarse → necesita ir a BD. Pregunta a Hibernate por la <code>Session</code>. No hay sesión ➜ 💣 <code>LazyInitializationException</code></p>
+</div>
 <h3 id="ejemplo">🧠 Ejemplo</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@Entity</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Departamento</span><span class="w"> </span><span class="p">{</span>
@@ -1600,8 +1696,12 @@
 </blockquote>
 <hr />
 <h2 id="2-cascadas-cascade">🔗 2. Cascadas (<code>cascade</code>)</h2>
-<p>Permite que una operación sobre una entidad principal (persist, remove, merge...) se aplique también a sus entidades relacionadas.</p>
-<h3 id="tipos-de-cascadetype">Tipos de <code>CascadeType</code></h3>
+<p>Cuando tú haces una operación sobre <strong>una entidad padre</strong>, Hibernate mira sus relaciones y dice:</p>
+<blockquote>
+<p>“¿Debo aplicar también esta operación sobre la entidad hija?”</p>
+</blockquote>
+<p>Si la respuesta es sí por el tipo de cascade configurado → Hibernate ejecuta automáticamente esa operación en la entidad hija SIN que tú lo pidas explícitamente.</p>
+<h3 id="tipos-de-cascadetype">⭐ Tipos de <code>CascadeType</code></h3>
 <table>
 <thead>
 <tr>
@@ -1612,19 +1712,19 @@
 <tbody>
 <tr>
 <td><code>PERSIST</code></td>
-<td>Inserta entidades relacionadas automáticamente.</td>
+<td>Cuando hago <code>persist()</code> en el padre → Hibernate hace <code>persist()</code> en los hijos. Relaciones 1:1 o 1:N donde el hijo no existe sin el padre</td>
 </tr>
 <tr>
 <td><code>MERGE</code></td>
-<td>Actualiza entidades relacionadas.</td>
+<td>Cuando hago <code>merge()</code> en el padre → Hibernate hace <code>merge()</code> en los hijos.</td>
 </tr>
 <tr>
 <td><code>REMOVE</code></td>
-<td>Elimina las relacionadas.</td>
+<td>Cuando hago <code>remove()</code> en el padre → Hibernate <strong>borra también los hijos</strong>. Es la cascada más peligrosa. Si la usas mal en: <code>@ManyToOne</code>, <code>@ManyToMany</code> 💣 puedes borrar media base de datos sin querer.</td>
 </tr>
 <tr>
 <td><code>REFRESH</code></td>
-<td>Refresca las entidades relacionadas desde la BD.</td>
+<td>Cuando hago <code>refresh()</code> en el padre → Hibernate <strong>vuelve a leer de BD el padre y sus hijos</strong>. Es la cascada menos usada.</td>
 </tr>
 <tr>
 <td><code>DETACH</code></td>
@@ -1632,10 +1732,19 @@
 </tr>
 <tr>
 <td><code>ALL</code></td>
-<td>Aplica todos los anteriores.</td>
+<td>PERSIST + MERGE + REMOVE + REFRESH + DETACH. Es decir, <strong>todas</strong> las operaciones se propagan al hijo. Este es el más usado en agregados, pero el más peligroso si lo pones en relaciones equivocadas.</td>
 </tr>
 </tbody>
 </table>
+<h3 id="donde-si-y-donde-no-poner-cascade-reglas-finales">⭐ DÓNDE SÍ Y DÓNDE NO PONER cascade (reglas finales)</h3>
+<p>✅ 1. <code>@OneToOne</code> — SÍ se pueden usar cascades:     <br />
+- ✔️ Úsalo cuando el hijo pertenece 100% al ciclo de vida del padre   <br />
+- ❌ NO usar cascades en <code>@OneToOne</code> cuando las dos entidades viven por separado      </p>
+<p>✅ 2. <code>@OneToMany</code> — SÍ se usan cascades en agregados reales:         <br />
+- ✔️ Úsalo cuando los hijos solo existen por el padre     <br />
+- ❌ NO usar cascade en <code>@OneToMany</code> si los hijos NO dependen del padre       </p>
+<p>❌ 3. <code>@ManyToOne</code> — <strong>NUNCA</strong> usar cascades.</p>
+<p>❌ 4. <code>@ManyToMany</code> — <strong>JAMÁS</strong> usar cascades.</p>
 <hr />
 <h3 id="ejemplo_1">🧠 Ejemplo</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@Entity</span>
