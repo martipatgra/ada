@@ -1019,6 +1019,53 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#romper-relaciones" class="md-nav__link">
+    🧷 Romper relaciones
+  </a>
+  
+    <nav class="md-nav" aria-label="🧷 Romper relaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concepto-clave" class="md-nav__link">
+    🧩 Concepto clave
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-el-lado-propietario-es-el-que-manda-sobre-la-fk" class="md-nav__link">
+    🧩 1. El lado propietario es el que manda sobre la FK
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 1. El lado propietario es el que manda sobre la FK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#romper-la-relacion-solo-desde-el-inverso-no-actualiza-la-bd" class="md-nav__link">
+    ❗ Romper la relación SOLO desde el inverso NO actualiza la BD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-como-desvincular-correctamente-sin-borrar" class="md-nav__link">
+    🧩 2. Cómo desvincular correctamente (sin borrar)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#problema-n1-queries-en-hibernate" class="md-nav__link">
     💥 Problema N+1 Queries en Hibernate
   </a>
@@ -1524,6 +1571,53 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#romper-relaciones" class="md-nav__link">
+    🧷 Romper relaciones
+  </a>
+  
+    <nav class="md-nav" aria-label="🧷 Romper relaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concepto-clave" class="md-nav__link">
+    🧩 Concepto clave
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-el-lado-propietario-es-el-que-manda-sobre-la-fk" class="md-nav__link">
+    🧩 1. El lado propietario es el que manda sobre la FK
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 1. El lado propietario es el que manda sobre la FK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#romper-la-relacion-solo-desde-el-inverso-no-actualiza-la-bd" class="md-nav__link">
+    ❗ Romper la relación SOLO desde el inverso NO actualiza la BD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-como-desvincular-correctamente-sin-borrar" class="md-nav__link">
+    🧩 2. Cómo desvincular correctamente (sin borrar)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#problema-n1-queries-en-hibernate" class="md-nav__link">
     💥 Problema N+1 Queries en Hibernate
   </a>
@@ -2019,6 +2113,68 @@ No garantiza que en la BD la FK sea NOT NULL (si la relación puede ser null en 
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="romper-relaciones">🧷 Romper relaciones</h2>
+<p>Romper una relación significa <strong>desvincular dos entidades</strong> que antes estaban asociadas.</p>
+<h3 id="concepto-clave">🧩 Concepto clave</h3>
+<p>Cuando modificas una relación en Java, por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//En User</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nd">@OneToOne</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="kd">private</span><span class="w"> </span><span class="n">AccessCard</span><span class="w"> </span><span class="n">accessCard</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1">//En AccessCard</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="nd">@OneToOne</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;user_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="n">unique</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="kd">private</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="c1">//en el service intentamos poner a null la relación desde User</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">user</span><span class="p">.</span><span class="na">setAccessCard</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+</code></pre></div>
+<p>Esto <strong>solo cambia el valor del atributo en memoria</strong>.<br />
+Lo que realmente ocurra en la base de datos depende de:         </p>
+<ol>
+<li><strong>Quién es el propietario de la relación</strong> (<code>@JoinColumn</code>)           </li>
+<li>Si has modificado el <strong>lado propietario</strong> o el <strong>lado inverso</strong> (<code>mappedBy</code>)     </li>
+<li>Si hay o no <code>orphanRemoval</code>          </li>
+<li>Si la FK permite <code>NULL</code> (<code>nullable</code>)             </li>
+</ol>
+<hr />
+<h3 id="1-el-lado-propietario-es-el-que-manda-sobre-la-fk">🧩 1. El lado propietario es el que manda sobre la FK</h3>
+<p>Ejemplo de relación 1:1:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">// User (lado inverso)</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@OneToOne</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;user&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="kd">private</span><span class="w"> </span><span class="n">AccessCard</span><span class="w"> </span><span class="n">accessCard</span><span class="p">;</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="c1">// AccessCard (lado propietario, tiene la FK)</span>
+<span class="linenos" data-linenos="6 "></span><span class="nd">@OneToOne</span>
+<span class="linenos" data-linenos="7 "></span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;user_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="n">unique</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="linenos" data-linenos="8 "></span><span class="kd">private</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li><strong>Propietario de la relación:</strong> <code>AccessCard.user</code>  </li>
+<li><strong>Solo este lado controla qué valor se escribe en la FK</strong> (<code>user_id</code>).</li>
+</ul>
+<h4 id="romper-la-relacion-solo-desde-el-inverso-no-actualiza-la-bd">❗ Romper la relación SOLO desde el inverso NO actualiza la BD</h4>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">2L</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">user</span><span class="p">.</span><span class="na">setAccessCard</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span><span class="w">   </span><span class="c1">// solo lado inverso</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span>
+</code></pre></div>
+<p>➡️ <strong>En memoria la relación se rompe</strong>, pero en la BD <strong>NO</strong> se pone <code>user_id = NULL</code>, porque no has tocado el owner.</p>
+<p>Hibernate <strong>solo sincroniza la FK desde el lado propietario</strong>.</p>
+<hr />
+<h3 id="2-como-desvincular-correctamente-sin-borrar">🧩 2. Cómo desvincular correctamente (sin borrar)</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">2L</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">AccessCard</span><span class="w"> </span><span class="n">card</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">getAccessCard</span><span class="p">();</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="n">user</span><span class="p">.</span><span class="na">setAccessCard</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span><span class="w">   </span><span class="c1">// lado inverso</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">card</span><span class="p">.</span><span class="na">setUser</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span><span class="w">         </span><span class="c1">// ✔️ Lado propietario → actualiza la FK</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">session</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">commit</span><span class="p">();</span>
+</code></pre></div>
+<p>Esto generará:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">access_card</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">?</span><span class="p">;</span>
+</code></pre></div>
+<p>👉 <strong>No hace falta ningún <code>cascade</code></strong> para poner la FK a <code>null</code>.<br />
+Lo importante es modificar el <strong>lado propietario</strong>.</p>
 <hr />
 <h2 id="problema-n1-queries-en-hibernate">💥 Problema N+1 Queries en Hibernate</h2>
 <p>El <strong>problema N+1 queries</strong> es uno de los errores de rendimiento más comunes al usar Hibernate.<br />
