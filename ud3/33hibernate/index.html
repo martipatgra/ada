@@ -888,6 +888,47 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#que-es-el-dirty-checking-en-hibernate" class="md-nav__link">
+    🧽 ¿Qué es el Dirty Checking en Hibernate?
+  </a>
+  
+    <nav class="md-nav" aria-label="🧽 ¿Qué es el Dirty Checking en Hibernate?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#donde-ocurre" class="md-nav__link">
+    📦 ¿Dónde ocurre?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-funciona-internamente-el-dirty-checking" class="md-nav__link">
+    🧠 ¿Cómo funciona internamente el dirty checking?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-ultra-simple" class="md-nav__link">
+    🔥 Ejemplo ultra simple
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importante-no-tiene-nada-que-ver-con-cascade" class="md-nav__link">
+    🚨 Importante: NO tiene nada que ver con cascade
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#clase-hibernateutil" class="md-nav__link">
     Clase HibernateUtil
   </a>
@@ -1292,6 +1333,47 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#que-es-el-dirty-checking-en-hibernate" class="md-nav__link">
+    🧽 ¿Qué es el Dirty Checking en Hibernate?
+  </a>
+  
+    <nav class="md-nav" aria-label="🧽 ¿Qué es el Dirty Checking en Hibernate?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#donde-ocurre" class="md-nav__link">
+    📦 ¿Dónde ocurre?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-funciona-internamente-el-dirty-checking" class="md-nav__link">
+    🧠 ¿Cómo funciona internamente el dirty checking?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-ultra-simple" class="md-nav__link">
+    🔥 Ejemplo ultra simple
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importante-no-tiene-nada-que-ver-con-cascade" class="md-nav__link">
+    🚨 Importante: NO tiene nada que ver con cascade
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#clase-hibernateutil" class="md-nav__link">
     Clase HibernateUtil
   </a>
@@ -1355,29 +1437,119 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 <hr />
 <h2 id="persistence-context">🏷️ Persistence Context</h2>
 <ul>
-<li>Es el <strong>conjunto de entidades gestionadas</strong> (<em>managed</em>) por un Session.</li>
+<li><strong>Es la memoria interna donde Hibernate guarda y gestiona todas las entidades “vivas” durante una Session</strong>. Y siempre <strong>está asociado a una Session</strong> de Hibernate. </li>
 </ul>
 <h3 id="estados-de-una-entidad-y-transiciones">🧨 Estados de una entidad y transiciones</h3>
+<p>En JPA/Hibernate, <strong>toda entidad está siempre en UNO de estos estados</strong>:</p>
 <h4 id="transient-o-new">🧣 <code>Transient</code> (o <em>new</em>)</h4>
-<p>Objeto creado con <code>new</code>, <strong>no</strong> está en BD ni gestionado por el EM.
+<p>Objeto creado con <code>new</code>, <strong>no</strong> está en BD ni gestionado por Hibernate.</p>
+<blockquote>
+<p>Estado: “Soy un objeto Java normal. Hibernate no sabe quién soy”.</p>
+</blockquote>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana@example.com&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// transient</span>
-</code></pre></div></p>
+</code></pre></div>
+<p>Características:          <br />
+- No tiene identificación en BD (id = null o no asignado).        <br />
+- No está en ninguna Session.         <br />
+- Hibernate no la sincroniza con la BD.       <br />
+- Si haces <code>persist(obj)</code> → pasa a <strong>MANAGED</strong>.        <br />
+- Si un objeto <strong>managed</strong> referencia una entidad <strong>transient</strong> y hay <code>cascade = PERSIST</code>, Hibernate <strong>la persiste automáticamente</strong>.     </p>
 <h4 id="managed-o-persistente">🧣 <code>Managed</code> (o <em>persistente</em>)</h4>
-<p>Bajo control del EM; cambios se detectan (<strong>dirty checking</strong>) y se sincronizan.
+<p>Bajo control de la <code>Session</code>; cambios se detectan (<strong>dirty checking</strong>) y se sincronizan.</p>
+<blockquote>
+<p>Estado: “Estoy INSIDE de una Session. Hibernate me controla”.</p>
+</blockquote>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">em</span><span class="p">.</span><span class="na">persist</span><span class="p">(</span><span class="n">u</span><span class="p">);</span><span class="w">               </span><span class="c1">// transient -&gt; managed (INSERT en flush/commit)</span>
 <span class="linenos" data-linenos="2 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w"> </span><span class="c1">// managed</span>
 <span class="linenos" data-linenos="3 "></span><span class="n">v</span><span class="p">.</span><span class="na">setNombre</span><span class="p">(</span><span class="s">&quot;Ana Maria&quot;</span><span class="p">);</span><span class="w">    </span><span class="c1">// se hace UPDATE al sincronizar</span>
-</code></pre></div></p>
+</code></pre></div>
+<p>Características:          <br />
+- Pertenece al <strong>Persistence Context</strong> (Session).         <br />
+- Participa en <strong>dirty checking</strong> (si cambias campos → UPDATE automático).        <br />
+- Si apuntas a esta entidad desde un @ManyToOne o @OneToOne dentro de otra entidad nueva → funciona sin problemas.      </p>
 <h4 id="detached-separado">🧣 <code>Detached</code> (<em>separado</em>)</h4>
-<p>Entidad que <strong>estuvo</strong> managed pero ya <strong>no</strong> (cerrar EM, <code>clear()</code>, <code>detach()</code>).
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">em</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span><span class="w"> </span><span class="c1">// todas pasan a detached</span>
+<p>Entidad que <strong>estuvo</strong> managed pero ya <strong>no</strong> (cerrar <code>Session</code>, <code>clear()</code>, <code>detach()</code>).</p>
+<blockquote>
+<p>Estado: “Soy una entidad que vino de la BD, pero YA NO estoy asociada a la Session”.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">session</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"> </span><span class="c1">// todas pasan a detached</span>
 <span class="linenos" data-linenos="2 "></span><span class="c1">// v ahora es detached</span>
 <span class="linenos" data-linenos="3 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="c1">// devuelve una copia managed con los cambios</span>
-</code></pre></div></p>
+</code></pre></div>
+<p>Características:      <br />
+- Tiene ID de BD (ya existía).
+- No pertenece a ninguna Session actual.
+- Hibernate <strong>no hace dirty checking</strong> sobre ella.
+- <strong>ERROR si intentas hacer</strong> <code>persist()</code> <strong>de una entidad que referencia una DETACHED</strong> y <em>no hay cascade MERGE</em>.
+- Para volverla a usar debes:     <br />
+    - volver a cargarla (<code>session.find()</code>), o       <br />
+    - usar <code>session.merge(card)</code>.     </p>
 <h4 id="removed">🧣 <code>Removed</code></h4>
-<p>Marcada para borrado; se ejecuta <code>DELETE</code> al sincronizar.
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">em</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="c1">// managed -&gt; removed (DELETE en flush/commit)</span>
-</code></pre></div></p>
+<p>Marcada para borrado; se ejecuta <code>DELETE</code> al sincronizar.</p>
+<blockquote>
+<p>Estado: “Estoy marcada para borrar en el commit”.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">session</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="c1">// managed -&gt; removed (DELETE en flush/commit)</span>
+</code></pre></div>
+<p>Características:      <br />
+- Sigue siendo MANAGED, pero marcada como “para borrar”.      <br />
+- En el <code>commit()</code> → DELETE en BD.      <br />
+- No puede ser referenciada como FK por entidades nuevas.       </p>
+<hr />
+<h2 id="que-es-el-dirty-checking-en-hibernate">🧽 ¿Qué es el Dirty Checking en Hibernate?</h2>
+<p><strong>Dirty Checking</strong> (o “comprobación de suciedad”) es el mecanismo por el cual Hibernate:</p>
+<blockquote>
+<p><strong>detecta automáticamente qué entidades han cambiado dentro de la Session y genera los</strong> <code>UPDATE</code> <strong>necesarios sin que tú llames a ningún método</strong>.</p>
+</blockquote>
+<p><strong>Si una entidad está MANAGED</strong>, <strong>cualquier cambio en sus atributos (incluso los de las relaciones) será sincronizado automáticamente con la base de datos en el commit</strong>.</p>
+<p>Es decir:             <br />
+- ❌ No hace falta session.update(entity) <br />
+- ❌ No hace falta session.persist(entity)        <br />
+- ❌ No hace falta llamar a nada explícitamente     </p>
+<p>Hibernate <strong>vigila</strong> los objetos <em>MANAGED</em> (los que están dentro del Contexto de Persistencia) y:   <br />
+- si detecta cambios en sus atributos,    <br />
+- los marca como “sucios” (dirty),    <br />
+- y en el <code>flush()</code> o <code>commit()</code> ejecuta los SQL necesarios para sincronizar con la BD.     </p>
+<h3 id="donde-ocurre">📦 ¿Dónde ocurre?</h3>
+<p>En el <strong>Persistence Context</strong> de la Session. Solo funciona con entidades en estado <strong>MANAGED</strong>.   <br />
+- TRANSIENT → ❌ No hay dirty checking
+- DETACHED → ❌ No hay dirty checking
+- MANAGED → ✔ Sí, Hibernate detecta cambios</p>
+<p>Si tienes una entidad DETACHED y cambias algo → Hibernate ni se entera.</p>
+<h3 id="como-funciona-internamente-el-dirty-checking">🧠 ¿Cómo funciona internamente el dirty checking?</h3>
+<p>Cuando una entidad entra en la Session (por <code>find</code>, <code>get</code>, <code>persist</code>, <code>merge</code>…), Hibernate:     </p>
+<ol>
+<li><strong>Toma una “foto” del estado original</strong> de la entidad. (Los valores de sus campos mapeados.)     </li>
+<li>Te devuelve la entidad para trabajar con ella.           </li>
+<li>Tú modificas algunos campos:           <br />
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">user</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&quot;Nuevo nombre&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">user</span><span class="p">.</span><span class="na">setActive</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</code></pre></div></li>
+<li>Cuando llega el momento del <code>flush()</code> (antes del commit): Hibernate compara la “foto original” contra el “estado actual”.            </li>
+<li>Si encuentra diferencias → ese objeto se marca como dirty.           </li>
+<li>Hibernate genera el UPDATE exacto:         <br />
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">update</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Nuevo nombre&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">active</span><span class="o">=</span><span class="k">false</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div></li>
+</ol>
+<h3 id="ejemplo-ultra-simple">🔥 Ejemplo ultra simple</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Session</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sf</span><span class="p">.</span><span class="na">getCurrentSession</span><span class="p">();</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Transaction</span><span class="w"> </span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="n">User</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="mi">1L</span><span class="p">);</span><span class="w"> </span><span class="c1">// MANAGED</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="n">user</span><span class="p">.</span><span class="na">setEmail</span><span class="p">(</span><span class="s">&quot;nuevo@mail.com&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 👈 Cambio detectado</span>
+<span class="linenos" data-linenos="7 "></span>
+<span class="linenos" data-linenos="8 "></span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span><span class="w"> </span><span class="c1">// Hibernate genera el UPDATE automáticamente</span>
+</code></pre></div>
+<p>Nunca llamas a <code>update()</code>.
+Hibernate lo detecta solo.</p>
+<h3 id="importante-no-tiene-nada-que-ver-con-cascade">🚨 Importante: NO tiene nada que ver con cascade</h3>
+<p>Esto es importantísimo:       <br />
+- No hace falta <code>cascade = MERGE</code>       <br />
+- No hace falta <code>cascade = PERSIST</code>     <br />
+- No hace falta <code>cascade = ALL</code>           </p>
+<p><strong>Dirty checking</strong> funciona simplemente porque la entidad está CARGADA (find, get, LAZY init) dentro de la Session.</p>
+<hr />
 <h2 id="clase-hibernateutil">Clase <code>HibernateUtil</code></h2>
 <p>Crearemos esta clase de utilidad <code>HibernateUtil</code> para inicializar una sola vez el SessionFactory de Hibernate y exponerlo al resto de la aplicación. Usaremos el patrón Singleton. </p>
 <p>Así evitaremos crear SessionFactory repetidamente y mantenemos centralizado dónde se configura/gestiona Hibernate.</p>
