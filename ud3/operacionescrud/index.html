@@ -882,8 +882,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#si-la-entidad-no-esta-en-sesion" class="md-nav__link">
-    ⚙️ Si la entidad no está en sesión
+  <a href="#si-la-entidad-no-esta-en-sesion-o-esta-detached" class="md-nav__link">
+    ⚙️ Si la entidad no está en sesión o está DETACHED
   </a>
   
 </li>
@@ -1319,8 +1319,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#si-la-entidad-no-esta-en-sesion" class="md-nav__link">
-    ⚙️ Si la entidad no está en sesión
+  <a href="#si-la-entidad-no-esta-en-sesion-o-esta-detached" class="md-nav__link">
+    ⚙️ Si la entidad no está en sesión o está DETACHED
   </a>
   
 </li>
@@ -1413,7 +1413,7 @@
 <hr />
 <h2 id="1-create-insertar-registros">🧩 1️⃣ CREATE (Insertar registros)</h2>
 <h3 id="persist">📘 <code>persist</code></h3>
-<p>Inserta nuevas entidades en la base de datos.<br />
+<p>Inserta nuevas entidades en la base de datos. Solo funciona con entidades en estado <strong>TRANSIENT o MANAGED</strong>.
 Hibernate se encarga de generar el <code>INSERT</code> SQL automáticamente.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana@example.com&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="2 "></span><span class="n">session</span><span class="p">.</span><span class="na">beginTransaction</span><span class="p">();</span>
@@ -1459,14 +1459,15 @@ Hibernate se encarga de generar el <code>INSERT</code> SQL automáticamente.</p>
 <span class="linenos" data-linenos="6 "></span>
 <span class="linenos" data-linenos="7 "></span><span class="n">tx</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span><span class="w"> </span><span class="c1">// Hibernate ejecuta el UPDATE automáticamente</span>
 </code></pre></div>
-<h3 id="si-la-entidad-no-esta-en-sesion">⚙️ Si la entidad no está en sesión</h3>
-<p>Usa <code>merge()</code> para sincronizar los datos con el contexto:
+<h3 id="si-la-entidad-no-esta-en-sesion-o-esta-detached">⚙️ Si la entidad no está en sesión o está DETACHED</h3>
+<p>Usa <code>merge()</code> para sincronizar los datos con el contexto. </p>
+<p><code>merge()</code> acepta cualquier tipo de entidad (transient, detached, managed). Reproduce un grafo nuevo en estado managed y sincroniza solo lo necesario.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">User</span><span class="w"> </span><span class="n">detachedUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">();</span>
 <span class="linenos" data-linenos="2 "></span><span class="n">detachedUser</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="mi">1L</span><span class="p">);</span>
 <span class="linenos" data-linenos="3 "></span><span class="n">detachedUser</span><span class="p">.</span><span class="na">setEmail</span><span class="p">(</span><span class="s">&quot;nuevoemail@example.com&quot;</span><span class="p">);</span>
 <span class="linenos" data-linenos="4 "></span>
 <span class="linenos" data-linenos="5 "></span><span class="n">session</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">detachedUser</span><span class="p">);</span><span class="w"> </span><span class="c1">// sincroniza y actualiza</span>
-</code></pre></div></p>
+</code></pre></div>
 <hr />
 <h2 id="4-delete-eliminar-registros">❌ 4️⃣ DELETE (Eliminar registros)</h2>
 <h3 id="remove"><code>remove</code></h3>

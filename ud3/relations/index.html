@@ -1876,9 +1876,9 @@
 <p>Si el padre está <code>MANAGED</code>, <strong>cascade funciona siempre según su tipo</strong>.  </p>
 </li>
 <li>
-<p><code>persist()</code> requiere: padre MANAGED o TRANSIENT, hijos TRANSIENT/MANAGED.</p>
+<p><code>persist()</code> requiere: padre MANAGED o TRANSIENT, hijos TRANSIENT/MANAGED. Solo acepta entidades TRANSIENT o MANAGED.</p>
 </li>
-<li><code>merge()</code> sí funciona con DETACHED (y cascade MERGE también).</li>
+<li><code>merge()</code> sí funciona con entidades DETACHED (y cascade MERGE también).</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nt">CASCADE PERSIST</span><span class="p">:</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">✔ Padre TRANSIENT → hijos transient también se persisten</span>
