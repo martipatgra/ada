@@ -911,6 +911,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#cascade-y-estado-de-las-entidades" class="md-nav__link">
+    📘 Cascade y estado de las entidades
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ejemplo_1" class="md-nav__link">
     🧠 Ejemplo
   </a>
@@ -1463,6 +1470,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#cascade-y-estado-de-las-entidades" class="md-nav__link">
+    📘 Cascade y estado de las entidades
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ejemplo_1" class="md-nav__link">
     🧠 Ejemplo
   </a>
@@ -1853,6 +1867,33 @@
 - ❌ NO usar cascade en <code>@OneToMany</code> si los hijos NO dependen del padre       </p>
 <p>❌ 3. <code>@ManyToOne</code> — <strong>NUNCA</strong> usar cascades.</p>
 <p>❌ 4. <code>@ManyToMany</code> — <strong>JAMÁS</strong> usar cascades.</p>
+<hr />
+<h3 id="cascade-y-estado-de-las-entidades">📘 Cascade y estado de las entidades</h3>
+<ul>
+<li>Cascade funciona cuando Hibernate está en control del padre (TRANSIENT o MANAGED).        </li>
+<li>Si el padre está <code>DETACHED</code>, <strong>SOLO cascade MERGE funciona</strong>.           </li>
+<li>
+<p>Si el padre está <code>MANAGED</code>, <strong>cascade funciona siempre según su tipo</strong>.  </p>
+</li>
+<li>
+<p><code>persist()</code> requiere: padre MANAGED o TRANSIENT, hijos TRANSIENT/MANAGED.</p>
+</li>
+<li><code>merge()</code> sí funciona con DETACHED (y cascade MERGE también).</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nt">CASCADE PERSIST</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">✔ Padre TRANSIENT → hijos transient también se persisten</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">✔ Padre MANAGED   → hijos transient se persisten</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">❌ Padre DETACHED  → ERROR (detached entity passed to persist)</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="nt">CASCADE MERGE</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">✔ Padre DETACHED → hijos detached también se mergean</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">✔ Padre MANAGED  → (solo se mergea si los hijos también están managed o son nuevos)</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">❌ Padre TRANSIENT → merge no hace nada útil</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="nt">CASCADE REMOVE</span><span class="p">:</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">✔ Padre MANAGED → hijos se borran</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">❌ Padre DETACHED/TRANSIENT → no funciona</span>
+</code></pre></div>
 <hr />
 <h3 id="ejemplo_1">🧠 Ejemplo</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@Entity</span>
