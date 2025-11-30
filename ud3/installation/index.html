@@ -842,28 +842,7 @@
         
           <li class="md-nav__item">
   <a href="#2-relaciones" class="md-nav__link">
-    2 Relaciones
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fetch-lazy-vs-eager" class="md-nav__link">
-    fetch (LAZY vs EAGER)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#orphanremoval" class="md-nav__link">
-    orphanRemoval
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cascade" class="md-nav__link">
-    cascade
+    📄 2 Relaciones
   </a>
   
 </li>
@@ -1260,28 +1239,7 @@
         
           <li class="md-nav__item">
   <a href="#2-relaciones" class="md-nav__link">
-    2 Relaciones
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fetch-lazy-vs-eager" class="md-nav__link">
-    fetch (LAZY vs EAGER)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#orphanremoval" class="md-nav__link">
-    orphanRemoval
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cascade" class="md-nav__link">
-    cascade
+    📄 2 Relaciones
   </a>
   
 </li>
@@ -1477,7 +1435,7 @@ En él defines:<br />
 <span class="linenos" data-linenos="16 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Tipo</span><span class="w"> </span><span class="n">tipo</span><span class="p">;</span>
 <span class="linenos" data-linenos="17 "></span><span class="p">}</span>
 </code></pre></div>
-<h3 id="2-relaciones">2 Relaciones</h3>
+<h3 id="2-relaciones">📄 2 Relaciones</h3>
 <p><strong>N:1 (muchos-a-uno)</strong>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@ManyToOne</span><span class="p">(</span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">,</span><span class="w"> </span><span class="n">optional</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
 <span class="linenos" data-linenos="2 "></span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;usuario_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nullable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
@@ -1543,32 +1501,9 @@ En él defines:<br />
 <span class="linenos" data-linenos="41 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Curso</span><span class="w"> </span><span class="n">curso</span><span class="p">;</span>
 <span class="linenos" data-linenos="42 "></span><span class="p">}</span>
 </code></pre></div></p>
-<h3 id="fetch-lazy-vs-eager"><code>fetch (LAZY vs EAGER)</code></h3>
-<p>Controla cuándo se cargan las relaciones.</p>
-<p>LAZY: no se carga la relación hasta que la accedes (proxy).<br />
-- ✔️ Ahorra queries y memoria.
-- ⚠️ Si accedes fuera de la sesión/EM: LazyInitializationException.</p>
-<p>EAGER: se carga ya junto con la entidad principal.<br />
-- ✔️ Cómodo si siempre lo necesitas.
-- ⚠️ Puede disparar N+1 consultas o traer “medio grafo” sin querer.</p>
-<h3 id="orphanremoval"><code>orphanRemoval</code></h3>
-<p>Hace que se elimine de la BD el “hijo” cuando deja de estar asociado al “padre” (se queda “huérfano” en la relación). Útil en agregados y cuando el hijo no tiene sentido sin el padre.
-Funciona con @OneToOne y @OneToMany (no con @ManyToMany).</p>
-<p>Diferente de cascade = REMOVE:<br />
-- cascade REMOVE borra hijos cuando borras el padre.
-- orphanRemoval = true borra el hijo cuando lo quitas de la colección o rompes la referencia, aunque el padre siga existiendo.</p>
-<h3 id="cascade"><code>cascade</code></h3>
-<p>Indica qué operaciones del EntityManager se propagan desde una entidad a las relacionadas (en la dirección de la relación donde lo declaras).</p>
-<p>Tipos más usados: <br />
-- <code>PERSIST</code> → al guardar el padre, también guarda los hijos nuevos.
-- <code>MERGE</code> → al hacer merge del padre, aplica cambios a los hijos.
-- <code>REMOVE</code> → al borrar el padre, borra los hijos.
-- <code>REFRESH</code> → recarga también los hijos desde BD.
-- <code>DETACH</code> → los hijos pasan a detached cuando el padre se separa.
-- <code>ALL</code> → equivale a todas las anteriores.</p>
+<hr />
 <h3 id="buenas-practicas">📌 Buenas prácticas</h3>
 <ul>
-<li>Prefiere <strong><code>LAZY</code></strong> y controla cargas con <code>JOIN FETCH</code>/entity graphs.  </li>
 <li>Define <strong>índices</strong> en FKs/columnas de búsqueda.  </li>
 <li>Evita bidireccionales innecesarias; no metas colecciones en <code>equals/hashCode</code>.  </li>
 <li>Usa <strong>DTOs</strong> para lecturas complejas; no expongas entidades en controladores.</li>
