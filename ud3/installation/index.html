@@ -807,15 +807,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-configuracion-mediante-hibernatecfgxml" class="md-nav__link">
-    2. Configuración mediante hibernate.cfg.xml
+  <a href="#configuracion-mediante-hibernatecfgxml" class="md-nav__link">
+    Configuración mediante hibernate.cfg.xml
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-configuracion-mediante-applicationproperties" class="md-nav__link">
-    2. Configuración mediante application.properties
+  <a href="#configuracion-mediante-applicationproperties" class="md-nav__link">
+    Configuración mediante application.properties
   </a>
   
 </li>
@@ -1204,15 +1204,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-configuracion-mediante-hibernatecfgxml" class="md-nav__link">
-    2. Configuración mediante hibernate.cfg.xml
+  <a href="#configuracion-mediante-hibernatecfgxml" class="md-nav__link">
+    Configuración mediante hibernate.cfg.xml
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-configuracion-mediante-applicationproperties" class="md-nav__link">
-    2. Configuración mediante application.properties
+  <a href="#configuracion-mediante-applicationproperties" class="md-nav__link">
+    Configuración mediante application.properties
   </a>
   
 </li>
@@ -1312,7 +1312,7 @@
 <span class="linenos" data-linenos="31 "></span>
 <span class="linenos" data-linenos="32 "></span><span class="nt">&lt;/dependencies&gt;</span>
 </code></pre></div>
-<h3 id="2-configuracion-mediante-hibernatecfgxml">2. Configuración mediante <code>hibernate.cfg.xml</code></h3>
+<h3 id="configuracion-mediante-hibernatecfgxml">Configuración mediante <code>hibernate.cfg.xml</code></h3>
 <p>El fichero debe estar en el <strong>classpath</strong> (Maven/Gradle los copian a <code>target/classes/</code>).
 El fichero .cfg.xml debe crearse y hibernate debe colocarse en el classpath del proyecto, en:</p>
 <ul>
@@ -1361,7 +1361,7 @@ En él defines:<br />
 <span class="linenos" data-linenos="35 "></span><span class="w">  </span><span class="nt">&lt;/session-factory&gt;</span>
 <span class="linenos" data-linenos="36 "></span><span class="nt">&lt;/hibernate-configuration&gt;</span>
 </code></pre></div>
-<h3 id="2-configuracion-mediante-applicationproperties">2. Configuración mediante <code>application.properties</code></h3>
+<h3 id="configuracion-mediante-applicationproperties">Configuración mediante <code>application.properties</code></h3>
 <p>En vez de crear el fichero hibernate.cfg.xml, podemos meter toda la configuración en un fichero .properties.</p>
 <p>Para ello, el fichero debe estar dentro de /src/main/resources/application.properties con el siguiente contenido de configuración:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="o">#</span><span class="w"> </span><span class="c1">--- Hibernate usa Hikari internamente ---</span>
