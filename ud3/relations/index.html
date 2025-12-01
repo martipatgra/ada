@@ -1781,7 +1781,7 @@
 </tr>
 </tbody>
 </table>
-<div class="admonition note importante">
+<div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>LazyInitializationException</code> se obtiene cuando cuando se dan estas dos condiciones: tienes algo mapeado como LAZY (un @ManyToOne, @OneToMany, @ManyToMany, etc.) e intentas acceder a esa relación cuando la Session ya está cerrada (o la entidad está detach). El proxy intenta inicializarse → necesita ir a BD. Pregunta a Hibernate por la <code>Session</code>. No hay sesión ➜ 💣 <code>LazyInitializationException</code></p>
 </div>
