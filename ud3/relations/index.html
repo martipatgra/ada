@@ -1942,7 +1942,7 @@
 - Es el lado propietario (@JoinColumn)    <br />
 - O el lado mappedBy        </p>
 <p>Lo importante es que sea una relación 1:1 o 1:N donde el hijo dependa del padre.</p>
-<p>!!! Warning Cuidado!
+<p>!!! warning Cuidado!
     Porque <code>orphanRemoval = true</code> borra los hijos cuando se quedan huérfanos, y eso incluye cuando borras al padre. Si borras el padre, <code>session.remove(venue)</code> --&gt; <strong>todos los hijos se consideran "huérfanos" y también se borran</strong>.</p>
 <h3 id="ejemplo_2">🧠 Ejemplo</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pedido&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">orphanRemoval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
