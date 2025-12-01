@@ -1878,7 +1878,7 @@
 <li>
 <p><code>persist()</code> requiere: padre MANAGED o TRANSIENT, hijos TRANSIENT/MANAGED. Solo acepta entidades TRANSIENT o MANAGED.</p>
 </li>
-<li><code>merge()</code> sí funciona con entidades DETACHED (y cascade MERGE también).</li>
+<li><code>merge()</code> sí funciona con entidades DETACHED (y cascade MERGE también). <code>merge()</code> solo actúa sobre la entidad que tú pasas. Para que actúe sobre sus hijos → <strong>tiene que haber cascade MERGE</strong>.</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nt">CASCADE PERSIST</span><span class="p">:</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">✔ Padre TRANSIENT → hijos transient también se persisten</span>
