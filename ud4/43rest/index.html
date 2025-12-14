@@ -12,14 +12,14 @@
         <link rel="prev" href="../servicespring/">
       
       
-        <link rel="next" href="../44queryresponse/">
+        <link rel="next" href="../../ud5/51modulo/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>5.7.- API REST - Spring Web - Acceso a Datos</title>
+        <title>5.7.- Spring API REST. @RestController - Acceso a Datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#api-rest" class="md-skip">
+        <a href="#spring-api-rest" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5.7.- API REST - Spring Web
+              5.7.- Spring API REST. @RestController
             
           </span>
         </div>
@@ -1034,12 +1034,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          5.7.- API REST - Spring Web
+          5.7.- Spring API REST. @RestController
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        5.7.- API REST - Spring Web
+        5.7.- Spring API REST. @RestController
       </a>
       
         
@@ -1062,19 +1062,54 @@
     ⚕️¿Qué es una API?
   </a>
   
-    <nav class="md-nav" aria-label="⚕️¿Qué es una API?">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-una-api-rest" class="md-nav__link">
+    🧭 ¿Qué es una API REST?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-un-endpoint" class="md-nav__link">
+    🔗 ¿Qué es un endpoint?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-endpoints" class="md-nav__link">
+    🧰 Tipos de endpoints
+  </a>
+  
+    <nav class="md-nav" aria-label="🧰 Tipos de endpoints">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#elementos-clave-de-una-api" class="md-nav__link">
-    ⚕️Elementos clave de una API
+  <a href="#consultar-read" class="md-nav__link">
+    👀 Consultar (READ)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#tipos-de-apis-mas-comunes" class="md-nav__link">
-    ⚕️Tipos de APIs más comunes
+  <a href="#crear-create" class="md-nav__link">
+    ➕ Crear (CREATE)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actualizar-update" class="md-nav__link">
+    ✏️ Actualizar (UPDATE)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borrar-delete" class="md-nav__link">
+    🗑️ Borrar (DELETE)
   </a>
   
 </li>
@@ -1085,22 +1120,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-rest_1" class="md-nav__link">
-    ⚕️API Rest
-  </a>
-  
-    <nav class="md-nav" aria-label="⚕️API Rest">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#principios-de-una-api-rest" class="md-nav__link">
-    ⚕️Principios de una API REST
+  <a href="#metodos-http" class="md-nav__link">
+    🧪 Métodos HTTP
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#codigos-de-estado-http-lo-minimo-que-hay-que-dominar" class="md-nav__link">
+    🚦 Códigos de estado HTTP (lo mínimo que hay que dominar)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-ayuda-spring-boot-a-crear-apis" class="md-nav__link">
+    🧱 ¿Cómo ayuda Spring Boot a crear APIs?
+  </a>
   
 </li>
       
@@ -1125,23 +1161,57 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#como-crear-un-controlador-rest-en-spring" class="md-nav__link">
-    ⚕️Cómo crear un controlador rest en Spring
+  <a href="#como-crear-un-controlador-rest-en-spring-restcontroller" class="md-nav__link">
+    🧩 Cómo crear un controlador rest en Spring: @RestController
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 Cómo crear un controlador rest en Spring: @RestController">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-logica" class="md-nav__link">
+    🧠 Service (lógica)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requestmapping-y-los-mapping" class="md-nav__link">
+    🧾 @RequestMapping y los @*Mapping
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-mapeo-mapping-en-un-controlador-rest" class="md-nav__link">
-    ⚕️Tipos de mapeo (mapping) en un controlador rest
+  <a href="#como-llegan-los-datos-a-un-endpoint" class="md-nav__link">
+    🧷 ¿Cómo llegan los datos a un endpoint?
   </a>
   
-    <nav class="md-nav" aria-label="⚕️Tipos de mapeo (mapping) en un controlador rest">
+    <nav class="md-nav" aria-label="🧷 ¿Cómo llegan los datos a un endpoint?">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cual-es-la-diferencia-entre-post-put-patch" class="md-nav__link">
-    ¿Cuál es la diferencia entre Post , Put, Patch?
+  <a href="#a-path-variables-usersid" class="md-nav__link">
+    🧩 a) Path variables (/users/{id})
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-query-params-usersactivetrue" class="md-nav__link">
+    🔎 b) Query params (/users?active=true)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-body-json-postputpatch" class="md-nav__link">
+    📦 c) Body JSON (POST/PUT/PATCH)
   </a>
   
 </li>
@@ -1153,7 +1223,55 @@
       
         <li class="md-nav__item">
   <a href="#ejemplos-de-mapeo" class="md-nav__link">
-    ⚕️Ejemplos de mapeo
+    🔆 Ejemplos de mapeo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dtos-lo-normal-es-no-exponer-entidades-directamente" class="md-nav__link">
+    🧱 DTOs: lo normal es NO exponer entidades directamente
+  </a>
+  
+    <nav class="md-nav" aria-label="🧱 DTOs: lo normal es NO exponer entidades directamente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dto-de-entrada-request" class="md-nav__link">
+    📥 DTO de entrada (request)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dto-de-salida-response" class="md-nav__link">
+    📤 DTO de salida (response)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacion-automatica-con-valid" class="md-nav__link">
+    ✅ Validación automática con @Valid
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responseentity-para-controlar-status-codes" class="md-nav__link">
+    📦 ResponseEntity para controlar status codes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-completo-de-api-rest" class="md-nav__link">
+    Ejemplo completo de API Rest
   </a>
   
 </li>
@@ -1162,20 +1280,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../44queryresponse/" class="md-nav__link">
-        5.8.- Response
-      </a>
     </li>
   
 
@@ -1282,19 +1386,54 @@
     ⚕️¿Qué es una API?
   </a>
   
-    <nav class="md-nav" aria-label="⚕️¿Qué es una API?">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-una-api-rest" class="md-nav__link">
+    🧭 ¿Qué es una API REST?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-un-endpoint" class="md-nav__link">
+    🔗 ¿Qué es un endpoint?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-endpoints" class="md-nav__link">
+    🧰 Tipos de endpoints
+  </a>
+  
+    <nav class="md-nav" aria-label="🧰 Tipos de endpoints">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#elementos-clave-de-una-api" class="md-nav__link">
-    ⚕️Elementos clave de una API
+  <a href="#consultar-read" class="md-nav__link">
+    👀 Consultar (READ)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#tipos-de-apis-mas-comunes" class="md-nav__link">
-    ⚕️Tipos de APIs más comunes
+  <a href="#crear-create" class="md-nav__link">
+    ➕ Crear (CREATE)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actualizar-update" class="md-nav__link">
+    ✏️ Actualizar (UPDATE)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borrar-delete" class="md-nav__link">
+    🗑️ Borrar (DELETE)
   </a>
   
 </li>
@@ -1305,22 +1444,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-rest_1" class="md-nav__link">
-    ⚕️API Rest
-  </a>
-  
-    <nav class="md-nav" aria-label="⚕️API Rest">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#principios-de-una-api-rest" class="md-nav__link">
-    ⚕️Principios de una API REST
+  <a href="#metodos-http" class="md-nav__link">
+    🧪 Métodos HTTP
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#codigos-de-estado-http-lo-minimo-que-hay-que-dominar" class="md-nav__link">
+    🚦 Códigos de estado HTTP (lo mínimo que hay que dominar)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-ayuda-spring-boot-a-crear-apis" class="md-nav__link">
+    🧱 ¿Cómo ayuda Spring Boot a crear APIs?
+  </a>
   
 </li>
       
@@ -1345,23 +1485,57 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#como-crear-un-controlador-rest-en-spring" class="md-nav__link">
-    ⚕️Cómo crear un controlador rest en Spring
+  <a href="#como-crear-un-controlador-rest-en-spring-restcontroller" class="md-nav__link">
+    🧩 Cómo crear un controlador rest en Spring: @RestController
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 Cómo crear un controlador rest en Spring: @RestController">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-logica" class="md-nav__link">
+    🧠 Service (lógica)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requestmapping-y-los-mapping" class="md-nav__link">
+    🧾 @RequestMapping y los @*Mapping
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tipos-de-mapeo-mapping-en-un-controlador-rest" class="md-nav__link">
-    ⚕️Tipos de mapeo (mapping) en un controlador rest
+  <a href="#como-llegan-los-datos-a-un-endpoint" class="md-nav__link">
+    🧷 ¿Cómo llegan los datos a un endpoint?
   </a>
   
-    <nav class="md-nav" aria-label="⚕️Tipos de mapeo (mapping) en un controlador rest">
+    <nav class="md-nav" aria-label="🧷 ¿Cómo llegan los datos a un endpoint?">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cual-es-la-diferencia-entre-post-put-patch" class="md-nav__link">
-    ¿Cuál es la diferencia entre Post , Put, Patch?
+  <a href="#a-path-variables-usersid" class="md-nav__link">
+    🧩 a) Path variables (/users/{id})
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-query-params-usersactivetrue" class="md-nav__link">
+    🔎 b) Query params (/users?active=true)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-body-json-postputpatch" class="md-nav__link">
+    📦 c) Body JSON (POST/PUT/PATCH)
   </a>
   
 </li>
@@ -1373,7 +1547,55 @@
       
         <li class="md-nav__item">
   <a href="#ejemplos-de-mapeo" class="md-nav__link">
-    ⚕️Ejemplos de mapeo
+    🔆 Ejemplos de mapeo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dtos-lo-normal-es-no-exponer-entidades-directamente" class="md-nav__link">
+    🧱 DTOs: lo normal es NO exponer entidades directamente
+  </a>
+  
+    <nav class="md-nav" aria-label="🧱 DTOs: lo normal es NO exponer entidades directamente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dto-de-entrada-request" class="md-nav__link">
+    📥 DTO de entrada (request)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dto-de-salida-response" class="md-nav__link">
+    📤 DTO de salida (response)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacion-automatica-con-valid" class="md-nav__link">
+    ✅ Validación automática con @Valid
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responseentity-para-controlar-status-codes" class="md-nav__link">
+    📦 ResponseEntity para controlar status codes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-completo-de-api-rest" class="md-nav__link">
+    Ejemplo completo de API Rest
   </a>
   
 </li>
@@ -1394,40 +1616,155 @@
 
 
 
-<h1 id="api-rest">🔆 API Rest</h1>
+<h1 id="spring-api-rest">🌐 Spring API REST</h1>
 <h2 id="que-es-una-api">⚕️¿Qué es una API?</h2>
-<p><em>Una API (Application Programming Interface) es un conjunto de definiciones y protocolos que permite que diferentes aplicaciones o sistemas se comuniquen entre sí</em>. Es decir, una API actúa como intermediario que permite que dos programas interactúen y compartan información o funcionalidades.</p>
+<p>Una <strong>API</strong> (<em>Application Programming Interface</em>) es una forma <strong>estandarizada</strong> de comunicar sistemas. Es decir, una API actúa como intermediario que permite que dos programas interactúen y compartan información o funcionalidades.</p>
+<ul>
+<li>🧑‍💻 Un programa pide algo (<strong>request</strong>)</li>
+<li>🧠 Otro programa lo procesa</li>
+<li>📦 Devuelve una respuesta (<strong>response</strong>)</li>
+</ul>
+<blockquote>
 <p>Las APIs son esenciales en el desarrollo moderno, ya que permiten integrar servicios como pagos, mapas, redes sociales, etc.</p>
-<h3 id="elementos-clave-de-una-api">⚕️Elementos clave de una API</h3>
-<ul>
-<li><strong>Interfaz</strong>: define cómo los desarrolladores pueden interactuar con el software o sistema. Esto incluye las solicitudes que se pueden realizar y los formatos de datos aceptados.</li>
-<li><strong>Protocolo</strong>: especifica las reglas para intercambiar los datos, como HTTP/HTTPS para APIs webs.</li>
-<li><strong>Datos</strong>: las APIs permiten enviar y recibir datos en formatos comunes como JSON o XML.</li>
-<li><strong>Funcionalidades</strong>: pueden ofrecer acceso a herramientas, servicios o información de un sistema externo, sin necesidad de que los usuarios conozcan su funcionamiento interno.</li>
-</ul>
-<h3 id="tipos-de-apis-mas-comunes">⚕️Tipos de APIs más comunes</h3>
-<ul>
-<li><strong>REST</strong> (Representational State Transfer): utilizan HTTP y son muy populares por su simplicidad.</li>
-<li><strong>SOAP</strong> (Simple Object Access Protocol): más complejo, usa XML para intercambiar datos.</li>
-<li><strong>GraphQL</strong>: permite a los clientes especificar exactamente qué datos necesitan.</li>
-</ul>
-<h2 id="api-rest_1">⚕️API Rest</h2>
-<p>Es un tipo de API que sigue los principios de la arquitectura REST, diseñados para facilitar la comunicación entre sistemas a través de la web utilizando el protocolo HTTP. REST es un estilo de arquitectura que define cómo se deben estructurar y consumir las APIs para que sean eficientes, simples y escalables. Son ampliamente utilizadas en el desarrollo de software moderno.</p>
+</blockquote>
+<hr />
+<h2 id="que-es-una-api-rest">🧭 ¿Qué es una API REST?</h2>
+<p><strong>REST</strong> (<em>Representational State Transfer</em>) es un estilo para diseñar APIs utilizando el protocolo HTTP. REST es un estilo de arquitectura que define cómo se deben estructurar y consumir las APIs para que sean eficientes, simples y escalables. Son ampliamente utilizadas en el desarrollo de software moderno.</p>
 <p>A menudo se puede ver el nombre de API RESTful, RESTful es un adjetivo que describe a las APIs que siguen los principios y restricciones de la arquitectura REST.</p>
-<h3 id="principios-de-una-api-rest">⚕️Principios de una API REST</h3>
-<ol>
-<li><strong>Cliente-Servidor</strong>: el cliente (navegador web normalmente) solicita información o realiza acciones y el servidor procesa estas solicitudes y devuelve una respuesta. Ambos son independientes.</li>
-<li><strong>Stateless (Sin estado)</strong>: cada solicitud del cliente al servidor es independiente. El servidor no almacena información sobre el estado de las solicitudes anteriores.</li>
-<li><strong>Interfaz uniforme</strong>: la comunicación entre cliente-servidor se realiza de manera consistente. Los recursos se identifican mediante URLs, y se usan métodos HTTP estándar para interactuar con ellos:<ul>
-<li>GET: obtener datos</li>
-<li>POST: enviar o crear datos</li>
-<li>PUT o PATCH: actualizar datos existentes</li>
-<li>DELETE: eliminar datos</li>
+<p>✅ Ideas clave:
+- 🌍 Usas <strong>HTTP</strong> (como un navegador)
+- 📦 Trabajas con <strong>recursos</strong> (Users, Matches, Cabinets…)
+- 🧱 <strong>Recursos identificados por URLs</strong>. Las URLs representan recursos (datos). 
+- 🔁 Las operaciones se expresan con <strong>métodos HTTP</strong> (GET, POST, PUT, DELETE…). Se identifican mediante direcciones únicas o <strong>endpoints</strong>.      <br />
+- 🧾 <strong>Representación de recursos</strong>: la información se intercambia en un formato específico, generalmente <strong>JSON</strong></p>
+<p>📌 REST no es una librería: es un <strong>conjunto de reglas/convenciones</strong>.</p>
+<hr />
+<h2 id="que-es-un-endpoint">🔗 ¿Qué es un endpoint?</h2>
+<p>Un <strong>endpoint</strong> es una <strong>URL</strong> concreta + un método HTTP que representa una acción sobre un recurso.</p>
+<p>Ejemplos:
+- <code>GET /api/users/5</code> → obtener usuario 5
+- <code>POST /api/users</code> → crear usuario
+- <code>DELETE /api/users/5</code> → borrar usuario 5</p>
+<p>✅ Piensa en endpoints como “puertas” del servidor.</p>
+<hr />
+<h2 id="tipos-de-endpoints">🧰 Tipos de endpoints</h2>
+<h3 id="consultar-read">👀 Consultar (READ)</h3>
+<ul>
+<li><code>GET /api/users</code> → lista</li>
+<li><code>GET /api/users/{id}</code> → detalle</li>
 </ul>
-</li>
-<li><strong>Recursos identificados por URLs</strong>: los recursos (datos) en una API REST se identifican mediante direcciones únicas o <strong>endpoints</strong>, por ejemplo, este endpoint podría devolver los datos del usuario con ID 123: GET https://api.miservicio.com/usuarios/123</li>
-<li><strong>Representación de recursos</strong>: la información se intercambia en un formato específico, generalmente JSON o XML. JSON es el más popular debido a su legibilidad.</li>
-</ol>
+<h3 id="crear-create">➕ Crear (CREATE)</h3>
+<ul>
+<li><code>POST /api/users</code> → crea uno nuevo</li>
+</ul>
+<h3 id="actualizar-update">✏️ Actualizar (UPDATE)</h3>
+<ul>
+<li><code>PUT /api/users/{id}</code> → reemplaza todo</li>
+<li><code>PATCH /api/users/{id}</code> → cambia solo parte</li>
+</ul>
+<h3 id="borrar-delete">🗑️ Borrar (DELETE)</h3>
+<ul>
+<li><code>DELETE /api/users/{id}</code> → elimina</li>
+</ul>
+<hr />
+<h2 id="metodos-http">🧪 Métodos HTTP</h2>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Uso típico</th>
+<th>¿Lleva body?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ GET</td>
+<td>Leer</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td>✅ POST</td>
+<td>Crear</td>
+<td>✅ Sí</td>
+</tr>
+<tr>
+<td>✅ PUT</td>
+<td>Reemplazar</td>
+<td>✅ Sí</td>
+</tr>
+<tr>
+<td>✅ PATCH</td>
+<td>Actualizar parcialmente</td>
+<td>✅ Sí</td>
+</tr>
+<tr>
+<td>✅ DELETE</td>
+<td>Borrar</td>
+<td>⚠️ Normalmente no</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>GET no debería cambiar el estado</strong> del servidor.</li>
+</ul>
+<hr />
+<h2 id="codigos-de-estado-http-lo-minimo-que-hay-que-dominar">🚦 Códigos de estado HTTP (lo mínimo que hay que dominar)</h2>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Significado</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ 200 OK</td>
+<td>Todo bien</td>
+<td>GET devuelve datos</td>
+</tr>
+<tr>
+<td>✅ 201 Created</td>
+<td>Creado</td>
+<td>POST crea recurso</td>
+</tr>
+<tr>
+<td>✅ 204 No Content</td>
+<td>OK sin cuerpo</td>
+<td>DELETE correcto</td>
+</tr>
+<tr>
+<td>❌ 400 Bad Request</td>
+<td>Entrada inválida</td>
+<td>email vacío</td>
+</tr>
+<tr>
+<td>❌ 404 Not Found</td>
+<td>No existe</td>
+<td>id no encontrado</td>
+</tr>
+<tr>
+<td>❌ 409 Conflict</td>
+<td>Conflicto</td>
+<td>email duplicado</td>
+</tr>
+<tr>
+<td>❌ 500 Server Error</td>
+<td>Error interno</td>
+<td>excepción no controlada</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="como-ayuda-spring-boot-a-crear-apis">🧱 ¿Cómo ayuda Spring Boot a crear APIs?</h2>
+<p>Spring Boot te da:
+- 🧩 Anotaciones para declarar endpoints fácilmente
+- 🔌 Inyección de dependencias (<code>@Service</code> → <code>@RestController</code>)
+- 📥 Conversión automática JSON ↔ objetos Java
+- ✅ Validación (Bean Validation con <code>@Valid</code>)
+- 🧯 Manejo centralizado de errores (<code>@ControllerAdvice</code>)
+- 🧪 Facilita pruebas</p>
+<hr />
 <h2 id="spring-web">⚕️Spring Web</h2>
 <p>El framework Spring ofrece el módulo <strong>Spring Web</strong>, que se utiliza para la creación de APIs REST. Este módulo proporciona las herramientas y anotaciones necesarias para construir y exponer endpoints RESTful.</p>
 <h3 id="componentes-de-spring-para-crear-una-api-rest">⚕️Componentes de Spring para crear una API REST</h3>
@@ -1453,31 +1790,71 @@
 <p class="admonition-title">Note</p>
 <p>Jackson es una biblioteca Java para trabajar con datos en formato JSON. Se utiliza para la serialización (convertir objetos Java a JSON) y la deserialización (convertir JSON a objetos Java). Viene configurada por defecto en Spring para el intercambio de datos en APIs REST.</p>
 </div>
-<h2 id="como-crear-un-controlador-rest-en-spring">⚕️Cómo crear un controlador rest en Spring</h2>
+<hr />
+<h2 id="como-crear-un-controlador-rest-en-spring-restcontroller">🧩 Cómo crear un controlador rest en Spring: <code>@RestController</code></h2>
 <p>El primer paso para crear un ‘controlador rest’ es anotar la clase que con <code>@RestController</code>.</p>
 <p>Con esto Spring ya sabe que esa clase será un componente encargado de recibir llamadas.</p>
 <p>En la clase también podemos definir la ruta raíz por la cuál partirán las llamadas externas con la anotación <code>@RequestMapping</code>.</p>
-<div class="highlight"><span class="filename">PersonController.java</span><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@RestController</span>
-<span class="linenos" data-linenos="2 "></span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/api&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="3 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PersonController</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos" data-linenos="4 "></span>
-<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.*</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nd">@RestController</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/api/users&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserController</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">UserService</span><span class="w"> </span><span class="n">userService</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserController</span><span class="p">(</span><span class="n">UserService</span><span class="w"> </span><span class="n">userService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">userService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userService</span><span class="p">;</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span><span class="w">  </span><span class="c1">// ✅ GET /api/users/5</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">  </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/{id}&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">getOne</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">userService</span><span class="p">.</span><span class="na">getById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">  </span><span class="p">}</span>
+<span class="linenos" data-linenos="18 "></span><span class="p">}</span>
 </code></pre></div>
-<p>Dentro del controlador añadiremos los métodos con lo que se mapearán las diferentes rutas o paths.</p>
-<h2 id="tipos-de-mapeo-mapping-en-un-controlador-rest">⚕️Tipos de mapeo (mapping) en un controlador rest</h2>
-<p>Existen los siguientes tipos de mapeo que podemos usar en Spring:</p>
-<p><img alt="spring" src="../../img/ud4/9spring.png" /></p>
+<h3 id="service-logica">🧠 Service (lógica)</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@Service</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"> </span><span class="n">repo</span><span class="p">;</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserService</span><span class="p">(</span><span class="n">UserRepository</span><span class="w"> </span><span class="n">repo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">repo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">  </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">getById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">      </span><span class="p">.</span><span class="na">orElseThrow</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NotFoundException</span><span class="p">(</span><span class="s">&quot;User no existe&quot;</span><span class="p">));</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="p">}</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">}</span>
+</code></pre></div>
+<p>📌 Separación:    <br />
+- 🌐 Controller: HTTP     <br />
+- 🧠 Service: caso de uso     <br />
+- 🗃️ Repository: BD     </p>
+<hr />
+<h2 id="requestmapping-y-los-mapping">🧾 <code>@RequestMapping</code> y los <code>@*Mapping</code></h2>
 <ul>
-<li><strong><em>Get</em></strong>: para solicitar información de un recurso.</li>
-<li><strong><em>Post</em></strong>: para enviar información a fin de crear o de actualizar un recurso.</li>
-<li><strong><em>Put</em></strong>: para enviar información a fin de modificar un recurso.</li>
-<li><strong><em>Patch</em></strong>: actualiza una parte del recurso.</li>
-<li><strong><em>Delete</em></strong>: elimina un recurso específico.</li>
+<li>📌 <code>@RequestMapping("/api/users")</code> → ruta base del controlador</li>
+<li>✅ <code>@GetMapping</code>, <code>@PostMapping</code>, <code>@PutMapping</code>, <code>@DeleteMapping</code>, <code>@PatchMapping</code> → método HTTP + ruta</li>
 </ul>
-<h3 id="cual-es-la-diferencia-entre-post-put-patch">¿Cuál es la diferencia entre Post , Put, Patch?</h3>
-<p>Habitualmente la diferencia entre Post y Put radica en que Post lo usamos para añadir un recurso y Put lo utilizamos para modificar un recurso en particular.</p>
-<p>Patch también lo utilizamos para actualizar un recurso pero solo una parcialidad del mismo.</p>
-<h2 id="ejemplos-de-mapeo">⚕️Ejemplos de mapeo</h2>
+<p><img alt="spring" src="../../img/ud4/9spring.png" /></p>
+<hr />
+<h2 id="como-llegan-los-datos-a-un-endpoint">🧷 ¿Cómo llegan los datos a un endpoint?</h2>
+<h3 id="a-path-variables-usersid">🧩 a) Path variables (<code>/users/{id}</code>)</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/{id}&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">getOne</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="b-query-params-usersactivetrue">🔎 b) Query params (<code>/users?active=true</code>)</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@GetMapping</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="nd">@RequestParam</span><span class="p">(</span><span class="n">defaultValue</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">)</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">active</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="c-body-json-postputpatch">📦 c) Body JSON (POST/PUT/PATCH)</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@PostMapping</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="n">UserDto</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">CreateUserRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="ejemplos-de-mapeo">🔆 Ejemplos de mapeo</h2>
 <div class="highlight"><span class="filename">PersonController.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@RestController</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/api&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos=" 3 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PersonController</span><span class="w"> </span><span class="p">{</span>
@@ -1519,6 +1896,252 @@
 <span class="linenos" data-linenos="39 "></span><span class="w">    </span><span class="p">}</span>
 <span class="linenos" data-linenos="40 "></span><span class="p">}</span>
 </code></pre></div>
+<hr />
+<h2 id="dtos-lo-normal-es-no-exponer-entidades-directamente">🧱 DTOs: lo normal es NO exponer entidades directamente</h2>
+<p>En APIs profesionales:    <br />
+- ❌ No devuelves entidades JPA “tal cual”    <br />
+- ✅ Usas DTOs/records para controlar lo que sale       </p>
+<h3 id="dto-de-entrada-request">📥 DTO de entrada (request)</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">CreateUserRequest</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<h3 id="dto-de-salida-response">📤 DTO de salida (response)</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">UserDto</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<hr />
+<h2 id="validacion-automatica-con-valid">✅ Validación automática con <code>@Valid</code></h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.validation.constraints.*</span><span class="p">;</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">CreateUserRequest</span><span class="p">(</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="nd">@NotBlank</span><span class="w"> </span><span class="nd">@Email</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">  </span><span class="nd">@NotBlank</span><span class="w"> </span><span class="nd">@Size</span><span class="p">(</span><span class="n">min</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<p>Controller:
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@PostMapping</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="n">UserDto</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="nd">@Valid</span><span class="w"> </span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">CreateUserRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></p>
+<p>✅ Si el email está vacío → Spring devuelve <strong>400</strong> automáticamente.</p>
+<hr />
+<h2 id="responseentity-para-controlar-status-codes">📦 <code>ResponseEntity</code> para controlar status codes</h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/users&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">UserDto</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="nd">@Valid</span><span class="w"> </span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">CreateUserRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">  </span><span class="n">UserDto</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">req</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">      </span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">CREATED</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">      </span><span class="p">.</span><span class="na">header</span><span class="p">(</span><span class="n">HttpHeaders</span><span class="p">.</span><span class="na">LOCATION</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/api/users/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">created</span><span class="p">.</span><span class="na">id</span><span class="p">())</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="w">      </span><span class="p">.</span><span class="na">body</span><span class="p">(</span><span class="n">created</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="nd">@DeleteMapping</span><span class="p">(</span><span class="s">&quot;/users/{id}&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">  </span><span class="n">service</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">noContent</span><span class="p">().</span><span class="na">build</span><span class="p">();</span><span class="w"> </span><span class="c1">// 204 sin body</span>
+<span class="linenos" data-linenos="15 "></span><span class="p">}</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/users/{id}&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">findById</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">userOptional</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userService</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">userOptional</span><span class="p">.</span><span class="na">isPresent</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">        </span><span class="c1">//return ResponseEntity.ok().body( userOptional.get());//200</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">        </span><span class="c1">//o es lo mismo</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="c1">//return ResponseEntity.ok( userOptional.get());</span>
+<span class="linenos" data-linenos="24 "></span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="p">(</span><span class="n">userOptional</span><span class="p">.</span><span class="na">get</span><span class="p">(),</span><span class="w"> </span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">OK</span><span class="p">);</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">    </span><span class="c1">//return ResponseEntity.notFound().build();</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">NOT_FOUND</span><span class="p">).</span><span class="na">body</span><span class="p">(</span><span class="s">&quot;User not found&quot;</span><span class="p">);</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">    </span><span class="c1">//return new ResponseEntity&lt;&gt;(&quot;the user does not exist.&quot;, HttpStatus.NOT_FOUND);</span>
+<span class="linenos" data-linenos="29 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Otros:
+- <code>ResponseEntity.ok(dto)</code> → 200
+- <code>ResponseEntity.noContent().build()</code> → 204
+- <code>ResponseEntity.status(HttpStatus.CREATED).body(dto);</code> // 201
+- <code>ResponseEntity.notFound().build();</code> // 404</p>
+<hr />
+<h2 id="ejemplo-completo-de-api-rest">Ejemplo completo de API Rest</h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1">//DTOs</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">CreateUserRequest</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="nd">@NotBlank</span><span class="w"> </span><span class="nd">@Email</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="nd">@NotBlank</span><span class="w"> </span><span class="nd">@Size</span><span class="p">(</span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">UserDto</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">UpdateUserRequest</span><span class="p">(</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="nd">@NotBlank</span><span class="w"> </span><span class="nd">@Email</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">    </span><span class="nd">@NotBlank</span><span class="w"> </span><span class="nd">@Size</span><span class="p">(</span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span>
+<span class="linenos" data-linenos="12 "></span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">PatchUserRequest</span><span class="p">(</span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span>
+<span class="linenos" data-linenos="17 "></span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<p>```java file="UserService.java"
+@Service
+public class UserService {</p>
+<p>private final UserRepository userRepository;</p>
+<p>public UserService(UserRepository userRepository) {
+    this.userRepository = userRepository;
+  }</p>
+<p>@Transactional
+  public UserDto create(CreateUserRequest req) {
+    // Regla de negocio: email único
+    if (userRepository.existsByEmailIgnoreCase(req.email())) {
+      throw new ConflictException("Ya existe un usuario con ese email");
+    }</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">User</span><span class="w"> </span><span class="nv">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">new</span><span class="w"> </span><span class="nv">User</span><span class="ss">()</span><span class="c1">;</span>
+<span class="nv">user</span>.<span class="nv">setEmail</span><span class="ss">(</span><span class="nv">req</span>.<span class="nv">email</span><span class="ss">())</span><span class="c1">;</span>
+<span class="nv">user</span>.<span class="nv">setName</span><span class="ss">(</span><span class="nv">req</span>.<span class="nv">name</span><span class="ss">())</span><span class="c1">;</span>
+
+<span class="nv">User</span><span class="w"> </span><span class="nv">saved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">userRepository</span>.<span class="nv">save</span><span class="ss">(</span><span class="nv">user</span><span class="ss">)</span><span class="c1">;</span>
+<span class="k">return</span><span class="w"> </span><span class="nv">toDto</span><span class="ss">(</span><span class="nv">saved</span><span class="ss">)</span><span class="c1">;</span>
+</code></pre></div>
+
+<p>}</p>
+<p>@Transactional
+  public void delete(Long id) {
+    if (!userRepository.existsById(id)) {
+      throw new NotFoundException("User " + id + " no existe");
+    }
+    userRepository.deleteById(id);
+  }</p>
+<p>@Transactional(readOnly = true)
+  public UserDto findById(Long id) {
+    User user = userRepository.findById(id)
+        .orElseThrow(() -&gt; new NotFoundException("User " + id + " no existe"));
+    return toDto(user);
+  }</p>
+<p>// ✅ PUT: reemplazo completo
+  @Transactional
+  public UserDto update(Long id, UpdateUserRequest req) {
+    User user = userRepository.findById(id)
+        .orElseThrow(() -&gt; new NotFoundException("User " + id + " no existe"));</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// email único (si cambia o aunque no cambie, esta comprobación es segura)</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">userRepository</span><span class="p">.</span><span class="n">existsByEmailIgnoreCaseAndIdNot</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">email</span><span class="p">(),</span><span class="w"> </span><span class="n">id</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">ConflictException</span><span class="p">(</span><span class="s">&quot;Ya existe un usuario con ese email&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nb">user</span><span class="p">.</span><span class="n">setEmail</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">email</span><span class="p">());</span>
+<span class="nb">user</span><span class="p">.</span><span class="n">setName</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">name</span><span class="p">());</span>
+
+<span class="c1">// no haría falta save() si la entidad está gestionada, pero no molesta:</span>
+<span class="n">User</span><span class="w"> </span><span class="n">saved</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="nb">save</span><span class="p">(</span><span class="nb">user</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="n">toDto</span><span class="p">(</span><span class="n">saved</span><span class="p">);</span>
+</code></pre></div>
+
+<p>}</p>
+<p>// ✅ PATCH: cambio parcial
+  @Transactional
+  public UserDto patch(Long id, PatchUserRequest req) {
+    User user = userRepository.findById(id)
+        .orElseThrow(() -&gt; new NotFoundException("User " + id + " no existe"));</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Si viene email, validar y aplicar</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">email</span><span class="p">()</span><span class="w"> </span>!<span class="p">=</span><span class="w"> </span><span class="nb">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">email</span><span class="p">().</span><span class="n">isBlank</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">BadRequestException</span><span class="p">(</span><span class="s">&quot;email no puede estar vacío&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">userRepository</span><span class="p">.</span><span class="n">existsByEmailIgnoreCaseAndIdNot</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">email</span><span class="p">(),</span><span class="w"> </span><span class="n">id</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">ConflictException</span><span class="p">(</span><span class="s">&quot;Ya existe un usuario con ese email&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nb">user</span><span class="p">.</span><span class="n">setEmail</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">email</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="c1">// Si viene name, validar y aplicar</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">name</span><span class="p">()</span><span class="w"> </span>!<span class="p">=</span><span class="w"> </span><span class="nb">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">name</span><span class="p">().</span><span class="n">isBlank</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">BadRequestException</span><span class="p">(</span><span class="s">&quot;name no puede estar vacío&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">name</span><span class="p">().</span><span class="nb">length</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="n">name</span><span class="p">().</span><span class="nb">length</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">BadRequestException</span><span class="p">(</span><span class="s">&quot;name debe tener entre 2 y 40 caracteres&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nb">user</span><span class="p">.</span><span class="n">setName</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">name</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="n">User</span><span class="w"> </span><span class="n">saved</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="nb">save</span><span class="p">(</span><span class="nb">user</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="n">toDto</span><span class="p">(</span><span class="n">saved</span><span class="p">);</span>
+</code></pre></div>
+
+<p>}</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">@Transactional</span><span class="p">(</span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">)</span>
+<span class="k">public</span><span class="w"> </span><span class="n">UserDto</span><span class="w"> </span><span class="n">findByEmail</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">)</span><span class="w"> </span><span class="err">{</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">email</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">email</span><span class="p">.</span><span class="n">isBlank</span><span class="p">())</span><span class="w"> </span><span class="err">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BadRequestException</span><span class="p">(</span><span class="ss">&quot;email es obligatorio&quot;</span><span class="p">);</span>
+<span class="err">}</span>
+
+<span class="k">User</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="n">findByEmailIgnoreCase</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">orElseThrow</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NotFoundException</span><span class="p">(</span><span class="ss">&quot;No existe el usuario con email &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">email</span><span class="p">));</span>
+
+<span class="k">return</span><span class="w"> </span><span class="n">toDto</span><span class="p">(</span><span class="k">user</span><span class="p">);</span>
+<span class="err">}</span>
+</code></pre></div>
+
+<p>private static UserDto toDto(User u) {
+    return new UserDto(u.getId(), u.getEmail(), u.getName());
+  }
+}
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>```java file=&quot;UserController.java&quot;
+<span class="linenos" data-linenos=" 2 "></span>@RestController
+<span class="linenos" data-linenos=" 3 "></span>@RequestMapping(&quot;/api/users&quot;)
+<span class="linenos" data-linenos=" 4 "></span>public class UserController {
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span>  private final UserService service;
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span>  public UserController(UserService service) {
+<span class="linenos" data-linenos=" 9 "></span>    this.service = service;
+<span class="linenos" data-linenos="10 "></span>  }
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span>  // POST /api/users  -&gt; 201 + Location + body
+<span class="linenos" data-linenos="13 "></span>  @PostMapping
+<span class="linenos" data-linenos="14 "></span>  public ResponseEntity&lt;UserDto&gt; create(@Valid @RequestBody CreateUserRequest req) {
+<span class="linenos" data-linenos="15 "></span>    UserDto created = service.create(req);
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span>    return ResponseEntity
+<span class="linenos" data-linenos="18 "></span>        .status(HttpStatus.CREATED)
+<span class="linenos" data-linenos="19 "></span>        .header(HttpHeaders.LOCATION, &quot;/api/users/&quot; + created.id())
+<span class="linenos" data-linenos="20 "></span>        .body(created);
+<span class="linenos" data-linenos="21 "></span>  }
+<span class="linenos" data-linenos="22 "></span>
+<span class="linenos" data-linenos="23 "></span>  // GET /api/users/{id} -&gt; 200 o 404 (vía excepción)
+<span class="linenos" data-linenos="24 "></span>  @GetMapping(&quot;/{id}&quot;)
+<span class="linenos" data-linenos="25 "></span>  public ResponseEntity&lt;UserDto&gt; findById(@PathVariable Long id) {
+<span class="linenos" data-linenos="26 "></span>    return ResponseEntity.ok(service.findById(id));
+<span class="linenos" data-linenos="27 "></span>  }
+<span class="linenos" data-linenos="28 "></span>
+<span class="linenos" data-linenos="29 "></span>  // DELETE /api/users/{id} -&gt; 204 o 404 (vía excepción)
+<span class="linenos" data-linenos="30 "></span>  @DeleteMapping(&quot;/{id}&quot;)
+<span class="linenos" data-linenos="31 "></span>  public ResponseEntity&lt;Void&gt; delete(@PathVariable Long id) {
+<span class="linenos" data-linenos="32 "></span>    service.delete(id);
+<span class="linenos" data-linenos="33 "></span>    return ResponseEntity.noContent().build();
+<span class="linenos" data-linenos="34 "></span>  }
+<span class="linenos" data-linenos="35 "></span>
+<span class="linenos" data-linenos="36 "></span>  // ✅ PUT /api/users/{id}
+<span class="linenos" data-linenos="37 "></span>  @PutMapping(&quot;/{id}&quot;)
+<span class="linenos" data-linenos="38 "></span>  public ResponseEntity&lt;UserDto&gt; update(
+<span class="linenos" data-linenos="39 "></span>      @PathVariable Long id,
+<span class="linenos" data-linenos="40 "></span>      @Valid @RequestBody UpdateUserRequest req
+<span class="linenos" data-linenos="41 "></span>  ) {
+<span class="linenos" data-linenos="42 "></span>    return ResponseEntity.ok(service.update(id, req));
+<span class="linenos" data-linenos="43 "></span>  }
+<span class="linenos" data-linenos="44 "></span>
+<span class="linenos" data-linenos="45 "></span>  // ✅ PATCH /api/users/{id}
+<span class="linenos" data-linenos="46 "></span>  @PatchMapping(&quot;/{id}&quot;)
+<span class="linenos" data-linenos="47 "></span>  public ResponseEntity&lt;UserDto&gt; patch(
+<span class="linenos" data-linenos="48 "></span>      @PathVariable Long id,
+<span class="linenos" data-linenos="49 "></span>      @RequestBody PatchUserRequest req
+<span class="linenos" data-linenos="50 "></span>  ) {
+<span class="linenos" data-linenos="51 "></span>    return ResponseEntity.ok(service.patch(id, req));
+<span class="linenos" data-linenos="52 "></span>  }
+<span class="linenos" data-linenos="53 "></span>
+<span class="linenos" data-linenos="54 "></span>  //Llamada: GET /api/users/by-email?email=patri@mail.com
+<span class="linenos" data-linenos="55 "></span>  @GetMapping(&quot;/by-email&quot;)
+<span class="linenos" data-linenos="56 "></span>  public ResponseEntity&lt;UserDto&gt; findByEmail(@RequestParam String email) {
+<span class="linenos" data-linenos="57 "></span>    return ResponseEntity.ok(service.findByEmail(email));
+<span class="linenos" data-linenos="58 "></span>  }
+<span class="linenos" data-linenos="59 "></span>
+<span class="linenos" data-linenos="60 "></span>}
+</code></pre></div></p>
 
 
   
