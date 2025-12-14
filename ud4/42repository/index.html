@@ -12,7 +12,7 @@
         <link rel="prev" href="../createprojectspring/">
       
       
-        <link rel="next" href="../43rest/">
+        <link rel="next" href="../servicespring/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
@@ -1154,8 +1154,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../servicespring/" class="md-nav__link">
+        5.6.- Capa Service en Spring. @Service
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../43rest/" class="md-nav__link">
-        5.6.- API REST - Spring Web
+        5.7.- API REST - Spring Web
       </a>
     </li>
   
@@ -1169,7 +1183,7 @@
   
     <li class="md-nav__item">
       <a href="../44queryresponse/" class="md-nav__link">
-        5.7.- Response
+        5.8.- Response
       </a>
     </li>
   
@@ -1671,11 +1685,12 @@ Aun así, <strong>usarla mejora la claridad del código</strong>.</p>
 <span class="linenos" data-linenos="4 "></span><span class="p">)</span>
 <span class="linenos" data-linenos="5 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findActiveUsers</span><span class="p">();</span>
 </code></pre></div>
-<p><strong>Actualizaciones y eliminaciones personalizadas</strong>: Puedes usar <code>@Query</code> para definir consultas de actualización o eliminación personalizadas.</p>
+<p><strong>Actualizaciones y eliminaciones personalizadas</strong>: Puedes usar <code>@Query</code> para definir consultas de actualización o eliminación personalizadas. Pero tienes que usar conjuntamente con <code>@Modifying</code>.</p>
+<p><code>@Modifying</code> se usa en Spring Data JPA solo cuando defines una @Query que no es un SELECT, es decir, cuando haces UPDATE / DELETE / INSERT directamente con JPQL o SQL nativo.
+Sin @Modifying, Spring interpreta <strong>la @Query como si fuera de lectura y te dará error</strong>.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Modifying</span><span class="w"> </span><span class="c1">//Indica que la consulta modificará el estado de la base de datos.</span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="nd">@Transactional</span><span class="w"> </span><span class="c1">//Indica que la transacción debe estar activa para ejecutar esta consulta.</span>
-<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;UPDATE Todo t SET t.title = :nuevoTitulo WHERE t.id = :todoId&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">updateTitleById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">todoId</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nuevoTitulo</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;UPDATE Todo t SET t.title = :nuevoTitulo WHERE t.id = :todoId&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">updateTitleById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">todoId</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nuevoTitulo</span><span class="p">);</span>
 </code></pre></div>
 <p><strong>Proyeccciones a DTO</strong>: Puedes especificar cómo se deben mapear los resultados de la consulta a objetos Java específicos como DTOs.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT new es.severo.ud4.dto.TodoDto(t.id, t.title) FROM Todo t WHERE t.completed = false&quot;</span><span class="p">)</span>
