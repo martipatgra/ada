@@ -1005,9 +1005,136 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          5.5.- Spring Data JPA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         5.5.- Spring Data JPA
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#repositories-en-spring-data-jpa" class="md-nav__link">
+    🗄️ Repositories en Spring Data JPA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-un-repository-en-spring" class="md-nav__link">
+    🧠 ¿Qué es un Repository en Spring?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-es-posible-esto" class="md-nav__link">
+    ⚙️ ¿Cómo es posible esto?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces-base-de-spring-data" class="md-nav__link">
+    🧩 Interfaces base de Spring Data
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 Interfaces base de Spring Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository" class="md-nav__link">
+    🟢 Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crudrepository" class="md-nav__link">
+    🟢 CrudRepository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jparepository-la-mas-usada" class="md-nav__link">
+    🟢 JpaRepository ✅ (la más usada)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-papel-tiene-la-anotacion-repository" class="md-nav__link">
+    🧱 ¿Qué papel tiene la anotación @Repository?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#definir-interfaces-de-repositorio" class="md-nav__link">
+    💮 Definir interfaces de repositorio
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anadir-entidades-en-intellij" class="md-nav__link">
+    💮 Añadir entidades en IntelliJ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-methods" class="md-nav__link">
+    💮 Query Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="💮 Query Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitacion-de-resultados" class="md-nav__link">
+    Limitación de resultados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streaming-los-resultados-de-las-consultas" class="md-nav__link">
+    Streaming los resultados de las consultas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1132,6 +1259,117 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#repositories-en-spring-data-jpa" class="md-nav__link">
+    🗄️ Repositories en Spring Data JPA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-un-repository-en-spring" class="md-nav__link">
+    🧠 ¿Qué es un Repository en Spring?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-es-posible-esto" class="md-nav__link">
+    ⚙️ ¿Cómo es posible esto?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces-base-de-spring-data" class="md-nav__link">
+    🧩 Interfaces base de Spring Data
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 Interfaces base de Spring Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository" class="md-nav__link">
+    🟢 Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crudrepository" class="md-nav__link">
+    🟢 CrudRepository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jparepository-la-mas-usada" class="md-nav__link">
+    🟢 JpaRepository ✅ (la más usada)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-papel-tiene-la-anotacion-repository" class="md-nav__link">
+    🧱 ¿Qué papel tiene la anotación @Repository?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#definir-interfaces-de-repositorio" class="md-nav__link">
+    💮 Definir interfaces de repositorio
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anadir-entidades-en-intellij" class="md-nav__link">
+    💮 Añadir entidades en IntelliJ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-methods" class="md-nav__link">
+    💮 Query Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="💮 Query Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitacion-de-resultados" class="md-nav__link">
+    Limitación de resultados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streaming-los-resultados-de-las-consultas" class="md-nav__link">
+    Streaming los resultados de las consultas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1156,7 +1394,7 @@
 - Se integran de forma natural con <strong>IoC</strong> y <strong>Inyección de Dependencias</strong>    </p>
 <p>📌 Spring Data JPA no sustituye a JPA ni a Hibernate, sino que <strong>se apoya en ellos para simplificar su uso</strong> dentro de aplicaciones Spring Boot.</p>
 <hr />
-<h1 id="repositories-en-spring-data-jpa">🗄️ Repositories en Spring Data JPA</h1>
+<h2 id="repositories-en-spring-data-jpa">🗄️ Repositories en Spring Data JPA</h2>
 <p>En Spring, la capa <strong>Repository</strong> se encarga del <strong>acceso a datos</strong>.<br />
 Spring Data JPA simplifica enormemente esta capa permitiendo trabajar con la base de datos <strong>sin escribir código repetitivo</strong>.</p>
 <hr />
