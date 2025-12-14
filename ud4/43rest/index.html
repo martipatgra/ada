@@ -1767,6 +1767,8 @@
 <hr />
 <h2 id="spring-web">⚕️Spring Web</h2>
 <p>El framework Spring ofrece el módulo <strong>Spring Web</strong>, que se utiliza para la creación de APIs REST. Este módulo proporciona las herramientas y anotaciones necesarias para construir y exponer endpoints RESTful.</p>
+<p>En Spring, <strong>cada petición HTTP que llega a la API se atiende con un hilo del servidor</strong> (Tomcat, normalmente). Cuando un cliente llama a un endpoint, el servidor <strong>asigna un hilo libre del pool</strong>, ese hilo ejecuta el método del <code>@RestController</code>, llama al <code>Service</code> y al <code>Repository</code>, devuelve la respuesta y se libera para atender otra petición. </p>
+<p>No es “un hilo por endpoint”, sino un hilo por petición, y Spring gestiona todo esto automáticamente, sin que tengas que crear hilos tú.</p>
 <h3 id="componentes-de-spring-para-crear-una-api-rest">⚕️Componentes de Spring para crear una API REST</h3>
 <ol>
 <li><strong>Controladores REST</strong>: los controladores son los responsables de manejar las solicitudes HTTP y devolver las respuestas adecuadas.</li>
