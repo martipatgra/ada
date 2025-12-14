@@ -1106,29 +1106,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#query-methods" class="md-nav__link">
-    💮 Query Methods
+  <a href="#query-methods-consultas-por-nombre-de-metodo" class="md-nav__link">
+    🔍 Query Methods (consultas por nombre de método)
   </a>
   
-    <nav class="md-nav" aria-label="💮 Query Methods">
+    <nav class="md-nav" aria-label="🔍 Query Methods (consultas por nombre de método)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#limitacion-de-resultados" class="md-nav__link">
-    Limitación de resultados
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#streaming-los-resultados-de-las-consultas" class="md-nav__link">
-    Streaming los resultados de las consultas
+  <a href="#como-parsea-spring-data-un-query-method" class="md-nav__link">
+    🧠 Cómo parsea Spring Data un query method
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relacion-con-ioc-y-di" class="md-nav__link">
+    🧠 Relación con IoC y DI
+  </a>
   
 </li>
       
@@ -1342,29 +1342,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#query-methods" class="md-nav__link">
-    💮 Query Methods
+  <a href="#query-methods-consultas-por-nombre-de-metodo" class="md-nav__link">
+    🔍 Query Methods (consultas por nombre de método)
   </a>
   
-    <nav class="md-nav" aria-label="💮 Query Methods">
+    <nav class="md-nav" aria-label="🔍 Query Methods (consultas por nombre de método)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#limitacion-de-resultados" class="md-nav__link">
-    Limitación de resultados
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#streaming-los-resultados-de-las-consultas" class="md-nav__link">
-    Streaming los resultados de las consultas
+  <a href="#como-parsea-spring-data-un-query-method" class="md-nav__link">
+    🧠 Cómo parsea Spring Data un query method
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relacion-con-ioc-y-di" class="md-nav__link">
+    🧠 Relación con IoC y DI
+  </a>
   
 </li>
       
@@ -1494,63 +1494,153 @@ Aun así, <strong>usarla mejora la claridad del código</strong>.</p>
 <span class="linenos" data-linenos="19 "></span><span class="p">}</span>
 </code></pre></div>
 <hr />
-<h2 id="query-methods">💮 Query Methods</h2>
-<p>El mecanismo de creación de consultas integrado en la infraestructura del repositorio Spring Data es útil para crear consultas restrictivas sobre las entidades del repositorio.</p>
+<h2 id="query-methods-consultas-por-nombre-de-metodo">🔍 Query Methods (consultas por nombre de método)</h2>
+<p>Una de las grandes ventajas de Spring Data es que permite crear consultas <strong>solo con el nombre del método</strong>.</p>
 <p>El análisis de nombres de queries de consulta <strong>se divide en sujeto y predicado</strong>. </p>
 <ul>
 <li>La primera parte (<code>find…By</code>, <code>exists…By</code>) define el sujeto de la consulta, </li>
 <li>La segunda parte forma el predicado. La cláusula introductoria (sujeto) puede contener más expresiones. </li>
 </ul>
-<p>Cualquier texto entre <code>find</code> (u otras palabras clave introductorias) y <code>By</code> se considera descriptivo a menos que se use una de las palabras clave que limitan los resultados, como <code>Distinct</code> o <code>Top/First</code>.</p>
-<p>Ejemplos de Query Methods</p>
-<div class="highlight"><span class="filename">PersonRespository.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">interface</span> <span class="nc">PersonRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Repository</span><span class="o">&lt;</span><span class="n">Person</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<p><strong>Spring interpreta el nombre del método y genera automáticamente la consulta correspondiente.</strong></p>
+<p>📌 Esto evita escribir JPQL o SQL en muchos casos.</p>
+<h3 id="como-parsea-spring-data-un-query-method">🧠 Cómo parsea Spring Data un query method</h3>
+<p>Spring Data divide el nombre así</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nt">find</span><span class="w"> </span><span class="o">[</span><span class="nt">Distinct</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="nt">Subject</span><span class="o">]</span><span class="w"> </span><span class="nt">By</span><span class="w"> </span><span class="o">[</span><span class="nt">Predicado</span><span class="o">]</span>
+</code></pre></div>
+<p>Donde:  <br />
+- <code>find</code> → tipo de operación  <br />
+- <code>Distinct</code> → modificador (opcional) <br />
+- <code>Subject</code> → nombre “humano” (opcional, decorativo)  <br />
+- <code>By</code> → separador  <br />
+- <strong>Predicado</strong> → condiciones (LastnameOrFirstname, etc.)     </p>
+<p>👉 El subject puede estar o no, y no cambia la consulta.</p>
+<blockquote>
+<p>Además de <code>find…By…</code> puedes usar otros prefijos equivalentes a find: <code>read…By…</code>, <code>get…By…</code>, <code>query…By…</code>, <code>search…By…</code></p>
+</blockquote>
+<p>Ejemplos válidos:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">findByLastname</span><span class="p">(...)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">findDistinctByLastname</span><span class="p">(...)</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">findPersonByLastname</span><span class="p">(...)</span><span class="w"> </span><span class="c1">//este tiene sujeto Person</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">findDistinctPersonByLastname</span><span class="p">(...)</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">findPeopleByLastname</span><span class="p">(...)</span><span class="w"> </span><span class="c1">//este tiene sujeto People</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">findPeopleDistinctByLastname</span><span class="p">(...)</span>
+</code></pre></div>
+<p>Ejemplos de Query Methods:</p>
+<div class="highlight"><span class="filename">PersonRespository.java</span><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">PersonRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Person</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByEmailAddressAndLastname</span><span class="p">(</span><span class="n">EmailAddress</span><span class="w"> </span><span class="n">emailAddress</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="w">  </span><span class="c1">// Enables the distinct flag for the query</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findDistinctPeopleByLastnameOrFirstname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findPeopleDistinctByLastnameOrFirstname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">  </span><span class="c1">//Strings</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByFirstnameStartingWith</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">prefix</span><span class="p">);</span><span class="w">     </span><span class="c1">// LIKE &#39;prefix%&#39;</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameEndingWith</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">suffix</span><span class="p">);</span><span class="w">        </span><span class="c1">// LIKE &#39;%suffix&#39;</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByEmailContainingIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">part</span><span class="p">);</span><span class="w">   </span><span class="c1">// LIKE &#39;%part%&#39; ignoring case</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameNotLike</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">pattern</span><span class="p">);</span><span class="w">          </span><span class="c1">// NOT LIKE</span>
 <span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="w">  </span><span class="c1">// Enabling ignoring case for an individual property</span>
-<span class="linenos" data-linenos="10 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span>
-<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="c1">// Enabling ignoring case for all suitable properties</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameAndFirstnameAllIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
-<span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span><span class="w">  </span><span class="c1">// Enabling static ORDER BY for a query</span>
-<span class="linenos" data-linenos="15 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameOrderByFirstnameAsc</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span>
-<span class="linenos" data-linenos="16 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameOrderByFirstnameDesc</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span>
-<span class="linenos" data-linenos="17 "></span>
-<span class="linenos" data-linenos="18 "></span><span class="w">  </span><span class="c1">// Like - where x.firstname like ?1 (parameter bound wrapped in %)</span>
-<span class="linenos" data-linenos="19 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByFirstnameContaining</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
-<span class="linenos" data-linenos="20 "></span>
-<span class="linenos" data-linenos="21 "></span><span class="w">  </span><span class="c1">//Between -  where x.startDate between ?1 and ?2 - Busca las personas nacidas entre esas fechas</span>
-<span class="linenos" data-linenos="22 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByBirthDateBetween</span><span class="p">(</span><span class="n">LocalDate</span><span class="w"> </span><span class="n">dateBegin</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">dateEnd</span><span class="p">);</span>
-<span class="linenos" data-linenos="23 "></span><span class="p">}</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">  </span><span class="c1">//Números y comparaciones</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByAgeGreaterThan</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">);</span>
+<span class="linenos" data-linenos="11 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByAgeGreaterThanEqual</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">);</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByAgeLessThan</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">);</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByAgeBetween</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="p">);</span>
+<span class="linenos" data-linenos="14 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findBySalaryBetween</span><span class="p">(</span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">max</span><span class="p">);</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="w">  </span><span class="c1">//Boolean</span>
+<span class="linenos" data-linenos="17 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByActiveTrue</span><span class="p">();</span>
+<span class="linenos" data-linenos="18 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByActiveFalse</span><span class="p">();</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span><span class="w">  </span><span class="c1">//Null</span>
+<span class="linenos" data-linenos="21 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByEmailIsNull</span><span class="p">();</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByEmailIsNotNull</span><span class="p">();</span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="w">  </span><span class="c1">//Fechas y tiempo</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByBirthDateAfter</span><span class="p">(</span><span class="n">LocalDate</span><span class="w"> </span><span class="n">date</span><span class="p">);</span>
+<span class="linenos" data-linenos="26 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByBirthDateBefore</span><span class="p">(</span><span class="n">LocalDate</span><span class="w"> </span><span class="n">date</span><span class="p">);</span>
+<span class="linenos" data-linenos="27 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByCreatedAtBetween</span><span class="p">(</span><span class="n">LocalDateTime</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDateTime</span><span class="w"> </span><span class="n">end</span><span class="p">);</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByUpdatedAtAfterOrderByUpdatedAtDesc</span><span class="p">(</span><span class="n">LocalDateTime</span><span class="w"> </span><span class="n">date</span><span class="p">);</span>
+<span class="linenos" data-linenos="29 "></span>
+<span class="linenos" data-linenos="30 "></span><span class="w">  </span><span class="c1">//IN / NOT IN (colecciones)</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByCityIn</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cities</span><span class="p">);</span>
+<span class="linenos" data-linenos="32 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameIn</span><span class="p">(</span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lastnames</span><span class="p">);</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByAgeNotIn</span><span class="p">(</span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ages</span><span class="p">);</span>
+<span class="linenos" data-linenos="34 "></span>
+<span class="linenos" data-linenos="35 "></span><span class="w">  </span><span class="c1">//Combinaciones con AND / OR</span>
+<span class="linenos" data-linenos="36 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameAndFirstname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameOrCity</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">);</span>
+<span class="linenos" data-linenos="38 "></span>
+<span class="linenos" data-linenos="39 "></span><span class="w">  </span><span class="c1">// Ojo: AND suele tener prioridad sobre OR en el parsing, mejor no hacer nombres demasiado complejos.</span>
+<span class="linenos" data-linenos="40 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameAndActiveTrueOrCity</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">);</span>
+<span class="linenos" data-linenos="41 "></span>
+<span class="linenos" data-linenos="42 "></span><span class="w">  </span><span class="c1">//Relaciones (navegando propiedades)</span>
+<span class="linenos" data-linenos="43 "></span><span class="w">  </span><span class="c1">//Si Person tiene una relación, con Address address con String country, o Company company con String name:</span>
+<span class="linenos" data-linenos="44 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByCompanyName</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">companyName</span><span class="p">);</span><span class="w">         </span><span class="c1">// person.company.name</span>
+<span class="linenos" data-linenos="45 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByAddressCountryIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">country</span><span class="p">);</span><span class="w"> </span><span class="c1">//person.address.country</span>
+<span class="linenos" data-linenos="46 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByCompanyNameAndActiveTrue</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">companyName</span><span class="p">);</span><span class="w"> </span><span class="c1">//person.company.name</span>
+<span class="linenos" data-linenos="47 "></span>
+<span class="linenos" data-linenos="48 "></span><span class="w">  </span><span class="c1">//Si Person tiene una colección, por ejemplo Set&lt;Role&gt; roles donde Role tiene name:</span>
+<span class="linenos" data-linenos="49 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByRolesName</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">roleName</span><span class="p">);</span><span class="w">              </span><span class="c1">// join implícito</span>
+<span class="linenos" data-linenos="50 "></span>
+<span class="linenos" data-linenos="51 "></span><span class="w">  </span><span class="c1">//Exists / Count</span>
+<span class="linenos" data-linenos="52 "></span><span class="w">  </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">existsByEmail</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+<span class="linenos" data-linenos="53 "></span><span class="w">  </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">existsByLastnameAndFirstname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
+<span class="linenos" data-linenos="54 "></span>
+<span class="linenos" data-linenos="55 "></span><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="nf">countByActiveTrue</span><span class="p">();</span>
+<span class="linenos" data-linenos="56 "></span><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="nf">countByCity</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">);</span>
+<span class="linenos" data-linenos="57 "></span>
+<span class="linenos" data-linenos="58 "></span><span class="w">  </span><span class="c1">//Top / First + OrderBy (limitando resultados)</span>
+<span class="linenos" data-linenos="59 "></span><span class="w">  </span><span class="n">Person</span><span class="w"> </span><span class="nf">findFirstByOrderByBirthDateAsc</span><span class="p">();</span><span class="w">                    </span><span class="c1">// la más “vieja” (nacimiento más antiguo)</span>
+<span class="linenos" data-linenos="60 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findTop3ByOrderByCreatedAtDesc</span><span class="p">();</span><span class="w">              </span><span class="c1">// últimas 3 personas creadas</span>
+<span class="linenos" data-linenos="61 "></span>
+<span class="linenos" data-linenos="62 "></span><span class="w">  </span><span class="n">Person</span><span class="w"> </span><span class="nf">findTopByLastnameOrderByBirthDateDesc</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span><span class="w"> </span><span class="c1">// la más joven con ese apellido</span>
+<span class="linenos" data-linenos="63 "></span>
+<span class="linenos" data-linenos="64 "></span><span class="w">  </span><span class="c1">//Paginación y ordenación dinámica</span>
+<span class="linenos" data-linenos="65 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Sort</span><span class="w"> </span><span class="n">sort</span><span class="p">);</span>
+<span class="linenos" data-linenos="66 "></span>
+<span class="linenos" data-linenos="67 "></span><span class="w">  </span><span class="n">Page</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByActiveTrue</span><span class="p">(</span><span class="n">Pageable</span><span class="w"> </span><span class="n">pageable</span><span class="p">);</span>
+<span class="linenos" data-linenos="68 "></span><span class="w">  </span><span class="n">Page</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameContainingIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Pageable</span><span class="w"> </span><span class="n">pageable</span><span class="p">);</span>
+<span class="linenos" data-linenos="69 "></span>
+<span class="linenos" data-linenos="70 "></span><span class="w">  </span><span class="c1">//Negaciones</span>
+<span class="linenos" data-linenos="71 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameNot</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span>
+<span class="linenos" data-linenos="72 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByCityNotIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">);</span>
+<span class="linenos" data-linenos="73 "></span>
+<span class="linenos" data-linenos="74 "></span><span class="w">  </span><span class="c1">// Enabling ignoring case for an individual property</span>
+<span class="linenos" data-linenos="75 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">);</span>
+<span class="linenos" data-linenos="76 "></span><span class="w">  </span><span class="c1">// Enabling ignoring case for all suitable properties</span>
+<span class="linenos" data-linenos="77 "></span><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLastnameAndFirstnameAllIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
+<span class="linenos" data-linenos="78 "></span>
+<span class="linenos" data-linenos="79 "></span><span class="w">  </span><span class="c1">//comprobar existencia</span>
+<span class="linenos" data-linenos="80 "></span><span class="w">  </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">existsByEmail</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+<span class="linenos" data-linenos="81 "></span><span class="w">  </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">existsByLastnameAndFirstname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstname</span><span class="p">);</span>
+<span class="linenos" data-linenos="82 "></span>
+<span class="linenos" data-linenos="83 "></span><span class="w">  </span><span class="c1">//borrar</span>
+<span class="linenos" data-linenos="84 "></span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteByEmail</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">);</span>
+<span class="linenos" data-linenos="85 "></span><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="nf">deleteByActiveFalse</span><span class="p">();</span><span class="w">     </span><span class="c1">// devuelve cuántos borró (según versión/uso)</span>
+<span class="linenos" data-linenos="86 "></span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">removeByCity</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">);</span><span class="w"> </span><span class="c1">// sinónimo de delete</span>
+<span class="linenos" data-linenos="87 "></span>
+<span class="linenos" data-linenos="88 "></span>
+<span class="linenos" data-linenos="89 "></span><span class="p">}</span>
 </code></pre></div>
 <p><em>En la documentación oficial de Spring Data JPA encontramos la siguientes tablas con las palabras clave admitidas:</em></p>
 <ul>
 <li><a href="https://docs.spring.io/spring-data/jpa/reference/repositories/query-keywords-reference.html">Query subject keywords</a></li>
 <li><a href="https://docs.spring.io/spring-data/jpa/reference/repositories/query-keywords-reference.html#appendix.query.method.predicate">Query predicate keywords</a></li>
 </ul>
-<h3 id="limitacion-de-resultados">Limitación de resultados</h3>
-<p>Se puede limitar los resultados de los métodos de consulta utilizando las palabras clave <code>first</code> o <code>top</code> indistintamente.
-Podemos agregar un valor numérico opcional a <code>top</code> o <code>first</code> para especificar el tamaño máximo de resultado que devolverá la consulta. </p>
-<p><strong>Si se omite el número, se asume un tamaño de resultado de 1. </strong></p>
-<p>Ejemplos <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.limit-query-result">web oficial de Spring</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">User</span><span class="w"> </span><span class="nf">findFirstByOrderByLastnameAsc</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="n">User</span><span class="w"> </span><span class="nf">findTopByOrderByAgeDesc</span><span class="p">();</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="n">Page</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">queryFirst10ByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Pageable</span><span class="w"> </span><span class="n">pageable</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="n">Slice</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findTop3ByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Pageable</span><span class="w"> </span><span class="n">pageable</span><span class="p">);</span>
-<span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findFirst10ByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Sort</span><span class="w"> </span><span class="n">sort</span><span class="p">);</span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findTop10ByLastname</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lastname</span><span class="p">,</span><span class="w"> </span><span class="n">Pageable</span><span class="w"> </span><span class="n">pageable</span><span class="p">);</span>
+<hr />
+<h2 id="relacion-con-ioc-y-di">🧠 Relación con IoC y DI</h2>
+<ul>
+<li>Los <strong>Repositories son beans</strong></li>
+<li>El <strong>ApplicationContext</strong> los crea y gestiona</li>
+<li>Se <strong>inyectan automáticamente</strong> en servicios</li>
+</ul>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@Service</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UsuarioService</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">UsuarioRepository</span><span class="w"> </span><span class="n">usuarioRepository</span><span class="p">;</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UsuarioService</span><span class="p">(</span><span class="n">UsuarioRepository</span><span class="w"> </span><span class="n">usuarioRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">usuarioRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarioRepository</span><span class="p">;</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">    </span><span class="p">}</span>
+<span class="linenos" data-linenos="9 "></span><span class="p">}</span>
 </code></pre></div>
-<h3 id="streaming-los-resultados-de-las-consultas">Streaming los resultados de las consultas</h3>
-<p>Podemos procesar los resultados de los métodos de consulta utilizando Java 8 Stream<T> como tipo de retorno. </p>
+<p>👉 El programador <strong>no crea el repositorio</strong>, Spring lo inyecta.</p>
+<hr />
 
 
   
