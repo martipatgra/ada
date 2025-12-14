@@ -1671,10 +1671,14 @@
 <p><strong>Spring llama a estas instancias gestionadas beans.</strong></p>
 <p><img alt="spring" src="../../img/ud4/4spring.png" /></p>
 <p>Los beans son las instancias de las clases que están disponibles para ser reutilizados y son gestionados dentro del contenedor de Spring (<strong>Spring container</strong>). Spring sabe qué dependencias existen entre las instancias y se encarga de satisfacerlas.</p>
+<p>⚠️ <strong>Importante</strong>:    <br />
+- <strong>IoC NO dice cómo se hace</strong>, solo dice que no lo hagas tú.</p>
 <hr />
 <h2 id="que-es-la-inyeccion-de-dependencias-dependency-injection-di">🔌 ¿Qué es la Inyección de Dependencias (Dependency Injection - DI)?</h2>
 <p>La <strong>DI</strong> es cómo Spring <em>entrega</em> a tus clases las dependencias que necesitan. Spring <strong>inyecta</strong> los objetos donde se necesitan.</p>
-<p>La <strong>inyección de dependencias</strong> es un patrón de diseño cuyo objetivo es delegar la creación y gestión de las dependencias de una clase en un elemento externo (como el framework Spring), que se encarga de suministrarlas automáticamente cuando son necesarias.</p>
+<blockquote>
+<p><strong>Es una técnica para pasarle a una clase los objetos que necesita desde fuera</strong>.</p>
+</blockquote>
 <p><ins class="critic">Habitualmente, nuestras clases dependen de otras para funcionar. Este patrón permite que una clase no sea responsable de crear ni administrar sus dependencias, sino que estas le sean inyectadas desde el exterior, reduciendo así el acoplamiento y mejorando la mantenibilidad del código.</ins></p>
 <h3 id="tipos-de-inyeccion-que-existen">🔌 Tipos de inyección que existen</h3>
 <h4 id="1-inyeccion-por-constructor-recomendada">1️⃣ Inyección por constructor (RECOMENDADA ✅)</h4>
