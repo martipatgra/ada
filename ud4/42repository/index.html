@@ -19,7 +19,7 @@
     
     
       
-        <title>5.5.- Spring Data JPA. Repository. Query methods - Acceso a Datos</title>
+        <title>5.5.- Spring Data JPA. Repository. Query methods, @Query - Acceso a Datos</title>
       
     
     
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5.5.- Spring Data JPA. Repository. Query methods
+              5.5.- Spring Data JPA. Repository. Query methods, @Query
             
           </span>
         </div>
@@ -1006,12 +1006,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          5.5.- Spring Data JPA. Repository. Query methods
+          5.5.- Spring Data JPA. Repository. Query methods, @Query
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        5.5.- Spring Data JPA. Repository. Query methods
+        5.5.- Spring Data JPA. Repository. Query methods, @Query
       </a>
       
         
@@ -1132,6 +1132,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#consultas-personalizadas-con-query" class="md-nav__link">
+    🧪 Consultas personalizadas con @Query
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1162,7 +1169,7 @@
   
     <li class="md-nav__item">
       <a href="../44queryresponse/" class="md-nav__link">
-        5.7.- @Query y Response
+        5.7.- Response
       </a>
     </li>
   
@@ -1364,6 +1371,13 @@
         <li class="md-nav__item">
   <a href="#relacion-con-ioc-y-di" class="md-nav__link">
     🧠 Relación con IoC y DI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consultas-personalizadas-con-query" class="md-nav__link">
+    🧪 Consultas personalizadas con @Query
   </a>
   
 </li>
@@ -1640,6 +1654,33 @@ Aun así, <strong>usarla mejora la claridad del código</strong>.</p>
 <span class="linenos" data-linenos="9 "></span><span class="p">}</span>
 </code></pre></div>
 <p>👉 El programador <strong>no crea el repositorio</strong>, Spring lo inyecta.</p>
+<hr />
+<h2 id="consultas-personalizadas-con-query">🧪 Consultas personalizadas con <code>@Query</code></h2>
+<p>❓ Cuando necesitas realizar operaciones más complejas o específicas que no se cubren automáticamente, podemos definirla manualmente:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT u FROM Usuario u WHERE u.edad &gt; :edad&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">buscarMayoresDe</span><span class="p">(</span><span class="nd">@Param</span><span class="p">(</span><span class="s">&quot;edad&quot;</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edad</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;select u from User u where u.email = ?1 and u.active = ?2&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findUsers</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">active</span><span class="p">);</span>
+</code></pre></div>
+<p>Cuando usas <code>@Query</code> en Spring Data JPA, <strong>el lenguaje por defecto es, JPQL</strong>.</p>
+<p>También es posible usar <strong>SQL nativo</strong> si es necesario, agregando una propiedad dentro de <code>@Query</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@Query</span><span class="p">(</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT * FROM users u WHERE u.active = 1&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="n">nativeQuery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findActiveUsers</span><span class="p">();</span>
+</code></pre></div>
+<p><strong>Actualizaciones y eliminaciones personalizadas</strong>: Puedes usar <code>@Query</code> para definir consultas de actualización o eliminación personalizadas.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Modifying</span><span class="w"> </span><span class="c1">//Indica que la consulta modificará el estado de la base de datos.</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="nd">@Transactional</span><span class="w"> </span><span class="c1">//Indica que la transacción debe estar activa para ejecutar esta consulta.</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;UPDATE Todo t SET t.title = :nuevoTitulo WHERE t.id = :todoId&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">updateTitleById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">todoId</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nuevoTitulo</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Proyeccciones a DTO</strong>: Puedes especificar cómo se deben mapear los resultados de la consulta a objetos Java específicos como DTOs.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT new es.severo.ud4.dto.TodoDto(t.id, t.title) FROM Todo t WHERE t.completed = false&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">TodoDTO</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">encontrarTodosNoCompletados</span><span class="p">();</span>
+</code></pre></div>
 <hr />
 
 
