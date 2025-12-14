@@ -1674,8 +1674,8 @@
 <hr />
 <h2 id="que-es-la-inyeccion-de-dependencias-dependency-injection-di">🔌 ¿Qué es la Inyección de Dependencias (Dependency Injection - DI)?</h2>
 <p>La <strong>DI</strong> es cómo Spring <em>entrega</em> a tus clases las dependencias que necesitan. Spring <strong>inyecta</strong> los objetos donde se necesitan.</p>
-<p>La <strong>inyección de dependencias</strong> es un patrón de diseño que tiene como objetivo tomar la responsabilidad de crear las instancias de las clases que otro objeto necesita y suministrárselo para que esta clase los pueda utilizar.</p>
-<p><ins class="critic">Habitualmente nuestras clases dependen de otras para funcionar. Este patrón permite que una clase no sea responsable de crear o administrar sus dependencias, sino que estas le sean inyectadas desde el exterior.</ins></p>
+<p>La <strong>inyección de dependencias</strong> es un patrón de diseño cuyo objetivo es delegar la creación y gestión de las dependencias de una clase en un elemento externo (como el framework Spring), que se encarga de suministrarlas automáticamente cuando son necesarias.</p>
+<p><ins class="critic">Habitualmente, nuestras clases dependen de otras para funcionar. Este patrón permite que una clase no sea responsable de crear ni administrar sus dependencias, sino que estas le sean inyectadas desde el exterior, reduciendo así el acoplamiento y mejorando la mantenibilidad del código.</ins></p>
 <h3 id="tipos-de-inyeccion-que-existen">🔌 Tipos de inyección que existen</h3>
 <h4 id="1-inyeccion-por-constructor-recomendada">1️⃣ Inyección por constructor (RECOMENDADA ✅)</h4>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@Service</span>
