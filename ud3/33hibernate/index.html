@@ -1524,7 +1524,7 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 - Hibernate <strong>no hace dirty checking</strong> sobre ella.    <br />
 - <strong>ERROR si intentas hacer</strong> <code>persist()</code> <strong>de una entidad que referencia una DETACHED</strong> y <em>no hay cascade MERGE</em>.    <br />
 - Para volverla a usar debes:         <br />
-    - volver a cargarla (<code>session.find()</code>), o               <br />
+    - volver a cargarla (<code>session.find()</code>), O               <br />
     - usar <code>session.merge(card)</code>.       </p>
 <h4 id="removed">🧣 <code>Removed</code></h4>
 <p>Marcada para borrado; se ejecuta <code>DELETE</code> al sincronizar.</p>
@@ -1545,18 +1545,18 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 </blockquote>
 <p><strong>Si una entidad está MANAGED</strong>, <strong>cualquier cambio en sus atributos (incluso los de las relaciones) será sincronizado automáticamente con la base de datos en el commit</strong>.</p>
 <p>Es decir:             <br />
-- ❌ No hace falta session.update(entity) <br />
-- ❌ No hace falta session.persist(entity)        <br />
-- ❌ No hace falta llamar a nada explícitamente     </p>
-<p>Hibernate <strong>vigila</strong> los objetos <em>MANAGED</em> (los que están dentro del Contexto de Persistencia) y:   <br />
+- ❌ No hace falta session.update(entity)     <br />
+- ❌ No hace falta session.persist(entity)           <br />
+- ❌ No hace falta llamar a nada explícitamente         </p>
+<p>Hibernate <strong>vigila</strong> los objetos <em>MANAGED</em> (los que están dentro del Contexto de Persistencia) y:     <br />
 - si detecta cambios en sus atributos,    <br />
 - los marca como “sucios” (dirty),    <br />
 - y en el <code>flush()</code> o <code>commit()</code> ejecuta los SQL necesarios para sincronizar con la BD.     </p>
 <h3 id="donde-ocurre">📦 ¿Dónde ocurre?</h3>
 <p>En el <strong>Persistence Context</strong> de la Session. Solo funciona con entidades en estado <strong>MANAGED</strong>.   <br />
-- TRANSIENT → ❌ No hay dirty checking
-- DETACHED → ❌ No hay dirty checking
-- MANAGED → ✔ Sí, Hibernate detecta cambios</p>
+- TRANSIENT → ❌ No hay dirty checking    <br />
+- DETACHED → ❌ No hay dirty checking         <br />
+- MANAGED → ✔ Sí, Hibernate detecta cambios        </p>
 <p>Si tienes una entidad DETACHED y cambias algo → Hibernate ni se entera.</p>
 <h3 id="como-funciona-internamente-el-dirty-checking">🧠 ¿Cómo funciona internamente el dirty checking?</h3>
 <p>Cuando una entidad entra en la Session (por <code>find</code>, <code>get</code>, <code>persist</code>, <code>merge</code>…), Hibernate:     </p>
