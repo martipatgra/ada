@@ -1490,7 +1490,7 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 </blockquote>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ana@example.com&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// transient</span>
 </code></pre></div>
-<p>Características:          <br />
+<p>Características:              <br />
 - No tiene identificación en BD (id = null o no asignado).        <br />
 - No está en ninguna Session.         <br />
 - Hibernate no la sincroniza con la BD.       <br />
@@ -1519,13 +1519,13 @@ Hibernate usa JDBC para conectar con la BBDD y ejecutar querys.</p>
 <span class="linenos" data-linenos="3 "></span><span class="n">Usuario</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="c1">// devuelve una copia managed con los cambios</span>
 </code></pre></div>
 <p>Características:      <br />
-- Tiene ID de BD (ya existía).
-- No pertenece a ninguna Session actual.
-- Hibernate <strong>no hace dirty checking</strong> sobre ella.
-- <strong>ERROR si intentas hacer</strong> <code>persist()</code> <strong>de una entidad que referencia una DETACHED</strong> y <em>no hay cascade MERGE</em>.
-- Para volverla a usar debes:     <br />
-    - volver a cargarla (<code>session.find()</code>), o       <br />
-    - usar <code>session.merge(card)</code>.     </p>
+- Tiene ID de BD (ya existía).    <br />
+- No pertenece a ninguna Session actual.      <br />
+- Hibernate <strong>no hace dirty checking</strong> sobre ella.    <br />
+- <strong>ERROR si intentas hacer</strong> <code>persist()</code> <strong>de una entidad que referencia una DETACHED</strong> y <em>no hay cascade MERGE</em>.    <br />
+- Para volverla a usar debes:         <br />
+    - volver a cargarla (<code>session.find()</code>), o               <br />
+    - usar <code>session.merge(card)</code>.       </p>
 <h4 id="removed">🧣 <code>Removed</code></h4>
 <p>Marcada para borrado; se ejecuta <code>DELETE</code> al sincronizar.</p>
 <blockquote>
