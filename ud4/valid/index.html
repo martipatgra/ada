@@ -1,0 +1,1469 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>1️⃣ ¿Qué es @Valid? - Acceso a Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-que-es-valid" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acceso a Datos" class="md-header__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acceso a Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1️⃣ ¿Qué es @Valid?
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="Teal"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acceso a Datos" class="md-nav__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Acceso a Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          1.- Acceso a datos mediante ficheros
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.- Acceso a datos mediante ficheros
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/filevsfiles/" class="md-nav__link">
+        1.1.- Gestión de ficheros con Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          1.2.- Lectura y escritura de ficheros en Java
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.2.- Lectura y escritura de ficheros en Java
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/io/" class="md-nav__link">
+        1.2.1.- Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+          1.2.2.- Acceso secuencial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          1.2.2.- Acceso secuencial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/binaryfiles/" class="md-nav__link">
+        Operaciones con ficheros binarios en Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/characterfiles/" class="md-nav__link">
+        Operaciones con ficheros de caracteres en Java
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
+          1.2.3.- Acceso aleatorio
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          1.2.3.- Acceso aleatorio
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/randomaccessfile/" class="md-nav__link">
+        Operaciones con ficheros de acceso aleatorio en Java
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/fileswalk/" class="md-nav__link">
+        1.3.- Recorrido de directorios con java.nio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/serialization/" class="md-nav__link">
+        1.4.- Lectura y escritura de objectos en Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/propertiesfile/" class="md-nav__link">
+        1.5.- Ficheros de propiedades en Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/jsonfiles/" class="md-nav__link">
+        1.6.- Ficheros JSON en Java
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/createjar/" class="md-nav__link">
+        1.7.- Crear un .jar
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud1/trywithresources/" class="md-nav__link">
+        1.8.- try-with-resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          2.- Acceso a bases de datos relacionales con JDBC
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          2.- Acceso a bases de datos relacionales con JDBC
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/persistencia/" class="md-nav__link">
+        2.1.- Persistencia de la información
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/mapeo/" class="md-nav__link">
+        2.2.- Introducción a JDBC y conectores
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/conectores/" class="md-nav__link">
+        2.3.- Fundamentos de JDBC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/ddl/" class="md-nav__link">
+        2.4.- Definición de estructuras de BD y ejecución de sentencias DDL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/dml/" class="md-nav__link">
+        2.5.- Modificación de datos con JDBC (DML)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/dql/" class="md-nav__link">
+        2.6.- Consultas y manipulación de resultados con JDBC (DQL)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/procedures/" class="md-nav__link">
+        2.7.- Procedimientos almacenados y CallableStatement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/transactions/" class="md-nav__link">
+        2.8.- Gestión de transacciones en JDBC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/26rendimiento/" class="md-nav__link">
+        2.9.- Mejora del rendimiento y buenas prácticas
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud2/27projectstructure/" class="md-nav__link">
+        2.10.- Desarrollo de aplicaciones completas con JDBC
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          3.- ORM con Hibernate y JPA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          3.- ORM con Hibernate y JPA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/31mapeo/" class="md-nav__link">
+        3.1.- Fundamentos del ORM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/jakartajpa/" class="md-nav__link">
+        3.2.- Jakarta - JPA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/installation/" class="md-nav__link">
+        3.3.- Configuración e instalación de Hibernate. Mapeo de entidades
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/33hibernate/" class="md-nav__link">
+        3.4.- Hibernate. Contexto de persistencia
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/operacionescrud/" class="md-nav__link">
+        3.5.- Operaciones CRUD con objetos en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/queries/" class="md-nav__link">
+        3.6.- Formas de realizar consultas en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/relations/" class="md-nav__link">
+        3.7.- Relaciones avanzadas en Hibernate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/34dao/" class="md-nav__link">
+        3.8.- Patrón DAO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud3/35service/" class="md-nav__link">
+        3.9.- Service Layer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          4.- Bases de datos documentales con MongoDB
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          4.- Bases de datos documentales con MongoDB
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../udmongodb/mongodb1/" class="md-nav__link">
+        4.1.- Introducción
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          5.- Spring Framework
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          5.- Spring Framework
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../41introduccionspring/" class="md-nav__link">
+        5.1.- Introducción a Spring Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring/" class="md-nav__link">
+        5.2.- Spring. Beans, IoC y DI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modulospring/" class="md-nav__link">
+        5.3.- Módulos de Spring para crear APIs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../createprojectspring/" class="md-nav__link">
+        5.4.- Cómo crear un proyecto con Spring en IntelliJ
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../42repository/" class="md-nav__link">
+        5.5.- Spring Data JPA. Repository. Query methods, @Query
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../servicespring/" class="md-nav__link">
+        5.6.- Capa Service en Spring. @Service
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../43rest/" class="md-nav__link">
+        5.7.- Spring API REST. @RestController
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          6.- Java Modules
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          6.- Java Modules
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ud5/51modulo/" class="md-nav__link">
+        6.1.- Módulos en Java
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2-que-problema-soluciona" class="md-nav__link">
+    2️⃣ Qué problema soluciona
+  </a>
+  
+    <nav class="md-nav" aria-label="2️⃣ Qué problema soluciona">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sin-valid" class="md-nav__link">
+    ❌ Sin @Valid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#con-valid" class="md-nav__link">
+    ✅ Con @Valid
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-como-funciona-el-flujo-real" class="md-nav__link">
+    3️⃣ Cómo funciona el flujo real
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-validaciones-tipicas" class="md-nav__link">
+    4️⃣ Validaciones típicas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-aplicado-a-endpoints" class="md-nav__link">
+    5️⃣ Aplicado a endpoints
+  </a>
+  
+    <nav class="md-nav" aria-label="5️⃣ Aplicado a endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiflights" class="md-nav__link">
+    🛩️ POST /api/flights
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-que-no-hace-valid-muy-importante" class="md-nav__link">
+    6️⃣ Qué NO hace @Valid (muy importante)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="1-que-es-valid">1️⃣ ¿Qué es @Valid?</h1>
+<p><code>@Valid</code> permite validar automáticamente los datos de entrada de un endpoint REST según las restricciones definidas en los DTOs, devolviendo un error 400 si no se cumplen, sin necesidad de escribir validaciones manuales en el controller.</p>
+<p><code>@Valid</code> le dice a Spring:</p>
+<blockquote>
+<p>“Antes de entrar en este método, <strong>valida el objeto de entrada</strong> según sus anotaciones”.</p>
+</blockquote>
+<p>Es decir: <br />
+- Valida <strong>requests</strong> (<code>@RequestBody</code>)  <br />
+- Valida <strong>params</strong> (<code>@RequestParam</code>, <code>@PathVariable</code>)  <br />
+- Valida <strong>DTOs</strong>, no entidades</p>
+<p>Si algo no cumple:  <br />
+- 👉 Spring <strong>NO entra al método</strong>  <br />
+- 👉 Devuelve automáticamente <strong>400 Bad Request</strong>   </p>
+<hr />
+<h2 id="2-que-problema-soluciona">2️⃣ Qué problema soluciona</h2>
+<h3 id="sin-valid">❌ Sin @Valid</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@PostMapping</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">FlightDto</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">CreateFlightRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="c1">// req puede venir con nulls, strings vacíos, números negativos...</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Tú tendrías que hacer:  <br />
+- if (req == null)  <br />
+- if (req.field == null)  <br />
+- if (req.field.isBlank())  <br />
+- if (req.number &lt; 0)   </p>
+<p>👉 Código feo, repetido y propenso a errores.</p>
+<hr />
+<h3 id="con-valid">✅ Con @Valid</h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@PostMapping</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">FlightDto</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="nd">@Valid</span><span class="w"> </span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">CreateFlightRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="p">...</span>
+<span class="linenos" data-linenos="5 "></span><span class="p">}</span>
+</code></pre></div>
+<p>Y defines las reglas <strong>una sola vez en el DTO</strong>.</p>
+<hr />
+<h2 id="3-como-funciona-el-flujo-real">3️⃣ Cómo funciona el flujo real</h2>
+<ol>
+<li>Llega la request JSON  </li>
+<li>Jackson crea el objeto DTO </li>
+<li><strong>Spring valida el DTO</strong> </li>
+<li>Si hay errores:    </li>
+<li>❌ no entra al controller   </li>
+<li>❌ no entra al service    </li>
+<li>✅ devuelve 400 automáticamente   </li>
+</ol>
+<hr />
+<h2 id="4-validaciones-tipicas">4️⃣ Validaciones típicas</h2>
+<table>
+<thead>
+<tr>
+<th>Anotación</th>
+<th>Valida</th>
+<th>Acepta</th>
+<th>Rechaza</th>
+<th>Uso típico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@NotNull</code></td>
+<td>No null</td>
+<td><code>"x"</code>, <code>0</code></td>
+<td><code>null</code></td>
+<td>fechas, ids, enums</td>
+</tr>
+<tr>
+<td><code>@NotBlank</code></td>
+<td>String con texto</td>
+<td><code>"IB"</code></td>
+<td><code>null</code>, <code>""</code>, <code>" "</code></td>
+<td>nombres, códigos</td>
+</tr>
+<tr>
+<td><code>@Size</code></td>
+<td>Longitud</td>
+<td><code>"ABC"</code></td>
+<td><code>"A"</code>, <code>"MUY LARGO"</code></td>
+<td>códigos</td>
+</tr>
+<tr>
+<td><code>@Min</code></td>
+<td>Entero mínimo &gt;=</td>
+<td><code>5</code></td>
+<td><code>0</code>, <code>-1</code></td>
+<td>contadores</td>
+</tr>
+<tr>
+<td><code>@Max</code></td>
+<td>Entero máximo &lt;=</td>
+<td><code>500</code></td>
+<td><code>999</code></td>
+<td>contadores</td>
+</tr>
+<tr>
+<td><code>@DecimalMin</code></td>
+<td>Decimal mínimo</td>
+<td><code>0.0</code></td>
+<td><code>-0.1</code></td>
+<td>precios</td>
+</tr>
+<tr>
+<td><code>@Pattern</code></td>
+<td>Regex</td>
+<td><code>"M"</code></td>
+<td><code>"Male"</code></td>
+<td>formatos</td>
+</tr>
+<tr>
+<td><code>@Positive</code></td>
+<td>&gt; 0</td>
+<td><code>1</code></td>
+<td><code>0</code>, <code>-1</code></td>
+<td>cantidades</td>
+</tr>
+<tr>
+<td><code>@PositiveOrZero</code></td>
+<td>≥ 0</td>
+<td><code>0</code></td>
+<td><code>-1</code></td>
+<td>stock</td>
+</tr>
+</tbody>
+</table>
+<p>También existe <code>@DecimalMax</code> y <code>@DecimalMin</code>, equivalente decimal de @Max y @Min.</p>
+<hr />
+<h2 id="5-aplicado-a-endpoints">5️⃣ Aplicado a endpoints</h2>
+<h3 id="post-apiflights">🛩️ POST /api/flights</h3>
+<p>DTO de entrada</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">CreateFlightRequest</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="w">    </span><span class="nd">@NotBlank</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">flightNumber</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="w">    </span><span class="nd">@NotNull</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="w">    </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">departureDate</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="w">    </span><span class="nd">@NotNull</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="n">LocalTime</span><span class="w"> </span><span class="n">departureTime</span><span class="p">,</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="nd">@NotNull</span>
+<span class="linenos" data-linenos="13 "></span><span class="w">    </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">arrivalDate</span><span class="p">,</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="w">    </span><span class="nd">@NotNull</span>
+<span class="linenos" data-linenos="16 "></span><span class="w">    </span><span class="n">LocalTime</span><span class="w"> </span><span class="n">arrivalTime</span><span class="p">,</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="w">    </span><span class="nd">@Positive</span>
+<span class="linenos" data-linenos="19 "></span><span class="w">    </span><span class="n">Integer</span><span class="w"> </span><span class="n">durationMinutes</span><span class="p">,</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="w">    </span><span class="nd">@DecimalMin</span><span class="p">(</span><span class="s">&quot;0.00&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//Acepta: 0, 0.0, 10.50, ❌ Rechaza: -1, -0.01</span>
+<span class="linenos" data-linenos="22 "></span><span class="w">    </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">basePrice</span><span class="p">,</span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="w">    </span><span class="nd">@NotNull</span>
+<span class="linenos" data-linenos="25 "></span><span class="w">    </span><span class="n">FlightStatus</span><span class="w"> </span><span class="n">status</span><span class="p">,</span>
+<span class="linenos" data-linenos="26 "></span>
+<span class="linenos" data-linenos="27 "></span><span class="w">    </span><span class="nd">@NotNull</span>
+<span class="linenos" data-linenos="28 "></span><span class="w">    </span><span class="n">Long</span><span class="w"> </span><span class="n">airlineId</span><span class="p">,</span>
+<span class="linenos" data-linenos="29 "></span>
+<span class="linenos" data-linenos="30 "></span><span class="w">    </span><span class="nd">@NotNull</span>
+<span class="linenos" data-linenos="31 "></span><span class="w">    </span><span class="n">Long</span><span class="w"> </span><span class="n">departureAirportId</span><span class="p">,</span>
+<span class="linenos" data-linenos="32 "></span>
+<span class="linenos" data-linenos="33 "></span><span class="w">    </span><span class="nd">@NotNull</span>
+<span class="linenos" data-linenos="34 "></span><span class="w">    </span><span class="n">Long</span><span class="w"> </span><span class="n">arrivalAirportId</span>
+<span class="linenos" data-linenos="35 "></span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<p>Controller:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@PostMapping</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">FlightDto</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="nd">@Valid</span><span class="w"> </span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">CreateFlightRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">FlightDto</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">flightService</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">req</span><span class="p">);</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">CREATED</span><span class="p">)</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">            </span><span class="p">.</span><span class="na">header</span><span class="p">(</span><span class="n">HttpHeaders</span><span class="p">.</span><span class="na">LOCATION</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/api/flights/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">created</span><span class="p">.</span><span class="na">id</span><span class="p">())</span>
+<span class="linenos" data-linenos="8 "></span><span class="w">            </span><span class="p">.</span><span class="na">body</span><span class="p">(</span><span class="n">created</span><span class="p">);</span>
+<span class="linenos" data-linenos="9 "></span><span class="p">}</span>
+</code></pre></div>
+<p>📌 Si falta un campo → <strong>400 automático</strong></p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">UpdatePassengerRequest</span><span class="p">(</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="nd">@NotBlank</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">documentNumber</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="nd">@Pattern</span><span class="p">(</span><span class="n">regexp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;[MFX]&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">gender</span>
+<span class="linenos" data-linenos="8 "></span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<p>Controller</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@PutMapping</span><span class="p">(</span><span class="s">&quot;/{id}&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">PassengerDto</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="nd">@Valid</span><span class="w"> </span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">UpdatePassengerRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="n">passengerService</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">));</span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>📌 Si documentNumber viene vacío → 400    </li>
+<li>📌 Si gender no cumple → 400    </li>
+</ul>
+<hr />
+<h2 id="6-que-no-hace-valid-muy-importante">6️⃣ Qué NO hace @Valid (muy importante)</h2>
+<ul>
+<li>❌ No valida lógica de negocio    </li>
+<li>❌ No comprueba existencia en BD    </li>
+<li>❌ No detecta duplicados    </li>
+</ul>
+<p>Eso sigue yendo en el <strong>Service</strong>.</p>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Volver al principio
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navitagion.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+    
+  </body>
+</html>
