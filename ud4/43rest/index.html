@@ -1237,6 +1237,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#por-que-crear-un-dto-si-a-veces-contiene-la-misma-informacion-que-una-entidad" class="md-nav__link">
+    ¿Por qué crear un dto si a veces contiene la misma información que una entidad?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dto-de-entrada-request" class="md-nav__link">
     📥 DTO de entrada (request)
   </a>
@@ -1559,6 +1566,13 @@
   
     <nav class="md-nav" aria-label="🧱 DTOs: lo normal es NO exponer entidades directamente">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-crear-un-dto-si-a-veces-contiene-la-misma-informacion-que-una-entidad" class="md-nav__link">
+    ¿Por qué crear un dto si a veces contiene la misma información que una entidad?
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#dto-de-entrada-request" class="md-nav__link">
@@ -1898,6 +1912,12 @@
 </code></pre></div>
 <hr />
 <h2 id="dtos-lo-normal-es-no-exponer-entidades-directamente">🧱 DTOs: lo normal es NO exponer entidades directamente</h2>
+<h3 id="por-que-crear-un-dto-si-a-veces-contiene-la-misma-informacion-que-una-entidad">¿Por qué crear un dto si a veces contiene la misma información que una entidad?</h3>
+<p><strong>El dto no existe por lo que tiene hoy, sino por lo que protege y permite mañana.</strong> No confundir entidad con dto porque no son lo mismo, no tienen el mismo rol.</p>
+<ul>
+<li><strong>ENTIDAD</strong> --&gt; vive en la capa de persistencia, está ligada a BD, no debería salir nunca al exterior     </li>
+<li><strong>DTO</strong> --&gt; vive en la capa API, representa lo que EXPONES, es estable para elcliente, no tiene jpa, ni relaciones, ni lógica de persistencia. Se utiliza para desacoplar la capa de persistencia, controlar qué datos se exponen y permitir la evolución de la API sin afectar al modelo de BD   </li>
+</ul>
 <p>En APIs profesionales:    <br />
 - ❌ No devuelves entidades JPA “tal cual”    <br />
 - ✅ Usas DTOs/records para controlar lo que sale       </p>
