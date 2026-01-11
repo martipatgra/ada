@@ -1672,18 +1672,47 @@ Spring no ejecuta una URL concreta, lee la URL que llega y construye el Pageable
 2. Genera el LIMIT, OFFSET y ORDER BY     <br />
 3. Ejecuta la consulta SQL optimizada     <br />
 4. Devuelve un <code>Page&lt;Passenger&gt;</code>   </p>
-<p>Un Page<T> contiene dos tipos de información:     <br />
-- Los datos reales --&gt; <code>List&lt;Passenger&gt; pasajeros;</code>   <br />
-- Metadatos de paginación:    <br />
-| Método               | Qué devuelve            |
-| -------------------- | ----------------------- |
-| <code>getContent()</code>       | List<T> con dato reales |
-| <code>getTotalElements()</code> | Total de registros      |
-| <code>getTotalPages()</code>    | Número total de páginas |
-| <code>getNumber()</code>        | Página actual           |
-| <code>getSize()</code>          | Tamaño de página        |
-| <code>isFirst()</code>          | ¿Es la primera página?  |
-| <code>isLast()</code>           | ¿Es la última página?   |</p>
+<p>Un Page<T> contiene dos tipos de información:         <br />
+- Los datos reales --&gt; <code>List&lt;Passenger&gt; pasajeros;</code>       <br />
+- Metadatos de paginación:      </p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Qué devuelve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>getContent()</code></td>
+<td>List<T> con dato reales</td>
+</tr>
+<tr>
+<td><code>getTotalElements()</code></td>
+<td>Total de registros</td>
+</tr>
+<tr>
+<td><code>getTotalPages()</code></td>
+<td>Número total de páginas</td>
+</tr>
+<tr>
+<td><code>getNumber()</code></td>
+<td>Página actual</td>
+</tr>
+<tr>
+<td><code>getSize()</code></td>
+<td>Tamaño de página</td>
+</tr>
+<tr>
+<td><code>isFirst()</code></td>
+<td>¿Es la primera página?</td>
+</tr>
+<tr>
+<td><code>isLast()</code></td>
+<td>¿Es la última página?</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="crear-pageable-manualmente">🛠️ Crear Pageable manualmente</h2>
 <p>Normalmente NO hace falta, pero se puede usando la clase <code>PageRequest</code>:
