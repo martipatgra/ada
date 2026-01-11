@@ -1721,10 +1721,10 @@ Spring no ejecuta una URL concreta, lee la URL que llega y construye el Pageable
 </code></pre></div></p>
 <hr />
 <h2 id="que-devuelve-realmente-pageable">📑 ¿Qué devuelve realmente Pageable?</h2>
-<p>⚠️ Pageable no devuelve datos. <strong>Quien devuelve datos es Page<T></strong>.   <br />
-- Pageable → petición (indica cómo quiero los datos)      <br />
-- PageRequest → implementación concreta de Pageable   <br />
-- Page<T>  → resultado paginado, contiene los datos y la información de la página      </p>
+<p>⚠️ <code>Pageable</code> no devuelve datos. <strong>Quien devuelve datos es <code>Page&lt;T&gt;</code></strong>.   <br />
+- <code>Pageable</code> → petición (indica cómo quiero los datos)      <br />
+- <code>PageRequest</code> → implementación concreta de <code>Pageable</code>   <br />
+- <code>Page&lt;T&gt;</code>  → resultado paginado, contiene los datos y la información de la página      </p>
 <hr />
 <h2 id="valores-por-defecto-con-pageabledefault">⚙️ Valores por defecto con @PageableDefault</h2>
 <p>Si el cliente no envía parámetros, se pueden poner por defecto:
