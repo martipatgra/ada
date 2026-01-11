@@ -9,13 +9,17 @@
       
       
       
+        <link rel="prev" href="../valid/">
+      
+      
+        <link rel="next" href="../../ud5/51modulo/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
     
     
       
-        <title>📄 Paginación y Ordenación en Spring REST - Acceso a Datos</title>
+        <title>5.9.- Paginación y ordenación en APIs - Acceso a Datos</title>
       
     
     
@@ -110,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              📄 Paginación y Ordenación en Spring REST
+              5.9.- Paginación y ordenación en APIs
             
           </span>
         </div>
@@ -905,14 +909,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
       
       
       
@@ -921,7 +927,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           5.- Spring Framework
@@ -1035,6 +1041,212 @@
       <a href="../valid/" class="md-nav__link">
         5.8.- Validaciones en Spring. @Valid
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          5.9.- Paginación y ordenación en APIs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        5.9.- Paginación y ordenación en APIs
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-usar-paginacion" class="md-nav__link">
+    🧠 ¿Por qué usar paginación?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-la-paginacion" class="md-nav__link">
+    📦 ¿Qué es la paginación?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pageable-en-spring" class="md-nav__link">
+    🧩 Pageable en Spring
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 Pageable en Spring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-informacion-contiene-un-pageable" class="md-nav__link">
+    📦 ¿Qué información contiene un Pageable?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quien-crea-el-pageable" class="md-nav__link">
+    🧠 ¿Quién crea el Pageable?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parametros-de-paginacion" class="md-nav__link">
+    🔢 Parámetros de paginación
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pageable-en-el-controller" class="md-nav__link">
+    🌐 Pageable en el Controller
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Pageable en el Controller">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-url-se-ha-ejecutado-realmente" class="md-nav__link">
+    ❓ ¿Qué URL se ha ejecutado realmente?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-con-pageable" class="md-nav__link">
+    ⚙️ Service con Pageable
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-con-paginacion" class="md-nav__link">
+    🗂️ Repository con paginación
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-pageable-manualmente" class="md-nav__link">
+    🛠️ Crear Pageable manualmente
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-devuelve-realmente-pageable" class="md-nav__link">
+    📑 ¿Qué devuelve realmente Pageable?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valores-por-defecto-con-pageabledefault" class="md-nav__link">
+    ⚙️ Valores por defecto con @PageableDefault
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordenacion" class="md-nav__link">
+    🔀 Ordenación
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parametro-sort" class="md-nav__link">
+    🔤 Parámetro sort
+  </a>
+  
+    <nav class="md-nav" aria-label="🔤 Parámetro sort">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tambien-puedes-disenar-tu-propia-ordenacion-sin-usar-el-parametro-sort" class="md-nav__link">
+    También puedes diseñar tu propia ordenación sin usar el parámetro sort
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#se-puede-ordenar-sin-paginar" class="md-nav__link">
+    🛠️ ¿Se puede ordenar sin paginar?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paginacion-ordenacion-juntas" class="md-nav__link">
+    🧠 Paginación + Ordenación juntas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordenacion-por-defecto" class="md-nav__link">
+    ⚙️ Ordenación por defecto
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-final" class="md-nav__link">
+    🧠 Resumen final
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
