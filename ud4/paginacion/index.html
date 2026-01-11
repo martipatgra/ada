@@ -1800,7 +1800,7 @@ Spring no ejecuta una URL concreta, lee la URL que llega y construye el Pageable
 </code></pre></div>
 <hr />
 <h2 id="paginacion-ordenacion-juntas">🧠 Paginación + Ordenación juntas</h2>
-<p>Aunque la URL reciba parámetros de ordenación y/o paginación. NO depende de la URL. Depende de la FIRMA DEL CONTROLLER. Se realiza paginación u ordenación dependiendo de lo que se procesa en el controlador. </p>
+<p>Aunque la URL reciba parámetros de ordenación y/o paginación. NO depende de la URL. <strong>Depende de la FIRMA DEL CONTROLLER</strong>. Se realiza paginación u ordenación dependiendo de lo que se procesa en el controlador. </p>
 <p><strong>👉 Spring SOLO procesa lo que el controller declara. El resto de parámetros se ignoran.</strong></p>
 <p>Si en el controller tienes un objeto Pageable, podrás paginar y ordenar. Si solo tienes un objeto Sort solo podrás ordenar aunque envíes parámetros de paginación.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="err">GET /passengers?page=0&amp;size=5&amp;sort=name,asc</span>
