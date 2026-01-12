@@ -1120,6 +1120,61 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#que-devuelve-las-query-method" class="md-nav__link">
+    🛠️ ¿Qué devuelve las query method?
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ ¿Qué devuelve las query method?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-optional" class="md-nav__link">
+    1️⃣ Optional
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-t-objeto-directo" class="md-nav__link">
+    2️⃣ T (objeto directo)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-list" class="md-nav__link">
+    3️⃣ List
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-boolean" class="md-nav__link">
+    4️⃣ boolean
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-long-count-delete" class="md-nav__link">
+    5️⃣ long (count / delete)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-optional-no" class="md-nav__link">
+    6️⃣ Optional ❌ (NO)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1388,6 +1443,61 @@
   <a href="#como-parsea-spring-data-un-query-method" class="md-nav__link">
     🧠 Cómo parsea Spring Data un query method
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-devuelve-las-query-method" class="md-nav__link">
+    🛠️ ¿Qué devuelve las query method?
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ ¿Qué devuelve las query method?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-optional" class="md-nav__link">
+    1️⃣ Optional
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-t-objeto-directo" class="md-nav__link">
+    2️⃣ T (objeto directo)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-list" class="md-nav__link">
+    3️⃣ List
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-boolean" class="md-nav__link">
+    4️⃣ boolean
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-long-count-delete" class="md-nav__link">
+    5️⃣ long (count / delete)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-optional-no" class="md-nav__link">
+    6️⃣ Optional ❌ (NO)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1667,6 +1777,96 @@ Aun así, <strong>usarla mejora la claridad del código</strong>.</p>
 <li><a href="https://docs.spring.io/spring-data/jpa/reference/repositories/query-keywords-reference.html">Query subject keywords</a></li>
 <li><a href="https://docs.spring.io/spring-data/jpa/reference/repositories/query-keywords-reference.html#appendix.query.method.predicate">Query predicate keywords</a></li>
 </ul>
+<h3 id="que-devuelve-las-query-method">🛠️ ¿Qué devuelve las query method?</h3>
+<p>Lo que devuelven depende de cuántos resultados “esperas” por diseño.</p>
+<h4 id="1-optional">1️⃣ Optional<T></h4>
+<p>👉 Cuando esperas 0 o 1 resultado como máximo.</p>
+<p>Casos típicos:<br />
+- hay UNIQUE en BD<br />
+- buscas por identificador lógico (code, documentNumber, locator)   </p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Airline</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByCodeIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Airport</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByCodeIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Passenger</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByDocumentNumberIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">doc</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Booking</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLocator</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">locator</span><span class="p">);</span>
+</code></pre></div>
+<p>📌 <strong>Si devuelves T directamente aquí y no existe → excepción</strong>.
+Por eso <strong>Optional es lo correcto</strong>.</p>
+<h4 id="2-t-objeto-directo">2️⃣ T (objeto directo)</h4>
+<p>👉 Solo cuando estás 100% seguro de que existe.</p>
+<p>❌ Poco recomendable en repositorios</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Flight</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w"> </span><span class="c1">// NO (mejor Optional)</span>
+</code></pre></div>
+<h4 id="3-list">3️⃣ List<T></h4>
+<p>👉 Cuando puede haber muchos resultados.</p>
+<p>Casos típicos:<br />
+- búsquedas   <br />
+- filtros <br />
+- relaciones 1:N    </p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Flight</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByDepartureAirportCodeIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Booking</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByPassengerId</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">passengerId</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Flight</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByStatusAndDepartureDate</span><span class="p">(</span><span class="n">FlightStatus</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">date</span><span class="p">);</span>
+</code></pre></div>
+<p>📌 <strong>Si no hay resultados → lista vacía (NUNCA null)</strong>.</p>
+<h4 id="4-boolean">4️⃣ boolean</h4>
+<p>👉 Para comprobaciones rápidas de existencia.</p>
+<p>Casos típicos:<br />
+- reglas de negocio 
+- validaciones previas  </p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">boolean</span><span class="w"> </span><span class="nf">existsByCodeIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">boolean</span><span class="w"> </span><span class="nf">existsBySeatId</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">seatId</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span><span class="kt">boolean</span><span class="w"> </span><span class="nf">existsByDocumentNumberIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">doc</span><span class="p">);</span>
+</code></pre></div>
+<p>📌 <strong>Muy usado antes de crear o actualizar</strong>.</p>
+<h4 id="5-long-count-delete">5️⃣ long (count / delete)</h4>
+<p>👉 Para contar o saber cuántos registros se afectan.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">long</span><span class="w"> </span><span class="nf">countByPassengerId</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">passengerId</span><span class="p">);</span>
+<span class="linenos" data-linenos="2 "></span><span class="kt">long</span><span class="w"> </span><span class="nf">countByFlightId</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">flightId</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1">//delete masivo</span>
+<span class="linenos" data-linenos="5 "></span><span class="kt">long</span><span class="w"> </span><span class="nf">deleteByFlightIdAndStatus</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">flightId</span><span class="p">,</span><span class="w"> </span><span class="n">BookingStatus</span><span class="w"> </span><span class="n">status</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span><span class="c1">//📌 Devuelve cuántas filas se han borrado.</span>
+</code></pre></div>
+<h4 id="6-optional-no">6️⃣ Optional<List\<T>> ❌ (NO)</h4>
+<p>Nunca hagas esto:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Flight</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">findByStatus</span><span class="p">(...);</span><span class="w"> </span><span class="c1">// MAL</span>
+</code></pre></div>
+<p>📌 <strong>Una búsqueda múltiple ya tiene su “no resultado”: la lista vacía</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Devuelve</th>
+<th>Cuándo usarlo</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Optional&lt;T&gt;</code></td>
+<td>0 o 1 resultado</td>
+<td><code>findByCode</code>, <code>findByLocator</code></td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td>Ya garantizado que existe</td>
+<td>en Service, no en Repo</td>
+</tr>
+<tr>
+<td><code>List&lt;T&gt;</code></td>
+<td>0..N resultados</td>
+<td>búsquedas, filtros</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>existencia</td>
+<td><code>existsBy...</code></td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td>contar / borrar</td>
+<td><code>countBy...</code>, <code>deleteBy...</code></td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="relacion-con-ioc-y-di">🧠 Relación con IoC y DI</h2>
 <ul>
