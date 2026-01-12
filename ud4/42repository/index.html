@@ -1143,8 +1143,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-list" class="md-nav__link">
-    3️⃣ List
+  <a href="#3-listt" class="md-nav__link">
+    3️⃣ List&lt;T&gt;
   </a>
   
 </li>
@@ -1164,8 +1164,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-optional-no" class="md-nav__link">
-    6️⃣ Optional ❌ (NO)
+  <a href="#6-optionallistt-no" class="md-nav__link">
+    6️⃣ Optional&lt;List&lt;T&gt;&gt; ❌ (NO)
   </a>
   
 </li>
@@ -1469,8 +1469,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-list" class="md-nav__link">
-    3️⃣ List
+  <a href="#3-listt" class="md-nav__link">
+    3️⃣ List&lt;T&gt;
   </a>
   
 </li>
@@ -1490,8 +1490,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-optional-no" class="md-nav__link">
-    6️⃣ Optional ❌ (NO)
+  <a href="#6-optionallistt-no" class="md-nav__link">
+    6️⃣ Optional&lt;List&lt;T&gt;&gt; ❌ (NO)
   </a>
   
 </li>
@@ -1789,14 +1789,14 @@ Aun así, <strong>usarla mejora la claridad del código</strong>.</p>
 <span class="linenos" data-linenos="3 "></span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Passenger</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByDocumentNumberIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">doc</span><span class="p">);</span>
 <span class="linenos" data-linenos="4 "></span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Booking</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLocator</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">locator</span><span class="p">);</span>
 </code></pre></div>
-<p>📌 <strong>Si devuelves T directamente aquí y no existe → excepción</strong>.
-Por eso <strong>Optional es lo correcto</strong>.</p>
-<h4 id="2-t-objeto-directo">2️⃣ T (objeto directo)</h4>
+<p>📌 <strong>Si devuelves <code>T</code> directamente aquí y no existe → excepción</strong>.
+Por eso <strong><code>Optional&lt;T&gt;</code> es lo correcto</strong>.</p>
+<h4 id="2-t-objeto-directo">2️⃣ <code>T</code> (objeto directo)</h4>
 <p>👉 Solo cuando estás 100% seguro de que existe.</p>
 <p>❌ Poco recomendable en repositorios</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Flight</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w"> </span><span class="c1">// NO (mejor Optional)</span>
 </code></pre></div>
-<h4 id="3-list">3️⃣ List<T></h4>
+<h4 id="3-listt">3️⃣ <code>List&lt;T&gt;</code></h4>
 <p>👉 Cuando puede haber muchos resultados.</p>
 <p>Casos típicos:<br />
 - búsquedas   <br />
@@ -1807,7 +1807,7 @@ Por eso <strong>Optional es lo correcto</strong>.</p>
 <span class="linenos" data-linenos="3 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Flight</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByStatusAndDepartureDate</span><span class="p">(</span><span class="n">FlightStatus</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">date</span><span class="p">);</span>
 </code></pre></div>
 <p>📌 <strong>Si no hay resultados → lista vacía (NUNCA null)</strong>.</p>
-<h4 id="4-boolean">4️⃣ boolean</h4>
+<h4 id="4-boolean">4️⃣ <code>boolean</code></h4>
 <p>👉 Para comprobaciones rápidas de existencia.</p>
 <p>Casos típicos:<br />
 - reglas de negocio 
@@ -1817,7 +1817,7 @@ Por eso <strong>Optional es lo correcto</strong>.</p>
 <span class="linenos" data-linenos="3 "></span><span class="kt">boolean</span><span class="w"> </span><span class="nf">existsByDocumentNumberIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">doc</span><span class="p">);</span>
 </code></pre></div>
 <p>📌 <strong>Muy usado antes de crear o actualizar</strong>.</p>
-<h4 id="5-long-count-delete">5️⃣ long (count / delete)</h4>
+<h4 id="5-long-count-delete">5️⃣ <code>long</code> (count / delete)</h4>
 <p>👉 Para contar o saber cuántos registros se afectan.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kt">long</span><span class="w"> </span><span class="nf">countByPassengerId</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">passengerId</span><span class="p">);</span>
 <span class="linenos" data-linenos="2 "></span><span class="kt">long</span><span class="w"> </span><span class="nf">countByFlightId</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">flightId</span><span class="p">);</span>
@@ -1826,7 +1826,7 @@ Por eso <strong>Optional es lo correcto</strong>.</p>
 <span class="linenos" data-linenos="5 "></span><span class="kt">long</span><span class="w"> </span><span class="nf">deleteByFlightIdAndStatus</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">flightId</span><span class="p">,</span><span class="w"> </span><span class="n">BookingStatus</span><span class="w"> </span><span class="n">status</span><span class="p">);</span>
 <span class="linenos" data-linenos="6 "></span><span class="c1">//📌 Devuelve cuántas filas se han borrado.</span>
 </code></pre></div>
-<h4 id="6-optional-no">6️⃣ Optional<List\<T>> ❌ (NO)</h4>
+<h4 id="6-optionallistt-no">6️⃣ <code>Optional&lt;List&lt;T&gt;&gt;</code> ❌ (NO)</h4>
 <p>Nunca hagas esto:</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Flight</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">findByStatus</span><span class="p">(...);</span><span class="w"> </span><span class="c1">// MAL</span>
 </code></pre></div>
