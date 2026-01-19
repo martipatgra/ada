@@ -1812,6 +1812,15 @@ Con tags, queda ordenado por secciones como:</p>
 <span class="linenos" data-linenos="10 "></span><span class="p">}</span>
 </code></pre></div>
 <p>👉 Ahora Swagger crea un bloque “Flights” con todos los endpoints de ese controlador.</p>
+<p><strong>También existe</strong> <code>@Tags</code> (en plural) para <strong>agrupar varias</strong> <code>@Tag</code> cuando quieres que el mismo controller pertenezca a <strong>más de una categoría</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@Tags</span><span class="p">({</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="nd">@Tag</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Flights&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Operaciones de vuelos&quot;</span><span class="p">),</span>
+<span class="linenos" data-linenos="3 "></span><span class="w">  </span><span class="nd">@Tag</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Stats&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Consultas y métricas&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">})</span>
+<span class="linenos" data-linenos="5 "></span><span class="nd">@RestController</span>
+<span class="linenos" data-linenos="6 "></span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/flights&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="7 "></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FlightController</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <hr />
 <h3 id="52-describir-un-endpoint-concreto">5.2. Describir un endpoint concreto ✏️</h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">import</span><span class="w"> </span><span class="nn">io.swagger.v3.oas.annotations.Operation</span><span class="p">;</span>
