@@ -1810,6 +1810,14 @@ Por eso <strong><code>Optional&lt;T&gt;</code> es lo correcto</strong>.</p>
 <p>❌ Poco recomendable en repositorios</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">Flight</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w"> </span><span class="c1">// NO (mejor Optional)</span>
 </code></pre></div>
+<p>En query methods (Spring Data JPA) puedes devolver también <strong>tipos simples</strong> (String, Double, Long, etc.) o List<String> cuando solo <strong>quieres una columna</strong>.</p>
+<p>✅ Devolver una sola columna (sin traer la entidad)</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="w"> </span><span class="c1">// Devuelve un único campo (columna) de un registro</span>
+<span class="linenos" data-linenos="2 "></span><span class="w">  </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findNameById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">  </span><span class="c1">// Otro ejemplo con número</span>
+<span class="linenos" data-linenos="5 "></span><span class="w">  </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findPriceById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+</code></pre></div>
 <h4 id="3-listt">3️⃣ <code>List&lt;T&gt;</code></h4>
 <p>👉 Cuando puede haber muchos resultados.</p>
 <p>Casos típicos:<br />
@@ -1819,6 +1827,9 @@ Por eso <strong><code>Optional&lt;T&gt;</code> es lo correcto</strong>.</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Flight</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByDepartureAirportCodeIgnoreCase</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="p">);</span>
 <span class="linenos" data-linenos="2 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Booking</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByPassengerId</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">passengerId</span><span class="p">);</span>
 <span class="linenos" data-linenos="3 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Flight</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByStatusAndDepartureDate</span><span class="p">(</span><span class="n">FlightStatus</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">date</span><span class="p">);</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="c1">// O filtrado por algo</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findNameByActiveTrue</span><span class="p">();</span>
 </code></pre></div>
 <p>📌 <strong>Si no hay resultados → lista vacía (NUNCA null)</strong>.</p>
 <h4 id="4-boolean">4️⃣ <code>boolean</code></h4>
@@ -1908,6 +1919,9 @@ Por eso <strong><code>Optional&lt;T&gt;</code> es lo correcto</strong>.</p>
 <span class="linenos" data-linenos="3 "></span>
 <span class="linenos" data-linenos="4 "></span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;select u from User u where u.email = ?1 and u.active = ?2&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="5 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findUsers</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">active</span><span class="p">);</span>
+<span class="linenos" data-linenos="6 "></span>
+<span class="linenos" data-linenos="7 "></span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;select t.id from Passenger t&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="8 "></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findAllIds</span><span class="p">();</span>
 </code></pre></div>
 <p>Cuando usas <code>@Query</code> en Spring Data JPA, <strong>el lenguaje por defecto es, JPQL</strong>.</p>
 <p>También es posible usar <strong>SQL nativo</strong> si es necesario, agregando una propiedad dentro de <code>@Query</code>:</p>
